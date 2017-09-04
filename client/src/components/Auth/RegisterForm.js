@@ -3,6 +3,7 @@ import cssModules from 'react-css-modules';
 import styles from './RegisterForm.module.scss';
 import {FormGroup, Button, Form, ControlLabel, FormControl} from 'react-bootstrap';
 import {Auth} from 'j-toker'
+import Select2 from 'react-select2-wrapper';
 
 class RegisterForm extends Component {
   render() {
@@ -11,11 +12,13 @@ class RegisterForm extends Component {
         <FormGroup controlId="formHorizontalEmail">
           <ControlLabel> {this.context.t("register_as")} &nbsp;<font color="red">*</font> </ControlLabel>
           <div className="dark-picker dark-picker-bright">
-            <FormControl componentClass="select" placeholder="select" bsStyle="select-picker">
-              <option value="1">{this.context.t("student")}</option>
-              <option value="2">{this.context.t("tutor")}</option>
-              <option value="3">{this.context.t("teacher")}</option>
-            </FormControl>
+            <Select2
+              data={[
+                { text: this.context.t("student"), id: 1 },
+                { text: this.context.t("tutor"), id: 2 },
+                { text: this.context.t("teacher"), id: 3 }
+              ]}
+            />
           </div>
         </FormGroup>
 

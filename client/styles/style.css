@@ -5847,3 +5847,11 @@ a.fa-mixcloud[href='#']{
   color: #e27d7f;
   background-color: inherit;
 }
+
+input:not([type]), input[type="email" i],
+input[type="number" i], input[type="password" i],
+input[type="tel" i], input[type="url" i], input[type="text" i],
+textarea {
+  background-color: #F0F0EF;
+  padding: 19px 10px;
+}
