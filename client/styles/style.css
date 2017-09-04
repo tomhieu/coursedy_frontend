@@ -585,7 +585,10 @@ Dropdown Select2 styling
   width: 33px;
   border-radius: 5px;
   height: 35px;
-  background: #ffffff url("../images/arrow.png") no-repeat center;
+}
+
+.header-homepage .select2-container--default .select2-selection--single .select2-selection__arrow {
+  background: #ffffff url("../images/arrow.png") no-repeat center !important;
 }
 
 .dull-picker .select2 .select2-selection--single {
@@ -2041,7 +2044,6 @@ Homepage >> Header #Search
   display: inline-block;
   min-width: 300px;
   vertical-align: top;
-  margin-left: -3px;
 }
 
 .btn-search {

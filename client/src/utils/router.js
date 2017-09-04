@@ -2,10 +2,9 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import store, { history } from '../store/store';
 import App from '../components/App';
-import LoginForm from '../components/Auth/LoginForm'
 import * as Pages from '../pages/';
 import ReduxToastr from 'react-redux-toastr';
-import {LoginRegisterPage} from "../containers/index";
+import {LoginRegisterPage, SearchFormContainer} from "../containers/index";
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 
 const router = (
@@ -19,7 +18,7 @@ const router = (
       <BrowserRouter>
         <App>
           <Switch>
-            <Route exact path="/" component={LoginForm}/>
+            <Route exact path="/" component={SearchFormContainer}/>
             <Route path="/login" component={Pages.LoginRegisterPage} />
           </Switch>
         </App>

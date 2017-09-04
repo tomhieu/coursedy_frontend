@@ -3,7 +3,7 @@ import Footer from './Layout/Footer';
 import Layout from './Layout/Layout';
 import LoginForm from './Auth/LoginForm';
 import RegisterForm from './Auth/RegisterForm';
-import CustomSelectField from './CustomSelectField/CustomSelectField';
+import SearchForm from './SearchForm/SearchForm';
 
 export {
   Header,
@@ -11,5 +11,5 @@ export {
   Layout,
   LoginForm,
   RegisterForm,
-  CustomSelectField
+  SearchForm
 };
