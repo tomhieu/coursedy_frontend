@@ -1,7 +1,8 @@
 import React, {PropTypes, Component} from 'react';
-import {Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink, Button} from 'reactstrap'
+// import {Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink, Button} from 'reactstrap'
 import cssModules from 'react-css-modules';
 import styles from './Footer.module.scss';
+import {NavLink}  from 'react-router-dom';
 
 class Footer extends Component {
   render() {
@@ -15,7 +16,7 @@ class Footer extends Component {
                 <div className="footer-text">
                   <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut et lobortis diam vestibulum eget varius id, vulputate et mi. Nullam feugiat, diam quis interdum varius </p>
                   <div className="read-more">
-                    <a href="#">Read More...</a>
+                    <NavLink to="/"> Read More... </NavLink>
                   </div>
                 </div>
               </div>

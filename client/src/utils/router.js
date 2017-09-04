@@ -1,5 +1,4 @@
 import React from 'react';
-import { Router, Route, IndexRoute } from 'react-router';
 import { Provider } from 'react-redux';
 import store, { history } from '../store/store';
 import App from '../components/App';
@@ -7,6 +6,7 @@ import LoginForm from '../components/Auth/LoginForm'
 import * as Pages from '../pages/';
 import ReduxToastr from 'react-redux-toastr';
 import {LoginRegisterPage} from "../containers/index";
+import { BrowserRouter, Switch, Route } from 'react-router-dom'
 
 const router = (
   <Provider store={store}>
@@ -16,12 +16,14 @@ const router = (
         newestOnTop
         position="bottom-right"
       />
-      <Router history={history}>
+      <BrowserRouter>
         <App>
-          <Route exact path="/" component={LoginForm}/>
-          <Route exact path="/login" component={Pages.LoginRegisterPage} />
+          <Switch>
+            <Route exact path="/" component={LoginForm}/>
+            <Route path="/login" component={Pages.LoginRegisterPage} />
+          </Switch>
         </App>
-      </Router>
+      </BrowserRouter>
     </div>
   </Provider>
 );

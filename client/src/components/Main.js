@@ -5,11 +5,9 @@ import {translations} from "../translations"
 
 const Main = (props) => (
   <I18n translations={translations} initialLang="vn">
-    <div>
     <Layout>
       { props.children }
     </Layout>
-    </div>
   </I18n>
 );
 
