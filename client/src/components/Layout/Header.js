@@ -1,5 +1,5 @@
 import React, {PropTypes, Component} from 'react';
-import {Dropdown, Navbar, NavbarToggler, NavDropdown, MenuItem, Nav, NavItem, NavLink, Button} from 'react-bootstrap'
+import {Navbar, NavbarToggler, NavDropdown, MenuItem, Nav, NavItem, NavLink} from 'react-bootstrap'
 import cssModules from 'react-css-modules';
 import styles from './Header.module.scss';
 
