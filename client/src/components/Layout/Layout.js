@@ -1,12 +1,9 @@
-import React, {PropTypes, Component} from 'react';
+import React, {Component} from 'react';
 import Header from './Header'
 import Footer from './Footer'
 import I18n from "redux-i18n"
 import {translations} from "../../translations"
 import {LoginRegisterPage} from "../../containers/index";
-import { Switch, Route } from 'react-router-dom'
-import LoginForm from '../Auth/LoginForm'
-import * as Pages from '../../pages/';
 
 class Layout extends Component {
   render() {

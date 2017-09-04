@@ -1,4 +1,4 @@
-import React, { PropTypes, Component } from 'react';
+import React, { Component } from 'react';
 import { LoginForm } from '../../components/index';
 import styles from './LoginFormContainer.module.scss';
 import cssModules from 'react-css-modules';

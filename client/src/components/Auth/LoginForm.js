@@ -1,4 +1,4 @@
-import React, { PropTypes, Component } from 'react';
+import React, { Component } from 'react';
 import cssModules from 'react-css-modules';
 import styles from './LoginForm.module.scss';
 import {FormGroup, Button, Form, ControlLabel, FormControl} from 'react-bootstrap';

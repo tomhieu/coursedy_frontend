@@ -1,4 +1,4 @@
-import React, { PropTypes, Component } from 'react';
+import React, { Component } from 'react';
 import { RegisterForm } from '../../components';
 import styles from './RegisterFormContainer.module.scss';
 import cssModules from 'react-css-modules';
