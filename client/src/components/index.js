@@ -4,6 +4,9 @@ import Layout from './Layout/Layout';
 import LoginForm from './Auth/LoginForm';
 import RegisterForm from './Auth/RegisterForm';
 import SearchForm from './SearchForm/SearchForm';
+import Introduces from './Introduces/Introduces';
+import CourseGroup from './CourseGroup/CourseGroup';
+import CourseGroupList from './CourseGroupList/CourseGroupList';
 
 export {
   Header,
@@ -11,5 +14,8 @@ export {
   Layout,
   LoginForm,
   RegisterForm,
-  SearchForm
+  SearchForm,
+  Introduces,
+  CourseGroup,
+  CourseGroupList
 };

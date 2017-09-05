@@ -4,7 +4,6 @@ import store, { history } from '../store/store';
 import App from '../components/App';
 import * as Pages from '../pages/';
 import ReduxToastr from 'react-redux-toastr';
-import {LoginRegisterPage, SearchFormContainer} from "../containers/index";
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 
 const router = (
@@ -18,7 +17,7 @@ const router = (
       <BrowserRouter>
         <App>
           <Switch>
-            <Route exact path="/" component={SearchFormContainer}/>
+            <Route exact path="/" component={Pages.LandingPage}/>
             <Route path="/login" component={Pages.LoginRegisterPage} />
           </Switch>
         </App>
