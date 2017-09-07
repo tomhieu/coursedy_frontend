@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { RegisterForm } from '../../components';
 import styles from './RegisterFormContainer.module.scss';
 import cssModules from 'react-css-modules';
-import * as AmazingActionCreators from '../../actions/amazingComponent';
+import * as AmazingActionCreators from '../../actions/LoginComponent';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 

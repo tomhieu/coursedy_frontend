@@ -2,14 +2,14 @@ import React, { Component } from 'react';
 import { LoginForm } from '../../components/index';
 import styles from './LoginFormContainer.module.scss';
 import cssModules from 'react-css-modules';
-import * as AmazingActionCreators from '../../actions/amazingComponent';
+import * as LoginActionCreators from '../../actions/LoginComponent';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import {reduxForm} from 'redux-form';
 
 class LoginFormContainer extends Component {
-  handleSubmit({email, password}){
-    console.log(email, password)
+  loginUser({email, password}) {
+    this.props.actions.loginUser(email, password)
   }
 
   render() {
@@ -17,7 +17,7 @@ class LoginFormContainer extends Component {
       <div className="sign-block signin-left">
         <h2><span>{this.context.t('login')}</span> {this.context.t('with_your_account')}</h2>
         <span className="error"/>
-        <LoginForm onSubmit={this.handleSubmit.bind(this)} {...this.props}/>
+        <LoginForm onSubmit={this.loginUser.bind(this)} {...this.props}/>
       </div>
     );
   }
@@ -36,7 +36,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  actions: bindActionCreators(AmazingActionCreators, dispatch)
+  actions: bindActionCreators(LoginActionCreators, dispatch)
 });
 
 const StyledComponent = cssModules(LoginFormContainer, styles);
