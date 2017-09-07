@@ -1,31 +1,52 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import cssModules from 'react-css-modules';
 import styles from './LoginForm.module.scss';
-import {FormGroup, Button, Form, ControlLabel, FormControl} from 'react-bootstrap';
+import {FormGroup, Button, ControlLabel} from 'react-bootstrap';
+import {Field} from 'redux-form';
 import {Auth} from 'j-toker'
 
 class LoginForm extends Component {
   render() {
+    const {handleSubmit, submitting, pristine} = this.props;
+
     return (
-      <Form bsStyle="form-signin comment-form">
+      <form onSubmit={handleSubmit(this.props.onSubmit)} className="form-signin comment-form">
         <FormGroup controlId="formHorizontalEmail">
           <ControlLabel> {this.context.t("email")} <font color="red">*</font> </ControlLabel>
-          <FormControl type="email" placeholder={this.context.t("email")} name="email"/>
+          <Field
+                 name="email"
+                 component="input"
+                 type="email"
+                 placeholder={this.context.t("email")}
+                 className="form-control"
+          />
         </FormGroup>
 
         <FormGroup controlId="formHorizontalPassword">
           <ControlLabel> {this.context.t("password")} <font color="red">*</font> </ControlLabel>
-          <FormControl type="password" placeholder={this.context.t("password")} name="password"/>
+          <Field
+                 name="password"
+                 component="input"
+                 type="password"
+                 placeholder={this.context.t("password")}
+                 className="form-control"
+          />
         </FormGroup>
 
         <div className="check">
-          <a href="http://dev.mindsworthy.com/tutorsci/demo/auth/forgot_password" className="forgot-pass"> {this.context.t("forgot_password")}</a>
+          <a href="http://dev.mindsworthy.com/tutorsci/demo/auth/forgot_password"
+             className="forgot-pass"> {this.context.t("forgot_password")}</a>
         </div>
 
         <FormGroup>
-          <Button type="submit" className="btn-link-dark signin-btn center-block"> {this.context.t("login")} </Button>
+          <button type="submit"
+                  className="btn btn-primary btn-link-dark signin-btn center-block"
+                  disabled={pristine || submitting}
+          >
+            {this.context.t("login")}
+          </button>
         </FormGroup>
-      </Form>
+      </form>
     )
   }
 }
@@ -35,6 +56,7 @@ LoginForm.contextTypes = {
 }
 
 LoginForm.propTypes = {
+  onSubmit: React.PropTypes.func.isRequired
 }
 
-export default cssModules(LoginForm, styles);
+export default  cssModules(LoginForm, styles);
