@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import cssModules from 'react-css-modules';
 import styles from './LoginForm.module.scss';
-import {FormGroup, Button, ControlLabel} from 'react-bootstrap';
+import {FormGroup, ControlLabel} from 'react-bootstrap';
 import {Field} from 'redux-form';
 import {Auth} from 'j-toker'
 
