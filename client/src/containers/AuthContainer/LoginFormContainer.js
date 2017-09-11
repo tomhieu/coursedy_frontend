@@ -2,14 +2,14 @@ import React, { Component } from 'react';
 import { LoginForm } from '../../components/index';
 import styles from './LoginFormContainer.module.scss';
 import cssModules from 'react-css-modules';
-import * as LoginActionCreators from '../../actions/LoginActionCreator';
+import * as Action from '../../actions/LoginActionCreator';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import {reduxForm} from 'redux-form';
 
 class LoginFormContainer extends Component {
   loginUser({email, password}) {
-    this.props.actions.loginUser(email, password)
+    this.props.dispatch(Action.loginUser(email, password));
   }
 
   render() {
@@ -35,15 +35,10 @@ const mapStateToProps = (state) => ({
 
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  actions: bindActionCreators(LoginActionCreators, dispatch)
-});
-
 const StyledComponent = cssModules(LoginFormContainer, styles);
 
 export default connect(
-  mapStateToProps,
-  mapDispatchToProps
+  mapStateToProps
 )( reduxForm({
   form: 'login',
   fields: ['email', 'password']
