@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { LoginForm } from '../../components/index';
 import styles from './LoginFormContainer.module.scss';
 import cssModules from 'react-css-modules';
-import * as LoginActionCreators from '../../actions/LoginComponent';
+import * as LoginActionCreators from '../../actions/LoginActionCreator';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import {reduxForm} from 'redux-form';

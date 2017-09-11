@@ -11,11 +11,12 @@ import request from './request';
  * requests to a specific resource on the server.
  * @param {string} resource The resource used for config
  */
- const Network = resource => {
-   const buildUrl = ({ id, resource } = {}) => {
+ const Network = res => {
+   const buildUrl = ({ id, resource } = res) => {
      const parameters = [
        'http://localhost:3000',
-       'api'
+       'api',
+       'v1'
      ];
 
      if (resource) parameters.concat([resource]);
