@@ -8,7 +8,6 @@ import {Field} from 'redux-form';
 
 class RegisterForm extends Component {
   render() {
-    console.log(this.props);
     const {handleSubmit} = this.props;
 
     return (
@@ -16,7 +15,7 @@ class RegisterForm extends Component {
         <FormGroup controlId="formHorizontalEmail">
           <ControlLabel> {this.context.t("register_as")} &nbsp;<font color="red">*</font> </ControlLabel>
           <div className="dark-picker dark-picker-bright">
-            <Select2
+            <Select2 name="role"
               data={[
                 { text: this.context.t("student"), id: 1 },
                 { text: this.context.t("tutor"), id: 2 },
@@ -73,7 +72,7 @@ class RegisterForm extends Component {
         <FormGroup controlId="formHorizontalPassword">
           <ControlLabel> {this.context.t("confirm_password")} <font color="red">*</font> </ControlLabel>
           <Field
-            name="password_confirm"
+            name="password_confirmation"
             component="input"
             type="password"
             placeholder={this.context.t("confirm_password")}

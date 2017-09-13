@@ -20,7 +20,9 @@ export const translations = {
     "last_name": "Họ",
     "confirm_password": "Xác Nhận Mật Khẩu",
     "phone_number": "Số Điện Thoại",
-    "forgot_password": "Quên Mật Khẩu?"
+    "forgot_password": "Quên Mật Khẩu?",
+    "registration_email_require": "Vui lòng nhập email",
+
   },
   "en": {
     "home_page": "Home",
