@@ -2,6 +2,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as actionCreators from '../actions/actionCreators';
 import Main from './Main';
+import {withRouter} from 'react-router-dom';
 
 // Map the global state to global props here.
 const mapStateToProps = (state) => ({
@@ -23,4 +24,4 @@ const App = connect(
   mapDispatchToProps
 )(Main);
 
-export default App;
+export default withRouter(App);

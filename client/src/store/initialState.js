@@ -1,6 +1,6 @@
 const initalState = {
-  amazingComponent: {
-    boxes: ['Amazing', 'Super Amazing', 'Absolutely Amazing', 'Stunningly Amazing', 'Amazingly Amazing']
+  LoginComponent: {
+    signedIn: false
   }
 };
 

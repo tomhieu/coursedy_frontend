@@ -5,6 +5,7 @@ import { createBrowserHistory } from 'history';
 import promiseMiddleware from 'redux-promise-middleware';
 import rootReducer from '../reducers/index';
 import initialState from './initialState';
+import { createLogger } from 'redux-logger'
 
 /* Commonly used middlewares and enhancers */
 /* See: http://redux.js.org/docs/advanced/Middleware.html*/
@@ -20,7 +21,7 @@ if (typeof devToolsExtension === 'function') {
 }
 
 const composedEnhancers = compose(
-  applyMiddleware(...middlewares),
+  applyMiddleware(...middlewares, createLogger()),
   ...enhancers
 );
 

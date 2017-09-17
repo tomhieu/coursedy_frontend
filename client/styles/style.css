@@ -585,7 +585,10 @@ Dropdown Select2 styling
   width: 33px;
   border-radius: 5px;
   height: 35px;
-  background: #ffffff url("../images/arrow.png") no-repeat center;
+}
+
+.header-homepage .select2-container--default .select2-selection--single .select2-selection__arrow {
+  background: #ffffff url("../images/arrow.png") no-repeat center !important;
 }
 
 .dull-picker .select2 .select2-selection--single {
@@ -2041,7 +2044,6 @@ Homepage >> Header #Search
   display: inline-block;
   min-width: 300px;
   vertical-align: top;
-  margin-left: -3px;
 }
 
 .btn-search {
@@ -5839,4 +5841,19 @@ a.fa-mixcloud[href='#']{
   list-style: none;
   padding: 0 0 0 20px;
   display: inline-block;
+}
+
+.navbar-default .navbar-nav>.active>a,
+.navbar-default .navbar-nav>.active>a:focus,
+.navbar-default .navbar-nav>.active>a:hover {
+  color: #e27d7f;
+  background-color: inherit;
+}
+
+input:not([type]), input[type="email" i],
+input[type="number" i], input[type="password" i],
+input[type="tel" i], input[type="url" i], input[type="text" i],
+textarea {
+  background-color: #F0F0EF;
+  padding: 19px 10px;
 }
