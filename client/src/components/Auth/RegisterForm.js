@@ -6,6 +6,13 @@ import {Auth} from 'j-toker'
 import Select2 from 'react-select2-wrapper';
 import {Field} from 'redux-form';
 
+const renderField = ({ input, label, type, meta: { touched, error, warning } }) => (
+  <div className='full-width-input-wrapper'>
+    <input {...input} placeholder={label} type={type}/>
+    {touched && ((error && <span className='input-errors'>{error}</span>) || (warning && <span>{warning}</span>))}
+  </div>
+)
+
 class RegisterForm extends Component {
   render() {
     const {handleSubmit} = this.props;
@@ -29,7 +36,7 @@ class RegisterForm extends Component {
           <ControlLabel> {this.context.t("first_name")}&nbsp;<font color="red">*</font> </ControlLabel>
           <Field
             name="first_name"
-            component="input"
+            component={renderField}
             type="text"
             placeholder={this.context.t("first_name")}
             className="form-control"
@@ -40,7 +47,7 @@ class RegisterForm extends Component {
           <ControlLabel> {this.context.t("last_name")} </ControlLabel>
           <Field
             name="last_name"
-            component="input"
+            component={renderField}
             type="text"
             placeholder={this.context.t("last_name")}
             className="form-control"
@@ -51,7 +58,7 @@ class RegisterForm extends Component {
           <ControlLabel> {this.context.t("email")} <font color="red">*</font> </ControlLabel>
           <Field
             name="email"
-            component="input"
+            component={renderField}
             type="email"
             placeholder={this.context.t("email")}
             className="form-control"
@@ -62,7 +69,7 @@ class RegisterForm extends Component {
           <ControlLabel> {this.context.t("password")} <font color="red">*</font> </ControlLabel>
           <Field
             name="password"
-            component="input"
+            component={renderField}
             type="password"
             placeholder={this.context.t("password")}
             className="form-control"
@@ -73,7 +80,7 @@ class RegisterForm extends Component {
           <ControlLabel> {this.context.t("confirm_password")} <font color="red">*</font> </ControlLabel>
           <Field
             name="password_confirmation"
-            component="input"
+            component={renderField}
             type="password"
             placeholder={this.context.t("confirm_password")}
             className="form-control"
@@ -84,7 +91,7 @@ class RegisterForm extends Component {
           <ControlLabel> {this.context.t("phone_number")}&nbsp;<font color="red">*</font> </ControlLabel>
           <Field
             name="phone_number"
-            component="input"
+            component={renderField}
             type="text"
             placeholder={this.context.t("phone_number")}
             className="form-control"
