@@ -19,7 +19,7 @@ class Header extends Component {
             <LinkContainer to="/" role="button">
               <NavItem eventKey={1}> {this.context.t('home_page')} </NavItem>
             </LinkContainer>
-            <LinkContainer to="/" role="button">
+            <LinkContainer to="/tutor" role="button">
               <NavItem eventKey={2}> {this.context.t('find_tutors')} </NavItem>
             </LinkContainer>
             <LinkContainer to="/" role="button">
