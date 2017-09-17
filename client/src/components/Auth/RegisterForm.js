@@ -5,10 +5,24 @@ import {FormGroup, ControlLabel, FormControl} from 'react-bootstrap';
 import {Auth} from 'j-toker'
 import Select2 from 'react-select2-wrapper';
 import {Field} from 'redux-form';
+import {TT} from '../../utils/locale'
 
 const renderField = ({ input, label, type, meta: { touched, error, warning } }) => (
   <div className='full-width-input-wrapper'>
+    {touched && ((error && <span className='input-errors'>{error}</span>) || (warning && <span>{warning}</span>))}
     <input {...input} placeholder={label} type={type}/>
+  </div>
+)
+
+const renderSelect = ({ input, label, type, meta: { touched, error, warning } }) => (
+  <div>
+    <Select2 {...input}
+           data={[
+             { text: TT.t("student"), id: 1 },
+             { text: TT.t("teacher"), id: 2 },
+             { text: TT.t("tutor"), id: 3 }
+           ]}
+    />
     {touched && ((error && <span className='input-errors'>{error}</span>) || (warning && <span>{warning}</span>))}
   </div>
 )
@@ -22,12 +36,9 @@ class RegisterForm extends Component {
         <FormGroup controlId="formHorizontalEmail">
           <ControlLabel> {this.context.t("register_as")} &nbsp;<font color="red">*</font> </ControlLabel>
           <div className="dark-picker dark-picker-bright">
-            <Select2 name="role"
-              data={[
-                { text: this.context.t("student"), id: 1 },
-                { text: this.context.t("tutor"), id: 2 },
-                { text: this.context.t("teacher"), id: 3 }
-              ]}
+            <Field
+              name="role"
+              component={renderSelect}
             />
           </div>
         </FormGroup>

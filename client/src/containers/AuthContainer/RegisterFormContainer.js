@@ -33,6 +33,11 @@ class RegisterFormContainer extends Component {
 
 const validate = (values) => {
   const errors = {}
+
+  if (!values.role) {
+    errors.role = TT.t('role_required')
+  }
+
   if (!values.first_name) {
     errors.first_name = TT.t('first_name_required')
   }
@@ -83,6 +88,6 @@ export default connect(
   mapStateToProps
 )( reduxForm({
   form: 'signUp',
-  fields: ['email', 'password', 'first_name', 'last_name', 'phone_number'],
+  fields: ['email', 'password', 'first_name', 'last_name', 'phone_number', 'role'],
   validate
 })(StyledComponent));

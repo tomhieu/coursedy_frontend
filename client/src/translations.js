@@ -18,6 +18,7 @@ export const translations = {
     "teacher": "Giáo Viên",
     "first_name": "Tên",
     "last_name": "Họ",
+    "role_required": "Vui lòng chọn tài khoản người dùng",
     "first_name_required": "Vui lòng nhập tên",
     "confirm_password": "Xác Nhận Mật Khẩu",
     "phone_number": "Số Điện Thoại",
