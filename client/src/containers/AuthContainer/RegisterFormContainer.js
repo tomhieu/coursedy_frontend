@@ -8,7 +8,7 @@ import {reduxForm} from 'redux-form';
 import {TT} from '../../utils/locale'
 
 class RegisterFormContainer extends Component {
-  signUpUser({email, password, password_confirmation, first_name, last_name, phone_number, role}) {
+  submit({email, password, password_confirmation, first_name, last_name, phone_number, role}) {
     this.props.dispatch(Action.signUpUser(
       email,
       password,
@@ -20,12 +20,16 @@ class RegisterFormContainer extends Component {
     ));
   }
 
+  resetForm(){
+    this.props.dispatch(Action.resetForm())
+  }
+
   render() {
     return (
       <div className="sign-block">
         <h2><span> {this.context.t("register")} </span> {this.context.t("new_account")} </h2>
         <span className="error"/>
-        <RegisterForm onSubmit={this.signUpUser.bind(this)} {...this.props}/>
+        <RegisterForm onSubmit={this.submit.bind(this)} resetForm={this.resetForm.bind(this)} {...this.props}/>
       </div>
     );
   }
@@ -60,7 +64,9 @@ const validate = (values) => {
     errors.password_confirmation = TT.t('password_confirmation_not_match')
   }
 
-  if (values.phone_number && !/^\d*$/i.test(values.phone_number)) {
+  if (!values.phone_number) {
+    errors.phone_number = TT.t('phone_number_required')
+  } else if (!/^\d*$/i.test(values.phone_number)) {
     errors.phone_number = TT.t('invalid_phone_number')
   }
 
@@ -77,7 +83,7 @@ RegisterFormContainer.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-
+  SignUpStatus: state.SignUpComponent.success
 });
 
 const StyledComponent = cssModules(RegisterFormContainer, styles);

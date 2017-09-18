@@ -30,7 +30,9 @@ export const translations = {
     "invalid_password": "Mật khẩu quá ngắn (ít nhất 8 ký tự)",
     "password_confirmation_not_match": "Xác nhận mật khẩu không đúng",
     "phone_number_required": "Vui lòng nhập số điện thoại",
-    "invalid_phone_number": "Số điện thoại không đúng"
+    "invalid_phone_number": "Số điện thoại không đúng",
+    "sign_up_success": "Đăng Ký Thành Công !",
+    "congrat_sign_up_success": "Chúc mừng bạn đã đăng ký thành viên của EzyLearning thành công. Chúng tôi đã gửi email xác nhận đến địa chỉ email của bạn. Vui lòng kiểm tra hộp thư đến để kích hoạt tài khoản"
   },
   "en": {
     "home_page": "Home",

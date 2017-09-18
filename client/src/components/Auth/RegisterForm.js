@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 import cssModules from 'react-css-modules';
 import styles from './RegisterForm.module.scss';
 import {FormGroup, ControlLabel} from 'react-bootstrap';
-import {Auth} from 'j-toker'
 import Select2 from 'react-select2-wrapper';
 import {Field} from 'redux-form';
 import {TT} from '../../utils/locale'
+import {ROLES} from "constants/Roles";
+import SignUpSuccessModal from "./SignUpSuccessModal";
 
 const renderField = ({ input, label, type, meta: { touched, error, warning } }) => (
   <div className='full-width-input-wrapper'>
@@ -17,11 +18,9 @@ const renderField = ({ input, label, type, meta: { touched, error, warning } }) 
 const renderSelect = ({ input, label, type, meta: { touched, error, warning } }) => (
   <div>
     <Select2 {...input}
-           data={[
-             { text: TT.t("student"), id: 1 },
-             { text: TT.t("teacher"), id: 2 },
-             { text: TT.t("tutor"), id: 3 }
-           ]}
+      data={
+        ROLES.map((role) => ({text: TT.t(role), id: role}))
+      }
     />
     {touched && ((error && <span className='input-errors'>{error}</span>) || (warning && <span>{warning}</span>))}
   </div>
@@ -30,7 +29,6 @@ const renderSelect = ({ input, label, type, meta: { touched, error, warning } })
 class RegisterForm extends Component {
   render() {
     const {handleSubmit} = this.props;
-
     return (
       <form onSubmit={handleSubmit(this.props.onSubmit)} className="form-signin comment-form">
         <FormGroup controlId="formHorizontalEmail">
@@ -112,6 +110,7 @@ class RegisterForm extends Component {
         <button type="submit" className="btn btn-primary btn-link-dark center-block">
           {this.context.t("register")}
         </button>
+        <SignUpSuccessModal show={this.props.SignUpStatus} close={this.props.resetForm}/>
       </form>
     )
   }
