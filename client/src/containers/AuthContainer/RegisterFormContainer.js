@@ -60,9 +60,7 @@ const validate = (values) => {
     errors.password_confirmation = TT.t('password_confirmation_not_match')
   }
 
-  if (!values.phone_number) {
-    errors.phone_number = TT.t('phone_number_required')
-  } else if (!/^\d*$/i.test(values.phone_number)) {
+  if (values.phone_number && !/^\d*$/i.test(values.phone_number)) {
     errors.phone_number = TT.t('invalid_phone_number')
   }
 

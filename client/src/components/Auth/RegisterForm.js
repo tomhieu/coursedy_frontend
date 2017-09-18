@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import cssModules from 'react-css-modules';
 import styles from './RegisterForm.module.scss';
-import {FormGroup, ControlLabel, FormControl} from 'react-bootstrap';
+import {FormGroup, ControlLabel} from 'react-bootstrap';
 import {Auth} from 'j-toker'
 import Select2 from 'react-select2-wrapper';
 import {Field} from 'redux-form';
@@ -99,7 +99,7 @@ class RegisterForm extends Component {
         </FormGroup>
 
         <FormGroup>
-          <ControlLabel> {this.context.t("phone_number")}&nbsp;<font color="red">*</font> </ControlLabel>
+          <ControlLabel> {this.context.t("phone_number")}</ControlLabel>
           <Field
             name="phone_number"
             component={renderField}
