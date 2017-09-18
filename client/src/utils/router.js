@@ -19,6 +19,7 @@ const router = (
           <Switch>
             <Route exact path="/" component={Pages.LandingPage}/>
             <Route path="/login" component={Pages.LoginRegisterPage} />
+            <Route path="/tutor" component={Pages.TutorPage} />
           </Switch>
         </App>
       </BrowserRouter>

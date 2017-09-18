@@ -8,6 +8,10 @@ import Introduces from './Introduces/Introduces';
 import CourseGroup from './CourseGroup/CourseGroup';
 import CourseGroupList from './CourseGroupList/CourseGroupList';
 
+import TutorSearchForm from './Tutor/TutorSearchForm/TutorSearchForm';
+import TutorItem from './Tutor/TutorItem/TutorItem';
+import TutorList from './Tutor/TutorList/TutorList';
+
 export {
   Header,
   Footer,
@@ -17,5 +21,9 @@ export {
   SearchForm,
   Introduces,
   CourseGroup,
-  CourseGroupList
+  CourseGroupList,
+
+  TutorSearchForm,
+  TutorItem,
+  TutorList,
 };

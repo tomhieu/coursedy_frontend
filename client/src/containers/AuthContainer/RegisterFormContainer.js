@@ -5,6 +5,7 @@ import cssModules from 'react-css-modules';
 import * as Action from '../../actions/SignUpActionCreater';
 import { connect } from 'react-redux';
 import {reduxForm} from 'redux-form';
+import {TT} from '../../utils/locale'
 
 class RegisterFormContainer extends Component {
   signUpUser({email, password, password_confirmation, first_name, last_name, phone_number, role}) {
@@ -30,21 +31,41 @@ class RegisterFormContainer extends Component {
   }
 }
 
-const validate = values => {
+const validate = (values) => {
   const errors = {}
+
+  if (!values.role) {
+    errors.role = TT.t('role_required')
+  }
+
+  if (!values.first_name) {
+    errors.first_name = TT.t('first_name_required')
+  }
+
   if (!values.email) {
-    errors.email = 'Required'
+    errors.email = TT.t('registration_email_require')
   } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-    errors.email = 'Invalid email address'
+    errors.email = TT.t('invalid_email')
   }
 
   if (!values.password) {
-    errors.password = 'Required'
-  } else if (isNaN(Number(values.age))) {
-    errors.age = 'Must be a number'
-  } else if (Number(values.age) < 18) {
-    errors.age = 'Sorry, you must be at least 18 years old'
+    errors.password = TT.t('password_required')
+  } else if (values.password.length < 8) {
+    errors.password = TT.t('invalid_password')
   }
+
+  if (!values.password_confirmation) {
+    errors.password_confirmation = TT.t('password_confirmation_required')
+  } else if (values.password_confirmation != values.password) {
+    errors.password_confirmation = TT.t('password_confirmation_not_match')
+  }
+
+  if (!values.phone_number) {
+    errors.phone_number = TT.t('phone_number_required')
+  } else if (!/^\d*$/i.test(values.phone_number)) {
+    errors.phone_number = TT.t('invalid_phone_number')
+  }
+
   return errors
 }
 
@@ -67,5 +88,6 @@ export default connect(
   mapStateToProps
 )( reduxForm({
   form: 'signUp',
-  fields: ['email', 'password', 'first_name', 'last_name', 'phone_number']
+  fields: ['email', 'password', 'first_name', 'last_name', 'phone_number', 'role'],
+  validate
 })(StyledComponent));

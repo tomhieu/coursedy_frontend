@@ -5,6 +5,27 @@ import {FormGroup, ControlLabel, FormControl} from 'react-bootstrap';
 import {Auth} from 'j-toker'
 import Select2 from 'react-select2-wrapper';
 import {Field} from 'redux-form';
+import {TT} from '../../utils/locale'
+
+const renderField = ({ input, label, type, meta: { touched, error, warning } }) => (
+  <div className='full-width-input-wrapper'>
+    {touched && ((error && <span className='input-errors'>{error}</span>) || (warning && <span>{warning}</span>))}
+    <input {...input} placeholder={label} type={type}/>
+  </div>
+)
+
+const renderSelect = ({ input, label, type, meta: { touched, error, warning } }) => (
+  <div>
+    <Select2 {...input}
+           data={[
+             { text: TT.t("student"), id: 1 },
+             { text: TT.t("teacher"), id: 2 },
+             { text: TT.t("tutor"), id: 3 }
+           ]}
+    />
+    {touched && ((error && <span className='input-errors'>{error}</span>) || (warning && <span>{warning}</span>))}
+  </div>
+)
 
 class RegisterForm extends Component {
   render() {
@@ -15,12 +36,9 @@ class RegisterForm extends Component {
         <FormGroup controlId="formHorizontalEmail">
           <ControlLabel> {this.context.t("register_as")} &nbsp;<font color="red">*</font> </ControlLabel>
           <div className="dark-picker dark-picker-bright">
-            <Select2 name="role"
-              data={[
-                { text: this.context.t("student"), id: 1 },
-                { text: this.context.t("tutor"), id: 2 },
-                { text: this.context.t("teacher"), id: 3 }
-              ]}
+            <Field
+              name="role"
+              component={renderSelect}
             />
           </div>
         </FormGroup>
@@ -29,7 +47,7 @@ class RegisterForm extends Component {
           <ControlLabel> {this.context.t("first_name")}&nbsp;<font color="red">*</font> </ControlLabel>
           <Field
             name="first_name"
-            component="input"
+            component={renderField}
             type="text"
             placeholder={this.context.t("first_name")}
             className="form-control"
@@ -40,7 +58,7 @@ class RegisterForm extends Component {
           <ControlLabel> {this.context.t("last_name")} </ControlLabel>
           <Field
             name="last_name"
-            component="input"
+            component={renderField}
             type="text"
             placeholder={this.context.t("last_name")}
             className="form-control"
@@ -51,7 +69,7 @@ class RegisterForm extends Component {
           <ControlLabel> {this.context.t("email")} <font color="red">*</font> </ControlLabel>
           <Field
             name="email"
-            component="input"
+            component={renderField}
             type="email"
             placeholder={this.context.t("email")}
             className="form-control"
@@ -62,7 +80,7 @@ class RegisterForm extends Component {
           <ControlLabel> {this.context.t("password")} <font color="red">*</font> </ControlLabel>
           <Field
             name="password"
-            component="input"
+            component={renderField}
             type="password"
             placeholder={this.context.t("password")}
             className="form-control"
@@ -73,7 +91,7 @@ class RegisterForm extends Component {
           <ControlLabel> {this.context.t("confirm_password")} <font color="red">*</font> </ControlLabel>
           <Field
             name="password_confirmation"
-            component="input"
+            component={renderField}
             type="password"
             placeholder={this.context.t("confirm_password")}
             className="form-control"
@@ -84,7 +102,7 @@ class RegisterForm extends Component {
           <ControlLabel> {this.context.t("phone_number")}&nbsp;<font color="red">*</font> </ControlLabel>
           <Field
             name="phone_number"
-            component="input"
+            component={renderField}
             type="text"
             placeholder={this.context.t("phone_number")}
             className="form-control"

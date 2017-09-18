@@ -4,11 +4,12 @@ import Footer from './Footer'
 import I18n from "redux-i18n"
 import {translations} from "../../translations"
 import {LoginRegisterPage} from "../../containers/index";
+import {TT} from '../../utils/locale'
 
 class Layout extends Component {
   render() {
     return (
-      <I18n translations={translations} initialLang="vn">
+      <I18n translations={translations} initialLang={TT.locale}>
       <div className="">
         <Header/>
         <div>
