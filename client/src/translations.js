@@ -13,7 +13,7 @@ export const translations = {
     "email": "Email",
     "password": "Mật Khẩu",
     "register_as": "Đăng Ký Làm",
-    "student": "Học Sinh",
+    "student": "Học Viên",
     "tutor": "Gia Sư",
     "teacher": "Giáo Viên",
     "first_name": "Tên",
