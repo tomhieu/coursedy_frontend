@@ -9,9 +9,9 @@ class TutorList extends Component {
       <div id="tutor_list">
         <div className="box-border">
           {
-            [1,2,3,4,5].map(() => {
+            [1,2,3,4,5].map((i) => {
               return (
-                <TutorItem />
+                <TutorItem key={i}/>
               )
             })
           }

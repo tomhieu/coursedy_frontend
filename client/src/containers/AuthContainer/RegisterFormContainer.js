@@ -8,7 +8,7 @@ import {reduxForm} from 'redux-form';
 import {TT} from '../../utils/locale'
 
 class RegisterFormContainer extends Component {
-  signUpUser({email, password, password_confirmation, first_name, last_name, phone_number, role}) {
+  submit({email, password, password_confirmation, first_name, last_name, phone_number, role}) {
     this.props.dispatch(Action.signUpUser(
       email,
       password,
@@ -20,12 +20,16 @@ class RegisterFormContainer extends Component {
     ));
   }
 
+  resetForm(){
+    this.props.dispatch(Action.resetForm())
+  }
+
   render() {
     return (
       <div className="sign-block">
         <h2><span> {this.context.t("register")} </span> {this.context.t("new_account")} </h2>
         <span className="error"/>
-        <RegisterForm onSubmit={this.signUpUser.bind(this)} {...this.props}/>
+        <RegisterForm onSubmit={this.submit.bind(this)} resetForm={this.resetForm.bind(this)} {...this.props}/>
       </div>
     );
   }
@@ -79,7 +83,7 @@ RegisterFormContainer.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-
+  SignUpStatus: state.SignUpComponent.success
 });
 
 const StyledComponent = cssModules(RegisterFormContainer, styles);
