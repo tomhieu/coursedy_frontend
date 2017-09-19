@@ -12,7 +12,7 @@ class SignUpSuccessModal extends Component {
           <p> {this.context.t('congrat_sign_up_success')} </p>
         </Modal.Body>
         <Modal.Footer>
-          <Button onClick={this.props.close}>Close</Button>
+          <Button onClick={this.props.close}>{this.context.t('close')}</Button>
         </Modal.Footer>
       </Modal>
     )
