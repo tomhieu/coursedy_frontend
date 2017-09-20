@@ -32,7 +32,7 @@ LoginFormContainer.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-
+  LoginComponent: state.LoginComponent
 });
 
 const StyledComponent = cssModules(LoginFormContainer, styles);
