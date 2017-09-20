@@ -65,6 +65,7 @@
     "lodash": "^4.17.4",
     "node-sass": "^4.5.3",
     "pubsub-js": "^1.5.7",
+    "query-string": "^5.0.0",
     "react": "^15.6.1",
     "react-addons-css-transition-group": "^15.6.0",
     "react-addons-transition-group": "^15.6.0",
