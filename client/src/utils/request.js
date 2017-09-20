@@ -22,10 +22,6 @@ export default function request(url, options) {
           localStorage.setItem('ezyLearningToken', accessToken)
           localStorage.setItem('ezyLearningClient', client)
           localStorage.setItem('ezyLearningUid', uid)
-        } else {
-          localStorage.removeItem('ezyLearningToken')
-          localStorage.removeItem('ezyLearningClient')
-          localStorage.removeItem('ezyLearningUid')
         }
 
         return response.json()

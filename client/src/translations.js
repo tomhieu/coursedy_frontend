@@ -12,6 +12,8 @@ export const translations = {
     "new_account": "Tài Khoản Mới",
     "email": "Email",
     "password": "Mật Khẩu",
+    "error": "Lỗi",
+    "email_or_password_incorrect": "Email hoặc Mật khẩu không đúng",
     "register_as": "Đăng Ký Làm",
     "student": "Học Viên",
     "tutor": "Gia Sư",
