@@ -12,9 +12,13 @@ export const loginUser = (email, password) => {
       dispatch(Actions.setCurrentUser())
       globalHistory.replace('/');
     }, (errors) => {
+      const error_messages = (errors && errors.constructor == Array && errors.length > 0)?
+        errors :
+        [TT.t('email_or_password_incorrect')]
+
       dispatch({
         type: types.LOGIN_FAILED,
-        payload: {errors: [TT.t('email_or_password_incorrect')]}
+        payload: {errors: error_messages}
       })
     })
   }
