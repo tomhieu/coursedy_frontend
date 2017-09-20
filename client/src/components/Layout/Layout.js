@@ -8,15 +8,22 @@ import {TT} from '../../utils/locale'
 import * as Actions from '../../actions/SessionActionCreator'
 
 class Layout extends Component {
-  componentDidMount = () => {
+  componentDidMount(){
     this.props.dispatch(Actions.setCurrentUser());
   }
+
+  signOut(e) {
+    e.preventDefault();
+    console.log(this.props)
+    this.props.dispatch(Actions.signOutUser())
+  }
+
 
   render() {
     return (
       <I18n translations={translations} initialLang={TT.locale}>
         <div className="">
-          <Header/>
+          <Header session={this.props.session} signOut={this.signOut.bind(this)}/>
           <div>
             {this.props.children}
           </div>

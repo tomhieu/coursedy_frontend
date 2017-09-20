@@ -7,6 +7,7 @@ export const translations = {
     "contact": "Liên hệ",
     "forum": "Diễn Đàn",
     "login": "Đăng Nhập",
+    "signout": "Đăng xuất",
     "with_your_account": "Với Tài Khoản",
     "register": "Đăng Ký",
     "new_account": "Tài Khoản Mới",
