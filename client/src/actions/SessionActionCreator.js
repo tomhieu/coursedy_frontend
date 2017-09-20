@@ -29,8 +29,12 @@ export const setCurrentUser = () => {
       localStorage.setItem('ezyLearningUid', confirmation.uid)
       fetchCurrentUser(dispatch);
       globalHistory.replace('/');
-    } else {
+    } else if (localStorage.getItem('ezyLearningToken')) {
       fetchCurrentUser(dispatch);
+    } else {
+      dispatch({
+        type: types.REMOVE_CURRENT_USER
+      })
     }
   };
 }
