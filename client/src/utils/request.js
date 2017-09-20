@@ -12,7 +12,24 @@ export default function request(url, options) {
     if (!options) reject(new Error('Options parameter required'));
 
     fetch(url, options)
-      .then(response => response.json())
+      .then(response => {
+        // update token, uid and client_id in browser storage
+        let uid = response.headers.get('uid')
+        let accessToken = response.headers.get('access-token')
+        let client = response.headers.get('client')
+
+        if (accessToken){
+          localStorage.setItem('ezyLearningToken', accessToken)
+          localStorage.setItem('ezyLearningClient', client)
+          localStorage.setItem('ezyLearningUid', uid)
+        } else {
+          localStorage.removeItem('ezyLearningToken')
+          localStorage.removeItem('ezyLearningClient')
+          localStorage.removeItem('ezyLearningUid')
+        }
+
+        return response.json()
+      })
       .then(response => {
         if (response.errors) reject(response.errors);
         else resolve(response);
