@@ -110,7 +110,7 @@ class RegisterForm extends Component {
         <button type="submit" className="btn btn-primary btn-link-dark center-block">
           {this.context.t("register")}
         </button>
-        <SignUpSuccessModal show={this.props.SignUpStatus} close={this.props.resetForm}/>
+        <SignUpSuccessModal show={this.props.SignUpComponent.success} close={this.props.resetForm}/>
       </form>
     )
   }
