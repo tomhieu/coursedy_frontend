@@ -11,6 +11,7 @@ import CourseGroupList from './CourseGroupList/CourseGroupList';
 import TutorSearchForm from './Tutor/TutorSearchForm/TutorSearchForm';
 import TutorItem from './Tutor/TutorItem/TutorItem';
 import TutorList from './Tutor/TutorList/TutorList';
+import TutorProfile from './Dashboard/TutorDashboard/TutorProfile';
 
 export {
   Header,
@@ -26,4 +27,6 @@ export {
   TutorSearchForm,
   TutorItem,
   TutorList,
+
+  TutorProfile
 };

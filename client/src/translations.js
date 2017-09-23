@@ -8,6 +8,7 @@ export const translations = {
     "forum": "Diễn Đàn",
     "login": "Đăng Nhập",
     "signout": "Đăng xuất",
+    "dashboard": "Trang Cá Nhân",
     "with_your_account": "Với Tài Khoản",
     "register": "Đăng Ký",
     "new_account": "Tài Khoản Mới",

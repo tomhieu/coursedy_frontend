@@ -43,18 +43,24 @@ class Header extends Component {
               </LinkContainer>
             </NavDropdown>
 
-            <LinkContainer to="/" role="button">
-              <NavItem eventKey={4}>{this.context.t('contact')}</NavItem>
-            </LinkContainer>
+            {/*<LinkContainer to="/" role="button">*/}
+              {/*<NavItem eventKey={4}>{this.context.t('contact')}</NavItem>*/}
+            {/*</LinkContainer>*/}
+
             <LinkContainer to="/" role="button">
               <NavItem eventKey={5}> {this.context.t('forum')}</NavItem>
             </LinkContainer>
-
 
             <LinkContainer to="/login" className={this.props.session.currentUser ? 'hidden' : ''}>
               <NavItem eventKey={6}>
                 <span className="nav-btn"> <i className="fa  fa-sign-in"></i> &nbsp; {this.context.t('login')} <span
                   className="hidden-navbtn"> | {this.context.t('register')} </span></span>
+              </NavItem>
+            </LinkContainer>
+
+            <LinkContainer to="/dashboard" className={this.props.session.currentUser ? '' : 'hidden'}>
+              <NavItem eventKey={8}>
+                <span className="nav-btn"> <i className="fa fa-sign-out"></i> &nbsp; {this.context.t('dashboard')}</span>
               </NavItem>
             </LinkContainer>
 
