@@ -1,8 +1,7 @@
 import * as types from '../constants/Session';
 
 const session = (state = {
-  currentUser: null,
-  roles: []
+  currentUser: null
 }, action) => {
   switch (action.type) {
     case types.SET_CURRENT_USER:

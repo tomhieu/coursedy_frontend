@@ -3,7 +3,6 @@ import {Navbar, NavbarToggler, NavDropdown, MenuItem, Nav, NavItem, NavLink} fro
 import cssModules from 'react-css-modules';
 import styles from './Header.module.scss';
 import { LinkContainer } from 'react-router-bootstrap'
-import * as Actions from '../../actions/SessionActionCreator'
 
 class Header extends Component {
   render() {

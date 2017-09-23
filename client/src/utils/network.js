@@ -27,7 +27,7 @@ import request from './request';
    };
 
    // Default option for every request
-   const defaultOptions = {
+   var defaultOptions = {
      mode: 'cors',
      headers: {
        'Accept': 'application/json',
