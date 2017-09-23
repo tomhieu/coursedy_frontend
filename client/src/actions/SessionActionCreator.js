@@ -21,7 +21,7 @@ const fetchCurrentUser = (dispatch, callback) => {
 
 export const checkRole = (authorizedRoles, userRoles, unauthorizedPath) => {
   return dispatch => {
-    const authorized = authorizedRoles.map((role) =>{userRoles.indexOf(role) >= 0}).reduce((x, y) => {x || y})
+    const authorized = authorizedRoles.map((role) => userRoles.indexOf(role) >= 0).reduce((x, y) => x || y)
     if (!authorized) globalHistory.replace(unauthorizedPath)
   }
 }

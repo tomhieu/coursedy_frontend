@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import * as Actions from '../../actions/SessionActionCreator'
+import * as Actions from '../actions/SessionActionCreator'
 import { connect } from 'react-redux';
 
 class RoleAuthorization extends Component {
