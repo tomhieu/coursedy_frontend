@@ -12,6 +12,7 @@ import TutorSearchForm from './Tutor/TutorSearchForm/TutorSearchForm';
 import TutorItem from './Tutor/TutorItem/TutorItem';
 import TutorList from './Tutor/TutorList/TutorList';
 import TutorProfile from './Dashboard/TutorDashboard/TutorProfile';
+import RoleAuthorization from './RoleAuthorization';
 
 export {
   Header,
@@ -28,5 +29,6 @@ export {
   TutorItem,
   TutorList,
 
-  TutorProfile
+  TutorProfile,
+  RoleAuthorization
 };

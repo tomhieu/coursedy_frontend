@@ -11,12 +11,19 @@ const fetchCurrentUser = (dispatch, callback) => {
         type: types.SET_CURRENT_USER,
         payload: data
       })
-      if (callback) callback()
+      if (callback) callback(data)
     }, (errors) => {
       dispatch({
         type: types.REMOVE_CURRENT_USER
       })
     })
+}
+
+export const checkRole = (authorizedRoles, userRoles, unauthorizedPath) => {
+  return dispatch => {
+    const authorized = authorizedRoles.map((role) =>{userRoles.indexOf(role) >= 0}).reduce((x, y) => {x || y})
+    if (!authorized) globalHistory.replace(unauthorizedPath)
+  }
 }
 
 export const setCurrentUser = (callback) => {
