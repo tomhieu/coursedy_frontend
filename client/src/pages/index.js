@@ -4,6 +4,7 @@ import LoginRegisterPage from './LoginRegisterPage/LoginRegisterPage'
 import CourseListPage from './CoursePage/CourseListPage'
 import CourseDetailPage from './CoursePage/CourseDetailPage'
 import TutorPage from './TutorPage/TutorPage'
+import TutorDashboard from './TutorDashboard/TutorDashboard'
 
 
 export {
@@ -15,4 +16,5 @@ export {
   CourseDetailPage,
   
   TutorPage,
+  TutorDashboard
 };

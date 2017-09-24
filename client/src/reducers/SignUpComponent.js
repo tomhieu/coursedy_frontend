@@ -1,11 +1,13 @@
 import * as types from '../constants/SignUpComponent';
 
 const SignUpComponent = (state = {
-  signedIn: false
+  success: false
 }, action) => {
   switch (action.type) {
     case types.SIGN_UP_SUCCESS:
-      return {...state, token: action.payload.token, signedIn: true};
+      return {...state, success: true, userFirstName: action.payload.data.first_name};
+    case types.RESET_FORM:
+      return {...state, success: false, userFirstName: ''};
     default:
       return state;
   }

@@ -1,1 +1,2 @@
 export const SIGN_UP_SUCCESS = 'SIGN_UP_SUCCESS'
+export const RESET_FORM = 'RESET_FORM'

@@ -10,8 +10,8 @@ class CourseFilter extends Component {
       <div className="row row-margin">
         <div className="margin-btm">
           <div className="col-xs-12 col-sm-12">
-          	<div className="col-xs-12 col-sm-12 course-filter">
-        			<Form action="#" id="filter_form" method="post">
+            <div className="col-xs-12 col-sm-12 course-filter">
+              <Form action="#" id="filter_form" method="post">
                 <div className="col-md-4">
                   <label htmlFor="">Khóa học</label>
                   <Select2
@@ -46,7 +46,7 @@ class CourseFilter extends Component {
                   />
                 </div>
               </Form>
-          	</div>
+            </div>
           </div>
         </div>
       </div>

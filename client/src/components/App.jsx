@@ -6,8 +6,7 @@ import {withRouter} from 'react-router-dom';
 
 // Map the global state to global props here.
 const mapStateToProps = (state) => ({
-  // messages: state.messages,
-  // errors: state.errors
+  session: state.session
 });
 
 // Map the dispatch and bind the action creators.
@@ -20,8 +19,7 @@ function mapDispatchToProps(dispatch) {
 
 // Use connect both here and in your components.
 const App = connect(
-  mapStateToProps,
-  mapDispatchToProps
+  mapStateToProps
 )(Main);
 
 export default withRouter(App);

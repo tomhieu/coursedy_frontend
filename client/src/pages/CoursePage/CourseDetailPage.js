@@ -5,9 +5,9 @@ import { CourseDetail } from '../../components'
 
 
 const CourseDetailPage = (props) => (
-	<div className="container">
-		<CourseDetail />
-	</div>
+  <div className="container">
+    <CourseDetail />
+  </div>
 )
 
 export default cssModules(CourseDetailPage, styles);

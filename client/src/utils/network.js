@@ -27,11 +27,15 @@ import request from './request';
    };
 
    // Default option for every request
-   const defaultOptions = {
+   var defaultOptions = {
      mode: 'cors',
      headers: {
        'Accept': 'application/json',
-       'Content-Type': 'application/json'
+       'Content-Type': 'application/json',
+       'token-type': 'Bearer',
+       'access-token': localStorage.getItem('ezyLearningToken'),
+       'client': localStorage.getItem('ezyLearningClient'),
+       'uid': localStorage.getItem('ezyLearningUid')
      }
    };
 

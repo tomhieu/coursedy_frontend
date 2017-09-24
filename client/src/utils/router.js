@@ -4,7 +4,8 @@ import store, { history } from '../store/store';
 import App from '../components/App';
 import * as Pages from '../pages/';
 import ReduxToastr from 'react-redux-toastr';
-import { BrowserRouter, Switch, Route } from 'react-router-dom'
+import { Router, Switch, Route } from 'react-router-dom'
+import {globalHistory} from "utils/globalHistory";
 
 const router = (
   <Provider store={store}>
@@ -14,7 +15,7 @@ const router = (
         newestOnTop
         position="bottom-right"
       />
-      <BrowserRouter>
+      <Router history={globalHistory}>
         <App>
           <Switch>
             <Route exact path="/" component={Pages.LandingPage}/>
@@ -22,9 +23,10 @@ const router = (
             <Route path="/courses" component={Pages.CourseListPage} />
             <Route path="/course/:id" component={Pages.CourseDetailPage}/>
             <Route path="/tutors" component={Pages.TutorPage} />
+            <Route path="/dashboard" component={Pages.TutorDashboard} />
           </Switch>
         </App>
-      </BrowserRouter>
+      </Router>
     </div>
   </Provider>
 );

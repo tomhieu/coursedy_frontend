@@ -1,4 +1,5 @@
 import * as types from '../constants/SignUpComponent';
+import {reset} from 'redux-form';
 import Network from '../utils/network';
 
 export const signUpUser =  (email, password, password_confirmation, first_name, last_name, phone_number, role) => {
@@ -14,14 +15,23 @@ export const signUpUser =  (email, password, password_confirmation, first_name, 
     }
 
     Network().post('auth', body).then((response) => {
-      console.log(response)
       dispatch({
         type: types.SIGN_UP_SUCCESS,
         payload: response
       })
+      dispatch(reset('signUp'));
     }, (errors) => {
       console.log(errors)
     })
   }
 
+}
+
+export const resetForm = () => {
+  return dispatch => {
+    dispatch({
+      type: types.RESET_FORM,
+      payload: {}
+    })
+  }
 }
