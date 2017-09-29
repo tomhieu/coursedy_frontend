@@ -13,6 +13,9 @@ import TutorItem from './Tutor/TutorItem/TutorItem';
 import TutorList from './Tutor/TutorList/TutorList';
 import TutorProfile from './Dashboard/TutorDashboard/TutorProfile';
 import RoleAuthorization from './RoleAuthorization';
+import LoadingMask from './LoadingMask/LoadingMask'
+import TutorDashboardMenu from './Dashboard/TutorDashboard/TutorDashboardMenu'
+import TutorDashboardIndex from './Dashboard/TutorDashboard/TutorDashboardIndex'
 
 export {
   Header,
@@ -30,5 +33,8 @@ export {
   TutorList,
 
   TutorProfile,
-  RoleAuthorization
+  RoleAuthorization,
+  LoadingMask,
+  TutorDashboardMenu,
+  TutorDashboardIndex
 };
