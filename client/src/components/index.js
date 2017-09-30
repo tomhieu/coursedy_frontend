@@ -16,6 +16,7 @@ import RoleAuthorization from './RoleAuthorization';
 import LoadingMask from './LoadingMask/LoadingMask'
 import TutorDashboardMenu from './Dashboard/TutorDashboard/TutorDashboardMenu'
 import TutorDashboardIndex from './Dashboard/TutorDashboard/TutorDashboardIndex'
+import CourseForm from './Courses/CourseForm'
 
 export {
   Header,
@@ -36,5 +37,6 @@ export {
   RoleAuthorization,
   LoadingMask,
   TutorDashboardMenu,
-  TutorDashboardIndex
+  TutorDashboardIndex,
+  CourseForm
 };

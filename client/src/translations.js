@@ -38,7 +38,20 @@ export const translations = {
     "invalid_phone_number": "Số điện thoại không đúng",
     "sign_up_success": "Đăng Ký Thành Công !",
     "congrat_sign_up_success": "Chúc mừng bạn đã đăng ký thành viên của EzyLearning thành công. Chúng tôi đã gửi email xác nhận đến địa chỉ email của bạn. Vui lòng kiểm tra hộp thư đến để kích hoạt tài khoản",
-    "close": "Đóng"
+    "close": "Đóng",
+    "course_title": "Tên khoá học",
+    "sample_course_title": "Luyện thi TOEIC cấp tốc",
+    "start_date": "Ngày bắt đầu",
+    "end_date": "Ngày kết thúc",
+    "period": "Số buổi học",
+    "number_of_students": "Số học sinh",
+    "tuition_fee": "Học phí",
+    "course_description": "Giới thiệu khoá học",
+    "hour": "Giờ",
+    "day": "Ngày",
+    "week": "Tuần",
+    "month": "Tháng",
+    "save_course": "Tạo Khoá Học"
   },
   "en": {
     "home_page": "Home",

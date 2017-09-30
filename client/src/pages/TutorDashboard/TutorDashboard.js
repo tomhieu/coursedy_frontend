@@ -5,9 +5,11 @@ import { Router, Switch, Route } from 'react-router-dom'
 import {
   TutorProfile,
   TutorDashboardMenu,
-  TutorDashboardIndex
+  TutorDashboardIndex,
+  RoleAuthorization,
+  LoadingMask
 } from '../../components/index';
-import {RoleAuthorization, LoadingMask} from '../../components/index';
+import CourseFormContainer from '../../containers/CoursesContainer/CourseFormContainer';
 import { connect } from 'react-redux';
 import {setCurrentUser} from "actions/SessionActionCreator";
 
@@ -34,7 +36,7 @@ class TutorDashboard extends RoleAuthorization {
             <div className="col-xs-12 col-sm-8 dashboard-content ">
               <switch>
                 <Route exact path="/dashboard" component={TutorDashboardIndex}/>
-                <Route exact path="/dashboard/courses" component={TutorProfile}/>
+                <Route exact path="/dashboard/courses/new" component={CourseFormContainer}/>
               </switch>
             </div>
           </div>
