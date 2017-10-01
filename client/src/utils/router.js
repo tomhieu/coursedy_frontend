@@ -20,8 +20,8 @@ const router = (
           <Switch>
             <Route exact path="/" component={Pages.LandingPage}/>
             <Route path="/login" component={Pages.LoginRegisterPage} />
-            <Route path="/courses" component={Pages.CourseListPage} />
-            <Route path="/course/:id" component={Pages.CourseDetailPage}/>
+            <Route path="/courses" component={Pages.PublicCourseListPage} />
+            {/*<Route path="/courses/:id" component={Pages.CourseDetailPage}/>*/}
             <Route path="/tutors" component={Pages.TutorPage} />
             <Route path="/dashboard" component={Pages.TutorDashboard} />
           </Switch>

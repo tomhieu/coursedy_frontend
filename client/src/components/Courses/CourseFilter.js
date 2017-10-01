@@ -1,7 +1,7 @@
 import React, { Component} from 'react';
 import {Form} from 'react-bootstrap'
 import cssModules from 'react-css-modules';
-import styles from './CourseFilter.module.scss';
+import styles from './Course.module.scss';
 import Select2 from 'react-select2-wrapper'
 
 class CourseFilter extends Component {

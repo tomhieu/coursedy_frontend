@@ -8,10 +8,12 @@ import Introduces from './Introduces/Introduces';
 
 import CourseGroup from './Course/CourseGroup/CourseGroup';
 import CourseGroupList from './Course/CourseGroupList/CourseGroupList';
-import CourseGroup2 from './Course/CourseGroup/CourseGroup2';
-import CourseGroupList2 from './Course/CourseGroupList/CourseGroupList2';
+
 import CourseDetail from './Course/CourseDetail/CourseDetail';
-import CourseFilter from './Course/CourseFilter/CourseFilter';
+import CourseFilter from './Courses/CourseFilter';
+
+import CourseItem from './Courses/CourseItem';
+import CourseList from './Courses/CourseList';
 
 import TutorSearchForm from './Tutor/TutorSearchForm/TutorSearchForm';
 import TutorItem from './Tutor/TutorItem/TutorItem';
@@ -34,8 +36,9 @@ export {
 
   CourseGroup,
   CourseGroupList,
-  CourseGroup2,
-  CourseGroupList2,
+
+  CourseList,
+  CourseItem,
   CourseDetail,
   CourseFilter,
 
