@@ -6,3 +6,37 @@
   color: #ac2925;
   font-size: 11px;
 }
+
+.pad-top-10 {
+  padding-top: 10px;
+}
+
+.react-datepicker__input-container, .react-datepicker-wrapper {
+  display: block;
+}
+
+.react-datepicker__day-name, .react-datepicker__day, .react-datepicker__time-name {
+  width: 3.5rem;
+  height: 3rem;
+  padding-top: 7px;
+  font-size: 14px;
+  color: #73736e;
+}
+
+.react-datepicker__day--keyboard-selected, .react-datepicker__day--selected {
+  color: white !important;
+  background-color: #e27d7f;
+}
+
+.react-datepicker__current-month {
+  font-size: 14px;
+  color: #73736e;
+}
+
+.select2 {
+  min-width: auto;
+}
+
+.inline-form .control-label {
+  padding-top: 10px;
+}

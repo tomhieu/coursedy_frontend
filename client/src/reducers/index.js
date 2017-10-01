@@ -7,6 +7,7 @@ import {i18nState} from "redux-i18n"
 // Import the various reducers here:
 import LoginComponent from './LoginComponent';
 import SignUpComponent from './SignUpComponent';
+import CourseFormComponent from './CourseFormComponent';
 import session from './Session';
 
 const rootReducer = combineReducers({
@@ -14,6 +15,7 @@ const rootReducer = combineReducers({
   i18nState,
   LoginComponent,
   SignUpComponent,
+  CourseFormComponent,
   session,
   routing: routerReducer,
   form: formReducer,

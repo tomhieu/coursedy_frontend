@@ -5,6 +5,9 @@ import queryString from 'query-string'
 import Network from '../utils/network'
 
 const fetchCurrentUser = (dispatch, callback) => {
+  dispatch({
+    type: types.START_FETCHING_CURRENT_USER
+  })
   Network().get('current_user')
     .then((data) => {
       dispatch({
@@ -12,17 +15,25 @@ const fetchCurrentUser = (dispatch, callback) => {
         payload: data
       })
       if (callback) callback(data)
+      dispatch({
+        type: types.FINISHED_FETCHING_CURRENT_USER
+      })
     }, (errors) => {
       dispatch({
         type: types.REMOVE_CURRENT_USER
       })
+      dispatch({
+        type: types.FINISHED_FETCHING_CURRENT_USER
+      })
     })
 }
 
-export const checkRole = (authorizedRoles, userRoles, unauthorizedPath) => {
+export const checkRole = (authorizedRoles, unauthorizedPath) => {
   return dispatch => {
-    const authorized = authorizedRoles.map((role) => userRoles.indexOf(role) >= 0).reduce((x, y) => x || y)
-    if (!authorized) globalHistory.replace(unauthorizedPath)
+    fetchCurrentUser(dispatch, (currentUser) => {
+      const authorized = authorizedRoles.map((role) => currentUser.roles.indexOf(role) >= 0).reduce((x, y) => x || y)
+      if (!authorized) globalHistory.replace(unauthorizedPath)
+    })
   }
 }
 
