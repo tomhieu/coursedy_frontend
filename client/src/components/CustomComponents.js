@@ -14,10 +14,10 @@ export const renderField = ({ input, label, type, meta: { touched, error, warnin
 export const renderDatePicker = ({input, label, type, meta: {touched, error, warning}}) => {
   return (<div>
     <DatePicker {...input}
-                selected={input.value ? moment(input.value, 'MM/DD/YYYY') : null}
+                selected={input.value ? moment(input.value, 'DD/MM/YYYY') : null}
                 placeholderText='dd/mm/yyyy'
                 className="form-control"
-                dateFormat="MM/DD/YYYY"
+                dateFormat="DD/MM/YYYY"
                 calendarClassName="wide-calendar"
     />
     {touched && ((error && <span className='input-errors'>{error}</span>) || (warning && <span>{warning}</span>))}
