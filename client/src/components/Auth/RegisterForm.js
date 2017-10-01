@@ -1,30 +1,14 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import cssModules from 'react-css-modules';
 import styles from './RegisterForm.module.scss';
 import {FormGroup, ControlLabel} from 'react-bootstrap';
-import Select2 from 'react-select2-wrapper';
 import {Field} from 'redux-form';
 import {TT} from '../../utils/locale'
 import {ROLES} from "constants/Roles";
 import SignUpSuccessModal from "./SignUpSuccessModal";
+import {renderSelect, renderField} from "../CustomComponents";
 
-const renderField = ({ input, label, type, meta: { touched, error, warning } }) => (
-  <div className='full-width-input-wrapper'>
-    {touched && ((error && <span className='input-errors'>{error}</span>) || (warning && <span>{warning}</span>))}
-    <input {...input} placeholder={label} type={type}/>
-  </div>
-)
-
-const renderSelect = ({ input, label, type, meta: { touched, error, warning } }) => (
-  <div>
-    <Select2 {...input}
-      data={
-        ROLES.map((role) => ({text: TT.t(role), id: role}))
-      }
-    />
-    {touched && ((error && <span className='input-errors'>{error}</span>) || (warning && <span>{warning}</span>))}
-  </div>
-)
+const renderSelectComponent = renderSelect(ROLES.map((role) => ({text: TT.t(role), id: role})))
 
 class RegisterForm extends Component {
   render() {
@@ -33,12 +17,10 @@ class RegisterForm extends Component {
       <form onSubmit={handleSubmit(this.props.onSubmit)} className="form-signin comment-form">
         <FormGroup controlId="formHorizontalEmail">
           <ControlLabel> {this.context.t("register_as")} &nbsp;<font color="red">*</font> </ControlLabel>
-          <div className="dark-picker dark-picker-bright">
-            <Field
-              name="role"
-              component={renderSelect}
-            />
-          </div>
+          <Field
+            name="role"
+            component={renderSelectComponent}
+          />
         </FormGroup>
 
         <FormGroup>
@@ -120,7 +102,6 @@ RegisterForm.contextTypes = {
   t: React.PropTypes.func.isRequired
 }
 
-RegisterForm.propTypes = {
-}
+RegisterForm.propTypes = {}
 
 export default cssModules(RegisterForm, styles);

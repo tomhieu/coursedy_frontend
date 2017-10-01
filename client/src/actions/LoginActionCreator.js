@@ -9,8 +9,9 @@ export const loginUser = (email, password) => {
     let body = {email, password}
 
     Network().post('auth/sign_in', body).then((response) => {
-      dispatch(Actions.setCurrentUser())
-      globalHistory.replace('/');
+      dispatch(Actions.setCurrentUser(() => {
+        globalHistory.replace('/');
+      }))
     }, (errors) => {
       const error_messages = (errors && errors.constructor == Array && errors.length > 0)?
         errors :

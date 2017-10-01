@@ -14,7 +14,6 @@ class Layout extends Component {
 
   signOut(e) {
     e.preventDefault();
-    console.log(this.props)
     this.props.dispatch(Actions.signOutUser())
   }
 
