@@ -26,3 +26,41 @@
   margin-top: -10px;
   text-align: center;
 }
+
+.noPadRight {
+  padding-right: 0 !important;
+}
+
+
+
+.courseFilter {
+  background-color: #f9f9f9;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+.basicFilterBlock{
+  margin-bottom: 10px;
+}
+.btnSearch {
+  padding: 9px 15px;
+}
+.btnAdvancedFilter {
+  padding: 9px 35px;
+}
+
+.advancedFilter {
+  input[type="text"] {
+    background-color: none;
+    padding: 0;
+    width: 75px;
+  }
+  
+}
+
+.filterResultBlock {
+  select {
+    padding: 3px;
+    margin-left: 5px;
+    width: 100px;
+  }
+}

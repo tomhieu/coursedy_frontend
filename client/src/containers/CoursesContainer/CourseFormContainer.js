@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import { CourseForm } from '../../components/index';
+import * as Actions from '../../actions/CourseFormActionCreator'
 import { connect } from 'react-redux';
 import {reduxForm} from 'redux-form';
+import {validate} from '../../validations/CourseFormValidation'
 
 class CourseFormContainer extends Component {
-  createCourse({title}) {
-    // this.props.dispatch(Action.loginUser(title));
+  createCourse({title, description, start_date, end_date, number_of_students, period, period_type, tuition_fee, currency}) {
+    this.props.dispatch(Actions.createCourse(title, description, start_date, end_date, number_of_students, period, period_type, tuition_fee, currency));
   }
 
   render() {
@@ -31,5 +33,6 @@ export default connect(
   mapStateToProps
 )( reduxForm({
   form: 'course',
-  fields: ['title']
+  fields: ['title', 'description', 'start_date', 'end_date', 'number_of_students', 'period', 'period_type', 'tuition_fee', 'currency'],
+  validate
 })(CourseFormContainer));
