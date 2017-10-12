@@ -51,7 +51,16 @@ export const translations = {
     "day": "Ngày",
     "week": "Tuần",
     "month": "Tháng",
-    "save_course": "Tạo Khoá Học"
+    "save_course": "Tạo Khoá Học",
+    //
+    "account.person.info.title": "Thong Tin Ca Nhan",
+    "account.person.info.first.name": "Ten",
+    "account.person.info.last.name": "Ho Va Ten Lot",
+    "account.person.info.email": "Dia Chi Email",
+    "account.person.info.tel": "So Dien Thoai Di Dong",
+    "account.person.info.birth.date": "Ngay Sinh",
+    "account.person.info.address": "Dia Chi",
+    "account.person.info.save.btn": "Luu",
   },
   "en": {
     "home_page": "Home",

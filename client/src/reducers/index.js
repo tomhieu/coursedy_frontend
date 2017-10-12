@@ -9,6 +9,7 @@ import LoginComponent from './LoginComponent';
 import SignUpComponent from './SignUpComponent';
 import CourseFormComponent from './CourseFormComponent';
 import session from './Session';
+import loadPersonData from "./TutorAccountReducer";
 
 const rootReducer = combineReducers({
   // Apply all of the reducers here.
@@ -19,7 +20,9 @@ const rootReducer = combineReducers({
   session,
   routing: routerReducer,
   form: formReducer,
-  toastr: toastrReducer
+  toastr: toastrReducer,
+  // Person Info screen
+  loadPersonData
 });
 
 export default rootReducer;
