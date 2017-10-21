@@ -2,9 +2,9 @@ import * as types from '../constants/CourseFormComponent';
 import Network from '../utils/network'
 import {TT} from '../utils/locale'
 
-export const createCourse = (title, description, start_date, end_date, number_of_students, period, period_type, tuition_fee, currency) => {
+export const createCourse = (title, description, start_date, end_date, number_of_students, period, period_type, tuition_fee, currency, cover_image) => {
   return dispatch => {
-    let body = {title, description, start_date, end_date, number_of_students, period, period_type, tuition_fee, currency}
+    let body = {title, description, start_date, end_date, number_of_students, period, period_type, tuition_fee, currency, cover_image}
 
     Network().post('courses', body).then((response) => {
       dispatch({

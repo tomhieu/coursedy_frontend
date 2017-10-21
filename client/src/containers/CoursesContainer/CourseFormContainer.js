@@ -6,8 +6,8 @@ import {reduxForm} from 'redux-form';
 import {validate} from '../../validations/CourseFormValidation'
 
 class CourseFormContainer extends Component {
-  createCourse({title, description, start_date, end_date, number_of_students, period, period_type, tuition_fee, currency}) {
-    this.props.dispatch(Actions.createCourse(title, description, start_date, end_date, number_of_students, period, period_type, tuition_fee, currency));
+  createCourse({title, description, start_date, end_date, number_of_students, period, period_type, tuition_fee, currency, cover_image}) {
+    this.props.dispatch(Actions.createCourse(title, description, start_date, end_date, number_of_students, period, period_type, tuition_fee, currency, cover_image));
   }
 
   render() {
@@ -33,6 +33,6 @@ export default connect(
   mapStateToProps
 )( reduxForm({
   form: 'course',
-  fields: ['title', 'description', 'start_date', 'end_date', 'number_of_students', 'period', 'period_type', 'tuition_fee', 'currency'],
+  fields: ['title', 'description', 'start_date', 'end_date', 'number_of_students', 'period', 'period_type', 'tuition_fee', 'currency', 'cover_image'],
   validate
 })(CourseFormContainer));

@@ -3,6 +3,7 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import Select2 from 'react-select2-wrapper';
 import moment from 'moment';
+import Dropzone from 'react-dropzone'
 
 export const renderField = ({input, label, type, meta: {touched, error, warning}}) => (
   <div className='full-width-input-wrapper'>
@@ -43,6 +44,25 @@ export const renderSelect = (selectOptions) => {
       </div>
       {touched && ((error && <span className='input-errors'>{error}</span>) || (warning && <span>{warning}</span>))}
     </div>
+  )
+}
 
+export const renderSingleFileInput = ({ input: { value, ...input }, label, meta: { touched, error }, ...custom }) => {
+  const onChange = (files) => {
+    let fileReader = new FileReader
+    fileReader.onload = () => {
+      input.onChange(fileReader.result)
+    }
+    fileReader.readAsDataURL(files[0])
+  }
+
+  return (
+    <Dropzone
+      name={'_' + input.name}
+      onDrop={onChange}
+      multiple={false}
+      accept="image/*">
+      <input className='hidden' {...input}/>
+    </Dropzone>
   )
 }
