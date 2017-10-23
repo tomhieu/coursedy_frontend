@@ -5,6 +5,7 @@ import cssModules from 'react-css-modules';
 import styles from './TutorAccount.module.scss';
 import {Component} from "react";
 import {connect} from "react-redux";
+import TutorEducation from "../../containers/AccountContainer/Tutor/TutorEducation";
 
 class TutorAccount extends Component {
     constructor(props){
@@ -24,6 +25,11 @@ class TutorAccount extends Component {
                         <div className="col-xs-12 col-sm-8 dashboard-content ">
                             <div className="d-flex flex-vertical">
                                 <PersonInfoContainer/>
+                            </div>
+                        </div>
+                        <div className="col-xs-12 col-sm-8 dashboard-content ">
+                            <div className="d-flex flex-vertical">
+                                <TutorEducation/>
                             </div>
                         </div>
                     </div>

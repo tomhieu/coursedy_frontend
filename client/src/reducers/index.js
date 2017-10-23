@@ -9,7 +9,8 @@ import LoginComponent from './LoginComponent';
 import SignUpComponent from './SignUpComponent';
 import CourseFormComponent from './CourseFormComponent';
 import session from './Session';
-import loadPersonData from "./TutorAccountReducer";
+import loadPersonData from "./TutorPersonalInfo";
+import loadEducationData from "./TutorEducation";
 
 const rootReducer = combineReducers({
   // Apply all of the reducers here.
@@ -22,7 +23,8 @@ const rootReducer = combineReducers({
   form: formReducer,
   toastr: toastrReducer,
   // Person Info screen
-  loadPersonData
+  loadPersonData,
+  loadEducationData
 });
 
 export default rootReducer;

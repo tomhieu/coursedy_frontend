@@ -2,6 +2,7 @@ import Network from "utils/network";
 
 export const RECEIVE_PERSON_DATA = 'RECEIVE_PERSON_DATA';
 export const RECEIVE_EDUCATION_DATA = 'RECEIVE_EDUCATION_DATA';
+export const RECEIVE_DRGREES_DATA = 'RECEIVE_DEGREES_DATA';
 
 const personData = {
     firstName: "Trung",
@@ -23,6 +24,15 @@ const tutorEducation = {
     certificates: ["toiec", "ielts", "tofle"]
 }
 
+const listDegrees = [
+    {id: 1, name: "Trung Hoc Pho Thong"},
+    {id: 2, name: "Trung Cap"},
+    {id: 3, name: "Cao Dang"},
+    {id: 4, name: "Dai Hoc"},
+    {id: 5, name: "Thac Sy"},
+    {id: 6, name: "Tien Sy"}
+]
+
 export const loadPersonInfo = () => {
 /*    return dispatch => {
         Network().get('/account/personal').then((response) => dispatch(receiveInfo(response.json())));
@@ -42,17 +52,26 @@ const receiveInfo = data => {
     }
 }
 
-const loadTutorEducationData = () => {
+export const loadTutorEducationData = () => {
     return {
         type: RECEIVE_EDUCATION_DATA,
         data: tutorEducation
     }
 }
 
-const downloadDegree = (degreeId) => {
-    return Network().get('/account/tutor/degree/download?degreeId' + degreeId);
+export const loadListDegreesData = () => {
+    return {
+        type: RECEIVE_DRGREES_DATA,
+        data: listDegrees
+    }
 }
 
-const deleteDegree = (degreeId) => {
-    return Network().delete('/account/tutor/degree/delete?degreeId' + degreeId);
+export const downloadDegree = (degreeId) => {
+    return "";
+//    return Network().get('/account/tutor/degree/download?degreeId' + degreeId);
+}
+
+export const deleteDegree = (degreeId) => {
+    return "";
+//    return Network().delete('/account/tutor/degree/delete?degreeId' + degreeId);
 }

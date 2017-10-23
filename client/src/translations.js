@@ -61,6 +61,8 @@ export const translations = {
     "account.person.info.birth.date": "Ngay Sinh",
     "account.person.info.address": "Dia Chi",
     "account.person.info.save.btn": "Luu",
+    "account.tutot.edu.level.title": "Trinh Do Hoc Van",
+    "account.tutot.edu.degree.title": "Bang Cap"
   },
   "en": {
     "home_page": "Home",

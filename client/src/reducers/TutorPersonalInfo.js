@@ -1,4 +1,5 @@
-import {RECEIVE_EDUCATION_DATA, RECEIVE_PERSON_DATA} from "actions/TutorAccountService";
+import {RECEIVE_DRGREES_DATA, RECEIVE_EDUCATION_DATA, RECEIVE_PERSON_DATA} from "actions/TutorAccountService";
+import {combineReducers} from "redux";
 
 const loadPersonData = (state = {}, action) => {
     switch (action.type) {
@@ -11,15 +12,9 @@ const loadPersonData = (state = {}, action) => {
                 address: action.data.address,
                 birthDate: action.data.birthDate
             }
-        case RECEIVE_EDUCATION_DATA:
-            return {
-                ...state,
-                ...action.data
-            }
         default:
-            return state
+            return state;
     }
 }
-
 
 export default loadPersonData;
