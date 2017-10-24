@@ -2,8 +2,8 @@ import React, {Component} from 'react';
 import {FormGroup, ControlLabel} from 'react-bootstrap';
 import {Field} from 'redux-form';
 import {reduxForm} from 'redux-form';
-import {TT} from '../../utils/locale'
-import {renderDatePicker, renderSelect} from "../CustomComponents";
+import {TT} from '../../utils/locale';
+import {renderDatePicker, renderSelect, renderField, renderTextAreaField, renderSingleFileInput} from "../CustomComponents";
 import {PERIOD_TYPES, CURRENCIES} from '../../constants/Courses'
 
 class CourseForm extends Component {
@@ -15,12 +15,16 @@ class CourseForm extends Component {
 
   }
 
+  onDrop(acceptedFiles){
+    console.log(acceptedFiles)
+  }
+
   render() {
     const {handleSubmit, submitting, pristine} = this.props;
     const errors = null;
     return (
       <div className="dashboard-panel">
-        <form onSubmit={handleSubmit(this.props.onSubmit)} className='inline-form'>
+        <form onSubmit={handleSubmit(this.props.onSubmit)} className='inline-form' multiple={true}>
           <div className={errors ? '' : 'hidden'}>
             <span className="error">
               <div className="alert alert-danger">
@@ -37,7 +41,7 @@ class CourseForm extends Component {
             <div className='col-sm-10'>
               <Field
                 name="title"
-                component="input"
+                component={renderField}
                 type="text"
                 placeholder={this.context.t("sample_course_title")}
                 className="form-control"
@@ -77,16 +81,16 @@ class CourseForm extends Component {
             </div>
           </div>
 
-          <div className='row'>
+          <div className='row form-group'>
             <div className='col-sm-2'>
-              <ControlLabel> {this.context.t("period")} <font color="red">*</font> </ControlLabel>
+              <ControlLabel> {this.context.t("period")} </ControlLabel>
             </div>
             <div className='col-sm-3'>
               <Field
                 name="period"
                 type="text"
                 className="form-control"
-                component='input'
+                component={renderField}
               />
             </div>
             <div className='col-sm-2'>
@@ -108,21 +112,21 @@ class CourseForm extends Component {
                 name="number_of_students"
                 type="text"
                 className="form-control"
-                component='input'
+                component={renderField}
               />
             </div>
           </FormGroup>
 
           <FormGroup className='row'>
             <div className='col-sm-2'>
-              <ControlLabel> {this.context.t("tuition_fee")} <font color="red">*</font> </ControlLabel>
+              <ControlLabel> {this.context.t("tuition_fee")} </ControlLabel>
             </div>
             <div className='col-sm-4'>
               <Field
                 name="tuition_fee"
                 type="text"
                 className="form-control"
-                component='input'
+                component={renderField}
               />
             </div>
             <div className='col-sm-2'>
@@ -135,15 +139,24 @@ class CourseForm extends Component {
             </div>
           </FormGroup>
 
+          <FormGroup className='row'>
+            <div className='col-sm-2'>
+              <ControlLabel>{this.context.t("cover_image")}</ControlLabel>
+            </div>
+            <div className='col-sm-5'>
+              <Field name="cover_image" component={renderSingleFileInput} style={{paddingTop: '8px'}} onDrop={this.onDrop.bind(this)}/>
+            </div>
+          </FormGroup>
+
           <hr/>
 
           <FormGroup className='row'>
             <div className='col-sm-12'>
-              <ControlLabel> {this.context.t("course_description")} <font color="red">*</font> </ControlLabel>
+              <ControlLabel> {this.context.t("course_description")} </ControlLabel>
               <Field
                 rows={10}
                 name="description"
-                component='textarea'
+                component={renderTextAreaField}
                 type="text"
                 className="form-control"
               />

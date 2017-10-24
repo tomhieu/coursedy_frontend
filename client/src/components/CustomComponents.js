@@ -1,17 +1,25 @@
-import React, {Component} from 'react';
+import React from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import Select2 from 'react-select2-wrapper';
 import moment from 'moment';
-import {Dropzone} from "react-dropzone";
+import Dropzone, {Dropzone} from "react-dropzone";
 import {isEmpty} from "lodash/lang";
 
-export const renderField = ({ input, label, type, meta: { touched, error, warning } }) => (
+export const renderField = ({input, label, type, meta: {touched, error, warning}}) => (
   <div className='full-width-input-wrapper'>
+    <input {...input} placeholder={label} type={type} className='form-control'/>
     {touched && ((error && <span className='input-errors'>{error}</span>) || (warning && <span>{warning}</span>))}
-    <input {...input} placeholder={label} type={type}/>
   </div>
 )
+
+export const renderTextAreaField = ({input, label, type, meta: {touched, error, warning}}) => (
+  <div className='full-width-input-wrapper'>
+    <textarea {...input} placeholder={label} type={type} className='form-control' rows={6}/>
+    {touched && ((error && <span className='input-errors'>{error}</span>) || (warning && <span>{warning}</span>))}
+  </div>
+)
+
 
 export const renderDatePicker = ({input, label, type, meta: {touched, error, warning}}) => {
   return (<div>
@@ -38,21 +46,22 @@ export const renderSelect = (selectOptions) => {
   )
 }
 
+export const renderSingleFileInput = ({ input: { value, ...input }, label, meta: { touched, error }, ...custom }) => {
+  const onChange = (files) => {
+    let fileReader = new FileReader
+    fileReader.onload = () => {
+      input.onChange(fileReader.result)
+    }
+    fileReader.readAsDataURL(files[0])
+  }
 
-export const renderDropzoneInput = (field) => {
-    const files = field.input.value;
-    debugger
-    return (
-        <div>
-            <Dropzone name={field.name} onDrop={( filesToUpload, e ) => field.input.onChange(filesToUpload)}>
-                <div>Try dropping some files here, or click to select files to upload.</div>
-            </Dropzone>
-            {field.meta.touched && field.meta.error && <span className="error">{field.meta.error}</span>}
-            {files && Array.isArray(files) && (
-                <ul>
-                    { files.map((file, i) => <li key={i}>{file.name}</li>) }
-                </ul>
-            )}
-        </div>
-    );
+  return (
+    <Dropzone
+      name={'_' + input.name}
+      onDrop={onChange}
+      multiple={false}
+      accept="image/*">
+      <input className='hidden' {...input}/>
+    </Dropzone>
+  )
 }

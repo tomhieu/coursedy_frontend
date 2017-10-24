@@ -191,7 +191,7 @@ input[type="password"]:focus,
 input[type="number"]:focus,
 input[type="email"]:focus,
 .uneditable-input:focus {
-  border-color: #534051;
+  border-color: #dddddd;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 1px #534051;
   outline: 0 none;
 }
@@ -201,7 +201,7 @@ input[type="email"]:focus,
 }
 
 .form-control:focus {
-  border-color: #534051;
+  border-color: #dddddd;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 1px #534051;
 }
 
@@ -3196,8 +3196,10 @@ Page >>Blog     #Blog cards
 }
 
 .dark-picker {
-  margin-bottom: 15px;
+  /*margin-bottom: 15px;*/
 }
+
+
 
 .dark-picker .select2-container--default .select2-selection--single {
   background-color: #e7e7e7;
@@ -5853,7 +5855,7 @@ a.fa-mixcloud[href='#']{
 input:not([type]), input[type="email" i],
 input[type="number" i], input[type="password" i],
 input[type="tel" i], input[type="url" i], input[type="text" i],
-textarea {
+textarea, .form-control {
   background-color: #F0F0EF;
   padding: 19px 10px;
 }

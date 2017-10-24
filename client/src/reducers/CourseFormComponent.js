@@ -4,6 +4,10 @@ const CourseFormComponent = (state = {
   errors: null
 }, action) => {
   switch (action.type) {
+    case types.CREATE_SUCCESSFULLY:
+      state
+    case types.CREATE_COURSE_FAILED:
+      state
     default:
       return state;
   }
