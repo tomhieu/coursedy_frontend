@@ -67,7 +67,9 @@ export const translations = {
     "account.person.info.address": "Dia Chi",
     "account.person.info.save.btn": "Luu",
     "account.tutot.edu.level.title": "Trinh Do Hoc Van",
-    "account.tutot.edu.degree.title": "Bang Cap"
+    "account.tutot.edu.degree.title": "Bang Cap",
+    "save_course": "Lưu Khoá Học",
+    "drag_and_drop": "Kéo thả tập tin vào đây"
   },
   "en": {
     "home_page": "Home",
