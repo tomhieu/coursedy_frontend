@@ -6,6 +6,7 @@ import moment from 'moment';
 import {isEmpty} from "lodash/lang";
 import Dropzone from 'react-dropzone'
 import {TT} from '../utils/locale'
+import {Component} from "react";
 
 export const renderField = ({input, label, type, meta: {touched, error, warning}}) => (
   <div className='full-width-input-wrapper'>
