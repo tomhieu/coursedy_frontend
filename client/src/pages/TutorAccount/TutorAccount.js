@@ -12,6 +12,10 @@ class TutorAccount extends Component {
         super(props);
     }
 
+    shouldComponentUpdate(nextProps, nextState) {
+        return this.props.uploadFiles.length != nextProps.uploadFiles.length;
+    }
+
     render() {
         return (
             <section className="dashboard-section">
@@ -42,8 +46,27 @@ class TutorAccount extends Component {
 
 const styleComponent = cssModules(TutorAccount, styles);
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => {
+    const { loadPersonData, loadEducationData, addNewDocumentFile } = state;
+    const {
+        firstName,
+        lastName,
+        email,
+        address,
+        birthDate
+    } = loadPersonData;
+    const { degrees, listLevel } = loadEducationData;
+    const { uploadFiles } = addNewDocumentFile;
+    return {
+        firstName,
+        lastName,
+        email,
+        address,
+        birthDate,
+        degrees,
+        listLevel,
+        uploadFiles
+    }
+};
 
-});
-
-export default connect(mapStateToProps)(styleComponent)
+export default connect(mapStateToProps) (styleComponent)

@@ -11,6 +11,7 @@ import CourseFormComponent from './CourseFormComponent';
 import session from './Session';
 import loadPersonData from "./TutorPersonalInfo";
 import loadEducationData from "./TutorEducation";
+import addNewDocumentFile from "./AddDocumentFile";
 
 const rootReducer = combineReducers({
   // Apply all of the reducers here.
@@ -24,7 +25,8 @@ const rootReducer = combineReducers({
   toastr: toastrReducer,
   // Person Info screen
   loadPersonData,
-  loadEducationData
+  loadEducationData,
+  addNewDocumentFile
 });
 
 export default rootReducer;

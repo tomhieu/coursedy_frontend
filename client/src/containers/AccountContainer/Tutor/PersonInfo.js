@@ -1,12 +1,12 @@
 import {Component} from "react";
 import {PersonalInfoForm} from "../../../components/Account/Tutor/PersonalInfoForm";
 import * as React from "react";
-import {loadPersonInfo, savePersonData} from "actions/TutorAccountService";
 import {reduxForm} from "redux-form";
 import styles from './PersonInfo.module.scss';
 import cssModules from 'react-css-modules';
 import {connect} from "react-redux";
 import {dispatch} from "redux";
+import {loadPersonInfo, savePersonData, testChangeName} from "../../../actions/TutorAccountService";
 
 class PersonInfoContainer extends Component {
     constructor(props) {
@@ -33,11 +33,16 @@ class PersonInfoContainer extends Component {
         this.props.dispatch(savePersonData());
     }
 
+    testChangeNameAction() {
+        this.props.dispatch(testChangeName());
+    }
+
     render() {
         const {firstName, lastName, email, birthDate, address} = this.props;
         return (
             <div>
-                <PersonalInfoForm onSubmit={this.savePersonInfo} firstName={firstName} lastName={lastName} email={email} birthDate={birthDate} address={address}/>
+                <PersonalInfoForm onSubmit={this.savePersonInfo} testChangeNameAction={this.testChangeNameAction.bind(this)} firstName={firstName} lastName={lastName} email={email} birthDate={birthDate} address={address}/>
+                <button type="button" onClick={this.testChangeNameAction.bind(this)}>Test</button>
             </div>
         )
     }

@@ -1,12 +1,11 @@
-import React from 'react';
-import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
-import Select2 from 'react-select2-wrapper';
-import moment from 'moment';
+import React, {Component} from "react";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import Select2 from "react-select2-wrapper";
+import moment from "moment";
 import {isEmpty} from "lodash/lang";
-import Dropzone from 'react-dropzone'
-import {TT} from '../utils/locale'
-import {Component} from "react";
+import Dropzone from "react-dropzone";
+import {TT} from "../utils/locale";
 
 export const renderField = ({input, label, type, meta: {touched, error, warning}}) => (
   <div className='full-width-input-wrapper'>
@@ -55,44 +54,52 @@ class renderFileInput extends Component {
       fileName: null,
       fileSize: null
     };
+    this.handleUpload = this.props.onUpload;
   }
 
   onChange(files){
-    let { input: { value, ...input }, label, meta: { touched, error }, ...custom } = this.props
-    let self = this
+    let { onUpload } = this.props
     let fileReader = new FileReader
-    self.setState({
-      fileName: files[0].name,
-      previewUrl: files[0].preview
-    })
     fileReader.onload = () => {
-      input.onChange(fileReader.result)
+       this.handleUpload({
+         uid: files[0].uid,
+         fileName: files[0].name,
+         previewUrl: files[0].preview,
+         content: fileReader.result
+      })
     }
     fileReader.readAsDataURL(files[0])
   }
 
   render(){
-    let { input: { value, ...input }, label, meta: { touched, error }, ...custom } = this.props
+    let { input: { value, ...input }, label, meta: { touched, error }, zoneHeight, ...custom } = this.props
     let borderWidth = this.state.previewUrl ? '0' : '2px'
     let previewImageStyle = this.state.previewUrl ? {borderStyle: 'dashed', borderWidth: '2px', borderRadius: '5px', borderColor: 'rgb(102, 102, 102)'} : {}
     return (
-      <div>
+      <div className="d-flex">
         <Dropzone
           name={'_' + input.name}
           onDrop={this.onChange.bind(this)}
           multiple={false}
+          className="d-flex flex-vertical"
           style={{
-            width: '200px',
-            height: '200px',
-            borderWidth: borderWidth,
-            borderStyle: 'dashed',
-            borderRadius: '5px',
-            borderColor: 'rgb(102, 102, 102)'
+              width: '100%',
+              height: zoneHeight,
+              borderWidth: borderWidth,
+              borderStyle: 'dashed',
+              borderRadius: '5px',
+              borderColor: 'rgb(102, 102, 102)'
           }}
           accept="image/*">
-          <p className={this.state.previewUrl ? 'hidden' : 'block'} style={{padding: '5px 10px'}} >{TT.t('drag_and_drop')}</p>
-          <img src={this.state.previewUrl} height='200px' style={previewImageStyle}></img>
-          <input className='hidden' {...input}/>
+            <div className="d-flex flex-auto justify-content-center">
+                <div className={this.state.previewUrl ? 'hidden' : 'd-flex flex-horizontal align-self-center'}>
+                    <a className="icon-upload"></a>
+                    <p className="ml-10">{TT.t('drag_and_drop')}</p>
+                </div>
+            </div>
+
+ /*           <img src={this.state.previewUrl} height='200px' style={previewImageStyle}></img> */
+            <input className='hidden' {...input}/>
         </Dropzone>
         <p style={{marginTop: '10px'}}>
           {this.state.fileName}
