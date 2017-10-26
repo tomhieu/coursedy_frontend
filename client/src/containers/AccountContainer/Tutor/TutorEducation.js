@@ -98,7 +98,7 @@ function renderUploadedDegree(degree, props) {
     }
     return (
         <div className="d-flex flex-horizontal mt-10">
-            <div className="pdf-image-preview"></div>
+            <div className={previewImage}></div>
             <span className="degree-filename ml-10">{degree.name}</span>
             <a className="icon-download ml-10" onClick={props.download(degree.id)} title={degree.name}></a>
             <a className="icon-delete ml-10" onClick={props.delete(degree.id)} title={degree.name}></a>

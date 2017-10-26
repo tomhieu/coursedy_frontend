@@ -74,7 +74,9 @@ export const loadListDegreesData = () => {
 }
 
 export const downloadDegree = (degreeId) => {
-    Network().get('/account/tutor/degree/download?degreeId' + degreeId);
+    return dispatch => {
+        Network().get('/account/tutor/degree/download?degreeId' + degreeId);
+    }
 }
 
 export const deleteDegree = (degreeId) => {
