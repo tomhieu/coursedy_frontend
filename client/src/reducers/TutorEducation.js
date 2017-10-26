@@ -1,4 +1,7 @@
-import {RECEIVE_DRGREES_DATA, RECEIVE_EDUCATION_DATA} from "actions/TutorAccountService";
+import {
+    DOWNLOAD_UPLOADED_DOCUMENT, RECEIVE_DRGREES_DATA, RECEIVE_EDUCATION_DATA,
+    REMOVE_UPLOADED_DOCUMENT
+} from "actions/TutorAccountService";
 
 const loadEducationData = (state = {}, action) => {
     switch (action.type) {
@@ -10,6 +13,11 @@ const loadEducationData = (state = {}, action) => {
                 skills: action.data.skills,
                 level: action.data.level
             }
+        case REMOVE_UPLOADED_DOCUMENT:
+            let uploadedFiles = state['degrees'].slice();
+            let removedDoc = uploadedFiles.filter(doc => doc.uid === action.data);
+            uploadedFiles.splice(uploadedFiles.indexOf(removedDoc), 1);
+            return Object.assign({}, {degrees: uploadedFiles});
         case RECEIVE_DRGREES_DATA:
             return {
                 ...state,

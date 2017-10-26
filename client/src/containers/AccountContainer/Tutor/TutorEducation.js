@@ -6,7 +6,7 @@ import {reduxForm} from "redux-form";
 import {connect} from "react-redux";
 import cssModules from "react-css-modules";
 import {addNewDocument, loadListDegreesData, loadTutorEducationData} from "../../../actions/TutorAccountService";
-import {loadListDegreesData, loadTutorEducationData} from "actions/TutorAccountService";
+import {downloadDegree, removeNewDocument, removeUploadedDocument} from "actions/TutorAccountService";
 
 
 class TutorEducation extends Component {
@@ -27,11 +27,15 @@ class TutorEducation extends Component {
     }
 
     doDownload(documentId) {
-        console.log('Executing download document ' + documentId);
+        this.props.dispatch(downloadDegree(documentId));
     }
 
-    doDelete(documentId) {
-        console.log('Executing download document ' + documentId);
+    doDeleteUploadedFile(documentId) {
+        this.props.dispatch(removeUploadedDocument(documentId));
+    }
+
+    doDeleteNewUploadFile(fileId) {
+        this.props.dispatch(removeNewDocument(fileId));
     }
 
     doUploadFile(file) {
@@ -39,7 +43,17 @@ class TutorEducation extends Component {
     }
 
     renderPreviewFile(file) {
-        return <span>{file.fileName}</span>
+        let previewClass = "pdf-image-preview";
+        if (file.extension === "docx") {
+            previewClass = "doc-image-preview";
+        }
+        return (
+            <div className="d-flex flex-horizontal mt-10">
+                <div className={previewClass}></div>
+                <span className="degree-filename ml-10">{file.fileName}</span>
+                <a className="icon-delete ml-10" onClick={this.doDeleteNewUploadFile(file.uid)} title={file.fileName}></a>
+            </div>
+        )
     }
 
     render() {
@@ -49,7 +63,7 @@ class TutorEducation extends Component {
                 <div className="col-md-12 col-sm-12">
                     <FormField formGroupId="levelId" formLabel={this.context.t("account.tutot.edu.level.title")} options={listLevel} isMandatoryField={true} formControlName="level" typeField="custom_select" />
                 </div>
-                <ListUploadedDegrees degrees={degrees} download={this.doDownload.bind(this)} delete={this.doDelete.bind(this)}/>
+                <ListUploadedDegrees degrees={degrees} download={this.doDownload.bind(this)} delete={this.doDeleteUploadedFile.bind(this)}/>
                 <div className={styles.dropzoneEduContainer}>
                     <FormField formGroupId="degreesId" formLabel={this.context.t("account.tutot.edu.degree.title")} onUpload={this.doUploadFile.bind(this)} isMandatoryField={false} formControlName="degrees" typeField="upload_file" />
                     <div className="d-flex flex-vertical">
@@ -71,6 +85,8 @@ function ListUploadedDegrees(props) {
                 {props.degrees.map((degree) => <div key={degree.id}>{renderUploadedDegree(degree, props)}</div>)}
             </div>
         )
+    } else {
+        return <div></div>
     }
 }
 

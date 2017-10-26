@@ -12,8 +12,6 @@ const loadPersonData = (state = {}, action) => {
                 address: action.data.address,
                 birthDate: action.data.birthDate
             }
-        case TEST_CHANGE_NAME:
-            return Object.assign({}, state, {firstName: Math.random().toString(36).substring(7)})
         default:
             return state;
     }

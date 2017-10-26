@@ -4,8 +4,9 @@ export const RECEIVE_PERSON_DATA = 'RECEIVE_PERSON_DATA';
 export const RECEIVE_EDUCATION_DATA = 'RECEIVE_EDUCATION_DATA';
 export const RECEIVE_DRGREES_DATA = 'RECEIVE_DEGREES_DATA';
 export const ADD_NEW_DOCUMENT_FILE = 'ADD_NEW_DOCUMENT_FILE';
-export const TEST_CHANGE_NAME = 'TEST_CHANGE_NAME';
-
+export const REMOVE_NEW_DOCUMENT_FILE = 'REMOVE_NEW_DOCUMENT_FILE';
+export const REMOVE_UPLOADED_DOCUMENT = 'REMOVE_UPLOADED_DOCUMENT';
+export const DOWNLOAD_UPLOADED_DOCUMENT = 'DOWNLOAD_UPLOADED_DOCUMENT';
 export const SAVE_PERSON_DATA = 'SAVE_PERSON_DATA';
 
 const personData = {
@@ -51,12 +52,6 @@ export const savePersonData = (person) => {
     }
 }
 
-export const testChangeName = () => {
-    return {
-        type: TEST_CHANGE_NAME
-    }
-}
-
 const receiveInfo = data => {
     return {
         type: RECEIVE_PERSON_DATA,
@@ -79,8 +74,7 @@ export const loadListDegreesData = () => {
 }
 
 export const downloadDegree = (degreeId) => {
-    return "";
-//    return Network().get('/account/tutor/degree/download?degreeId' + degreeId);
+    Network().get('/account/tutor/degree/download?degreeId' + degreeId);
 }
 
 export const deleteDegree = (degreeId) => {
@@ -92,5 +86,19 @@ export const addNewDocument = (file) => {
     return {
         type: ADD_NEW_DOCUMENT_FILE,
         payload: file
+    }
+}
+
+export const removeNewDocument = (fileId) => {
+    return {
+        type: REMOVE_NEW_DOCUMENT_FILE,
+        data: fileId
+    }
+}
+
+export const removeUploadedDocument = (documentId) => {
+    return {
+        type: REMOVE_UPLOADED_DOCUMENT,
+        data: documentId
     }
 }

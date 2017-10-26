@@ -33,16 +33,11 @@ class PersonInfoContainer extends Component {
         this.props.dispatch(savePersonData());
     }
 
-    testChangeNameAction() {
-        this.props.dispatch(testChangeName());
-    }
-
     render() {
         const {firstName, lastName, email, birthDate, address} = this.props;
         return (
             <div>
-                <PersonalInfoForm onSubmit={this.savePersonInfo} testChangeNameAction={this.testChangeNameAction.bind(this)} firstName={firstName} lastName={lastName} email={email} birthDate={birthDate} address={address}/>
-                <button type="button" onClick={this.testChangeNameAction.bind(this)}>Test</button>
+                <PersonalInfoForm onSubmit={this.savePersonInfo} firstName={firstName} lastName={lastName} email={email} birthDate={birthDate} address={address}/>
             </div>
         )
     }
