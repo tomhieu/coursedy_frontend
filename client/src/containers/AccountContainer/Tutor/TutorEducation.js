@@ -5,8 +5,8 @@ import styles from "./TutorEducation.module.scss";
 import {reduxForm} from "redux-form";
 import {connect} from "react-redux";
 import cssModules from "react-css-modules";
-import {Dropzone} from "react-dropzone";
 import {addNewDocument, loadListDegreesData, loadTutorEducationData} from "../../../actions/TutorAccountService";
+import {loadListDegreesData, loadTutorEducationData} from "actions/TutorAccountService";
 
 
 class TutorEducation extends Component {
@@ -56,12 +56,8 @@ class TutorEducation extends Component {
                         {uploadFiles.map(file => this.renderPreviewFile(file))}
                     </div>
                 </div>
-                <div className="col-md-12 col-sm-12">
-                    <ListSkill skills={skills}/>
-                </div>
-                <div className="col-md-12 col-sm-12">
-                    <ListCertificates cerificates={certificates}/>
-                </div>
+                <ListSkill skills={skills}/>
+                <ListCertificates certificates={certificates}/>
             </form>
         )
     }
@@ -75,12 +71,9 @@ function ListUploadedDegrees(props) {
                 {props.degrees.map((degree) => <div key={degree.id}>{renderUploadedDegree(degree, props)}</div>)}
             </div>
         )
-    } else {
-        return (
-            <div></div>
-        )
     }
 }
+
 
 function renderUploadedDegree(degree, props) {
     let previewImage = "../images/pdf-icon.png";

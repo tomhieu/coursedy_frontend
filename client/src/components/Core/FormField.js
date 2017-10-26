@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {ControlLabel, FormGroup} from 'react-bootstrap';
 import {Field} from 'redux-form';
-import {renderDatePicker, renderSingleFileInput, renderSelect} from "../CustomComponents";
+import {renderDatePicker, renderSelect, renderSingleFileInput} from "../CustomComponents";
 import styles from './FormField.module.scss';
 import cssModules from 'react-css-modules';
 
@@ -43,7 +43,8 @@ class FormField extends Component {
             }
 
             case "upload_file": {
-                fieldComponent = <Field name={props.formControlName} placeholder={props.placeholder} zoneHeight="200px" onUpload={this.props.onUpload} component={renderSingleFileInput}/>
+                fieldComponent = <Field name={props.formControlName} placeholder={props.placeholder} zoneHeight="200px"
+                                        onUpload={this.props.onUpload} component={renderSingleFileInput}/>
                 break;
             }
 
