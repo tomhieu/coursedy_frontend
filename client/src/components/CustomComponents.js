@@ -62,7 +62,6 @@ class renderFileInput extends Component {
   onChange(files){
     let fileReader = new FileReader
     fileReader.onload = () => {
-        debugger
        this.handleUpload({
          uid: ObjectUtil.generateUUID(),
          fileName: files[0].name,
