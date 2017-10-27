@@ -605,6 +605,12 @@ Dropdown Select2 styling
   height: 30px;
 }
 
+.doc-image-preview {
+  background: #f8f8f8 url("../images/docx-icon.png") no-repeat;
+  width: 30px;
+  height: 30px;
+}
+
 .icon-download {
   background: #f8f8f8 url("../images/icon_file_download_black.png") no-repeat;
   width: 24px;
@@ -621,6 +627,12 @@ Dropdown Select2 styling
   background: #f8f8f8 url("../images/upload-icon.png") no-repeat;
   width: 30px;
   height: 30px;
+}
+
+.close-tag-icon {
+  background: #f8f8f8 url("../images/close-tag-icon.png") no-repeat;
+  width: 24px;
+  height: 24px;
 }
 
 .select2-container--default .select2-selection--single .select2-selection__rendered {

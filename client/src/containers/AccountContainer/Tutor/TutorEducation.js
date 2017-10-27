@@ -6,9 +6,10 @@ import {reduxForm} from "redux-form";
 import {connect} from "react-redux";
 import cssModules from "react-css-modules";
 import {
-    addNewDocument, downloadDegree, loadListDegreesData,
+    addNewDocument, downloadDegree, loadListCertificatesData, loadListDegreesData, loadListSkillData,
     loadTutorEducationData, removeNewDocument, removeUploadedDocument
 } from "../../../actions/TutorAccountService";
+import {TT} from "../../../utils/locale";
 
 
 class TutorEducation extends Component {
@@ -19,13 +20,8 @@ class TutorEducation extends Component {
     componentWillMount() {
         this.props.dispatch(loadTutorEducationData());
         this.props.dispatch(loadListDegreesData());
-    }
-
-    componentWillReceiveProps() {
-        const {uploadFiles} = this.props;
-        this.props.initialize({
-            uploadFiles: uploadFiles
-        });
+        this.props.dispatch(loadListSkillData())
+        this.props.dispatch(loadListCertificatesData())
     }
 
     doDownload(documentId) {
@@ -59,21 +55,37 @@ class TutorEducation extends Component {
     }
 
     render() {
-        const {listLevel, degrees, skills, certificates, uploadFiles} =  this.props;
+        const {listLevel, degrees, skills, certificates, uploadFiles, skillSet, certificateSet} =  this.props;
         return (
             <form onSubmit={e => onSubmit(e.target.value)}>
                 <div className="col-md-12 col-sm-12">
                     <FormField formGroupId="levelId" formLabel={this.context.t("account.tutot.edu.level.title")} options={listLevel} isMandatoryField={true} formControlName="level" typeField="custom_select" />
                 </div>
-                <ListUploadedDegrees degrees={degrees} download={(fileId) => this.doDownload(fileId)} delete={(fileId) => this.doDeleteUploadedFile(fileId)}/>
-                <div className={styles.dropzoneEduContainer}>
-                    <FormField formGroupId="degreesId" formLabel={this.context.t("account.tutot.edu.degree.title")} onUpload={this.doUploadFile.bind(this)} isMandatoryField={false} formControlName="degrees" typeField="upload_file" />
-                    <div className="d-flex flex-vertical">
-                        {uploadFiles.map(file => this.renderPreviewFile(file))}
+                <div className="col-md-12 col-sm-12">
+                    <ListUploadedDegrees degrees={degrees} download={(fileId) => this.doDownload(fileId)} delete={(fileId) => this.doDeleteUploadedFile(fileId)}/>
+                </div>
+                <div className="col-md-12 col-sm-12">
+                    <div className={styles.dropzoneEduContainer}>
+                        <FormField formGroupId="degreesId" formLabel={this.context.t("account.tutot.edu.degree.title")} onUpload={this.doUploadFile.bind(this)} isMandatoryField={false} formControlName="degrees" typeField="upload_file" />
+                        <div className="d-flex flex-vertical ml-15 mr-15">
+                            {uploadFiles.map(file => this.renderPreviewFile(file))}
+                        </div>
                     </div>
                 </div>
-                <ListSkill skills={skills}/>
-                <ListCertificates certificates={certificates}/>
+                <div className="col-md-12 col-sm-12">
+                    <FormField formGroupId="skillId" formLabel={this.context.t("account_tutor_skill_title")} options={skillSet} selectedValues={skills} formControlName="skill" typeField="multi_select"/>
+                </div>
+                <div className="col-md-12 col-sm-12">
+                    <FormField formGroupId="certificateId" formLabel={this.context.t("account_tutor_certificate_title")} options={certificateSet} selectedValues={certificates} formControlName="certificate" typeField="multi_select"/>
+                </div>
+
+                <div className="col-md-12 col-sm-12">
+                    <FormField formGroupId="schoolId" formLabel={this.context.t("account_tutor_school_title")} formControlName="school" typeField="custom_input"/>
+                </div>
+
+                <div className="col-md-12 col-sm-12">
+                    <button type="submit" className="ml-15 mr-15 mt-15">{this.context.t("account.person.info.save.btn")}</button>
+                </div>
             </form>
         )
     }
@@ -108,49 +120,21 @@ function renderUploadedDegree(degree, props) {
     )
 }
 
-function ListSkill(props) {
-    if (Array.isArray(props.skills)) {
-        return (
-            props.skills.map( skill =>
-                <div className="d-flex flex-horizontal">
-                    <span>{skill.name}</span>
-                    <span>x</span>
-                </div>
-            )
-        )
-    } else {
-        return (<div></div>)
-    }
-
-}
-
-function ListCertificates(props) {
-    if (Array.isArray(props.certificates)) {
-        return (
-            props.certificates.map( certificate =>
-                <div className="d-flex flex-horizontal">
-                    <span>{certificate.name}</span>
-                    <span>x</span>
-                </div>
-            )
-        )
-    } else {
-        return (<div></div>)
-    }
-}
-
 TutorEducation.contextTypes = {
     t: React.PropTypes.func.isRequired
 }
 
 const mapStateToProps = state => {
     const { loadEducationData, addNewDocumentFile } = state;
-    const { degrees, listLevel } = loadEducationData;
+    const { skills, certificates, degrees, listLevel, skillSet, certificateSet } = loadEducationData;
     const { uploadFiles } = addNewDocumentFile;
     return {
+        skills,
+        certificates,
         degrees,
         listLevel,
-        uploadFiles
+        uploadFiles,
+        skillSet, certificateSet
     }
 };
 

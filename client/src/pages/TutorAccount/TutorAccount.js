@@ -6,14 +6,11 @@ import styles from './TutorAccount.module.scss';
 import {Component} from "react";
 import {connect} from "react-redux";
 import TutorEducation from "../../containers/AccountContainer/Tutor/TutorEducation";
+import ChangePassword from "../../containers/AccountContainer/Tutor/ChangePassword";
 
 class TutorAccount extends Component {
     constructor(props){
         super(props);
-    }
-
-    shouldComponentUpdate(nextProps, nextState) {
-        return this.props.uploadFiles.length != nextProps.uploadFiles.length;
     }
 
     render() {
@@ -26,14 +23,21 @@ class TutorAccount extends Component {
                                 <TutorDashboardMenu/>
                             </div>
                         </div>
-                        <div className="col-xs-12 col-sm-8 dashboard-content ">
-                            <div className="d-flex flex-vertical">
-                                <PersonInfoContainer/>
+                        <div className="col-xs-12 col-sm-8">
+                            <div className="col-md-12 col-xs-12 col-sm-12 dashboard-content ">
+                                <div className="d-flex flex-vertical">
+                                    <PersonInfoContainer/>
+                                </div>
                             </div>
-                        </div>
-                        <div className="col-xs-12 col-sm-8 dashboard-content ">
-                            <div className="d-flex flex-vertical">
-                                <TutorEducation/>
+                            <div className="col-md-12 col-xs-12 col-sm-12 dashboard-content ">
+                                <div className="d-flex flex-vertical">
+                                    <TutorEducation/>
+                                </div>
+                            </div>
+                            <div className="col-md-12 col-xs-12 col-sm-12 dashboard-content ">
+                                <div className="d-flex flex-vertical">
+                                    <ChangePassword/>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -47,26 +51,6 @@ class TutorAccount extends Component {
 const styleComponent = cssModules(TutorAccount, styles);
 
 const mapStateToProps = state => {
-    const { loadPersonData, loadEducationData, addNewDocumentFile } = state;
-    const {
-        firstName,
-        lastName,
-        email,
-        address,
-        birthDate
-    } = loadPersonData;
-    const { degrees, listLevel } = loadEducationData;
-    const { uploadFiles } = addNewDocumentFile;
-    return {
-        firstName,
-        lastName,
-        email,
-        address,
-        birthDate,
-        degrees,
-        listLevel,
-        uploadFiles
-    }
 };
 
 export default connect(mapStateToProps) (styleComponent)

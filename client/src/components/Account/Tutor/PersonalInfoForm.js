@@ -25,7 +25,7 @@ export class PersonalInfoForm extends Component {
                     <FormField formGroupId="addressId" formLabel={this.context.t("account.person.info.address")} placeholder={this.context.t("account.person.info.address")} isMandatoryField={true} formControlName="address" typeField="custom_input" />
                 </div>
                 <div className="col-md-12 col-sm-12">
-                    <button type="submit">{this.context.t("account.person.info.save.btn")}</button>
+                    <button type="submit" className="ml-15 mr-15 mt-15">{this.context.t("account.person.info.save.btn")}</button>
                 </div>
             </form>
         )

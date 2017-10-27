@@ -31,6 +31,18 @@
   flex-direction: column;
 }
 
+.flex-nowrap {
+  -ms-flex-wrap: nowrap;
+  -webkit-flex-wrap: nowrap;
+  flex-wrap: nowrap;
+}
+
+.flex-wrap {
+  -ms-flex-wrap: wrap;
+  -webkit-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+
 .justify-content-left {
   -ms-justify-content: flex-start;
   -webkit-justify-content: flex-start;
@@ -71,4 +83,16 @@
   max-width: 180px;
   width: 180px;
   text-overflow: ellipsis;
+}
+
+.tag-container {
+  border: 1px solid #e5e5e5;
+  padding: 10px 20px;
+  margin: 10px 0;
+}
+
+.tag-box {
+  padding: 5px 10px;
+  border-radius: 20px;
+  background-color: #f2f2f2;
 }

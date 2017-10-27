@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {ControlLabel, FormGroup} from 'react-bootstrap';
 import {Field} from 'redux-form';
-import {renderDatePicker, renderSelect, renderSingleFileInput} from "../CustomComponents";
+import {renderDatePicker, renderMultiSelect, renderSelect, renderSingleFileInput} from "../CustomComponents";
 import styles from './FormField.module.scss';
 import cssModules from 'react-css-modules';
 
@@ -35,19 +35,21 @@ class FormField extends Component {
                                         component={renderSelect(props.options)} className="form-control"/>;
                 break;
             }
-
             case "datepicker": {
                 fieldComponent = <Field name={props.formControlName} placeholder={props.placeholder} component={renderDatePicker}
                            className="form-control"/>;
                 break;
             }
-
             case "upload_file": {
                 fieldComponent = <Field name={props.formControlName} placeholder={props.placeholder} zoneHeight="200px"
                                         onUpload={this.props.onUpload} component={renderSingleFileInput}/>
                 break;
             }
-
+            case "multi_select": {
+                fieldComponent = <Field name={props.formControlName} placeholder={props.placeholder}
+                                        component={renderMultiSelect(props.options, props.selectedValues)} className="form-control"/>
+                break;
+            }
             default: {
                 fieldComponent = <Field name={props.formControlName} placeholder={props.placeholder} component={props.typeField}
                            className="form-control"/>;

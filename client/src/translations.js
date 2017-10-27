@@ -68,6 +68,13 @@ export const translations = {
     "account.person.info.save.btn": "Luu",
     "account.tutot.edu.level.title": "Trinh Do Hoc Van",
     "account.tutot.edu.degree.title": "Bang Cap",
+    "account_tutor_skill_title": "Ký Năng",
+    "account_tutor_certificate_title": "Chứng Chỉ",
+    "account_tutor_school_title": "Noi Dang Giang Day",
+    "account_tutor_password_title": "thay đổi mật khẩu",
+    "account_tutor_current_password_title": "Mật Khẩu Hiện Tại",
+    "account_tutor_new_password_title": "Mật Khẩu Mới",
+    "account_tutor_new_password_again_title": "Nhập Lại Mật Khẩu Mới",
     "save_course": "Lưu Khoá Học",
     "drag_and_drop": "Kéo thả tập tin vào đây"
   },
