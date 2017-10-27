@@ -8,9 +8,7 @@ const addNewDocumentFile = (state = {uploadFiles: []}, action) => {
             newUploadFiles.push(action.payload);
             return Object.assign({}, {uploadFiles: newUploadFiles})
         case REMOVE_NEW_DOCUMENT_FILE:
-            let removedDoc = newUploadFiles.filter(doc => doc.uid === action.data);
-            newUploadFiles.splice(newUploadFiles.indexOf(removedDoc), 1);
-            return Object.assign({}, {uploadFiles: newUploadFiles});
+            return Object.assign({}, {uploadFiles: newUploadFiles.filter(doc => doc.uid !== action.data)});
         default:
             return state
     }

@@ -6,7 +6,8 @@ import moment from "moment";
 import {isEmpty} from "lodash/lang";
 import Dropzone from "react-dropzone";
 import {TT} from "../utils/locale";
-import 'react-datepicker/dist/react-datepicker.css';
+import "react-datepicker/dist/react-datepicker.css";
+import * as ObjectUtil from "../utils/ObjectUtils";
 
 export const renderField = ({input, label, type, meta: {touched, error, warning}}) => (
   <div className='full-width-input-wrapper'>
@@ -59,11 +60,11 @@ class renderFileInput extends Component {
   }
 
   onChange(files){
-    let { onUpload } = this.props
     let fileReader = new FileReader
     fileReader.onload = () => {
+        debugger
        this.handleUpload({
-         uid: files[0].uid,
+         uid: ObjectUtil.generateUUID(),
          fileName: files[0].name,
          previewUrl: files[0].preview,
          content: fileReader.result

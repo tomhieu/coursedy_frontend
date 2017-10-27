@@ -14,10 +14,7 @@ const loadEducationData = (state = {}, action) => {
                 level: action.data.level
             }
         case REMOVE_UPLOADED_DOCUMENT:
-            let uploadedFiles = state['degrees'].slice();
-            let removedDoc = uploadedFiles.filter(doc => doc.uid === action.data);
-            uploadedFiles.splice(uploadedFiles.indexOf(removedDoc), 1);
-            return Object.assign({}, {degrees: uploadedFiles});
+            return Object.assign({}, {degrees: state['degrees'].filter(doc => doc.id !== action.data)});
         case RECEIVE_DRGREES_DATA:
             return {
                 ...state,
