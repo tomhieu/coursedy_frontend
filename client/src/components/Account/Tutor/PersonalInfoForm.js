@@ -1,14 +1,14 @@
 import {Component} from "react";
 import FormField from "../../Core/FormField";
 import * as React from "react";
+import {savePersonData} from "actions/TutorAccountService";
 
 export class PersonalInfoForm extends Component {
 
     render() {
-        const {onSubmit} = this.props;
-
+        const {handleSubmit} = this.props;
         return (
-            <form onSubmit={e => onSubmit(e.target.value)}>
+            <form onSubmit={handleSubmit(this.props.onSubmit)}>
                 <div className="col-md-12 col-sm-12">
                     <div className="d-flex flex-horizontal">
                         <FormField formGroupId="firstNameId" formLabel={this.context.t("account.person.info.first.name")} placeholder={this.context.t("account.person.info.first.name")} isMandatoryField={true} formControlName="firstName" typeField="custom_input" />
@@ -25,7 +25,7 @@ export class PersonalInfoForm extends Component {
                     <FormField formGroupId="addressId" formLabel={this.context.t("account.person.info.address")} placeholder={this.context.t("account.person.info.address")} isMandatoryField={true} formControlName="address" typeField="custom_input" />
                 </div>
                 <div className="col-md-12 col-sm-12">
-                    <button type="submit" className="ml-15 mr-15 mt-15">{this.context.t("account.person.info.save.btn")}</button>
+                    <button type="submit" className="ml-15 mr-15 mt-15 btn-link-dark">{this.context.t("account.person.info.save.btn")}</button>
                 </div>
             </form>
         )

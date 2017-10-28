@@ -15,7 +15,7 @@ const loadEducationData = (state = {}, action) => {
                 level: action.data.level
             }
         case REMOVE_UPLOADED_DOCUMENT:
-            return Object.assign({}, {degrees: state['degrees'].filter(doc => doc.id !== action.data)});
+            return Object.assign({}, state, {degrees: state['degrees'].filter(doc => doc.id !== action.data)});
         case RECEIVE_DRGREES_DATA:
             return Object.assign({}, state, {listLevel: action.data})
         case RECEIVE_SKILLS_DATA:

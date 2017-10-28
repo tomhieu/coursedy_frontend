@@ -25,17 +25,22 @@ class TutorAccount extends Component {
                         </div>
                         <div className="col-xs-12 col-sm-8">
                             <div className="col-md-12 col-xs-12 col-sm-12 dashboard-content ">
-                                <div className="d-flex flex-vertical">
+                                <div className="d-flex flex-vertical justify-content-center">
+                                    <h2 className="text-center bold">{this.context.t("account.person.info.title")}</h2>
+                                </div>
+                            </div>
+                            <div className="col-md-12 col-xs-12 col-sm-12 dashboard-content ">
+                                <div className="d-flex flex-vertical block-content">
                                     <PersonInfoContainer/>
                                 </div>
                             </div>
                             <div className="col-md-12 col-xs-12 col-sm-12 dashboard-content ">
-                                <div className="d-flex flex-vertical">
+                                <div className="d-flex flex-vertical block-content">
                                     <TutorEducation/>
                                 </div>
                             </div>
                             <div className="col-md-12 col-xs-12 col-sm-12 dashboard-content ">
-                                <div className="d-flex flex-vertical">
+                                <div className="d-flex flex-vertical block-content">
                                     <ChangePassword/>
                                 </div>
                             </div>
@@ -47,10 +52,11 @@ class TutorAccount extends Component {
     }
 }
 
+TutorAccount.contextTypes = {
+    t: React.PropTypes.func.isRequired
+}
 
 const styleComponent = cssModules(TutorAccount, styles);
 
-const mapStateToProps = state => {
-};
 
-export default connect(mapStateToProps) (styleComponent)
+export default styleComponent

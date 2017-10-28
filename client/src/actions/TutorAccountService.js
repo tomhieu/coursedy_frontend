@@ -11,6 +11,7 @@ export const REMOVE_UPLOADED_DOCUMENT = 'REMOVE_UPLOADED_DOCUMENT';
 export const DOWNLOAD_UPLOADED_DOCUMENT = 'DOWNLOAD_UPLOADED_DOCUMENT';
 export const SAVE_PERSON_DATA = 'SAVE_PERSON_DATA';
 export const COMPLETE_UPDATE_PASSWORD = 'COMPLETE_UPDATE_PASSWORD';
+export const UPDATE_TUTOR_EDU = 'UPDATE_TUTOR_EDU';
 
 const personData = {
     firstName: "Trung",
@@ -38,12 +39,12 @@ const tutorEducation = {
 }
 
 const listDegrees = [
-    {id: 1, name: "Trung Hoc Pho Thong"},
-    {id: 2, name: "Trung Cap"},
-    {id: 3, name: "Cao Dang"},
-    {id: 4, name: "Dai Hoc"},
-    {id: 5, name: "Thac Sy"},
-    {id: 6, name: "Tien Sy"}
+    {id: 1, text: "Trung Hoc Pho Thong"},
+    {id: 2, text: "Trung Cap"},
+    {id: 3, text: "Cao Dang"},
+    {id: 4, text: "Dai Hoc"},
+    {id: 5, text: "Thac Sy"},
+    {id: 6, text: "Tien Sy"}
 ]
 
 const listSkills = [
@@ -73,9 +74,17 @@ export const loadPersonInfo = () => {
     return receiveInfo(personData);
 }
 
-export const savePersonData = (person) => {
+export const savePersonData = (firstName, lastName, email, birthDate, address) => {
+    debugger
     return {
-        type: SAVE_PERSON_DATA
+        type: SAVE_PERSON_DATA,
+        data: {
+            firstName: firstName,
+            lastName: lastName,
+            email: email,
+            birthDate: birthDate,
+            address: add
+        }
     }
 }
 
@@ -165,6 +174,18 @@ export const updatePassword = (data) => {
         Network().post('/account/tutor/change/password', data).then((response)=> {
             dispatch({
                 type: COMPLETE_UPDATE_PASSWORD
+            })
+        });
+    }
+}
+
+
+export const updateTutorEducation = (data) => {
+    dispatch => {
+        Network().post('/account/tutor/update/edu', data).then((response)=> {
+            dispatch({
+                type: UPDATE_TUTOR_EDU,
+                payload: data
             })
         });
     }

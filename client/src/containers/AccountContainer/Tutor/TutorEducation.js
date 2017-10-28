@@ -10,11 +10,13 @@ import {
     loadTutorEducationData, removeNewDocument, removeUploadedDocument
 } from "../../../actions/TutorAccountService";
 import {TT} from "../../../utils/locale";
+import {updateTutorEducation} from "actions/TutorAccountService";
 
 
 class TutorEducation extends Component {
     constructor(props) {
         super(props);
+        this.updateEducation.bind(this);
     }
 
     componentWillMount() {
@@ -54,10 +56,17 @@ class TutorEducation extends Component {
         )
     }
 
+    updateEducation(e) {
+        const {skills, certificates, degrees, uploadFiles} =  this.props;
+        this.props.dispatch(updateTutorEducation({level: e.level, skills: skills,
+                        certificates: certificates, school: e.school,
+                        degrees: degrees, newFiles: uploadFiles}));
+    }
+
     render() {
-        const {listLevel, degrees, skills, certificates, uploadFiles, skillSet, certificateSet} =  this.props;
+        const {handleSubmit, listLevel, degrees, skills, certificates, uploadFiles, skillSet, certificateSet} =  this.props;
         return (
-            <form onSubmit={e => onSubmit(e.target.value)}>
+            <form onSubmit={handleSubmit(this.updateEducation.bind(this))}>
                 <div className="col-md-12 col-sm-12">
                     <FormField formGroupId="levelId" formLabel={this.context.t("account.tutot.edu.level.title")} options={listLevel} isMandatoryField={true} formControlName="level" typeField="custom_select" />
                 </div>
@@ -73,10 +82,10 @@ class TutorEducation extends Component {
                     </div>
                 </div>
                 <div className="col-md-12 col-sm-12">
-                    <FormField formGroupId="skillId" formLabel={this.context.t("account_tutor_skill_title")} options={skillSet} selectedValues={skills} formControlName="skill" typeField="multi_select"/>
+                    <FormField formGroupId="skillsId" formLabel={this.context.t("account_tutor_skill_title")} options={skillSet} selectedValues={skills} formControlName="skills" typeField="multi_select"/>
                 </div>
                 <div className="col-md-12 col-sm-12">
-                    <FormField formGroupId="certificateId" formLabel={this.context.t("account_tutor_certificate_title")} options={certificateSet} selectedValues={certificates} formControlName="certificate" typeField="multi_select"/>
+                    <FormField formGroupId="certificatesId" formLabel={this.context.t("account_tutor_certificate_title")} options={certificateSet} selectedValues={certificates} formControlName="certificates" typeField="multi_select"/>
                 </div>
 
                 <div className="col-md-12 col-sm-12">
@@ -84,7 +93,7 @@ class TutorEducation extends Component {
                 </div>
 
                 <div className="col-md-12 col-sm-12">
-                    <button type="submit" className="ml-15 mr-15 mt-15">{this.context.t("account.person.info.save.btn")}</button>
+                    <button type="submit" className="ml-15 mr-15 mt-15 btn-link-dark">{this.context.t("account_tutor_save_btn")}</button>
                 </div>
             </form>
         )
@@ -140,6 +149,7 @@ const mapStateToProps = state => {
 
 export default connect(mapStateToProps)( reduxForm({
     form: 'tutorEducation',
-    fields: ['level']
+    fields: ['level'],
+    onSubmit: updateTutorEducation()
 })(cssModules(TutorEducation, styles)));
 

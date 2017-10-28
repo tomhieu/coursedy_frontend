@@ -35,7 +35,7 @@ class ChangePassword extends Component {
                     </div>
 
                     <div>
-                        <button type="submit" className="ml-15 mr-15 mt-15">{this.context.t("account.person.info.save.btn")}</button>
+                        <button type="submit" className="ml-15 mr-15 mt-15 btn-link-dark">{this.context.t("account_tutor_new_password_btn")}</button>
                     </div>
                 </form>
             </div>
@@ -48,6 +48,7 @@ ChangePassword.contextTypes = {
 }
 
 const mapStateToProps = state => {
+    return {}
 };
 
 export default connect(mapStateToProps)( reduxForm({

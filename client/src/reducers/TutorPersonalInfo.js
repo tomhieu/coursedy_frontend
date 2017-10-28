@@ -6,11 +6,13 @@ const loadPersonData = (state = {}, action) => {
         case RECEIVE_PERSON_DATA:
             return {
                 ...state,
-                firstName: action.data.firstName,
-                lastName: action.data.lastName,
-                email: action.data.email,
-                address: action.data.address,
-                birthDate: action.data.birthDate
+                data: {
+                    firstName: action.data.firstName,
+                    lastName: action.data.lastName,
+                    email: action.data.email,
+                    address: action.data.address,
+                    birthDate: action.data.birthDate
+                }
             }
         default:
             return state;

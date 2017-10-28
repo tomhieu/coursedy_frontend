@@ -11,57 +11,29 @@ import {loadPersonInfo, savePersonData, testChangeName} from "../../../actions/T
 class PersonInfoContainer extends Component {
     constructor(props) {
         super(props);
-        this.savePersonInfo = this.savePersonInfo.bind(this);
     }
 
     componentWillMount() {
         this.props.dispatch(loadPersonInfo());
     }
 
-    componentWillReceiveProps() {
-        const {firstName, lastName,email, address, birthDate} = this.props;
-        this.props.initialize({
-            firstName: firstName,
-            lastName: lastName,
-            email: email,
-            address: address,
-            birthDate: birthDate
-        });
-    }
-
-    savePersonInfo() {
-        this.props.dispatch(savePersonData());
+    savePersonInfo({firstName, lastName, email, birthDate, address}) {
+        debugger
+        this.props.dispatch(savePersonData(firstName, lastName, email, birthDate, address));
     }
 
     render() {
-        const {firstName, lastName, email, birthDate, address} = this.props;
         return (
             <div>
-                <PersonalInfoForm onSubmit={this.savePersonInfo} firstName={firstName} lastName={lastName} email={email} birthDate={birthDate} address={address}/>
+                <PersonalInfoForm onSubmit={this.savePersonInfo.bind(this)} {...this.props} />
             </div>
         )
     }
 };
 
-const mapStateToProps = state => {
-    const { loadPersonData } = state;
-    const {
-        firstName,
-        lastName,
-        email,
-        address,
-        birthDate
-    } = loadPersonData;
-    return {
-        firstName,
-        lastName,
-        email,
-        address,
-        birthDate
-    }
-};
-
-export default connect(mapStateToProps)( reduxForm({
+export default connect(state => ({
+    initialValues: state.loadPersonData.data
+}))( reduxForm({
     form: 'personInfo',
     fields: ['firstName', 'lastName', 'email', 'address', 'birthDate']
 })(cssModules(PersonInfoContainer, styles)));
