@@ -9,6 +9,7 @@ import LoginComponent from './LoginComponent';
 import SignUpComponent from './SignUpComponent';
 import CourseFormComponent from './CourseFormComponent';
 import session from './Session';
+import TutorProfile from './TutorProfile';
 
 const rootReducer = combineReducers({
   // Apply all of the reducers here.
@@ -17,6 +18,7 @@ const rootReducer = combineReducers({
   SignUpComponent,
   CourseFormComponent,
   session,
+  TutorProfile,
   routing: routerReducer,
   form: formReducer,
   toastr: toastrReducer

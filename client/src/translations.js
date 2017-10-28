@@ -58,7 +58,10 @@ export const translations = {
     "week": "Tuần",
     "month": "Tháng",
     "save_course": "Lưu Khoá Học",
-    "drag_and_drop": "Kéo thả tập tin vào đây"
+    "drag_and_drop": "Kéo thả tập tin vào đây",
+    "speciality": "Chuyên môn",
+    "save": "Lưu",
+    "cancel": "Huỷ",
   },
   "en": {
     "home_page": "Home",

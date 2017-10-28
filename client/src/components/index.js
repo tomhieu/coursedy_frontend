@@ -11,6 +11,7 @@ import CourseGroupList from './CourseGroupList/CourseGroupList';
 import TutorSearchForm from './Tutor/TutorSearchForm/TutorSearchForm';
 import TutorItem from './Tutor/TutorItem/TutorItem';
 import TutorList from './Tutor/TutorList/TutorList';
+import TutorProfileDetails from './Tutor/Profile/TutorProfileDetails';
 import TutorProfile from './Dashboard/TutorDashboard/TutorProfile';
 import RoleAuthorization from './RoleAuthorization';
 import LoadingMask from './LoadingMask/LoadingMask'
@@ -38,5 +39,6 @@ export {
   LoadingMask,
   TutorDashboardMenu,
   TutorDashboardIndex,
-  CourseForm
+  CourseForm,
+  TutorProfileDetails
 };

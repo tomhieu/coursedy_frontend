@@ -40,3 +40,20 @@
 .inline-form .control-label {
   padding-top: 10px;
 }
+
+.inline-edit {
+  margin-left: 10px;
+}
+
+.inline-edit:hover {
+  cursor: pointer;
+}
+
+.margin-left-10 {
+  margin-left: 10px;
+}
+
+.cancel-button {
+  background-color: #C0C0C0;
+  border: none;
+}
