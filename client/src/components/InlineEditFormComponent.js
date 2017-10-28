@@ -125,46 +125,46 @@ class InlineEditFormComponent extends Component {
     </form>
 
     let display = <p className={`${this.props.displayStyle} ${this.state.editMode ? 'hidden' : ''}`}>
-      <span>{this.props.content}</span>
+      <span className='pre-wrap'>{this.props.content}</span>
       <span className='inline-edit' onClick={this.showEditForm.bind(this)}><i className="fa fa-pencil"></i></span>
     </p>
 
     if (this.props.dispplayComponent == 'h1') {
       display = <div>
         <h1 className={`${this.props.displayStyle} ${this.state.editMode ? 'hidden' : ''}`} style={{display: 'inline-block'}}>
-          <span>{this.props.content}</span>
+          <span className='pre-wrap'>{this.props.content}</span>
         </h1>
         <span className='inline-edit' onClick={this.showEditForm.bind(this)}><i className="fa fa-pencil"></i></span>
       </div>
     } else if (this.props.dispplayComponent == 'h2') {
       display = <div>
         <h2 className={`${this.props.displayStyle} ${this.state.editMode ? 'hidden' : ''}`} style={{display: 'inline-block'}}>
-          <span>{this.props.content}</span>
+          <span className='pre-wrap'>{this.props.content}</span>
         </h2>
         <span className='inline-edit' onClick={this.showEditForm.bind(this)}><i className="fa fa-pencil"></i></span>
       </div>
     } else if (this.props.dispplayComponent == 'h3') {
       display = <div>
         <h3 className={`${this.props.displayStyle} ${this.state.editMode ? 'hidden' : ''}`} style={{display: 'inline-block'}}>
-          <span>{this.props.content}</span>
+          <span className='pre-wrap'>{this.props.content}</span>
         </h3>
         <span className='inline-edit' onClick={this.showEditForm.bind(this)}><i className="fa fa-pencil"></i></span>
       </div>
     } else if (this.props.dispplayComponent == 'h4') {
       display = <div>
         <h4 className={`${this.props.displayStyle} ${this.state.editMode ? 'hidden' : ''}`} style={{display: 'inline-block'}}>
-          <span>{this.props.content}</span>
+          <span className='pre-wrap'>{this.props.content}</span>
         </h4>
         <span className='inline-edit' onClick={this.showEditForm.bind(this)}><i className="fa fa-pencil"></i></span>
       </div>
     }  else if (this.props.dispplayComponent == 'b') {
       display = <b className={`${this.props.displayStyle} ${this.state.editMode ? 'hidden' : ''}`}>
-        <span>{this.props.content}</span>
+        <span className='pre-wrap'>{this.props.content}</span>
         <span className='inline-edit' onClick={this.showEditForm.bind(this)}><i className="fa fa-pencil"></i></span>
       </b>
     } else if (this.props.dispplayComponent == 'span') {
       display = <span className={`${this.props.displayStyle} ${this.state.editMode ? 'hidden' : ''}`}>
-        <span>{this.props.content}</span>
+        <span className='pre-wrap'>{this.props.content}</span>
         <span className='inline-edit' onClick={this.showEditForm.bind(this)}><i className="fa fa-pencil"></i></span>
       </span>
     }

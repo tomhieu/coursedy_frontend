@@ -57,3 +57,34 @@
   background-color: #C0C0C0;
   border: none;
 }
+
+.tutor-title {
+  margin-top: 5px;
+  margin-bottom: 15px;
+}
+
+.dart-text {
+  color: #959595;
+}
+
+.inline-block {
+  display: inline-block;
+}
+
+.pre-wrap {
+  white-space: pre-wrap;
+}
+
+.padd-top-50 {
+  padding-top: 50px;
+}
+
+/*.left-panel {*/
+  /*position: fixed;*/
+/*}*/
+
+/*@media (max-width: 768px) {*/
+  /*.left-panel {*/
+    /*position: static;*/
+  /*}*/
+/*}*/

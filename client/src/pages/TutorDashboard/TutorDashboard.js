@@ -28,7 +28,7 @@ class TutorDashboard extends RoleAuthorization {
       <div className="dashboard-section">
         <div className="container">
           <div className="row offcanvas offcanvas-right row-margin">
-            <div className="col-xs-12 col-sm-4" id="sidebar">
+            <div className="col-xs-12 col-sm-4 left-panel" id="sidebar">
               <div className="panel-group dashboard-menu" id="accordion">
                 <TutorProfile/>
                 <TutorDashboardMenu/>

@@ -23,7 +23,7 @@ class Layout extends Component {
       <I18n translations={translations} initialLang={TT.locale}>
         <div className="">
           <Header session={this.props.session} signOut={this.signOut.bind(this)}/>
-          <div>
+          <div className='custom-container'>
             {this.props.children}
           </div>
           <Footer/>
