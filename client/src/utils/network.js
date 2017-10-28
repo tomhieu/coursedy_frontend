@@ -87,7 +87,7 @@ import request from './request';
        return request(buildUrl(path), Object.assign(
          options,
          defaultOptions,
-         { method: 'PUT' }
+         { method: 'PUT', body: JSON.stringify(body) }
        ));
      },
 
