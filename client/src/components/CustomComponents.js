@@ -64,29 +64,28 @@ export const renderMultiSelect = (selectOptions, selectedValues) => {
 class renderFileInput extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-          previewUrl: null
-    }
+    this.previewUrl = null;
     this.handleUpload = this.props.onUpload;
   }
 
   onChange(files) {
     let fileReader = new FileReader
     fileReader.onload = () => {
+       this.previewUrl = files[0].preview;
        this.handleUpload({
          uid: ObjectUtil.generateUUID(),
          fileName: files[0].name,
          previewUrl: files[0].preview,
          content: fileReader.result
-      })
+      });
     }
     fileReader.readAsDataURL(files[0])
   }
 
   render(){
-    let { input: { value, ...input }, label, meta: { touched, error }, zoneHeight, ...custom } = this.props
-    let borderWidth = this.state.previewUrl ? '0' : '2px'
-    let previewImageStyle = this.state.previewUrl ? {borderStyle: 'dashed', borderWidth: '2px', borderRadius: '5px', borderColor: 'rgb(102, 102, 102)'} : {}
+    let { input: { value, ...input }, label, meta: { touched, error }, zoneHeight, internalPreview, ...custom } = this.props
+    let borderWidth = internalPreview ? '0' : '2px'
+    let previewImageStyle = internalPreview ? {borderStyle: 'dashed', borderWidth: '2px', borderRadius: '5px', borderColor: 'rgb(102, 102, 102)'} : {}
     return (
       <div className="d-flex">
         <Dropzone
@@ -104,18 +103,15 @@ class renderFileInput extends Component {
           }}
           accept="image/*">
             <div className="d-flex flex-auto justify-content-center">
-                <div className={this.state.previewUrl ? 'hidden' : 'd-flex flex-horizontal align-self-center'}>
+                <div className={internalPreview ? 'hidden' : 'd-flex flex-horizontal align-self-center'}>
                     <a className="icon-upload"></a>
                     <p className="ml-10">{TT.t('drag_and_drop')}</p>
                 </div>
             </div>
 
- /*           <img src={this.state.previewUrl} height='200px' style={previewImageStyle}></img> */
+            <img className={internalPreview ? '' : 'hidden'} src={this.previewUrl} style={previewImageStyle}></img>
             <input className='hidden' {...input}/>
         </Dropzone>
-        <p style={{marginTop: '5px'}}>
-          {this.state.fileName}
-        </p>
       </div>
     )
   }

@@ -44,7 +44,7 @@ class FormField extends Component {
                 break;
             }
             case "upload_file": {
-                fieldComponent = <Field name={props.formControlName} placeholder={props.placeholder} zoneHeight="200px"
+                fieldComponent = <Field name={props.formControlName} placeholder={props.placeholder} zoneHeight="200px" internalPreview={false}
                                         onUpload={this.props.onUpload} component={renderSingleFileInput}/>
                 break;
             }
