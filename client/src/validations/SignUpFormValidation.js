@@ -11,7 +11,6 @@ export const asyncValidate = (values) => {
 
 export const validate = (values) => {
   const errors = {}
-  debugger
   if (!values.role) {
     errors.role = TT.t('role_required')
   }
