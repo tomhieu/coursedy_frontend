@@ -1,18 +1,18 @@
 import React, { Component} from 'react';
 import cssModules from 'react-css-modules';
-import styles from './Course.module.scss';
+import styles from '../Course.module.scss';
 
 /**
   * @Course group template 2
   * @Use for CoursePage
   */
-class CourseDetail extends Component {
+class CourseDetailInfo extends Component {
   constructor(props) {
     super(props);
   }
   render() {
     return (
-      <div className="course-detail">
+      <div className="course-detail-info">
         <div className="col-md-12">
           <img src="http://placehold.it/1600x400" alt="" className="img-responsive"/>
         </div>{/* Course thumb */}
@@ -29,7 +29,7 @@ class CourseDetail extends Component {
         <div className="clearfix"></div>
         
         <div className="col-md-12">
-          <h2 className="heading-line course-title">LUYỆN IELTS TIẾNG ANH 9.0</h2>
+          <h2 className="heading-line course-title"></h2>
         </div>{/* Course title */}
 
         <div className={'col-md-12 ' + styles.noPad}>
@@ -113,78 +113,16 @@ class CourseDetail extends Component {
           </ul>
         </div>{/* Course outcome */}
 
-        <div className="col-md-12">
-          <h3 className="heading-line">Chi tiết khóa học</h3>
-          <div className="course-content">
-          {
-            [1, 2, 3].map(item => (
-            <table className="table table-responsive" key={item}>
-              <thead>
-                <tr className={styles.rowPrimary}>
-                  <th className="text-left" colSpan="2">Chương {item} - Introduction to Photoshop CS6 Extremely</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td className="text-left">Getting Started</td>
-                  <td className="text-right">1 giờ 30 phút</td>
-                </tr>
-                <tr>
-                  <td className="text-left">Basic Editing</td>
-                  <td className="text-right">1 giờ 30 phút</td>
-                </tr>
-                <tr>
-                  <td className="text-left">All Selection Tools</td>
-                  <td className="text-right">1 giờ 30 phút</td>
-                </tr>
-              </tbody>
-            </table>
-            ))
-          }
-          </div>
-          <div className="text-center">
-            <button className="btn btn-primary">Tải thêm</button>
-          </div>
-        </div>{/* Course content */}
-        <div className="clearfix"></div>
-      
-        <hr/>
-
-        <div className="col-md-12">
-          <h3 className="heading-line">Phản hồi</h3>
-          <ul className="tree">
-          {
-            [1,2,3].map(item => (
-            <li key={item}>
-              <div className="media comments-list">
-                <div className="media-left">
-                  <img src="http://tutors.projectmenorah.com/assets/uploads/profiles/thumbs/3.jpg" alt="" className="comment-profile img-circle" />
-                </div>
-                <div className="media-body">
-                  <h4>
-                    <strong>Azalya Abia</strong> 11/11/2017
-                    <span className="avg_rating"></span>
-                  </h4>
-                  <p>Thank you! dedicated time to me and was not distracted or impatient. Very good knowledgeable. </p>
-                </div>
-              </div>
-            </li>  
-            ))
-          }
-          </ul>
-        </div>
-
-
       </div>
     )
   }
 }
 
-CourseDetail.contextTypes = {
+CourseDetailInfo.contextTypes = {
   t: React.PropTypes.func.isRequired
 }
 
-CourseDetail.propTypes = {
+CourseDetailInfo.propTypes = {
 };
 
-export default cssModules(CourseDetail, styles);
+export default cssModules(CourseDetailInfo, styles);

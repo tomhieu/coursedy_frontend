@@ -20,7 +20,9 @@ const router = (
           <Switch>
             <Route exact path="/" component={Pages.LandingPage}/>
             <Route path="/login" component={Pages.LoginRegisterPage} />
-            <Route path="/tutor" component={Pages.TutorPage} />
+            <Route path="/courses" component={Pages.PublicCourseListPage} />
+            <Route path="/course/:id" component={Pages.PublicCourseDetailPage}/>
+            <Route path="/tutors" component={Pages.TutorPage} />
             <Route path="/dashboard" component={Pages.TutorDashboard} />
             <Route path="/account" component={Pages.TutorAccount} />
           </Switch>
