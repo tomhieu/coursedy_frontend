@@ -1,8 +1,8 @@
 import {
     DOWNLOAD_UPLOADED_DOCUMENT, RECEIVE_DRGREES_DATA, RECEIVE_EDUCATION_DATA,
     REMOVE_UPLOADED_DOCUMENT
-} from "actions/TutorAccountService";
-import {RECEIVE_CERTIFICATES_DATA, RECEIVE_SKILLS_DATA} from "../actions/TutorAccountService";
+} from "actions/TutorAccountCreator";
+import {RECEIVE_CERTIFICATES_DATA, RECEIVE_SKILLS_DATA} from "../actions/TutorAccountCreator";
 
 const loadEducationData = (state = {}, action) => {
     switch (action.type) {

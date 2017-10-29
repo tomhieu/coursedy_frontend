@@ -6,7 +6,7 @@ import styles from './PersonInfo.module.scss';
 import cssModules from 'react-css-modules';
 import {connect} from "react-redux";
 import {dispatch} from "redux";
-import {loadPersonInfo, savePersonData} from "../../../actions/TutorAccountService";
+import {loadPersonInfo, savePersonData} from "../../../actions/TutorAccountCreator";
 import {validate} from '../../../validations/PersonFormValidator'
 
 class PersonInfoContainer extends Component {

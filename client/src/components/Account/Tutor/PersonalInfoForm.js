@@ -1,7 +1,7 @@
 import {Component} from "react";
 import FormField from "../../Core/FormField";
 import * as React from "react";
-import {savePersonData} from "actions/TutorAccountService";
+import {savePersonData} from "actions/TutorAccountCreator";
 
 export class PersonalInfoForm extends Component {
 

@@ -1,5 +1,5 @@
-import {ADD_NEW_DOCUMENT_FILE} from "../actions/TutorAccountService";
-import {REMOVE_NEW_DOCUMENT_FILE} from "actions/TutorAccountService";
+import {ADD_NEW_DOCUMENT_FILE} from "../actions/TutorAccountCreator";
+import {REMOVE_NEW_DOCUMENT_FILE} from "actions/TutorAccountCreator";
 
 const addNewDocumentFile = (state = {uploadFiles: []}, action) => {
     let newUploadFiles = state['uploadFiles'].slice();

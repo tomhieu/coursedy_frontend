@@ -1,5 +1,5 @@
-import {RECEIVE_DRGREES_DATA, RECEIVE_EDUCATION_DATA, RECEIVE_PERSON_DATA} from "actions/TutorAccountService";
-import {TEST_CHANGE_NAME} from "../actions/TutorAccountService";
+import {RECEIVE_DRGREES_DATA, RECEIVE_EDUCATION_DATA, RECEIVE_PERSON_DATA} from "actions/TutorAccountCreator";
+import {TEST_CHANGE_NAME} from "../actions/TutorAccountCreator";
 
 const loadPersonData = (state = {}, action) => {
     switch (action.type) {

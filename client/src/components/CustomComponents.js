@@ -64,6 +64,9 @@ export const renderMultiSelect = (selectOptions, selectedValues) => {
 class renderFileInput extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+          previewUrl: null
+    }
     this.handleUpload = this.props.onUpload;
   }
 

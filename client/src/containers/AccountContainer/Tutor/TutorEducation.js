@@ -8,9 +8,9 @@ import cssModules from "react-css-modules";
 import {
     addNewDocument, downloadDegree, loadListCertificatesData, loadListDegreesData, loadListSkillData,
     loadTutorEducationData, removeNewDocument, removeUploadedDocument
-} from "../../../actions/TutorAccountService";
+} from "../../../actions/TutorAccountCreator";
 import {TT} from "../../../utils/locale";
-import {updateTutorEducation} from "actions/TutorAccountService";
+import {updateTutorEducation} from "actions/TutorAccountCreator";
 
 
 class TutorEducation extends Component {

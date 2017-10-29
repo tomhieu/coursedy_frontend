@@ -5,7 +5,7 @@ import {connect} from "react-redux";
 import {reduxForm} from "redux-form";
 import styles from './ChangePassword.module.scss';
 import cssModules from 'react-css-modules';
-import {updatePassword} from "../../../actions/TutorAccountService";
+import {updatePassword} from "../../../actions/TutorAccountCreator";
 
 class ChangePassword extends Component {
     constructor(props) {
