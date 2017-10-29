@@ -75,7 +75,6 @@ export const loadPersonInfo = () => {
 }
 
 export const savePersonData = (firstName, lastName, email, birthDate, address) => {
-    debugger
     return {
         type: SAVE_PERSON_DATA,
         data: {
