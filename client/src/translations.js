@@ -52,12 +52,16 @@ export const translations = {
     "number_of_students": "Số học sinh",
     "tuition_fee": "Học phí",
     "course_description": "Giới thiệu khoá học",
+    "cover_image": "Ảnh đại diện",
     "hour": "Giờ",
     "day": "Ngày",
     "week": "Tuần",
     "month": "Tháng",
-    "save_course": "Tạo Khoá Học",
-    "fetch_course_fail": "Tải khóa học thất bạt"
+    "save_course": "Lưu Khoá Học",
+    "drag_and_drop": "Kéo thả tập tin vào đây",
+    "speciality": "Chuyên môn",
+    "save": "Lưu",
+    "cancel": "Huỷ",
   },
   "en": {
     "home_page": "Home",

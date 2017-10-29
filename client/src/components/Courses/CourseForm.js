@@ -2,8 +2,8 @@ import React, {Component} from 'react';
 import {FormGroup, ControlLabel} from 'react-bootstrap';
 import {Field} from 'redux-form';
 import {reduxForm} from 'redux-form';
-import {TT} from '../../utils/locale'
-import {renderDatePicker, renderSelect, renderField, renderTextAreaField} from "../CustomComponents";
+import {TT} from '../../utils/locale';
+import {renderDatePicker, renderSelect, renderField, renderTextAreaField, renderSingleFileInput} from "../CustomComponents";
 import {PERIOD_TYPES, CURRENCIES} from '../../constants/Courses'
 
 class CourseForm extends Component {
@@ -15,12 +15,16 @@ class CourseForm extends Component {
 
   }
 
+  onDrop(acceptedFiles){
+    console.log(acceptedFiles)
+  }
+
   render() {
     const {handleSubmit, submitting, pristine} = this.props;
     const errors = null;
     return (
       <div className="dashboard-panel">
-        <form onSubmit={handleSubmit(this.props.onSubmit)} className='inline-form'>
+        <form onSubmit={handleSubmit(this.props.onSubmit)} className='inline-form' multiple={true}>
           <div className={errors ? '' : 'hidden'}>
             <span className="error">
               <div className="alert alert-danger">
@@ -132,6 +136,15 @@ class CourseForm extends Component {
                 type="text"
                 className="form-control"
               />
+            </div>
+          </FormGroup>
+
+          <FormGroup className='row'>
+            <div className='col-sm-2'>
+              <ControlLabel>{this.context.t("cover_image")}</ControlLabel>
+            </div>
+            <div className='col-sm-5'>
+              <Field name="cover_image" component={renderSingleFileInput} style={{paddingTop: '8px'}} onDrop={this.onDrop.bind(this)}/>
             </div>
           </FormGroup>
 

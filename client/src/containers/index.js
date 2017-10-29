@@ -1,7 +1,8 @@
 import LoginFormContainer from './AuthContainer/LoginFormContainer';
 import RegisterFormContainer from './AuthContainer/RegisterFormContainer';
-import SearchFormContainer from './SearchFormContainer/SearchFormContainer'
-import PublicCourseListContainer from './CoursesContainer/PublicCourseListContainer'
+import SearchFormContainer from './SearchFormContainer/SearchFormContainer';
+import PublicCourseListContainer from './CoursesContainer/PublicCourseListContainer';
+import PublicCourseDetailContainer from './CoursesContainer/PublicCourseDetailContainer';
 
 export {
   LoginFormContainer,
@@ -10,4 +11,5 @@ export {
 
   //Front-end
   PublicCourseListContainer,
+  PublicCourseDetailContainer,
 };

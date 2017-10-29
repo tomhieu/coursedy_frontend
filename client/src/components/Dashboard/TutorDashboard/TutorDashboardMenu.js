@@ -83,30 +83,6 @@ class TutorDashboardMenu extends Component {
             </div>
           </div>
         </div>
-
-        <div className="dashboard-link"><a href="http://sudoedu.ca/tutor/purchased-courses"><i className="fa fa-money"></i>Purchased Courses</a></div>
-
-
-        <div className="panel panel-default">
-          <div className="panel-heading">
-            <h4 className="panel-title">
-              <a className="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseReqs">
-                <i className="fa fa-money"></i>Credit Conversion<span className="hidden-xs"> Request </span>
-              </a>
-            </h4>
-          </div>
-          <div id="collapseReqs" className="panel-collapse collapse">
-            <div className="panel-body">
-              <ul className="dashboard-links">
-                <li><a href="http://sudoedu.ca/credit-conversion-requests/Pending">Pending </a></li>
-                <li><a href="http://sudoedu.ca/credit-conversion-requests/Done">Done </a></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        <div className="dashboard-link"><a href="http://sudoedu.ca/tutor/credits-transactions-history"><i className="fa fa-exchange"></i>Credits Transactions<span className="hidden-xs"> History </span></a></div>
-
         <div className="dashboard-link"><a href="http://sudoedu.ca/user-reviews"><i className="fa fa-retweet"></i>Reviews</a></div>
         <div className="panel panel-default">
           <div className="panel-heading">

@@ -74,7 +74,7 @@ class CourseFilter extends Component {
 
                 <div className="col-md-12">
                   <div className={styles.advancedFilter + " collapse " + (this.state.openAdFilter ? "in" : "")}>
-                    <div className="col-md-4">
+                    <div className="col-md-3">
                       <h4>Cấp độ</h4>
                       <div>
                         <input type="checkbox" name="course_level"/>
@@ -93,64 +93,101 @@ class CourseFilter extends Component {
                         <label htmlFor=""><span><span></span></span>Nâng cao</label>
                       </div>
                     </div>{/* Level */}
-                    <div className="col-md-4">
-                      <h4>Lịch học</h4>
+                    <div className="col-md-3">
+                      <h4>Ngày học</h4>
                       <div>
-                        <input type="checkbox" name="course_schedule"/>
+                        <input type="checkbox" name="course_schedule_day"/>
                         <label htmlFor=""><span><span></span></span>Bất kỳ</label>
                       </div>
                       <div>
-                        <input type="checkbox" name="course_schedule"/>
+                        <input type="checkbox" name="course_schedule_day"/>
+                        <label htmlFor=""><span><span></span></span>Thứ 2</label>
+                      </div>
+                      <div>
+                        <input type="checkbox" name="course_schedule_day"/>
+                        <label htmlFor=""><span><span></span></span>Thứ 3</label>
+                      </div>
+                      <div>
+                        <input type="checkbox" name="course_schedule_day"/>
+                        <label htmlFor=""><span><span></span></span>Thứ 4</label>
+                      </div>
+                      <div>
+                        <input type="checkbox" name="course_schedule_day"/>
+                        <label htmlFor=""><span><span></span></span>Thứ 5</label>
+                      </div>
+                      <div>
+                        <input type="checkbox" name="course_schedule_day"/>
+                        <label htmlFor=""><span><span></span></span>Thứ 6</label>
+                      </div>
+                      <div>
+                        <input type="checkbox" name="course_schedule_day"/>
+                        <label htmlFor=""><span><span></span></span>Thứ 7</label>
+                      </div>
+                      <div>
+                        <input type="checkbox" name="course_schedule_day"/>
+                        <label htmlFor=""><span><span></span></span>Chủ nhật</label>
+                      </div>
+                    </div>{/* Schedule days */}
+                    <div className="col-md-3">
+                      <h4>Giờ học</h4>
+                      <div>
+                        <input type="checkbox" name="course_schedule_time"/>
+                        <label htmlFor=""><span><span></span></span>Bất kỳ</label>
+                      </div>
+                      <div>
+                        <input type="checkbox" name="course_schedule_time"/>
                         <label htmlFor=""><span><span></span></span>8:00AM - 9:30AM</label>
                       </div>
                       <div>
-                        <input type="checkbox" name="course_schedule"/>
+                        <input type="checkbox" name="course_schedule_time"/>
                         <label htmlFor=""><span><span></span></span>6:00PM - 7:30PM</label>
                       </div>
                       <div>
-                        <input type="checkbox" name="course_schedule"/>
+                        <input type="checkbox" name="course_schedule_time"/>
                         <label htmlFor=""><span><span></span></span>7:30PM - 9:00PM</label>
                       </div>
                       <div>
-                        <input type="radio" name="course_schedule" value="willing-to-travel"/>
+                        <input type="checkbox" name="course_schedule_time" value="custom"/>
                         <label><span><span></span></span>
-                          <input type="text" name="course_schedule_custom_low" placeholder="Bắt đầu"/>
+                          <input type="text" name="course_schedule_time_cl" placeholder="Bắt đầu"/>
                           -
-                          <input type="text" name="course_schedule_custom_high" placeholder="Kết thúc"/>
+                          <input type="text" name="course_schedule_time_ch" placeholder="Kết thúc"/>
                         </label>
                       </div>
-                    </div>{/* Schedule */}
-                    <div className="col-md-4">
+                    </div>{/* Schedule time */}
+                    <div className="col-md-3">
                       <h4>Học phí (Cả khóa)</h4>
                       <div>
-                        <input type="checkbox" name="course_fee"/>
+                        <input type="checkbox" name="course_price"/>
                         <label htmlFor=""><span><span></span></span>Bất kỳ</label>
                       </div>
                       <div>
-                        <input type="checkbox" name="course_fee"/>
+                        <input type="checkbox" name="course_price"/>
                         <label htmlFor=""><span><span></span></span>Dưới 1tr</label>
                       </div>
                       <div>
-                        <input type="checkbox" name="course_fee"/>
+                        <input type="checkbox" name="course_price"/>
                         <label htmlFor=""><span><span></span></span>1tr - 5tr</label>
                       </div>
                       <div>
-                        <input type="checkbox" name="course_fee"/>
+                        <input type="checkbox" name="course_price"/>
                         <label htmlFor=""><span><span></span></span>5tr - 10tr</label>
                       </div>
                       <div>
-                        <input type="checkbox" name="course_fee"/>
+                        <input type="checkbox" name="course_price"/>
                         <label htmlFor=""><span><span></span></span>Trên 10tr</label>
                       </div>
                       <div>
-                        <input type="radio" name="course_schedule" value="willing-to-travel"/>
+                        <input type="checkbox" name="course_price" value="custom"/>
                         <label><span><span></span></span>
-                        <input type="text" placeholder="Mức thấp"/>
+                        <input type="text" name="course_price_cl" placeholder="Mức thấp"/>
                         -
-                        <input type="text" placeholder="Mức cao"/>
+                        <input type="text" name="course_price_ch" placeholder="Mức cao"/>
                         </label>
                       </div>
                     </div>{/* Tuition fee */}
+                    <div className="clearfix"></div>
+                    
                     <div className="col-md-4">
                       <h4>Giáo viên</h4>
                       <Select2

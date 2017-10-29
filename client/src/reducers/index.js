@@ -9,9 +9,11 @@ import LoginComponent from './LoginComponent';
 import SignUpComponent from './SignUpComponent';
 
 import CourseFormComponent from './CourseFormComponent';
-import CourseComponent from './CourseComponent';
+import CourseListReducer from './Course/CourseListReducer';
+import CourseDetailReducer from './Course/CourseDetailReducer';
 
 import session from './Session';
+import TutorProfile from './TutorProfile';
 
 const rootReducer = combineReducers({
   // Apply all of the reducers here.
@@ -19,11 +21,13 @@ const rootReducer = combineReducers({
   LoginComponent,
   SignUpComponent,
 
-  CourseComponent,
+  //Reducers for course
+  CourseListReducer,
+  CourseDetailReducer,
   CourseFormComponent,
 
-
   session,
+  TutorProfile,
   routing: routerReducer,
   form: formReducer,
   toastr: toastrReducer

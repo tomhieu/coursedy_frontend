@@ -10,6 +10,7 @@ import {
   LoadingMask
 } from '../../components/index';
 import CourseFormContainer from '../../containers/CoursesContainer/CourseFormContainer';
+import TutorProfileDetailsContainer from '../../containers/Tutor/Profile/TutorProfileDetailsContainer';
 import { connect } from 'react-redux';
 import {setCurrentUser} from "actions/SessionActionCreator";
 
@@ -24,24 +25,25 @@ class TutorDashboard extends RoleAuthorization {
     if (this.props.fetchingUser) return (<LoadingMask/>)
 
     return (
-      <section className="dashboard-section">
+      <div className="dashboard-section">
         <div className="container">
           <div className="row offcanvas offcanvas-right row-margin">
-            <div className="col-xs-8 col-sm-4 sidebar-offcanvas" id="sidebar">
+            <div className="col-xs-12 col-sm-4 left-panel" id="sidebar">
               <div className="panel-group dashboard-menu" id="accordion">
                 <TutorProfile/>
                 <TutorDashboardMenu/>
               </div>
             </div>
-            <div className="col-xs-12 col-sm-8 dashboard-content ">
+            <div className="col-xs-12 col-sm-8">
               <switch>
                 <Route exact path="/dashboard" component={TutorDashboardIndex}/>
                 <Route exact path="/dashboard/courses/new" component={CourseFormContainer}/>
+                <Route exact path="/dashboard/profile" component={TutorProfileDetailsContainer}/>
               </switch>
             </div>
           </div>
         </div>
-      </section>
+      </div>
     )
   }
 }

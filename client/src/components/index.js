@@ -9,7 +9,7 @@ import Introduces from './Introduces/Introduces';
 import CourseGroup from './Course/CourseGroup/CourseGroup';
 import CourseGroupList from './Course/CourseGroupList/CourseGroupList';
 
-import CourseDetail from './Course/CourseDetail/CourseDetail';
+import CourseDetail from './Courses/CourseDetail';
 import CourseFilter from './Courses/CourseFilter';
 
 import CourseItem from './Courses/CourseItem';
@@ -18,6 +18,7 @@ import CourseList from './Courses/CourseList';
 import TutorSearchForm from './Tutor/TutorSearchForm/TutorSearchForm';
 import TutorItem from './Tutor/TutorItem/TutorItem';
 import TutorList from './Tutor/TutorList/TutorList';
+import TutorProfileDetails from './Tutor/Profile/TutorProfileDetails';
 import TutorProfile from './Dashboard/TutorDashboard/TutorProfile';
 import RoleAuthorization from './RoleAuthorization';
 import LoadingMask from './LoadingMask/LoadingMask'
@@ -51,5 +52,6 @@ export {
   LoadingMask,
   TutorDashboardMenu,
   TutorDashboardIndex,
-  CourseForm
+  CourseForm,
+  TutorProfileDetails
 };

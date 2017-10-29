@@ -15,7 +15,8 @@ import request from './request';
    const buildUrl = (path) => {
      let { id, resource } = res;
      let parameters = [
-       'http://localhost:3000',
+       'http://172.16.1.2:3000',
+       // 'http://172.16.1.2:3000',
        'api',
        'v1'
      ];
@@ -87,7 +88,7 @@ import request from './request';
        return request(buildUrl(path), Object.assign(
          options,
          defaultOptions,
-         { method: 'PUT' }
+         { method: 'PUT', body: JSON.stringify(body) }
        ));
      },
 

@@ -1,6 +1,6 @@
-import * as types from '../constants/Courses';
+import * as types from '../../constants/Courses';
 
-const CourseComponent = (state = {
+const CourseListReducer = (state = {
     courses: []
   }, action) => {
   switch (action.type) {
@@ -13,4 +13,4 @@ const CourseComponent = (state = {
   }
 };
 
-export default CourseComponent;
+export default CourseListReducer;
