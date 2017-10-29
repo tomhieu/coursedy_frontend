@@ -1216,7 +1216,28 @@ Main Navigation bar  - Navbar-default
 .navbar-default {
   background: #534051;
   /*padding: 20px 0px 20px 0;*/
-  z-index: 1;
+  position: fixed;
+  width: 100%;
+  z-index: 9999;
+}
+
+.custom-container {
+  padding-top: 50px;
+}
+
+@media(max-width: 1200px) {
+  .custom-container {
+    padding-top: 200px;
+  }
+}
+
+@media(max-width: 768px) {
+  .navbar-default {
+    position: static;
+  }
+  .custom-container {
+    padding-top: 0;
+  }
 }
 
 .navbar-default .navbar-nav>li>a {

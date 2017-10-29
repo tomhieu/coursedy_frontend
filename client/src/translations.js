@@ -79,7 +79,10 @@ export const translations = {
     "account_tutor_new_password_again_title": "Nhập Lại Mật Khẩu Mới",
     "account_tutor_new_password_btn": "Đổi Mật Khẩu",
     "save_course": "Lưu Khoá Học",
-    "drag_and_drop": "Kéo thả tập tin vào đây"
+    "drag_and_drop": "Kéo thả tập tin vào đây",
+    "speciality": "Chuyên môn",
+    "save": "Lưu",
+    "cancel": "Huỷ",
   },
   "en": {
     "home_page": "Home",
