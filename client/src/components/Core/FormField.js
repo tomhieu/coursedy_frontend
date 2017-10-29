@@ -1,7 +1,10 @@
 import React, {Component} from 'react'
 import {ControlLabel, FormGroup} from 'react-bootstrap';
 import {Field} from 'redux-form';
-import {renderDatePicker, renderMultiSelect, renderSelect, renderSingleFileInput} from "../CustomComponents";
+import {
+    renderDatePicker, renderField, renderMultiSelect, renderSelect,
+    renderSingleFileInput
+} from "../CustomComponents";
 import styles from './FormField.module.scss';
 import cssModules from 'react-css-modules';
 
@@ -27,7 +30,7 @@ class FormField extends Component {
 
         switch (props.typeField) {
             case "custom_input": {
-                fieldComponent = <Field name={this.props.formControlName} placeholder={this.props.placeholder} component='input' className="form-control" />;
+                fieldComponent = <Field name={this.props.formControlName} placeholder={this.props.placeholder} component={renderField} className="form-control" />;
                 break;
             }
             case "custom_select": {

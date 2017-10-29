@@ -20,7 +20,9 @@ class ChangePassword extends Component {
     render() {
         return (
             <div className="col-md-12 col-sm-12">
-                <span className="text-uppercase ml-15 mr-15">{this.context.t("account_tutor_password_title")}</span>
+                <div className="block-title">
+                    <span className="text-uppercase bold">{this.context.t("account_tutor_password_title")}</span>
+                </div>
                 <form onSubmit={e => updatePassword(e.target.value)}>
                     <div>
                         <FormField formGroupId="currentPasswordId" formLabel={this.context.t("account_tutor_current_password_title")} formControlName="currentPassword" typeField="custom_input"/>

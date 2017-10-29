@@ -9,22 +9,22 @@ export class PersonalInfoForm extends Component {
         const {handleSubmit} = this.props;
         return (
             <form onSubmit={handleSubmit(this.props.onSubmit)}>
-                <div className="col-md-12 col-sm-12">
+                <div>
                     <div className="d-flex flex-horizontal">
                         <FormField formGroupId="firstNameId" formLabel={this.context.t("account.person.info.first.name")} placeholder={this.context.t("account.person.info.first.name")} isMandatoryField={true} formControlName="firstName" typeField="custom_input" />
                         <FormField formGroupId="lastNameId" formLabel={this.context.t("account.person.info.last.name")}  placeholder={this.context.t("account.person.info.last.name")}  isMandatoryField={true} formControlName="lastName" typeField="custom_input" />
                     </div>
                 </div>
-                <div className="col-md-12 col-sm-12">
+                <div>
                     <FormField formGroupId="emailId" formLabel={this.context.t("account.person.info.email")} isMandatoryField={true} formControlName="email" typeField="custom_input" />
                 </div>
-                <div className="col-md-12 col-sm-12">
+                <div>
                     <FormField formGroupId="birthDateId" formLabel={this.context.t("account.person.info.birth.date")} isMandatoryField={true} formControlName="birthDate" typeField="datepicker" />
                 </div>
-                <div className="col-md-12 col-sm-12">
+                <div>
                     <FormField formGroupId="addressId" formLabel={this.context.t("account.person.info.address")} placeholder={this.context.t("account.person.info.address")} isMandatoryField={true} formControlName="address" typeField="custom_input" />
                 </div>
-                <div className="col-md-12 col-sm-12">
+                <div>
                     <button type="submit" className="ml-15 mr-15 mt-15 btn-link-dark">{this.context.t("account.person.info.save.btn")}</button>
                 </div>
             </form>

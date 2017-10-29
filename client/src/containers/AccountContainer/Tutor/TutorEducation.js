@@ -50,6 +50,8 @@ class TutorEducation extends Component {
         return (
             <div className="d-flex flex-horizontal mt-10" key={file.uid}>
                 <div className={previewClass}></div>
+                <div clas>
+                </div>
                 <span className="degree-filename ml-10">{file.fileName}</span>
                 <a className="icon-delete ml-10" onClick={() => this.doDeleteNewUploadFile(file.uid)} title={file.fileName}></a>
             </div>
@@ -66,36 +68,41 @@ class TutorEducation extends Component {
     render() {
         const {handleSubmit, listLevel, degrees, skills, certificates, uploadFiles, skillSet, certificateSet} =  this.props;
         return (
-            <form onSubmit={handleSubmit(this.updateEducation.bind(this))}>
-                <div className="col-md-12 col-sm-12">
-                    <FormField formGroupId="levelId" formLabel={this.context.t("account.tutot.edu.level.title")} options={listLevel} isMandatoryField={true} formControlName="level" typeField="custom_select" />
+            <div className="col-md-12 col-sm-12">
+                <div className="block-title">
+                    <span className="text-uppercase bold">{this.context.t("account_tutor_edu_title")}</span>
                 </div>
-                <div className="col-md-12 col-sm-12">
-                    <ListUploadedDegrees degrees={degrees} download={(fileId) => this.doDownload(fileId)} delete={(fileId) => this.doDeleteUploadedFile(fileId)}/>
-                </div>
-                <div className="col-md-12 col-sm-12">
-                    <div className={styles.dropzoneEduContainer}>
-                        <FormField formGroupId="degreesId" formLabel={this.context.t("account.tutot.edu.degree.title")} onUpload={this.doUploadFile.bind(this)} isMandatoryField={false} formControlName="degrees" typeField="upload_file" />
-                        <div className="d-flex flex-vertical ml-15 mr-15">
-                            {uploadFiles.map(file => this.renderPreviewFile(file))}
+                <form onSubmit={handleSubmit(this.updateEducation.bind(this))}>
+                    <div>
+                        <FormField formGroupId="levelId" formLabel={this.context.t("account.tutot.edu.level.title")} options={listLevel} isMandatoryField={true} formControlName="level" typeField="custom_select" />
+                    </div>
+                    <div>
+                        <ListUploadedDegrees degrees={degrees} download={(fileId) => this.doDownload(fileId)} delete={(fileId) => this.doDeleteUploadedFile(fileId)}/>
+                    </div>
+                    <div>
+                        <div className={styles.dropzoneEduContainer}>
+                            <FormField formGroupId="degreesId" formLabel={this.context.t("account.tutot.edu.degree.title")} onUpload={this.doUploadFile.bind(this)} isMandatoryField={false} formControlName="degrees" typeField="upload_file" />
+                            <div className="d-flex flex-vertical ml-15 mr-15">
+                                {uploadFiles.map(file => this.renderPreviewFile(file))}
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div className="col-md-12 col-sm-12">
-                    <FormField formGroupId="skillsId" formLabel={this.context.t("account_tutor_skill_title")} options={skillSet} selectedValues={skills} formControlName="skills" typeField="multi_select"/>
-                </div>
-                <div className="col-md-12 col-sm-12">
-                    <FormField formGroupId="certificatesId" formLabel={this.context.t("account_tutor_certificate_title")} options={certificateSet} selectedValues={certificates} formControlName="certificates" typeField="multi_select"/>
-                </div>
+                    <div>
+                        <FormField formGroupId="skillsId" formLabel={this.context.t("account_tutor_skill_title")} options={skillSet} selectedValues={skills} formControlName="skills" typeField="multi_select"/>
+                    </div>
+                    <div>
+                        <FormField formGroupId="certificatesId" formLabel={this.context.t("account_tutor_certificate_title")} options={certificateSet} selectedValues={certificates} formControlName="certificates" typeField="multi_select"/>
+                    </div>
 
-                <div className="col-md-12 col-sm-12">
-                    <FormField formGroupId="schoolId" formLabel={this.context.t("account_tutor_school_title")} formControlName="school" typeField="custom_input"/>
-                </div>
+                    <div>
+                        <FormField formGroupId="schoolId" formLabel={this.context.t("account_tutor_school_title")} formControlName="school" typeField="custom_input"/>
+                    </div>
 
-                <div className="col-md-12 col-sm-12">
-                    <button type="submit" className="ml-15 mr-15 mt-15 btn-link-dark">{this.context.t("account_tutor_save_btn")}</button>
-                </div>
-            </form>
+                    <div>
+                        <button type="submit" className="ml-15 mr-15 mt-15 btn-link-dark">{this.context.t("account_tutor_save_btn")}</button>
+                    </div>
+                </form>
+            </div>
         )
     }
 

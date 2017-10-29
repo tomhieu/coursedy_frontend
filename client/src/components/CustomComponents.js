@@ -6,7 +6,6 @@ import moment from "moment";
 import {isEmpty} from "lodash/lang";
 import Dropzone from "react-dropzone";
 import {TT} from "../utils/locale";
-import "react-datepicker/dist/react-datepicker.css";
 import * as ObjectUtil from "../utils/ObjectUtils";
 
 export const renderField = ({input, label, type, meta: {touched, error, warning}}) => (
@@ -65,14 +64,10 @@ export const renderMultiSelect = (selectOptions, selectedValues) => {
 class renderFileInput extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      fileName: null,
-      fileSize: null
-    };
     this.handleUpload = this.props.onUpload;
   }
 
-  onChange(files){
+  onChange(files) {
     let fileReader = new FileReader
     fileReader.onload = () => {
        this.handleUpload({
