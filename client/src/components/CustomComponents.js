@@ -64,14 +64,18 @@ export const renderMultiSelect = (selectOptions, selectedValues) => {
 class renderFileInput extends Component {
   constructor(props) {
     super(props);
-    this.previewUrl = null;
+    this.state = {
+          previewUrl: null
+    };
     this.handleUpload = this.props.onUpload;
   }
+
+
 
   onChange(files) {
     let fileReader = new FileReader
     fileReader.onload = () => {
-       this.previewUrl = files[0].preview;
+       this.setState({previewUrl: files[0].preview});
        this.handleUpload({
          uid: ObjectUtil.generateUUID(),
          fileName: files[0].name,
@@ -82,10 +86,10 @@ class renderFileInput extends Component {
     fileReader.readAsDataURL(files[0])
   }
 
-  render(){
+  render() {
     let { input: { value, ...input }, label, meta: { touched, error }, zoneHeight, internalPreview, ...custom } = this.props
-    let borderWidth = internalPreview ? '0' : '2px'
-    let previewImageStyle = internalPreview ? {borderStyle: 'dashed', borderWidth: '2px', borderRadius: '5px', borderColor: 'rgb(102, 102, 102)'} : {}
+    let borderWidth = internalPreview && this.state.previewUrl != null ? '0' : '2px'
+    let previewImageStyle = internalPreview ? {borderStyle: 'dashed', borderRadius: '5px', borderColor: 'rgb(102, 102, 102)'} : {}
     return (
       <div className="d-flex">
         <Dropzone
@@ -109,7 +113,7 @@ class renderFileInput extends Component {
                 </div>
             </div>
 
-            <img className={internalPreview ? '' : 'hidden'} src={this.previewUrl} style={previewImageStyle}></img>
+            <img className={internalPreview && this.state.previewUrl != null ? '' : 'hidden'} src={this.state.previewUrl} height="200px" style={previewImageStyle}></img>
             <input className='hidden' {...input}/>
         </Dropzone>
       </div>

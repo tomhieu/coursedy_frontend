@@ -144,7 +144,7 @@ class CourseForm extends Component {
               <ControlLabel>{this.context.t("cover_image")}</ControlLabel>
             </div>
             <div className='col-sm-5'>
-              <Field name="cover_image" component={renderSingleFileInput} style={{paddingTop: '8px'}} onDrop={this.onDrop.bind(this)}/>
+              <Field name="cover_image" component={renderSingleFileInput} zoneHeight="200px" internalPreview={true} style={{paddingTop: '8px'}} onUpload={this.onDrop.bind(this)}/>
             </div>
           </FormGroup>
 
