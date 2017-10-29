@@ -11,8 +11,7 @@ export {
   RegisterFormContainer,
   SearchFormContainer,
   PersonInfoContainer,
-  TutorEducation
-
+  TutorEducation,
   //Front-end
   PublicCourseListContainer,
   PublicCourseDetailContainer,
