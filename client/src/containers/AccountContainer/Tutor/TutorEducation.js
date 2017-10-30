@@ -6,10 +6,15 @@ import {reduxForm} from "redux-form";
 import {connect} from "react-redux";
 import cssModules from "react-css-modules";
 import {
-    addNewDocument, downloadDegree, loadListCertificatesData, loadListDegreesData, loadListSkillData,
-    loadTutorEducationData, removeNewDocument, removeUploadedDocument
+    addNewDocument,
+    downloadDegree,
+    loadListCertificatesData,
+    loadListDegreesData,
+    loadListSkillData,
+    loadTutorEducationData,
+    removeNewDocument,
+    removeUploadedDocument
 } from "../../../actions/TutorAccountCreator";
-import {TT} from "../../../utils/locale";
 import {updateTutorEducation} from "actions/TutorAccountCreator";
 
 

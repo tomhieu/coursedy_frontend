@@ -7,7 +7,7 @@ import {i18nState} from "redux-i18n"
 // Import the various reducers here:
 import LoginComponent from './LoginComponent';
 import SignUpComponent from './SignUpComponent';
-import CourseFormComponent from './CourseFormComponent';
+import CourseFormComponent from './CourseFormReducer';
 import session from './Session';
 import TutorProfile from './TutorProfile';
 import loadPersonData from "./TutorPersonalInfo";
