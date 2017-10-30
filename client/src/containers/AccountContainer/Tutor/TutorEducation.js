@@ -50,9 +50,9 @@ class TutorEducation extends Component {
         return (
             <div className="d-flex flex-horizontal mt-10" key={file.uid}>
                 <div className={previewClass}></div>
-                <div clas>
+                <div className="file-name-wrapper">
+                    <span className="degree-filename ml-10" title={file.fileName}>{file.fileName}</span>
                 </div>
-                <span className="degree-filename ml-10">{file.fileName}</span>
                 <a className="icon-delete ml-10" onClick={() => this.doDeleteNewUploadFile(file.uid)} title={file.fileName}></a>
             </div>
         )

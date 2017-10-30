@@ -3,17 +3,12 @@ import {validateEmail, validateMandatoryField, validatePassword} from "./CommonV
 
 export const validate = (values) => {
     const errors = {}
-    validateMandatoryField('firstName', values.first_name, errors);
+    validateMandatoryField('firstName', values.firstName, 'first_name_required', errors);
+    validateMandatoryField('lastName', values.lastName, 'last_name_required', errors);
 
     validateEmail('email', values.email, errors);
-
-    validatePassword(values.password, values.password_confirmation, 'password', errors);
-
-    if (!values.phone_number) {
-        errors.phone_number = TT.t('phone_number_required')
-    } else if (!/^\d*$/i.test(values.phone_number)) {
-        errors.phone_number = TT.t('invalid_phone_number')
-    }
+    validateMandatoryField('birthDate', values.birthDate, 'birthdate_required', errors);
+    validateMandatoryField('address', values.address, 'address_required', errors);
 
     return errors
 }

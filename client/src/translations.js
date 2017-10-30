@@ -25,6 +25,7 @@ export const translations = {
     "last_name": "Họ",
     "role_required": "Vui lòng chọn tài khoản người dùng",
     "first_name_required": "Vui lòng nhập tên",
+
     "confirm_password": "Xác Nhận Mật Khẩu",
     "phone_number": "Số Điện Thoại",
     "forgot_password": "Quên Mật Khẩu?",
@@ -83,6 +84,13 @@ export const translations = {
     "speciality": "Chuyên môn",
     "save": "Lưu",
     "cancel": "Huỷ",
+    /*
+     * Validator message
+     */
+    "last_name_required": "Vui lòng nhập họ",
+    "birthdate_required": "Vui lòng nhập ngay sinh",
+    "address_required": "Vui lòng nhập dia chi",
+    "mandatory_field_context": "Vui lòng điền thông tin %{field}"
   },
   "en": {
     "home_page": "Home",

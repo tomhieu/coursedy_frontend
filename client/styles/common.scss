@@ -115,3 +115,10 @@
 .dashboard-content, .normal-text {
   color: #534051;
 }
+
+.file-name-wrapper {
+  max-width: 150px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
