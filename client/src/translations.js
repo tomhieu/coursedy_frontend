@@ -40,6 +40,9 @@ export const translations = {
     "sign_up_success": "Đăng Ký Thành Công !",
     "congrat_sign_up_success": "Chúc mừng bạn đã đăng ký thành viên của EzyLearning thành công. Chúng tôi đã gửi email xác nhận đến địa chỉ email của bạn. Vui lòng kiểm tra hộp thư đến để kích hoạt tài khoản",
     "close": "Đóng",
+    /*
+     * Course Creation/Edit Page
+     */
     "course_title": "Tên khoá học",
     "course_title_required": "Vui lòng nhập tên khoá học",
     "sample_course_title": "Luyện thi TOEIC cấp tốc",
@@ -58,7 +61,16 @@ export const translations = {
     "day": "Ngày",
     "week": "Tuần",
     "month": "Tháng",
+    "lesson_name": "Ten Bai Hoc",
+    "lesson_desc": "Tom Tat Noi Dung",
+    "lesson_material": "Tai Lieu",
+    "lesson_period": "Thoi Luong",
+    "lesson_save_btn": "Tao Buoi Hoc",
+    "lesson_link_edit": "Them Chi Tiet",
     "save_course": "Tạo Khoá Học",
+    /*
+     * Tutor Account Page
+     */
     "account.person.info.title": "Thong Tin Ca Nhan",
     "account.person.info.first.name": "Tên",
     "account.person.info.last.name": "Họ",
