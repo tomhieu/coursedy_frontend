@@ -1,8 +1,8 @@
 import {TT} from "utils/locale";
 
-export const validateMandatoryField = (field, fieldValue, errors) => {
+export const validateMandatoryField = (field, fieldValue, messageKey, errors, params) => {
     if (!fieldValue || fieldValue === '') {
-        errors[field] = TT.t('first_name_required')
+        errors[field] = TT.t(messageKey)
     }
     return errors
 }

@@ -5,6 +5,13 @@ export const TT =  {
   t: (keys) => {
     let values = keys.split('.')
     values.unshift(translations[TT.locale])
+
     return values.reduce((trans, k) => trans[k])
+  },
+
+  t: (key, params, context) => {
+    let values = keys.split('.')
+    values.unshift(translations[TT.locale])
+
   }
 };

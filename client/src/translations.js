@@ -83,6 +83,10 @@ export const translations = {
     "speciality": "Chuyên môn",
     "save": "Lưu",
     "cancel": "Huỷ",
+    /*
+    Validator message
+     */
+    "validator_manadatory_field": "Vui lòng điền thông tin %{field}"
   },
   "en": {
     "home_page": "Home",
