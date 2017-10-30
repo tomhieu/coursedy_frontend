@@ -3,7 +3,7 @@ import {ControlLabel, FormGroup} from 'react-bootstrap';
 import {Field} from 'redux-form';
 import {
     renderDatePicker, renderField, renderMultiSelect, renderSelect,
-    renderSingleFileInput
+    renderSingleFileInput, renderTextAreaField
 } from "../CustomComponents";
 import styles from './FormField.module.scss';
 import cssModules from 'react-css-modules';
@@ -51,6 +51,11 @@ class FormField extends Component {
             case "multi_select": {
                 fieldComponent = <Field name={props.formControlName} placeholder={props.placeholder}
                                         component={renderMultiSelect(props.options, props.selectedValues)} className="form-control"/>
+                break;
+            }
+            case "custom_textarea": {
+                fieldComponent = <Field name={props.formControlName} placeholder={props.placeholder}
+                                        component={renderTextAreaField} className="form-control"/>
                 break;
             }
             default: {

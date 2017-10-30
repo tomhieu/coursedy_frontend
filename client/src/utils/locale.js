@@ -8,10 +8,11 @@ export const TT =  {
 
     return values.reduce((trans, k) => trans[k])
   },
-
-  t: (key, params, context) => {
-    let values = keys.split('.')
-    values.unshift(translations[TT.locale])
-
+  t: (keys, params = {}) => {
+      let values = keys.split('.')
+      values.unshift(translations[TT.locale])
+      let rawMessage = values.reduce((trans, k) => trans[k])
+      Object.keys(params).map((key) => rawMessage = rawMessage.replace("%{" + key + "}", params[key]))
+      return rawMessage
   }
 };
