@@ -21,9 +21,7 @@ class CourseFilter extends Component {
   }  
 
   render() {
-    let {categories} = this.props
-    let {locations} = this.props
-    let {selectedCategoryIds} = this.props
+    let {categories, locations, selectedCategoryIds, selectedLocationIds} = this.props
 
     return (
       <div className="row row-margin">
@@ -52,6 +50,8 @@ class CourseFilter extends Component {
                       options={{
                         placeholder: "Khu vực"
                       }}
+                      onChange={this.props.onLocationChange}
+                      value={selectedLocationIds}
                       multiple
                     />
                   </div>{/* Area*/}
@@ -245,6 +245,7 @@ CourseFilter.contextTypes = {
 CourseFilter.propTypes = {
   categories: React.PropTypes.array.isRequired,
   onCategoryChange: React.PropTypes.func.isRequired,
+  onLocationChange: React.PropTypes.func.isRequired,
   locations: React.PropTypes.object.isRequired,
   selectedCategoryIds: React.PropTypes.array.isRequired
 };

@@ -9,7 +9,7 @@ class CourseFilterContainer extends Component {
     this.props.dispatch(Actions.fetchLocations());
   }
 
-  onCategoryChange(e){
+  getSelect2Value(e){
     let options = e.target.options
     let optionArray = []
 
@@ -23,13 +23,22 @@ class CourseFilterContainer extends Component {
       return parseInt(option.value)
     })
 
-    this.props.dispatch(Actions.reloadCourseLevels(selectedValues))
+    return selectedValues
+  }
+
+  onCategoryChange(e){
+    this.props.dispatch(Actions.reloadCourseLevels(this.getSelect2Value(e)))
+  }
+
+  onLocationChange(e){
+    this.props.dispatch(Actions.selectCourseLocations(this.getSelect2Value(e)))
   }
 
   render(){
     return (
       <CourseFilter {...this.props}
                     onCategoryChange={this.onCategoryChange.bind(this)}
+                    onLocationChange={this.onLocationChange.bind(this)}
       />
     )
   }

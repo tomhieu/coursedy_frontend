@@ -36,3 +36,12 @@ export const reloadCourseLevels = (categoryIdList) => {
     })
   }
 }
+
+export const selectCourseLocations = (locationList) => {
+  return dispatch => {
+    dispatch({
+      type: types.SELECT_COURSE_LOCATIONS,
+      payload: locationList
+    })
+  }
+}
