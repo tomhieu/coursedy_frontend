@@ -4,6 +4,7 @@ import LessonLineComponent from "../../components/Courses/LessonLineComponent";
 import {connect} from "react-redux";
 import cssModules from "react-css-modules";
 import styles from "./ListLesson.module.scss";
+import {addLesson} from "actions/CourseFormActionCreator";
 class ListLessonContainer extends Component {
 
     onUpdateLessonName(lession_uid) {
@@ -14,12 +15,17 @@ class ListLessonContainer extends Component {
         console.log(lesson)
     }
 
+    addNewLesson() {
+        this.props.dispatch(addLesson());
+    }
+
     render() {
-        const { listLesson } = this.props;
+        const { lessonList } = this.props;
         return (
             <div className="d-flex flex-vertical">
+                <button onClick={this.addNewLesson.bind(this)}>{this.context.t('lesson_add_more')}</button>
                 {
-                    listLesson.map((lesson) => <LessonLineComponent pos={lesson.posId}
+                    lessonList.map((lesson) => <LessonLineComponent pos={lesson.posId}
                                    onUpdateLessonName={this.onUpdateLessonName.bind(this)} editLessonDetail={this.editLessonDetail.bind(this)}/>)
                 }
             </div>
@@ -27,10 +33,17 @@ class ListLessonContainer extends Component {
     }
 }
 
+ListLessonContainer.contextTypes = {
+    t: React.PropTypes.func.isRequired
+}
+
 const mapStateToProps = state => {
-    const { listLesson } = state;
+    debugger
+    const { CourseFormComponent } = state;
+    const { courseCreationForm } = CourseFormComponent;
+    const { lessonList } = courseCreationForm;
     return {
-        listLesson
+        lessonList
     }
 };
 

@@ -32,7 +32,7 @@ const mapStateToProps = (state) => ({
 export default connect(
   mapStateToProps
 )( reduxForm({
-  form: 'course',
+  form: 'courseCreationForm',
   fields: ['title', 'description', 'start_date', 'end_date', 'number_of_students', 'period', 'period_type', 'tuition_fee', 'currency', 'cover_image'],
   validate
 })(CourseFormContainer));

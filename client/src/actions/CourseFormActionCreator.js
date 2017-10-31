@@ -5,6 +5,7 @@ import {TT} from '../utils/locale'
 export const ADD_MORE_LESSON = 'ADD_MORE_LESSON';
 export const EDIT_DETAIL_LESSON = 'EDIT_DETAIL_LESSON';
 export const SAVE_LESSON_DETAIL = 'SAVE_LESSON_DETAIL';
+export const HIDE_LESSON_POPUP_EDIT = 'HIDE_LESSON_POPUP_EDIT';
 
 export const createCourse = (title, description, start_date, end_date, number_of_students, period, period_type, tuition_fee, currency, cover_image) => {
   return dispatch => {
@@ -46,4 +47,10 @@ export const saveLessonDetail = (lesson) => {
     type: SAVE_LESSON_DETAIL,
     data: lesson
   };
+};
+
+export const hideLessonDetailPopup = () => {
+    return {
+        type: HIDE_LESSON_POPUP_EDIT
+    };
 };

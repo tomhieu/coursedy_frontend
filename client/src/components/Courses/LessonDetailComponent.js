@@ -9,7 +9,7 @@ class LessonDetailComponent extends Component {
         const{handleSubmit} = this.props
         return (
             <div className="d-flex flex-vertical">
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit(this.props.onSubmit)}>
                     <div>
                         <FormField formGroupId="lessonNameId" formLabel={this.context.t("lesson_name")} isMandatoryField={true} formControlName="lessonName" typeField="custom_input"/>
                     </div>
@@ -21,9 +21,6 @@ class LessonDetailComponent extends Component {
                     </div>
                     <div>
                         <FormField formGroupId="lessonDesciptionId" formLabel={this.context.t("lesson_name")} isMandatoryField={true} formControlName="lessonDesciption" typeField="custom_textarea"/>
-                    </div>
-                    <div>
-                        <button type="submit" className="ml-15 mr-15 mt-15 btn-link-dark">{this.context.t("lesson_save_btn")}</button>
                     </div>
                 </form>
             </div>

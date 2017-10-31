@@ -61,12 +61,15 @@ export const translations = {
     "day": "Ngày",
     "week": "Tuần",
     "month": "Tháng",
+    "lesson_add_more": "Them Bai Hoc",
     "lesson_name": "Ten Bai Hoc",
     "lesson_desc": "Tom Tat Noi Dung",
     "lesson_material": "Tai Lieu",
     "lesson_period": "Thoi Luong",
     "lesson_save_btn": "Tao Buoi Hoc",
     "lesson_link_edit": "Them Chi Tiet",
+    "lesson_list_next": "Tiep Tuc",
+    "lesson_popup_edit_title": "Chi Tiet Noi Dung Buoi Hoc",
     "save_course": "Tạo Khoá Học",
     /*
      * Tutor Account Page

@@ -5,6 +5,7 @@ import {reduxForm} from 'redux-form';
 import {TT} from '../../utils/locale';
 import {renderDatePicker, renderSelect, renderField, renderTextAreaField, renderSingleFileInput} from "../CustomComponents";
 import {PERIOD_TYPES, CURRENCIES} from '../../constants/Courses'
+import {Link} from "react-router-dom";
 
 class CourseForm extends Component {
   hideError(e) {
@@ -170,6 +171,7 @@ class CourseForm extends Component {
             >
               {this.context.t("save_course")}
             </button>
+            <Link to="/dashboard/courses/list-lesson">{this.context.t('lesson_list_next')}</Link>
           </FormGroup>
         </form>
       </div>
