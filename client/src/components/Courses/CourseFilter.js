@@ -21,6 +21,10 @@ class CourseFilter extends Component {
   }  
 
   render() {
+    let {categories} = this.props
+    let {locations} = this.props
+    let {selectedCategoryIds} = this.props
+
     return (
       <div className="row row-margin">
         <div className="margin-btm">
@@ -33,20 +37,18 @@ class CourseFilter extends Component {
                   </div>{/* Title search */}
                   <div className={"col-md-3 " + styles.noPadRight}>
                     <Select2
-                      data={this.props.categories.map((x) => {return {text: x.name, id: x.id}})}
+                      data={categories.map((x) => {return {text: x.name, id: x.id}})}
                       options={{
                         placeholder: this.context.t('category')
                       }}
+                      value={selectedCategoryIds}
+                      onChange={this.props.onCategoryChange}
                       multiple
                     />
                   </div>{/* Field */}
                   <div className={"col-md-3 " + styles.noPadRight}>
                     <Select2
-                      data={[
-                        { text: 'Cả nước', id: 'all' },
-                        { text: 'Tp. Hồ Chí Minh', id: 'ho-chi-minh-city' },
-                        { text: 'Hà Nội', id: 'ha-noi' }
-                      ]}
+                      data={Object.keys(locations).map((x) => {return {text: locations[x], id: x}})}
                       options={{
                         placeholder: "Khu vực"
                       }}
@@ -72,25 +74,27 @@ class CourseFilter extends Component {
                     <div className="col-md-3">
                       <h4>{this.context.t('level')}</h4>
                       {
-                        this.props.levels
+                        categories.filter((category) => {
+                          return this.props.selectedCategoryIds.indexOf(category.id) >= 0
+                        }).map((category) => {
+                          return (
+                            <div key={category.id}>
+                              <h5>{category.name}</h5>
+                              {
+                                category.course_levels.map((level) => {
+                                  return (
+                                    <div key={level.id}>
+                                      <input type="checkbox" value={level.id}/>
+                                      <label htmlFor=""><span><span></span></span>{level.name}</label>
+                                    </div>
+                                  )
+                                })
+                              }
+                            </div>
+                          )
+                        })
                       }
-                      <div>
-                        <input type="checkbox" name="course_level"/>
-                        <label htmlFor=""><span><span></span></span>Bất kỳ</label>
-                      </div>
-                      <div>
-                        <input type="checkbox" name="course_level"/>
-                        <label htmlFor=""><span><span></span></span>Cơ bản</label>
-                      </div>
-                      <div>
-                        <input type="checkbox" name="course_level"/>
-                        <label htmlFor=""><span><span></span></span>Trung bình</label>
-                      </div>
-                      <div>
-                        <input type="checkbox" name="course_level"/>
-                        <label htmlFor=""><span><span></span></span>Nâng cao</label>
-                      </div>
-                    </div>{/* Level */}
+                    </div>
                     <div className="col-md-3">
                       <h4>Ngày học</h4>
                       <div>
@@ -239,7 +243,10 @@ CourseFilter.contextTypes = {
 }
 
 CourseFilter.propTypes = {
-  categories: React.PropTypes.array.isRequired
+  categories: React.PropTypes.array.isRequired,
+  onCategoryChange: React.PropTypes.func.isRequired,
+  locations: React.PropTypes.object.isRequired,
+  selectedCategoryIds: React.PropTypes.array.isRequired
 };
 
 export default cssModules(CourseFilter, styles);

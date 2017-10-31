@@ -84,7 +84,7 @@ export const translations = {
     "save": "Lưu",
     "cancel": "Huỷ",
     "search_course": "Từ khoá tìm kiếm",
-    "category": "Khoá học",
+    "category": "Lớp học",
     "level": "Cấp độ"
   },
   "en": {
