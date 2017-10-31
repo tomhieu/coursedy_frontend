@@ -9,6 +9,7 @@ import LoginComponent from './LoginComponent';
 import SignUpComponent from './SignUpComponent';
 
 import CourseFormComponent from './CourseFormComponent';
+import CourseFilter from './CourseFilter';
 import CourseListReducer from './Course/CourseListReducer';
 import CourseDetailReducer from './Course/CourseDetailReducer';
 
@@ -37,7 +38,8 @@ const rootReducer = combineReducers({
   // Person Info screen
   loadPersonData,
   loadEducationData,
-  addNewDocumentFile
+  addNewDocumentFile,
+  CourseFilter
 });
 
 export default rootReducer;

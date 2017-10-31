@@ -83,6 +83,9 @@ export const translations = {
     "speciality": "Chuyên môn",
     "save": "Lưu",
     "cancel": "Huỷ",
+    "search_course": "Từ khoá tìm kiếm",
+    "category": "Khoá học",
+    "level": "Cấp độ"
   },
   "en": {
     "home_page": "Home",

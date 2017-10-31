@@ -27,20 +27,15 @@ class CourseFilter extends Component {
           <div className="col-xs-12 col-sm-12">
             <div className={"col-xs-12 col-sm-12 " + styles.courseFilter}>
               <Form action="#" id="filter_form" method="post">
-
                 <div className={"col-md-12 " + styles.basicFilterBlock}>
                   <div className={"col-md-3 " + styles.noPadRight}>
-                    <input type="text" className="form-control" placeholder="Tìm kiếm khóa học" />
+                    <input type="text" className="form-control" placeholder={this.context.t('search_course')} />
                   </div>{/* Title search */}
                   <div className={"col-md-3 " + styles.noPadRight}>
                     <Select2
-                      data={[
-                        {text: 'Toán', id: 'math'},
-                        {text: 'Lý', id: 'physic'},
-                        {text: 'Hóa', id: 'chemistry'},
-                      ]}
+                      data={this.props.categories.map((x) => {return {text: x.name, id: x.id}})}
                       options={{
-                        placeholder: "Lĩnh vực"
+                        placeholder: this.context.t('category')
                       }}
                       multiple
                     />
@@ -75,7 +70,10 @@ class CourseFilter extends Component {
                 <div className="col-md-12">
                   <div className={styles.advancedFilter + " collapse " + (this.state.openAdFilter ? "in" : "")}>
                     <div className="col-md-3">
-                      <h4>Cấp độ</h4>
+                      <h4>{this.context.t('level')}</h4>
+                      {
+                        this.props.levels
+                      }
                       <div>
                         <input type="checkbox" name="course_level"/>
                         <label htmlFor=""><span><span></span></span>Bất kỳ</label>
@@ -241,9 +239,7 @@ CourseFilter.contextTypes = {
 }
 
 CourseFilter.propTypes = {
-  // content: PropTypes.string.isRequired,
-  // onRemove: PropTypes.func.isRequired,
-  // id: PropTypes.number.isRequired
+  categories: React.PropTypes.array.isRequired
 };
 
 export default cssModules(CourseFilter, styles);

@@ -2,12 +2,12 @@ import React from 'react';
 import cssModules from 'react-css-modules';
 import styles from './CoursePage.module.scss';
 
-import { CourseFilter } from '../../components/index';
+import { CourseFilterContainer } from '../../containers/index';
 import { PublicCourseListContainer } from '../../containers/index';
 
 const PublicCourseListPage = (props) => (
   <div className="container">
-    <CourseFilter />
+    <CourseFilterContainer />
     <div className="clearfix"></div>
     <PublicCourseListContainer />
   </div>
