@@ -55,7 +55,8 @@ CourseFilterContainer.propTypes = {
 const mapStateToProps = (state) => ({
   categories: state.CourseFilter.categories,
   locations: state.CourseFilter.locations,
-  selectedCategoryIds: state.CourseFilter.selectedCategoryIds
+  selectedCategoryIds: state.CourseFilter.selectedCategoryIds,
+  selectedLocationIds: state.CourseFilter.selectedLocationIds
 });
 
 

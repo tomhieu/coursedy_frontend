@@ -247,7 +247,8 @@ CourseFilter.propTypes = {
   onCategoryChange: React.PropTypes.func.isRequired,
   onLocationChange: React.PropTypes.func.isRequired,
   locations: React.PropTypes.object.isRequired,
-  selectedCategoryIds: React.PropTypes.array.isRequired
+  selectedCategoryIds: React.PropTypes.array.isRequired,
+  selectedLocationIds: React.PropTypes.array.isRequired
 };
 
 export default cssModules(CourseFilter, styles);
