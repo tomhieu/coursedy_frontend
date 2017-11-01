@@ -29,6 +29,10 @@ class FormField extends Component {
         let fieldComponent;
 
         switch (props.typeField) {
+            case "hidden": {
+                fieldComponent = <Field name={this.props.formControlName} placeholder={this.props.placeholder} component="input" className="hidden" />;
+                break;
+            }
             case "custom_input": {
                 fieldComponent = <Field name={this.props.formControlName} placeholder={this.props.placeholder} component={renderField} className="form-control" />;
                 break;

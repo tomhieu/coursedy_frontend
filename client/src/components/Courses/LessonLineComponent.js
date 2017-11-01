@@ -7,18 +7,28 @@ class LessonLineComponent extends Component {
     }
 
     render() {
-        const{pos, onUpdateLessonName, editLessonDetail} = this.props;
+        const{lesson, onUpdateLessonName, onUpdateLessonPeriode, editLessonDetail} = this.props;
         return (
-            <div className="d-flex flex-horizontal">
-                <div className="lesson-pos">{pos}</div>
-                <InlineEditFormComponent
-                    onSubmit={onUpdateLessonName}
-                    displayStyle='dart-text'
-                    content=''
-                    name='speciality'
-                />
-                <div>
-                    <a onClick={editLessonDetail}>{this.context.t('lesson_link_edit')}</a>
+            <div className="row">
+                <div className="col-md-1 col-sm-1">{lesson.posId}</div>
+                <div className="col-md-4 col-sm-4">
+                    <InlineEditFormComponent
+                        onSubmit={onUpdateLessonName}
+                        displayStyle='dart-text'
+                        content={lesson.lessonName}
+                        name='speciality'
+                    />
+                </div>
+                <div className="col-md-4 col-sm-4">
+                    <InlineEditFormComponent
+                        onSubmit={onUpdateLessonPeriode}
+                        displayStyle='dart-text'
+                        content={lesson.lessonPeriod}
+                        name='speciality'
+                    />
+                </div>
+                <div className="col-md-3 col-sm-3">
+                    <a onClick={() => editLessonDetail(lesson.posId)}>{this.context.t('lesson_link_edit')}</a>
                 </div>
             </div>
         )
