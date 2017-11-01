@@ -3,6 +3,7 @@ import {Form} from 'react-bootstrap'
 import cssModules from 'react-css-modules';
 import styles from './Course.module.scss';
 import Select2 from 'react-select2-wrapper'
+import {timeSlots, tuitionFees} from '../../constants/CourseFilter'
 
 class CourseFilter extends Component {
 
@@ -21,7 +22,7 @@ class CourseFilter extends Component {
   }  
 
   render() {
-    let {categories, locations, selectedCategoryIds, selectedLocationIds} = this.props
+    let {categories, locations, selectedCategoryIds, selectedLocationIds, weekdays} = this.props
 
     return (
       <div className="row row-margin">
@@ -31,7 +32,11 @@ class CourseFilter extends Component {
               <Form action="#" id="filter_form" method="post">
                 <div className={"col-md-12 " + styles.basicFilterBlock}>
                   <div className={"col-md-3 " + styles.noPadRight}>
-                    <input type="text" className="form-control" placeholder={this.context.t('search_course')} />
+                    <input type="text" className="form-control"
+                           placeholder={this.context.t('search_course')}
+                           onChange={this.props.onKeyWordChange}
+                           value={this.props.keyWord}
+                    />
                   </div>{/* Title search */}
                   <div className={"col-md-3 " + styles.noPadRight}>
                     <Select2
@@ -48,7 +53,7 @@ class CourseFilter extends Component {
                     <Select2
                       data={Object.keys(locations).map((x) => {return {text: locations[x], id: x}})}
                       options={{
-                        placeholder: "Khu vực"
+                        placeholder: this.context.t("location")
                       }}
                       onChange={this.props.onLocationChange}
                       value={selectedLocationIds}
@@ -56,14 +61,16 @@ class CourseFilter extends Component {
                     />
                   </div>{/* Area*/}
                   <div className="col-md-1">
-                    <button className={'btn btn-primary btn-secondary ' + styles.btnSearch} type="button"><i className="fa fa-search"></i></button>
+                    <button className={'btn btn-primary btn-secondary ' + styles.btnSearch} type="button" onClick={this.props.searchCourse}>
+                      <i className="fa fa-search"></i>
+                    </button>
                   </div>
 
                   <div className="col-md-2">
                     <button 
                       type="button"
                       className={'btn btn-primary ' + styles.btnAdvancedFilter} 
-                      onClick={this.toggleFilter.bind(this)}>Lọc</button>
+                      onClick={this.toggleFilter.bind(this)}>{this.context.t("filter")}</button>
                   </div>
                 </div>{/* Basic Filter Block */}
                 <br/>
@@ -84,7 +91,7 @@ class CourseFilter extends Component {
                                 category.course_levels.map((level) => {
                                   return (
                                     <div key={level.id}>
-                                      <input type="checkbox" value={level.id}/>
+                                      <input type="checkbox" value={level.id} onChange={this.props.onSelectCourseLevel} checked={this.props.selectedLevels.indexOf(level.id) >= 0}/>
                                       <label htmlFor=""><span><span></span></span>{level.name}</label>
                                     </div>
                                   )
@@ -95,113 +102,81 @@ class CourseFilter extends Component {
                         })
                       }
                     </div>
+
                     <div className="col-md-3">
                       <h4>Ngày học</h4>
-                      <div>
-                        <input type="checkbox" name="course_schedule_day"/>
-                        <label htmlFor=""><span><span></span></span>Bất kỳ</label>
-                      </div>
-                      <div>
-                        <input type="checkbox" name="course_schedule_day"/>
-                        <label htmlFor=""><span><span></span></span>Thứ 2</label>
-                      </div>
-                      <div>
-                        <input type="checkbox" name="course_schedule_day"/>
-                        <label htmlFor=""><span><span></span></span>Thứ 3</label>
-                      </div>
-                      <div>
-                        <input type="checkbox" name="course_schedule_day"/>
-                        <label htmlFor=""><span><span></span></span>Thứ 4</label>
-                      </div>
-                      <div>
-                        <input type="checkbox" name="course_schedule_day"/>
-                        <label htmlFor=""><span><span></span></span>Thứ 5</label>
-                      </div>
-                      <div>
-                        <input type="checkbox" name="course_schedule_day"/>
-                        <label htmlFor=""><span><span></span></span>Thứ 6</label>
-                      </div>
-                      <div>
-                        <input type="checkbox" name="course_schedule_day"/>
-                        <label htmlFor=""><span><span></span></span>Thứ 7</label>
-                      </div>
-                      <div>
-                        <input type="checkbox" name="course_schedule_day"/>
-                        <label htmlFor=""><span><span></span></span>Chủ nhật</label>
-                      </div>
+                      {
+                        Object.keys(weekdays).map((k) => {
+                          return (
+                            <div key={k}>
+                              <input type="checkbox" value={k} name="course_schedule_day" onChange={this.props.onSelectWeekDay} selected={this.props.selectedWeekdays.indexOf(k.id) >= 0}/>
+                              <label htmlFor=""><span><span></span></span>{weekdays[k]}</label>
+                            </div>
+                          )
+                        })
+                      }
                     </div>{/* Schedule days */}
+
                     <div className="col-md-3">
-                      <h4>Giờ học</h4>
-                      <div>
-                        <input type="checkbox" name="course_schedule_time"/>
-                        <label htmlFor=""><span><span></span></span>Bất kỳ</label>
+                      <h4>{this.context.t('tuition_fee_filter')}</h4>
+                      {
+                        tuitionFees.map((fee) => {
+                          return (
+                            <div key={fee[0]}>
+                              <input type="checkbox" name="fee" value={fee[0]} onChange={this.props.onFeeChange}/>
+                              <label htmlFor=""><span><span></span></span>{fee[1]}</label>
+                            </div>
+                          )
+                        })
+                      }
+                    </div>{/* Tuition fee */}
+
+                    <div className="col-md-3">
+                      <h4>{this.context.t('time_schedule')}</h4>
+                      <div className='row dark-picker dark-picker-bright'>
+                        <div className='col-sm-9'>
+                          <Select2
+                            data={timeSlots.map((ts) => {return {id: ts[0], text: ts[1]}})}
+                            options={{
+                              placeholder: this.context.t("start_time")
+                            }}
+                            onChange={this.props.onStartTimeChange}
+                            value={this.props.startTime}
+                          />
+                          <span className={`input-errors ${this.props.startTimeError ? '':'hidden'}`}>{this.context.t('start_time_error')}</span>
+                        </div>
                       </div>
-                      <div>
-                        <input type="checkbox" name="course_schedule_time"/>
-                        <label htmlFor=""><span><span></span></span>8:00AM - 9:30AM</label>
-                      </div>
-                      <div>
-                        <input type="checkbox" name="course_schedule_time"/>
-                        <label htmlFor=""><span><span></span></span>6:00PM - 7:30PM</label>
-                      </div>
-                      <div>
-                        <input type="checkbox" name="course_schedule_time"/>
-                        <label htmlFor=""><span><span></span></span>7:30PM - 9:00PM</label>
-                      </div>
-                      <div>
-                        <input type="checkbox" name="course_schedule_time" value="custom"/>
-                        <label><span><span></span></span>
-                          <input type="text" name="course_schedule_time_cl" placeholder="Bắt đầu"/>
-                          -
-                          <input type="text" name="course_schedule_time_ch" placeholder="Kết thúc"/>
-                        </label>
+                      <div className='row dark-picker dark-picker-bright margin-top15'>
+                        <div className='col-sm-9'>
+                          <Select2
+                            data={timeSlots.map((ts) => {
+                              return {id: ts[0], text: ts[1]}
+                            })}
+                            options={{
+                              placeholder: this.context.t("end_time")
+                            }}
+                            onChange={this.props.onEndTimeChange}
+                            value={this.props.endTime}
+                          />
+                          <span className={`input-errors ${this.props.endTimeError ? '':'hidden'}`}>{this.context.t('end_time_error')}</span>
+                        </div>
                       </div>
                     </div>{/* Schedule time */}
-                    <div className="col-md-3">
-                      <h4>Học phí (Cả khóa)</h4>
-                      <div>
-                        <input type="checkbox" name="course_price"/>
-                        <label htmlFor=""><span><span></span></span>Bất kỳ</label>
-                      </div>
-                      <div>
-                        <input type="checkbox" name="course_price"/>
-                        <label htmlFor=""><span><span></span></span>Dưới 1tr</label>
-                      </div>
-                      <div>
-                        <input type="checkbox" name="course_price"/>
-                        <label htmlFor=""><span><span></span></span>1tr - 5tr</label>
-                      </div>
-                      <div>
-                        <input type="checkbox" name="course_price"/>
-                        <label htmlFor=""><span><span></span></span>5tr - 10tr</label>
-                      </div>
-                      <div>
-                        <input type="checkbox" name="course_price"/>
-                        <label htmlFor=""><span><span></span></span>Trên 10tr</label>
-                      </div>
-                      <div>
-                        <input type="checkbox" name="course_price" value="custom"/>
-                        <label><span><span></span></span>
-                        <input type="text" name="course_price_cl" placeholder="Mức thấp"/>
-                        -
-                        <input type="text" name="course_price_ch" placeholder="Mức cao"/>
-                        </label>
-                      </div>
-                    </div>{/* Tuition fee */}
+
                     <div className="clearfix"></div>
                     
-                    <div className="col-md-4">
-                      <h4>Giáo viên</h4>
-                      <Select2
-                        data={[
-                          {text: 'Tất cả', id: 'all'},
-                          {text: 'Nguyễn Văn A', id: 'nguyen-van-a'},
-                          {text: 'Huỳnh Văn B', id: 'huynh-van-b'},
-                          {text: 'Vũ Văn C', id: 'vu-van-c'},
-                        ]}
-                        multiple
-                      />
-                    </div>{/* Tutor */}
+                    {/*<div className="col-md-4">*/}
+                      {/*<h4>Giáo viên</h4>*/}
+                      {/*<Select2*/}
+                        {/*data={[*/}
+                          {/*{text: 'Tất cả', id: 'all'},*/}
+                          {/*{text: 'Nguyễn Văn A', id: 'nguyen-van-a'},*/}
+                          {/*{text: 'Huỳnh Văn B', id: 'huynh-van-b'},*/}
+                          {/*{text: 'Vũ Văn C', id: 'vu-van-c'},*/}
+                        {/*]}*/}
+                        {/*multiple*/}
+                      {/*/>*/}
+                    {/*</div>/!* Tutor *!/*/}
 
 
                   </div>
@@ -246,9 +221,19 @@ CourseFilter.propTypes = {
   categories: React.PropTypes.array.isRequired,
   onCategoryChange: React.PropTypes.func.isRequired,
   onLocationChange: React.PropTypes.func.isRequired,
+  onFeeChange: React.PropTypes.func.isRequired,
+  onKeyWordChange: React.PropTypes.func.isRequired,
+  onSelectCourseLevel: React.PropTypes.func.isRequired,
+  onSelectWeekDay: React.PropTypes.func.isRequired,
+  searchCourse: React.PropTypes.func.isRequired,
   locations: React.PropTypes.object.isRequired,
+  weekdays: React.PropTypes.object.isRequired,
   selectedCategoryIds: React.PropTypes.array.isRequired,
-  selectedLocationIds: React.PropTypes.array.isRequired
+  selectedLocationIds: React.PropTypes.array.isRequired,
+  selectedWeekdays: React.PropTypes.array.isRequired,
+  selectedFees: React.PropTypes.array.isRequired,
+  onStartTimeChange: React.PropTypes.func.isRequired,
+  onEndTimeChange: React.PropTypes.func.isRequired
 };
 
 export default cssModules(CourseFilter, styles);

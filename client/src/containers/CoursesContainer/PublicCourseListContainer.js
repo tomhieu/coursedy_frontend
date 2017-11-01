@@ -25,7 +25,7 @@ PublicCourseListContainer.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  list: state.CourseListReducer.courses
+  courses: state.CourseListReducer.courses
 });
 
 export default connect(

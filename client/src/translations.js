@@ -85,7 +85,15 @@ export const translations = {
     "cancel": "Huỷ",
     "search_course": "Từ khoá tìm kiếm",
     "category": "Lớp học",
-    "level": "Cấp độ"
+    "level": "Cấp độ",
+    "filter": "Tìm kiếm nâng cao",
+    "location": "Khu vực",
+    "tuition_fee_filter": "Học phí (Cả khóa)",
+    "time_schedule": "Giờ học",
+    "start_time": "Bắt đầu",
+    "end_time": "Kết thúc",
+    "end_time_error": "Thời gian kết thúc phải lớn hơn thời gian bắt đầu",
+    "start_time_error": "Thời gian kết thúc phải lớn hơn thời gian bắt đầu"
   },
   "en": {
     "home_page": "Home",

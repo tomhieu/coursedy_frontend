@@ -233,6 +233,10 @@ div.error, p.error {
   margin-bottom: 15px !important;
 }
 
+.margin-top15 {
+  margin-top: 15px !important;
+}
+
 #start_date {
   cursor: pointer;
 }
@@ -545,7 +549,6 @@ Dropdown Select2 styling
 
 .select2 {
   width: 100% !important;
-  min-width: 180px;
 }
 .dark-picker.pickr-full .select2 {
   min-width: 100%;

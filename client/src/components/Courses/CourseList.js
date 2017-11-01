@@ -15,7 +15,7 @@ class CourseList extends Component {
     return (
       <div className="course-group-list-2">
       {
-        this.props.list.map(function (item, index) {
+        this.props.courses.map(function (item, index) {
           return (
             <div className="col-xs-12 col-sm-12 col-md-6" key={index}>
               <CourseItem item={item}/>

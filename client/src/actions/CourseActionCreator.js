@@ -38,8 +38,7 @@ export const fetchCourses = (params) => {
 
     dispatch({
       type: types.FETCH_COURSES_SUCCESS,
-      payload: {
-        data: [1,2,3,4,5,6,7,8,9].map(value => {
+      payload: [1,2,3,4,5,6,7,8,9].map(value => {
           return {
             id: 1,
             title: 'Khóa học ' + value,
@@ -66,7 +65,6 @@ export const fetchCourses = (params) => {
             no_comments: 100,  
           }
         })
-      }
     })
 
 
