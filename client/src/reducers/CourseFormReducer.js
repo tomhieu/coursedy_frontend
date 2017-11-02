@@ -16,7 +16,7 @@ const CourseFormComponent = (state = {
       return state;
     case ADD_MORE_LESSON:
       let nextLessonList = state.courseCreationForm.lessonList.slice();
-      const nextPos = state.courseCreationForm.lessonCount++;
+      const nextPos = state.courseCreationForm.lessonCount + 1;
       nextLessonList.push({posId: nextPos, lessonName: '', lessonPeriod: ''});
       return Object.assign({}, state, {
         courseCreationForm: {lessonList: nextLessonList, lessonCount: nextPos}

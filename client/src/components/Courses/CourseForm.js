@@ -171,7 +171,7 @@ class CourseForm extends Component {
             >
               {this.context.t("save_course")}
             </button>
-            <Link to="/dashboard/courses/list-lesson">{this.context.t('lesson_list_next')}</Link>
+            <Link to="/dashboard/courses/list-lesson" className="btn btn-primary btn-link-dark signin-btn">{this.context.t('lesson_list_next')}</Link>
           </FormGroup>
         </form>
       </div>
