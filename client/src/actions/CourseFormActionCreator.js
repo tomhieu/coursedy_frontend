@@ -3,6 +3,7 @@ import Network from '../utils/network'
 import {TT} from '../utils/locale'
 
 export const ADD_MORE_LESSON = 'ADD_MORE_LESSON';
+export const DELETE_LESSON = 'DELETE_LESSON';
 export const EDIT_DETAIL_LESSON = 'EDIT_DETAIL_LESSON';
 export const SAVE_LESSON_DETAIL = 'SAVE_LESSON_DETAIL';
 export const HIDE_LESSON_POPUP_EDIT = 'HIDE_LESSON_POPUP_EDIT';
@@ -35,6 +36,13 @@ export const addLesson = () => {
   };
 };
 
+export const deleteLesson = (lessonId) => {
+  return {
+    type: DELETE_LESSON,
+    data: lessonId
+  }
+}
+
 export const editLessonDetail = (lessonId) => {
   return {
     type: EDIT_DETAIL_LESSON,
@@ -49,8 +57,9 @@ export const saveLessonDetail = (lesson) => {
   };
 };
 
-export const hideLessonDetailPopup = () => {
+export const hideLessonDetailPopup = (lessonId) => {
     return {
-        type: HIDE_LESSON_POPUP_EDIT
+        type: HIDE_LESSON_POPUP_EDIT,
+        data: lessonId
     };
 };

@@ -5,9 +5,12 @@ import {connect} from "react-redux";
 import cssModules from "react-css-modules";
 import styles from "./ListLesson.module.scss";
 import {addLesson} from "actions/CourseFormActionCreator";
-import {editLessonDetail, hideLessonDetailPopup, saveLessonDetail} from "../../actions/CourseFormActionCreator";
+import {
+    deleteLesson, editLessonDetail, hideLessonDetailPopup,
+    saveLessonDetail
+} from "../../actions/CourseFormActionCreator";
 import {reduxForm} from "redux-form";
-import EditLessonFormComponent from "../../components/Courses/EditLessonFormComponent";
+import EditLessonFormContainer from "./EditLessonFormContainer";
 class ListLessonContainer extends Component {
     constructor(props) {
         super(props);
@@ -29,28 +32,24 @@ class ListLessonContainer extends Component {
         this.props.dispatch(addLesson());
     }
 
-    saveLesson(lesson) {
-        lesson['posId'] = this.props.activeLesson;
-        this.props.dispatch(saveLessonDetail(lesson));
-    }
-    hidePopup() {
-        this.props.dispatch(hideLessonDetailPopup())
+    deleteNewLesson(lessonId) {
+        this.props.dispatch(deleteLesson(lessonId));
     }
 
     render() {
-        const { lessonList, showPopupEdit } = this.props;
+        const { lessonList, activeLesson } = this.props;
         return (
             <div className="d-flex flex-vertical">
                 <button onClick={this.addNewLesson.bind(this)}>{this.context.t('lesson_add_more')}</button>
                 {
                     lessonList.map((lesson) =>
                         <div key={lesson.posId}>
-                            <LessonLineComponent lesson={lesson} onUpdateLessonName={this.onUpdateLessonName.bind(this)}
-                                                 onUpdateLessonPeriode={this.onUpdateLessonPeriod.bind(this)} editLessonDetail={this.editLessonDetail.bind(this)}/>
+                            <LessonLineComponent lesson={lesson} showPopupEdit={lesson.showPopupEdit} onUpdateLessonName={this.onUpdateLessonName.bind(this)} onDeleteLesson={this.deleteNewLesson.bind(this)}
+                                                 onUpdateLessonPeriode={this.onUpdateLessonPeriod.bind(this)} editLessonDetail={this.editLessonDetail.bind(this)} {...this.props}/>
                         </div>
                     )
                 }
-                <EditLessonFormComponent show={showPopupEdit} hidePopup={this.hidePopup.bind(this)} onSubmit={this.saveLesson.bind(this)} {...this.props}/>
+
             </div>
         )
     }
@@ -63,10 +62,9 @@ ListLessonContainer.contextTypes = {
 const mapStateToProps = state => {
     const { CourseFormComponent } = state;
     const { courseCreationForm } = CourseFormComponent;
-    const { lessonList, showPopupEdit, activeLesson } = courseCreationForm;
+    const { lessonList, activeLesson } = courseCreationForm;
     return {
         lessonList,
-        showPopupEdit,
         activeLesson
     }
 };

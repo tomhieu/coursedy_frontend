@@ -6,7 +6,6 @@ const CourseFormComponent = (state = {
   errors: null, courseCreationForm: {
       lessonList: [],
       lessonCount: 0,
-      showPopupEdit: false,
       activeLesson: null
     }
 }, action) => {
@@ -17,13 +16,21 @@ const CourseFormComponent = (state = {
     case ADD_MORE_LESSON:
       let nextLessonList = state.courseCreationForm.lessonList.slice();
       const nextPos = state.courseCreationForm.lessonCount + 1;
-      nextLessonList.push({posId: nextPos, lessonName: '', lessonPeriod: ''});
+      nextLessonList.push({posId: nextPos, lessonName: '', lessonPeriod: '', showPopupEdit: false});
       return Object.assign({}, state, {
         courseCreationForm: {lessonList: nextLessonList, lessonCount: nextPos}
       });
     case EDIT_DETAIL_LESSON:
+      let activeLesson = null;
+      let editLessonList = state.courseCreationForm.lessonList.slice();
+      editLessonList.map(lesson => {
+          if (lesson.posId === action.data) {
+              lesson.showPopupEdit = true;
+              activeLesson = lesson;
+          }
+      })
       return Object.assign({}, state, {
-        courseCreationForm: Object.assign({}, state.courseCreationForm, {showPopupEdit: true, activeLesson: action.data})
+        courseCreationForm: Object.assign({}, state.courseCreationForm, {lessonList: editLessonList, activeLesson: activeLesson})
       });
     case SAVE_LESSON_DETAIL:
       let updatedLessonList = state['courseCreationForm']['lessonList'].slice();
@@ -33,15 +40,22 @@ const CourseFormComponent = (state = {
                   lesson.lessonName = action.data.lessonName;
                   lesson.lessonPeriod = action.data.lessonPeriod;
                   lesson.lessonDesciption = action.data.lessonDesciption;
+                  lesson.showPopupEdit = false;
               }
           }
       );
       return Object.assign({}, state, {
-          courseCreationForm:  Object.assign({}, state.courseCreationForm, {showPopupEdit: false, activeLesson: null, lessonList: updatedLessonList})
+          courseCreationForm:  Object.assign({}, state.courseCreationForm, {activeLesson: null, lessonList: updatedLessonList})
       });
     case HIDE_LESSON_POPUP_EDIT:
+      let lessonList = state.courseCreationForm.lessonList.slice();
+      lessonList.map(lesson => {
+          if (lesson.posId === action.data) {
+              lesson.showPopupEdit = false;
+          }
+      });
       return Object.assign({}, state, {
-        courseCreationForm: Object.assign({}, state.courseCreationForm, {showPopupEdit: false, activeLesson: null})
+        courseCreationForm: Object.assign({}, state.courseCreationForm, {activeLesson: null, lessonList: lessonList})
       });
     default:
       return state;

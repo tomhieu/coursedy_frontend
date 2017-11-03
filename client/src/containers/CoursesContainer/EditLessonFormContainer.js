@@ -2,9 +2,14 @@ import * as React from "react";
 import {Component} from "react";
 import {Button, Modal} from "react-bootstrap";
 import {hideLessonDetailPopup, saveLessonDetail} from "actions/CourseFormActionCreator";
-import {LessonDetailComponent} from "./LessonDetailComponent";
+import {LessonDetailComponent} from "../../components/Courses/LessonDetailComponent";
+import {reduxForm} from "redux-form";
+import {connect} from "react-redux";
 
-class EditLessonFormComponent extends Component {
+class EditLessonFormContainer extends Component {
+    constructor(props) {
+        super(props);
+    }
     render() {
         const{show, hidePopup, handleSubmit} = this.props;
         return (
@@ -26,7 +31,14 @@ class EditLessonFormComponent extends Component {
     }
 }
 
-EditLessonFormComponent.contextTypes = {
+EditLessonFormContainer.contextTypes = {
     t: React.PropTypes.func.isRequired
 }
-export default EditLessonFormComponent;
+
+export default connect(state => ({
+    initialValues: state.CourseFormComponent.courseCreationForm != undefined ? state.CourseFormComponent.courseCreationForm.activeLesson : {}
+}))(reduxForm({
+    form: 'lessonDetailForm',
+    fields: ['lessonName', 'lessonPeriod', 'lessonDocument', 'lessonDesciption'],
+    enableReinitialize: true
+})(EditLessonFormContainer));
