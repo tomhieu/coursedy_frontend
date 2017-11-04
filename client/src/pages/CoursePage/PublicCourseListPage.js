@@ -1,6 +1,5 @@
 import React from 'react';
 import cssModules from 'react-css-modules';
-import styles from './CoursePage.module.scss';
 
 import { CourseFilterContainer } from '../../containers/index';
 import { PublicCourseListContainer } from '../../containers/index';
@@ -13,4 +12,4 @@ const PublicCourseListPage = (props) => (
   </div>
 );
 
-export default cssModules(PublicCourseListPage, styles);
+export default PublicCourseListPage;
