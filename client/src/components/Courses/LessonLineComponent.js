@@ -17,32 +17,45 @@ class LessonLineComponent extends Component {
         this.props.dispatch(saveLessonDetail(lesson));
     }
 
+    onUpdateLessonName(lessonName, onSuccess) {
+        this.props.dispatch(saveLessonDetail({lessonName: lessonName.speciality, posId: this.props.lesson.posId}));
+        onSuccess();
+    }
+
+    onUpdateLessonPeriod(lessonPeriod, onSuccess) {
+        this.props.dispatch(saveLessonDetail({lessonPeriod: lessonPeriod, posId: this.props.lesson.posId}));
+        onSuccess();
+    }
+
     render() {
-        const{lesson, showPopupEdit, onUpdateLessonName, onUpdateLessonPeriode, onDeleteLesson, editLessonDetail} = this.props;
+        const{lesson, showPopupEdit, onDeleteLesson, editLessonDetail} = this.props;
         return (
-            <div className="row">
-                <div className="col-md-1 col-sm-1">{lesson.posId}</div>
-                <div className="col-md-4 col-sm-4">
+            <div className="d-flex flex-horizontal flex-wrap">
+                <div className="index-lesson-col d-flex flex-auto justify-content-center">
+                    <div className="align-self-center">{lesson.posId}</div>
+                </div>
+                <div className="lesson-name-col d-flex flex-auto justify-content-center">
                     <InlineEditFormComponent
-                        onSubmit={onUpdateLessonName}
+                        onSubmit={this.onUpdateLessonName.bind(this)}
                         displayStyle='dart-text'
                         content={lesson.lessonName}
                         name='speciality'
+                        className="align-self-center"
                     />
                 </div>
-                <div className="col-md-2 col-sm-2">
+                <div className="lesson-per-col d-flex flex-auto justify-content-center">
                     <InlineEditFormComponent
-                        onSubmit={onUpdateLessonPeriode}
+                        onSubmit={this.onUpdateLessonPeriod.bind(this)}
                         displayStyle='dart-text'
                         content={lesson.lessonPeriod}
                         name='speciality'
                     />
                 </div>
-                <div className="col-md-2 col-sm-2">
-                    <a className="icon-delete ml-10" onClick={() => onDeleteLesson(lesson.posId)} title={file.fileName}></a>
+                <div className="lesson-del-col d-flex flex-auto justify-content-center">
+                    <a className="icon-delete align-self-center ml-10" onClick={() => onDeleteLesson(lesson.posId)} title={lesson.lessonName}></a>
                 </div>
-                <div className="col-md-3 col-sm-3">
-                    <a onClick={() => editLessonDetail(lesson.posId)}>{this.context.t('lesson_link_edit')}</a>
+                <div className="lesson-add-col d-flex flex-auto justify-content-center">
+                    <a className="align-self-center" onClick={() => editLessonDetail(lesson.posId)}>{this.context.t('lesson_link_edit')}</a>
                 </div>
                 <EditLessonFormContainer lessonPosId={lesson.posId} show={showPopupEdit} hidePopup={this.hidePopup.bind(this)} onSubmit={this.saveLesson.bind(this)} {...this.props}/>
             </div>

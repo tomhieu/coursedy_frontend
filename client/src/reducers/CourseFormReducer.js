@@ -1,5 +1,8 @@
 import * as types from '../constants/CourseFormComponent';
-import {ADD_MORE_LESSON, EDIT_DETAIL_LESSON, HIDE_LESSON_POPUP_EDIT} from "actions/CourseFormActionCreator";
+import {
+    ADD_MORE_LESSON, DELETE_LESSON, EDIT_DETAIL_LESSON,
+    HIDE_LESSON_POPUP_EDIT
+} from "actions/CourseFormActionCreator";
 import {SAVE_LESSON_DETAIL} from "../actions/CourseFormActionCreator";
 
 const CourseFormComponent = (state = {
@@ -33,17 +36,18 @@ const CourseFormComponent = (state = {
         courseCreationForm: Object.assign({}, state.courseCreationForm, {lessonList: editLessonList, activeLesson: activeLesson})
       });
     case SAVE_LESSON_DETAIL:
-      let updatedLessonList = state['courseCreationForm']['lessonList'].slice();
+      let updatedLessonList = JSON.parse(JSON.stringify(state.courseCreationForm.lessonList));
         updatedLessonList.map((lesson) =>
           {
               if (lesson.posId === action.data.posId) {
-                  lesson.lessonName = action.data.lessonName;
-                  lesson.lessonPeriod = action.data.lessonPeriod;
-                  lesson.lessonDesciption = action.data.lessonDesciption;
+                  lesson.lessonName = action.data.lessonName != undefined ? action.data.lessonName : lesson.lessonName;
+                  lesson.lessonPeriod = action.data.lessonPeriod != undefined ? action.data.lessonPeriod : lesson.lessonPeriod;
+                  lesson.lessonDesciption = action.data.lessonDesciption != undefined ? action.data.lessonDesciption : lesson.lessonDesciption;
                   lesson.showPopupEdit = false;
               }
           }
       );
+
       return Object.assign({}, state, {
           courseCreationForm:  Object.assign({}, state.courseCreationForm, {activeLesson: null, lessonList: updatedLessonList})
       });
@@ -57,6 +61,17 @@ const CourseFormComponent = (state = {
       return Object.assign({}, state, {
         courseCreationForm: Object.assign({}, state.courseCreationForm, {activeLesson: null, lessonList: lessonList})
       });
+    case DELETE_LESSON:
+      let currentLessonList = state.courseCreationForm.lessonList.slice();
+      const removedItemIndex = currentLessonList.findIndex((e, i) => {
+          return e.posId === action.data;
+      });
+      currentLessonList.splice(removedItemIndex, 1);
+      if (removedItemIndex >= 0) {
+          return Object.assign({}, state, {
+              courseCreationForm: Object.assign({}, state.courseCreationForm, {lessonList: currentLessonList})
+          });
+      }
     default:
       return state;
   }

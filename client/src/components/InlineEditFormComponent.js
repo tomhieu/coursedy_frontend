@@ -110,7 +110,7 @@ class InlineEditFormComponent extends Component {
 
       <FormGroup>
         <button type="submit"
-                className="btn btn-primary"
+                className="btn btn-primary mr-10"
                 disabled={pristine || submitting}
         >
           {this.context.t("save")}

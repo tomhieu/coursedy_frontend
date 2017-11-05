@@ -16,14 +16,6 @@ class ListLessonContainer extends Component {
         super(props);
     }
 
-    onUpdateLessonName(lessonName) {
-        console.log('update lession name ' + lessonName);
-    }
-
-    onUpdateLessonPeriod(lessonPeriod) {
-        console.log('update lession name ' + lessonPeriod);
-    }
-
     editLessonDetail(lessonId) {
         this.props.dispatch(editLessonDetail(lessonId));
     }
@@ -40,12 +32,28 @@ class ListLessonContainer extends Component {
         const { lessonList, activeLesson } = this.props;
         return (
             <div className="d-flex flex-vertical">
-                <button onClick={this.addNewLesson.bind(this)}>{this.context.t('lesson_add_more')}</button>
+                <div className="d-flex flex-auto">
+                    <button onClick={this.addNewLesson.bind(this)}>{this.context.t('lesson_add_more')}</button>
+                </div>
+                <div className="d-flex flex-horizontal flex-wrap mt-20 ">
+                    <div className="index-lesson-col lesson-col-no-text">
+                    </div>
+                    <div className="lesson-name-col lesson-col-text">
+                        <span>{this.context.t('lesson_name')}</span>
+                    </div>
+                    <div className="lesson-per-col lesson-col-text">
+                        <span>{this.context.t('lesson_period')}</span>
+                    </div>
+                    <div className="lesson-del-col lesson-col-no-text">
+                    </div>
+                    <div className="lesson-add-col lesson-col-no-text">
+                    </div>
+                </div>
                 {
                     lessonList.map((lesson) =>
                         <div key={lesson.posId}>
-                            <LessonLineComponent lesson={lesson} showPopupEdit={lesson.showPopupEdit} onUpdateLessonName={this.onUpdateLessonName.bind(this)} onDeleteLesson={this.deleteNewLesson.bind(this)}
-                                                 onUpdateLessonPeriode={this.onUpdateLessonPeriod.bind(this)} editLessonDetail={this.editLessonDetail.bind(this)} {...this.props}/>
+                            <LessonLineComponent lesson={lesson} showPopupEdit={lesson.showPopupEdit} onDeleteLesson={this.deleteNewLesson.bind(this)}
+                                                  editLessonDetail={this.editLessonDetail.bind(this)} {...this.props}/>
                         </div>
                     )
                 }

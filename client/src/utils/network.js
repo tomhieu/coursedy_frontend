@@ -15,7 +15,7 @@ import request from './request';
    const buildUrl = (path) => {
      let { id, resource } = res;
      let parameters = [
-       'http://172.16.1.2:3000',
+       'http://66.175.219.194',
        'api',
        'v1'
      ];
