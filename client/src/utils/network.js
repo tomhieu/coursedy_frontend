@@ -16,7 +16,7 @@ import queryString from 'query-string'
    const buildUrl = (path) => {
      let { id, resource } = res;
      let parameters = [
-       'http://localhost:3000',
+       'http://66.175.219.194',
        'api',
        'v1'
      ];
