@@ -56,6 +56,7 @@ export const translations = {
     "number_of_students": "Số học sinh",
     "tuition_fee": "Học phí",
     "course_description": "Giới thiệu khoá học",
+    "course_modification": "Sua Khoa Hoc",
     "cover_image": "Ảnh đại diện",
     "hour": "Giờ",
     "day": "Ngày",

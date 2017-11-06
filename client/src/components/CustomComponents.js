@@ -61,11 +61,27 @@ export const renderMultiSelect = (selectOptions, selectedValues) => {
     )
 }
 
+export const renderPreviewFile = (file, doDeleteNewUploadFile) => {
+    let previewClass = "pdf-image-preview";
+    if (file.extension === "docx") {
+        previewClass = "doc-image-preview";
+    }
+    return (
+        <div className="d-flex flex-horizontal mt-10" key={file.uid}>
+            <div className={previewClass}></div>
+            <div className="file-name-wrapper">
+                <span className="degree-filename ml-10" title={file.fileName}>{file.fileName}</span>
+            </div>
+            <a className="icon-delete ml-10" onClick={() => doDeleteNewUploadFile(file.uid)} title={file.fileName}></a>
+        </div>
+    )
+}
+
 class renderFileInput extends Component {
   constructor(props) {
     super(props);
     this.state = {
-          previewUrl: null
+          previewUrl: this.props.previewUrl
     };
     this.handleUpload = this.props.onUpload;
   }

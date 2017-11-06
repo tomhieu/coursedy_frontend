@@ -4,13 +4,14 @@ import LessonLineComponent from "../../components/Courses/LessonLineComponent";
 import {connect} from "react-redux";
 import cssModules from "react-css-modules";
 import styles from "./ListLesson.module.scss";
-import {addLesson} from "actions/CourseFormActionCreator";
+import {addLesson, saveCourseAndLesson} from "actions/CourseFormActionCreator";
 import {
     deleteLesson, editLessonDetail, hideLessonDetailPopup,
     saveLessonDetail
 } from "../../actions/CourseFormActionCreator";
 import {reduxForm} from "redux-form";
 import EditLessonFormContainer from "./EditLessonFormContainer";
+import {Link} from "react-router-dom";
 class ListLessonContainer extends Component {
     constructor(props) {
         super(props);
@@ -28,12 +29,28 @@ class ListLessonContainer extends Component {
         this.props.dispatch(deleteLesson(lessonId));
     }
 
+    saveCourseWithLesson() {
+        this.props.dispatch(saveCourseAndLesson({
+            title: this.props.title,
+            description: this.props.description,
+            start_date: this.props.start_date,
+            end_date: this.props.end_date,
+            number_of_students: this.props.number_of_students,
+            period: this.props.period,
+            period_type: this.props.period_type,
+            tuition_fee: this.props.tuition_fee,
+            currency: this.props.currency,
+            cover_image: this.props.cover_image,
+            lessonList: this.props.lessonList
+        }))
+    }
+
     render() {
-        const { lessonList, activeLesson } = this.props;
+        const { lessonList } = this.props;
         return (
             <div className="d-flex flex-vertical">
                 <div className="d-flex flex-auto">
-                    <button onClick={this.addNewLesson.bind(this)}>{this.context.t('lesson_add_more')}</button>
+                    <button className="btn btn-primary" onClick={this.addNewLesson.bind(this)}>{this.context.t('lesson_add_more')}</button>
                 </div>
                 <div className="d-flex flex-horizontal flex-wrap mt-20 ">
                     <div className="index-lesson-col lesson-col-no-text">
@@ -58,6 +75,16 @@ class ListLessonContainer extends Component {
                     )
                 }
 
+                <div className="d-flex flex-horizontal">
+                    <Link to="/dashboard/courses/new" className="btn btn-link-dark signin-btn mr-10">{this.context.t('course_modification')}</Link>
+                    {lessonList.length > 0 ?
+                        <button type="button" className="btn btn-primary btn-link-dark signin-btn" onClick={this.saveCourseWithLesson.bind(this)}>
+                        {this.context.t("save_course")}
+                        </button>
+                        : null
+                    }
+                </div>
+
             </div>
         )
     }
@@ -69,9 +96,10 @@ ListLessonContainer.contextTypes = {
 
 const mapStateToProps = state => {
     const { CourseFormComponent } = state;
-    const { courseCreationForm } = CourseFormComponent;
-    const { lessonList, activeLesson } = courseCreationForm;
+    const { lessonCreationForm, title, description, start_date, end_date, number_of_students, period, period_type, tuition_fee, currency, cover_image } = CourseFormComponent;
+    const { lessonList, activeLesson } = lessonCreationForm;
     return {
+        title, description, start_date, end_date, number_of_students, period, period_type, tuition_fee, currency, cover_image,
         lessonList,
         activeLesson
     }

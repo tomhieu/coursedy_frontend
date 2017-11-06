@@ -7,10 +7,13 @@ export const DELETE_LESSON = 'DELETE_LESSON';
 export const EDIT_DETAIL_LESSON = 'EDIT_DETAIL_LESSON';
 export const SAVE_LESSON_DETAIL = 'SAVE_LESSON_DETAIL';
 export const HIDE_LESSON_POPUP_EDIT = 'HIDE_LESSON_POPUP_EDIT';
+export const SAVE_COURSE_ANF_LESSON = 'SAVE_COURSE_ANF_LESSON';
+export const ADD_MODIFY_COURSE_LESSON = 'ADD_MODIFY_COURSE_LESSON';
+export const ADD_DOCUMENT_FOR_LESSON = 'ADD_DOCUMENT_FOR_LESSON';
 
-export const createCourse = (title, description, start_date, end_date, number_of_students, period, period_type, tuition_fee, currency, cover_image) => {
+export const createCourse = (title, description, start_date, end_date, number_of_students, period, period_type, tuition_fee, currency, cover_image, lessonList) => {
   return dispatch => {
-    let body = {title, description, start_date, end_date, number_of_students, period, period_type, tuition_fee, currency, cover_image};
+    let body = {title, description, start_date, end_date, number_of_students, period, period_type, tuition_fee, currency, cover_image, lessonList};
 
     Network().post('courses', body).then((response) => {
       dispatch({
@@ -29,6 +32,33 @@ export const createCourse = (title, description, start_date, end_date, number_of
     });
   }
 };
+
+export const saveCourseAndLesson = (data) => {
+  createCourse(
+      data.title,
+      data.description,
+      data.start_date,
+      data.end_date,
+      data.number_of_students,
+      data.period,
+      data.period_type,
+      data.tuition_fee,
+      data.currency,
+      data.cover_image,
+      data.lessonList
+  );
+};
+
+export const addAndModifyLessonCourse = (courseData, lessonList) => {
+  debugger
+  return {
+    type: ADD_MODIFY_COURSE_LESSON,
+    data: {
+      courseData: courseData,
+      lessonList: lessonList
+    }
+  }
+}
 
 export const addLesson = () => {
   return {
@@ -49,6 +79,16 @@ export const editLessonDetail = (lessonId) => {
     data: lessonId
   };
 };
+
+export const addDocumentForLesson = (lessonId, document) => {
+  return {
+    type: ADD_DOCUMENT_FOR_LESSON,
+    data: {
+      lessonId: lessonId,
+      document: document
+    }
+  }
+}
 
 export const saveLessonDetail = (lesson) => {
   return {

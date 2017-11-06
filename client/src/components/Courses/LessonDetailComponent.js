@@ -1,8 +1,10 @@
 import * as React from "react";
 import {Component} from "react";
 import FormField from "../Core/FormField";
+import {renderPreviewFile} from "../CustomComponents";
 export class LessonDetailComponent extends Component {
     render() {
+        const {addDocumentForLesson, lesson} = this.props;
         return (
             <div className="d-flex flex-vertical">
                 <div>
@@ -15,8 +17,13 @@ export class LessonDetailComponent extends Component {
                                isMandatoryField={true} formControlName="lessonPeriod" typeField="custom_input"/>
                 </div>
                 <div>
-                    <FormField formGroupId="lessonDocumentId" formLabel={this.context.t("lesson_document")}
+                    <FormField formGroupId="lessonDocumentId" formLabel={this.context.t("lesson_document")} onUpload={addDocumentForLesson}
                                isMandatoryField={true} formControlName="lessonDocument" typeField="upload_file"/>
+                    <div className="d-flex flex-vertical">
+                        {
+                            lesson.documents.map((doc) => renderPreviewFile(doc, null))
+                        }
+                    </div>
                 </div>
                 <div>
                     <FormField formGroupId="lessonDesciptionId" formLabel={this.context.t("lesson_name")}

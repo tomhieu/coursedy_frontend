@@ -49,7 +49,7 @@ class FormField extends Component {
             }
             case "upload_file": {
                 fieldComponent = <Field name={props.formControlName} placeholder={props.placeholder} zoneHeight="200px" internalPreview={false}
-                                        onUpload={this.props.onUpload} component={renderSingleFileInput}/>
+                                        previewUrl={props.previewImage} onUpload={this.props.onUpload} component={renderSingleFileInput}/>
                 break;
             }
             case "multi_select": {

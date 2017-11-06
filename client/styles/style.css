@@ -274,7 +274,7 @@ div.error, p.error {
   font-weight: 400;
   margin-top: 50px;
   padding: 8px 28px;
-  border: 2px solid #e27d7f;
+  border: 1px solid #e27d7f;
   border-radius: 5px;
   text-align: center;
   background: #e27d7f;
@@ -1218,7 +1218,7 @@ Main Navigation bar  - Navbar-default
   /*padding: 20px 0px 20px 0;*/
   position: fixed;
   width: 100%;
-  z-index: 9999;
+  z-index: 999;
 }
 
 .custom-container {

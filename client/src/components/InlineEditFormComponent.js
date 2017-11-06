@@ -117,7 +117,7 @@ class InlineEditFormComponent extends Component {
         </button>
         <button type='button'
                 onClick={this.closeEditForm.bind(this)}
-                className="btn btn-primary margin-left-10 cancel-button"
+                className="btn btn-default btn-small margin-left-10 cancel-button"
         >
           {this.context.t("cancel")}
         </button>

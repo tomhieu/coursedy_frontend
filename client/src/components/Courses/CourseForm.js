@@ -12,16 +12,8 @@ class CourseForm extends Component {
     e.preventDefault();
   }
 
-  handleChange() {
-
-  }
-
-  onDrop(acceptedFiles){
-    console.log(acceptedFiles)
-  }
-
   render() {
-    const {handleSubmit, submitting, pristine} = this.props;
+    const {handleSubmit, addLesson, onDropCoverImage, cover_image, submitting, pristine} = this.props;
     const errors = null;
     return (
       <div className="dashboard-panel">
@@ -145,7 +137,7 @@ class CourseForm extends Component {
               <ControlLabel>{this.context.t("cover_image")}</ControlLabel>
             </div>
             <div className='col-sm-5'>
-              <Field name="cover_image" component={renderSingleFileInput} zoneHeight="200px" internalPreview={true} style={{paddingTop: '8px'}} onUpload={this.onDrop.bind(this)}/>
+              <Field name="cover_image" component={renderSingleFileInput} previewUrl={cover_image} zoneHeight="200px" internalPreview={true} style={{paddingTop: '8px'}} onUpload={onDropCoverImage}/>
             </div>
           </FormGroup>
 
@@ -166,12 +158,12 @@ class CourseForm extends Component {
 
           <FormGroup>
             <button type="submit"
-                    className="btn btn-primary btn-link-dark signin-btn"
+                    className="btn btn-primary btn-link-dark signin-btn mr-10"
                     disabled={pristine || submitting}
             >
               {this.context.t("save_course")}
             </button>
-            <Link to="/dashboard/courses/list-lesson" className="btn btn-primary btn-link-dark signin-btn">{this.context.t('lesson_list_next')}</Link>
+            <Link to="/dashboard/courses/list-lesson" onClick={addLesson} className="btn btn-primary btn-link-dark" disabled={pristine || submitting}>{this.context.t('lesson_list_next')}</Link>
           </FormGroup>
         </form>
       </div>
