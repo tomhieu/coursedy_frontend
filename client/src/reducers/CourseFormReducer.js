@@ -5,7 +5,7 @@ import {
     ADD_MORE_LESSON, DELETE_LESSON, EDIT_DETAIL_LESSON,
     HIDE_LESSON_POPUP_EDIT
 } from "actions/CourseFormActionCreator";
-import {SAVE_LESSON_DETAIL} from "../actions/CourseFormActionCreator";
+import {DELETE_DOCUMENT_FOR_LESSON, SAVE_LESSON_DETAIL} from "../actions/CourseFormActionCreator";
 
 const CourseFormComponent = (state = {
   errors: null, courseData: {cover_image: null}, lessonCreationForm: {
@@ -19,13 +19,15 @@ const CourseFormComponent = (state = {
     case types.CREATE_COURSE_FAILED:
       return state;
     case ADD_MODIFY_COURSE_LESSON:
-      return Object.assign({}, state, {courseData: Object.assign({}, action.data.courseData.values, {cover_image: action.data.courseData.cover_image.previewUrl}),
+      const nextState = Object.assign({}, state, {courseData: Object.assign({}, action.data.courseData.values, {cover_image: action.data.courseData.cover_image}),
           lessonCreationForm: Object.assign({}, state.lessonCreationForm, {lessonList: action.data.lessonList})});
+      debugger
+      return nextState;
     case ADD_MORE_LESSON:
       let nextLessonList = state.lessonCreationForm.lessonList.slice();
       debugger
       const nextPos = state.lessonCreationForm.lessonCount + 1;
-      nextLessonList.push({posId: nextPos, lessonName: '', lessonPeriod: '', showPopupEdit: false});
+      nextLessonList.push({posId: nextPos, lessonName: '', lessonPeriod: '', documents: [], showPopupEdit: false});
       return Object.assign({}, state, {
         lessonCreationForm: {lessonList: nextLessonList, lessonCount: nextPos}
       });
@@ -82,12 +84,23 @@ const CourseFormComponent = (state = {
       let copyLessonList = JSON.parse(JSON.stringify(state.lessonCreationForm.lessonList));
       copyLessonList.map(lesson => {
           if (lesson.posId === action.data.lessonId) {
-              lesson.documents = Array.isArray(lesson.documents) ? lesson.documents.push(action.data.document) : [action.data.document];
+              lesson.documents.push(action.data.document)
           }
       });
       return Object.assign({}, state, {
           lessonCreationForm:  Object.assign({}, state.lessonCreationForm, {lessonList: copyLessonList})
-      })
+      });
+    case DELETE_DOCUMENT_FOR_LESSON:
+      let deletedLessonList = JSON.parse(JSON.stringify(state.lessonCreationForm.lessonList));
+      let deletedLesson = deletedLessonList.filter(lesson => lesson.posId === action.data.lessonId);
+      if (Array.isArray(deletedLesson)) {
+          deletedLesson[0].documents.splice(deletedLesson[0].documents.findIndex((e, i) => {
+              return e.uid === action.data.documentId;
+          }), 1);
+          return Object.assign({}, state, {
+              lessonCreationForm:  Object.assign({}, state.lessonCreationForm, {lessonList: deletedLessonList})
+          });
+      }
     default:
       return state;
   }

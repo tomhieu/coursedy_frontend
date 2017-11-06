@@ -1,18 +1,22 @@
 import * as React from "react";
 import {Component} from "react";
 import {Button, Modal} from "react-bootstrap";
-import {addDocumentForLesson, hideLessonDetailPopup, saveLessonDetail} from "actions/CourseFormActionCreator";
 import {LessonDetailComponent} from "../../components/Courses/LessonDetailComponent";
 import {reduxForm} from "redux-form";
 import {connect} from "react-redux";
+import {addDocumentForLesson, deleteDocumentForLesson} from "../../actions/CourseFormActionCreator";
 
 class EditLessonFormContainer extends Component {
     constructor(props) {
         super(props);
     }
 
-    addDocumentForLesson(lessonId, document) {
-        this.props.dispatch(addDocumentForLesson(lessonId, document));
+    addDocumentForLesson(document) {
+        this.props.dispatch(addDocumentForLesson(this.props.lessonPosId, document));
+    }
+
+    onDeleteDocumentLesson(documentId) {
+        this.props.dispatch(deleteDocumentForLesson(this.props.lessonPosId, documentId));
     }
 
     render() {
@@ -24,7 +28,7 @@ class EditLessonFormContainer extends Component {
                     <Modal.Title>{this.context.t('lesson_popup_edit_title')}</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <LessonDetailComponent addDocumentForLesson={this.addDocumentForLesson.bind(this)} {...this.props}/>
+                    <LessonDetailComponent addDocumentForLesson={this.addDocumentForLesson.bind(this)} onDeleteDocumentLesson={this.onDeleteDocumentLesson.bind(this)} {...this.props}/>
                 </Modal.Body>
                 <Modal.Footer>
                     <button type="submit" className="ml-15 mr-15 mt-15 btn-link-dark">{this.context.t("lesson_save_btn")}</button>

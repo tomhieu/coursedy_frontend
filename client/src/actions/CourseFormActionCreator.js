@@ -10,6 +10,7 @@ export const HIDE_LESSON_POPUP_EDIT = 'HIDE_LESSON_POPUP_EDIT';
 export const SAVE_COURSE_ANF_LESSON = 'SAVE_COURSE_ANF_LESSON';
 export const ADD_MODIFY_COURSE_LESSON = 'ADD_MODIFY_COURSE_LESSON';
 export const ADD_DOCUMENT_FOR_LESSON = 'ADD_DOCUMENT_FOR_LESSON';
+export const DELETE_DOCUMENT_FOR_LESSON = 'DELETE_DOCUMENT_FOR_LESSON';
 
 export const createCourse = (title, description, start_date, end_date, number_of_students, period, period_type, tuition_fee, currency, cover_image, lessonList) => {
   return dispatch => {
@@ -50,7 +51,6 @@ export const saveCourseAndLesson = (data) => {
 };
 
 export const addAndModifyLessonCourse = (courseData, lessonList) => {
-  debugger
   return {
     type: ADD_MODIFY_COURSE_LESSON,
     data: {
@@ -88,6 +88,16 @@ export const addDocumentForLesson = (lessonId, document) => {
       document: document
     }
   }
+}
+
+export const deleteDocumentForLesson = (lessonId, documentId) => {
+    return {
+        type: DELETE_DOCUMENT_FOR_LESSON,
+        data: {
+            lessonId: lessonId,
+            documentId: documentId
+        }
+    }
 }
 
 export const saveLessonDetail = (lesson) => {

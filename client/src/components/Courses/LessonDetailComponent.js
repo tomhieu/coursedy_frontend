@@ -4,7 +4,7 @@ import FormField from "../Core/FormField";
 import {renderPreviewFile} from "../CustomComponents";
 export class LessonDetailComponent extends Component {
     render() {
-        const {addDocumentForLesson, lesson} = this.props;
+        const {addDocumentForLesson, onDeleteDocumentLesson, lesson} = this.props;
         return (
             <div className="d-flex flex-vertical">
                 <div>
@@ -21,7 +21,7 @@ export class LessonDetailComponent extends Component {
                                isMandatoryField={true} formControlName="lessonDocument" typeField="upload_file"/>
                     <div className="d-flex flex-vertical">
                         {
-                            lesson.documents.map((doc) => renderPreviewFile(doc, null))
+                            lesson.documents.map((doc) => renderPreviewFile(doc, onDeleteDocumentLesson))
                         }
                     </div>
                 </div>

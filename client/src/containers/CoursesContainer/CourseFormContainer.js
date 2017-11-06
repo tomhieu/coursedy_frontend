@@ -8,20 +8,20 @@ import {validate} from '../../validations/CourseFormValidation'
 class CourseFormContainer extends Component {
   constructor(props) {
     super(props);
-    this.coverImage = null;
+    // store the image preview url. Retrieve from the DropZone(onDrop) or the redux store
+    this.coverImage = this.props.cover_image;
   }
   createCourse({title, description, start_date, end_date, number_of_students, period, period_type, tuition_fee, currency, cover_image}) {
     this.props.dispatch(Actions.createCourse(title, description, start_date, end_date, number_of_students, period, period_type, tuition_fee, currency, cover_image));
   }
 
   addLesson() {
-    debugger
     this.props.dispatch(Actions.addAndModifyLessonCourse(Object.assign({}, this.props.courseCreationForm, {cover_image: this.coverImage}),
         this.props.lessonList));
   }
 
   onDropCoverImage(data) {
-    this.coverImage = data;
+    this.coverImage = data.previewUrl;
   }
 
   render() {
@@ -44,8 +44,8 @@ const mapStateToProps = (state) => {
   const {courseCreationForm} = form;
   const {lessonCreationForm, courseData} = CourseFormComponent;
   const {lessonList} = lessonCreationForm;
+  // retrieve the preview image url from redux store when user navigate back.
   const {cover_image} = courseData;
-    debugger
   return {
     courseCreationForm, lessonList, cover_image,
     initialValues: courseData
