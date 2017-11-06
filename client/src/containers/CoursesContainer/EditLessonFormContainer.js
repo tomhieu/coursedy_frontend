@@ -42,10 +42,10 @@ class EditLessonFormContainer extends Component {
 
 EditLessonFormContainer.contextTypes = {
     t: React.PropTypes.func.isRequired
-}
+};
 
 export default connect(state => ({
-    initialValues: state.CourseFormComponent.courseCreationForm != undefined ? state.CourseFormComponent.courseCreationForm.activeLesson : {}
+    initialValues: state.CourseFormComponent.lessonCreationForm != undefined ? state.CourseFormComponent.lessonCreationForm.activeLesson : {}
 }))(reduxForm({
     form: 'lessonDetailForm',
     fields: ['lessonName', 'lessonPeriod', 'lessonDocument', 'lessonDesciption'],

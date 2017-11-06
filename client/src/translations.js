@@ -106,7 +106,10 @@ export const translations = {
     "last_name_required": "Vui lòng nhập họ",
     "birthdate_required": "Vui lòng nhập ngay sinh",
     "address_required": "Vui lòng nhập dia chi",
-    "mandatory_field_context": "Vui lòng điền thông tin %{field}"
+    "mandatory_field_context": "Vui lòng điền thông tin {field}",
+    "period_field": "Thời lượng",
+    "name_lesson_field": "Ten Buoi Hoc",
+    "field_number_validator": "Vui long nhap so"
   },
   "en": {
     "home_page": "Home",

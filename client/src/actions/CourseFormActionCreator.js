@@ -35,6 +35,7 @@ export const createCourse = (title, description, start_date, end_date, number_of
 };
 
 export const saveCourseAndLesson = (data) => {
+  debugger
   createCourse(
       data.title,
       data.description,

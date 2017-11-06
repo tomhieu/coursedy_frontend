@@ -17,14 +17,25 @@ class LessonLineComponent extends Component {
         this.props.dispatch(saveLessonDetail(lesson));
     }
 
-    onUpdateLessonName(lessonName, onSuccess) {
-        this.props.dispatch(saveLessonDetail({lessonName: lessonName.speciality, posId: this.props.lesson.posId}));
-        onSuccess();
+    onUpdateLessonName(lessonName, onSuccess, onError) {
+        if (lessonName.speciality != '' && lessonName != undefined) {
+            onSuccess();
+            this.props.dispatch(saveLessonDetail({lessonName: lessonName.speciality, posId: this.props.lesson.posId}));
+        } else {
+            return onError([this.context.t('mandatory_field_context', {field: this.context.t('period_field')})]);
+        }
     }
 
-    onUpdateLessonPeriod(lessonPeriod, onSuccess) {
-        this.props.dispatch(saveLessonDetail({lessonPeriod: lessonPeriod, posId: this.props.lesson.posId}));
-        onSuccess();
+    onUpdateLessonPeriod(lessonPeriod, onSuccess, onError) {
+        debugger
+        if (lessonPeriod.speciality == '' || lessonPeriod.speciality == undefined) {
+            return onError([this.context.t('mandatory_field_context', {field: this.context.t('period_field')})]);
+        } else if (!Number.isInteger(Number(lessonPeriod.speciality))) {
+            return onError([this.context.t('field_number_validator')]);
+        } else {
+            onSuccess();
+            this.props.dispatch(saveLessonDetail({lessonPeriod: lessonPeriod.speciality, posId: this.props.lesson.posId}));
+        }
     }
 
     render() {

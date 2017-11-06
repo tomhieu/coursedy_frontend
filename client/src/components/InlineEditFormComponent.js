@@ -19,8 +19,10 @@ class InlineEditFormComponent extends Component {
   }
 
   onSubmit(event){
-    event.preventDefault()
-    if (!this.state.form[this.props.name] || this.state.form[this.props.name].trim() == this.props.content) {
+    event.preventDefault();
+    const newValue = this.state.form[this.props.name];
+
+    if (newValue != '' && newValue.trim() == this.props.content) {
       return false
     }
 

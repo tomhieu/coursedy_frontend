@@ -45,6 +45,7 @@ const CourseFormComponent = (state = {
       });
     case SAVE_LESSON_DETAIL:
       let updatedLessonList = JSON.parse(JSON.stringify(state.lessonCreationForm.lessonList));
+      debugger
         updatedLessonList.map((lesson) =>
           {
               if (lesson.posId === action.data.posId) {
