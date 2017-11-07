@@ -25,8 +25,11 @@ class Header extends Component {
             <LinkContainer to="/" role="button">
               <NavItem eventKey={3}> {this.context.t('find_teachers')} </NavItem>
             </LinkContainer>
+            <LinkContainer to="/courses" role="button">
+              <NavItem eventKey={3}> {this.context.t('find_courses')} </NavItem>
+            </LinkContainer>
 
-            <NavDropdown title={this.context.t('find_courses')} id="basic-nav-dropdown" className="vertical-megamenu">
+            {/*<NavDropdown title={this.context.t('find_courses')} id="basic-nav-dropdown" className="vertical-megamenu">
               <LinkContainer to="/" role="button">
                 <MenuItem eventKey={3.1}>Computer Science</MenuItem>
               </LinkContainer>
@@ -36,11 +39,11 @@ class Header extends Component {
               <LinkContainer to="/" role="button">
                 <MenuItem eventKey={3.3}>Science</MenuItem>
               </LinkContainer>
-              {/*<MenuItem divider />*/}
+              
               <LinkContainer to="/" role="button">
                 <MenuItem eventKey={3.4}>SSSSSS</MenuItem>
               </LinkContainer>
-            </NavDropdown>
+            </NavDropdown>*/}
 
             {/*<LinkContainer to="/" role="button">*/}
               {/*<NavItem eventKey={4}>{this.context.t('contact')}</NavItem>*/}

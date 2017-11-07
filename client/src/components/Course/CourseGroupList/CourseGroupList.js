@@ -1,8 +1,12 @@
 import React, { Component} from 'react';
 import cssModules from 'react-css-modules';
 import styles from './CourseGroupList.module.scss';
-import {CourseGroup} from '../index'
+import { CourseGroup } from '../../index'
 
+/**
+  * @Course group template 1
+  * @Use for HomePage
+  */
 class CourseGroupList extends Component {
   render() {
     return (

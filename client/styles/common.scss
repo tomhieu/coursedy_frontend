@@ -116,6 +116,14 @@
   color: #534051;
 }
 
+.select2-container .select2-search--inline input.select2-search__field {
+  margin-top: 10px;
+}
+
+.modal-dialog {
+  top: 90px
+}
+
 .file-name-wrapper {
   max-width: 150px;
   text-overflow: ellipsis;

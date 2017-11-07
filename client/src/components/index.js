@@ -5,8 +5,15 @@ import LoginForm from './Auth/LoginForm';
 import RegisterForm from './Auth/RegisterForm';
 import SearchForm from './SearchForm/SearchForm';
 import Introduces from './Introduces/Introduces';
-import CourseGroup from './CourseGroup/CourseGroup';
-import CourseGroupList from './CourseGroupList/CourseGroupList';
+
+import CourseGroup from './Course/CourseGroup/CourseGroup';
+import CourseGroupList from './Course/CourseGroupList/CourseGroupList';
+
+import CourseDetail from './Courses/CourseDetail';
+import CourseFilter from './Courses/CourseFilter';
+
+import CourseItem from './Courses/CourseItem';
+import CourseList from './Courses/CourseList';
 
 import TutorSearchForm from './Tutor/TutorSearchForm/TutorSearchForm';
 import TutorItem from './Tutor/TutorItem/TutorItem';
@@ -27,8 +34,14 @@ export {
   RegisterForm,
   SearchForm,
   Introduces,
+
   CourseGroup,
   CourseGroupList,
+
+  CourseList,
+  CourseItem,
+  CourseDetail,
+  CourseFilter,
 
   TutorSearchForm,
   TutorItem,

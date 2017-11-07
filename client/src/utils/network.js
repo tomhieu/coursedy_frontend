@@ -4,6 +4,7 @@
 // A promise.  This works great with redux promise middlewares
 // See the actions for post to see it in action located in ../actions/post.js
 import request from './request';
+import queryString from 'query-string'
 
 /**
  * @function Network
@@ -68,7 +69,8 @@ import request from './request';
       * @returns {promise}
       */
      get: (path, options = {}) => {
-       return request(buildUrl(path), Object.assign(
+       let q = queryString.stringify(options, {arrayFormat: 'bracket'})
+       return request(buildUrl(path) + `?${q}`, Object.assign(
          options,
          defaultOptions,
          { method: 'GET' }

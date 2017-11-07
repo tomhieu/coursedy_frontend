@@ -100,9 +100,17 @@ export const translations = {
     "speciality": "Chuyên môn",
     "save": "Lưu",
     "cancel": "Huỷ",
-    /*
-     * Validator message
-     */
+    "search_course": "Từ khoá tìm kiếm",
+    "category": "Lớp học",
+    "level": "Cấp độ",
+    "filter": "Tìm kiếm nâng cao",
+    "location": "Khu vực",
+    "tuition_fee_filter": "Học phí (Cả khóa)",
+    "time_schedule": "Giờ học",
+    "start_time": "Bắt đầu",
+    "end_time": "Kết thúc",
+    "end_time_error": "Thời gian kết thúc phải lớn hơn thời gian bắt đầu",
+    "start_time_error": "Thời gian kết thúc phải lớn hơn thời gian bắt đầu",
     "last_name_required": "Vui lòng nhập họ",
     "birthdate_required": "Vui lòng nhập ngay sinh",
     "address_required": "Vui lòng nhập dia chi",
