@@ -11,8 +11,8 @@ class CourseFormContainer extends Component {
     // store the image preview url. Retrieve from the DropZone(onDrop) or the redux store
     this.coverImage = this.props.cover_image;
   }
-  createCourse({title, description, start_date, end_date, number_of_students, period, period_type, tuition_fee, currency, cover_image}) {
-    this.props.dispatch(Actions.createCourse(title, description, start_date, end_date, number_of_students, period, period_type, tuition_fee, currency, cover_image, this.props.lessonList));
+  createCourse({title, description, start_date, end_date, number_of_students, period, period_type, tuition_fee, currency}) {
+    this.props.dispatch(Actions.createCourse(title, description, start_date, end_date, number_of_students, period, period_type, tuition_fee, currency, this.coverImage, this.props.lessonList));
   }
 
   addLesson() {
