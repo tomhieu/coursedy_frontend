@@ -3,7 +3,7 @@ import {ControlLabel, FormGroup} from 'react-bootstrap';
 import {Field} from 'redux-form';
 import {
     renderDatePicker, renderField, renderMultiSelect, renderSelect,
-    renderSingleFileInput
+    renderSingleFileInput, renderTextAreaField
 } from "../CustomComponents";
 import styles from './FormField.module.scss';
 import cssModules from 'react-css-modules';
@@ -29,8 +29,12 @@ class FormField extends Component {
         let fieldComponent;
 
         switch (props.typeField) {
+            case "hidden": {
+                fieldComponent = <Field name={this.props.formControlName} placeholder={this.props.placeholder} component="input" className="hidden" />;
+                break;
+            }
             case "custom_input": {
-                fieldComponent = <Field name={this.props.formControlName} placeholder={this.props.placeholder} component={renderField} className="form-control" />;
+                fieldComponent = <Field name={this.props.formControlName} placeholder={this.props.placeholder} component={renderField} value="testing field" className="form-control" />;
                 break;
             }
             case "custom_select": {
@@ -45,12 +49,17 @@ class FormField extends Component {
             }
             case "upload_file": {
                 fieldComponent = <Field name={props.formControlName} placeholder={props.placeholder} zoneHeight="200px" internalPreview={false}
-                                        onUpload={this.props.onUpload} component={renderSingleFileInput}/>
+                                        previewUrl={props.previewImage} onUpload={this.props.onUpload} component={renderSingleFileInput}/>
                 break;
             }
             case "multi_select": {
                 fieldComponent = <Field name={props.formControlName} placeholder={props.placeholder}
                                         component={renderMultiSelect(props.options, props.selectedValues)} className="form-control"/>
+                break;
+            }
+            case "custom_textarea": {
+                fieldComponent = <Field name={props.formControlName} placeholder={props.placeholder}
+                                        component={renderTextAreaField} className="form-control"/>
                 break;
             }
             default: {

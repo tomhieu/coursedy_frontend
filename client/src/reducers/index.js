@@ -8,10 +8,11 @@ import {i18nState} from "redux-i18n"
 import LoginComponent from './LoginComponent';
 import SignUpComponent from './SignUpComponent';
 
-import CourseFormComponent from './CourseFormComponent';
 import CourseFilter from './CourseFilter';
 import CourseListReducer from './Course/CourseListReducer';
 import CourseDetailReducer from './Course/CourseDetailReducer';
+
+import CourseFormComponent from './CourseFormReducer';
 
 import session from './Session';
 import TutorProfile from './TutorProfile';

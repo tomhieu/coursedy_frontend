@@ -13,6 +13,7 @@ import CourseFormContainer from '../../containers/CoursesContainer/CourseFormCon
 import TutorProfileDetailsContainer from '../../containers/Tutor/Profile/TutorProfileDetailsContainer';
 import { connect } from 'react-redux';
 import {setCurrentUser} from "actions/SessionActionCreator";
+import ListLessonContainer from "../../containers/CoursesContainer/ListLessonContainer";
 
 class TutorDashboard extends RoleAuthorization {
   constructor(props){
@@ -38,6 +39,7 @@ class TutorDashboard extends RoleAuthorization {
               <switch>
                 <Route exact path="/dashboard" component={TutorDashboardIndex}/>
                 <Route exact path="/dashboard/courses/new" component={CourseFormContainer}/>
+                <Route exact path="/dashboard/courses/list-lesson" component={ListLessonContainer}/>
                 <Route exact path="/dashboard/profile" component={TutorProfileDetailsContainer}/>
               </switch>
             </div>

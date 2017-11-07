@@ -19,8 +19,10 @@ class InlineEditFormComponent extends Component {
   }
 
   onSubmit(event){
-    event.preventDefault()
-    if (!this.state.form[this.props.name] || this.state.form[this.props.name].trim() == this.props.content) {
+    event.preventDefault();
+    const newValue = this.state.form[this.props.name];
+
+    if (newValue != '' && newValue.trim() == this.props.content) {
       return false
     }
 
@@ -110,14 +112,14 @@ class InlineEditFormComponent extends Component {
 
       <FormGroup>
         <button type="submit"
-                className="btn btn-primary"
+                className="btn btn-primary mr-10"
                 disabled={pristine || submitting}
         >
           {this.context.t("save")}
         </button>
         <button type='button'
                 onClick={this.closeEditForm.bind(this)}
-                className="btn btn-primary margin-left-10 cancel-button"
+                className="btn btn-default btn-small margin-left-10 cancel-button"
         >
           {this.context.t("cancel")}
         </button>

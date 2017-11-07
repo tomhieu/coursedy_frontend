@@ -25,6 +25,7 @@ export const translations = {
     "last_name": "Họ",
     "role_required": "Vui lòng chọn tài khoản người dùng",
     "first_name_required": "Vui lòng nhập tên",
+
     "confirm_password": "Xác Nhận Mật Khẩu",
     "phone_number": "Số Điện Thoại",
     "forgot_password": "Quên Mật Khẩu?",
@@ -39,6 +40,9 @@ export const translations = {
     "sign_up_success": "Đăng Ký Thành Công !",
     "congrat_sign_up_success": "Chúc mừng bạn đã đăng ký thành viên của EzyLearning thành công. Chúng tôi đã gửi email xác nhận đến địa chỉ email của bạn. Vui lòng kiểm tra hộp thư đến để kích hoạt tài khoản",
     "close": "Đóng",
+    /*
+     * Course Creation/Edit Page
+     */
     "course_title": "Tên khoá học",
     "course_title_required": "Vui lòng nhập tên khoá học",
     "sample_course_title": "Luyện thi TOEIC cấp tốc",
@@ -52,12 +56,25 @@ export const translations = {
     "number_of_students": "Số học sinh",
     "tuition_fee": "Học phí",
     "course_description": "Giới thiệu khoá học",
+    "course_modification": "Sua Khoa Hoc",
     "cover_image": "Ảnh đại diện",
     "hour": "Giờ",
     "day": "Ngày",
     "week": "Tuần",
     "month": "Tháng",
+    "lesson_add_more": "Them Bai Hoc",
+    "lesson_name": "Ten Bai Hoc",
+    "lesson_desc": "Tom Tat Noi Dung",
+    "lesson_material": "Tai Lieu",
+    "lesson_period": "Thoi Luong",
+    "lesson_save_btn": "Tao Buoi Hoc",
+    "lesson_link_edit": "Them Chi Tiet",
+    "lesson_list_next": "Tiep Tuc",
+    "lesson_popup_edit_title": "Chi Tiet Noi Dung Buoi Hoc",
     "save_course": "Tạo Khoá Học",
+    /*
+     * Tutor Account Page
+     */
     "account.person.info.title": "Thong Tin Ca Nhan",
     "account.person.info.first.name": "Tên",
     "account.person.info.last.name": "Họ",
@@ -94,6 +111,16 @@ export const translations = {
     "end_time": "Kết thúc",
     "end_time_error": "Thời gian kết thúc phải lớn hơn thời gian bắt đầu",
     "start_time_error": "Thời gian kết thúc phải lớn hơn thời gian bắt đầu"
+    /*
+     * Validator message
+     */
+    "last_name_required": "Vui lòng nhập họ",
+    "birthdate_required": "Vui lòng nhập ngay sinh",
+    "address_required": "Vui lòng nhập dia chi",
+    "mandatory_field_context": "Vui lòng điền thông tin {field}",
+    "period_field": "Thời lượng",
+    "name_lesson_field": "Ten Buoi Hoc",
+    "field_number_validator": "Vui long nhap so"
   },
   "en": {
     "home_page": "Home",

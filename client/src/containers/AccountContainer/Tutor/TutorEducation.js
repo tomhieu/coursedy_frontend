@@ -6,11 +6,17 @@ import {reduxForm} from "redux-form";
 import {connect} from "react-redux";
 import cssModules from "react-css-modules";
 import {
-    addNewDocument, downloadDegree, loadListCertificatesData, loadListDegreesData, loadListSkillData,
-    loadTutorEducationData, removeNewDocument, removeUploadedDocument
+    addNewDocument,
+    downloadDegree,
+    loadListCertificatesData,
+    loadListDegreesData,
+    loadListSkillData,
+    loadTutorEducationData,
+    removeNewDocument,
+    removeUploadedDocument
 } from "../../../actions/TutorAccountCreator";
-import {TT} from "../../../utils/locale";
 import {updateTutorEducation} from "actions/TutorAccountCreator";
+import {renderPreviewFile} from "../../../components/CustomComponents";
 
 
 class TutorEducation extends Component {
@@ -42,21 +48,7 @@ class TutorEducation extends Component {
         this.props.dispatch(addNewDocument(file));
     }
 
-    renderPreviewFile(file) {
-        let previewClass = "pdf-image-preview";
-        if (file.extension === "docx") {
-            previewClass = "doc-image-preview";
-        }
-        return (
-            <div className="d-flex flex-horizontal mt-10" key={file.uid}>
-                <div className={previewClass}></div>
-                <div clas>
-                </div>
-                <span className="degree-filename ml-10">{file.fileName}</span>
-                <a className="icon-delete ml-10" onClick={() => this.doDeleteNewUploadFile(file.uid)} title={file.fileName}></a>
-            </div>
-        )
-    }
+
 
     updateEducation(e) {
         const {skills, certificates, degrees, uploadFiles} =  this.props;
@@ -83,7 +75,7 @@ class TutorEducation extends Component {
                         <div className={styles.dropzoneEduContainer}>
                             <FormField formGroupId="degreesId" formLabel={this.context.t("account.tutot.edu.degree.title")} onUpload={this.doUploadFile.bind(this)} isMandatoryField={false} formControlName="degrees" typeField="upload_file" />
                             <div className="d-flex flex-vertical ml-15 mr-15">
-                                {uploadFiles.map(file => this.renderPreviewFile(file))}
+                                {uploadFiles.map(file => renderPreviewFile(file, this.doDeleteNewUploadFile.bind(this)))}
                             </div>
                         </div>
                     </div>
