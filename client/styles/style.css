@@ -1225,7 +1225,7 @@ Main Navigation bar  - Navbar-default
 }
 
 .custom-container {
-  padding-top: 50px;
+  padding-top: 100px;
 }
 
 @media(max-width: 1200px) {
