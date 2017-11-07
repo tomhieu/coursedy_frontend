@@ -12,7 +12,7 @@ class CourseFormContainer extends Component {
     this.coverImage = this.props.cover_image;
   }
   createCourse({title, description, start_date, end_date, number_of_students, period, period_type, tuition_fee, currency, cover_image}) {
-    this.props.dispatch(Actions.createCourse(title, description, start_date, end_date, number_of_students, period, period_type, tuition_fee, currency, cover_image));
+    this.props.dispatch(Actions.createCourse(title, description, start_date, end_date, number_of_students, period, period_type, tuition_fee, currency, cover_image, this.props.lessonList));
   }
 
   addLesson() {
@@ -21,19 +21,19 @@ class CourseFormContainer extends Component {
   }
 
   onDropCoverImage(data) {
-    this.coverImage = data.previewUrl;
+    this.coverImage = data;
   }
 
   render() {
     return (
       <CourseForm onSubmit={this.createCourse.bind(this)} addLesson={this.addLesson.bind(this)} onDropCoverImage={this.onDropCoverImage.bind(this)} {...this.props}/>
-    );
+    )
   }
 }
 
 CourseFormContainer.contextTypes = {
   t: React.PropTypes.func.isRequired
-}
+};
 
 CourseFormContainer.propTypes = {
 

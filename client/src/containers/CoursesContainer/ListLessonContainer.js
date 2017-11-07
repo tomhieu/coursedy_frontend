@@ -4,13 +4,8 @@ import LessonLineComponent from "../../components/Courses/LessonLineComponent";
 import {connect} from "react-redux";
 import cssModules from "react-css-modules";
 import styles from "./ListLesson.module.scss";
-import {addLesson, saveCourseAndLesson} from "actions/CourseFormActionCreator";
-import {
-    deleteLesson, editLessonDetail, hideLessonDetailPopup,
-    saveLessonDetail
-} from "../../actions/CourseFormActionCreator";
+import {addLesson, deleteLesson, editLessonDetail, saveCourseAndLesson} from "../../actions/CourseFormActionCreator";
 import {reduxForm} from "redux-form";
-import EditLessonFormContainer from "./EditLessonFormContainer";
 import {Link} from "react-router-dom";
 class ListLessonContainer extends Component {
     constructor(props) {
@@ -96,7 +91,8 @@ ListLessonContainer.contextTypes = {
 
 const mapStateToProps = state => {
     const { CourseFormComponent } = state;
-    const { lessonCreationForm, title, description, start_date, end_date, number_of_students, period, period_type, tuition_fee, currency, cover_image } = CourseFormComponent;
+    const { lessonCreationForm, courseData } = CourseFormComponent;
+    const { title, description, start_date, end_date, number_of_students, period, period_type, tuition_fee, currency, cover_image } = courseData;
     const { lessonList, activeLesson } = lessonCreationForm;
     return {
         title, description, start_date, end_date, number_of_students, period, period_type, tuition_fee, currency, cover_image,

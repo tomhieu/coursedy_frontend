@@ -1,8 +1,10 @@
-import * as types from '../constants/CourseFormComponent';
+import * as types from "../constants/CourseFormComponent";
 import {
     ADD_DOCUMENT_FOR_LESSON,
     ADD_MODIFY_COURSE_LESSON,
-    ADD_MORE_LESSON, DELETE_LESSON, EDIT_DETAIL_LESSON,
+    ADD_MORE_LESSON,
+    DELETE_LESSON,
+    EDIT_DETAIL_LESSON,
     HIDE_LESSON_POPUP_EDIT
 } from "actions/CourseFormActionCreator";
 import {DELETE_DOCUMENT_FOR_LESSON, SAVE_LESSON_DETAIL} from "../actions/CourseFormActionCreator";
@@ -21,11 +23,9 @@ const CourseFormComponent = (state = {
     case ADD_MODIFY_COURSE_LESSON:
       const nextState = Object.assign({}, state, {courseData: Object.assign({}, action.data.courseData.values, {cover_image: action.data.courseData.cover_image}),
           lessonCreationForm: Object.assign({}, state.lessonCreationForm, {lessonList: action.data.lessonList})});
-      debugger
       return nextState;
     case ADD_MORE_LESSON:
       let nextLessonList = state.lessonCreationForm.lessonList.slice();
-      debugger
       const nextPos = state.lessonCreationForm.lessonCount + 1;
       nextLessonList.push({posId: nextPos, lessonName: '', lessonPeriod: '', documents: [], showPopupEdit: false});
       return Object.assign({}, state, {
@@ -45,7 +45,6 @@ const CourseFormComponent = (state = {
       });
     case SAVE_LESSON_DETAIL:
       let updatedLessonList = JSON.parse(JSON.stringify(state.lessonCreationForm.lessonList));
-      debugger
         updatedLessonList.map((lesson) =>
           {
               if (lesson.posId === action.data.posId) {

@@ -27,7 +27,6 @@ class LessonLineComponent extends Component {
     }
 
     onUpdateLessonPeriod(lessonPeriod, onSuccess, onError) {
-        debugger
         if (lessonPeriod.speciality == '' || lessonPeriod.speciality == undefined) {
             return onError([this.context.t('mandatory_field_context', {field: this.context.t('period_field')})]);
         } else if (!Number.isInteger(Number(lessonPeriod.speciality))) {
