@@ -5,6 +5,7 @@ import {LessonDetailComponent} from "../../components/Courses/LessonDetailCompon
 import {reduxForm} from "redux-form";
 import {connect} from "react-redux";
 import {addDocumentForLesson, deleteDocumentForLesson} from "../../actions/CourseFormActionCreator";
+import {validate} from '../../validations/LessonFormValidator';
 
 class EditLessonFormContainer extends Component {
     constructor(props) {
@@ -20,7 +21,7 @@ class EditLessonFormContainer extends Component {
     }
 
     render() {
-        const{show, hidePopup, handleSubmit} = this.props;
+        const{show, hidePopup, handleSubmit, submitting, pristine, valid} = this.props;
         return (
             <Modal show={show} onHide={hidePopup}>
                 <form onSubmit={handleSubmit(this.props.onSubmit)}>
@@ -31,8 +32,8 @@ class EditLessonFormContainer extends Component {
                     <LessonDetailComponent addDocumentForLesson={this.addDocumentForLesson.bind(this)} onDeleteDocumentLesson={this.onDeleteDocumentLesson.bind(this)} {...this.props}/>
                 </Modal.Body>
                 <Modal.Footer>
-                    <button type="submit" className="ml-15 mr-15 mt-15 btn-link-dark">{this.context.t("lesson_save_btn")}</button>
-                    <Button onClick={hidePopup}>{this.context.t('close')}</Button>
+                    <button type="submit" disabled={pristine || submitting || !valid} className="btn ml-15 mr-15 mt-0 btn-primary btn-link-dark">{this.context.t("lesson_save_btn")}</button>
+                    <Button onClick={hidePopup} className="btn btn-default">{this.context.t('close')}</Button>
                 </Modal.Footer>
                 </form>
             </Modal>
@@ -49,5 +50,6 @@ export default connect(state => ({
 }))(reduxForm({
     form: 'lessonDetailForm',
     fields: ['lessonName', 'lessonPeriod', 'lessonDocument', 'lessonDesciption'],
+    validate,
     enableReinitialize: true
 })(EditLessonFormContainer));

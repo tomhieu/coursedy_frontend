@@ -423,6 +423,32 @@
   margin: 25px !important;
 }
 
+.no-magin,
+ul.no-margin,
+.margin-0 {
+  margin: 0 !important
+}
+
+.no-mt,
+.mt-0 {
+  margin-top: 0 !important
+}
+
+.no-mb,
+.mb-0 {
+  margin-bottom: 0 !important
+}
+
+.no-ml,
+.ml-0 {
+  margin-left: 0 !important
+}
+
+.no-mr,
+.mr-0 {
+  margin-right: 0 !important
+}
+
 /**
  * Padding Sets
  */
@@ -779,4 +805,8 @@
 
 .datepicker-box {
   width: 270px;
+}
+
+.red {
+  color: #FF0000;
 }

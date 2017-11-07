@@ -17,7 +17,7 @@ class FormField extends Component {
         let fieldComponent = this.buildFieldRender(this.props);
         return (
             <FormGroup controlId="formGroupId" className={styles.fieldMargin}>
-                <ControlLabel> {this.props.formLabel} {this.props.isMandatoryField && <span color="red">*</span>} </ControlLabel>
+                <ControlLabel> {this.props.formLabel} {this.props.isMandatoryField && <span className="red">*</span>} </ControlLabel>
                 <div className="dark-picker dark-picker-bright">
                     {fieldComponent}
                 </div>

@@ -42,7 +42,7 @@ export const addAndModifyLessonCourse = (courseData, lessonList) => {
       lessonList: lessonList
     }
   }
-}
+};
 
 export const addLesson = () => {
   return {
@@ -55,7 +55,7 @@ export const deleteLesson = (lessonId) => {
     type: DELETE_LESSON,
     data: lessonId
   }
-}
+};
 
 export const editLessonDetail = (lessonId) => {
   return {
@@ -72,7 +72,7 @@ export const addDocumentForLesson = (lessonId, document) => {
       document: document
     }
   }
-}
+};
 
 export const deleteDocumentForLesson = (lessonId, documentId) => {
     return {
@@ -82,7 +82,7 @@ export const deleteDocumentForLesson = (lessonId, documentId) => {
             documentId: documentId
         }
     }
-}
+};
 
 export const saveLessonDetail = (lesson) => {
   return {

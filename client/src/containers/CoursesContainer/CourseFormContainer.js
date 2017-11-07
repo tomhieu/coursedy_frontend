@@ -3,7 +3,7 @@ import { CourseForm } from '../../components/index';
 import * as Actions from '../../actions/CourseFormActionCreator'
 import { connect } from 'react-redux';
 import {reduxForm} from 'redux-form';
-import {validate} from '../../validations/CourseFormValidation'
+import {validate} from '../../validations/CourseFormValidation';
 
 class CourseFormContainer extends Component {
   constructor(props) {
