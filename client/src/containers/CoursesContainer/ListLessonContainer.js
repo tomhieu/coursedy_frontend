@@ -4,7 +4,12 @@ import LessonLineComponent from "../../components/Courses/LessonLineComponent";
 import {connect} from "react-redux";
 import cssModules from "react-css-modules";
 import styles from "./ListLesson.module.scss";
-import {addLesson, deleteLesson, editLessonDetail, saveCourseAndLesson} from "../../actions/CourseFormActionCreator";
+import {
+    addLesson,
+    createCourse,
+    deleteLesson,
+    editLessonDetail
+} from "../../actions/CourseFormActionCreator";
 import {reduxForm} from "redux-form";
 import {Link} from "react-router-dom";
 class ListLessonContainer extends Component {
@@ -25,7 +30,7 @@ class ListLessonContainer extends Component {
     }
 
     saveCourseWithLesson() {
-        this.props.dispatch(saveCourseAndLesson({
+        this.props.dispatch(createCourse({
             title: this.props.title,
             description: this.props.description,
             start_date: this.props.start_date,

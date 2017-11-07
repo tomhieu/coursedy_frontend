@@ -34,22 +34,6 @@ export const createCourse = (title, description, start_date, end_date, number_of
   }
 };
 
-export const saveCourseAndLesson = (data) => {
-  createCourse(
-      data.title,
-      data.description,
-      data.start_date,
-      data.end_date,
-      data.number_of_students,
-      data.period,
-      data.period_type,
-      data.tuition_fee,
-      data.currency,
-      data.cover_image,
-      data.lessonList
-  );
-};
-
 export const addAndModifyLessonCourse = (courseData, lessonList) => {
   return {
     type: ADD_MODIFY_COURSE_LESSON,
