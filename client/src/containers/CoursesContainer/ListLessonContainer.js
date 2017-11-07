@@ -30,19 +30,19 @@ class ListLessonContainer extends Component {
     }
 
     saveCourseWithLesson() {
-        this.props.dispatch(createCourse({
-            title: this.props.title,
-            description: this.props.description,
-            start_date: this.props.start_date,
-            end_date: this.props.end_date,
-            number_of_students: this.props.number_of_students,
-            period: this.props.period,
-            period_type: this.props.period_type,
-            tuition_fee: this.props.tuition_fee,
-            currency: this.props.currency,
-            cover_image: this.props.cover_image,
-            lessonList: this.props.lessonList
-        }))
+        this.props.dispatch(createCourse(
+            this.props.title,
+            this.props.description,
+            this.props.start_date,
+            this.props.end_date,
+            this.props.number_of_students,
+            this.props.period,
+            this.props.period_type,
+            this.props.tuition_fee,
+            this.props.currency,
+            this.props.cover_image,
+            this.props.lessonList
+        ))
     }
 
     render() {
