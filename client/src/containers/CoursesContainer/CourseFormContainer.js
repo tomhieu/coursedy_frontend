@@ -18,6 +18,7 @@ class CourseFormContainer extends Component {
   addLesson() {
     this.props.dispatch(Actions.addAndModifyLessonCourse(Object.assign({}, this.props.courseCreationForm, {cover_image: this.coverImage}),
         this.props.lessonList));
+    this.context.router.history.push("/dashboard/courses/list-lesson");
   }
 
   onDropCoverImage(data) {
@@ -32,7 +33,8 @@ class CourseFormContainer extends Component {
 }
 
 CourseFormContainer.contextTypes = {
-  t: React.PropTypes.func.isRequired
+  t: React.PropTypes.func.isRequired,
+  router: React.PropTypes.object
 };
 
 CourseFormContainer.propTypes = {
@@ -46,6 +48,7 @@ const mapStateToProps = (state) => {
   const {lessonList} = lessonCreationForm;
   // retrieve the preview image url from redux store when user navigate back.
   const {cover_image} = courseData;
+
   return {
     courseCreationForm, lessonList, cover_image,
     initialValues: courseData

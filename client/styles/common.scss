@@ -730,6 +730,7 @@
 
 .inline-form .control-label {
   padding-top: 10px;
+  height: 18px;
 }
 
 .inline-edit {
@@ -769,4 +770,13 @@
 
 .react-datepicker-popper {
   z-index: 99999;
+}
+
+.avatar-image {
+  width: 268px;
+  height: 200px;
+}
+
+.datepicker-box {
+  width: 270px;
 }

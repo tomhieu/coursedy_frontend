@@ -48,8 +48,8 @@ class FormField extends Component {
                 break;
             }
             case "upload_file": {
-                fieldComponent = <Field name={props.formControlName} placeholder={props.placeholder} zoneHeight="200px" internalPreview={false}
-                                        previewUrl={props.previewImage} onUpload={this.props.onUpload} component={renderSingleFileInput}/>
+                fieldComponent = <Field name={props.formControlName} placeholder={props.placeholder} zoneHeight="200px" internalPreview={this.props.internalPreview}
+                                        previewUrl={props.previewUrl} onUpload={this.props.onUpload} component={renderSingleFileInput}/>
                 break;
             }
             case "multi_select": {
@@ -58,7 +58,7 @@ class FormField extends Component {
                 break;
             }
             case "custom_textarea": {
-                fieldComponent = <Field name={props.formControlName} placeholder={props.placeholder}
+                fieldComponent = <Field name={props.formControlName} placeholder={props.placeholder} rows={props.rows}
                                         component={renderTextAreaField} className="form-control"/>
                 break;
             }

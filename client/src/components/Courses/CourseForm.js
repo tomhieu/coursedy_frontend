@@ -6,6 +6,7 @@ import {TT} from '../../utils/locale';
 import {renderDatePicker, renderSelect, renderField, renderTextAreaField, renderSingleFileInput} from "../CustomComponents";
 import {PERIOD_TYPES, CURRENCIES} from '../../constants/Courses'
 import {Link} from "react-router-dom";
+import FormField from "../Core/FormField";
 
 class CourseForm extends Component {
   hideError(e) {
@@ -13,8 +14,15 @@ class CourseForm extends Component {
   }
 
   render() {
-    const {handleSubmit, addLesson, onDropCoverImage, cover_image, submitting, pristine} = this.props;
+    const {handleSubmit, addLesson, onDropCoverImage, cover_image, submitting, pristine, valid, courseData } = this.props;
     const errors = null;
+    const periodTypes = PERIOD_TYPES.map((type) => {
+      return {text: TT.t(type), id: type};
+    });
+    const concurrency = CURRENCIES.map((type) => {
+      return {text: type, id: type};
+    });
+    
     return (
       <div className="dashboard-panel">
         <form onSubmit={handleSubmit(this.props.onSubmit)} className='inline-form' multiple={true}>
@@ -27,144 +35,63 @@ class CourseForm extends Component {
               </div>
             </span>
           </div>
-          <FormGroup className='row'>
-            <div className='col-sm-2'>
-              <ControlLabel> {this.context.t("course_title")} <font color="red">*</font> </ControlLabel>
-            </div>
-            <div className='col-sm-10'>
-              <Field
-                name="title"
-                component={renderField}
-                type="text"
-                placeholder={this.context.t("sample_course_title")}
-                className="form-control"
-              />
-            </div>
-          </FormGroup>
+
+          <FormField formGroupId="titleId" formLabel={this.context.t("course_title")} placeholder={this.context.t("sample_course_title")} isMandatoryField={true} formControlName="title" typeField="custom_input"></FormField>
           <div className='row'>
             <div className='col-sm-6'>
-              <FormGroup className='row'>
-                <div className='col-sm-4'>
-                  <ControlLabel> {this.context.t("start_date")} </ControlLabel>
-                </div>
-                <div className='col-sm-8'>
-                  <Field
-                    name="start_date"
-                    type="text"
-                    className="form-control"
-                    component={renderDatePicker}
-                  />
-                </div>
-              </FormGroup>
+              <div className="datepicker-box">
+                <FormField formGroupId="start_date_Id" formLabel={this.context.t("start_date")} isMandatoryField={true} formControlName="start_date" typeField="datepicker"></FormField>
+              </div>
             </div>
-            <div className='col-sm-6'>
-              <FormGroup className='row'>
-                <div className='col-sm-4'>
-                  <ControlLabel> {this.context.t("end_date")} </ControlLabel>
-                </div>
-                <div className='col-sm-8'>
-                  <Field
-                    name="end_date"
-                    component={renderDatePicker}
-                    type="text"
-                    className="form-control"
-                  />
-                </div>
-              </FormGroup>
+            <div className='col-sm-6 datepicker-box'>
+              <div className="datepicker-box">
+                <FormField formGroupId="end_date_Id" formLabel={this.context.t("end_date")} isMandatoryField={true} formControlName="end_date" typeField="datepicker"></FormField>
+              </div>
             </div>
           </div>
 
-          <div className='row form-group'>
-            <div className='col-sm-2'>
-              <ControlLabel> {this.context.t("period")} </ControlLabel>
-            </div>
-            <div className='col-sm-3'>
-              <Field
-                name="period"
-                type="text"
-                className="form-control"
-                component={renderField}
-              />
-            </div>
-            <div className='col-sm-2'>
-              <Field
-                name="period_type"
-                component={renderSelect(PERIOD_TYPES.map((type) => ({text: TT.t(type), id: type})))}
-                type="text"
-                className="form-control"
-              />
+          <div className='row'>
+            <div className='col-md-5 col-sm-5'>
+              <div className="d-flex flex-horizontal">
+                <FormField formGroupId="period_Id" formLabel={this.context.t("period")} isMandatoryField={true} formControlName="period" typeField="custom_input"></FormField>
+                <FormField formGroupId="period_type_Id" formLabel="" isMandatoryField={false} options={periodTypes} formControlName="period_type" typeField="custom_select"></FormField>
+              </div>
             </div>
           </div>
 
-          <FormGroup className='row'>
-            <div className='col-sm-2'>
-              <ControlLabel> {this.context.t("number_of_students")} </ControlLabel>
+          <div className="row">
+            <div className="col-sm-3">
+              <FormField formGroupId="number_of_students_Id" formLabel={this.context.t("number_of_students")} isMandatoryField={true} formControlName="number_of_students" typeField="custom_input"></FormField>
             </div>
-            <div className='col-sm-3'>
-              <Field
-                name="number_of_students"
-                type="text"
-                className="form-control"
-                component={renderField}
-              />
-            </div>
-          </FormGroup>
+          </div>
 
-          <FormGroup className='row'>
-            <div className='col-sm-2'>
-              <ControlLabel> {this.context.t("tuition_fee")} </ControlLabel>
+          <div className='row'>
+            <div className='col-md-5 col-sm-5'>
+              <div className="d-flex flex-horizontal">
+                <FormField formGroupId="tuition_fee_Id" formLabel={this.context.t("tuition_fee")} isMandatoryField={true} formControlName="tuition_fee" typeField="custom_input"></FormField>
+                <FormField formGroupId="currency_Id" formLabel="" isMandatoryField={false} options={concurrency} formControlName="currency" typeField="custom_select"></FormField>
+              </div>
             </div>
-            <div className='col-sm-4'>
-              <Field
-                name="tuition_fee"
-                type="text"
-                className="form-control"
-                component={renderField}
-              />
-            </div>
-            <div className='col-sm-2'>
-              <Field
-                name="currency"
-                component={renderSelect(CURRENCIES.map((type) => ({text: type, id: type})))}
-                type="text"
-                className="form-control"
-              />
-            </div>
-          </FormGroup>
+          </div>
 
-          <FormGroup className='row'>
-            <div className='col-sm-2'>
-              <ControlLabel>{this.context.t("cover_image")}</ControlLabel>
-            </div>
-            <div className='col-sm-5'>
-              <Field name="cover_image" component={renderSingleFileInput} previewUrl={cover_image != null ? cover_image.previewUrl : null} zoneHeight="200px" internalPreview={true} style={{paddingTop: '8px'}} onUpload={onDropCoverImage}/>
-            </div>
-          </FormGroup>
+          <div className="avatar-image">
+            <FormField formGroupId="cover_image_Id" formLabel={this.context.t("cover_image")} isMandatoryField={true} previewUrl={cover_image != null ? cover_image.previewUrl : null}
+                       zoneHeight="200px" internalPreview={true} formControlName="cover_image" typeField="upload_file" onUpload={onDropCoverImage}></FormField>
+          </div>
 
           <hr/>
 
-          <FormGroup className='row'>
-            <div className='col-sm-12'>
-              <ControlLabel> {this.context.t("course_description")} </ControlLabel>
-              <Field
-                rows={10}
-                name="description"
-                component={renderTextAreaField}
-                type="text"
-                className="form-control"
-              />
-            </div>
-          </FormGroup>
+          <FormField formGroupId="description_Id" formLabel={this.context.t("course_description")} isMandatoryField={true} rows={10} formControlName="description" typeField="custom_textarea"></FormField>
 
-          <FormGroup>
-            <button type="submit"
-                    className="btn btn-primary btn-link-dark signin-btn mr-10"
-                    disabled={pristine || submitting}
-            >
-              {this.context.t("save_course")}
-            </button>
-            <Link to="/dashboard/courses/list-lesson" onClick={addLesson} className="btn btn-primary btn-link-dark" disabled={pristine || submitting}>{this.context.t('lesson_list_next')}</Link>
-          </FormGroup>
+          <div className="row">
+            <div className="col-md-12 col-sm-12">
+              <button type="submit" className="btn btn-primary btn-link-dark signin-btn mr-10 ml-15"
+                      disabled={((pristine || submitting) && courseData) || !valid}>
+                  {this.context.t("save_course")}
+              </button>
+              <button onClick={addLesson} className="btn btn-primary btn-link-dark" disabled={((pristine || submitting) && courseData) || !valid}>{this.context.t('lesson_list_next')}</button>
+            </div>
+          </div>
         </form>
       </div>
     )
