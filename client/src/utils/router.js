@@ -25,6 +25,7 @@ const router = (
             <Route path="/tutors" component={Pages.TutorPage} />
             <Route path="/dashboard" component={Pages.TutorDashboard} />
             <Route path="/account" component={Pages.TutorAccount} />
+            <Route path="/404" component={Pages.NotFoundPage} />
           </Switch>
         </App>
       </Router>

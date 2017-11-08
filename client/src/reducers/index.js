@@ -11,6 +11,7 @@ import SignUpComponent from './SignUpComponent';
 import CourseFilter from './CourseFilter';
 import CourseListReducer from './Course/CourseListReducer';
 import CourseDetailReducer from './Course/CourseDetailReducer';
+import TutorCourseList from './Course/TutorCourseListReducer';
 
 import CourseFormComponent from './CourseFormReducer';
 
@@ -30,6 +31,7 @@ const rootReducer = combineReducers({
   CourseListReducer,
   CourseDetailReducer,
   CourseFormComponent,
+  TutorCourseList,
 
   session,
   TutorProfile,

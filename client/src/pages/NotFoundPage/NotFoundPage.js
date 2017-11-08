@@ -4,7 +4,7 @@ import styles from './NotFoundPage.module.scss';
 
 const NotFound = () => (
   <div className={styles.container}>
-    <h1 className={styles.header}>Not Found</h1>
+    <h1 className={styles.header}>Page Not Found</h1>
   </div>
 );
 

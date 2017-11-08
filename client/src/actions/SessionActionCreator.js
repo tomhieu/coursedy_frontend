@@ -4,7 +4,9 @@ import {globalHistory} from '../utils/globalHistory'
 import queryString from 'query-string'
 import Network from '../utils/network'
 
-const fetchCurrentUser = (dispatch, callback) => {
+const fetchCurrentUser = (dispatch, callback, error = () => {
+    globalHistory.replace('/404');
+}) => {
   dispatch({
     type: types.START_FETCHING_CURRENT_USER
   })
@@ -25,6 +27,7 @@ const fetchCurrentUser = (dispatch, callback) => {
       dispatch({
         type: types.FINISHED_FETCHING_CURRENT_USER
       })
+      error();
     })
 }
 

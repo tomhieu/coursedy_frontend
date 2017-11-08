@@ -14,6 +14,7 @@ import TutorProfileDetailsContainer from '../../containers/Tutor/Profile/TutorPr
 import { connect } from 'react-redux';
 import {setCurrentUser} from "actions/SessionActionCreator";
 import ListLessonContainer from "../../containers/CoursesContainer/ListLessonContainer";
+import ListTutorCourseContainer from "../../containers/CoursesContainer/ListTutorCourseContainer";
 
 class TutorDashboard extends RoleAuthorization {
   constructor(props){
@@ -39,6 +40,7 @@ class TutorDashboard extends RoleAuthorization {
               <switch>
                 <Route exact path="/dashboard" component={TutorDashboardIndex}/>
                 <Route exact path="/dashboard/courses/new" component={CourseFormContainer}/>
+                <Route exact path="/dashboard/courses/list" component={ListTutorCourseContainer}/>
                 <Route exact path="/dashboard/courses/list-lesson" component={ListLessonContainer}/>
                 <Route exact path="/dashboard/profile" component={TutorProfileDetailsContainer}/>
               </switch>
