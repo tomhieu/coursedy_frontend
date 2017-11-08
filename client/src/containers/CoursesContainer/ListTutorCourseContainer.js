@@ -9,15 +9,25 @@ class ListTutorCourseContainer extends Component {
         this.props.dispatch(fetchListTutorCourse({}))
     }
 
+    addNewCourses() {
+        this.props.router.history.push("/dashboard/courses/new");
+    }
+
     render() {
         return (
-            <CourseList {...this.props} />
+            <div className="row">
+                <div className="col-md-2 col-sm-2">
+                    <button onClick={this.addNewCourses.bind(this)}></button>
+                </div>
+                <CourseList {...this.props} />
+            </div>
         )
     }
 }
 
 ListTutorCourseContainer.contextTypes = {
-    t: React.PropTypes.func.isRequired
+    t: React.PropTypes.func.isRequired,
+    router: React.PropTypes.object
 }
 
 const mapStateToProps = (state) => {
