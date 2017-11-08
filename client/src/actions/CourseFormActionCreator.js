@@ -12,9 +12,9 @@ export const ADD_MODIFY_COURSE_LESSON = 'ADD_MODIFY_COURSE_LESSON';
 export const ADD_DOCUMENT_FOR_LESSON = 'ADD_DOCUMENT_FOR_LESSON';
 export const DELETE_DOCUMENT_FOR_LESSON = 'DELETE_DOCUMENT_FOR_LESSON';
 
-export const createCourse = (title, description, start_date, end_date, number_of_students, period, period_type, tuition_fee, currency, cover_image, lessonList) => {
+export const createCourse = (title, description, start_date, end_date, number_of_students, period, period_type, tuition_fee, currency, cover_image, lessonList, category_id = 1, course_level_id = 1) => {
   return dispatch => {
-    let body = {title, description, start_date, end_date, number_of_students, period, period_type, tuition_fee, currency, cover_image, lessonList};
+    let body = {title, description, start_date, end_date, number_of_students, period, period_type, tuition_fee, currency, cover_image, lessonList, category_id, course_level_id};
 
     Network().post('courses', body).then((response) => {
       dispatch({

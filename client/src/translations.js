@@ -64,6 +64,7 @@ export const translations = {
     "course_description_mandatory": "Vui lòng nhập giới thiệu khoá học",
     "course_modification": "Sửa Khoá Học",
     "cover_image": "Ảnh đại diện",
+    "course_add_btn": "Thêm Khoá Học",
     "hour": "Giờ",
     "day": "Ngày",
     "week": "Tuần",
