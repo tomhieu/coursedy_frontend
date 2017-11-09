@@ -810,3 +810,16 @@ ul.no-margin,
 .red {
   color: #FF0000;
 }
+
+.course-container {
+  cursor: pointer;
+  color: #9B9B9B;
+}
+
+.course-container:hover {
+  cursor: pointer;
+  color: #ffffff;
+  background-color: rgba(226, 125, 127, 0.60);
+  transform: translateZ(0);
+  transition: all 0.35s ease;
+}

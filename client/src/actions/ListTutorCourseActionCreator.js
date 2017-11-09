@@ -9,7 +9,7 @@ export const fetchListTutorCourse = () => {
         Network().get('courses').then((response) => {
            dispatch({
              type: FETCH_TUTOR_COURSES_SUCCESS,
-             payload: response.data
+             payload: response
            })
          }, (errors) => {
            const error_messages = (errors && Array.isArray(errors) && errors.length > 0) ?

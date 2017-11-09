@@ -11,6 +11,7 @@ export const SAVE_COURSE_ANF_LESSON = 'SAVE_COURSE_ANF_LESSON';
 export const ADD_MODIFY_COURSE_LESSON = 'ADD_MODIFY_COURSE_LESSON';
 export const ADD_DOCUMENT_FOR_LESSON = 'ADD_DOCUMENT_FOR_LESSON';
 export const DELETE_DOCUMENT_FOR_LESSON = 'DELETE_DOCUMENT_FOR_LESSON';
+export const FETCH_DETAIL_COURSE_SUCESSFULLY = 'FETCH_DETAIL_COURSE_SUCESSFULLY';
 
 export const createCourse = (title, description, start_date, end_date, number_of_students, period, period_type, tuition_fee, currency, cover_image, lessonList, category_id = 1, course_level_id = 1) => {
   return dispatch => {
@@ -32,6 +33,17 @@ export const createCourse = (title, description, start_date, end_date, number_of
       });
     });
   }
+};
+
+export const loadCourseDetail = (courseId) => {
+    return dispatch => {
+        Network().get(/courses/ + courseId).then((response) => {
+            dispatch({
+                type: FETCH_DETAIL_COURSE_SUCESSFULLY,
+                payload: response
+            })
+        })
+    };
 };
 
 export const addAndModifyLessonCourse = (courseData, lessonList) => {

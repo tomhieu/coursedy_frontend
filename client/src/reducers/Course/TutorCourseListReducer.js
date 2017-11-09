@@ -4,7 +4,8 @@ const TutorCourseList = (state = {
 }, action) => {
     switch (action.type) {
         case FETCH_TUTOR_COURSES_SUCCESS:
-            return {...state, courses: action.payload }
+            const newCourses = action.payload.map((course) => Object.assign({}, course, {onlyTutor: true}));
+            return {...state, courses: newCourses }
         case FETCH_TUTOR_COURSES_FAIL:
             return {...state, courses: [] }
         default:

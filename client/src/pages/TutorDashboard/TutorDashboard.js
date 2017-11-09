@@ -39,9 +39,10 @@ class TutorDashboard extends RoleAuthorization {
             <div className="col-xs-12 col-sm-8">
               <switch>
                 <Route exact path="/dashboard" component={TutorDashboardIndex}/>
-                <Route exact path="/dashboard/courses/new" component={CourseFormContainer}/>
                 <Route exact path="/dashboard/courses/list" component={ListTutorCourseContainer}/>
                 <Route exact path="/dashboard/courses/list-lesson" component={ListLessonContainer}/>
+                <Route exact path="/dashboard/courses/new" component={CourseFormContainer}/>
+                <Route exact path="/dashboard/courses/detail/:id" component={CourseFormContainer}/>
                 <Route exact path="/dashboard/profile" component={TutorProfileDetailsContainer}/>
               </switch>
             </div>

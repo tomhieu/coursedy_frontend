@@ -7,7 +7,10 @@ import {
     EDIT_DETAIL_LESSON,
     HIDE_LESSON_POPUP_EDIT
 } from "actions/CourseFormActionCreator";
-import {DELETE_DOCUMENT_FOR_LESSON, SAVE_LESSON_DETAIL} from "../actions/CourseFormActionCreator";
+import {
+    DELETE_DOCUMENT_FOR_LESSON, FETCH_DETAIL_COURSE_SUCESSFULLY,
+    SAVE_LESSON_DETAIL
+} from "../actions/CourseFormActionCreator";
 
 const CourseFormComponent = (state = {
   errors: null, courseData: {cover_image: null}, lessonCreationForm: {
@@ -20,6 +23,8 @@ const CourseFormComponent = (state = {
     case types.CREATE_SUCCESSFULLY:
     case types.CREATE_COURSE_FAILED:
       return state;
+    case FETCH_DETAIL_COURSE_SUCESSFULLY:
+      return Object.assign({}, state, {courseData: action.payload});
     case ADD_MODIFY_COURSE_LESSON:
       const nextState = Object.assign({}, state, {courseData: Object.assign({}, action.data.courseData.values, {cover_image: action.data.courseData.cover_image}),
           lessonCreationForm: Object.assign({}, state.lessonCreationForm, {lessonList: action.data.lessonList})});
