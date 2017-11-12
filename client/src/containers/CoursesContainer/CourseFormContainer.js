@@ -31,6 +31,10 @@ class CourseFormContainer extends Component {
     this.context.router.history.push("/dashboard/courses/list-lesson");
   }
 
+  onCategoryChange(e){
+    this.props.dispatch(FilterActions.reloadCourseLevels(this.getSelect2Value(e)))
+  }
+
   getSelect2Value(e){
     let options = e.target.options
     let optionArray = []
