@@ -14,7 +14,7 @@ class CourseForm extends Component {
   }
 
   render() {
-    const {handleSubmit, addLesson, onDropCoverImage, cover_image, submitting, pristine, valid, courseData, categories, course_levels, onCategoryChange } = this.props;
+    const {handleSubmit, addLesson, onDropCoverImage, cover_image, submitting, pristine, valid, courseData, categories, course_levels } = this.props;
     const errors = null;
     const periodTypes = PERIOD_TYPES.map((type) => {
       return {text: TT.t(type), id: type};
@@ -42,7 +42,7 @@ class CourseForm extends Component {
               <FormField formGroupId="category_id" formLabel={this.context.t("course_category")} placeholder={this.context.t("course_category")}
                          options={categories.map((category) => {
                              return {id: category.id, text: category.name}
-                         })} onChange={onCategoryChange} isMandatoryField={true} formControlName="category_id" typeField="custom_select" {...this.props}></FormField>
+                         })} isMandatoryField={true} formControlName="category_id" typeField="custom_select" {...this.props}></FormField>
             </div>
             <div className='col-sm-6'>
               <FormField formGroupId="course_level_id" formLabel={this.context.t("course_level")} placeholder={this.context.t("course_level")}

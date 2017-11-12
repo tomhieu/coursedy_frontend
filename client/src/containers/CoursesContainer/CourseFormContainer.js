@@ -30,27 +30,6 @@ class CourseFormContainer extends Component {
     this.context.router.history.push("/dashboard/courses/list-lesson");
   }
 
-  onCategoryChange(e) {
-    this.props.dispatch(FilterActions.reloadCourseLevels(this.getSelect2Value(e)))
-  }
-
-  getSelect2Value(e){
-    let options = e.target.options
-    let optionArray = []
-
-    for(var i = 0; i < options.length; i++){
-      optionArray[i] = options[i]
-    }
-
-    let selectedValues = optionArray.filter((option) => {
-      return option.selected
-    }).map((option) => {
-      return parseInt(option.value)
-    })
-
-    return selectedValues
-  }
-
   onDropCoverImage(data) {
     this.coverImage = data;
   }
@@ -61,7 +40,6 @@ class CourseFormContainer extends Component {
         onSubmit={this.createCourse.bind(this)}
         addLesson={this.addLesson.bind(this)}
         onDropCoverImage={this.onDropCoverImage.bind(this)} {...this.props}
-        onCategoryChange={this.onCategoryChange.bind(this)}
       />
     )
   }
