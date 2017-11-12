@@ -2,6 +2,7 @@ import * as types from '../constants/CourseFilter';
 
 const CourseFilter = (state = {
   categories: [],
+  // levels: [],
   locations: {},
   weekdays: {},
   selectedCategoryIds: [],
@@ -17,13 +18,20 @@ const CourseFilter = (state = {
 }, action) => {
   switch (action.type) {
     case types.FETCH_CATEGORIES_SUCCESSFULLY:
-      return {...state, categories: action.payload}
+      return {
+        ...state, 
+        categories: action.payload,
+        selectedCategoryIds: [action.payload[0].id]
+      }
     case types.FETCH_WEEKDAYS_SUCCESSFULLY:
       return {...state, weekdays: action.payload}
     case types.FETCH_LOCATIONS_SUCCESSFULLY:
       return {...state, locations: action.payload}
     case types.RELOAD_COURSE_LEVELS:
-      return {...state, selectedCategoryIds: action.payload}
+      return {
+        ...state, 
+        selectedCategoryIds: action.payload,
+      }
     case types.SELECT_COURSE_LOCATIONS:
       return {...state, selectedLocationIds: action.payload}
     case types.SELECT_COURSE_LEVEL:
