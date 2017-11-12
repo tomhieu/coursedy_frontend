@@ -39,7 +39,7 @@ class FormField extends Component {
             }
             case "custom_select": {
                 fieldComponent = <Field name={props.formControlName} placeholder={props.placeholder}
-                                        component={renderSelect(props.options)} className="form-control"/>;
+                                        component={renderSelect(props.options, props.onChange)} className="form-control"/>;
                 break;
             }
             case "datepicker": {

@@ -36,7 +36,7 @@ export const renderDatePicker = ({input, label, type, meta: {touched, error, war
   </div>)
 }
 
-export const renderSelect = (selectOptions) => {
+export const renderSelect = (selectOptions, onChange = null) => {
   return ({input, label, type, meta: {touched, error, warning}}) => (
     <div className="dark-picker dark-picker-bright">
       <Select2 {...input}

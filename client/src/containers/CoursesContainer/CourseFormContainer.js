@@ -1,11 +1,10 @@
-import React, { Component } from 'react';
-import { CourseForm } from '../../components/index';
-import * as FormActions from '../../actions/CourseFormActionCreator'
+import React, {Component} from 'react';
+import {CourseForm} from '../../components/index';
+import {addAndModifyLessonCourse, createCourse, loadCourseDetail} from '../../actions/CourseFormActionCreator'
 import * as FilterActions from '../../actions/CourseFilterActionCreator'
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
 import {reduxForm} from 'redux-form';
 import {validate} from '../../validations/CourseFormValidation';
-import {loadCourseDetail} from "../../actions/CourseFormActionCreator";
 
 class CourseFormContainer extends Component {
   constructor(props) {
@@ -22,16 +21,16 @@ class CourseFormContainer extends Component {
   }
 
   createCourse({title, description, category_id, course_level_id, start_date, end_date, number_of_students, period, period_type, tuition_fee, currency}) {
-    this.props.dispatch(Actions.createCourse(title, description, category_id, course_level_id, start_date, end_date, number_of_students, period, period_type, tuition_fee, currency, this.coverImage, this.props.lessonList));
+    this.props.dispatch(createCourse(title, description, category_id, course_level_id, start_date, end_date, number_of_students, period, period_type, tuition_fee, currency, this.coverImage, this.props.lessonList));
   }
 
   addLesson() {
-    this.props.dispatch(Actions.addAndModifyLessonCourse(Object.assign({}, this.props.courseCreationForm, {cover_image: this.coverImage}),
+    this.props.dispatch(addAndModifyLessonCourse(Object.assign({}, this.props.courseCreationForm, {cover_image: this.coverImage}),
         this.props.lessonList));
     this.context.router.history.push("/dashboard/courses/list-lesson");
   }
 
-  onCategoryChange(e){
+  onCategoryChange(e) {
     this.props.dispatch(FilterActions.reloadCourseLevels(this.getSelect2Value(e)))
   }
 

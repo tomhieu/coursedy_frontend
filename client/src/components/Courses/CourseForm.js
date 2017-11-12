@@ -14,13 +14,21 @@ class CourseForm extends Component {
   }
 
   render() {
-    const {handleSubmit, addLesson, onDropCoverImage, cover_image, submitting, pristine, valid, courseData } = this.props;
+    const {handleSubmit, addLesson, onDropCoverImage, cover_image, submitting, pristine, valid, courseData, categories, onCategoryChange } = this.props;
     const errors = null;
     const periodTypes = PERIOD_TYPES.map((type) => {
       return {text: TT.t(type), id: type};
     });
     const concurrency = CURRENCIES.map((type) => {
       return {text: type, id: type};
+    });
+
+    const [selectedCategory = {course_levels: []}] = this.props.categories.filter((category) => {
+        return this.props.selectedCategoryIds.indexOf(category.id) >= 0
+    });
+
+    const course_levels = selectedCategory.course_levels.map((level) => {
+        return {id: level.id, text: level.name}
     });
 
     return (
@@ -40,49 +48,14 @@ class CourseForm extends Component {
 
           <div className='row'>
             <div className='col-sm-6'>
-              <FormGroup className='row'>
-                <div className='col-sm-4'>
-                  <ControlLabel> {this.context.t("course_category")} </ControlLabel>
-                </div>
-                <div className='col-sm-8'>
-                  <Field
-                    name="category_id"
-                    component={renderSelect(this.props.categories.map((category) => {
-                      return {id: category.id, text: category.name}
-                    }))}
-                    type="text"
-                    placeholder={this.context.t("course_category")}
-                    className="form-control"
-                    onChange={this.props.onCategoryChange}
-                  />
-                </div>
-              </FormGroup>
+              <FormField formGroupId="category_id" formLabel={this.context.t("course_category")} placeholder={this.context.t("course_category")}
+                         options={categories.map((category) => {
+                             return {id: category.id, text: category.name}
+                         })} onChange={onCategoryChange} isMandatoryField={true} formControlName="category_id" typeField="custom_select" {...this.props}></FormField>
             </div>
             <div className='col-sm-6'>
-              <FormGroup className='row'>
-                <div className='col-sm-4'>
-                  <ControlLabel> {this.context.t("course_level")} </ControlLabel>
-                </div>
-                <div className='col-sm-8'>
-                  <Field
-                    name="course_level_id"
-                    component={
-                      renderSelect(
-                      (this.props.categories.filter((category) => {
-                        return this.props.selectedCategoryIds.indexOf(category.id) >= 0 
-                      }).length > 0) ? this.props.categories.filter((category) => {
-                        return this.props.selectedCategoryIds.indexOf(category.id) >= 0 
-                      })[0].course_levels.map((level) => {
-                        return {id: level.id, text: level.name}
-                      }) : []
-                      )
-                    }
-                    type="text"
-                    placeholder={this.context.t("course_level")}
-                    className="form-control"
-                  />
-                </div>
-              </FormGroup>
+              <FormField formGroupId="course_level_id" formLabel={this.context.t("course_level")} placeholder={this.context.t("course_level")}
+                         options={course_levels} isMandatoryField={true} formControlName="course_level_id" typeField="custom_select"></FormField>
             </div>
           </div>{/* Course category and course level */}
 
