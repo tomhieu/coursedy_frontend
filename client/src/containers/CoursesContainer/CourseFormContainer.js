@@ -76,19 +76,29 @@ CourseFormContainer.propTypes = {
 
 };
 
+const getCourseLevelFromCategory = (categories, selectedCategoryId) => {
+    const [selectedCategory = {course_levels: []}] = categories.filter((category) => {
+        return selectedCategoryId === category.id;
+    });
+
+    return selectedCategory.course_levels.map((level) => {
+        return {id: level.id, text: level.name}
+    });
+}
+
 const mapStateToProps = (state) => {
-  const {CourseFormComponent, form} = state;
+  const {CourseFormComponent, CourseFilter, form} = state;
   const {courseCreationForm} = form;
   const {lessonCreationForm, courseData} = CourseFormComponent;
   const {lessonList} = lessonCreationForm;
+  const {categories} = CourseFilter;
   // retrieve the preview image url from redux store when user navigate back.
   const {cover_image} = courseData;
 
   return {
-    courseCreationForm, lessonList, cover_image,
+    courseCreationForm, lessonList, cover_image,categories,
     initialValues: courseData,
-    categories: state.CourseFilter.categories,
-    selectedCategoryIds: state.CourseFilter.selectedCategoryIds
+    course_levels: courseCreationForm != undefined ? getCourseLevelFromCategory(categories, Number(courseCreationForm.values.category_id)) : []
   };
 };
 

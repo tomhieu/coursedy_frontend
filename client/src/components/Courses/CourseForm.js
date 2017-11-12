@@ -14,7 +14,7 @@ class CourseForm extends Component {
   }
 
   render() {
-    const {handleSubmit, addLesson, onDropCoverImage, cover_image, submitting, pristine, valid, courseData, categories, onCategoryChange } = this.props;
+    const {handleSubmit, addLesson, onDropCoverImage, cover_image, submitting, pristine, valid, courseData, categories, course_levels, onCategoryChange } = this.props;
     const errors = null;
     const periodTypes = PERIOD_TYPES.map((type) => {
       return {text: TT.t(type), id: type};
@@ -22,15 +22,6 @@ class CourseForm extends Component {
     const concurrency = CURRENCIES.map((type) => {
       return {text: type, id: type};
     });
-
-    const [selectedCategory = {course_levels: []}] = this.props.categories.filter((category) => {
-        return this.props.selectedCategoryIds.indexOf(category.id) >= 0
-    });
-
-    const course_levels = selectedCategory.course_levels.map((level) => {
-        return {id: level.id, text: level.name}
-    });
-
     return (
       <div className="dashboard-panel">
         <form onSubmit={handleSubmit(this.props.onSubmit)} className='inline-form' multiple={true}>
