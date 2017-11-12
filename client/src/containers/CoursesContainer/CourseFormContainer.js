@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { CourseForm } from '../../components/index';
-import * as Actions from '../../actions/CourseFormActionCreator'
+import * as FormActions from '../../actions/CourseFormActionCreator'
+import * as FilterActions from '../../actions/CourseFilterActionCreator'
 import { connect } from 'react-redux';
 import {reduxForm} from 'redux-form';
 import {validate} from '../../validations/CourseFormValidation';
@@ -14,13 +15,14 @@ class CourseFormContainer extends Component {
   }
 
   componentWillMount() {
+    this.props.dispatch(FilterActions.fetchCategories())
     if (this.props.match.params.id) {
       this.props.dispatch(loadCourseDetail(this.props.match.params.id));
     }
   }
 
-  createCourse({title, description, start_date, end_date, number_of_students, period, period_type, tuition_fee, currency}) {
-    this.props.dispatch(Actions.createCourse(title, description, start_date, end_date, number_of_students, period, period_type, tuition_fee, currency, this.coverImage, this.props.lessonList));
+  createCourse({title, description, category_id, course_level_id, start_date, end_date, number_of_students, period, period_type, tuition_fee, currency}) {
+    this.props.dispatch(Actions.createCourse(title, description, category_id, course_level_id, start_date, end_date, number_of_students, period, period_type, tuition_fee, currency, this.coverImage, this.props.lessonList));
   }
 
   addLesson() {
@@ -29,13 +31,39 @@ class CourseFormContainer extends Component {
     this.context.router.history.push("/dashboard/courses/list-lesson");
   }
 
+  onCategoryChange(e){
+    this.props.dispatch(FilterActions.reloadCourseLevels(this.getSelect2Value(e)))
+  }
+
+  getSelect2Value(e){
+    let options = e.target.options
+    let optionArray = []
+
+    for(var i = 0; i < options.length; i++){
+      optionArray[i] = options[i]
+    }
+
+    let selectedValues = optionArray.filter((option) => {
+      return option.selected
+    }).map((option) => {
+      return parseInt(option.value)
+    })
+
+    return selectedValues
+  }
+
   onDropCoverImage(data) {
     this.coverImage = data;
   }
 
   render() {
     return (
-      <CourseForm onSubmit={this.createCourse.bind(this)} addLesson={this.addLesson.bind(this)} onDropCoverImage={this.onDropCoverImage.bind(this)} {...this.props}/>
+      <CourseForm
+        onSubmit={this.createCourse.bind(this)}
+        addLesson={this.addLesson.bind(this)}
+        onDropCoverImage={this.onDropCoverImage.bind(this)} {...this.props}
+        onCategoryChange={this.onCategoryChange.bind(this)}
+      />
     )
   }
 }
@@ -59,7 +87,9 @@ const mapStateToProps = (state) => {
 
   return {
     courseCreationForm, lessonList, cover_image,
-    initialValues: courseData
+    initialValues: courseData,
+    categories: state.CourseFilter.categories,
+    selectedCategoryIds: state.CourseFilter.selectedCategoryIds
   };
 };
 
@@ -67,7 +97,7 @@ export default connect(
   mapStateToProps
 )( reduxForm({
   form: 'courseCreationForm',
-  fields: ['title', 'description', 'start_date', 'end_date', 'number_of_students', 'period', 'period_type', 'tuition_fee', 'currency', 'cover_image'],
+  fields: ['title', 'description', 'start_date', 'end_date', 'number_of_students', 'period', 'period_type', 'tuition_fee', 'currency', 'cover_image', 'category_id', 'course_level_id'],
   validate,
   enableReinitialize: true
 })(CourseFormContainer));

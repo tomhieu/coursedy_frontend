@@ -5,7 +5,6 @@ import {globalHistory} from '../utils/globalHistory'
 import {TT} from '../utils/locale'
 
 export const fetchCourses = (params) => {
-  console.log('DEBUG: fetchCourses');
   return dispatch => {
     let query = {
       q: '',
@@ -68,12 +67,12 @@ export const fetchCourses = (params) => {
     })
 
 
-    //TODO: Call API server
+    // //TODO: Call API server
     // Network().get('courses', query).then((response) => {
-    //   dispatch({
-    //     type: types.FETCH_COURSES_SUCCESS,
-    //     payload: response.data
-    //   })
+    //   // dispatch({
+    //   //   type: types.FETCH_COURSES_SUCCESS,
+    //   //   payload: response.data
+    //   // })
     // }, (errors) => {
     //   const error_messages = (errors && errors.constructor == Array && errors.length > 0) ?
     //     errors :
@@ -90,7 +89,6 @@ export const fetchCourses = (params) => {
 }
 
 export const fetchCourse = (params) => {
-  console.log('DEBUG: fetch course detail');
   return dispatch => {
     dispatch({
       type: types.FETCH_COURSE_SUCCESS,
