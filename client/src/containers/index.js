@@ -17,6 +17,5 @@ export {
   //Front-end
   PublicCourseListContainer,
   PublicCourseDetailContainer,
-  CourseFilterContainer,
-  RoleAuthorization
+  CourseFilterContainer
 }

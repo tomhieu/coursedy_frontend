@@ -34,7 +34,7 @@ class FormField extends Component {
                 break;
             }
             case "custom_input": {
-                fieldComponent = <Field name={this.props.formControlName} placeholder={this.props.placeholder} component={renderField} value="testing field" className="form-control" />;
+                fieldComponent = <Field name={this.props.formControlName} placeholder={this.props.placeholder} type={this.props.type} component={renderField} className="form-control" />;
                 break;
             }
             case "custom_select": {

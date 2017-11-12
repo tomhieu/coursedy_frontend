@@ -18,7 +18,7 @@ export class PersonalInfoForm extends Component {
                 <div>
                     <FormField formGroupId="emailId" formLabel={this.context.t("account.person.info.email")} isMandatoryField={true} formControlName="email" typeField="custom_input" />
                 </div>
-                <div>
+                <div className="datepicker-box">
                     <FormField formGroupId="birthDateId" formLabel={this.context.t("account.person.info.birth.date")} isMandatoryField={true} formControlName="birthDate" typeField="datepicker" />
                 </div>
                 <div>
