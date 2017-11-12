@@ -11,12 +11,7 @@ class CourseForm extends Component {
     e.preventDefault();
   }
 
-  handleChange() {
-
-  }
-
   onDrop(acceptedFiles){
-    console.log(acceptedFiles)
   }
 
   render() {
@@ -47,7 +42,56 @@ class CourseForm extends Component {
                 className="form-control"
               />
             </div>
-          </FormGroup>
+          </FormGroup>{/* Course title */}
+          
+          <div className='row'>
+            <div className='col-sm-6'>
+              <FormGroup className='row'>
+                <div className='col-sm-4'>
+                  <ControlLabel> {this.context.t("course_category")} </ControlLabel>
+                </div>
+                <div className='col-sm-8'>
+                  <Field
+                    name="category_id"
+                    component={renderSelect(this.props.categories.map((category) => {
+                      return {id: category.id, text: category.name}
+                    }))}
+                    type="text"
+                    placeholder={this.context.t("course_category")}
+                    className="form-control"
+                    onChange={this.props.onCategoryChange}
+                  />
+                </div>
+              </FormGroup>
+            </div>
+            <div className='col-sm-6'>
+              <FormGroup className='row'>
+                <div className='col-sm-4'>
+                  <ControlLabel> {this.context.t("course_level")} </ControlLabel>
+                </div>
+                <div className='col-sm-8'>
+                  <Field
+                    name="course_level_id"
+                    component={
+                      renderSelect(
+                      (this.props.categories.filter((category) => {
+                        return this.props.selectedCategoryIds.indexOf(category.id) >= 0 
+                      }).length > 0) ? this.props.categories.filter((category) => {
+                        return this.props.selectedCategoryIds.indexOf(category.id) >= 0 
+                      })[0].course_levels.map((level) => {
+                        return {id: level.id, text: level.name}
+                      }) : []
+                      )
+                    }
+                    type="text"
+                    placeholder={this.context.t("course_level")}
+                    className="form-control"
+                  />
+                </div>
+              </FormGroup>
+            </div>
+          </div>{/* Course category and course level */}
+
           <div className='row'>
             <div className='col-sm-6'>
               <FormGroup className='row'>
@@ -79,7 +123,7 @@ class CourseForm extends Component {
                 </div>
               </FormGroup>
             </div>
-          </div>
+          </div>{/* Course start date and end date */}
 
           <div className='row form-group'>
             <div className='col-sm-2'>
