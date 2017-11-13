@@ -6,41 +6,45 @@ import styles from './PersonInfo.module.scss';
 import cssModules from 'react-css-modules';
 import {connect} from "react-redux";
 import {dispatch} from "redux";
-import {loadPersonInfo, savePersonData} from "../../../actions/TutorAccountCreator";
+import {loadPersonInfo, savePersonData} from "../../../actions/TutorAccountActionCreator";
 import {validate} from '../../../validations/PersonFormValidator'
 
 class PersonInfoContainer extends Component {
-    constructor(props) {
-        super(props);
-    }
-    componentWillMount() {
-        this.props.dispatch(loadPersonInfo());
-    }
+  constructor(props) {
+    super(props);
+  }
 
-    savePersonInfo({firstName, lastName, email, birthDate, address}) {
-        this.props.dispatch(savePersonData(firstName, lastName, email, birthDate, address));
-    }
+  componentWillMount() {
+    this.props.dispatch(loadPersonInfo());
+  }
 
-    render() {
-        return (
-            <div className="col-md-12 col-sm-12">
-                <div className="block-title">
-                    <span className="text-uppercase bold">{this.context.t("account.person.info.title")}</span>
-                </div>
-                <PersonalInfoForm onSubmit={this.savePersonInfo.bind(this)} {...this.props} />
-            </div>
-        )
-    }
+  savePersonInfo({name, email, date_of_birth, address}) {
+    this.props.dispatch(savePersonData(name, email, date_of_birth, address));
+  }
+
+  render() {
+    return (
+      <div className="row">
+        <div className="col-md-12 col-sm-12">
+          <div className="block-title">
+            <span className="text-uppercase bold">{this.context.t("account.person.info.title")}</span>
+          </div>
+          <PersonalInfoForm onSubmit={this.savePersonInfo.bind(this)} {...this.props} />
+        </div>
+      </div>
+    )
+  }
 };
 
 PersonInfoContainer.contextTypes = {
-    t: React.PropTypes.func.isRequired
+  t: React.PropTypes.func.isRequired
 }
 
 export default connect(state => ({
-    initialValues: state.loadPersonData.data
-}))( reduxForm({
-    form: 'personInfo',
-    fields: ['firstName', 'lastName', 'email', 'address', 'birthDate'],
-    validate
+  initialValues: state.TutorAccount.user,
+
+}))(reduxForm({
+  form: 'personInfo',
+  fields: ['name', 'email', 'address', 'date_of_birth'],
+  validate
 })(cssModules(PersonInfoContainer, styles)));

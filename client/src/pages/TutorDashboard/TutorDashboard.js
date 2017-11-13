@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import cssModules from 'react-css-modules';
 import styles from './TutorDashboard.module.scss';
-import { Router, Switch, Route } from 'react-router-dom'
+import {Router, Switch, Route} from 'react-router-dom'
 import {
   TutorProfile,
   TutorDashboardMenu,
@@ -11,20 +11,20 @@ import {
 } from '../../components/index';
 import CourseFormContainer from '../../containers/CoursesContainer/CourseFormContainer';
 import TutorProfileDetailsContainer from '../../containers/Tutor/Profile/TutorProfileDetailsContainer';
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
 import {setCurrentUser} from "actions/SessionActionCreator";
 import ListLessonContainer from "../../containers/CoursesContainer/ListLessonContainer";
 import ListTutorCourseContainer from "../../containers/CoursesContainer/ListTutorCourseContainer";
 import TutorAccount from "../../containers/AccountContainer/Tutor/TutorAccountContainer";
 
 class TutorDashboard extends RoleAuthorization {
-  constructor(props){
+  constructor(props) {
     super(props)
     this.authorizedRoles = ['teacher']
     this.unauthorizedPath = '/'
   }
 
-  render(){
+  render() {
     if (this.props.fetchingUser) return (<LoadingMask/>)
 
     return (

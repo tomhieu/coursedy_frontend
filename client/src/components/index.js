@@ -25,6 +25,7 @@ import LoadingMask from './LoadingMask/LoadingMask'
 import TutorDashboardMenu from './Dashboard/TutorDashboard/TutorDashboardMenu'
 import TutorDashboardIndex from './Dashboard/TutorDashboard/TutorDashboardIndex'
 import CourseForm from './Courses/CourseForm'
+import UserInfo from './Account/UserInfo'
 
 export {
   Header,
@@ -53,5 +54,6 @@ export {
   TutorDashboardMenu,
   TutorDashboardIndex,
   CourseForm,
-  TutorProfileDetails
+  TutorProfileDetails,
+  UserInfo
 };

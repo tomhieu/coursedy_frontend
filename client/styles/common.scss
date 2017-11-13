@@ -1,4 +1,4 @@
-.full-width-input-wrapper input{
+.full-width-input-wrapper input {
   width: 100%;
 }
 
@@ -114,6 +114,13 @@
 
 .dashboard-content, .normal-text {
   color: #534051;
+}
+
+.dashboard-content-section {
+  border-radius: 5px;
+  border: 1px solid #e5e5e5;
+  padding-top: 20px;
+  margin-bottom: 20px;
 }
 
 .select2-container .select2-search--inline input.select2-search__field {
@@ -715,7 +722,7 @@ ul.no-margin,
   padding: 0px 5px;
 }
 
-.full-width-input-wrapper input{
+.full-width-input-wrapper input {
   width: 100%;
 }
 
@@ -822,4 +829,9 @@ ul.no-margin,
   background-color: rgba(226, 125, 127, 0.60);
   transform: translateZ(0);
   transition: all 0.35s ease;
+}
+
+.user-detail hr {
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
