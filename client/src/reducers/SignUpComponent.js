@@ -5,9 +5,13 @@ const SignUpComponent = (state = {
 }, action) => {
   switch (action.type) {
     case types.SIGN_UP_SUCCESS:
-      return {...state, success: true, userFirstName: action.payload.data.first_name};
+      return {...state, success: true};
     case types.RESET_FORM:
-      return {...state, success: false, userFirstName: ''};
+      return {...state, success: false};
+    case types.SIGNUP_FAILED:
+      return {...state, success: false, errors: action.payload};
+    case types.CLEAR_ERROR:
+      return {...state, success: false, errors: null};
     default:
       return state;
   }

@@ -24,23 +24,12 @@ class RegisterForm extends Component {
         </FormGroup>
 
         <FormGroup>
-          <ControlLabel> {this.context.t("first_name")}&nbsp;<font color="red">*</font> </ControlLabel>
+          <ControlLabel> {this.context.t("full_name")}&nbsp;<font color="red">*</font> </ControlLabel>
           <Field
-            name="first_name"
+            name="name"
             component={renderField}
             type="text"
-            placeholder={this.context.t("first_name")}
-            className="form-control"
-          />
-        </FormGroup>
-
-        <FormGroup>
-          <ControlLabel> {this.context.t("last_name")} </ControlLabel>
-          <Field
-            name="last_name"
-            component={renderField}
-            type="text"
-            placeholder={this.context.t("last_name")}
+            placeholder={this.context.t("full_name")}
             className="form-control"
           />
         </FormGroup>

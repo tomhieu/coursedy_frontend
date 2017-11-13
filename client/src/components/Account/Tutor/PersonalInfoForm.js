@@ -11,8 +11,8 @@ export class PersonalInfoForm extends Component {
             <form onSubmit={handleSubmit(this.props.onSubmit)}>
                 <div>
                     <div className="d-flex flex-horizontal">
-                        <FormField formGroupId="firstNameId" formLabel={this.context.t("account.person.info.first.name")} placeholder={this.context.t("account.person.info.first.name")} isMandatoryField={true} formControlName="firstName" typeField="custom_input" />
-                        <FormField formGroupId="lastNameId" formLabel={this.context.t("account.person.info.last.name")}  placeholder={this.context.t("account.person.info.last.name")}  isMandatoryField={true} formControlName="lastName" typeField="custom_input" />
+                        <FormField formGroupId="firstNameId" formLabel={this.context.t("account.person.info.first.name")} placeholder={this.context.t("account.person.info.first.name")} isMandatoryField={true} formControlName="first_name" typeField="custom_input" />
+                        <FormField formGroupId="lastNameId" formLabel={this.context.t("account.person.info.last.name")}  placeholder={this.context.t("account.person.info.last.name")}  isMandatoryField={true} formControlName="last_name" typeField="custom_input" />
                     </div>
                 </div>
                 <div>
