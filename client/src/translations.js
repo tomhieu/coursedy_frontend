@@ -98,6 +98,7 @@ export const translations = {
     "account.person.info.email": "Địa Chỉ Email",
     "account.person.info.tel": "Số Điện Thoại Di Đông",
     "account.person.info.birth.date": "Ngày Sinh",
+    "account.person.info.gender": "Giới Tính",
     "account.person.info.address": "Địa Chỉ",
     "account.person.info.save.btn": "Lưu",
     "account_tutor_edu_title": "giáo dục",
@@ -117,6 +118,8 @@ export const translations = {
     "speciality": "Chuyên môn",
     "save": "Lưu",
     "cancel": "Huỷ",
+    'male': 'Nam',
+    'female': 'Nữ',
     "search_course": "Từ khoá tìm kiếm",
 
     "course_category": "Lớp học",

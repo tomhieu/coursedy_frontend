@@ -2,7 +2,7 @@ import {validateEmail, validateMandatoryField, validatePassword} from "./CommonV
 
 export const validate = (values) => {
     const errors = {}
-    validateMandatoryField('name', values.firstName, 'first_name_required', errors);
+    validateMandatoryField('name', values.name, 'first_name_required', errors);
 
     validateEmail('email', values.email, errors);
     return errors

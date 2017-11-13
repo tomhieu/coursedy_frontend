@@ -2,11 +2,14 @@ import {Component} from "react";
 import FormField from "../../Core/FormField";
 import * as React from "react";
 import {savePersonData} from "actions/TutorAccountActionCreator";
+import {genders} from '../../../constants/TutorAccount'
 
 export class PersonalInfoForm extends Component {
 
   render() {
     const {handleSubmit} = this.props;
+    let self = this;
+
     return (
       <form onSubmit={handleSubmit(this.props.onSubmit)}>
         <div>
@@ -18,9 +21,21 @@ export class PersonalInfoForm extends Component {
           <FormField formGroupId="emailId" formLabel={this.context.t("account.person.info.email")}
                      isMandatoryField={true} formControlName="email" typeField="custom_input"/>
         </div>
-        <div className="datepicker-box">
-          <FormField formGroupId="birthDateId" formLabel={this.context.t("account.person.info.birth.date")}
-                     formControlName="date_of_birth" typeField="datepicker"/>
+        <div className='row'>
+          <div className='col-sm-4'>
+            <div className="datepicker-box">
+              <FormField formGroupId="birthDateId" formLabel={this.context.t("account.person.info.birth.date")}
+                         formControlName="date_of_birth" typeField="datepicker"/>
+            </div>
+          </div>
+          <div className='col-sm-3'>
+            <div >
+              <FormField formGroupId="genderId" formLabel={this.context.t("account.person.info.gender")}
+                         formControlName="gender" typeField="custom_select"
+                         options = {genders.map(g => {return {id: g[0], text: self.context.t(g[1])}})}
+              />
+            </div>
+          </div>
         </div>
         <div>
           <FormField formGroupId="addressId" formLabel={this.context.t("account.person.info.address")}
