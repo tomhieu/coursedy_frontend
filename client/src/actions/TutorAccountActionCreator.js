@@ -190,10 +190,21 @@ export const fetchUser = () => {
   }
 }
 
-export const savePersonData = (name, email, date_of_birth, address) => {
+export const closeEmailConfirmationModal = () => {
+  return {
+    type: types.HIDE_REQUIRED_EMAIL_CONFIRMATION_MODAL
+  }
+}
+
+export const savePersonData = (name, email, date_of_birth, address, emailChanged) => {
   let body = {name, email, date_of_birth, address}
   return dispatch => {
     Network().update('/auth', body).then((response) => {
+      if (emailChanged){
+        dispatch({
+          type: types.SHOW_REQUIRED_EMAIL_CONFIRMATION_MODAL
+        })
+      }
       dispatch({
         type: types.SET_ACCOUNT_USER,
         payload: response

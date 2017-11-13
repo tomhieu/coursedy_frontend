@@ -59,5 +59,6 @@ PersonalInfoForm.contextTypes = {
 
 PersonalInfoForm.propTypes = {
   onSubmit: React.PropTypes.func.isRequired,
-  cancel: React.PropTypes.func.isRequired
+  cancel: React.PropTypes.func.isRequired,
+  closeEmailConfirmationModal: React.PropTypes.func.isRequired,
 }

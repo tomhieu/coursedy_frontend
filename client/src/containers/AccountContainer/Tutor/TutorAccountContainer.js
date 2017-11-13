@@ -6,6 +6,8 @@ import {connect} from "react-redux";
 import PersonInfoContainer from "./PersonInfo";
 import {UserInfo} from 'components/index'
 import * as Actions from '../../../actions/TutorAccountActionCreator'
+import {closeEmailConfirmationModal} from "../../../actions/TutorAccountActionCreator";
+import {RequireEmailConfirmationModal} from '../../../components/index'
 
 class TutorAccount extends Component {
   componentWillMount(){
@@ -18,6 +20,10 @@ class TutorAccount extends Component {
 
   hideProfileEditForm(){
     this.props.dispatch(Actions.hideProfileEditForm())
+  }
+
+  closeEmailConfirmationModal(){
+    this.props.dispatch(closeEmailConfirmationModal())
   }
 
   render() {
@@ -43,6 +49,7 @@ class TutorAccount extends Component {
             <ChangePassword/>
           </div>
         </div>
+        <RequireEmailConfirmationModal close={this.closeEmailConfirmationModal.bind(this)} show={this.props.showEmailConfirmationModal}/>
       </div>
     )
   }
@@ -56,6 +63,7 @@ const mapStateToProps = (state) => ({
   editProfileMode: state.TutorAccount.editProfileMode,
   editEducationMode: state.TutorAccount.editEducationMode,
   editPasswordMode: state.TutorAccount.editPasswordMode,
+  showEmailConfirmationModal: state.TutorAccount.showEmailConfirmationModal,
   user: state.TutorAccount.user
 });
 

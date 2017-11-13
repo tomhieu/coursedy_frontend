@@ -26,6 +26,7 @@ import TutorDashboardMenu from './Dashboard/TutorDashboard/TutorDashboardMenu'
 import TutorDashboardIndex from './Dashboard/TutorDashboard/TutorDashboardIndex'
 import CourseForm from './Courses/CourseForm'
 import UserInfo from './Account/UserInfo'
+import RequireEmailConfirmationModal from './Account/RequireEmailConfirmationModal'
 
 export {
   Header,
@@ -55,5 +56,6 @@ export {
   TutorDashboardIndex,
   CourseForm,
   TutorProfileDetails,
-  UserInfo
+  UserInfo,
+  RequireEmailConfirmationModal
 };
