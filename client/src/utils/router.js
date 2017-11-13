@@ -1,10 +1,10 @@
 import React from 'react';
-import { Provider } from 'react-redux';
-import store, { history } from '../store/store';
+import {Provider} from 'react-redux';
+import store from '../store/store';
 import App from '../components/App';
 import * as Pages from '../pages/';
 import ReduxToastr from 'react-redux-toastr';
-import { Router, Switch, Route } from 'react-router-dom'
+import {Route, Router, Switch} from 'react-router-dom'
 import {globalHistory} from "utils/globalHistory";
 
 const router = (
@@ -24,7 +24,6 @@ const router = (
             <Route path="/course/:id" component={Pages.PublicCourseDetailPage}/>
             <Route path="/tutors" component={Pages.TutorPage} />
             <Route path="/dashboard" component={Pages.TutorDashboard} />
-            <Route path="/account" component={Pages.TutorAccount} />
             <Route path="/404" component={Pages.NotFoundPage} />
           </Switch>
         </App>

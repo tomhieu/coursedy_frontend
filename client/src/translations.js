@@ -114,6 +114,10 @@ export const translations = {
     "save": "Lưu",
     "cancel": "Huỷ",
     "search_course": "Từ khoá tìm kiếm",
+
+    "course_category": "Lớp học",
+    "course_level": "Cấp độ",
+    
     "category": "Lớp học",
     "level": "Cấp độ",
     "filter": "Tìm kiếm nâng cao",

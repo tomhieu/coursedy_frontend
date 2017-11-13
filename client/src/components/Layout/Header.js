@@ -62,7 +62,7 @@ class Header extends Component {
 
             <LinkContainer to="/dashboard/courses/list" className={this.props.session.currentUser ? '' : 'hidden'}>
               <NavItem eventKey={8}>
-                <span className="nav-btn"> <i className="fa fa-sign-out"></i> &nbsp; {this.context.t('dashboard')}</span>
+                <span className="nav-btn"> <i className="fa fa-user"></i> &nbsp; {this.context.t('dashboard')}</span>
               </NavItem>
             </LinkContainer>
 

@@ -14,7 +14,7 @@ class CourseForm extends Component {
   }
 
   render() {
-    const {handleSubmit, addLesson, onDropCoverImage, cover_image, submitting, pristine, valid, courseData } = this.props;
+    const {handleSubmit, addLesson, onDropCoverImage, cover_image, submitting, pristine, valid, courseData, categories, course_levels } = this.props;
     const errors = null;
     const periodTypes = PERIOD_TYPES.map((type) => {
       return {text: TT.t(type), id: type};
@@ -22,7 +22,6 @@ class CourseForm extends Component {
     const concurrency = CURRENCIES.map((type) => {
       return {text: type, id: type};
     });
-
     return (
       <div className="dashboard-panel">
         <form onSubmit={handleSubmit(this.props.onSubmit)} className='inline-form' multiple={true}>
@@ -37,6 +36,20 @@ class CourseForm extends Component {
           </div>
 
           <FormField formGroupId="titleId" formLabel={this.context.t("course_title")} placeholder={this.context.t("sample_course_title")} isMandatoryField={true} formControlName="title" typeField="custom_input"></FormField>
+
+          <div className='row'>
+            <div className='col-sm-6'>
+              <FormField formGroupId="category_id" formLabel={this.context.t("course_category")} placeholder={this.context.t("course_category")}
+                         options={categories.map((category) => {
+                             return {id: category.id, text: category.name}
+                         })} isMandatoryField={true} formControlName="category_id" typeField="custom_select" {...this.props}></FormField>
+            </div>
+            <div className='col-sm-6'>
+              <FormField formGroupId="course_level_id" formLabel={this.context.t("course_level")} placeholder={this.context.t("course_level")}
+                         options={course_levels} isMandatoryField={true} formControlName="course_level_id" typeField="custom_select"></FormField>
+            </div>
+          </div>{/* Course category and course level */}
+
           <div className='row'>
             <div className='col-sm-6'>
               <div className="datepicker-box">
@@ -48,7 +61,7 @@ class CourseForm extends Component {
                 <FormField formGroupId="end_date_Id" formLabel={this.context.t("end_date")} isMandatoryField={true} formControlName="end_date" typeField="datepicker"></FormField>
               </div>
             </div>
-          </div>
+          </div>{/* Course start date and end date */}
 
           <div className='row'>
             <div className='col-md-5 col-sm-5'>
