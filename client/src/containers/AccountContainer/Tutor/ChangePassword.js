@@ -36,8 +36,8 @@ class ChangePassword extends Component {
                         <FormField formGroupId="newPassword2Id" formLabel={this.context.t("account_tutor_new_password_again_title")} formControlName="newPassword2" type="password" typeField="custom_input"/>
                     </div>
 
-                    <div>
-                        <button type="submit" className="ml-15 mr-15 mt-15 btn-link-dark">{this.context.t("account_tutor_new_password_btn")}</button>
+                    <div className='form-group'>
+                        <button type="submit" className="top20 btn-link-dark">{this.context.t("account_tutor_new_password_btn")}</button>
                     </div>
                 </form>
             </div>

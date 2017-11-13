@@ -91,6 +91,7 @@ export const translations = {
      */
     "account.person.info.title": "Thông Tin Cá Nhân",
     "account.person.info.first.name": "Tên",
+    "account.person.info.full_name": "Họ và Tên",
     "account.person.info.last.name": "Họ",
     "account.person.info.email": "Địa Chỉ Email",
     "account.person.info.tel": "Số Điện Thoại Di Đông",
