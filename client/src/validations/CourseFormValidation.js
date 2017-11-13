@@ -48,7 +48,15 @@ export const validate = (values) => {
   }
 
   if (!values.description) {
-      errors.description = TT.t('course_description_mandatory')
+    errors.description = TT.t('course_description_mandatory')
+  }
+
+  if (!values.category_id) {
+    errors.category_id = TT.t('category_mandatory')
+  }
+
+  if (!values.course_level_id) {
+    errors.course_level_id = TT.t('course_level_mandatory')
   }
 
   return errors

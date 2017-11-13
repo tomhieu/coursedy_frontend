@@ -3,7 +3,6 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Select2 from "react-select2-wrapper";
 import moment from "moment";
-import {isEmpty} from "lodash/lang";
 import Dropzone from "react-dropzone";
 import {TT} from "../utils/locale";
 import * as ObjectUtil from "../utils/ObjectUtils";
@@ -36,11 +35,11 @@ export const renderDatePicker = ({input, label, type, meta: {touched, error, war
   </div>)
 }
 
-export const renderSelect = (selectOptions, onChange = null) => {
+export const renderSelect = (selectOptions, selectedValue) => {
   return ({input, label, type, meta: {touched, error, warning}}) => (
     <div className="dark-picker dark-picker-bright">
       <Select2 {...input}
-               defaultValue={!isEmpty(selectOptions) && selectOptions.length > 0 ? selectOptions[0].id : 0}
+               defaultValue={selectedValue}
                data={selectOptions}
       />
       {touched && ((error && <span className='input-errors'>{error}</span>) || (warning && <span>{warning}</span>))}

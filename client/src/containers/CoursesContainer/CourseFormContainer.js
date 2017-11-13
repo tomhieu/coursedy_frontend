@@ -15,10 +15,10 @@ class CourseFormContainer extends Component {
   }
 
   componentWillMount() {
-    this.props.dispatch(FilterActions.fetchCategories())
     if (this.courseId) {
       this.props.dispatch(loadCourseDetail(this.courseId));
     }
+      this.props.dispatch(FilterActions.fetchCategories());
   }
 
   createCourse({title, description, category_id, course_level_id, start_date, end_date, number_of_students, period, period_type, tuition_fee, currency}) {
@@ -74,8 +74,8 @@ const mapStateToProps = (state) => {
 
   return {
     courseCreationForm, lessonList, cover_image,categories,
-    initialValues: courseData,
-    course_levels: courseCreationForm != undefined ? getCourseLevelFromCategory(categories, Number(courseCreationForm.values.category_id)) : []
+    course_levels: courseCreationForm != undefined ? getCourseLevelFromCategory(categories, Number(courseCreationForm.values.category_id)) : [],
+    initialValues: courseData
   };
 };
 

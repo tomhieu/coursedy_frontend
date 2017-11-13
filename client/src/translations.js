@@ -63,6 +63,8 @@ export const translations = {
     "tuition_fee_mandatory": "Vui lòng nhập học phí",
     "course_description": "Giới thiệu khoá học",
     "course_description_mandatory": "Vui lòng nhập giới thiệu khoá học",
+    "category_mandatory": "Vui lòng chọn lớp học",
+    "course_level_mandatory": "Vui lòng chọn cấp độ",
     "course_modification": "Sửa Khoá Học",
     "cover_image": "Ảnh đại diện",
     "course_add_btn": "Thêm Khoá Học",
