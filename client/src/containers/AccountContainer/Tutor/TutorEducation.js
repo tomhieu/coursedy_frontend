@@ -90,8 +90,8 @@ class TutorEducation extends Component {
                         <FormField formGroupId="schoolId" formLabel={this.context.t("account_tutor_school_title")} formControlName="school" typeField="custom_input"/>
                     </div>
 
-                    <div>
-                        <button type="submit" className="ml-15 mr-15 mt-15 btn-link-dark">{this.context.t("account_tutor_save_btn")}</button>
+                    <div className='form-group'>
+                        <button type="submit" className="btn-link-dark top20">{this.context.t("account_tutor_save_btn")}</button>
                     </div>
                 </form>
             </div>
