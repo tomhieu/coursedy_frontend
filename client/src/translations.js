@@ -79,7 +79,7 @@ export const translations = {
     "lesson_period": "Thời Lượng",
     "lesson_save_btn": "Tạo Buổi Học",
     "lesson_link_edit": "Thêm Chi Tiết",
-    "lesson_list_next": "Tiếp Tục",
+    "lesson_list_next": "Thêm Buổi Học",
     "lesson_popup_edit_title": "Chi Tiết Nội Dung Buổi Học",
     "lesson_required": "Vui lòng nhập tên buổi học",
     "lesson_priode_required": "Vui lòng nhập thời lượng buổi học",

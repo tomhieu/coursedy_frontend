@@ -11,11 +11,12 @@ class CourseFormContainer extends Component {
     super(props);
     // store the image preview url. Retrieve from the DropZone(onDrop) or the redux store
     this.coverImage = this.props.cover_image;
+    this.courseId = this.props.match.params.id;
   }
 
   componentWillMount() {
-    if (this.props.match.params.id) {
-      this.props.dispatch(loadCourseDetail(this.props.match.params.id));
+    if (this.courseId) {
+      this.props.dispatch(loadCourseDetail(this.courseId));
     }
   }
 
@@ -35,7 +36,7 @@ class CourseFormContainer extends Component {
 
   render() {
     return (
-      <CourseForm onSubmit={this.createCourse.bind(this)} addLesson={this.addLesson.bind(this)} onDropCoverImage={this.onDropCoverImage.bind(this)} {...this.props}/>
+      <CourseForm onSubmit={this.createCourse.bind(this)} addLesson={this.addLesson.bind(this)} onDropCoverImage={this.onDropCoverImage.bind(this)} courseId={this.courseId} {...this.props}/>
     )
   }
 }
