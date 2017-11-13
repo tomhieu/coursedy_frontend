@@ -22,7 +22,6 @@ class CourseForm extends Component {
     const concurrency = CURRENCIES.map((type) => {
       return {text: type, id: type};
     });
-    debugger
     return (
       <div className="dashboard-panel">
         <form onSubmit={handleSubmit(this.props.onSubmit)} className='inline-form' multiple={true}>
