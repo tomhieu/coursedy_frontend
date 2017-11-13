@@ -16,7 +16,7 @@ class PersonInfoContainer extends Component {
 
 
   savePersonInfo({name, email, date_of_birth, address, gender}) {
-    this.props.dispatch(savePersonData(name, email, date_of_birth, address, this.props.initialValues.email != email));
+    this.props.dispatch(savePersonData(name, email, date_of_birth, address, gender, this.props.initialValues.email != email));
   }
 
 

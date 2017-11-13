@@ -196,8 +196,8 @@ export const closeEmailConfirmationModal = () => {
   }
 }
 
-export const savePersonData = (name, email, date_of_birth, address, emailChanged) => {
-  let body = {name, email, date_of_birth, address}
+export const savePersonData = (name, email, date_of_birth, address, gender, emailChanged) => {
+  let body = {name, email, date_of_birth, address, gender}
   return dispatch => {
     Network().update('/auth', body).then((response) => {
       if (emailChanged){
