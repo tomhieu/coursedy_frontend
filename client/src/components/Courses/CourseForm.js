@@ -102,7 +102,10 @@ class CourseForm extends Component {
                       disabled={((pristine || submitting) && courseData) || !valid}>
                   {this.context.t("save_course")}
               </button>
-              <button onClick={addLesson} className="btn btn-primary btn-link-dark" disabled={((pristine || submitting) && courseData) || !valid}>{this.context.t('lesson_list_next')}</button>
+              {this.props.courseId && Number(this.props.courseId) > 0 ? (
+                  <button onClick={addLesson} className="btn btn-primary btn-link-dark" disabled={((pristine || submitting) && courseData) || !valid}>{this.context.t('lesson_list_next')}</button>
+              ): null}
+
             </div>
           </div>
         </form>

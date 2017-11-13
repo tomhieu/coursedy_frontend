@@ -2,7 +2,7 @@ import {Component} from "react";
 import InlineEditFormComponent from "../InlineEditFormComponent";
 import * as React from "react";
 import EditLessonFormContainer from "../../containers/CoursesContainer/EditLessonFormContainer";
-import {hideLessonDetailPopup, saveLessonDetail} from "../../actions/CourseFormActionCreator";
+import {hideLessonDetailPopup, saveOrUpdateLesson} from "../../actions/CourseFormActionCreator";
 class LessonLineComponent extends Component {
     constructor(props) {
         super(props)
@@ -14,13 +14,13 @@ class LessonLineComponent extends Component {
 
     saveLesson(lesson) {
         lesson['posId'] = this.props.lesson.posId;
-        this.props.dispatch(saveLessonDetail(lesson));
+        this.props.dispatch(saveOrUpdateLesson(lesson));
     }
 
     onUpdateLessonName(lessonName, onSuccess, onError) {
         if (lessonName.speciality != '' && lessonName != undefined) {
             onSuccess();
-            this.props.dispatch(saveLessonDetail({lessonName: lessonName.speciality, posId: this.props.lesson.posId}));
+            this.props.dispatch(saveOrUpdateLesson({lessonName: lessonName.speciality, posId: this.props.lesson.posId}));
         } else {
             return onError([this.context.t('mandatory_field_context', {field: this.context.t('period_field')})]);
         }
@@ -33,7 +33,7 @@ class LessonLineComponent extends Component {
             return onError([this.context.t('field_number_validator')]);
         } else {
             onSuccess();
-            this.props.dispatch(saveLessonDetail({lessonPeriod: lessonPeriod.speciality, posId: this.props.lesson.posId}));
+            this.props.dispatch(saveOrUpdateLesson({lessonPeriod: lessonPeriod.speciality, posId: this.props.lesson.posId}));
         }
     }
 

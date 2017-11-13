@@ -1,27 +1,29 @@
-import React, {Component} from 'react';
-import {CourseForm} from '../../components/index';
-import {addAndModifyLessonCourse, createCourse, loadCourseDetail} from '../../actions/CourseFormActionCreator'
-import * as FilterActions from '../../actions/CourseFilterActionCreator'
-import {connect} from 'react-redux';
-import {reduxForm} from 'redux-form';
-import {validate} from '../../validations/CourseFormValidation';
+import React, {Component} from "react";
+import {CourseForm} from "../../components/index";
+import {addAndModifyLessonCourse, createCourse, loadCourseDetail} from "../../actions/CourseFormActionCreator";
+import * as FilterActions from "../../actions/CourseFilterActionCreator";
+import {connect} from "react-redux";
+import {reduxForm} from "redux-form";
+import {validate} from "../../validations/CourseFormValidation";
 
 class CourseFormContainer extends Component {
   constructor(props) {
     super(props);
     // store the image preview url. Retrieve from the DropZone(onDrop) or the redux store
     this.coverImage = this.props.cover_image;
+    this.courseId = this.props.match.params.id;
   }
 
   componentWillMount() {
     this.props.dispatch(FilterActions.fetchCategories())
-    if (this.props.match.params.id) {
-      this.props.dispatch(loadCourseDetail(this.props.match.params.id));
+    if (this.courseId) {
+      this.props.dispatch(loadCourseDetail(this.courseId));
     }
   }
 
   createCourse({title, description, category_id, course_level_id, start_date, end_date, number_of_students, period, period_type, tuition_fee, currency}) {
-    this.props.dispatch(createCourse(title, description, category_id, course_level_id, start_date, end_date, number_of_students, period, period_type, tuition_fee, currency, this.coverImage, this.props.lessonList));
+    this.props.dispatch(createCourse(title, description, category_id, course_level_id, start_date, end_date, number_of_students,
+        period, period_type, tuition_fee, currency, this.coverImage, this.props.lessonList));
   }
 
   addLesson() {
@@ -36,11 +38,8 @@ class CourseFormContainer extends Component {
 
   render() {
     return (
-      <CourseForm
-        onSubmit={this.createCourse.bind(this)}
-        addLesson={this.addLesson.bind(this)}
-        onDropCoverImage={this.onDropCoverImage.bind(this)} {...this.props}
-      />
+      <CourseForm onSubmit={this.createCourse.bind(this)} addLesson={this.addLesson.bind(this)}
+                  onDropCoverImage={this.onDropCoverImage.bind(this)} courseId={this.courseId} {...this.props}/>
     )
   }
 }

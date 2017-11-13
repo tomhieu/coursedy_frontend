@@ -35,7 +35,7 @@ class CourseItem extends Component {
 
           <div className="clearfix"></div>
           <div className="col-xs-12">
-            <div className="col-xs-12 col-sm-12 col-md-12 course-info no-pad">
+            <div className={!this.props.item.onlyTutor ? "col-xs-12 col-sm-12 col-md-8 course-info no-pad" : "col-xs-12 col-sm-12 col-md-12 course-info no-pad"}>
               <h3 className={styles.courseTitle}>
                 <LinkContainer to={ !this.props.item.onlyTutor ? '/course/' + this.props.item.id : '/dashboard/courses/detail/' + this.props.item.id }><span>{this.props.item.title}</span></LinkContainer>
               </h3>

@@ -8,8 +8,7 @@ import {
     HIDE_LESSON_POPUP_EDIT
 } from "actions/CourseFormActionCreator";
 import {
-    DELETE_DOCUMENT_FOR_LESSON, FETCH_DETAIL_COURSE_SUCESSFULLY,
-    SAVE_LESSON_DETAIL
+    DELETE_DOCUMENT_FOR_LESSON, FETCH_DETAIL_COURSE_SUCESSFULLY, SAVE_LESSON_SUCESSFULLY
 } from "../actions/CourseFormActionCreator";
 
 const CourseFormComponent = (state = {
@@ -48,7 +47,7 @@ const CourseFormComponent = (state = {
       return Object.assign({}, state, {
         lessonCreationForm: Object.assign({}, state.lessonCreationForm, {lessonList: editLessonList, activeLesson: activeLesson})
       });
-    case SAVE_LESSON_DETAIL:
+    case SAVE_LESSON_SUCESSFULLY:
       let updatedLessonList = JSON.parse(JSON.stringify(state.lessonCreationForm.lessonList));
         updatedLessonList.map((lesson) =>
           {
@@ -60,7 +59,6 @@ const CourseFormComponent = (state = {
               }
           }
       );
-
       return Object.assign({}, state, {
           lessonCreationForm:  Object.assign({}, state.lessonCreationForm, {activeLesson: null, lessonList: updatedLessonList})
       });
@@ -106,6 +104,7 @@ const CourseFormComponent = (state = {
               lessonCreationForm:  Object.assign({}, state.lessonCreationForm, {lessonList: deletedLessonList})
           });
       }
+
     default:
       return state;
   }

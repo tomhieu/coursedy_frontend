@@ -7,7 +7,7 @@ export const DELETE_LESSON = 'DELETE_LESSON';
 export const EDIT_DETAIL_LESSON = 'EDIT_DETAIL_LESSON';
 export const SAVE_LESSON_DETAIL = 'SAVE_LESSON_DETAIL';
 export const HIDE_LESSON_POPUP_EDIT = 'HIDE_LESSON_POPUP_EDIT';
-export const SAVE_COURSE_ANF_LESSON = 'SAVE_COURSE_ANF_LESSON';
+export const SAVE_LESSON_SUCESSFULLY = 'SAVE_LESSON_SUCESSFULLY';
 export const ADD_MODIFY_COURSE_LESSON = 'ADD_MODIFY_COURSE_LESSON';
 export const ADD_DOCUMENT_FOR_LESSON = 'ADD_DOCUMENT_FOR_LESSON';
 export const DELETE_DOCUMENT_FOR_LESSON = 'DELETE_DOCUMENT_FOR_LESSON';
@@ -33,6 +33,18 @@ export const createCourse = (title, description, category_id, course_level_id, s
     });
   }
 };
+
+export const saveOrUpdateLesson = (lessonName, lessonPeriod, lessonDesciption, documents = []) => {
+    return dispatch => {
+        let body = {lessonName, lessonPeriod, lessonDesciption, documents};
+        Network().post('lessons', body).then((response) => {
+            dispatch({
+                type: SAVE_LESSON_SUCESSFULLY,
+                payload: body
+            });
+        })
+    }
+}
 
 export const loadCourseDetail = (courseId) => {
     return dispatch => {
@@ -93,13 +105,6 @@ export const deleteDocumentForLesson = (lessonId, documentId) => {
             documentId: documentId
         }
     }
-};
-
-export const saveLessonDetail = (lesson) => {
-  return {
-    type: SAVE_LESSON_DETAIL,
-    data: lesson
-  };
 };
 
 export const hideLessonDetailPopup = (lessonId) => {
