@@ -122,6 +122,8 @@ export const translations = {
     "cancel": "Huỷ",
     'male': 'Nam',
     'female': 'Nữ',
+    'gender.M': 'Nam',
+    'gender.F': 'Nữ',
     "search_course": "Từ khoá tìm kiếm",
 
     "course_category": "Lớp học",
