@@ -20,11 +20,11 @@ export class PersonalInfoForm extends Component {
         </div>
         <div className="datepicker-box">
           <FormField formGroupId="birthDateId" formLabel={this.context.t("account.person.info.birth.date")}
-                     isMandatoryField={true} formControlName="date_of_birth" typeField="datepicker"/>
+                     formControlName="date_of_birth" typeField="datepicker"/>
         </div>
         <div>
           <FormField formGroupId="addressId" formLabel={this.context.t("account.person.info.address")}
-                     placeholder={this.context.t("account.person.info.address")} isMandatoryField={true}
+                     placeholder={this.context.t("account.person.info.address")}
                      formControlName="address" typeField="custom_input"/>
         </div>
         <div className='form-group'>
