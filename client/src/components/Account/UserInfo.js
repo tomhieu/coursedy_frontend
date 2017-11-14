@@ -48,7 +48,7 @@ class UserInfo extends Component {
               <label className='control-label'>{this.context.t("account.person.info.gender")}</label>
             </div>
             <div className='col-sm-8'>
-              <span>{this.context.t(`gender.${user.gender}`)}</span>
+              <span>{user.gender ? this.context.t(`gender.${user.gender}`) : ''}</span>
             </div>
           </div>
           <hr/>
