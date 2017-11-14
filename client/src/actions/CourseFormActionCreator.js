@@ -2,16 +2,14 @@ import * as types from '../constants/CourseFormComponent';
 import Network from '../utils/network'
 import {TT} from '../utils/locale'
 
-export const ADD_MORE_LESSON = 'ADD_MORE_LESSON';
-export const DELETE_LESSON = 'DELETE_LESSON';
-export const EDIT_DETAIL_LESSON = 'EDIT_DETAIL_LESSON';
-export const SAVE_LESSON_DETAIL = 'SAVE_LESSON_DETAIL';
-export const HIDE_LESSON_POPUP_EDIT = 'HIDE_LESSON_POPUP_EDIT';
-export const SAVE_LESSON_SUCESSFULLY = 'SAVE_LESSON_SUCESSFULLY';
-export const ADD_MODIFY_COURSE_LESSON = 'ADD_MODIFY_COURSE_LESSON';
-export const ADD_DOCUMENT_FOR_LESSON = 'ADD_DOCUMENT_FOR_LESSON';
-export const DELETE_DOCUMENT_FOR_LESSON = 'DELETE_DOCUMENT_FOR_LESSON';
+
 export const FETCH_DETAIL_COURSE_SUCESSFULLY = 'FETCH_DETAIL_COURSE_SUCESSFULLY';
+/**
+ * Define actions to create, edit or delete Section
+ */
+export const ADD_NEW_SECTION = 'ADD_NEW_SECTION';
+export const DELETE_SECTION_SUCESSFULLY = 'DELETE_SECTION_SUCESSFULLY';
+export const CREATE_UPDATE_SECTION_SUCESSFULLY = 'CREATE_UPDATE_SECTION_SUCESSFULLY';
 
 export const createCourse = (title, description, category_id, course_level_id, start_date, end_date, number_of_students, period, period_type, tuition_fee, currency, cover_image) => {
   return dispatch => {
@@ -57,59 +55,34 @@ export const loadCourseDetail = (courseId) => {
     };
 };
 
-export const addAndModifyLessonCourse = (courseData, lessonList) => {
-  return {
-    type: ADD_MODIFY_COURSE_LESSON,
-    data: {
-      courseData: courseData,
-      lessonList: lessonList
-    }
-  }
-};
-
-export const addLesson = () => {
-  return {
-    type: ADD_MORE_LESSON
-  };
-};
-
-export const deleteLesson = (lessonId) => {
-  return {
-    type: DELETE_LESSON,
-    data: lessonId
-  }
-};
-
-export const editLessonDetail = (lessonId) => {
-  return {
-    type: EDIT_DETAIL_LESSON,
-    data: lessonId
-  };
-};
-
-export const addDocumentForLesson = (lessonId, document) => {
-  return {
-    type: ADD_DOCUMENT_FOR_LESSON,
-    data: {
-      lessonId: lessonId,
-      document: document
-    }
-  }
-};
-
-export const deleteDocumentForLesson = (lessonId, documentId) => {
+/**
+ * Defined all action methods to handle Section
+ */
+export const addNewSection = () => {
     return {
-        type: DELETE_DOCUMENT_FOR_LESSON,
-        data: {
-            lessonId: lessonId,
-            documentId: documentId
-        }
+        type: ADD_NEW_SECTION
     }
-};
+}
 
-export const hideLessonDetailPopup = (lessonId) => {
-    return {
-        type: HIDE_LESSON_POPUP_EDIT,
-        data: lessonId
-    };
-};
+export const saveOrUpdateSection = (id, title, name) => {
+    return dispatch => {
+        let body = {id, title, name};
+        Network().post('courses/section', body).then((response) => {
+            dispatch({
+                type: CREATE_UPDATE_SECTION_SUCESSFULLY,
+                payload: response
+            });
+        })
+    }
+}
+
+export const deleteSection = (id) => {
+    return dispatch => {
+        Network().delete('courses/section', id).then((response) => {
+            dispatch({
+                type: DELETE_SECTION_SUCESSFULLY,
+                payload: id
+            });
+        })
+    }
+}

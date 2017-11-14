@@ -1,7 +1,7 @@
-import { combineReducers } from 'redux';
-import { routerReducer } from 'react-router-redux';
-import { reducer as formReducer } from 'redux-form';
-import { reducer as toastrReducer } from 'react-redux-toastr';
+import {combineReducers} from 'redux';
+import {routerReducer} from 'react-router-redux';
+import {reducer as formReducer} from 'redux-form';
+import {reducer as toastrReducer} from 'react-redux-toastr';
 import {i18nState} from "redux-i18n"
 
 // Import the various reducers here:
@@ -22,27 +22,28 @@ import loadEducationData from "./TutorEducation";
 import addNewDocumentFile from "./AddDocumentFile";
 
 const rootReducer = combineReducers({
-  // Apply all of the reducers here.
-  i18nState,
-  LoginComponent,
-  SignUpComponent,
+    // Apply all of the reducers here.
+    i18nState,
+    LoginComponent,
+    SignUpComponent,
 
-  //Reducers for course
-  CourseListReducer,
-  CourseDetailReducer,
-  CourseFormComponent,
-  TutorCourseList,
+    //Reducers for course
+    CourseListReducer,
+    CourseDetailReducer,
+    CourseFormComponent,
+    CourseLesson,
+    TutorCourseList,
 
-  session,
-  TutorProfile,
-  routing: routerReducer,
-  form: formReducer,
-  toastr: toastrReducer,
-  // Person Info screen
-  loadPersonData,
-  loadEducationData,
-  addNewDocumentFile,
-  CourseFilter
+    session,
+    TutorProfile,
+    routing: routerReducer,
+    form: formReducer,
+    toastr: toastrReducer,
+    // Person Info screen
+    loadPersonData,
+    loadEducationData,
+    addNewDocumentFile,
+    CourseFilter
 });
 
 export default rootReducer;
