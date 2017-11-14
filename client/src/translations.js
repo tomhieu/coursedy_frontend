@@ -145,7 +145,9 @@ export const translations = {
     "mandatory_field_context": "Vui lòng điền thông tin {field}",
     "period_field": "Thời lượng",
     "name_lesson_field": "Tên Buổi Học",
-    "field_number_validator": "Vui lòng nhập số"
+    "field_number_validator": "Vui lòng nhập số",
+
+    'updating': 'Đang cập nhật'
   },
   "en": {
     "home_page": "Home",
