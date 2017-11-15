@@ -32,8 +32,8 @@ class CourseFormContainer extends Component {
         this.props.dispatch(CourseActions.addNewSection());
     }
 
-    saveSection({id, title, name}) {
-        this.props.dispatch(CourseActions.saveOrUpdateSection(id, title, name));
+    saveSection({id, title}) {
+        this.props.dispatch(CourseActions.saveOrUpdateSection(id, title));
     }
 
     deleteSection(id) {
@@ -47,7 +47,7 @@ class CourseFormContainer extends Component {
     render() {
         const {editMode, listSection, courseData} = this.props;
         return (
-            <div className="row">
+            <div className="row dashboard-panel">
                 <div className="col-sm-12 col-md-12">
                     <CourseForm onSubmit={this.createCourse.bind(this)} addSection={this.addNewSection.bind(this)}
                                 onDropCoverImage={this.onDropCoverImage.bind(this)} editMode={editMode} courseData={courseData}
@@ -55,19 +55,21 @@ class CourseFormContainer extends Component {
                 </div>
                 {
                     editMode ? (
-                        <div className="row">
-                            <div className="col-sm-12 col-md-12">
-                                <a className="align-self-center" onClick={this.addNewSection.bind(this)}>{this.context.t('lesson_link_edit')}</a>
+                        <div className="col-sm-12 col-md-12">
+                            <div className="row">
+                                <div className="col-sm-12 col-md-12">
+                                    <a className="align-self-center" onClick={this.addNewSection.bind(this)}>{this.context.t('lesson_link_edit')}</a>
+                                </div>
+                                <div className="col-sm-12 col-md-12">
+                                    {
+                                        listSection.map((section) =>
+                                            <SectionDetailContainer section={section} onSubmit={this.saveSection.bind(this)}
+                                                                    onDeleteSection={this.deleteSection.bind(this)} showPopupEdit={section.showLessonPopup}>
+                                            </SectionDetailContainer>)
+                                    }
+                                </div>
+                                <SectionCreationPopupContainer courseId={courseData.id}></SectionCreationPopupContainer>
                             </div>
-                            <div className="col-sm-12 col-md-12">
-                                {
-                                    listSection.map((section) =>
-                                        <SectionDetailContainer section={section} onSubmit={this.saveSection.bind(this)}
-                                                                onDeleteSection={this.deleteSection.bind(this)} showPopupEdit={section.showLessonPopup}>
-                                        </SectionDetailContainer>)
-                                }
-                            </div>
-                            <SectionCreationPopupContainer courseId={courseData.id}></SectionCreationPopupContainer>
                         </div>
                     ) : null
                 }

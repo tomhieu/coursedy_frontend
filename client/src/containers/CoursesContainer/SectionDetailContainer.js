@@ -47,6 +47,10 @@ class SectionDetailContainer extends Component {
         this.props.dispatch(LessonActions.addLesson(sectionId));
     }
 
+    saveLesson(lesson) {
+        this.props.dispatch(LessonActions.saveOrUpdateLesson(Object.assign(lesson, {section_id: this.props.section.id})));
+    }
+
     addDocumentForLesson(sectionId, lessonId, document) {
         this.props.dispatch(LessonActions.addDocumentForLesson(sectionId, lessonId, document))
     }
@@ -65,12 +69,8 @@ class SectionDetailContainer extends Component {
             <form onSubmit={handleSubmit(this.props.onSubmit)} className='inline-form' multiple={true}>
                 <div className="row">
                     <div className="col-md-3 col-sm-3">
-                        <InlineEditFormField formGroupId="sectionTitleId" formLabel={this.context.t("section_title")} placeholder={this.context.t("section_title")}
+                        <InlineEditFormField formGroupId="sectionTitleId" showLabel={false} formLabel={this.context.t("section_title")} placeholder={this.context.t("section_title")}
                                              content={section.title} isMandatoryField={true} formControlName="title" typeField="custom_input"></InlineEditFormField>
-                    </div>
-                    <div className="col-md-9 col-sm-9">
-                        <InlineEditFormField formGroupId="sectionNameId" formLabel={this.context.t("section_name")} placeholder={this.context.t("section_name")}
-                                             content={section.name} isMandatoryField={true} formControlName="name" typeField="custom_input"></InlineEditFormField>
                     </div>
                 </div>
                 <div className="row">
@@ -86,7 +86,7 @@ class SectionDetailContainer extends Component {
                         }
                     </div>
                 </div>
-                <EditLessonFormContainer show={showPopupEdit} hidePopup={this.hideLessonPopup.bind(this)} onSubmit={this.addLesson.bind(this)} {...this.props}/>
+                <EditLessonFormContainer show={showPopupEdit} hidePopup={this.hideLessonPopup.bind(this)} onSaveLesson={this.saveLesson.bind(this)} {...this.props}/>
             </form>
         )
     }

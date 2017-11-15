@@ -72,9 +72,9 @@ export const closePopupSection = () => {
     }
 }
 
-export const saveOrUpdateSection = (id, title, name) => {
+export const saveOrUpdateSection = (id, title) => {
     return dispatch => {
-        let body = {course_id: id, title, name};
+        let body = {course_id: id, title};
         Network().post('course_sections', body).then((response) => {
             dispatch({
                 type: CREATE_UPDATE_SECTION_SUCESSFULLY,

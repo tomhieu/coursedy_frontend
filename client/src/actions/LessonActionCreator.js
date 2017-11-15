@@ -22,14 +22,15 @@ export const deleteLesson = (lessonId) => {
     }
 };
 
-export const saveOrUpdateLesson = (lessonName, lessonPeriod, lessonDesciption, documents = []) => {
+export const saveOrUpdateLesson = (lesson) => {
     return dispatch => {
-        let body = {lessonName, lessonPeriod, lessonDesciption, documents};
-        Network().post('lessons', body).then((response) => {
+        Network().post('lessons', lesson).then((response) => {
             dispatch({
                 type: SAVE_LESSON_SUCESSFULLY,
                 payload: response
             });
+        }, (errors) => {
+            debugger
         })
     }
 }

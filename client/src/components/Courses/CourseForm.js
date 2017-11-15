@@ -32,7 +32,7 @@ class CourseForm extends Component {
             return {text: type, id: type};
         });
         return (
-            <div className="dashboard-panel">
+            <div>
                 <form onSubmit={handleSubmit(this.props.onSubmit)} className='inline-form' multiple={true}>
                     <div className={editMode ? "d-flex flex-horizontal justify-content-center mt-30 mb-30" : "d-flex flex-horizontal"}>
                         {

@@ -20,10 +20,6 @@ class SectionCreationPopupComponent extends Component {
                                 <FormField formGroupId="sectionTitleId" formLabel={this.context.t("section_title")} placeholder={this.context.t("section_title")}
                                            isMandatoryField={true} formControlName="title" typeField="custom_input"></FormField>
                             </div>
-                            <div className="col-md-12 col-sm-12">
-                                <FormField formGroupId="sectionNameId" formLabel={this.context.t("section_name")} placeholder={this.context.t("section_name")}
-                                           isMandatoryField={true} formControlName="name" typeField="custom_input"></FormField>
-                            </div>
                         </div>
                     </Modal.Body>
                     <Modal.Footer>
