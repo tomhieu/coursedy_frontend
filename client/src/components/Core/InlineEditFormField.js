@@ -1,12 +1,7 @@
-import React, {Component} from 'react';
-import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
-import Select2 from 'react-select2-wrapper';
-import Dropzone from 'react-dropzone'
-import {Field} from 'redux-form';
-import {connect} from 'react-redux';
-import {FormGroup} from 'react-bootstrap';
-import {TT} from '../utils/locale';
+import React from "react";
+import "react-datepicker/dist/react-datepicker.css";
+import {connect} from "react-redux";
+import {FormGroup} from "react-bootstrap";
 import FormField from "./FormField";
 
 class InlineEditFormField extends FormField {
@@ -34,9 +29,9 @@ class InlineEditFormField extends FormField {
         {
             if (this.state.editMode) {
                 return (
-                    <div className="d-flex flex-vertical">
+                    <div className={this.props.displayStyle + " d-flex flex-vertical"}>
                         {super.render()}
-                        <FormGroup>
+                        <FormGroup className="ml-15 mr-15 mt-10 d-flex justify-content-right">
                             <button type="submit" className="btn btn-primary mr-10" disabled={pristine || submitting}>
                                 {this.context.t("save")}
                             </button>
@@ -49,7 +44,8 @@ class InlineEditFormField extends FormField {
                 )
             } else {
                 return (
-                    <div className={this.props.displayStyle}>
+                    <div className={this.props.displayStyle + ' inline-field d-flex flex-horizontal'}>
+                        {this.props.formLabel != null ? (<label className="control-label">{this.props.formLabel}: </label>) : ''}
                         <span className='pre-wrap'>{this.props.content}</span>
                         <span className='inline-edit' onClick={this.showEditForm.bind(this)}><i className="fa fa-pencil"></i></span>
                     </div>
@@ -65,9 +61,7 @@ InlineEditFormField.contextTypes = {
 
 InlineEditFormField.propTypes = {
     displayStyle: React.PropTypes.string.isRequired,
-    content: React.PropTypes.string.isRequired,
-    name: React.PropTypes.string.isRequired,
-    onSubmit: React.PropTypes.func.isRequired
+    content: React.PropTypes.string.isRequired
 }
 
 const mapStateToProps = (state) => ({});

@@ -14,10 +14,14 @@ class FormField extends Component {
     }
 
     render() {
-        let fieldComponent = this.buildFieldRender(this.props);
+        const {formControlName, formLabel, placeholder, isMandatoryField, typeField, type, zoneHeight, internalPreview, previewUrl, onUpload, rows, options, selectedValues, customClassName} = this.props;
+        let fieldComponent = this.buildFieldRender(formControlName, placeholder, typeField, type, zoneHeight, internalPreview, previewUrl, onUpload, rows, options, selectedValues, customClassName);
         return (
             <FormGroup controlId="formGroupId" className={styles.fieldMargin}>
-                <ControlLabel> {this.props.formLabel} {this.props.isMandatoryField && <span className="red">*</span>} </ControlLabel>
+                {
+                    formLabel != null ? (<ControlLabel> {formLabel} {isMandatoryField && <span className="red">*</span>} </ControlLabel>) : ''
+                }
+
                 <div className="dark-picker dark-picker-bright">
                     {fieldComponent}
                 </div>
@@ -25,50 +29,57 @@ class FormField extends Component {
         )
     }
 
-    buildFieldRender(props) {
+    buildFieldRender(formControlName, placeholder, typeField, type, zoneHeight = "200px", internalPreview = false, previewUrl, onUpload, rows, options, selectedValues, customClassName = "form-control") {
         let fieldComponent;
 
-        switch (props.typeField) {
+        switch (typeField) {
             case "hidden": {
-                fieldComponent = <Field name={this.props.formControlName} placeholder={this.props.placeholder} component="input" className="hidden" />;
+                fieldComponent = <Field name={formControlName} placeholder={placeholder} component="input" className="hidden" />;
                 break;
             }
             case "custom_input": {
-                fieldComponent = <Field name={this.props.formControlName} placeholder={this.props.placeholder} type={this.props.type} component={renderField} className="form-control" />;
+                fieldComponent = <Field name={formControlName} placeholder={placeholder} type={type} component={renderField} customClassName={customClassName} />;
                 break;
             }
             case "custom_select": {
-                fieldComponent = <Field name={props.formControlName} placeholder={props.placeholder}
-                                        component={renderSelect(props.options, props.onChange)} className="form-control"/>;
+                fieldComponent = <Field name={formControlName} placeholder={placeholder}
+                                        component={renderSelect(options)} className={customClassName}/>;
                 break;
             }
             case "datepicker": {
-                fieldComponent = <Field name={props.formControlName} placeholder={props.placeholder} component={renderDatePicker}
-                           className="form-control"/>;
+                fieldComponent = <Field name={formControlName} placeholder={placeholder} component={renderDatePicker}
+                                        className={customClassName}/>;
                 break;
             }
             case "upload_file": {
-                fieldComponent = <Field name={props.formControlName} placeholder={props.placeholder} zoneHeight="200px" internalPreview={this.props.internalPreview}
-                                        previewUrl={props.previewUrl} onUpload={this.props.onUpload} component={renderSingleFileInput}/>
+                fieldComponent = <Field name={formControlName} placeholder={placeholder} zoneHeight={zoneHeight} internalPreview={internalPreview}
+                                        previewUrl={previewUrl} onUpload={onUpload} component={renderSingleFileInput}/>
                 break;
             }
             case "multi_select": {
-                fieldComponent = <Field name={props.formControlName} placeholder={props.placeholder}
-                                        component={renderMultiSelect(props.options, props.selectedValues)} className="form-control"/>
+                fieldComponent = <Field name={formControlName} placeholder={placeholder}
+                                        component={renderMultiSelect(options, selectedValues)} className={customClassName}/>
                 break;
             }
             case "custom_textarea": {
-                fieldComponent = <Field name={props.formControlName} placeholder={props.placeholder} rows={props.rows}
-                                        component={renderTextAreaField} className="form-control"/>
+                fieldComponent = <Field name={formControlName} placeholder={placeholder} rows={rows}
+                                        component={renderTextAreaField} className={customClassName}/>
                 break;
             }
             default: {
-                fieldComponent = <Field name={props.formControlName} placeholder={props.placeholder} component={props.typeField}
-                           className="form-control"/>;
+                fieldComponent = <Field name={formControlName} placeholder={placeholder} component={typeField}
+                                        className={customClassName}/>;
             }
         }
         return fieldComponent;
     }
 }
+
+FormField.propTypes = {
+    formControlName: React.PropTypes.string.isRequired,
+    formLabel: React.PropTypes.string.isRequired,
+    isMandatoryField: React.PropTypes.bool.isRequired,
+    typeField: React.PropTypes.string.isRequired
+};
 
 export default cssModules(FormField, styles);

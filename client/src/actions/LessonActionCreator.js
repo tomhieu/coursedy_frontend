@@ -1,15 +1,17 @@
-export const ADD_MORE_LESSON = 'ADD_MORE_LESSON';
+import Network from '../utils/network'
+
+export const ADD_MORE_LESSON_FOR_SECTION = 'ADD_MORE_LESSON_FOR_SECTION';
 export const DELETE_LESSON_SUCESSFULLY = 'DELETE_LESSON_SUCESSFULLY';
-export const EDIT_DETAIL_LESSON = 'EDIT_DETAIL_LESSON';
 export const SAVE_LESSON_DETAIL = 'SAVE_LESSON_DETAIL';
 export const HIDE_LESSON_POPUP_EDIT = 'HIDE_LESSON_POPUP_EDIT';
-export const SAVE_LESSON_SUCESSFULLY = 'SAVE_LESSON_SUCESSFULLY';W
+export const SAVE_LESSON_SUCESSFULLY = 'SAVE_LESSON_SUCESSFULLY';
 export const ADD_DOCUMENT_FOR_LESSON = 'ADD_DOCUMENT_FOR_LESSON';
 export const DELETE_DOCUMENT_FOR_LESSON = 'DELETE_DOCUMENT_FOR_LESSON';
 
-export const addLesson = () => {
+export const addLesson = (sectionId) => {
     return {
-        type: ADD_MORE_LESSON
+        type: ADD_MORE_LESSON_FOR_SECTION,
+        data: sectionId
     };
 };
 
@@ -20,27 +22,34 @@ export const deleteLesson = (lessonId) => {
     }
 };
 
-export const editLessonDetail = (lessonId) => {
-    return {
-        type: EDIT_DETAIL_LESSON,
-        data: lessonId
-    };
-};
+export const saveOrUpdateLesson = (lessonName, lessonPeriod, lessonDesciption, documents = []) => {
+    return dispatch => {
+        let body = {lessonName, lessonPeriod, lessonDesciption, documents};
+        Network().post('lessons', body).then((response) => {
+            dispatch({
+                type: SAVE_LESSON_SUCESSFULLY,
+                payload: response
+            });
+        })
+    }
+}
 
-export const addDocumentForLesson = (lessonId, document) => {
+export const addDocumentForLesson = (sectionId, lessonId, document) => {
     return {
         type: ADD_DOCUMENT_FOR_LESSON,
         data: {
+            sectionId: sectionId,
             lessonId: lessonId,
             document: document
         }
     }
 };
 
-export const deleteDocumentForLesson = (lessonId, documentId) => {
+export const deleteDocumentForLesson = (sectionId, lessonId, documentId) => {
     return {
         type: DELETE_DOCUMENT_FOR_LESSON,
         data: {
+            sectionId: sectionId,
             lessonId: lessonId,
             documentId: documentId
         }

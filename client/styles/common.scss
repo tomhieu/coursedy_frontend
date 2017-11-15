@@ -712,7 +712,7 @@ ul.no-margin,
 
 .pre-wrap {
   white-space: pre-wrap;
-  padding: 0px 5px;
+  padding: 10px 5px;
 }
 
 .full-width-input-wrapper input{
@@ -757,6 +757,20 @@ ul.no-margin,
 .inline-form .control-label {
   padding-top: 10px;
   height: 18px;
+}
+
+.inline-form .fa-pencil {
+  padding-top: 13px;
+  opacity: 0;
+}
+
+.inline-field:hover {
+  cursor: pointer;
+}
+
+.inline-field:hover .fa-pencil {
+  padding-top: 13px;
+  opacity: 1;
 }
 
 .inline-edit {
@@ -822,4 +836,18 @@ ul.no-margin,
   background-color: rgba(226, 125, 127, 0.60);
   transform: translateZ(0);
   transition: all 0.35s ease;
+}
+
+.inline-form-control {
+  display: block;
+  width: 100%;
+  padding: 6px 12px;
+  line-height: 1.42857143;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+  box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+  -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+  -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+  transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
 }

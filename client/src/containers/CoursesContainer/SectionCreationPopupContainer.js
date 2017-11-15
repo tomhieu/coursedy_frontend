@@ -6,13 +6,13 @@ import {connect} from "react-redux";
 import * as CourseActions from "../../actions/CourseFormActionCreator";
 class SectionCreationPopupContainer extends Component {
     saveSection({id, title, name}) {
-        this.props.dispatch(CourseActions.saveOrUpdateSection(id, title, name));
+        this.props.dispatch(CourseActions.saveOrUpdateSection(this.props.courseId, title, name));
     }
 
     render() {
         const {showSectionPopup} = this.props;
         return (
-            <SectionCreationPopupComponent show={showSectionPopup} handleSubmit={this.saveSection.bind(this)}></SectionCreationPopupComponent>
+            <SectionCreationPopupComponent show={showSectionPopup} onSubmit={this.saveSection.bind(this)} hidePopup={() => this.props.dispatch(CourseActions.closePopupSection())} {...this.props}></SectionCreationPopupComponent>
         )
     }
 }
@@ -30,6 +30,5 @@ export default connect(
     mapStateToProps
 )(reduxForm({
     form: 'sectionCreationForm',
-    fields: ['name', 'title'],
-    validate
+    fields: ['name', 'title']
 })(SectionCreationPopupContainer));

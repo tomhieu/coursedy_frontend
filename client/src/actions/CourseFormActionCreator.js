@@ -7,7 +7,9 @@ export const FETCH_DETAIL_COURSE_SUCESSFULLY = 'FETCH_DETAIL_COURSE_SUCESSFULLY'
 /**
  * Define actions to create, edit or delete Section
  */
+export const FETCH_LIST_SECTION_SUCESSFULLY = 'FETCH_LIST_SECTION_SUCESSFULLY';
 export const ADD_NEW_SECTION = 'ADD_NEW_SECTION';
+export const CLOSE_POPUP_ADD_SECTION = 'CLOSE_POPUP_ADD_SECTION';
 export const DELETE_SECTION_SUCESSFULLY = 'DELETE_SECTION_SUCESSFULLY';
 export const CREATE_UPDATE_SECTION_SUCESSFULLY = 'CREATE_UPDATE_SECTION_SUCESSFULLY';
 
@@ -32,28 +34,28 @@ export const createCourse = (title, description, category_id, course_level_id, s
   }
 };
 
-export const saveOrUpdateLesson = (lessonName, lessonPeriod, lessonDesciption, documents = []) => {
-    return dispatch => {
-        let body = {lessonName, lessonPeriod, lessonDesciption, documents};
-        Network().post('lessons', body).then((response) => {
-            dispatch({
-                type: SAVE_LESSON_SUCESSFULLY,
-                payload: body
-            });
-        })
-    }
-}
-
 export const loadCourseDetail = (courseId) => {
     return dispatch => {
         Network().get(/courses/ + courseId).then((response) => {
+            dispatch(loadListSection(response.id));
             dispatch({
                 type: FETCH_DETAIL_COURSE_SUCESSFULLY,
                 payload: response
-            })
+            });
         })
     };
 };
+
+export const loadListSection = (courseId) => {
+    return dispatch => {
+        Network().get('/course_sections?course_id=' + courseId).then((response) => {
+            dispatch({
+                type: FETCH_LIST_SECTION_SUCESSFULLY,
+                payload: response
+            })
+        })
+    }
+}
 
 /**
  * Defined all action methods to handle Section
@@ -64,10 +66,16 @@ export const addNewSection = () => {
     }
 }
 
+export const closePopupSection = () => {
+    return {
+        type: CLOSE_POPUP_ADD_SECTION
+    }
+}
+
 export const saveOrUpdateSection = (id, title, name) => {
     return dispatch => {
-        let body = {id, title, name};
-        Network().post('courses/section', body).then((response) => {
+        let body = {course_id: id, title, name};
+        Network().post('course_sections', body).then((response) => {
             dispatch({
                 type: CREATE_UPDATE_SECTION_SUCESSFULLY,
                 payload: response
@@ -78,7 +86,7 @@ export const saveOrUpdateSection = (id, title, name) => {
 
 export const deleteSection = (id) => {
     return dispatch => {
-        Network().delete('courses/section', id).then((response) => {
+        Network().delete('course_sections', id).then((response) => {
             dispatch({
                 type: DELETE_SECTION_SUCESSFULLY,
                 payload: id

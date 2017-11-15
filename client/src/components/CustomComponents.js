@@ -6,11 +6,11 @@ import moment from "moment";
 import {isEmpty} from "lodash/lang";
 import Dropzone from "react-dropzone";
 import {TT} from "../utils/locale";
-import * as ObjectUtil from "../utils/ObjectUtils";
+import ObjectUtils from "../utils/ObjectUtils";
 
-export const renderField = ({input, label, type, meta: {touched, error, warning}}) => (
+export const renderField = ({input, label, type = 'text', customClassName, meta: {touched, error, warning}}) => (
   <div className='full-width-input-wrapper'>
-    <input {...input} placeholder={label} type={type} className='form-control'/>
+    <input {...input} placeholder={label} type={type} className={customClassName}/>
     {touched && ((error && <span className='input-errors'>{error}</span>) || (warning && <span>{warning}</span>))}
   </div>
 )
@@ -93,7 +93,7 @@ class renderFileInput extends Component {
     fileReader.onload = () => {
        this.setState({previewUrl: files[0].preview});
        this.handleUpload({
-         uid: ObjectUtil.generateUUID(),
+         uid: ObjectUtils.generateUUID(),
          fileName: files[0].name,
          previewUrl: files[0].preview,
          content: fileReader.result

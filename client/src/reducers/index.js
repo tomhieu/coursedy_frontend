@@ -1,22 +1,21 @@
-import {combineReducers} from 'redux';
-import {routerReducer} from 'react-router-redux';
-import {reducer as formReducer} from 'redux-form';
-import {reducer as toastrReducer} from 'react-redux-toastr';
-import {i18nState} from "redux-i18n"
-
+import {combineReducers} from "redux";
+import {routerReducer} from "react-router-redux";
+import {reducer as formReducer} from "redux-form";
+import {reducer as toastrReducer} from "react-redux-toastr";
+import {i18nState} from "redux-i18n";
 // Import the various reducers here:
-import LoginComponent from './LoginComponent';
-import SignUpComponent from './SignUpComponent';
+import LoginComponent from "./LoginComponent";
+import SignUpComponent from "./SignUpComponent";
 
-import CourseFilter from './CourseFilter';
-import CourseListReducer from './Course/CourseListReducer';
-import CourseDetailReducer from './Course/CourseDetailReducer';
-import TutorCourseList from './Course/TutorCourseListReducer';
+import CourseFilter from "./CourseFilter";
+import CourseListReducer from "./Course/CourseListReducer";
+import CourseDetailReducer from "./Course/CourseDetailReducer";
+import TutorCourseList from "./Course/TutorCourseListReducer";
 
-import CourseFormComponent from './CourseFormReducer';
+import CourseFormComponent from "./CourseFormReducer";
 
-import session from './Session';
-import TutorProfile from './TutorProfile';
+import session from "./Session";
+import TutorProfile from "./TutorProfile";
 import loadPersonData from "./TutorPersonalInfo";
 import loadEducationData from "./TutorEducation";
 import addNewDocumentFile from "./AddDocumentFile";
@@ -31,7 +30,6 @@ const rootReducer = combineReducers({
     CourseListReducer,
     CourseDetailReducer,
     CourseFormComponent,
-    CourseLesson,
     TutorCourseList,
 
     session,

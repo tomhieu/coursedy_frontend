@@ -5,15 +5,11 @@ import FormField from "../Core/FormField";
 class SectionCreationPopupComponent extends Component {
     constructor(props) {
         super(props);
-        this.state = {show: this.props.show};
-    }
-    hidePopup() {
-        this.setState({show: false});
     }
     render() {
-        const{hidePopup, handleSubmit, submitting, pristine, valid} = this.props;
+        const{handleSubmit, hidePopup, submitting, pristine, valid, show} = this.props;
         return (
-            <Modal show={this.state.show} onHide={this.hidePopup.bind(this)}>
+            <Modal show={show} onHide={hidePopup}>
                 <form onSubmit={handleSubmit(this.props.onSubmit)}>
                     <Modal.Header closeButton>
                         <Modal.Title>{this.context.t('lesson_popup_edit_title')}</Modal.Title>
@@ -46,8 +42,8 @@ SectionCreationPopupComponent.contextTypes = {
 
 SectionCreationPopupComponent.propTypes = {
     show: React.PropTypes.bool.isRequired,
-    hidePopup: React.PropTypes.func.isRequired,
-    handleSubmit: React.PropTypes.func.isRequired
+    handleSubmit: React.PropTypes.func.isRequired,
+    hidePopup: React.PropTypes.func.isRequired
 }
 
 export default SectionCreationPopupComponent;
