@@ -26,7 +26,7 @@ class CourseForm extends Component {
     }
 
     render() {
-        const {handleSubmit, addSection, editMode, onDropCoverImage, cover_image, submitting, pristine, valid, courseData, categories, course_levels} = this.props;
+        const {handleSubmit, editMode, onDropCoverImage, cover_image, submitting, pristine, valid, courseData, categories, course_levels} = this.props;
         const periodTypes = PERIOD_TYPES.map((type) => {
             return {text: TT.t(type), id: type};
         });
@@ -129,11 +129,6 @@ class CourseForm extends Component {
                                             disabled={((pristine || submitting) && courseData) || !valid}>
                                         {this.context.t("save_course")}
                                     </button>
-                                    {this.props.courseId && Number(this.props.courseId) > 0 ? (
-                                        <button onClick={addSection} className="btn btn-primary btn-link-dark"
-                                                disabled={((pristine || submitting) && courseData) || !valid}>{this.context.t('lesson_list_next')}</button>
-                                    ) : null}
-
                                 </div>
                             </div>
                         ) : ''

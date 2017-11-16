@@ -51,7 +51,3 @@ export class LessonDetailComponent extends Component {
 LessonDetailComponent.contextTypes = {
     t: React.PropTypes.func.isRequired
 }
-
-LessonDetailComponent.propTypes = {
-    onSubmit: React.PropTypes.func.isRequired
-}
