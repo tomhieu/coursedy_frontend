@@ -13,9 +13,11 @@ class CourseForm extends Component {
 
     renderField(editMode, fieldId, fieldLabel, placeholder, isMandatory, fieldName, typeField, content = "", options, displayStyle = "default-field", styleCustomField) {
         return editMode ? (
-            <InlineEditFormField formGroupId={fieldId} formLabel={fieldLabel} content={content} displayStyle={displayStyle} options={options}
+            <InlineEditFormField activated={this.props.activatedField === fieldId} formGroupId={fieldId} showLabel={fieldLabel != null} formLabel={fieldLabel} content={content} displayStyle={displayStyle} options={options}
                                  placeholder={placeholder} isMandatoryField={isMandatory} customClassName={styleCustomField}
-                                 formControlName={fieldName} typeField={typeField}></InlineEditFormField>
+                                 formControlName={fieldName} typeField={typeField} onActivatedField={this.props.onActivatedField} {...this.props}
+
+            ></InlineEditFormField>
         ) : (
             <FormField formGroupId={fieldId} formLabel={fieldLabel} options={options}
                        placeholder={placeholder} isMandatoryField={isMandatory} customClassName={styleCustomField}
@@ -38,15 +40,15 @@ class CourseForm extends Component {
                         {
                             editMode ? (
                                 <div className={styles.avatarImage}>
-                                    <FormField formGroupId="cover_image_Id" formLabel={null}
+                                    <FormField formGroupId="cover_image_Id" formLabel={null} showLabel={false}
                                                isMandatoryField={false}
                                                previewUrl={cover_image != null ? cover_image.previewUrl : null}
-                                               zoneHeight="50px" internalPreview={true} formControlName="cover_image"
+                                               zoneHeight="75px" internalPreview={true} formControlName="cover_image"
                                                typeField="upload_file" onUpload={onDropCoverImage}></FormField>
                                 </div>
                             ): ('')
                         }
-                        <div className={styles.courseTitle}>
+                        <div className={editMode ? styles.courseTitle : 'creation-course-title'}>
                             {this.renderField(editMode, "titleId", editMode ? null : this.context.t("course_title"), this.context.t("sample_course_title"), true, "title", "custom_input", editMode ? courseData.title: "", null, "", "inline-form-control")}
                         </div>
                     </div>
@@ -82,7 +84,7 @@ class CourseForm extends Component {
                         <div className='col-md-5 col-sm-5'>
                             <div className="d-flex flex-horizontal">
                                 {this.renderField(editMode, "period_Id", this.context.t("period"), this.context.t("period"), true, "period", "custom_input", editMode ? courseData.period: "")}
-                                {this.renderField(editMode, "period_type_Id", "", "", false, "period_type", "custom_select", editMode ? courseData.period_type: "", periodTypes)}
+                                {this.renderField(editMode, "period_type_Id", null, "", false, "period_type", "custom_select", editMode ? courseData.period_type: "", periodTypes)}
                             </div>
                         </div>
                     </div>
@@ -99,7 +101,7 @@ class CourseForm extends Component {
                             <div className="d-flex flex-horizontal">
                                 {this.renderField(editMode, "tuition_fee_Id", this.context.t("tuition_fee"), this.context.t("tuition_fee"),
                                     true, "tuition_fee", "custom_input", editMode ? ObjectUtils.currencyFormat(courseData.tuition_fee, "VND"): "")}
-                                {this.renderField(editMode, "currency_Id", "", "", false, "currency", "custom_select", editMode ? courseData.currency: "", concurrency)}
+                                {this.renderField(editMode, "currency_Id", null, "", false, "currency", "custom_select", editMode ? courseData.currency: "", concurrency)}
                             </div>
                         </div>
                     </div>

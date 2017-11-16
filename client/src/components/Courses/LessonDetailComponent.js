@@ -31,8 +31,8 @@ export class LessonDetailComponent extends Component {
                                isMandatoryField={true} formControlName="period" typeField="custom_input"/>
                 </div>
                 <div>
-                    <FormField formGroupId="lessonDocumentId" formLabel={this.context.t("lesson_document")} onUpload={this.onDropDocument.bind(this)}
-                               isMandatoryField={true} formControlName="lessonDocument" typeField="upload_file"/>
+                    <FormField formGroupId="lessonDocumentId" formLabel={this.context.t("lesson_material")} onUpload={this.onDropDocument.bind(this)}
+                               isMandatoryField={true} formControlName="documents" typeField="upload_file"/>
                     <div className="d-flex flex-vertical ml-15 mt-5">
                         {
                             this.state.documents.map((doc) => renderPreviewFile(doc, this.onDeleteDocumentLesson.bind(this)))

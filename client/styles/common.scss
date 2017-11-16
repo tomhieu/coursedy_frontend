@@ -814,7 +814,6 @@ ul.no-margin,
 
 .avatar-image {
   width: 268px;
-  height: 200px;
 }
 
 .datepicker-box {
@@ -850,4 +849,31 @@ ul.no-margin,
   -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
   -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
   transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+}
+
+.lesson-section-seperator {
+  color: #534051;
+  border-top: 1px solid #e5e5e5;
+  padding: 15px;
+}
+
+.section-title {
+  text-align: center;
+  font-size: 18pt;
+  width: 80%;
+  font-family: 'Roboto Condensed', sans-serif;
+  margin: 0 0 30px;
+  color: #534051;
+}
+
+.inline-form {
+  font-size: 16px;
+}
+
+.creation-course-title {
+  width: 100%;
+}
+
+.creation-course-title .inline-form-control {
+  height: 34px;
 }

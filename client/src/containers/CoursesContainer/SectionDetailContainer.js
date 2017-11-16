@@ -7,85 +7,63 @@ import {renderPreviewFile} from "../../components/CustomComponents";
 import * as LessonActions from "../../actions/LessonActionCreator";
 import {reduxForm} from "redux-form";
 import {connect} from "react-redux";
+import {Card, CardHeader, CardText} from "material-ui/Card";
+import {IconButton} from "material-ui";
+import {ActionDelete, ContentAddCircle} from "material-ui/svg-icons/index";
+import {grey600, red900} from "material-ui/styles/colors";
+import cssModules from "react-css-modules";
+import styles from "./SectionDetail.module.scss";
+import {btnStyles} from "../../utils/CustomStylesUtil";
+import LessonDetailFormContainer from "./LessonDetailFormContainer";
 class SectionDetailContainer extends Component {
-    renderLesson(lesson) {
-        return (
-            <div>
-                <div className="row">
-                    <div className="col-sm-4 col-md-4">
-                        <InlineEditFormField formGroupId="lessonNameId" formLabel={this.context.t("lesson_name")}
-                                             isMandatoryField={true} formControlName="lessonName" typeField="custom_input" content={lesson.name}
-                        ></InlineEditFormField>
-                    </div>
-                    <div className="col-sm-8 col-md-8">
-                        <InlineEditFormField formGroupId="lessonPeriodId" formLabel={this.context.t("lesson_period")}
-                                             isMandatoryField={true} formControlName="lessonPeriod" typeField="custom_input" content={lesson.period}
-                        ></InlineEditFormField>
-                    </div>
-                </div>
-                <div className="row">
-                    <div className="col-sm-4 col-md-4">
-                        <a className="align-self-center" onClick={() => this.addNewLesson(lesson.id)}>{this.context.t('lesson_link_edit')}</a>
-                    </div>
-                    <div className="col-sm-8 col-md-8">
-                        <div>
-                            <FormField formGroupId="lessonDocumentId" formLabel={this.context.t("lesson_document")} onUpload={this.addDocumentForLesson.bind(this)}
-                                       isMandatoryField={true} formControlName="lessonDocument" typeField="upload_file"/>
-                            <div className="d-flex flex-vertical">
-                                {
-                                    lesson.documents.map((doc) => renderPreviewFile(doc, this.onDeleteDocumentLesson.bind(this)))
-                                }
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        )
-    }
-
     addLesson(sectionId) {
         this.props.dispatch(LessonActions.addLesson(sectionId));
     }
 
     saveLesson(lesson) {
-        this.props.dispatch(LessonActions.saveOrUpdateLesson(Object.assign(lesson, {section_id: this.props.section.id})));
-    }
-
-    addDocumentForLesson(sectionId, lessonId, document) {
-        this.props.dispatch(LessonActions.addDocumentForLesson(sectionId, lessonId, document))
-    }
-
-    onDeleteDocumentLesson(sectionId, lessonId, document) {
-        this.props.dispatch(LessonActions.deleteDocumentForLesson(sectionId, lessonId, document))
+        this.props.dispatch(LessonActions.saveOrUpdateLesson(Object.assign(lesson, {course_section_id: this.props.section.id, course_id: this.props.section.course_id})));
     }
 
     hideLessonPopup() {
-
+        this.props.dispatch(LessonActions.hideLessonDetailPopup(this.props.section.id))
     }
 
     render() {
-        const {handleSubmit, section, showPopupEdit, onDeleteSection} = this.props;
+        const {handleSubmit, section, showPopupEdit = false, onDeleteSection, activatedField} = this.props;
         return (
-            <form onSubmit={handleSubmit(this.props.onSubmit)} className='inline-form' multiple={true}>
-                <div className="row">
-                    <div className="col-md-3 col-sm-3">
-                        <InlineEditFormField formGroupId="sectionTitleId" showLabel={false} formLabel={this.context.t("section_title")} placeholder={this.context.t("section_title")}
-                                             content={section.title} isMandatoryField={true} formControlName="title" typeField="custom_input"></InlineEditFormField>
-                    </div>
-                </div>
-                <div className="row">
-                    <div className="col-md-3 col-sm-3">
-                        <div className="d-flex flex-vertical">
-                            <a className="align-self-center" onClick={() => this.addLesson(section.id)}>{this.context.t('lesson_link_edit')}</a>
-                            <a className="icon-delete align-self-center ml-10" onClick={() => onDeleteSection(section.id)} title={section.name}></a>
+            <form onSubmit={handleSubmit(this.props.onSubmit)} className='inline-form' key={section.id} multiple={true}>
+                <Card>
+                    <CardHeader actAsExpander={section.lessons.length > 0} showExpandableButton={section.lessons.length > 0}>
+                        <div className="d-flex flex-horizontal">
+                            <div className="section-title">
+                                <InlineEditFormField activated={this.props.activatedField === "sectionTitleId_" + section.id} formGroupId={"sectionTitleId_" + section.id} showLabel={false} formLabel={this.context.t("section_title")} placeholder={this.context.t("section_title")}
+                                                     content={section.title} isMandatoryField={true} formControlName="title" typeField="custom_input" {...this.props}></InlineEditFormField>
+                            </div>
+                            <div className="d-flex flex-horizontal">
+                                <IconButton iconStyle={btnStyles.largeIcon} style={btnStyles.large} onClick={() => this.addLesson(section.id)}>
+                                    <ContentAddCircle color={red900} />
+                                </IconButton>
+                                <IconButton iconStyle={btnStyles.largeIcon} style={btnStyles.large}
+                                    onClick={() => onDeleteSection(section.id)}>
+                                    <ActionDelete color={grey600} />
+                                </IconButton>
+                            </div>
                         </div>
-                    </div>
-                    <div className="col-md-9 col-sm-9">
-                        {
-                            section.lessons.map(lesson => {this.renderLesson(lesson)})
-                        }
-                    </div>
-                </div>
+                    </CardHeader>
+                    <CardText expandable={true}>
+                        <div className="row">
+                            <div className="col-md-12 col-sm-12">
+                                {
+                                    section.lessons.map(lesson => (
+                                        <LessonDetailFormContainer lesson={lesson} onSubmit={this.saveLesson.bind(this)} sectionUniqueKey={"__section_" + lesson.course_section_id}
+                                                                   initialValues={activatedField.indexOf("__section_" + lesson.course_section_id) >= 0 ? lesson : {}}>
+                                        </LessonDetailFormContainer>
+                                    ))
+                                }
+                            </div>
+                        </div>
+                    </CardText>
+                </Card>
                 <EditLessonFormContainer show={showPopupEdit} hidePopup={this.hideLessonPopup.bind(this)} onSaveLesson={this.saveLesson.bind(this)} {...this.props}/>
             </form>
         )
@@ -95,7 +73,6 @@ class SectionDetailContainer extends Component {
 SectionDetailContainer.propTypes = {
     handleSubmit: React.PropTypes.func.isRequired,
     section: React.PropTypes.object.isRequired,
-    showPopupEdit: React.PropTypes.bool.isRequired,
     onDeleteSection: React.PropTypes.func.isRequired
 };
 
@@ -104,12 +81,13 @@ SectionDetailContainer.contextTypes = {
 };
 
 const mapStateToProps = (state) => {
-    return {};
+    return {activatedField: state.CourseFormComponent.activatedField};
 };
 
 export default connect(
     mapStateToProps
 )(reduxForm({
     form: 'sectionEditForm',
-    fields: ['name', 'title']
-})(SectionDetailContainer));
+    fields: ['title'],
+    enableReinitialize: true
+})(cssModules(SectionDetailContainer, styles)));

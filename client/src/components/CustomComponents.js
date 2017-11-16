@@ -129,7 +129,7 @@ class renderFileInput extends Component {
                 </div>
             </div>
 
-            <img className={internalPreview && this.state.previewUrl != null ? '' : 'hidden'} src={this.state.previewUrl} height="200px" style={previewImageStyle}></img>
+            <img className={internalPreview && this.state.previewUrl != null ? '' : 'hidden'} src={this.state.previewUrl} height={zoneHeight} style={previewImageStyle}></img>
             <input className='hidden' {...input}/>
         </Dropzone>
       </div>

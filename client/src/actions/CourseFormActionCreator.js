@@ -4,6 +4,8 @@ import {TT} from '../utils/locale'
 
 
 export const FETCH_DETAIL_COURSE_SUCESSFULLY = 'FETCH_DETAIL_COURSE_SUCESSFULLY';
+export const TRIGGER_ACTIVATE_FIELD = 'TRIGGER_ACTIVATE_FIELD';
+export const CLOSED_ACTIVATED_FIELD = 'CLOSED_ACTIVATED_FIELD';
 /**
  * Define actions to create, edit or delete Section
  */
@@ -15,7 +17,8 @@ export const CREATE_UPDATE_SECTION_SUCESSFULLY = 'CREATE_UPDATE_SECTION_SUCESSFU
 
 export const createCourse = (title, description, category_id, course_level_id, start_date, end_date, number_of_students, period, period_type, tuition_fee, currency, cover_image) => {
   return dispatch => {
-    let body = {title, description, category_id, course_level_id, start_date, end_date, number_of_students, period, period_type, tuition_fee, currency, cover_image}
+    let body = {title, description, category_id, course_level_id, start_date, end_date, number_of_students, period, period_type, tuition_fee, currency};
+    body['cover_image'] = cover_image.content;
     Network().post('courses', body).then((response) => {
       dispatch({
         type: types.CREATE_SUCCESSFULLY,
@@ -45,6 +48,20 @@ export const loadCourseDetail = (courseId) => {
         })
     };
 };
+
+export const activatedEditField = (fieldId) => {
+    return {
+        type: TRIGGER_ACTIVATE_FIELD,
+        data: fieldId
+    }
+}
+
+export const closedEditField = (fieldId) => {
+    return {
+        type: CLOSED_ACTIVATED_FIELD,
+        data: fieldId
+    }
+}
 
 export const loadListSection = (courseId) => {
     return dispatch => {

@@ -57,9 +57,9 @@ export const deleteDocumentForLesson = (sectionId, lessonId, documentId) => {
     }
 };
 
-export const hideLessonDetailPopup = (lessonId) => {
+export const hideLessonDetailPopup = (sectionId) => {
     return {
         type: HIDE_LESSON_POPUP_EDIT,
-        data: lessonId
+        data: sectionId
     };
 };

@@ -7,29 +7,34 @@ import FormField from "./FormField";
 class InlineEditFormField extends FormField {
     constructor(props) {
         super(props);
+        const {activated = false} = props;
         this.state = {
-            editMode: false
+            editMode: activated
         }
     }
 
-    showEditForm() {
-        this.setState({
-            editMode: true
-        })
+    componentWillReceiveProps(nextProps) {
+        const {activated = false} = nextProps;
+        this.setState({editMode: activated});
     }
 
-    closeEditForm() {
+    showEditForm(fieldId) {
         this.setState({
-            editMode: false
-        })
+            editMode: true
+        });
+        this.props.onActivatedField(fieldId);
+    }
+
+    closeEditForm(fieldId) {
+        this.props.onClosedField(fieldId);
     }
 
     render() {
-        const {submitting, pristine, showLabel = true} = this.props;
+        const {submitting, pristine, showLabel = true, displayStyle = "default-field"} = this.props;
         {
             if (this.state.editMode) {
                 return (
-                    <div className={this.props.displayStyle + " d-flex flex-vertical"}>
+                    <div className={displayStyle + " d-flex flex-vertical"}>
                         {super.render()}
                         <FormGroup className="ml-15 mr-15 mt-10 d-flex justify-content-right">
                             <button type="submit" className="btn btn-primary mr-10" disabled={pristine || submitting}>
@@ -44,10 +49,10 @@ class InlineEditFormField extends FormField {
                 )
             } else {
                 return (
-                    <div className={this.props.displayStyle + ' inline-field d-flex flex-horizontal'}>
+                    <div className={displayStyle + ' inline-field d-flex flex-horizontal'}>
                         {showLabel ? (<label className="control-label">{this.props.formLabel}: </label>) : ''}
                         <span className='pre-wrap'>{this.props.content}</span>
-                        <span className='inline-edit' onClick={this.showEditForm.bind(this)}><i className="fa fa-pencil"></i></span>
+                        <span className='inline-edit' onClick={() => this.showEditForm(this.props.formGroupId)}><i className="fa fa-pencil"></i></span>
                     </div>
                 )
             }
@@ -60,7 +65,6 @@ InlineEditFormField.contextTypes = {
 }
 
 InlineEditFormField.propTypes = {
-    displayStyle: React.PropTypes.string.isRequired,
     content: React.PropTypes.string.isRequired
 }
 

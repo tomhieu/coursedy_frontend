@@ -8,19 +8,23 @@ import {
     HIDE_LESSON_POPUP_EDIT
 } from "actions/CourseFormActionCreator";
 import {
-    ADD_NEW_SECTION, CLOSE_POPUP_ADD_SECTION, CREATE_UPDATE_SECTION_SUCESSFULLY,
+    ADD_NEW_SECTION, CLOSE_POPUP_ADD_SECTION, CLOSED_ACTIVATED_FIELD, CREATE_UPDATE_SECTION_SUCESSFULLY,
     DELETE_DOCUMENT_FOR_LESSON, DELETE_SECTION_SUCESSFULLY, FETCH_DETAIL_COURSE_SUCESSFULLY,
-    FETCH_LIST_SECTION_SUCESSFULLY, SAVE_LESSON_SUCESSFULLY
+    FETCH_LIST_SECTION_SUCESSFULLY, SAVE_LESSON_SUCESSFULLY, TRIGGER_ACTIVATE_FIELD
 } from "../actions/CourseFormActionCreator";
 import * as lessonActions from "../actions/LessonActionCreator";
 
 const CourseFormComponent = (state = {
-    courseData: {cover_image: null}, editMode: false, listSection: [], showSectionPopup: false}, action) => {
+    courseData: {cover_image: null}, editMode: false, listSection: [], showSectionPopup: false, activatedField: null}, action) => {
     let currentSectionList = JSON.parse(JSON.stringify(state.listSection));
     switch (action.type) {
         case types.CREATE_SUCCESSFULLY:
         case types.CREATE_COURSE_FAILED:
             return state;
+        case TRIGGER_ACTIVATE_FIELD:
+            return Object.assign({}, state, {activatedField: action.data});
+        case CLOSED_ACTIVATED_FIELD:
+            return Object.assign({}, state, {activatedField: null});
         case FETCH_DETAIL_COURSE_SUCESSFULLY:
             return Object.assign({}, state, {courseData: action.payload, editMode: true});
         case FETCH_LIST_SECTION_SUCESSFULLY:
@@ -41,10 +45,10 @@ const CourseFormComponent = (state = {
             modifiedSection['showLessonPopup'] = true;
             return Object.assign({}, state, {listSection: currentSectionList});
         case lessonActions.SAVE_LESSON_SUCESSFULLY:
-            const {section_id} = action.data;
-            let [updatedSection] = currentSectionList.filter(section => section.id === section_id);
-            updatedSection = Object.assign({}, updatedSection, {showLessonPopup: false, lessons: [...updatedSection.lessons, action.data]});
-            return Object.assign({}, state, {listSection: currentSectionList});
+            const {course_section_id} = action.payload;
+            let [updatedSection] = currentSectionList.filter(section => section.id === course_section_id);
+            updatedSection = Object.assign({}, updatedSection, {showLessonPopup: false, lessons: [...updatedSection.lessons, action.payload]});
+            return Object.assign({}, state, {listSection: currentSectionList, showSectionPopup: false});
         case lessonActions.HIDE_LESSON_POPUP_EDIT:
             let [activeSection] = currentSectionList.filter(section => section.id ===  action.data);
             activeSection.showLessonPopup = false;
