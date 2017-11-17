@@ -2559,8 +2559,9 @@ a.link-alt:hover {
 
 .section-title {
   text-align: center;
+  font-size: 18pt;
   font-family: 'Roboto Condensed', sans-serif;
-  margin: 0 0 52px
+  margin: 0 0 30px
 }
 
 .section-title h2 {

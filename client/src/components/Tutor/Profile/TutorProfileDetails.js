@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import * as Actions from '../../../actions/TutorProfileActionCreator'
 import {fetchTutor} from "actions/TutorProfileActionCreator"
-import InlineEditFormComponent from '../../InlineEditFormComponent'
+import InlineEditFormComponent from '../../Core/InlineEditFormField'
 import cssModules from 'react-css-modules';
 import styles from './TutorProfileDetails.module.scss';
 

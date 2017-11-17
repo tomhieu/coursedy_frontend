@@ -10,21 +10,26 @@ import {validate} from '../../validations/LessonFormValidator';
 class EditLessonFormContainer extends Component {
     constructor(props) {
         super(props);
+        this.documents = [];
     }
 
     addDocumentForLesson(document) {
-        this.props.dispatch(addDocumentForLesson(this.props.lessonPosId, document));
+        this.documents.push(document);
     }
 
     onDeleteDocumentLesson(documentId) {
-        this.props.dispatch(deleteDocumentForLesson(this.props.lessonPosId, documentId));
+        this.documents.splice(this.documents.findIndex(doc => doc.uid === documentId), 1);
+    }
+
+    onSubmitLesson(lesson) {
+        this.props.onSaveLesson(Object.assign({}, lesson, {documents: this.documents}));
     }
 
     render() {
-        const{show, hidePopup, handleSubmit, submitting, pristine, valid} = this.props;
+        const{handleSubmit, show, hidePopup, submitting, pristine, valid} = this.props;
         return (
             <Modal show={show} onHide={hidePopup}>
-                <form onSubmit={handleSubmit(this.props.onSubmit)}>
+                <form onSubmit={handleSubmit(this.onSubmitLesson.bind(this))}>
                 <Modal.Header closeButton>
                     <Modal.Title>{this.context.t('lesson_popup_edit_title')}</Modal.Title>
                 </Modal.Header>
