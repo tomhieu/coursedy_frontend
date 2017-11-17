@@ -19,12 +19,14 @@ import TutorProfile from "./TutorProfile";
 import loadPersonData from "./TutorPersonalInfo";
 import loadEducationData from "./TutorEducation";
 import addNewDocumentFile from "./AddDocumentFile";
+import LoadingMask from "./LoadingMask";
 
 const rootReducer = combineReducers({
     // Apply all of the reducers here.
     i18nState,
     LoginComponent,
     SignUpComponent,
+    LoadingMask,
 
     //Reducers for course
     CourseListReducer,

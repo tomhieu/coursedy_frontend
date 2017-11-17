@@ -5,8 +5,8 @@ import Select2 from "react-select2-wrapper";
 import moment from "moment";
 import {isEmpty} from "lodash/lang";
 import Dropzone from "react-dropzone";
-import {TT} from "../utils/locale";
-import ObjectUtils from "../utils/ObjectUtils";
+import {TT} from "../../utils/locale";
+import ObjectUtils from "../../utils/ObjectUtils";
 
 export const renderField = ({input, label, type = 'text', customClassName, meta: {touched, error, warning}}) => (
   <div className='full-width-input-wrapper'>

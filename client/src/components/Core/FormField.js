@@ -4,7 +4,7 @@ import {Field} from 'redux-form';
 import {
     renderDatePicker, renderField, renderMultiSelect, renderSelect,
     renderSingleFileInput, renderTextAreaField
-} from "../CustomComponents";
+} from "./CustomComponents";
 import styles from './FormField.module.scss';
 import cssModules from 'react-css-modules';
 

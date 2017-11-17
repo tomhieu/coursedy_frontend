@@ -6,7 +6,7 @@ import {Field} from 'redux-form';
 import {TT} from '../../utils/locale'
 import {ROLES} from "constants/Roles";
 import SignUpSuccessModal from "./SignUpSuccessModal";
-import {renderSelect, renderField} from "../CustomComponents";
+import {renderSelect, renderField} from "../Core/CustomComponents";
 
 const renderSelectComponent = renderSelect(ROLES.map((role) => ({text: TT.t(role), id: role})))
 
