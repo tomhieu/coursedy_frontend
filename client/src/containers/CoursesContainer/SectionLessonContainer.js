@@ -15,6 +15,7 @@ import LessonDetailFormContainer from "./LessonDetailFormContainer";
 import SectionDetailContainer from "./SectionDetailContainer";
 
 class SectionLessonContainer extends Component {
+
     addLesson(sectionId) {
         this.props.dispatch(LessonActions.addLesson(sectionId));
     }
@@ -36,7 +37,7 @@ class SectionLessonContainer extends Component {
     }
 
     isActivatedFieldOfLesson(activatedField, lesson) {
-        return activatedField != null && activatedField.indexOf("__section_" + lesson.course_section_id) >= 0;
+        return activatedField != null && activatedField.indexOf("__lesson_" + lesson.title) >= 0;
     }
 
     render() {
@@ -47,7 +48,9 @@ class SectionLessonContainer extends Component {
                     <CardHeader actAsExpander={section.lessons.length > 0} showExpandableButton={section.lessons.length > 0}>
                         <div className="d-flex flex-horizontal">
                             <div className="section-title">
-                                <SectionDetailContainer onSubmit={this.saveSection.bind(this)} section={section} {...this.props}></SectionDetailContainer>
+                                <SectionDetailContainer onSubmit={this.saveSection.bind(this)} section={section} {...this.props}
+                                                        initialValues={activatedField === "sectionTitleId_" + section.id ? {title: section.title} : {}}>
+                                </SectionDetailContainer>
                             </div>
                             <div className="d-flex flex-horizontal">
                                 <IconButton iconStyle={btnStyles.largeIcon} style={btnStyles.large} onClick={() => this.addLesson(section.id)}>
@@ -65,8 +68,8 @@ class SectionLessonContainer extends Component {
                             <div className="col-md-12 col-sm-12">
                                 {
                                     section.lessons.map(lesson => (
-                                        <LessonDetailFormContainer key={lesson.id} lesson={lesson} onSubmit={this.saveLesson.bind(this)} sectionUniqueKey={"__section_" + lesson.course_section_id}
-                                                                   initialValues={ this.isActivatedFieldOfLesson(activatedField, lesson) ? lesson : {}} {...this.props}>
+                                        <LessonDetailFormContainer key={lesson.id} lesson={lesson} onSubmit={this.saveLesson.bind(this)} sectionUniqueKey={"__lesson_" + lesson.title}
+                                                                   initialValues={ this.isActivatedFieldOfLesson(activatedField, lesson) === true ? lesson : {}} {...this.props}>
                                         </LessonDetailFormContainer>
                                     ))
                                 }

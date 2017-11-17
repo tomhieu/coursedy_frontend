@@ -37,8 +37,8 @@ const CourseFormComponent = (state = {
             let deletedSectionList = currentSectionList.filter((section) => section.id != action.data.id);
             return [...state, {listSection: deletedSectionList}];
         case CREATE_UPDATE_SECTION_SUCESSFULLY:
-            let addedSectionList = currentSectionList.push(action.payload);
-            return Object.assign({}, state, {listSection: addedSectionList});
+            currentSectionList.push(action.payload);
+            return Object.assign({}, state, {listSection: currentSectionList, showSectionPopup: false});
         // handle for lesson
         case lessonActions.ADD_MORE_LESSON_FOR_SECTION:
             let [modifiedSection] = currentSectionList.filter(section => section.id === action.data);
@@ -47,7 +47,8 @@ const CourseFormComponent = (state = {
         case lessonActions.SAVE_LESSON_SUCESSFULLY:
             const {course_section_id} = action.payload;
             let [updatedSection] = currentSectionList.filter(section => section.id === course_section_id);
-            updatedSection = Object.assign({}, updatedSection, {showLessonPopup: false, lessons: [...updatedSection.lessons, action.payload]});
+            updatedSection.showLessonPopup = false;
+            updatedSection.lessons.push( action.payload);
             return Object.assign({}, state, {listSection: currentSectionList, showSectionPopup: false});
         case lessonActions.HIDE_LESSON_POPUP_EDIT:
             let [activeSection] = currentSectionList.filter(section => section.id ===  action.data);

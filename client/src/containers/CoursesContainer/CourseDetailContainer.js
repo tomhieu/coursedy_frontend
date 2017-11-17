@@ -62,7 +62,7 @@ const mapStateToProps = (state) => {
         courseCreationForm, courseData, cover_image, categories, editMode,
         initialValues: activatedField != null ? courseData : {},
         course_levels: editMode ? getCourseLevelFromCategory(categories, courseData.category_id) :
-            courseCreationForm != undefined ? getCourseLevelFromCategory(categories, Number(courseCreationForm.values.category_id)) : []
+            courseCreationForm != undefined && courseCreationForm.values != undefined ? getCourseLevelFromCategory(categories, Number(courseCreationForm.values.category_id)) : []
     };
 };
 

@@ -5,6 +5,7 @@ import FormField from "../Core/FormField";
 import InlineEditFormField from "../Core/InlineEditFormField";
 import ObjectUtils from "../../utils/ObjectUtils";
 import styles from "./Course.module.scss";
+import {SERVER_NAME} from "../../utils/CommonConstant";
 
 class CourseForm extends Component {
     hideError(e) {
@@ -42,7 +43,7 @@ class CourseForm extends Component {
                                 <div className={styles.avatarImage}>
                                     <FormField formGroupId="cover_image_Id" formLabel={null} showLabel={false}
                                                isMandatoryField={false}
-                                               previewUrl={cover_image != null ? cover_image.previewUrl : null}
+                                               previewUrl={cover_image != null ? SERVER_NAME + cover_image : null}
                                                zoneHeight="75px" internalPreview={true} formControlName="cover_image"
                                                typeField="upload_file" onUpload={onDropCoverImage}></FormField>
                                 </div>
@@ -92,7 +93,7 @@ class CourseForm extends Component {
                     <div className="row">
                         <div className="col-sm-3">
                             {this.renderField(editMode, "number_of_students_Id", this.context.t("number_of_students"), this.context.t("number_of_students"),
-                                true, "period_type", "custom_input", editMode ? courseData.number_of_students.toString(): "")}
+                                true, "number_of_students", "custom_input", editMode ? courseData.number_of_students.toString(): "")}
                         </div>
                     </div>
 

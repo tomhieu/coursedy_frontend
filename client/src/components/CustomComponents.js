@@ -36,11 +36,10 @@ export const renderDatePicker = ({input, label, type, meta: {touched, error, war
   </div>)
 }
 
-export const renderSelect = (selectOptions, onChange = null) => {
+export const renderSelect = (selectOptions) => {
   return ({input, label, type, meta: {touched, error, warning}}) => (
     <div className="dark-picker dark-picker-bright">
       <Select2 {...input}
-               defaultValue={!isEmpty(selectOptions) && selectOptions.length > 0 ? selectOptions[0].id : 0}
                data={selectOptions}
       />
       {touched && ((error && <span className='input-errors'>{error}</span>) || (warning && <span>{warning}</span>))}

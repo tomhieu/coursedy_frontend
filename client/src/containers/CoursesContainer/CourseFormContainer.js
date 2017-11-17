@@ -40,7 +40,7 @@ class CourseFormContainer extends Component {
         return (
             <div className="row dashboard-panel">
                 <div className="col-sm-12 col-md-12">
-                    <CourseDetailContainer onActivatedField={this.onActivatedField.bind(this)} onClosedField={this.onClosedField.bind(this)}></CourseDetailContainer>
+                    <CourseDetailContainer onActivatedField={this.onActivatedField.bind(this)} onClosedField={this.onClosedField.bind(this)} {...this.props}></CourseDetailContainer>
                 </div>
                 {
                     editMode ? (
@@ -55,10 +55,8 @@ class CourseFormContainer extends Component {
                                 <div className="col-sm-12 col-md-12">
                                     {
                                         listSection.map((section) =>
-                                            <SectionLessonContainer section={section} key={section.id}
-                                                                    showPopupEdit={section.showLessonPopup} {...this.props}
-                                                                    onActivatedField={this.onActivatedField.bind(this)} onClosedField={this.onClosedField.bind(this)}
-                                                                    initialValues={activatedField === "sectionTitleId_" + section.id ? {title: section.title} : {}}
+                                            <SectionLessonContainer section={section} key={section.id} showPopupEdit={section.showLessonPopup}
+                                                                    onActivatedField={this.onActivatedField.bind(this)} onClosedField={this.onClosedField.bind(this)} {...this.props}
                                             >
                                             </SectionLessonContainer>)
                                     }

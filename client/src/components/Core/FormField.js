@@ -19,7 +19,7 @@ class FormField extends Component {
         let fieldComponent = this.buildFieldRender(formControlName, placeholder, typeField, type,
             zoneHeight, internalPreview, previewUrl, onUpload, rows, options, selectedValues, customClassName);
         return (
-            <FormGroup controlId="formGroupId" className={styles.fieldMargin}>
+            <FormGroup controlId="formGroupId">
                 {
                     showLabel ? (<ControlLabel> {formLabel} {isMandatoryField && <span className="red">*</span>} </ControlLabel>) : ''
                 }
