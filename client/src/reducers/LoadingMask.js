@@ -4,9 +4,9 @@ const LoadingMask = (state = {
 }, action) => {
     switch (action.type) {
         case FETCHING_DATA:
-            return {...state, isFetching: true}
+            return Object.assign({}, state, {isFetching: true});
         case FETCHING_COMPLETE:
-            return {...state, isFetching: false}
+            return Object.assign({}, state, {isFetching: false});
         default:
             return state;
     }

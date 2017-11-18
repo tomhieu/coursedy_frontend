@@ -9,6 +9,7 @@ import {FlatButton} from "material-ui";
 import {ContentAddCircle} from "material-ui/svg-icons/index";
 import {red900} from "material-ui/styles/colors";
 import CourseDetailContainer from "./CourseDetailContainer";
+import LoadingMask from "../../components/LoadingMask/LoadingMask";
 
 class CourseFormContainer extends Component {
     constructor(props) {
@@ -53,13 +54,15 @@ class CourseFormContainer extends Component {
                                     />
                                 </div>
                                 <div className="col-sm-12 col-md-12">
-                                    {
-                                        listSection.map((section) =>
-                                            <SectionLessonContainer section={section} key={section.id} showPopupEdit={section.showLessonPopup}
-                                                                    onActivatedField={this.onActivatedField.bind(this)} onClosedField={this.onClosedField.bind(this)} {...this.props}
-                                            >
-                                            </SectionLessonContainer>)
-                                    }
+                                    <LoadingMask>
+                                        {
+                                            listSection.map((section) =>
+                                                <SectionLessonContainer section={section} key={section.id} showPopupEdit={section.showLessonPopup}
+                                                                        onActivatedField={this.onActivatedField.bind(this)} onClosedField={this.onClosedField.bind(this)} {...this.props}
+                                                >
+                                                </SectionLessonContainer>)
+                                        }
+                                    </LoadingMask>
                                 </div>
                                 <SectionCreationPopupContainer courseId={this.courseId}></SectionCreationPopupContainer>
                             </div>

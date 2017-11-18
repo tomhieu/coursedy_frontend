@@ -6,6 +6,7 @@ import promiseMiddleware from 'redux-promise-middleware';
 import rootReducer from '../reducers/index';
 import initialState from './initialState';
 import { createLogger } from 'redux-logger'
+import {FETCHING_COMPLETE, FETCHING_DATA} from "actions/actionCreators";
 
 /* Commonly used middlewares and enhancers */
 /* See: http://redux.js.org/docs/advanced/Middleware.html*/

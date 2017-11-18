@@ -5,6 +5,7 @@ import * as CourseActions from "../../actions/CourseFormActionCreator";
 import {connect} from "react-redux";
 import {reduxForm} from "redux-form";
 import {validate} from "../../validations/CourseFormValidation"
+import LoadingMask from "../../components/LoadingMask/LoadingMask";
 
 class CourseDetailContainer extends Component {
     constructor(props) {
@@ -25,10 +26,10 @@ class CourseDetailContainer extends Component {
     render() {
         const {editMode, courseData} = this.props;
         return (
-            <div>
+            <LoadingMask>
                 <CourseForm onSubmit={this.createCourse.bind(this)} onDropCoverImage={this.onDropCoverImage.bind(this)}
                             editMode={editMode} courseData={courseData} courseId={this.courseId} {...this.props}/>
-            </div>
+            </LoadingMask>
         )
     }
 }
