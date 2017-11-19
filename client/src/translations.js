@@ -67,14 +67,17 @@ export const translations = {
         "cover_image": "Ảnh đại diện",
         "course_add_btn": "Thêm Khoá Học",
         "course_view_detail": "Xem chi tiết",
+        "course_delete_btn": "Xoá Khoá Học",
         "course_item_duration": "Thời lượng: {duration} buổi",
         "course_item_lesson_duration": "Thời gian: {time} phút",
         "hour": "Giờ",
         "day": "Ngày",
         "week": "Tuần",
         "month": "Tháng",
+        'create_course_sucessfully': 'Tạo Khoá Học Thành Công',
+        "create_course_sucessfully_message": "Khoá Học {title} vừa được tạo thành công. Bây giờ bạn có thể thêm thông tin về các buổi học và đăng khoá học.",
         /*
-         * Lesson Page
+     * Lesson Page
          */
         "lesson_add_more": "Thêm Bài Học",
         "lesson_name": "Tên Bài Học",

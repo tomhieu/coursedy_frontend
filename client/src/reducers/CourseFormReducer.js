@@ -3,22 +3,35 @@ import {
     ADD_DOCUMENT_FOR_LESSON,
     ADD_MODIFY_COURSE_LESSON,
     ADD_MORE_LESSON,
+    CLEAR_COURSE_DATA,
     DELETE_LESSON,
     EDIT_DETAIL_LESSON,
     HIDE_LESSON_POPUP_EDIT
 } from "actions/CourseFormActionCreator";
 import {
-    ADD_NEW_SECTION, CLOSE_POPUP_ADD_SECTION, CLOSED_ACTIVATED_FIELD, CREATE_UPDATE_SECTION_SUCESSFULLY,
-    DELETE_DOCUMENT_FOR_LESSON, DELETE_SECTION_SUCESSFULLY, FETCH_DETAIL_COURSE_SUCESSFULLY,
-    FETCH_LIST_SECTION_SUCESSFULLY, SAVE_LESSON_SUCESSFULLY, TRIGGER_ACTIVATE_FIELD
+    ADD_NEW_SECTION,
+    CLOSE_POPUP_ADD_SECTION,
+    CLOSED_ACTIVATED_FIELD,
+    CREATE_UPDATE_SECTION_SUCESSFULLY,
+    DELETE_DOCUMENT_FOR_LESSON,
+    DELETE_SECTION_SUCESSFULLY,
+    FETCH_DETAIL_COURSE_SUCESSFULLY,
+    FETCH_LIST_SECTION_SUCESSFULLY,
+    SAVE_LESSON_SUCESSFULLY,
+    TRIGGER_ACTIVATE_FIELD
 } from "../actions/CourseFormActionCreator";
 import * as lessonActions from "../actions/LessonActionCreator";
 
 const CourseFormComponent = (state = {
-    courseData: {cover_image: null}, editMode: false, listSection: [], showSectionPopup: false, activatedField: null}, action) => {
+    courseData: {cover_image: null}, editMode: false, listSection: [], showSectionPopup: false, activatedField: null, createCourseSucess: false}, action) => {
     let currentSectionList = JSON.parse(JSON.stringify(state.listSection));
     switch (action.type) {
         case types.CREATE_SUCCESSFULLY:
+        case types.UPDATE_SUCCESSFULLY:
+            const {id, title} = action.payload;
+            return Object.assign({}, state, {courseData: {cover_image: null, title: title, id: id}, editMode: false,
+                listSection: [], showSectionPopup: false, activatedField: null, createCourseSucess: true});
+        case types.UPDATE_COURSE_FAILED:
         case types.CREATE_COURSE_FAILED:
             return state;
         case TRIGGER_ACTIVATE_FIELD:
@@ -27,6 +40,9 @@ const CourseFormComponent = (state = {
             return Object.assign({}, state, {activatedField: null});
         case FETCH_DETAIL_COURSE_SUCESSFULLY:
             return Object.assign({}, state, {courseData: action.payload, editMode: true});
+        case CLEAR_COURSE_DATA:
+            return Object.assign({}, state, {courseData: {cover_image: null}, editMode: false,
+                listSection: [], showSectionPopup: false, activatedField: null, createCourseSucess: false});
         case FETCH_LIST_SECTION_SUCESSFULLY:
             return Object.assign({}, state, {listSection: action.payload});
         case ADD_NEW_SECTION:
@@ -35,7 +51,7 @@ const CourseFormComponent = (state = {
             return Object.assign({}, state, {showSectionPopup: false});
         case DELETE_SECTION_SUCESSFULLY:
             let deletedSectionList = currentSectionList.filter((section) => section.id != action.data.id);
-            return [...state, {listSection: deletedSectionList}];
+            return Object.assign({}, state, {listSection: deletedSectionList});
         case CREATE_UPDATE_SECTION_SUCESSFULLY:
             currentSectionList.push(action.payload);
             return Object.assign({}, state, {listSection: currentSectionList, showSectionPopup: false});

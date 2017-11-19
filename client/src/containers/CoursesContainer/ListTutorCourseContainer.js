@@ -4,6 +4,7 @@ import CourseList from "../../components/Courses/CourseList";
 import {connect} from "react-redux";
 import {fetchListTutorCourse} from "../../actions/ListTutorCourseActionCreator";
 import LoadingMask from "../../components/LoadingMask/LoadingMask";
+import {deleteCourse} from "actions/CourseFormActionCreator";
 class ListTutorCourseContainer extends Component {
 
     componentDidMount() {
@@ -14,6 +15,10 @@ class ListTutorCourseContainer extends Component {
         this.context.router.history.push("/dashboard/courses/new");
     }
 
+    deleteCourse(course_id) {
+        this.props.dispatch(deleteCourse(course_id));
+    }
+
     render() {
         return (
             <div className="row">
@@ -22,7 +27,7 @@ class ListTutorCourseContainer extends Component {
                 </div>
                 <div className="col-md-12 col-sm-12">
                     <LoadingMask>
-                        <CourseList {...this.props} />
+                        <CourseList deleteCourse={this.deleteCourse.bind(this)} {...this.props} />
                     </LoadingMask>
                 </div>
             </div>

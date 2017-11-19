@@ -1,9 +1,11 @@
 import * as types from '../constants/CourseFormComponent';
 import Network from '../utils/network'
 import {TT} from '../utils/locale'
+import {fetchListTutorCourse} from "actions/ListTutorCourseActionCreator";
 
 
 export const FETCH_DETAIL_COURSE_SUCESSFULLY = 'FETCH_DETAIL_COURSE_SUCESSFULLY';
+export const CLEAR_COURSE_DATA = 'CLEAR_COURSE_DATA';
 export const TRIGGER_ACTIVATE_FIELD = 'TRIGGER_ACTIVATE_FIELD';
 export const CLOSED_ACTIVATED_FIELD = 'CLOSED_ACTIVATED_FIELD';
 /**
@@ -16,26 +18,74 @@ export const DELETE_SECTION_SUCESSFULLY = 'DELETE_SECTION_SUCESSFULLY';
 export const CREATE_UPDATE_SECTION_SUCESSFULLY = 'CREATE_UPDATE_SECTION_SUCESSFULLY';
 
 export const createCourse = (title, description, category_id, course_level_id, start_date, end_date, number_of_students, period, period_type, tuition_fee, currency, cover_image) => {
-  return dispatch => {
-    let body = {title, description, category_id, course_level_id, start_date, end_date, number_of_students, period, period_type, tuition_fee, currency};
-    body['cover_image'] = cover_image.content;
-    Network().post('courses', body).then((response) => {
-      dispatch({
-        type: types.CREATE_SUCCESSFULLY,
-        payload: {}
-      });
-    }, (errors) => {
-      const error_messages = (errors && errors.constructor == Array && errors.length > 0)?
-        errors :
-        [TT.t('email_or_password_incorrect')];
-
-      dispatch({
-        type: types.CREATE_COURSE_FAILED,
-        payload: {errors: error_messages}
-      });
-    });
-  }
+    return dispatch => {
+        let body = {
+            title,
+            description,
+            category_id,
+            course_level_id,
+            start_date,
+            end_date,
+            number_of_students,
+            period,
+            period_type,
+            tuition_fee,
+            currency,
+            cover_image
+        };
+        Network().post('courses', body).then((response) => {
+            dispatch({
+                type: types.CREATE_SUCCESSFULLY,
+                payload: response
+            });
+        }, (errors) => {
+            dispatch({
+                type: types.CREATE_COURSE_FAILED,
+                payload: {errors: errors.payload}
+            });
+        });
+    }
 };
+
+export const updateCourse = (id, title, description, category_id, course_level_id, start_date, end_date,
+                             number_of_students, period, period_type, tuition_fee, currency, cover_image) => {
+    return dispatch => {
+        let body = {
+            id,
+            title,
+            description,
+            category_id,
+            course_level_id,
+            start_date,
+            end_date,
+            number_of_students,
+            period,
+            period_type,
+            tuition_fee,
+            currency,
+            cover_image
+        };
+        Network().update('courses/' + id, body).then((response) => {
+            dispatch({
+                type: types.UPDATE_SUCCESSFULLY,
+                payload: response
+            });
+        }, (errors) => {
+            dispatch({
+                type: types.UPDATE_COURSE_FAILED,
+                payload: {errors: errors.payload}
+            });
+        });
+    }
+}
+
+export const deleteCourse = (course_id) => {
+    return dispatch => {
+        Network().delete('courses/' + course_id).then(() => {
+            dispatch(fetchListTutorCourse());
+        })
+    }
+}
 
 export const loadCourseDetail = (courseId) => {
     return dispatch => {
@@ -48,6 +98,12 @@ export const loadCourseDetail = (courseId) => {
         })
     };
 };
+
+export const clearCourseData = () => {
+    return {
+        type: CLEAR_COURSE_DATA
+    }
+}
 
 export const activatedEditField = (fieldId) => {
     return {

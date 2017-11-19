@@ -10,6 +10,7 @@ import {ContentAddCircle} from "material-ui/svg-icons/index";
 import {red900} from "material-ui/styles/colors";
 import CourseDetailContainer from "./CourseDetailContainer";
 import LoadingMask from "../../components/LoadingMask/LoadingMask";
+import SimpleDialogComponent from "../../components/Core/SimpleDialogComponent";
 
 class CourseFormContainer extends Component {
     constructor(props) {
@@ -21,6 +22,8 @@ class CourseFormContainer extends Component {
         this.props.dispatch(FilterActions.fetchCategories())
         if (this.courseId) {
             this.props.dispatch(CourseActions.loadCourseDetail(this.courseId));
+        } else {
+            this.props.dispatch(CourseActions.clearCourseData());
         }
     }
 
@@ -36,12 +39,22 @@ class CourseFormContainer extends Component {
         this.props.dispatch(CourseActions.addNewSection());
     }
 
+    cancelPopup() {
+        this.props.dispatch(CourseActions.clearCourseData());
+        this.context.router.history.push('/dashboard/courses/list/');
+    }
+
     render() {
-        const {editMode, listSection, courseData, activatedField} = this.props;
+        const {editMode, listSection, courseData, createCourseSucess} = this.props;
         return (
             <div className="row dashboard-panel">
                 <div className="col-sm-12 col-md-12">
-                    <CourseDetailContainer onActivatedField={this.onActivatedField.bind(this)} onClosedField={this.onClosedField.bind(this)} {...this.props}></CourseDetailContainer>
+                    <CourseDetailContainer courseId={this.courseId} onActivatedField={this.onActivatedField.bind(this)} onClosedField={this.onClosedField.bind(this)} {...this.props}></CourseDetailContainer>
+                    <SimpleDialogComponent title={this.context.t('create_course_sucessfully')} show={createCourseSucess} cancelCallback={this.cancelPopup.bind(this)}>
+                        <div className="d-flex flex-vertical">
+                            <span>{this.context.t('create_course_sucessfully_message', {title: 'Testing Dialog'})}</span>
+                        </div>
+                    </SimpleDialogComponent>
                 </div>
                 {
                     editMode ? (
@@ -57,7 +70,7 @@ class CourseFormContainer extends Component {
                                     <LoadingMask>
                                         {
                                             listSection.map((section) =>
-                                                <SectionLessonContainer section={section} key={section.id} showPopupEdit={section.showLessonPopup}
+                                                <SectionLessonContainer section={section} key={'__section__' + section.id} showPopupEdit={section.showLessonPopup}
                                                                         onActivatedField={this.onActivatedField.bind(this)} onClosedField={this.onClosedField.bind(this)} {...this.props}
                                                 >
                                                 </SectionLessonContainer>)
@@ -83,10 +96,11 @@ CourseFormContainer.propTypes = {};
 
 const mapStateToProps = (state) => {
     const {CourseFormComponent} = state;
-    const {listSection, editMode, activatedField} = CourseFormComponent;
+    const {listSection, editMode, activatedField, createCourseSucess, courseData} = CourseFormComponent;
+    const {cover_image} = courseData;
 
     return {
-        listSection, editMode, activatedField
+        listSection, editMode, activatedField, createCourseSucess, cover_image
     };
 };
 

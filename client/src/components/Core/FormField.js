@@ -14,7 +14,7 @@ class FormField extends Component {
     }
 
     render() {
-        const {formControlName, formLabel, showLabel = true, placeholder, isMandatoryField,
+        const {formControlName, formLabel, showLabel = true, placeholder, isMandatoryField = false,
             typeField, type, zoneHeight, internalPreview, previewUrl, onUpload, rows, options, selectedValues, customClassName} = this.props;
         let fieldComponent = this.buildFieldRender(formControlName, placeholder, typeField, type,
             zoneHeight, internalPreview, previewUrl, onUpload, rows, options, selectedValues, customClassName);
@@ -79,8 +79,6 @@ class FormField extends Component {
 
 FormField.propTypes = {
     formControlName: React.PropTypes.string.isRequired,
-    formLabel: React.PropTypes.string.isRequired,
-    isMandatoryField: React.PropTypes.bool.isRequired,
     typeField: React.PropTypes.string.isRequired
 };
 
