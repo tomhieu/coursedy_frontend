@@ -26,7 +26,6 @@ export const translations = {
         "full_name": "Họ và tên",
         "role_required": "Vui lòng chọn tài khoản người dùng",
         "first_name_required": "Vui lòng nhập tên",
-
         "confirm_password": "Xác Nhận Mật Khẩu",
         "phone_number": "Số Điện Thoại",
         "forgot_password": "Quên Mật Khẩu?",
@@ -41,6 +40,8 @@ export const translations = {
         "sign_up_success": "Đăng Ký Thành Công !",
         "congrat_sign_up_success": "Chúc mừng bạn đã đăng ký thành viên của EzyLearning thành công. Chúng tôi đã gửi email xác nhận đến địa chỉ email của bạn. Vui lòng kiểm tra hộp thư đến để kích hoạt tài khoản",
         "close": "Đóng",
+        'change_email_success': 'Yêu cầu đổi email đã được gửi',
+        'update_email_successfully': 'Bạn vừa yêu cầu thay đổi email. Hệ thống đã gửi 1 email đến địa chỉ email mới của bạn. Vui lòng kiểm tra email và xác nhận địa chỉ email mới',
         /*
          * Course Creation/Edit Page
          */
@@ -63,6 +64,11 @@ export const translations = {
         "tuition_fee_mandatory": "Vui lòng nhập học phí",
         "course_description": "Giới thiệu khoá học",
         "course_description_mandatory": "Vui lòng nhập giới thiệu khoá học",
+        "course_category": "Lớp học",
+        "course_level": "Cấp độ",
+        "category": "Lớp học",
+        "category_mandatory": "Vui lòng chọn lớp học",
+        "course_level_mandatory": "Vui lòng chọn cấp độ",
         "course_modification": "Sửa Khoá Học",
         "cover_image": "Ảnh đại diện",
         "course_add_btn": "Thêm Khoá Học",
@@ -77,7 +83,7 @@ export const translations = {
         'create_course_sucessfully': 'Tạo Khoá Học Thành Công',
         "create_course_sucessfully_message": "Khoá Học {title} vừa được tạo thành công. Bây giờ bạn có thể thêm thông tin về các buổi học và đăng khoá học.",
         /*
-     * Lesson Page
+         * Lesson Page
          */
         "lesson_add_more": "Thêm Bài Học",
         "lesson_name": "Tên Bài Học",
@@ -92,21 +98,17 @@ export const translations = {
         "lesson_priode_required": "Vui lòng nhập thời lượng buổi học",
         "lesson_desc_required": "Vui lòng nhập mô tả buổi học",
         "save_course": "Tạo Khoá Học",
-
-        /*
-         * Section Page
-         */
-        "section_title": "Mô tả",
-        "section_name": "Tên",
         /*
          * Tutor Account Page
          */
         "account.person.info.title": "Thông Tin Cá Nhân",
         "account.person.info.first.name": "Tên",
+        "account.person.info.full_name": "Họ và Tên",
         "account.person.info.last.name": "Họ",
         "account.person.info.email": "Địa Chỉ Email",
         "account.person.info.tel": "Số Điện Thoại Di Đông",
         "account.person.info.birth.date": "Ngày Sinh",
+        "account.person.info.gender": "Giới Tính",
         "account.person.info.address": "Địa Chỉ",
         "account.person.info.save.btn": "Lưu",
         "account_tutor_edu_title": "giáo dục",
@@ -126,11 +128,21 @@ export const translations = {
         "speciality": "Chuyên môn",
         "save": "Lưu",
         "cancel": "Huỷ",
+        'male': 'Nam',
+        'female': 'Nữ',
+        'gender.M': 'Nam',
+        'gender.F': 'Nữ',
         "search_course": "Từ khoá tìm kiếm",
+
+        /*
+         * Section Page
+         */
+        "section_title": "Mô tả",
+        "section_name": "Tên",
 
         "course_category": "Lớp học",
         "course_level": "Cấp độ",
-
+        
         "category": "Lớp học",
         "level": "Cấp độ",
         "filter": "Tìm kiếm nâng cao",
@@ -147,10 +159,21 @@ export const translations = {
         "mandatory_field_context": "Vui lòng điền thông tin {field}",
         "period_field": "Thời lượng",
         "name_lesson_field": "Tên Buổi Học",
-        "field_number_validator": "Vui lòng nhập số"
-    },
-    "en": {
-        "home_page": "Home",
-        "find_tutors": "Find Tutors"
-    }
+        "field_number_validator": "Vui lòng nhập số",
+
+        'updating': 'Đang cập nhật',
+
+        /*
+            Public course detail
+        */
+        "course_info": "Thông tin khóa học",
+        "course_detail": "Chi tiết khóa học",
+        "tutor_info": "Thông tin giáo viên",
+        "course_subscribe": "Đăng ký",
+        "course_comments": "Phản hồi"
+  },
+  "en": {
+    "home_page": "Home",
+    "find_tutors": "Find Tutors"
+  }
 }

@@ -9,7 +9,7 @@ import SignUpComponent from "./SignUpComponent";
 
 import CourseFilter from "./CourseFilter";
 import CourseListReducer from "./Course/CourseListReducer";
-import CourseDetailReducer from "./Course/CourseDetailReducer";
+import PublicCourseDetail from "./Course/PublicCourseDetail";
 import TutorCourseList from "./Course/TutorCourseListReducer";
 
 import CourseFormComponent from "./CourseFormReducer";
@@ -20,6 +20,7 @@ import loadPersonData from "./TutorPersonalInfo";
 import loadEducationData from "./TutorEducation";
 import addNewDocumentFile from "./AddDocumentFile";
 import LoadingMask from "./LoadingMask";
+import TutorAccount from "./TutorAccount";
 
 const rootReducer = combineReducers({
     // Apply all of the reducers here.
@@ -30,7 +31,7 @@ const rootReducer = combineReducers({
 
     //Reducers for course
     CourseListReducer,
-    CourseDetailReducer,
+    PublicCourseDetail,
     CourseFormComponent,
     TutorCourseList,
 
@@ -43,7 +44,8 @@ const rootReducer = combineReducers({
     loadPersonData,
     loadEducationData,
     addNewDocumentFile,
-    CourseFilter
+    CourseFilter,
+    TutorAccount
 });
 
 export default rootReducer;

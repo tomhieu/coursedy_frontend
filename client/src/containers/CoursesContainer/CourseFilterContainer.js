@@ -116,6 +116,16 @@ CourseFilterContainer.propTypes = {
 
 };
 
+const getCourseLevelFromCategory = (categories, selectedCategoryId) => {
+    const [selectedCategory = {course_levels: []}] = categories.filter((category) => {
+        return selectedCategoryId === category.id;
+    });
+
+    return selectedCategory.course_levels.map((level) => {
+        return {id: level.id, text: level.name}
+    });
+}
+
 const mapStateToProps = (state) => ({
   categories: state.CourseFilter.categories,
   locations: state.CourseFilter.locations,

@@ -18,6 +18,7 @@ class CourseFormContainer extends Component {
         this.courseId = this.props.match.params.id;
     }
 
+
     componentWillMount() {
         this.props.dispatch(FilterActions.fetchCategories())
         if (this.courseId) {
@@ -61,9 +62,10 @@ class CourseFormContainer extends Component {
                         <div className="col-sm-12 col-md-12">
                             <div className="row">
                                 <div className="col-sm-12 col-md-12">
-                                    <FlatButton label={this.context.t('lesson_link_edit')} style={btnStyles.defaultFlatBtn}
-                                        secondary={true} onClick={this.addNewSection.bind(this)}
-                                        icon={<ContentAddCircle color={red900} />}
+                                    <FlatButton label={this.context.t('lesson_link_edit')}
+                                                style={btnStyles.defaultFlatBtn}
+                                                secondary={true} onClick={this.addNewSection.bind(this)}
+                                                icon={<ContentAddCircle color={red900}/>}
                                     />
                                 </div>
                                 <div className="col-sm-12 col-md-12">
@@ -98,7 +100,6 @@ const mapStateToProps = (state) => {
     const {CourseFormComponent} = state;
     const {listSection, editMode, activatedField, createCourseSucess, courseData} = CourseFormComponent;
     const {cover_image} = courseData;
-
     return {
         listSection, editMode, activatedField, createCourseSucess, cover_image
     };

@@ -23,7 +23,6 @@ class FormField extends Component {
                 {
                     showLabel ? (<ControlLabel> {formLabel} {isMandatoryField && <span className="red">*</span>} </ControlLabel>) : ''
                 }
-
                 <div className="dark-picker dark-picker-bright">
                     {fieldComponent}
                 </div>
