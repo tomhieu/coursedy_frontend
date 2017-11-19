@@ -21,6 +21,7 @@ import {
     TRIGGER_ACTIVATE_FIELD
 } from "../actions/CourseFormActionCreator";
 import * as lessonActions from "../actions/LessonActionCreator";
+import DateUtils from "utils/DateUtils";
 
 const CourseFormComponent = (state = {
     courseData: {cover_image: null}, editMode: false, listSection: [], showSectionPopup: false, activatedField: null, createCourseSucess: false}, action) => {
@@ -39,7 +40,12 @@ const CourseFormComponent = (state = {
         case CLOSED_ACTIVATED_FIELD:
             return Object.assign({}, state, {activatedField: null});
         case FETCH_DETAIL_COURSE_SUCESSFULLY:
-            return Object.assign({}, state, {courseData: action.payload, editMode: true});
+            const {category, course_level, start_date, end_date} = action.payload;
+            const fr_start_date = DateUtils.formatDate(start_date);
+            const fr_end_date = DateUtils.formatDate(end_date);
+            const courseData = Object.assign({}, action.payload, {category_id: category.id, course_level_id: course_level.id,
+                start_date: fr_start_date, end_date: fr_end_date});
+            return Object.assign({}, state, {courseData: courseData, editMode: true});
         case CLEAR_COURSE_DATA:
             return Object.assign({}, state, {courseData: {cover_image: null}, editMode: false,
                 listSection: [], showSectionPopup: false, activatedField: null, createCourseSucess: false});

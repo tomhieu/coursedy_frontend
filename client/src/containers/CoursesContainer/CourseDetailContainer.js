@@ -27,7 +27,7 @@ class CourseDetailContainer extends Component {
     }
 
     onDropCoverImage(data) {
-        this.coverImage = data;
+        this.coverImage = data.content;
     }
 
     render() {

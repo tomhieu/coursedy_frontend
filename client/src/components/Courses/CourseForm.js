@@ -6,15 +6,16 @@ import InlineEditFormField from "../Core/InlineEditFormField";
 import ObjectUtils from "../../utils/ObjectUtils";
 import styles from "./Course.module.scss";
 import {SERVER_NAME} from "../../utils/CommonConstant";
+import DateUtils from "utils/DateUtils";
 
 class CourseForm extends Component {
     hideError(e) {
         e.preventDefault();
     }
 
-    renderField(editMode, fieldId, fieldLabel, placeholder, isMandatory, fieldName, typeField, content = "", options, displayStyle = "default-field", styleCustomField) {
+    renderField(editMode, fieldId, showLabel, fieldLabel, placeholder, isMandatory, fieldName, typeField, content = "", options, displayStyle = "default-field", styleCustomField) {
         return editMode ? (
-            <InlineEditFormField activated={this.props.activatedField === fieldId} formGroupId={fieldId} showLabel={fieldLabel != null} formLabel={fieldLabel} content={content} displayStyle={displayStyle} options={options}
+            <InlineEditFormField activated={this.props.activatedField === fieldId} formGroupId={fieldId} showLabel={showLabel} formLabel={fieldLabel} content={content} displayStyle={displayStyle} options={options}
                                  placeholder={placeholder} isMandatoryField={isMandatory} customClassName={styleCustomField}
                                  formControlName={fieldName} typeField={typeField} onActivatedField={this.props.onActivatedField} {...this.props}
 
@@ -50,19 +51,19 @@ class CourseForm extends Component {
                             ): ('')
                         }
                         <div className={editMode ? styles.courseTitle : 'creation-course-title'}>
-                            {this.renderField(editMode, "titleId", editMode ? null : this.context.t("course_title"), this.context.t("sample_course_title"), true, "title", "custom_input", editMode ? courseData.title: "", null, "", "inline-form-control")}
+                            {this.renderField(editMode, "titleId", false, editMode ? null : this.context.t("course_title"), this.context.t("sample_course_title"), true, "title", "custom_input", editMode ? courseData.title: "", null, "", "inline-form-control")}
                         </div>
                     </div>
                     <div className='row'>
                         <div className='col-sm-6'>
-                            {this.renderField(editMode, "category_id", this.context.t("course_category"), this.context.t("course_category"),
-                                true, "category_id", "custom_select", editMode ? courseData.category_id: "", categories.map((category) => {
+                            {this.renderField(editMode, "category_id", true, this.context.t("course_category"), this.context.t("course_category"),
+                                true, "category_id", "custom_select", editMode ? courseData.category.name: "", categories.map((category) => {
                                 return {id: category.id, text: category.name}
                             }))}
                         </div>
                         <div className='col-sm-6'>
-                            {this.renderField(editMode, "course_level_id", this.context.t("course_level"), this.context.t("course_level"),
-                                true, "course_level_id", "custom_select", editMode ? courseData.course_level_id: "", course_levels)}
+                            {this.renderField(editMode, "course_level_id", true, this.context.t("course_level"), this.context.t("course_level"),
+                                true, "course_level_id", "custom_select", editMode ? courseData.course_level.name: "", course_levels)}
                         </div>
                     </div>
                     {/* Course category and course level */}
@@ -70,12 +71,12 @@ class CourseForm extends Component {
                     <div className='row'>
                         <div className='col-sm-6'>
                             <div className={!editMode ? "datepicker-box" : ""}>
-                                {this.renderField(editMode, "start_date_Id", this.context.t("start_date"), this.context.t("start_date"), true, "start_date", "datepicker", editMode ? courseData.start_date: "")}
+                                {this.renderField(editMode, "start_date_Id", true, this.context.t("start_date"), this.context.t("start_date"), true, "start_date", "datepicker", editMode ? courseData.start_date: "")}
                             </div>
                         </div>
                         <div className='col-sm-6'>
                             <div className={!editMode ? "datepicker-box" : ""}>
-                                {this.renderField(editMode, "end_date_Id", this.context.t("end_date"), this.context.t("end_date"), true, "end_date", "datepicker", editMode ? courseData.end_date: "")}
+                                {this.renderField(editMode, "end_date_Id", true, this.context.t("end_date"), this.context.t("end_date"), true, "end_date", "datepicker", editMode ? courseData.end_date: "")}
                             </div>
                         </div>
                     </div>
@@ -84,15 +85,16 @@ class CourseForm extends Component {
                     <div className='row'>
                         <div className='col-md-5 col-sm-5'>
                             <div className="d-flex flex-horizontal">
-                                {this.renderField(editMode, "period_Id", this.context.t("period"), this.context.t("period"), true, "period", "custom_input", editMode ? courseData.period: "")}
-                                {this.renderField(editMode, "period_type_Id", null, "", false, "period_type", "custom_select", editMode ? courseData.period_type: "", periodTypes)}
+                                {this.renderField(editMode, "period_Id", true, this.context.t("period"), this.context.t("period"), true, "period", "custom_input", editMode ? courseData.period + " " + this.context.t(courseData.period_type): "")}
+                                {this.renderField(editMode, "period_type_Id", false, this.context.t("period_type"), this.context.t("period_type"),
+                                    false, "period_type", "custom_select", "", periodTypes)}
                             </div>
                         </div>
                     </div>
 
                     <div className="row">
                         <div className="col-sm-3">
-                            {this.renderField(editMode, "number_of_students_Id", this.context.t("number_of_students"), this.context.t("number_of_students"),
+                            {this.renderField(editMode, "number_of_students_Id", true, this.context.t("number_of_students"), this.context.t("number_of_students"),
                                 true, "number_of_students", "custom_input", editMode ? courseData.number_of_students.toString(): "")}
                         </div>
                     </div>
@@ -100,9 +102,9 @@ class CourseForm extends Component {
                     <div className='row'>
                         <div className='col-md-5 col-sm-5'>
                             <div className="d-flex flex-horizontal">
-                                {this.renderField(editMode, "tuition_fee_Id", this.context.t("tuition_fee"), this.context.t("tuition_fee"),
+                                {this.renderField(editMode, "tuition_fee_Id", true, this.context.t("tuition_fee"), this.context.t("tuition_fee"),
                                     true, "tuition_fee", "custom_input", editMode ? ObjectUtils.currencyFormat(courseData.tuition_fee, "VND"): "")}
-                                {this.renderField(editMode, "currency_Id", null, "", false, "currency", "custom_select", editMode ? courseData.currency: "", concurrency)}
+                                {this.renderField(editMode, "currency_Id", false, this.context.t("tuition_currency"), this.context.t("tuition_currency"), false, "currency", "custom_select", "", concurrency)}
                             </div>
                         </div>
                     </div>
@@ -119,7 +121,7 @@ class CourseForm extends Component {
                     }
 
 
-                    {this.renderField(editMode, "description_Id", this.context.t("course_description"), this.context.t("course_description"),
+                    {this.renderField(editMode, "description_Id", true, this.context.t("course_description"), this.context.t("course_description"),
                         true, "description", "custom_textarea", editMode ? courseData.description: "")}
 
                     {

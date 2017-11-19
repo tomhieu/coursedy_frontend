@@ -41,10 +41,18 @@ export const validate = (values) => {
     errors.period = TT.t('not_a_number')
   }
 
+  if (!values.period_type) {
+    errors.period_type = TT.t('period_type_mandatory')
+  }
+
   if (!values.tuition_fee) {
     errors.tuition_fee = TT.t('tuition_fee_mandatory')
   } else if (isNaN(values.tuition_fee)){
     errors.tuition_fee = TT.t('not_a_number')
+  }
+
+  if (!values.currency) {
+    errors.currency = TT.t('tuition_currency_mandatory')
   }
 
   if (!values.description) {

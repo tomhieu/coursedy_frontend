@@ -56,12 +56,16 @@ export const translations = {
         "invalid_end_date": "Ngày kết thúc phải lớn hơn ngày hiện tại",
         "invalid_start_and_end_date": "Ngày kết thúc phải lớn hơn ngày bắt đầu",
         "not_a_number": "Vui lòng chỉ nhập số",
-        "period": "Số buổi học",
-        "period_mandatory": "Vui lòng nhập số buổi học",
+        "period": "Thời gian học",
+        "period_mandatory": "Vui lòng nhập thời gian học",
+        "period_type": "Đơn vị",
+        "period_type_mandatory": "Vui lòng chọn đơn vị thời gian học",
         "number_of_students": "Số học sinh",
         "num_student_mandatory": "Vui lòng nhập số học sinh",
         "tuition_fee": "Học phí",
         "tuition_fee_mandatory": "Vui lòng nhập học phí",
+        "tuition_currency": "Tiền tệ",
+        "tuition_currency_mandatory": "Vui lòng chọn tiền tệ",
         "course_description": "Giới thiệu khoá học",
         "course_description_mandatory": "Vui lòng nhập giới thiệu khoá học",
         "course_category": "Lớp học",
@@ -139,10 +143,8 @@ export const translations = {
          */
         "section_title": "Mô tả",
         "section_name": "Tên",
-
         "course_category": "Lớp học",
         "course_level": "Cấp độ",
-        
         "category": "Lớp học",
         "level": "Cấp độ",
         "filter": "Tìm kiếm nâng cao",
@@ -160,9 +162,7 @@ export const translations = {
         "period_field": "Thời lượng",
         "name_lesson_field": "Tên Buổi Học",
         "field_number_validator": "Vui lòng nhập số",
-
         'updating': 'Đang cập nhật',
-
         /*
             Public course detail
         */

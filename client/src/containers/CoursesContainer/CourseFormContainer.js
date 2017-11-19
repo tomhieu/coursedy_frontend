@@ -20,12 +20,12 @@ class CourseFormContainer extends Component {
 
 
     componentWillMount() {
-        this.props.dispatch(FilterActions.fetchCategories())
         if (this.courseId) {
             this.props.dispatch(CourseActions.loadCourseDetail(this.courseId));
         } else {
             this.props.dispatch(CourseActions.clearCourseData());
         }
+        this.props.dispatch(FilterActions.fetchCategories())
     }
 
     onActivatedField(fieldId) {

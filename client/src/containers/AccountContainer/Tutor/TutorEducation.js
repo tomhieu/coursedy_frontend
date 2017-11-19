@@ -16,7 +16,7 @@ import {
   removeUploadedDocument
 } from "../../../actions/TutorAccountActionCreator";
 import {updateTutorEducation} from "actions/TutorAccountActionCreator";
-import {renderPreviewFile} from "../../../components/CustomComponents";
+import {renderPreviewFile} from "../../../components/Core/CustomComponents";
 
 class TutorEducation extends Component {
   constructor(props) {
