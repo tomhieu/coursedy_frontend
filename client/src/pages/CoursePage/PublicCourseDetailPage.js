@@ -5,7 +5,7 @@ import { PublicCourseDetailContainer } from '../../containers/index';
 
 const PublicCourseDetailPage = (props) => (
   <div className="container">
-    <PublicCourseDetailContainer id={props.match.params.id}/>
+    <PublicCourseDetailContainer courseId={props.match.params.id}/>
   </div>
 );
 

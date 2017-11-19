@@ -1,8 +1,9 @@
 import * as types from '../constants/CourseFilter';
+import * as courseActionTypes from '../constants/Courses';
 
 const CourseFilter = (state = {
+  courses: [],
   categories: [],
-  // levels: [],
   locations: {},
   weekdays: {},
   selectedCategoryIds: [],
@@ -22,6 +23,11 @@ const CourseFilter = (state = {
         ...state, 
         categories: action.payload,
         selectedCategoryIds: [action.payload[0].id]
+      }
+    case courseActionTypes.FETCH_COURSES_SUCCESS:
+      return {
+        ...state, 
+        courses: action.payload,
       }
     case types.FETCH_WEEKDAYS_SUCCESSFULLY:
       return {...state, weekdays: action.payload}

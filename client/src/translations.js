@@ -134,6 +134,10 @@ export const translations = {
         "section_title": "Mô tả",
         "section_name": "Tên",
 
+        "course_category": "Lớp học",
+        "course_level": "Cấp độ",
+        
+        "category": "Lớp học",
         "level": "Cấp độ",
         "filter": "Tìm kiếm nâng cao",
         "location": "Khu vực",
@@ -149,10 +153,21 @@ export const translations = {
         "mandatory_field_context": "Vui lòng điền thông tin {field}",
         "period_field": "Thời lượng",
         "name_lesson_field": "Tên Buổi Học",
-        "field_number_validator": "Vui lòng nhập số"
-    },
-    "en": {
-        "home_page": "Home",
-        "find_tutors": "Find Tutors"
-    }
+        "field_number_validator": "Vui lòng nhập số",
+
+        'updating': 'Đang cập nhật',
+
+        /*
+            Public course detail
+        */
+        "course_info": "Thông tin khóa học",
+        "course_detail": "Chi tiết khóa học",
+        "tutor_info": "Thông tin giáo viên",
+        "course_subscribe": "Đăng ký",
+        "course_comments": "Phản hồi"
+  },
+  "en": {
+    "home_page": "Home",
+    "find_tutors": "Find Tutors"
+  }
 }
