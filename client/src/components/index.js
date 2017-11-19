@@ -10,6 +10,10 @@ import CourseGroup from './Course/CourseGroup/CourseGroup';
 import CourseGroupList from './Course/CourseGroupList/CourseGroupList';
 
 import CourseDetail from './Courses/CourseDetail';
+import CourseDetailGeneral from './Courses/CourseDetail/CourseDetailGeneral';
+import CourseDetailLessons from './Courses/CourseDetail/CourseDetailLessons';
+import CourseDetailComments from './Courses/CourseDetail/CourseDetailComments';
+
 import CourseFilter from './Courses/CourseFilter';
 
 import CourseItem from './Courses/CourseItem';
@@ -43,6 +47,8 @@ export {
   CourseList,
   CourseItem,
   CourseDetail,
+  CourseDetailLessons,
+  CourseDetailComments,
   CourseFilter,
 
   TutorSearchForm,

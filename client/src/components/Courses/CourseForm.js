@@ -1,123 +1,157 @@
-import React, {Component} from 'react';
-import {FormGroup, ControlLabel} from 'react-bootstrap';
-import {Field} from 'redux-form';
-import {reduxForm} from 'redux-form';
-import {TT} from '../../utils/locale';
-import {renderDatePicker, renderSelect, renderField, renderTextAreaField, renderSingleFileInput} from "../CustomComponents";
-import {PERIOD_TYPES, CURRENCIES} from '../../constants/Courses'
-import {Link} from "react-router-dom";
+import React, {Component} from "react";
+import {TT} from "../../utils/locale";
+import {CURRENCIES, PERIOD_TYPES} from "../../constants/Courses";
 import FormField from "../Core/FormField";
+import InlineEditFormField from "../Core/InlineEditFormField";
+import ObjectUtils from "../../utils/ObjectUtils";
+import styles from "./Course.module.scss";
+import {SERVER_NAME} from "../../utils/CommonConstant";
 
 class CourseForm extends Component {
-  hideError(e) {
-    e.preventDefault();
-  }
+    hideError(e) {
+        e.preventDefault();
+    }
 
-  render() {
-    const {handleSubmit, addLesson, onDropCoverImage, cover_image, submitting, pristine, valid, courseData, categories, course_levels } = this.props;
-    const errors = null;
-    const periodTypes = PERIOD_TYPES.map((type) => {
-      return {text: TT.t(type), id: type};
-    });
-    const concurrency = CURRENCIES.map((type) => {
-      return {text: type, id: type};
-    });
-    return (
-      <div className="dashboard-panel">
-        <form onSubmit={handleSubmit(this.props.onSubmit)} className='inline-form' multiple={true}>
-          <div className={errors ? '' : 'hidden'}>
-            <span className="error">
-              <div className="alert alert-danger">
-                <a href="#" className="close" onClick={this.hideError.bind(this)}>×</a>
-                <strong>{this.context.t("error")} ! </strong>
-                <p className="error">{errors && errors[0]}</p>
-              </div>
-            </span>
-          </div>
+    renderField(editMode, fieldId, fieldLabel, placeholder, isMandatory, fieldName, typeField, content = "", options, displayStyle = "default-field", styleCustomField) {
+        return editMode ? (
+            <InlineEditFormField activated={this.props.activatedField === fieldId} formGroupId={fieldId} showLabel={fieldLabel != null} formLabel={fieldLabel} content={content} displayStyle={displayStyle} options={options}
+                                 placeholder={placeholder} isMandatoryField={isMandatory} customClassName={styleCustomField}
+                                 formControlName={fieldName} typeField={typeField} onActivatedField={this.props.onActivatedField} {...this.props}
 
-          <FormField formGroupId="titleId" formLabel={this.context.t("course_title")} placeholder={this.context.t("sample_course_title")} isMandatoryField={true} formControlName="title" typeField="custom_input"></FormField>
+            ></InlineEditFormField>
+        ) : (
+            <FormField formGroupId={fieldId} formLabel={fieldLabel} options={options}
+                       placeholder={placeholder} isMandatoryField={isMandatory} customClassName={styleCustomField}
+                       formControlName={fieldName} typeField={typeField}></FormField>
+        )
+    }
 
-          <div className='row'>
-            <div className='col-sm-6'>
-              <FormField formGroupId="category_id" formLabel={this.context.t("course_category")} placeholder={this.context.t("course_category")}
-                         options={categories.map((category) => {
-                             return {id: category.id, text: category.name}
-                         })} isMandatoryField={true} formControlName="category_id" typeField="custom_select" {...this.props}></FormField>
+    render() {
+        const {handleSubmit, editMode, onDropCoverImage, cover_image, submitting, pristine, valid, courseData, categories, course_levels} = this.props;
+        const periodTypes = PERIOD_TYPES.map((type) => {
+            return {text: TT.t(type), id: type};
+        });
+        const concurrency = CURRENCIES.map((type) => {
+            return {text: type, id: type};
+        });
+        return (
+            <div>
+                <form onSubmit={handleSubmit(this.props.onSubmit)} className='inline-form' multiple={true}>
+                    <div className={editMode ? "d-flex flex-horizontal justify-content-center mt-30 mb-30" : "d-flex flex-horizontal"}>
+                        {
+                            editMode ? (
+                                <div className={styles.avatarImage}>
+                                    <FormField formGroupId="cover_image_Id" formLabel={null} showLabel={false}
+                                               isMandatoryField={false}
+                                               previewUrl={cover_image != null ? SERVER_NAME + cover_image : null}
+                                               zoneHeight="75px" internalPreview={true} formControlName="cover_image"
+                                               typeField="upload_file" onUpload={onDropCoverImage}></FormField>
+                                </div>
+                            ): ('')
+                        }
+                        <div className={editMode ? styles.courseTitle : 'creation-course-title'}>
+                            {this.renderField(editMode, "titleId", editMode ? null : this.context.t("course_title"), this.context.t("sample_course_title"), true, "title", "custom_input", editMode ? courseData.title: "", null, "", "inline-form-control")}
+                        </div>
+                    </div>
+                    <div className='row'>
+                        <div className='col-sm-6'>
+                            {this.renderField(editMode, "category_id", this.context.t("course_category"), this.context.t("course_category"),
+                                true, "category_id", "custom_select", editMode ? courseData.category_id: "", categories.map((category) => {
+                                return {id: category.id, text: category.name}
+                            }))}
+                        </div>
+                        <div className='col-sm-6'>
+                            {this.renderField(editMode, "course_level_id", this.context.t("course_level"), this.context.t("course_level"),
+                                true, "course_level_id", "custom_select", editMode ? courseData.course_level_id: "", course_levels)}
+                        </div>
+                    </div>
+                    {/* Course category and course level */}
+
+                    <div className='row'>
+                        <div className='col-sm-6'>
+                            <div className={!editMode ? "datepicker-box" : ""}>
+                                {this.renderField(editMode, "start_date_Id", this.context.t("start_date"), this.context.t("start_date"), true, "start_date", "datepicker", editMode ? courseData.start_date: "")}
+                            </div>
+                        </div>
+                        <div className='col-sm-6'>
+                            <div className={!editMode ? "datepicker-box" : ""}>
+                                {this.renderField(editMode, "end_date_Id", this.context.t("end_date"), this.context.t("end_date"), true, "end_date", "datepicker", editMode ? courseData.end_date: "")}
+                            </div>
+                        </div>
+                    </div>
+                    {/* Course start date and end date */}
+
+                    <div className='row'>
+                        <div className='col-md-5 col-sm-5'>
+                            <div className="d-flex flex-horizontal">
+                                {this.renderField(editMode, "period_Id", this.context.t("period"), this.context.t("period"), true, "period", "custom_input", editMode ? courseData.period: "")}
+                                {this.renderField(editMode, "period_type_Id", null, "", false, "period_type", "custom_select", editMode ? courseData.period_type: "", periodTypes)}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="row">
+                        <div className="col-sm-3">
+                            {this.renderField(editMode, "number_of_students_Id", this.context.t("number_of_students"), this.context.t("number_of_students"),
+                                true, "number_of_students", "custom_input", editMode ? courseData.number_of_students.toString(): "")}
+                        </div>
+                    </div>
+
+                    <div className='row'>
+                        <div className='col-md-5 col-sm-5'>
+                            <div className="d-flex flex-horizontal">
+                                {this.renderField(editMode, "tuition_fee_Id", this.context.t("tuition_fee"), this.context.t("tuition_fee"),
+                                    true, "tuition_fee", "custom_input", editMode ? ObjectUtils.currencyFormat(courseData.tuition_fee, "VND"): "")}
+                                {this.renderField(editMode, "currency_Id", null, "", false, "currency", "custom_select", editMode ? courseData.currency: "", concurrency)}
+                            </div>
+                        </div>
+                    </div>
+                    {
+                        !editMode ? (
+                        <div className="avatar-image">
+                            <FormField formGroupId="cover_image_Id" formLabel={this.context.t("cover_image")}
+                                       isMandatoryField={true}
+                                       previewUrl={cover_image != null ? cover_image.previewUrl : null}
+                                       zoneHeight="200px" internalPreview={true} formControlName="cover_image"
+                                       typeField="upload_file" onUpload={onDropCoverImage}></FormField>
+                        </div>
+                        ) : (<div></div>)
+                    }
+
+
+                    {this.renderField(editMode, "description_Id", this.context.t("course_description"), this.context.t("course_description"),
+                        true, "description", "custom_textarea", editMode ? courseData.description: "")}
+
+                    {
+                        !editMode ? (
+                            <div className="row">
+                                <div className="col-md-12 col-sm-12">
+                                    <button type="submit" className="btn btn-primary btn-link-dark signin-btn mr-10 ml-15"
+                                            disabled={((pristine || submitting) && courseData) || !valid}>
+                                        {this.context.t("save_course")}
+                                    </button>
+                                </div>
+                            </div>
+                        ) : ''
+                    }
+                </form>
             </div>
-            <div className='col-sm-6'>
-              <FormField formGroupId="course_level_id" formLabel={this.context.t("course_level")} placeholder={this.context.t("course_level")}
-                         options={course_levels} isMandatoryField={true} formControlName="course_level_id" typeField="custom_select"></FormField>
-            </div>
-          </div>{/* Course category and course level */}
-
-          <div className='row'>
-            <div className='col-sm-6'>
-              <div className="datepicker-box">
-                <FormField formGroupId="start_date_Id" formLabel={this.context.t("start_date")} isMandatoryField={true} formControlName="start_date" typeField="datepicker"></FormField>
-              </div>
-            </div>
-            <div className='col-sm-6 datepicker-box'>
-              <div className="datepicker-box">
-                <FormField formGroupId="end_date_Id" formLabel={this.context.t("end_date")} isMandatoryField={true} formControlName="end_date" typeField="datepicker"></FormField>
-              </div>
-            </div>
-          </div>{/* Course start date and end date */}
-
-          <div className='row'>
-            <div className='col-md-5 col-sm-5'>
-              <div className="d-flex flex-horizontal">
-                <FormField formGroupId="period_Id" formLabel={this.context.t("period")} isMandatoryField={true} formControlName="period" typeField="custom_input"></FormField>
-                <FormField formGroupId="period_type_Id" formLabel="" isMandatoryField={false} options={periodTypes} formControlName="period_type" typeField="custom_select"></FormField>
-              </div>
-            </div>
-          </div>
-
-          <div className="row">
-            <div className="col-sm-3">
-              <FormField formGroupId="number_of_students_Id" formLabel={this.context.t("number_of_students")} isMandatoryField={true} formControlName="number_of_students" typeField="custom_input"></FormField>
-            </div>
-          </div>
-
-          <div className='row'>
-            <div className='col-md-5 col-sm-5'>
-              <div className="d-flex flex-horizontal">
-                <FormField formGroupId="tuition_fee_Id" formLabel={this.context.t("tuition_fee")} isMandatoryField={true} formControlName="tuition_fee" typeField="custom_input"></FormField>
-                <FormField formGroupId="currency_Id" formLabel="" isMandatoryField={false} options={concurrency} formControlName="currency" typeField="custom_select"></FormField>
-              </div>
-            </div>
-          </div>
-
-          <div className="avatar-image">
-            <FormField formGroupId="cover_image_Id" formLabel={this.context.t("cover_image")} isMandatoryField={true} previewUrl={cover_image != null ? cover_image.previewUrl : null}
-                       zoneHeight="200px" internalPreview={true} formControlName="cover_image" typeField="upload_file" onUpload={onDropCoverImage}></FormField>
-          </div>
-
-          <hr/>
-
-          <FormField formGroupId="description_Id" formLabel={this.context.t("course_description")} isMandatoryField={true} rows={10} formControlName="description" typeField="custom_textarea"></FormField>
-
-          <div className="row">
-            <div className="col-md-12 col-sm-12">
-              <button type="submit" className="btn btn-primary btn-link-dark signin-btn mr-10 ml-15"
-                      disabled={((pristine || submitting) && courseData) || !valid}>
-                  {this.context.t("save_course")}
-              </button>
-              {this.props.courseId && Number(this.props.courseId) > 0 ? (
-                  <button onClick={addLesson} className="btn btn-primary btn-link-dark" disabled={((pristine || submitting) && courseData) || !valid}>{this.context.t('lesson_list_next')}</button>
-              ): null}
-
-            </div>
-          </div>
-        </form>
-      </div>
-    )
-  }
+        )
+    }
 }
 
 CourseForm.contextTypes = {
-  t: React.PropTypes.func.isRequired
+    t: React.PropTypes.func.isRequired
 }
 
-CourseForm.propTypes = {}
+CourseForm.propTypes = {
+    handleSubmit: React.PropTypes.func.isRequired,
+    editMode: React.PropTypes.bool.isRequired,
+    onDropCoverImage: React.PropTypes.func.isRequired,
+    cover_image: React.PropTypes.object.isRequired,
+    courseData: React.PropTypes.object.isRequired,
+    categories: React.PropTypes.array.isRequired,
+    course_levels: React.PropTypes.array.isRequired
+};
 
 export default CourseForm;

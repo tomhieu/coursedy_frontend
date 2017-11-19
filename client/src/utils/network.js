@@ -5,6 +5,7 @@
 // See the actions for post to see it in action located in ../actions/post.js
 import request from './request';
 import queryString from 'query-string'
+import {SERVER_NAME} from "./CommonConstant";
 
 /**
  * @function Network
@@ -16,7 +17,7 @@ import queryString from 'query-string'
    const buildUrl = (path) => {
      let { id, resource } = res;
      let parameters = [
-       'http://66.175.219.194',
+       SERVER_NAME,
        'api',
        'v1'
      ];

@@ -8,106 +8,71 @@ import {
     HIDE_LESSON_POPUP_EDIT
 } from "actions/CourseFormActionCreator";
 import {
-    DELETE_DOCUMENT_FOR_LESSON, FETCH_DETAIL_COURSE_SUCESSFULLY, SAVE_LESSON_SUCESSFULLY
+    ADD_NEW_SECTION, CLOSE_POPUP_ADD_SECTION, CLOSED_ACTIVATED_FIELD, CREATE_UPDATE_SECTION_SUCESSFULLY,
+    DELETE_DOCUMENT_FOR_LESSON, DELETE_SECTION_SUCESSFULLY, FETCH_DETAIL_COURSE_SUCESSFULLY,
+    FETCH_LIST_SECTION_SUCESSFULLY, SAVE_LESSON_SUCESSFULLY, TRIGGER_ACTIVATE_FIELD
 } from "../actions/CourseFormActionCreator";
+import * as lessonActions from "../actions/LessonActionCreator";
 
 const CourseFormComponent = (state = {
-  errors: null, courseData: {cover_image: null}, lessonCreationForm: {
-      lessonList: [],
-      lessonCount: 0,
-      activeLesson: null
+    courseData: {cover_image: null}, editMode: false, listSection: [], showSectionPopup: false, activatedField: null}, action) => {
+    let currentSectionList = JSON.parse(JSON.stringify(state.listSection));
+    switch (action.type) {
+        case types.CREATE_SUCCESSFULLY:
+        case types.CREATE_COURSE_FAILED:
+            return state;
+        case TRIGGER_ACTIVATE_FIELD:
+            return Object.assign({}, state, {activatedField: action.data});
+        case CLOSED_ACTIVATED_FIELD:
+            return Object.assign({}, state, {activatedField: null});
+        case FETCH_DETAIL_COURSE_SUCESSFULLY:
+            return Object.assign({}, state, {courseData: action.payload, editMode: true});
+        case FETCH_LIST_SECTION_SUCESSFULLY:
+            return Object.assign({}, state, {listSection: action.payload});
+        case ADD_NEW_SECTION:
+            return Object.assign({}, state, {showSectionPopup: true});
+        case CLOSE_POPUP_ADD_SECTION:
+            return Object.assign({}, state, {showSectionPopup: false});
+        case DELETE_SECTION_SUCESSFULLY:
+            let deletedSectionList = currentSectionList.filter((section) => section.id != action.data.id);
+            return [...state, {listSection: deletedSectionList}];
+        case CREATE_UPDATE_SECTION_SUCESSFULLY:
+            currentSectionList.push(action.payload);
+            return Object.assign({}, state, {listSection: currentSectionList, showSectionPopup: false});
+        // handle for lesson
+        case lessonActions.ADD_MORE_LESSON_FOR_SECTION:
+            let [modifiedSection] = currentSectionList.filter(section => section.id === action.data);
+            modifiedSection['showLessonPopup'] = true;
+            return Object.assign({}, state, {listSection: currentSectionList});
+        case lessonActions.SAVE_LESSON_SUCESSFULLY:
+            const {course_section_id} = action.payload;
+            let [updatedSection] = currentSectionList.filter(section => section.id === course_section_id);
+            updatedSection.showLessonPopup = false;
+            updatedSection.lessons.push( action.payload);
+            return Object.assign({}, state, {listSection: currentSectionList, showSectionPopup: false});
+        case lessonActions.HIDE_LESSON_POPUP_EDIT:
+            let [activeSection] = currentSectionList.filter(section => section.id ===  action.data);
+            activeSection.showLessonPopup = false;
+            return Object.assign({}, state, {listSection: currentSectionList});
+        case lessonActions.DELETE_LESSON_SUCESSFULLY:
+            const {sectionId, deletedLessonId} = action.data;
+            let [impactedSection] = currentSectionList.filter(lesson => lesson.id === sectionId);
+            impactedSection = Object.assign({}, impactedSection, {lessons: impactedSection.lessons.filter(lesson => lesson.id != deletedLessonId)});
+            return Object.assign({}, state, {listSection: currentSectionList});
+        case lessonActions.ADD_DOCUMENT_FOR_LESSON:
+        case lessonActions.DELETE_DOCUMENT_FOR_LESSON:
+            const {modifySectionId, modifyLessonId} = action.data;
+            let [modifySection] = currentSectionList.filter(session => session.id === modifySectionId);
+            let [modifyLesson] = modifySection.lessons.filter(lesson => lesson.id === modifyLessonId);
+            if (action.type === lessonActions.ADD_DOCUMENT_FOR_LESSON) {
+                modifyLesson.documents.push(action.data.document);
+            } else {
+                modifyLesson.documents.splice(modifyLesson.documents.findIndex(doc => doc.uid === action.data.document), 1);
+            }
+            return Object.assign({}, state, {listSection: currentSectionList});
+        default:
+            return state;
     }
-}, action) => {
-  switch (action.type) {
-    case types.CREATE_SUCCESSFULLY:
-    case types.CREATE_COURSE_FAILED:
-      return state;
-    case FETCH_DETAIL_COURSE_SUCESSFULLY:
-      return Object.assign({}, state, {courseData: action.payload});
-    case ADD_MODIFY_COURSE_LESSON:
-      const nextState = Object.assign({}, state, {courseData: Object.assign({}, action.data.courseData.values, {cover_image: action.data.courseData.cover_image}),
-          lessonCreationForm: Object.assign({}, state.lessonCreationForm, {lessonList: action.data.lessonList})});
-      return nextState;
-    case ADD_MORE_LESSON:
-      let nextLessonList = state.lessonCreationForm.lessonList.slice();
-      const nextPos = state.lessonCreationForm.lessonCount + 1;
-      nextLessonList.push({posId: nextPos, lessonName: '', lessonPeriod: '', documents: [], showPopupEdit: false});
-      return Object.assign({}, state, {
-        lessonCreationForm: {lessonList: nextLessonList, lessonCount: nextPos}
-      });
-    case EDIT_DETAIL_LESSON:
-      let activeLesson = null;
-      let editLessonList = state.lessonCreationForm.lessonList.slice();
-      editLessonList.map(lesson => {
-          if (lesson.posId === action.data) {
-              lesson.showPopupEdit = true;
-              activeLesson = lesson;
-          }
-      })
-      return Object.assign({}, state, {
-        lessonCreationForm: Object.assign({}, state.lessonCreationForm, {lessonList: editLessonList, activeLesson: activeLesson})
-      });
-    case SAVE_LESSON_SUCESSFULLY:
-      let updatedLessonList = JSON.parse(JSON.stringify(state.lessonCreationForm.lessonList));
-        updatedLessonList.map((lesson) =>
-          {
-              if (lesson.posId === action.data.posId) {
-                  lesson.lessonName = action.data.lessonName != undefined ? action.data.lessonName : lesson.lessonName;
-                  lesson.lessonPeriod = action.data.lessonPeriod != undefined ? action.data.lessonPeriod : lesson.lessonPeriod;
-                  lesson.lessonDesciption = action.data.lessonDesciption != undefined ? action.data.lessonDesciption : lesson.lessonDesciption;
-                  lesson.showPopupEdit = false;
-              }
-          }
-      );
-      return Object.assign({}, state, {
-          lessonCreationForm:  Object.assign({}, state.lessonCreationForm, {activeLesson: null, lessonList: updatedLessonList})
-      });
-    case HIDE_LESSON_POPUP_EDIT:
-      let lessonList = state.lessonCreationForm.lessonList.slice();
-      lessonList.map(lesson => {
-          if (lesson.posId === action.data) {
-              lesson.showPopupEdit = false;
-          }
-      });
-      return Object.assign({}, state, {
-        lessonCreationForm: Object.assign({}, state.lessonCreationForm, {activeLesson: null, lessonList: lessonList})
-      });
-    case DELETE_LESSON:
-      let currentLessonList = state.lessonCreationForm.lessonList.slice();
-      const removedItemIndex = currentLessonList.findIndex((e, i) => {
-          return e.posId === action.data;
-      });
-      currentLessonList.splice(removedItemIndex, 1);
-      if (removedItemIndex >= 0) {
-          return Object.assign({}, state, {
-              lessonCreationForm: Object.assign({}, state.lessonCreationForm, {lessonList: currentLessonList})
-          });
-      }
-    case ADD_DOCUMENT_FOR_LESSON:
-      let copyLessonList = JSON.parse(JSON.stringify(state.lessonCreationForm.lessonList));
-      copyLessonList.map(lesson => {
-          if (lesson.posId === action.data.lessonId) {
-              lesson.documents.push(action.data.document)
-          }
-      });
-      return Object.assign({}, state, {
-          lessonCreationForm:  Object.assign({}, state.lessonCreationForm, {lessonList: copyLessonList})
-      });
-    case DELETE_DOCUMENT_FOR_LESSON:
-      let deletedLessonList = JSON.parse(JSON.stringify(state.lessonCreationForm.lessonList));
-      let deletedLesson = deletedLessonList.filter(lesson => lesson.posId === action.data.lessonId);
-      if (Array.isArray(deletedLesson)) {
-          deletedLesson[0].documents.splice(deletedLesson[0].documents.findIndex((e, i) => {
-              return e.uid === action.data.documentId;
-          }), 1);
-          return Object.assign({}, state, {
-              lessonCreationForm:  Object.assign({}, state.lessonCreationForm, {lessonList: deletedLessonList})
-          });
-      }
-
-    default:
-      return state;
-  }
 };
 
 export default CourseFormComponent;

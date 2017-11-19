@@ -1,5 +1,5 @@
 import {Component} from "react";
-import InlineEditFormComponent from "../InlineEditFormComponent";
+import InlineEditFormComponent from "../Core/InlineEditFormField";
 import * as React from "react";
 import EditLessonFormContainer from "../../containers/CoursesContainer/EditLessonFormContainer";
 import {hideLessonDetailPopup, saveOrUpdateLesson} from "../../actions/CourseFormActionCreator";

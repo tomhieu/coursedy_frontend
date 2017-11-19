@@ -2,20 +2,23 @@ import * as types from '../constants/CourseFormComponent';
 import Network from '../utils/network'
 import {TT} from '../utils/locale'
 
-export const ADD_MORE_LESSON = 'ADD_MORE_LESSON';
-export const DELETE_LESSON = 'DELETE_LESSON';
-export const EDIT_DETAIL_LESSON = 'EDIT_DETAIL_LESSON';
-export const SAVE_LESSON_DETAIL = 'SAVE_LESSON_DETAIL';
-export const HIDE_LESSON_POPUP_EDIT = 'HIDE_LESSON_POPUP_EDIT';
-export const SAVE_LESSON_SUCESSFULLY = 'SAVE_LESSON_SUCESSFULLY';
-export const ADD_MODIFY_COURSE_LESSON = 'ADD_MODIFY_COURSE_LESSON';
-export const ADD_DOCUMENT_FOR_LESSON = 'ADD_DOCUMENT_FOR_LESSON';
-export const DELETE_DOCUMENT_FOR_LESSON = 'DELETE_DOCUMENT_FOR_LESSON';
+
 export const FETCH_DETAIL_COURSE_SUCESSFULLY = 'FETCH_DETAIL_COURSE_SUCESSFULLY';
+export const TRIGGER_ACTIVATE_FIELD = 'TRIGGER_ACTIVATE_FIELD';
+export const CLOSED_ACTIVATED_FIELD = 'CLOSED_ACTIVATED_FIELD';
+/**
+ * Define actions to create, edit or delete Section
+ */
+export const FETCH_LIST_SECTION_SUCESSFULLY = 'FETCH_LIST_SECTION_SUCESSFULLY';
+export const ADD_NEW_SECTION = 'ADD_NEW_SECTION';
+export const CLOSE_POPUP_ADD_SECTION = 'CLOSE_POPUP_ADD_SECTION';
+export const DELETE_SECTION_SUCESSFULLY = 'DELETE_SECTION_SUCESSFULLY';
+export const CREATE_UPDATE_SECTION_SUCESSFULLY = 'CREATE_UPDATE_SECTION_SUCESSFULLY';
 
 export const createCourse = (title, description, category_id, course_level_id, start_date, end_date, number_of_students, period, period_type, tuition_fee, currency, cover_image) => {
   return dispatch => {
-    let body = {title, description, category_id, course_level_id, start_date, end_date, number_of_students, period, period_type, tuition_fee, currency, cover_image}
+    let body = {title, description, category_id, course_level_id, start_date, end_date, number_of_students, period, period_type, tuition_fee, currency};
+    body['cover_image'] = cover_image.content;
     Network().post('courses', body).then((response) => {
       dispatch({
         type: types.CREATE_SUCCESSFULLY,
@@ -34,82 +37,77 @@ export const createCourse = (title, description, category_id, course_level_id, s
   }
 };
 
-export const saveOrUpdateLesson = (lessonName, lessonPeriod, lessonDesciption, documents = []) => {
+export const loadCourseDetail = (courseId) => {
     return dispatch => {
-        let body = {lessonName, lessonPeriod, lessonDesciption, documents};
-        Network().post('lessons', body).then((response) => {
+        Network().get(/courses/ + courseId).then((response) => {
+            dispatch(loadListSection(response.id));
             dispatch({
-                type: SAVE_LESSON_SUCESSFULLY,
-                payload: body
+                type: FETCH_DETAIL_COURSE_SUCESSFULLY,
+                payload: response
+            });
+        })
+    };
+};
+
+export const activatedEditField = (fieldId) => {
+    return {
+        type: TRIGGER_ACTIVATE_FIELD,
+        data: fieldId
+    }
+}
+
+export const closedEditField = (fieldId) => {
+    return {
+        type: CLOSED_ACTIVATED_FIELD,
+        data: fieldId
+    }
+}
+
+export const loadListSection = (courseId) => {
+    return dispatch => {
+        Network().get('/course_sections?course_id=' + courseId).then((response) => {
+            dispatch({
+                type: FETCH_LIST_SECTION_SUCESSFULLY,
+                payload: response
+            })
+        })
+    }
+}
+
+/**
+ * Defined all action methods to handle Section
+ */
+export const addNewSection = () => {
+    return {
+        type: ADD_NEW_SECTION
+    }
+}
+
+export const closePopupSection = () => {
+    return {
+        type: CLOSE_POPUP_ADD_SECTION
+    }
+}
+
+export const saveOrUpdateSection = (id, title) => {
+    return dispatch => {
+        let body = {course_id: id, title};
+        Network().post('course_sections', body).then((response) => {
+            dispatch({
+                type: CREATE_UPDATE_SECTION_SUCESSFULLY,
+                payload: response
             });
         })
     }
 }
 
-export const loadCourseDetail = (courseId) => {
+export const deleteSection = (id) => {
     return dispatch => {
-        Network().get(/courses/ + courseId).then((response) => {
+        Network().delete('course_sections', id).then((response) => {
             dispatch({
-                type: FETCH_DETAIL_COURSE_SUCESSFULLY,
-                payload: response
-            })
+                type: DELETE_SECTION_SUCESSFULLY,
+                payload: id
+            });
         })
-    };
-};
-
-export const addAndModifyLessonCourse = (courseData, lessonList) => {
-  return {
-    type: ADD_MODIFY_COURSE_LESSON,
-    data: {
-      courseData: courseData,
-      lessonList: lessonList
     }
-  }
-};
-
-export const addLesson = () => {
-  return {
-    type: ADD_MORE_LESSON
-  };
-};
-
-export const deleteLesson = (lessonId) => {
-  return {
-    type: DELETE_LESSON,
-    data: lessonId
-  }
-};
-
-export const editLessonDetail = (lessonId) => {
-  return {
-    type: EDIT_DETAIL_LESSON,
-    data: lessonId
-  };
-};
-
-export const addDocumentForLesson = (lessonId, document) => {
-  return {
-    type: ADD_DOCUMENT_FOR_LESSON,
-    data: {
-      lessonId: lessonId,
-      document: document
-    }
-  }
-};
-
-export const deleteDocumentForLesson = (lessonId, documentId) => {
-    return {
-        type: DELETE_DOCUMENT_FOR_LESSON,
-        data: {
-            lessonId: lessonId,
-            documentId: documentId
-        }
-    }
-};
-
-export const hideLessonDetailPopup = (lessonId) => {
-    return {
-        type: HIDE_LESSON_POPUP_EDIT,
-        data: lessonId
-    };
-};
+}
