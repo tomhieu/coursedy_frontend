@@ -32,9 +32,11 @@ class CourseFilter extends Component {
                             {
                                 category.course_levels.map((level) =>
                                     <div key={level.id}>
-                                        <FormField formGroupId="filter_course_levels" showLabel={false} checked={this.props.selectedLevels.indexOf(level.id) >= 0}
-                                                   onCheck={this.props.onSelectCourseLevel} formControlName="filter_course_levels" typeField="checkbox"></FormField>
-                                        <label htmlFor=""><span><span></span></span>{level.name}</label>
+                                        <FormField formGroupId="filter_course_levels" showLabel={false} formLabel={level.name}
+                                                   checked={this.props.selectedLevels.indexOf(level.id) >= 0}
+                                                   onCheck={this.props.onSelectCourseLevel}
+                                                   formControlName="filter_course_levels"
+                                                   typeField="checkbox"></FormField>
                                     </div>
                                 )
                             }
@@ -45,16 +47,16 @@ class CourseFilter extends Component {
         )
     }
 
-    renderDayOfWeek() {
+    renderDayOfWeek(weekdays) {
         return (
             <div>
                 {
                     Object.keys(weekdays).map((k) =>
                         <div key={k}>
-                            <FormField formGroupId="filter_course_levels" showLabel={false} checked={this.props.selectedWeekdays.indexOf(k.id) >= 0} chosenValue={k}
-                                       onCheck={this.props.onSelectWeekDay} formControlName="course_schedule_day" typeField="checkbox"></FormField>
-                            <label htmlFor=""><span><span></span></span>{weekdays[k]}
-                            </label>
+                            <FormField formGroupId="filter_course_levels" showLabel={false} formLabel={weekdays[k]}
+                                       checked={this.props.course_schedule_day.indexOf(k.id) >= 0} chosenValue={k}
+                                       onCheck={this.props.onSelectWeekDay} formControlName="course_schedule_day"
+                                       typeField="checkbox"></FormField>
                         </div>
                     )
                 }
@@ -68,9 +70,9 @@ class CourseFilter extends Component {
                 {
                     tuitionFees.map((fee) =>
                         <div key={fee[0]}>
-                            <FormField formGroupId="filter_fees" showLabel={false} chosenValue={fee[0]}
-                                       onCheck={this.props.onFeeChange} formControlName="fees" typeField="checkbox"></FormField>
-                            <label htmlFor=""><span><span></span></span>{fee[1]}</label>
+                            <FormField formGroupId="filter_fees" showLabel={false} chosenValue={fee[0]} formLabel={fee[1]}
+                                       onCheck={this.props.onFeeChange} formControlName="fees"
+                                       typeField="checkbox"></FormField>
                         </div>
                     )
                 }
@@ -81,8 +83,14 @@ class CourseFilter extends Component {
 
     render() {
         let {categories, locations, selectedCategories, weekdays, totalResult} = this.props
-        const orderList = [{id: 1, text: this.context.t("order_by_time")}, {id: 2, text: this.context.t("order_by_view")}, {id: 3, text: this.context.t("order_by_register")}];
-        const displayModes = [{id: 1, text: this.context.t("display_mode_full")}, {id: 2, text: this.context.t("display_mode_compress")}];
+        const orderList = [{id: 1, text: this.context.t("order_by_time")}, {
+            id: 2,
+            text: this.context.t("order_by_view")
+        }, {id: 3, text: this.context.t("order_by_register")}];
+        const displayModes = [{id: 1, text: this.context.t("display_mode_full")}, {
+            id: 2,
+            text: this.context.t("display_mode_compress")
+        }];
         return (
             <div className="row row-margin">
                 <div className="margin-btm">
@@ -101,7 +109,8 @@ class CourseFilter extends Component {
                                                    options={categories.map((x) => {
                                                        return {text: x.name, id: x.id}
                                                    })}
-                                                   placeholder={this.context.t('category')} formControlName="filter_category_ids"
+                                                   placeholder={this.context.t('category')}
+                                                   formControlName="filter_category_ids"
                                                    typeField="multi_select"></FormField>
                                     </div>
                                     {/* Field */}
@@ -110,19 +119,21 @@ class CourseFilter extends Component {
                                                    options={Object.keys(locations).map((x) => {
                                                        return {text: locations[x], id: x}
                                                    })}
-                                                   placeholder={this.context.t("location")} formControlName="filter_location_ids"
+                                                   placeholder={this.context.t("location")}
+                                                   formControlName="filter_location_ids"
                                                    typeField="multi_select"></FormField>
                                     </div>
                                     {/* Area*/}
                                     <div className="col-md-1">
-                                        <button type="submit" className={'btn btn-primary btn-secondary ' + styles.btnSearch}>
+                                        <button type="submit"
+                                                className={'btn btn-primary btn-secondary ' + styles.btnSearch}>
                                             <i className="fa fa-search"></i>
                                         </button>
                                     </div>
 
                                     <div className="col-md-2">
                                         <button type="button" className={'btn btn-primary ' + styles.btnAdvancedFilter}
-                                            onClick={this.toggleFilter.bind(this)}>{this.context.t("filter")}</button>
+                                                onClick={this.toggleFilter.bind(this)}>{this.context.t("filter")}</button>
                                     </div>
                                 </div>
                                 {/* Basic Filter Block */}
@@ -130,7 +141,8 @@ class CourseFilter extends Component {
                                 <div className="clearfix"></div>
 
                                 <div className="col-md-12">
-                                    <div className={styles.advancedFilter + " collapse " + (this.state.openAdFilter ? "in" : "")}>
+                                    <div
+                                        className={styles.advancedFilter + " collapse " + (this.state.openAdFilter ? "in" : "")}>
                                         <div className="col-md-3">
                                             <h4>{this.context.t('level')}</h4>
                                             {this.renderCourseLevels(selectedCategories)}
@@ -138,7 +150,7 @@ class CourseFilter extends Component {
 
                                         <div className="col-md-3">
                                             <h4>{this.context.t("day_of_week")}</h4>
-                                            {this.renderDayOfWeek()}
+                                            {this.renderDayOfWeek(weekdays)}
                                         </div>
                                         {/* Schedule days */}
 
@@ -156,7 +168,8 @@ class CourseFilter extends Component {
                                                                options={timeSlots.map((ts) => {
                                                                    return {id: ts[0], text: ts[1]}
                                                                })}
-                                                               placeholder={this.context.t("start_time")} formControlName="start_time"
+                                                               placeholder={this.context.t("start_time")}
+                                                               formControlName="start_time"
                                                                typeField="custom_select"></FormField>
                                                     <span
                                                         className={`input-errors ${this.props.startTimeError ? '' : 'hidden'}`}>{this.context.t('start_time_error')}</span>
@@ -168,7 +181,8 @@ class CourseFilter extends Component {
                                                                options={timeSlots.map((ts) => {
                                                                    return {id: ts[0], text: ts[1]}
                                                                })}
-                                                               placeholder={this.context.t("end_time")} formControlName="end_time"
+                                                               placeholder={this.context.t("end_time")}
+                                                               formControlName="end_time"
                                                                typeField="custom_select"></FormField>
                                                     <span
                                                         className={`input-errors ${this.props.endTimeError ? '' : 'hidden'}`}>{this.context.t('end_time_error')}</span>
@@ -196,7 +210,8 @@ class CourseFilter extends Component {
                                                    typeField="custom_select"></FormField>
                                     </div>
                                     <div className="col-md-3 text-right">
-                                        <FormField formGroupId="display_mode_id" formLabel={this.context.t("display_mode")}
+                                        <FormField formGroupId="display_mode_id"
+                                                   formLabel={this.context.t("display_mode")}
                                                    options={displayModes} formControlName="display_mode"
                                                    typeField="custom_select"></FormField>
                                     </div>

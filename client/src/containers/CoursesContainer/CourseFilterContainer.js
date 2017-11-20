@@ -19,8 +19,7 @@ class CourseFilterContainer extends Component {
 
   render(){
     return (
-      <CourseFilter {...this.props} searchCourse={this.searchCourse.bind(this)}
-      />
+      <CourseFilter {...this.props} searchCourse={this.searchCourse.bind(this)}/>
     )
   }
 }
@@ -34,6 +33,9 @@ CourseFilterContainer.propTypes = {
 };
 
 const getSelectedCategories = (categories, selectedCategoryIds) => {
+    if (!selectedCategoryIds) {
+        return [];
+    }
     const {selectedCategories = {course_levels: []}} = categories.filter((category) => {
         return selectedCategoryIds.indexOf(category.id) > 0;
     });
@@ -42,10 +44,10 @@ const getSelectedCategories = (categories, selectedCategoryIds) => {
 
 const mapStateToProps = (state) => {
     const {CourseFilter, form} = state;
-    const {categories, locations, weekdays} = CourseFilter;
-    const {courseFilterForm} = form;
-    const {filter_category_ids, filter_location_ids} = courseFilterForm;
-    return {categories, locations, weekdays, filter_category_ids, filter_location_ids,
+    const {categories = [], locations = {}, weekdays = {}} = CourseFilter;
+    const {courseFilterForm = {}} = form;
+    const {filter_category_ids, filter_location_ids, course_schedule_day = []} = courseFilterForm;
+    return {categories, locations, weekdays, filter_category_ids, filter_location_ids, course_schedule_day,
         selectedCategories : getSelectedCategories(categories, filter_category_ids)
     };
 };
@@ -55,6 +57,5 @@ export default connect(
   mapStateToProps
 )(reduxForm({
     form: 'courseFilterForm',
-    fields: ['key_word', 'filter_category_ids', 'filter_location_ids', 'filter_course_levels', 'course_schedule_day', 'fees', 'start_time', 'end_time', 'order_by', 'display_mode'],
-    validate
+    fields: ['key_word', 'filter_category_ids', 'filter_location_ids', 'filter_course_levels', 'course_schedule_day', 'fees', 'start_time', 'end_time', 'order_by', 'display_mode']
 })(CourseFilterContainer))

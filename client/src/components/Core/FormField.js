@@ -72,12 +72,12 @@ class FormField extends Component {
             }
 
             case "checkbox": {
-                fieldComponent = <Field name={formControlName} placeholder={placeholder} value={chosenValue}
+                fieldComponent = <Field name={formControlName} placeholder={placeholder} value={chosenValue} label={this.props.formLabel}
                                         component={renderCheckBox(checked, onCheck)} className={customClassName}/>
                 break;
             }
             case "radiobox": {
-                fieldComponent = <Field name={formControlName} placeholder={placeholder} rows={rows}
+                fieldComponent = <Field name={formControlName} placeholder={placeholder} rows={rows} label={this.props.formLabel}
                                         component={renderRadioBox} className={customClassName}/>
                 break;
             }
