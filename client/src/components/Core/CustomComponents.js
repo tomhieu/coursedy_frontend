@@ -6,6 +6,7 @@ import moment from "moment";
 import Dropzone from "react-dropzone";
 import {TT} from "../../utils/locale";
 import ObjectUtils from "../../utils/ObjectUtils";
+import {Checkbox, RadioButton, Toggle} from "material-ui";
 
 export const renderField = ({input, label, type = 'text', customClassName, meta: {touched, error, warning}}) => (
     <div className='full-width-input-wrapper'>
@@ -39,6 +40,50 @@ export const renderSelect = (selectOptions) => {
     return ({input, label, type, meta: {touched, error, warning}}) => (
         <div className="dark-picker dark-picker-bright">
             <Select2 {...input} data={selectOptions}/>
+            {touched && ((error && <span className='input-errors'>{error}</span>) || (warning &&
+            <span>{warning}</span>))}
+        </div>
+    )
+}
+
+/**
+ * Be aware that only use VALUE and ONCHECK inside a react form
+ * Inside a redux form SHOULD NOT use it
+ * @param value
+ * @param onCheck
+ * @returns {function({input: *, label: *, type: *, meta: *}): XML}
+ */
+export const renderCheckBox = (check = false, onCheck = null) => {
+    return ({input, label, type, meta: {touched, error, warning}}) => (
+        <div className="dark-picker dark-picker-bright">
+            <Checkbox label={label} checked={check} onCheck={onCheck} />
+            {touched && ((error && <span className='input-errors'>{error}</span>) || (warning &&
+            <span>{warning}</span>))}
+        </div>
+    )
+}
+
+export const renderRadioBox = () => {
+    return ({input, label, type, meta: {touched, error, warning}}) => (
+        <div className="dark-picker dark-picker-bright">
+            <RadioButton label={label}/>
+            {touched && ((error && <span className='input-errors'>{error}</span>) || (warning &&
+            <span>{warning}</span>))}
+        </div>
+    )
+}
+
+/**
+ * Be aware that only use TOGGLED and ONTOGGLE inside a react form
+ * Inside a redux form SHOULD NOT use it
+ * @param value
+ * @param onCheck
+ * @returns {function({input: *, label: *, type: *, meta: *}): XML}
+ */
+export const renderToggle = (toggled = false, onToggle) => {
+    return ({input, label, type, meta: {touched, error, warning}}) => (
+        <div className="dark-picker dark-picker-bright">
+            <Toggle label={label} toggled={toggled} onToggle={onToggle}/>
             {touched && ((error && <span className='input-errors'>{error}</span>) || (warning &&
             <span>{warning}</span>))}
         </div>
