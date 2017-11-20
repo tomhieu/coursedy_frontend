@@ -30,6 +30,7 @@ import TutorDashboardIndex from './Dashboard/TutorDashboard/TutorDashboardIndex'
 import CourseForm from './Courses/CourseForm'
 import UserInfo from './Account/UserInfo'
 import RequireEmailConfirmationModal from './Account/RequireEmailConfirmationModal'
+import TutorEducationDetailComponent from './Account/Tutor/TutorEducationDetailComponent'
 
 export {
   Header,
@@ -62,5 +63,6 @@ export {
   CourseForm,
   TutorProfileDetails,
   UserInfo,
-  RequireEmailConfirmationModal
+  RequireEmailConfirmationModal,
+  TutorEducationDetailComponent
 };

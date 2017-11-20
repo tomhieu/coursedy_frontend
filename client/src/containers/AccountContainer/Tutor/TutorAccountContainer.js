@@ -7,7 +7,7 @@ import PersonInfoContainer from "./PersonInfo";
 import {UserInfo} from 'components/index'
 import * as Actions from '../../../actions/TutorAccountActionCreator'
 import {closeEmailConfirmationModal} from "../../../actions/TutorAccountActionCreator";
-import {RequireEmailConfirmationModal} from '../../../components/index'
+import {RequireEmailConfirmationModal, TutorEducationDetailComponent} from '../../../components/index'
 
 class TutorAccount extends Component {
   componentWillMount(){
@@ -27,9 +27,10 @@ class TutorAccount extends Component {
   }
 
   render() {
-    let {editProfileMode, editEducationMode, editPasswordMode} = this.props;
+    let {editProfileMode, editEducationMode, editPasswordMode, user, tutor} = this.props;
     let profileForm = <PersonInfoContainer cancel={this.hideProfileEditForm.bind(this)} />
-    if (!editProfileMode) profileForm = <UserInfo user={this.props.user} showEditForm={this.showProfileEditForm.bind(this)}/>
+    if (!editProfileMode) profileForm = <UserInfo user={user} showEditForm={this.showProfileEditForm.bind(this)}/>
+    let tutorForm = <TutorEducationDetailComponent tutor={tutor}/> //TutorEducationDetailComponent TutorEducation
 
     return (
       <div className="row">
@@ -41,7 +42,7 @@ class TutorAccount extends Component {
 
         <div className="col-md-12 col-xs-12 col-sm-12 dashboard-content-section ">
           <div className="">
-            <TutorEducation/>
+            {tutorForm}
           </div>
         </div>
         <div className="col-md-12 col-xs-12 col-sm-12 dashboard-content-section ">
@@ -64,7 +65,8 @@ const mapStateToProps = (state) => ({
   editEducationMode: state.TutorAccount.editEducationMode,
   editPasswordMode: state.TutorAccount.editPasswordMode,
   showEmailConfirmationModal: state.TutorAccount.showEmailConfirmationModal,
-  user: state.TutorAccount.user
+  user: state.TutorAccount.user,
+  tutor: state.TutorAccount.tutor
 });
 
 export default connect(

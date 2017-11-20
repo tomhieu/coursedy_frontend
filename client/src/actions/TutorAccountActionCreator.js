@@ -186,6 +186,20 @@ export const fetchUser = () => {
           type: types.SET_ACCOUNT_USER,
           payload: data
         })
+
+        dispatch(fetchTutor(data.id))
+      })
+  }
+}
+
+export const fetchTutor = (userId) => {
+  return dispatch => {
+    Network().get('tutors/tutor_by_user', {user_id: userId})
+      .then((data) => {
+        dispatch({
+          type: types.SET_ACCOUNT_TUTOR,
+          payload: data
+        })
       })
   }
 }
