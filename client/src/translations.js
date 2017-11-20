@@ -147,12 +147,16 @@ export const translations = {
         "course_level": "Cấp độ",
         "category": "Lớp học",
         "level": "Cấp độ",
+        /**
+         * Filter Course Page
+         */
         "filter": "Tìm kiếm nâng cao",
         "location": "Khu vực",
         "tuition_fee_filter": "Học phí (Cả khóa)",
         "time_schedule": "Giờ học",
         "start_time": "Bắt đầu",
         "end_time": "Kết thúc",
+        "day_of_week": "Ngày học",
         "end_time_error": "Thời gian kết thúc phải lớn hơn thời gian bắt đầu",
         "start_time_error": "Thời gian kết thúc phải lớn hơn thời gian bắt đầu",
         "last_name_required": "Vui lòng nhập họ",
@@ -163,6 +167,14 @@ export const translations = {
         "name_lesson_field": "Tên Buổi Học",
         "field_number_validator": "Vui lòng nhập số",
         'updating': 'Đang cập nhật',
+        "total_result": "{total} khóa học",
+        "order_list": "Sắp xếp:",
+        "order_by_time": "Mới nhất",
+        "order_by_view": "Xem nhiều nhất",
+        "order_by_register": "Đăng ký nhiều nhất",
+        "display_mode": "Hiển thị:",
+        "display_mode_full": "Đầy đủ",
+        "display_mode_compress": "Dạng nén",
         /*
             Public course detail
         */

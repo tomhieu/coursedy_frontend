@@ -2,8 +2,9 @@ import React, {Component} from 'react'
 import {ControlLabel, FormGroup} from 'react-bootstrap';
 import {Field} from 'redux-form';
 import {
-    renderDatePicker, renderField, renderMultiSelect, renderSelect,
-    renderSingleFileInput, renderTextAreaField
+    renderCheckBox,
+    renderDatePicker, renderField, renderMultiSelect, renderRadioBox, renderSelect,
+    renderSingleFileInput, renderTextAreaField, renderToggle
 } from "./CustomComponents";
 import styles from './FormField.module.scss';
 import cssModules from 'react-css-modules';
@@ -15,9 +16,11 @@ class FormField extends Component {
 
     render() {
         const {formControlName, formLabel, showLabel = true, placeholder, isMandatoryField = false,
-            typeField, type, zoneHeight, internalPreview, previewUrl, onUpload, rows, options, selectedValues, customClassName} = this.props;
+            typeField, type, zoneHeight = "200px", internalPreview = false, previewUrl, onUpload, rows, options,
+            selectedValues, customClassName = "form-control", checked, chosenValue, onCheck, toggled, onToggle} = this.props;
+
         let fieldComponent = this.buildFieldRender(formControlName, placeholder, typeField, type,
-            zoneHeight, internalPreview, previewUrl, onUpload, rows, options, selectedValues, customClassName);
+            zoneHeight, internalPreview, previewUrl, onUpload, rows, options, selectedValues, customClassName, checked, chosenValue, checked, onCheck, toggled, onToggle);
         return (
             <FormGroup controlId="formGroupId">
                 {
@@ -30,7 +33,7 @@ class FormField extends Component {
         )
     }
 
-    buildFieldRender(formControlName, placeholder, typeField, type, zoneHeight = "200px", internalPreview = false, previewUrl, onUpload, rows, options, selectedValues, customClassName = "form-control") {
+    buildFieldRender(formControlName, placeholder, typeField, type, zoneHeight, internalPreview, previewUrl, onUpload, rows, options, selectedValues, customClassName, checked, chosenValue, onCheck, toggled, onToggle) {
         let fieldComponent;
 
         switch (typeField) {
@@ -65,6 +68,22 @@ class FormField extends Component {
             case "custom_textarea": {
                 fieldComponent = <Field name={formControlName} placeholder={placeholder} rows={rows}
                                         component={renderTextAreaField} className={customClassName}/>
+                break;
+            }
+
+            case "checkbox": {
+                fieldComponent = <Field name={formControlName} placeholder={placeholder} value={chosenValue}
+                                        component={renderCheckBox(checked, onCheck)} className={customClassName}/>
+                break;
+            }
+            case "radiobox": {
+                fieldComponent = <Field name={formControlName} placeholder={placeholder} rows={rows}
+                                        component={renderRadioBox} className={customClassName}/>
+                break;
+            }
+            case "toggle": {
+                fieldComponent = <Field name={formControlName} placeholder={placeholder} rows={rows}
+                                        component={renderToggle(toggled, onToggle)} className={customClassName}/>
                 break;
             }
             default: {

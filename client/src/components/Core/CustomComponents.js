@@ -54,9 +54,9 @@ export const renderSelect = (selectOptions) => {
  * @returns {function({input: *, label: *, type: *, meta: *}): XML}
  */
 export const renderCheckBox = (check = false, onCheck = null) => {
-    return ({input, label, type, meta: {touched, error, warning}}) => (
+    return ({input, label, type, value, meta: {touched, error, warning}}) => (
         <div className="dark-picker dark-picker-bright">
-            <Checkbox label={label} checked={check} onCheck={onCheck} />
+            <Checkbox label={label} value={value} checked={check} { onCheck != null ? onCheck={onCheck} : '' }/>
             {touched && ((error && <span className='input-errors'>{error}</span>) || (warning &&
             <span>{warning}</span>))}
         </div>
