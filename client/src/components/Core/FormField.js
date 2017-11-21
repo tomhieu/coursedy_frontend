@@ -1,13 +1,30 @@
-import React, {Component} from 'react'
-import {ControlLabel, FormGroup} from 'react-bootstrap';
-import {Field} from 'redux-form';
+import React, {Component} from "react";
+import {ControlLabel, FormGroup} from "react-bootstrap";
+import {Field} from "redux-form";
 import {
     renderCheckBox,
-    renderDatePicker, renderField, renderMultiSelect, renderRadioBox, renderSelect,
-    renderSingleFileInput, renderTextAreaField, renderToggle
+    renderDatePicker,
+    renderField,
+    renderMultiSelect,
+    renderRadioBox,
+    renderSelect,
+    renderSingleFileInput,
+    renderTextAreaField,
+    renderToggle
 } from "./CustomComponents";
-import styles from './FormField.module.scss';
-import cssModules from 'react-css-modules';
+import styles from "./FormField.module.scss";
+import cssModules from "react-css-modules";
+import {
+    AutoComplete,
+    Checkbox,
+    DatePicker,
+    TimePicker,
+    RadioButtonGroup,
+    SelectField,
+    Slider,
+    TextField,
+    Toggle
+} from 'redux-form-material-ui'
 
 class FormField extends Component {
     constructor(props) {
@@ -72,13 +89,13 @@ class FormField extends Component {
             }
 
             case "checkbox": {
-                fieldComponent = <Field name={formControlName} placeholder={placeholder} value={chosenValue} label={this.props.formLabel}
-                                        component={renderCheckBox(checked, onCheck)} className={customClassName}/>
+                fieldComponent = <Field name={formControlName} label={this.props.formLabel}
+                                        component={Checkbox} className={customClassName}/>
                 break;
             }
             case "radiobox": {
                 fieldComponent = <Field name={formControlName} placeholder={placeholder} rows={rows} label={this.props.formLabel}
-                                        component={renderRadioBox} className={customClassName}/>
+                                        component={RadioButtonGroup} className={customClassName}/>
                 break;
             }
             case "toggle": {

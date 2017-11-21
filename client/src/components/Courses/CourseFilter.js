@@ -24,7 +24,7 @@ class CourseFilter extends Component {
 
     renderCourseLevels(selectedCategories) {
         return (
-            <div>
+            <div className="checkbox-group">
                 {
                     selectedCategories.map((category) => {
                         <div key={category.id}>
@@ -49,7 +49,7 @@ class CourseFilter extends Component {
 
     renderDayOfWeek(weekdays) {
         return (
-            <div>
+            <div className="checkbox-group">
                 {
                     Object.keys(weekdays).map((k) =>
                         <div key={k}>
@@ -66,7 +66,7 @@ class CourseFilter extends Component {
 
     renderTutorFees(tuitionFees) {
         return (
-            <div>
+            <div className="checkbox-group">
                 {
                     tuitionFees.map((fee) =>
                         <div key={fee[0]}>

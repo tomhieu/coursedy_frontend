@@ -53,18 +53,23 @@ export const renderSelect = (selectOptions) => {
  * @param onCheck
  * @returns {function({input: *, label: *, type: *, meta: *}): XML}
  */
-export const renderCheckBox = (check = false, onCheck = null) => {
-    return ({input, label, name, type, value, meta: {touched, error, warning}}) => (
+export const renderCheckBox = ({input: { name, onChange, value, ...inputProps }, label, type, meta: {touched, error, warning}}) => {
+    return (
         <div className="dark-picker dark-picker-bright">
-            <Checkbox label={label} value={value} checked={check} name={input.name} />
+            <Checkbox label={label} checked={value ? true : false} name={name}
+                      onCheck={(event, isInputChecked) => {
+                          console.log('check');
+                      }
+                      }
+            />
             {touched && ((error && <span className='input-errors'>{error}</span>) || (warning &&
             <span>{warning}</span>))}
         </div>
     )
 }
 
-export const renderRadioBox = () => {
-    return ({input, label, name, type, meta: {touched, error, warning}}) => (
+export const renderRadioBox = ({input, label, name, type, meta: {touched, error, warning}}) => {
+    return (
         <div className="dark-picker dark-picker-bright">
             <RadioButton label={label} name={name}/>
             {touched && ((error && <span className='input-errors'>{error}</span>) || (warning &&
