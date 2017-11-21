@@ -5,6 +5,7 @@ import styles from './Course.module.scss';
 import Select2 from 'react-select2-wrapper'
 import {timeSlots, tuitionFees} from '../../constants/CourseFilter'
 import FormField from "../Core/FormField";
+import {FieldArray} from "redux-form";
 
 class CourseFilter extends Component {
 
@@ -22,27 +23,20 @@ class CourseFilter extends Component {
         )
     }
 
-    renderCourseLevels(selectedCategories) {
+    renderCourseLevels(courseLevels) {
         return (
             <div className="checkbox-group">
-                {
-                    selectedCategories.map((category) => {
-                        <div key={category.id}>
-                            <h5>{category.name}</h5>
-                            {
-                                category.course_levels.map((level) =>
-                                    <div key={level.id}>
-                                        <FormField formGroupId="filter_course_levels" showLabel={false} formLabel={level.name}
-                                                   checked={this.props.selectedLevels.indexOf(level.id) >= 0}
-                                                   onCheck={this.props.onSelectCourseLevel}
-                                                   formControlName="filter_course_levels"
-                                                   typeField="checkbox"></FormField>
-                                    </div>
-                                )
-                            }
-                        </div>
-                    })
-                }
+                <FieldArray name="filter_course_levels" component={() =>
+                    <div>
+                        {courseLevels.map((filter_course_level) =>
+                            <div key={filter_course_level.id}>
+                                <FormField formGroupId="filter_course_levels" showLabel={false}
+                                           formLabel={filter_course_level.name}
+                                           formControlName={`${filter_course_level}`} typeField="checkbox"></FormField>
+                            </div>
+                        )}
+                    </div>
+                }/>
             </div>
         )
     }
@@ -50,16 +44,19 @@ class CourseFilter extends Component {
     renderDayOfWeek(weekdays) {
         return (
             <div className="checkbox-group">
-                {
-                    Object.keys(weekdays).map((k) =>
-                        <div key={k}>
-                            <FormField formGroupId="filter_course_levels" showLabel={false} formLabel={weekdays[k]}
-                                       checked={this.props.course_schedule_day.indexOf(k.id) >= 0} chosenValue={k}
-                                       onCheck={this.props.onSelectWeekDay} formControlName="course_schedule_day"
-                                       typeField="checkbox"></FormField>
-                        </div>
-                    )
-                }
+                <FieldArray name="course_schedule_days" component={() =>
+                    <div>
+                        {
+                            Object.keys(weekdays).map((k) =>
+                                <div key={k}>
+                                    <FormField formGroupId="course_schedule_day" showLabel={false} formLabel={weekdays[k]}
+                                               formControlName={"course_schedule_days[" + k + "]"}
+                                               typeField="checkbox"></FormField>
+                                </div>
+                            )
+                        }
+                    </div>
+                }/>
             </div>
         )
     }
@@ -67,22 +64,25 @@ class CourseFilter extends Component {
     renderTutorFees(tuitionFees) {
         return (
             <div className="checkbox-group">
-                {
-                    tuitionFees.map((fee) =>
-                        <div key={fee[0]}>
-                            <FormField formGroupId="filter_fees" showLabel={false} chosenValue={fee[0]} formLabel={fee[1]}
-                                       onCheck={this.props.onFeeChange} formControlName="fees"
-                                       typeField="checkbox"></FormField>
-                        </div>
-                    )
-                }
+                <FieldArray name="fees" component={() =>
+                    <div>
+                        {
+                            tuitionFees.map((fee, i) =>
+                                <div key={fee[0]}>
+                                    <FormField formGroupId="filter_fees" showLabel={false} chosenValue={fee[0]} formLabel={fee[1]}
+                                               formControlName={"fees[" + i + "]"} typeField="checkbox"></FormField>
+                                </div>
+                            )
+                        }
+                    </div>
+                }/>
             </div>
         )
     }
 
 
     render() {
-        let {categories, locations, selectedCategories, weekdays, totalResult} = this.props
+        let {categories, locations, courseLevels, weekdays, totalResult} = this.props
         const orderList = [{id: 1, text: this.context.t("order_by_time")}, {
             id: 2,
             text: this.context.t("order_by_view")
@@ -145,7 +145,7 @@ class CourseFilter extends Component {
                                         className={styles.advancedFilter + " collapse " + (this.state.openAdFilter ? "in" : "")}>
                                         <div className="col-md-3">
                                             <h4>{this.context.t('level')}</h4>
-                                            {this.renderCourseLevels(selectedCategories)}
+                                            {this.renderCourseLevels(courseLevels)}
                                         </div>
 
                                         <div className="col-md-3">

@@ -100,7 +100,6 @@ export const renderMultiSelect = (selectOptions, selectedValues) => {
     return ({input, label, type, meta: {touched, error, warning}}) => (
         <div className="select-picker">
             <Select2 {...input} multiple
-                     defaultValue={defaultValues}
                      data={selectOptions}
             />
             {touched && ((error && <span className='input-errors'>{error}</span>) || (warning &&

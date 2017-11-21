@@ -36,20 +36,27 @@ const getSelectedCategories = (categories, selectedCategoryIds) => {
     if (!selectedCategoryIds) {
         return [];
     }
-    const {selectedCategories = {course_levels: []}} = categories.filter((category) => {
-        return selectedCategoryIds.indexOf(category.id) > 0;
+    let courseLevels = [];
+    categories.map((category) => {
+        if (selectedCategoryIds.indexOf(category.id.toString()) >= 0) {
+            courseLevels.push(...category.course_levels);
+        }
     });
-    return selectedCategories;
+    return courseLevels;
 }
 
 const mapStateToProps = (state) => {
-    const {CourseFilter, form} = state;
+    const {CourseFilter, form = {}} = state;
     const {categories = [], locations = {}, weekdays = {}} = CourseFilter;
     const {courseFilterForm = {}} = form;
-    const {filter_category_ids, filter_location_ids, course_schedule_day = []} = courseFilterForm;
-    return {categories, locations, weekdays, filter_category_ids, filter_location_ids, course_schedule_day,
-        selectedCategories : getSelectedCategories(categories, filter_category_ids)
-    };
+    if (!courseFilterForm.values) {
+        return {categories, locations, weekdays, courseLevels : []};
+    } else {
+        const {filter_category_ids, filter_location_ids, course_schedule_day = []} = courseFilterForm.values;
+        return {categories, locations, weekdays, filter_category_ids, filter_location_ids, course_schedule_day,
+            courseLevels : getSelectedCategories(categories, filter_category_ids)
+        };
+    }
 };
 
 
