@@ -92,6 +92,10 @@ class FormField extends Component {
                                         component={renderToggle(toggled, onToggle)} className={customClassName}/>
                 break;
             }
+            case "timePicker": {
+                fieldComponent = <Field name={formControlName} label={this.props.formLabel} component={TimePicker} format={null} hintText={placeholder}/>
+                break;
+            }
             default: {
                 fieldComponent = <Field name={formControlName} placeholder={placeholder} component={typeField}
                                         className={customClassName}/>;

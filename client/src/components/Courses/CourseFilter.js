@@ -70,20 +70,12 @@ class CourseFilter extends Component {
 
     renderTutorFees(tuitionFees) {
         return (
-            <div className="checkbox-group">
-                <FieldArray name="fees" component={() =>
-                    <div>
-                        {
-                            tuitionFees.map((fee, i) =>
-                                <div key={fee[0]}>
-                                    <FormField formGroupId="filter_fees" showLabel={false} chosenValue={fee[0]}
-                                               formLabel={fee[1]}
-                                               formControlName={"fees[" + i + "]"} typeField="checkbox"></FormField>
-                                </div>
-                            )
-                        }
-                    </div>
-                }/>
+            <div className="d-flex flex-horizontal">
+                <FormField formGroupId="filter_min_fees" showLabel={false} options={tuitionFees}
+                           formControlName={"min_fees"} typeField="custom_select"></FormField>
+                <span className="ml-5 mr-5">{this.context.t("to")}</span>
+                <FormField formGroupId="filter_max_fees" showLabel={false} options={tuitionFees}
+                           formControlName={"max_fees"} typeField="custom_select"></FormField>
             </div>
         )
     }
@@ -162,42 +154,35 @@ class CourseFilter extends Component {
                                         </div>
                                         {/* Schedule days */}
 
-                                        <div className="col-md-3">
-                                            <h4>{this.context.t('tuition_fee_filter')}</h4>
-                                            {this.renderTutorFees(tuitionFees)}
-                                        </div>
-                                        {/* Tuition fee */}
-
-                                        <div className="col-md-3">
-                                            <h4>{this.context.t('time_schedule')}</h4>
-                                            <div className='row dark-picker dark-picker-bright'>
-                                                <div className='col-sm-9'>
-                                                    <FormField formGroupId="start_time_id" showLabel={false}
-                                                               options={timeSlots.map((ts) => {
-                                                                   return {id: ts[0], text: ts[1]}
-                                                               })}
-                                                               placeholder={this.context.t("start_time")}
-                                                               formControlName="start_time"
-                                                               typeField="custom_select"></FormField>
-                                                    <span
-                                                        className={`input-errors ${this.props.startTimeError ? '' : 'hidden'}`}>{this.context.t('start_time_error')}</span>
+                                        <div className="col-md-6 col-sm-6">
+                                            <div className="row">
+                                                {/* Tuition fee */}
+                                                <div className="col-md-12 col-sm-12">
+                                                    <h4>{this.context.t('tuition_fee_filter')}</h4>
+                                                    {this.renderTutorFees(tuitionFees)}
                                                 </div>
-                                            </div>
-                                            <div className='row dark-picker dark-picker-bright margin-top15'>
-                                                <div className='col-sm-9'>
-                                                    <FormField formGroupId="end_time_id" showLabel={false}
-                                                               options={timeSlots.map((ts) => {
-                                                                   return {id: ts[0], text: ts[1]}
-                                                               })}
-                                                               placeholder={this.context.t("end_time")}
-                                                               formControlName="end_time"
-                                                               typeField="custom_select"></FormField>
-                                                    <span
-                                                        className={`input-errors ${this.props.endTimeError ? '' : 'hidden'}`}>{this.context.t('end_time_error')}</span>
+                                                {/* Schedule time */}
+                                                <div className="col-md-12 col-sm-12">
+                                                    <h4>{this.context.t('time_schedule')}</h4>
+                                                    <div className='row dark-picker dark-picker-bright'>
+                                                        <div className='col-sm-9'>
+                                                            <FormField formGroupId="start_time_id" showLabel={false}
+                                                                       placeholder={this.context.t("start_time")}
+                                                                       formControlName="start_time"
+                                                                       typeField="timePicker"></FormField>
+                                                        </div>
+                                                    </div>
+                                                    <div className='row dark-picker dark-picker-bright margin-top15'>
+                                                        <div className='col-sm-9'>
+                                                            <FormField formGroupId="end_time_id" showLabel={false}
+                                                                       placeholder={this.context.t("end_time")}
+                                                                       formControlName="end_time"
+                                                                       typeField="timePicker"></FormField>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        {/* Schedule time */}
 
                                         <div className="clearfix"></div>
 

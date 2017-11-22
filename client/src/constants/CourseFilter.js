@@ -40,8 +40,8 @@ export const timeSlots = [
 ]
 
 export const tuitionFees = [
-  [0, 'Dưới 1tr'],
-  [1000000, '1tr - 5tr'],
-  [5000000, '5tr - 10tr'],
-  [10000000, 'Trên 10tr']
+    {id: 0, text: 'Dưới 1tr'},
+    {id: 1000000, text: '1tr - 5tr'},
+    {id: 5000000, text: '5tr - 10tr'},
+    {id: 10000000, text: 'Trên 10tr'}
 ]
