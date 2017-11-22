@@ -71,8 +71,10 @@ class CourseFilter extends Component {
     renderTutorFees(tuitionFees) {
         return (
             <div className="d-flex flex-horizontal">
-                <FormField formGroupId="filter_min_fees" showLabel={false} options={tuitionFees} customClassName="select-course-fee"
-                           formControlName={"min_fees"} typeField="custom_select"></FormField>
+                <div className="select-course-fee">
+                    <FormField formGroupId="filter_min_fees" showLabel={false} options={tuitionFees}
+                               formControlName={"min_fees"} typeField="custom_select"></FormField>
+                </div>
             </div>
         )
     }
