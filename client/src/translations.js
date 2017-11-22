@@ -153,6 +153,7 @@ export const translations = {
         "filter": "Tìm kiếm nâng cao",
         "location": "Khu vực",
         "tuition_fee_filter": "Học phí (Cả khóa)",
+        "to": "Đến",
         "time_schedule": "Giờ học",
         "start_time": "Bắt đầu",
         "end_time": "Kết thúc",
