@@ -13,7 +13,7 @@ import {
 } from "./CustomComponents";
 import styles from "./FormField.module.scss";
 import cssModules from "react-css-modules";
-import {RadioButtonGroup} from 'redux-form-material-ui'
+import {TimePicker, Checkbox, RadioButtonGroup} from 'redux-form-material-ui'
 
 class FormField extends Component {
     constructor(props) {
@@ -79,7 +79,7 @@ class FormField extends Component {
 
             case "checkbox": {
                 fieldComponent = <Field name={formControlName} label={this.props.formLabel}
-                                        component={renderCheckbox} className={customClassName}/>
+                                        component={Checkbox} className={customClassName}/>
                 break;
             }
             case "radiobox": {

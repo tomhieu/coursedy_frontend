@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import cssModules from 'react-css-modules';
 import styles from './Course.module.scss';
-import {timeSlots, tuitionFees} from '../../constants/CourseFilter'
+import {tuitionFees} from '../../constants/CourseFilter'
 import FormField from "../Core/FormField";
 import {FieldArray} from "redux-form";
 
@@ -71,11 +71,8 @@ class CourseFilter extends Component {
     renderTutorFees(tuitionFees) {
         return (
             <div className="d-flex flex-horizontal">
-                <FormField formGroupId="filter_min_fees" showLabel={false} options={tuitionFees}
+                <FormField formGroupId="filter_min_fees" showLabel={false} options={tuitionFees} customClassName="select-course-fee"
                            formControlName={"min_fees"} typeField="custom_select"></FormField>
-                <span className="ml-5 mr-5">{this.context.t("to")}</span>
-                <FormField formGroupId="filter_max_fees" showLabel={false} options={tuitionFees}
-                           formControlName={"max_fees"} typeField="custom_select"></FormField>
             </div>
         )
     }
