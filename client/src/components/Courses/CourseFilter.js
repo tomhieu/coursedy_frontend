@@ -1,8 +1,6 @@
 import React, {Component} from 'react';
-import {Form} from 'react-bootstrap'
 import cssModules from 'react-css-modules';
 import styles from './Course.module.scss';
-import Select2 from 'react-select2-wrapper'
 import {timeSlots, tuitionFees} from '../../constants/CourseFilter'
 import FormField from "../Core/FormField";
 import {FieldArray} from "redux-form";
@@ -23,20 +21,28 @@ class CourseFilter extends Component {
         )
     }
 
-    renderCourseLevels(courseLevels) {
+    renderCourseLevels(selectedCategories) {
         return (
             <div className="checkbox-group">
-                <FieldArray name="filter_course_levels" component={() =>
-                    <div>
-                        {courseLevels.map((filter_course_level) =>
-                            <div key={filter_course_level.id}>
-                                <FormField formGroupId="filter_course_levels" showLabel={false}
-                                           formLabel={filter_course_level.name}
-                                           formControlName={`${filter_course_level}`} typeField="checkbox"></FormField>
-                            </div>
-                        )}
-                    </div>
-                }/>
+                {
+                    selectedCategories.map(cate =>
+                        <div>
+                            <span>{cate.name}</span>
+                            <FieldArray name="filter_course_levels" component={() =>
+                                <div>
+                                    {cate.course_levels.map((filter_course_level) =>
+                                        <div key={filter_course_level.id}>
+                                            <FormField formGroupId="filter_course_levels" showLabel={false}
+                                                       formLabel={filter_course_level.name}
+                                                       formControlName={"filter_course_levels[" + filter_course_level.id + "]"} typeField="checkbox"></FormField>
+                                        </div>
+                                    )}
+                                </div>
+                            }/>
+                        </div>
+                    )
+                }
+
             </div>
         )
     }
@@ -49,7 +55,8 @@ class CourseFilter extends Component {
                         {
                             Object.keys(weekdays).map((k) =>
                                 <div key={k}>
-                                    <FormField formGroupId="course_schedule_day" showLabel={false} formLabel={weekdays[k]}
+                                    <FormField formGroupId="course_schedule_day" showLabel={false}
+                                               formLabel={weekdays[k]}
                                                formControlName={"course_schedule_days[" + k + "]"}
                                                typeField="checkbox"></FormField>
                                 </div>
@@ -69,7 +76,8 @@ class CourseFilter extends Component {
                         {
                             tuitionFees.map((fee, i) =>
                                 <div key={fee[0]}>
-                                    <FormField formGroupId="filter_fees" showLabel={false} chosenValue={fee[0]} formLabel={fee[1]}
+                                    <FormField formGroupId="filter_fees" showLabel={false} chosenValue={fee[0]}
+                                               formLabel={fee[1]}
                                                formControlName={"fees[" + i + "]"} typeField="checkbox"></FormField>
                                 </div>
                             )
@@ -82,7 +90,7 @@ class CourseFilter extends Component {
 
 
     render() {
-        let {categories, locations, courseLevels, weekdays, totalResult} = this.props
+        let {handleSubmit, categories, locations, selectedCategories, weekdays, totalResult} = this.props
         const orderList = [{id: 1, text: this.context.t("order_by_time")}, {
             id: 2,
             text: this.context.t("order_by_view")
@@ -96,7 +104,7 @@ class CourseFilter extends Component {
                 <div className="margin-btm">
                     <div className="col-xs-12 col-sm-12">
                         <div className={"col-xs-12 col-sm-12 " + styles.courseFilter}>
-                            <Form action="#" id="filter_form" method="post">
+                            <form onSubmit={handleSubmit(this.props.onSubmit)} className='inline-form' multiple={true}>
                                 <div className={"col-md-12 " + styles.basicFilterBlock}>
                                     <div className={"col-md-3 " + styles.noPadRight}>
                                         <FormField formGroupId="key_word_filter" showLabel={false}
@@ -145,7 +153,7 @@ class CourseFilter extends Component {
                                         className={styles.advancedFilter + " collapse " + (this.state.openAdFilter ? "in" : "")}>
                                         <div className="col-md-3">
                                             <h4>{this.context.t('level')}</h4>
-                                            {this.renderCourseLevels(courseLevels)}
+                                            {this.renderCourseLevels(selectedCategories)}
                                         </div>
 
                                         <div className="col-md-3">
@@ -217,7 +225,7 @@ class CourseFilter extends Component {
                                     </div>
                                 </div>
                                 {/* Result Block */}
-                            </Form>
+                            </form>
                         </div>
                     </div>
                 </div>
