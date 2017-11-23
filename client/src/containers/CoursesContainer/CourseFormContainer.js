@@ -6,7 +6,7 @@ import SectionCreationPopupContainer from "./SectionCreationPopupContainer";
 import SectionLessonContainer from "./SectionLessonContainer";
 import {btnStyles} from "../../utils/CustomStylesUtil";
 import {FlatButton} from "material-ui";
-import {ContentAddCircle} from "material-ui/svg-icons/index";
+import {ContentAddCircle, EditorPublish} from "material-ui/svg-icons/index";
 import {red900} from "material-ui/styles/colors";
 import CourseDetailContainer from "./CourseDetailContainer";
 import LoadingMask from "../../components/LoadingMask/LoadingMask";
@@ -40,13 +40,27 @@ class CourseFormContainer extends Component {
         this.props.dispatch(CourseActions.addNewSection());
     }
 
+    validateBeforePublishCourse() {
+        this.props.dispatch(CourseActions.validateBeforePublishCCourse());
+    }
+
+    publishCourse() {
+        this.props.dispatch(CourseActions.publishCourse(this.courseId));
+    }
+
+    canclePublishCourse() {
+        this.props.dispatch({
+            type: CourseActions.CANCEL_PUBLISH_COURSE
+        });
+    }
+
     cancelPopup() {
         this.props.dispatch(CourseActions.clearCourseData());
         this.context.router.history.push('/dashboard/courses/list/');
     }
 
     render() {
-        const {editMode, listSection, courseData, createCourseSucess} = this.props;
+        const {editMode, listSection, courseTitle, createCourseSucess, publishCourse} = this.props;
         return (
             <div className="row dashboard-panel">
                 <div className="col-sm-12 col-md-12">
@@ -62,11 +76,20 @@ class CourseFormContainer extends Component {
                         <div className="col-sm-12 col-md-12">
                             <div className="row">
                                 <div className="col-sm-12 col-md-12">
-                                    <FlatButton label={this.context.t('lesson_link_edit')}
-                                                style={btnStyles.defaultFlatBtn}
-                                                secondary={true} onClick={this.addNewSection.bind(this)}
-                                                icon={<ContentAddCircle color={red900}/>}
-                                    />
+                                    <div className="row">
+                                        <div className="col-md-6 col-sm-6">
+                                            <FlatButton label={this.context.t('lesson_link_edit')}
+                                                        style={btnStyles.defaultFlatBtn}
+                                                        secondary={true} onClick={this.addNewSection.bind(this)}
+                                                        icon={<ContentAddCircle color="#e27d7f"/>}/>
+                                        </div>
+                                        <div className="col-md-6 col-sm-6">
+                                            <FlatButton label={this.context.t('course_publish')}
+                                                        style={btnStyles.defaultFlatBtn}
+                                                        secondary={true} onClick={this.validateBeforePublishCourse.bind(this)}
+                                                        icon={<EditorPublish color="#e27d7f"/>}/>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div className="col-sm-12 col-md-12">
                                     <LoadingMask>
@@ -81,6 +104,19 @@ class CourseFormContainer extends Component {
                                 </div>
                                 <SectionCreationPopupContainer courseId={this.courseId}></SectionCreationPopupContainer>
                             </div>
+                            <SimpleDialogComponent title={this.context.t('popup_warning_publish_course_title')} show={publishCourse} acceptBtn={this.context.t("course_publish")} cancelCallback={this.canclePublishCourse.bind(this)} acceptCallback={this.publishCourse.bind(this)}>
+                                <div className="d-flex flex-vertical">
+                                    <span>{this.context.t('popup_warning_publish_course_message_1', {course_title: courseTitle})}</span>
+                                </div>
+                                {
+                                    listSection.length === 0 ? (
+                                        <div className="d-flex flex-vertical">
+                                            <span>{this.context.t("popup_warning_publish_course_message_2")}</span>
+                                            <span>{this.context.t("popup_warning_publish_course_message_3", {course_title: courseTitle})}</span>
+                                        </div>
+                                    ) : null
+                                }
+                            </SimpleDialogComponent>
                         </div>
                     ) : null
                 }
@@ -98,10 +134,10 @@ CourseFormContainer.propTypes = {};
 
 const mapStateToProps = (state) => {
     const {CourseFormComponent} = state;
-    const {listSection, editMode, activatedField, createCourseSucess, courseData} = CourseFormComponent;
-    const {cover_image} = courseData;
+    const {listSection, editMode, activatedField, createCourseSucess, courseData = {}, publishCourse} = CourseFormComponent;
+    const {cover_image, title} = courseData;
     return {
-        listSection, editMode, activatedField, createCourseSucess, cover_image
+        listSection, editMode, activatedField, createCourseSucess, cover_image, publishCourse, courseTitle: title
     };
 };
 

@@ -2,11 +2,11 @@ import * as types from "../constants/CourseFormComponent";
 import {
     ADD_DOCUMENT_FOR_LESSON,
     ADD_MODIFY_COURSE_LESSON,
-    ADD_MORE_LESSON,
+    ADD_MORE_LESSON, CANCEL_PUBLISH_COURSE,
     CLEAR_COURSE_DATA,
     DELETE_LESSON,
     EDIT_DETAIL_LESSON,
-    HIDE_LESSON_POPUP_EDIT
+    HIDE_LESSON_POPUP_EDIT, VALIDATE_BEFORE_PUBLISH_COURSE
 } from "actions/CourseFormActionCreator";
 import {
     ADD_NEW_SECTION,
@@ -24,7 +24,7 @@ import * as lessonActions from "../actions/LessonActionCreator";
 import DateUtils from "utils/DateUtils";
 
 const CourseFormComponent = (state = {
-    courseData: {cover_image: null}, editMode: false, listSection: [], showSectionPopup: false, activatedField: null, createCourseSucess: false}, action) => {
+    courseData: {cover_image: null}, editMode: false, listSection: [], showSectionPopup: false, activatedField: null, createCourseSucess: false, publishCourse: false}, action) => {
     let currentSectionList = JSON.parse(JSON.stringify(state.listSection));
     switch (action.type) {
         case types.CREATE_SUCCESSFULLY:
@@ -35,6 +35,10 @@ const CourseFormComponent = (state = {
         case types.UPDATE_COURSE_FAILED:
         case types.CREATE_COURSE_FAILED:
             return state;
+        case VALIDATE_BEFORE_PUBLISH_COURSE:
+            return Object.assign({}, state, {publishCourse: true});
+        case CANCEL_PUBLISH_COURSE:
+            return Object.assign({}, state, {publishCourse: false});
         case TRIGGER_ACTIVATE_FIELD:
             return Object.assign({}, state, {activatedField: action.data});
         case CLOSED_ACTIVATED_FIELD:

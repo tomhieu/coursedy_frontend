@@ -63,7 +63,7 @@ class SectionLessonContainer extends Component {
                             </div>
                         </div>
                     </CardHeader>
-                    <CardContent expandable={true}>
+                    <CardText expandable={true}>
                         <div className="row">
                             <div className="col-md-12 col-sm-12">
                                 {
@@ -75,7 +75,7 @@ class SectionLessonContainer extends Component {
                                 }
                             </div>
                         </div>
-                    </CardContent>
+                    </CardText>
                 </Card>
                 <EditLessonFormContainer show={showPopupEdit} hidePopup={this.hideLessonPopup.bind(this)} onSaveLesson={this.saveLesson.bind(this)} {...this.props}/>
             </div>

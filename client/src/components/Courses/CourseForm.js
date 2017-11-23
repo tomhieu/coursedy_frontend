@@ -150,7 +150,7 @@ CourseForm.propTypes = {
     handleSubmit: React.PropTypes.func.isRequired,
     editMode: React.PropTypes.bool.isRequired,
     onDropCoverImage: React.PropTypes.func.isRequired,
-    cover_image: React.PropTypes.object.isRequired,
+    cover_image: React.PropTypes.string.isRequired,
     courseData: React.PropTypes.object.isRequired,
     categories: React.PropTypes.array.isRequired,
     course_levels: React.PropTypes.array.isRequired

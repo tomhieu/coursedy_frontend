@@ -6,6 +6,9 @@ import {fetchListTutorCourse} from "actions/ListTutorCourseActionCreator";
 
 export const FETCH_DETAIL_COURSE_SUCESSFULLY = 'FETCH_DETAIL_COURSE_SUCESSFULLY';
 export const CLEAR_COURSE_DATA = 'CLEAR_COURSE_DATA';
+export const PUBLISH_COURSE = 'PUBLISH_COURSE';
+export const CANCEL_PUBLISH_COURSE = 'CANCEL_PUBLISH_COURSE';
+export const VALIDATE_BEFORE_PUBLISH_COURSE = 'VALIDATE_BEFORE_PUBLISH_COURSE';
 export const TRIGGER_ACTIVATE_FIELD = 'TRIGGER_ACTIVATE_FIELD';
 export const CLOSED_ACTIVATED_FIELD = 'CLOSED_ACTIVATED_FIELD';
 /**
@@ -127,6 +130,23 @@ export const loadListSection = (courseId) => {
                 payload: response
             })
         })
+    }
+}
+
+export const publishCourse = (courseId) => {
+    return dispatch => {
+        Network().post('courses/publish', courseId).then((response) => {
+            dispatch({
+                type: FETCH_LIST_SECTION_SUCESSFULLY,
+                payload: response
+            })
+        })
+    }
+}
+
+export const validateBeforePublishCCourse = () => {
+    return {
+        type: VALIDATE_BEFORE_PUBLISH_COURSE
     }
 }
 
