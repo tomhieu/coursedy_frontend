@@ -150,7 +150,8 @@ export const translations = {
         /**
          * Filter Course Page
          */
-        "filter": "Tìm kiếm nâng cao",
+        "filter": "Tìm kiếm",
+        "filter_more": "Thêm",
         "location": "Khu vực",
         "tuition_fee_filter": "Học phí (Cả khóa)",
         "to": "Đến",
@@ -168,14 +169,15 @@ export const translations = {
         "name_lesson_field": "Tên Buổi Học",
         "field_number_validator": "Vui lòng nhập số",
         'updating': 'Đang cập nhật',
-        "total_result": "{total} khóa học",
+        "total_result": "{total} Khóa Học",
+        "save_favorite": "Lưu vào khóa học ưu thích",
         "order_list": "Sắp xếp:",
         "order_by_time": "Mới nhất",
         "order_by_view": "Xem nhiều nhất",
         "order_by_register": "Đăng ký nhiều nhất",
         "display_mode": "Hiển thị:",
-        "display_mode_full": "Đầy đủ",
-        "display_mode_compress": "Dạng nén",
+        "display_mode_list": "Danh sách",
+        "display_mode_grid": "Dạng Lưới",
         /*
             Public course detail
         */

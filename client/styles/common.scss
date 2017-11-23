@@ -79,6 +79,12 @@
   align-self: center;
 }
 
+.align-items-center {
+  -ms-align-items: center;
+  -webkit-align-items: center;
+  align-items: center;
+}
+
 .degree-filename {
   max-width: 180px;
   width: 180px;
@@ -894,6 +900,25 @@ ul.no-margin,
   padding: 5px;
 }
 
+.align-items-center .form-group {
+  margin: 0;
+}
+
 .select-course-fee {
   width: 30%;
+}
+
+.md-check-box-field {
+  min-width: 135px;
+  margin: 5px;
+}
+
+.md-check-box-field:hover .form-control, .lg-check-box-field:hover .form-control {
+  border: 2px solid #e27d7f;
+  margin: -2px;
+}
+
+.lg-check-box-field {
+  min-width: 200px;
+  margin: 5px;
 }

@@ -8,7 +8,7 @@ import {
     renderMultiSelect,
     renderSelect,
     renderSingleFileInput,
-    renderTextAreaField,
+    renderTextAreaField, renderTimePicker,
     renderToggle
 } from "./CustomComponents";
 import styles from "./FormField.module.scss";

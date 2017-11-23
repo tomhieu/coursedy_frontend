@@ -4,6 +4,12 @@ import styles from './Course.module.scss';
 import {tuitionFees} from '../../constants/CourseFilter'
 import FormField from "../Core/FormField";
 import {FieldArray} from "redux-form";
+import {Checkbox, FlatButton, RaisedButton} from "material-ui";
+import {
+    ActionFavorite, ActionSearch, ActionViewList, ActionViewModule, NavigationExpandLess,
+    NavigationExpandMore
+} from "material-ui/svg-icons/index";
+import {fullWhite, red900} from "material-ui/styles/colors";
 
 class CourseFilter extends Component {
 
@@ -29,9 +35,9 @@ class CourseFilter extends Component {
                         <div>
                             <span>{cate.name}</span>
                             <FieldArray name="filter_course_levels" component={() =>
-                                <div>
+                                <div className="d-flex flex-horizontal flex-wrap">
                                     {cate.course_levels.map((filter_course_level) =>
-                                        <div key={filter_course_level.id}>
+                                        <div key={filter_course_level.id} className="lg-check-box-field">
                                             <FormField formGroupId="filter_course_levels" showLabel={false}
                                                        formLabel={filter_course_level.name}
                                                        formControlName={"filter_course_levels[" + filter_course_level.id + "]"} typeField="checkbox"></FormField>
@@ -51,10 +57,10 @@ class CourseFilter extends Component {
         return (
             <div className="checkbox-group">
                 <FieldArray name="course_schedule_days" component={() =>
-                    <div>
+                    <div className="d-flex flex-horizontal flex-wrap">
                         {
                             Object.keys(weekdays).map((k) =>
-                                <div key={k}>
+                                <div key={k} className="md-check-box-field">
                                     <FormField formGroupId="course_schedule_day" showLabel={false}
                                                formLabel={weekdays[k]}
                                                formControlName={"course_schedule_days[" + k + "]"}
@@ -73,7 +79,7 @@ class CourseFilter extends Component {
             <div className="d-flex flex-horizontal">
                 <div className="select-course-fee">
                     <FormField formGroupId="filter_min_fees" showLabel={false} options={tuitionFees}
-                               formControlName={"min_fees"} typeField="custom_select"></FormField>
+                               formControlName={"fees"} typeField="custom_select"></FormField>
                 </div>
             </div>
         )
@@ -90,128 +96,140 @@ class CourseFilter extends Component {
             id: 2,
             text: this.context.t("display_mode_compress")
         }];
+        const internalStyles = {
+            checkbox: {
+                marginRight: 0,
+            },
+            defaultColorStyle: {
+                color: "#e27d7f"
+            },
+            defaultBackgroundColorStyle: {
+                backgroundColor: "#e27d7f"
+            }
+        };
         return (
-            <div className="row row-margin">
-                <div className="margin-btm">
-                    <div className="col-xs-12 col-sm-12">
-                        <div className={"col-xs-12 col-sm-12 " + styles.courseFilter}>
-                            <form onSubmit={handleSubmit(this.props.onSubmit)} className='inline-form' multiple={true}>
-                                <div className={"col-md-12 " + styles.basicFilterBlock}>
-                                    <div className={"col-md-3 " + styles.noPadRight}>
-                                        <FormField formGroupId="key_word_filter" showLabel={false}
-                                                   placeholder={this.context.t('search_course')}
-                                                   formControlName="key_word" typeField="custom_input"></FormField>
-                                    </div>
-                                    {/* Title search */}
-                                    <div className={"col-md-3 " + styles.noPadRight}>
-                                        <FormField formGroupId="categories_id" showLabel={false}
-                                                   options={categories.map((x) => {
-                                                       return {text: x.name, id: x.id}
-                                                   })}
-                                                   placeholder={this.context.t('category')}
-                                                   formControlName="filter_category_ids"
-                                                   typeField="multi_select"></FormField>
-                                    </div>
-                                    {/* Field */}
-                                    <div className={"col-md-3 " + styles.noPadRight}>
-                                        <FormField formGroupId="locations_id" showLabel={false}
-                                                   options={Object.keys(locations).map((x) => {
-                                                       return {text: locations[x], id: x}
-                                                   })}
-                                                   placeholder={this.context.t("location")}
-                                                   formControlName="filter_location_ids"
-                                                   typeField="multi_select"></FormField>
-                                    </div>
-                                    {/* Area*/}
-                                    <div className="col-md-1">
-                                        <button type="submit"
-                                                className={'btn btn-primary btn-secondary ' + styles.btnSearch}>
-                                            <i className="fa fa-search"></i>
-                                        </button>
-                                    </div>
-
-                                    <div className="col-md-2">
-                                        <button type="button" className={'btn btn-primary ' + styles.btnAdvancedFilter}
-                                                onClick={this.toggleFilter.bind(this)}>{this.context.t("filter")}</button>
+            <div className="row">
+                <div className="col-xs-12 col-sm-12">
+                    <form onSubmit={handleSubmit(this.props.onSubmit)} className='inline-form' multiple={true}>
+                        <div className={styles.filterActionBlock + " col-md-12 col-sm-12"}>
+                            <div className="row">
+                                <div className={"col-md-6 col-sm-6"}>
+                                    <FormField formGroupId="key_word_filter" showLabel={false}
+                                               placeholder={this.context.t('search_course')}
+                                               formControlName="key_word" typeField="custom_input"></FormField>
+                                </div>
+                                {/* Title search */}
+                                <div className={"col-md-3 col-sm-3"}>
+                                    <FormField formGroupId="categories_id" showLabel={false}
+                                               options={categories.map((x) => {
+                                                   return {text: x.name, id: x.id}
+                                               })}
+                                               placeholder={this.context.t('category')}
+                                               formControlName="filter_category_ids"
+                                               typeField="multi_select"></FormField>
+                                </div>
+                                {/* Field */}
+                                <div className={"col-md-1 col-sm-1"}>
+                                    <FormField formGroupId="locations_id" showLabel={false}
+                                               options={Object.keys(locations).map((x) => {
+                                                   return {text: locations[x], id: x}
+                                               })}
+                                               placeholder={this.context.t("location")}
+                                               formControlName="filter_location_ids"
+                                               typeField="custom_select"></FormField>
+                                </div>
+                                {/* Area*/}
+                                <div className="col-md-2 col-sm-2">
+                                    <div className="d-flex flex-horizontal">
+                                        <RaisedButton backgroundColor="#e27d7f" labelColor={fullWhite} label={this.context.t('filter')} type="submit" icon={<ActionSearch color={fullWhite} />}/>
+                                        <FlatButton label={this.context.t("filter_more")}  type="button" onClick={this.toggleFilter.bind(this)} style={internalStyles.defaultColorStyle}
+                                                    icon={this.state.openAdFilter ? <NavigationExpandLess /> : <NavigationExpandMore />}/>
                                     </div>
                                 </div>
-                                {/* Basic Filter Block */}
-                                <br/>
-                                <div className="clearfix"></div>
+                            </div>
+                        </div>
+                        {/* Basic Filter Block */}
+                        <br/>
 
-                                <div className="col-md-12">
-                                    <div
-                                        className={styles.advancedFilter + " collapse " + (this.state.openAdFilter ? "in" : "")}>
-                                        <div className="col-md-3">
-                                            <h4>{this.context.t('level')}</h4>
-                                            {this.renderCourseLevels(selectedCategories)}
-                                        </div>
+                        <div className={styles.filterActionBlock + " col-md-12 col-sm-12"}>
+                            <div
+                                className={styles.advancedFilter + " collapse " + (this.state.openAdFilter ? "in" : "")}>
+                                <div className="row">
+                                    <div className="col-md-6 col-sm-6">
+                                        <h4>{this.context.t("day_of_week")}</h4>
+                                        {this.renderDayOfWeek(weekdays)}
+                                    </div>
+                                    {/* Schedule days */}
 
-                                        <div className="col-md-3">
-                                            <h4>{this.context.t("day_of_week")}</h4>
-                                            {this.renderDayOfWeek(weekdays)}
-                                        </div>
-                                        {/* Schedule days */}
-
-                                        <div className="col-md-6 col-sm-6">
-                                            <div className="row">
-                                                {/* Tuition fee */}
-                                                <div className="col-md-12 col-sm-12">
-                                                    <h4>{this.context.t('tuition_fee_filter')}</h4>
-                                                    {this.renderTutorFees(tuitionFees)}
-                                                </div>
-                                                {/* Schedule time */}
-                                                <div className="col-md-12 col-sm-12">
-                                                    <h4>{this.context.t('time_schedule')}</h4>
-                                                    <div className='row dark-picker dark-picker-bright'>
-                                                        <div className='col-sm-9'>
-                                                            <FormField formGroupId="start_time_id" showLabel={false}
-                                                                       placeholder={this.context.t("start_time")}
-                                                                       formControlName="start_time"
-                                                                       typeField="timePicker"></FormField>
-                                                        </div>
+                                    <div className="col-md-6 col-sm-6">
+                                        <div className="row">
+                                            {/* Tuition fee */}
+                                            <div className="col-md-12 col-sm-12">
+                                                <h4>{this.context.t('tuition_fee_filter')}</h4>
+                                                {this.renderTutorFees(tuitionFees)}
+                                            </div>
+                                            {/* Schedule time */}
+                                            <div className="col-md-12 col-sm-12">
+                                                <h4>{this.context.t('time_schedule')}</h4>
+                                                <div className='row dark-picker dark-picker-bright'>
+                                                    <div className='col-sm-9'>
+                                                        <FormField formGroupId="start_time_id" showLabel={false}
+                                                                   placeholder={this.context.t("start_time")}
+                                                                   formControlName="start_time"
+                                                                   typeField="timePicker"></FormField>
                                                     </div>
-                                                    <div className='row dark-picker dark-picker-bright margin-top15'>
-                                                        <div className='col-sm-9'>
-                                                            <FormField formGroupId="end_time_id" showLabel={false}
-                                                                       placeholder={this.context.t("end_time")}
-                                                                       formControlName="end_time"
-                                                                       typeField="timePicker"></FormField>
-                                                        </div>
+                                                </div>
+                                                <div className='row dark-picker dark-picker-bright margin-top15'>
+                                                    <div className='col-sm-9'>
+                                                        <FormField formGroupId="end_time_id" showLabel={false}
+                                                                   placeholder={this.context.t("end_time")}
+                                                                   formControlName="end_time"
+                                                                   typeField="timePicker"></FormField>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-
-                                        <div className="clearfix"></div>
-
-
                                     </div>
                                 </div>
-                                {/* Advanced Filter Block */}
-                                <div className="clearfix"></div>
-                                <hr/>
-
-                                <div className={'col-md-12 ' + styles.filterResultBlock}>
-                                    <div className="col-md-6">
-                                        <i className="fa fa-list"></i> {this.context.t("total_result", {total: totalResult})}
+                                <div className="row">
+                                    <div className="col-md-12 col-sm-12">
+                                        <h4>{this.context.t('level')}</h4>
+                                        {this.renderCourseLevels(selectedCategories)}
                                     </div>
-                                    <div className="col-md-3 text-right">
-                                        <FormField formGroupId="order_by_id" formLabel={this.context.t("order_list")}
+                                </div>
+
+
+                            </div>
+                        </div>
+                        {/* Result Block */}
+                        <div className={'col-md-12 ' + styles.filterResultBlock}>
+                            <div className="d-flex flex-horizontal align-items-center">
+                                <div className={styles.listResultInfo + " d-flex flex-horizontal justify-content-left"}>
+                                    <div className={styles.checkAllBtn + " d-flex align-items-center"}>
+                                        <Checkbox style={internalStyles.checkbox}/>
+                                    </div>
+                                    <FlatButton label={this.context.t("save_favorite")} style={internalStyles.defaultColorStyle} icon={<ActionFavorite color={red900} />}/>
+                                    <span className={styles.textTotalResult}>
+                                            {this.context.t("total_result", {total: totalResult != undefined ? totalResult : 0})}
+                                    </span>
+                                </div>
+                                <div className={styles.orderDisplayResult + " d-flex flex-horizontal justify-content-end"}>
+                                    <div className={styles.orderBtn}>
+                                        <FormField formGroupId="order_by_id" showLabel={false} formLabel={this.context.t("order_list")}
                                                    options={orderList} formControlName="order_by"
                                                    typeField="custom_select"></FormField>
                                     </div>
-                                    <div className="col-md-3 text-right">
-                                        <FormField formGroupId="display_mode_id"
-                                                   formLabel={this.context.t("display_mode")}
-                                                   options={displayModes} formControlName="display_mode"
-                                                   typeField="custom_select"></FormField>
+                                    <div className={styles.displayModeBtn}>
+                                        <div className="d-flex flex-horizontal">
+                                            <FlatButton secondary={true} icon={<ActionViewModule style={internalStyles.defaultColorStyle} />}/>
+                                            <FlatButton secondary={true} icon={<ActionViewList style={internalStyles.defaultColorStyle} />}/>
+                                        </div>
                                     </div>
                                 </div>
-                                {/* Result Block */}
-                            </form>
+                            </div>
                         </div>
-                    </div>
+
+                    </form>
                 </div>
             </div>
         )
@@ -224,7 +242,6 @@ CourseFilter.contextTypes = {
 
 CourseFilter.propTypes = {
     categories: React.PropTypes.array.isRequired,
-    searchCourse: React.PropTypes.func.isRequired,
     locations: React.PropTypes.object.isRequired,
     weekdays: React.PropTypes.object.isRequired,
 };
