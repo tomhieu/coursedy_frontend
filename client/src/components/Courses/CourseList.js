@@ -14,7 +14,7 @@ class CourseList extends Component {
   render() {
     const {deleteCourse} = this.props;
     return (
-      <div className="course-group-list-2">
+      <div className={styles.courseListContainer + " row"}>
       {
         this.props.courses.map(function (item, index) {
           return (

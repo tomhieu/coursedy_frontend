@@ -36,10 +36,7 @@
   padding-right: 0 !important;
 }
 
-
-
 .courseFilter {
-  background-color: #f9f9f9;
   padding-top: 20px;
   padding-bottom: 20px;
 }
@@ -63,6 +60,8 @@
 }
 
 .filterResultBlock {
+  background-color: #eaebf0;
+  padding: 20px 30px;
   select {
     padding: 3px;
     margin-left: 5px;
@@ -70,6 +69,38 @@
   }
 }
 
+.filterActionBlock {
+  padding: 0px 30px;
+}
+
+.listResultInfo {
+  width: 75%;
+  padding-left: 15px;
+}
+
+.textTotalResult {
+  margin: 7px;
+}
+
+.checkAllBtn {
+  width: 35px;
+  border: 1px solid rgba(48,51,57,.15);
+  padding: 5px 5px;
+}
+
+.orderBtn {
+  width: 60%;
+  margin-right: 15px;
+}
+
+.displayModeBtn {
+  width: 40%;
+  margin-right: 15px;
+}
+
+.orderDisplayResult {
+  width: 25%;
+}
 
 .rowPrimary {
   background-color: #e4888a;
@@ -82,5 +113,14 @@
 .avatarImage {
   width: 115px;
   margin: 15px;
+}
+
+.filterSelectBox {
+  width: 100px;
+}
+
+.courseListContainer {
+  background-color: #f4f5f9;
+  padding: 20px 30px;
 }
 

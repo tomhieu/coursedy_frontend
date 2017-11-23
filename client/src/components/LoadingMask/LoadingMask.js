@@ -15,7 +15,7 @@ class LoadingMask extends Component {
               isFetching ? (
                   <div className={"d-flex justify-content-center " + styles.loadingMask}>
                       <div className="align-self-center">
-                          <CircularProgress size={60} thickness={7} color={red900} />
+                          <CircularProgress size={60} color={red900} />
                       </div>
                   </div> ) :
                   <div>

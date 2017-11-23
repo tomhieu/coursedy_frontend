@@ -1,12 +1,19 @@
-import React, {Component} from 'react'
-import {ControlLabel, FormGroup} from 'react-bootstrap';
-import {Field} from 'redux-form';
+import React, {Component} from "react";
+import {ControlLabel, FormGroup} from "react-bootstrap";
+import {Field} from "redux-form";
 import {
-    renderDatePicker, renderField, renderMultiSelect, renderSelect,
-    renderSingleFileInput, renderTextAreaField
+    renderCheckbox,
+    renderDatePicker,
+    renderField,
+    renderMultiSelect,
+    renderSelect,
+    renderSingleFileInput,
+    renderTextAreaField, renderTimePicker,
+    renderToggle
 } from "./CustomComponents";
-import styles from './FormField.module.scss';
-import cssModules from 'react-css-modules';
+import styles from "./FormField.module.scss";
+import cssModules from "react-css-modules";
+import {TimePicker, Checkbox, RadioButtonGroup} from 'redux-form-material-ui'
 
 class FormField extends Component {
     constructor(props) {
@@ -15,9 +22,11 @@ class FormField extends Component {
 
     render() {
         const {formControlName, formLabel, showLabel = true, placeholder, isMandatoryField = false,
-            typeField, type, zoneHeight, internalPreview, previewUrl, onUpload, rows, options, selectedValues, customClassName} = this.props;
+            typeField, type, zoneHeight = "200px", internalPreview = false, previewUrl, onUpload, rows, options,
+            selectedValues, customClassName = "form-control", checked, chosenValue, onCheck, toggled, onToggle} = this.props;
+
         let fieldComponent = this.buildFieldRender(formControlName, placeholder, typeField, type,
-            zoneHeight, internalPreview, previewUrl, onUpload, rows, options, selectedValues, customClassName);
+            zoneHeight, internalPreview, previewUrl, onUpload, rows, options, selectedValues, customClassName, checked, chosenValue, checked, onCheck, toggled, onToggle);
         return (
             <FormGroup controlId="formGroupId">
                 {
@@ -30,7 +39,7 @@ class FormField extends Component {
         )
     }
 
-    buildFieldRender(formControlName, placeholder, typeField, type, zoneHeight = "200px", internalPreview = false, previewUrl, onUpload, rows, options, selectedValues, customClassName = "form-control") {
+    buildFieldRender(formControlName, placeholder, typeField, type, zoneHeight, internalPreview, previewUrl, onUpload, rows, options, selectedValues, customClassName, checked, chosenValue, onCheck, toggled, onToggle) {
         let fieldComponent;
 
         switch (typeField) {
@@ -65,6 +74,26 @@ class FormField extends Component {
             case "custom_textarea": {
                 fieldComponent = <Field name={formControlName} placeholder={placeholder} rows={rows}
                                         component={renderTextAreaField} className={customClassName}/>
+                break;
+            }
+
+            case "checkbox": {
+                fieldComponent = <Field name={formControlName} label={this.props.formLabel}
+                                        component={Checkbox} className={customClassName}/>
+                break;
+            }
+            case "radiobox": {
+                fieldComponent = <Field name={formControlName} placeholder={placeholder} rows={rows} label={this.props.formLabel}
+                                        component={RadioButtonGroup} className={customClassName}/>
+                break;
+            }
+            case "toggle": {
+                fieldComponent = <Field name={formControlName} placeholder={placeholder} rows={rows}
+                                        component={renderToggle(toggled, onToggle)} className={customClassName}/>
+                break;
+            }
+            case "timePicker": {
+                fieldComponent = <Field name={formControlName} label={this.props.formLabel} component={TimePicker} format={null} hintText={placeholder}/>
                 break;
             }
             default: {

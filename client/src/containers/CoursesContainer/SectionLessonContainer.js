@@ -5,7 +5,7 @@ import * as LessonActions from "../../actions/LessonActionCreator";
 import * as CourseActions from "../../actions/CourseFormActionCreator";
 import {connect} from "react-redux";
 import {Card, CardHeader, CardText} from "material-ui/Card";
-import {IconButton} from "material-ui";
+import {CardContent, IconButton} from "material-ui";
 import {ActionDelete, ContentAddCircle} from "material-ui/svg-icons/index";
 import {grey600, red900} from "material-ui/styles/colors";
 import cssModules from "react-css-modules";
@@ -63,7 +63,7 @@ class SectionLessonContainer extends Component {
                             </div>
                         </div>
                     </CardHeader>
-                    <CardText expandable={true}>
+                    <CardContent expandable={true}>
                         <div className="row">
                             <div className="col-md-12 col-sm-12">
                                 {
@@ -75,7 +75,7 @@ class SectionLessonContainer extends Component {
                                 }
                             </div>
                         </div>
-                    </CardText>
+                    </CardContent>
                 </Card>
                 <EditLessonFormContainer show={showPopupEdit} hidePopup={this.hideLessonPopup.bind(this)} onSaveLesson={this.saveLesson.bind(this)} {...this.props}/>
             </div>

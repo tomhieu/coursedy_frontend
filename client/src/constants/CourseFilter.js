@@ -1,19 +1,6 @@
 export const FETCH_CATEGORIES_SUCCESSFULLY = "FETCH_CATEGORIES_SUCCESSFULLY"
 export const FETCH_LOCATIONS_SUCCESSFULLY = "FETCH_LOCATIONS_SUCCESSFULLY"
 export const FETCH_WEEKDAYS_SUCCESSFULLY = "FETCH_WEEKDAYS_SUCCESSFULLY"
-export const RELOAD_COURSE_LEVELS = "RELOAD_COURSE_LEVELS"
-export const SELECT_COURSE_LOCATIONS = "SELECT_COURSE_LOCATIONS"
-export const SELECT_COURSE_LEVEL = "SELECT_COURSE_LEVEL"
-export const DESELECT_COURSE_LEVEL = "DESELECT_COURSE_LEVEL"
-export const SELECT_WEEK_DAY = "SELECT_WEEK_DAY"
-export const DESELECT_WEEK_DAY = "DESELECT_WEEK_DAY"
-export const SELECT_FEE = "SELECT_FEE"
-export const DESELECT_FEE = "DESELECT_FEE"
-export const SELECT_START_TIME = "SELECT_START_TIME"
-export const SELECT_END_TIME = "SELECT_END_TIME"
-export const CHANGE_KEY_WORD = "CHANGE_KEY_WORD"
-export const SET_START_TIME_ERROR = "SET_START_TIME_ERROR"
-export const SET_END_TIME_ERROR = "SET_END_TIME_ERROR"
 
 export const timeSlots = [
   [6, '6:00 AM'],
@@ -53,8 +40,8 @@ export const timeSlots = [
 ]
 
 export const tuitionFees = [
-  [0, 'Dưới 1tr'],
-  [1000000, '1tr - 5tr'],
-  [5000000, '5tr - 10tr'],
-  [10000000, 'Trên 10tr']
+    {id: 0, text: 'Dưới 1tr'},
+    {id: 1000000, text: '1tr - 5tr'},
+    {id: 5000000, text: '5tr - 10tr'},
+    {id: 10000000, text: 'Trên 10tr'}
 ]
