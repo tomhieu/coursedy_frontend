@@ -25,6 +25,8 @@ const TutorAccount = (state = {
       return {...state, user: action.payload}
     case types.SET_ACCOUNT_TUTOR:
       return {...state, tutor: action.payload}
+    case types.UPDATE_TUTOR_EDU:
+      return {...state, tutor: action.payload}
     case types.SHOW_REQUIRED_EMAIL_CONFIRMATION_MODAL:
       return {...state, showEmailConfirmationModal: true}
     case types.HIDE_REQUIRED_EMAIL_CONFIRMATION_MODAL:

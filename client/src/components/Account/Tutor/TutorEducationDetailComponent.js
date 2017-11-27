@@ -108,7 +108,7 @@ TutorEducationDetailComponent.contextTypes = {
 
 TutorEducationDetailComponent.propTypes = {
   tutor: React.PropTypes.object.isRequired,
-  // showEditForm: React.PropTypes.func.isRequired
+  showEditForm: React.PropTypes.func.isRequired
 }
 
 export default TutorEducationDetailComponent

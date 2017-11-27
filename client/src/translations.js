@@ -127,7 +127,7 @@ export const translations = {
         "account.tutor.edu.description": "Giới Thiệu",
         "account.tutor.edu.specialty": "Kĩnh Vực Giảng Dạy",
         "account.tutot.edu.degree.title": "Bằng Cấp",
-        "account_tutor_skill_title": "Ký Năng",
+        "account_tutor_skill_title": "Kỹ Năng",
         "account_tutor_certificate_title": "Chứng Chỉ",
         "fields_of_teaching": "Khu Vực Giảng Dạy",
         "area_of_teaching": "Lĩnh Vực Giảng Dạy",

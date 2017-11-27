@@ -18,8 +18,16 @@ class TutorAccount extends Component {
     this.props.dispatch(Actions.showProfileEditForm())
   }
 
+  showEducationEditForm(){
+    this.props.dispatch(Actions.showEducationEditForm())
+  }
+
   hideProfileEditForm(){
     this.props.dispatch(Actions.hideProfileEditForm())
+  }
+
+  hideEducationEditForm(){
+    this.props.dispatch(Actions.hideEducationEditForm())
   }
 
   closeEmailConfirmationModal(){
@@ -30,7 +38,8 @@ class TutorAccount extends Component {
     let {editProfileMode, editEducationMode, editPasswordMode, user, tutor} = this.props;
     let profileForm = <PersonInfoContainer cancel={this.hideProfileEditForm.bind(this)} />
     if (!editProfileMode) profileForm = <UserInfo user={user} showEditForm={this.showProfileEditForm.bind(this)}/>
-    let tutorForm = <TutorEducationDetailComponent tutor={tutor}/> //TutorEducationDetailComponent TutorEducation
+    let tutorForm = <TutorEducation tutor={tutor} cancel={this.hideEducationEditForm.bind(this)}/>
+    if (!editEducationMode) tutorForm = <TutorEducationDetailComponent tutor={tutor} showEditForm={this.showEducationEditForm.bind(this)}/>
 
     return (
       <div className="row">
