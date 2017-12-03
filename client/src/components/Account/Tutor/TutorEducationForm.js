@@ -2,7 +2,7 @@ import {Component} from "react";
 import * as React from "react";
 import {ControlLabel, FormGroup} from "react-bootstrap";
 import {Field} from "redux-form";
-import {renderSingleFileInput} from "../../CustomComponents";
+import {renderSingleFileInput} from "../../Core/CustomComponents";
 import FormField from "../../Core/FormField";
 
 export class TutorEducationForm extends Component {

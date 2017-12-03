@@ -5,10 +5,10 @@ class TutorProfile extends Component {
     return (
       <div className="dashboard-profile">
         <div className="media media-team">
-          <a href="http://sudoedu.ca/tutor/index">
+          <a href="http://localhost:3000/tutor/index">
             <div className="media-left">
               <figure className="imghvr-zoom-in">
-                <img className="media-object  img-circle" src="http://sudoedu.ca/assets/uploads/profiles/7.jpg" alt="Behati Corinn"/>
+                <img className="media-object  img-circle" src="http://localhost:3000/assets/uploads/profiles/7.jpg" alt="Behati Corinn"/>
                 <figcaption></figcaption>
               </figure>
             </div>

@@ -10,7 +10,6 @@ import CourseGroup from './Course/CourseGroup/CourseGroup';
 import CourseGroupList from './Course/CourseGroupList/CourseGroupList';
 
 import CourseDetail from './Courses/CourseDetail';
-import CourseDetailGeneral from './Courses/CourseDetail/CourseDetailGeneral';
 import CourseDetailLessons from './Courses/CourseDetail/CourseDetailLessons';
 import CourseDetailComments from './Courses/CourseDetail/CourseDetailComments';
 import CourseDetailFollowModal from './Courses/CourseDetail/CourseDetailFollowModal';
@@ -32,6 +31,7 @@ import TutorDashboardIndex from './Dashboard/TutorDashboard/TutorDashboardIndex'
 import CourseForm from './Courses/CourseForm'
 import UserInfo from './Account/UserInfo'
 import RequireEmailConfirmationModal from './Account/RequireEmailConfirmationModal'
+import TutorEducationDetailComponent from './Account/Tutor/TutorEducationDetailComponent'
 
 export {
   Header,
@@ -66,5 +66,6 @@ export {
   CourseForm,
   TutorProfileDetails,
   UserInfo,
-  RequireEmailConfirmationModal
+  RequireEmailConfirmationModal,
+  TutorEducationDetailComponent
 };

@@ -1,7 +1,7 @@
 import InlineEditFormField from "../../components/Core/InlineEditFormField";
 import FormField from "../../components/Core/FormField";
 import {Component} from "react";
-import {renderPreviewFile} from "../../components/CustomComponents";
+import {renderPreviewFile} from "../../components/Core/CustomComponents";
 import * as LessonActions from "../../actions/LessonActionCreator";
 import {reduxForm} from "redux-form";
 import {connect} from "react-redux";

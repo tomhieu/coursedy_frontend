@@ -2,6 +2,7 @@ import React, { Component} from 'react';
 import cssModules from 'react-css-modules';
 import styles from './Course.module.scss';
 import { LinkContainer } from 'react-router-bootstrap'
+import {SERVER_NAME} from "utils/CommonConstant";
 
 
 
@@ -14,13 +15,14 @@ class CourseItem extends Component {
     super(props);
   }
   render() {
+    const {deleteCourse} = this.props;
     return (
       <div className="col-xs-12 no-ml no-mr">
         <div className="row pt-15 pb-15 course-container">
           <div className="col-xs-12">
             <div className="course-thumb">
               <LinkContainer to={ !this.props.item.onlyTutor ? '/course/' + this.props.item.id : '/dashboard/courses/detail/' + this.props.item.id } className={styles.fullWidth + ' img-responsive'}>
-                <img src={ this.props.item.cover_image ? this.props.item.cover_image : 'http://placehold.it/200x100' } alt="" />
+                <img src={!this.props.item.cover_image ? 'http://placehold.it/200x100' : SERVER_NAME + this.props.item.cover_image } alt="" />
               </LinkContainer>
             </div>
           </div>{/* End course thumb */}
@@ -46,15 +48,25 @@ class CourseItem extends Component {
                 {this.context.t('course_item_lesson_duration', {time: this.props.item.schedule ? this.props.item.schedule : 0})}
               </div>
               <div className="col-xs-12 col-sm-12 col-md-12 no-pad">
-                <br/>
-                <button className="btn btn-primary">{this.context.t('course_view_detail')}</button>
+                <div className="row mt-5">
+                  <div className="col-md-6 col-sm-6">
+                    <button className="btn btn-primary">{this.context.t('course_view_detail')}</button>
+                  </div>
+                    {
+                        this.props.item.onlyTutor ? (
+                            <div className="col-md-6 col-sm-6">
+                              <button className="btn btn-primary" onClick={() => deleteCourse(this.props.item.id)}>{this.context.t('course_delete_btn')}</button>
+                            </div>
+                        ) : ''
+                    }
+                </div>
               </div>
             </div>{/* End course info */}
               {!this.props.item.onlyTutor ? (
                   <div className="col-xs-12 col-sm-12 col-md-4 course-tutor-info">
                     <div className={styles.courseTutorAvatar}>
                       <LinkContainer to={'/tutor/' + this.props.item.user.id }>
-                        <img src={this.props.item.user.avatar ? this.props.item.user.avatar : 'http://placehold.it/75x75'} alt="" className={styles.courseTutorAvatar + ' img-responsive img-circle'} />
+                        <img src={this.props.item.user.avatar ? SERVER_NAME + this.props.item.user.avatar : 'http://placehold.it/75x75'} alt="" className={styles.courseTutorAvatar + ' img-responsive img-circle'} />
                       </LinkContainer>
                     </div>
                     <br/>
@@ -74,7 +86,6 @@ class CourseItem extends Component {
           </div>
         </div>
       </div>
-
     )
   }
 }

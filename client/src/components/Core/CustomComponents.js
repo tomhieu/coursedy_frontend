@@ -4,8 +4,9 @@ import "react-datepicker/dist/react-datepicker.css";
 import Select2 from "react-select2-wrapper";
 import moment from "moment";
 import Dropzone from "react-dropzone";
-import {TT} from "../utils/locale";
-import ObjectUtils from "../utils/ObjectUtils";
+import {TT} from "../../utils/locale";
+import ObjectUtils from "../../utils/ObjectUtils";
+import {Checkbox, TimePicker} from "material-ui";
 
 export const renderField = ({input, label, type = 'text', customClassName, meta: {touched, error, warning}}) => (
     <div className='full-width-input-wrapper'>
@@ -19,6 +20,15 @@ export const renderTextAreaField = ({input, label, type, meta: {touched, error, 
         <textarea {...input} placeholder={label} type={type} className='form-control' rows={6}/>
         {touched && ((error && <span className='input-errors'>{error}</span>) || (warning && <span>{warning}</span>))}
     </div>
+)
+
+const styles = {
+    circle: {
+        backgroundColor: "#e27d7f"
+    }
+};
+export const renderTimePicker = () => (
+    <TimePicker style={styles}/>
 )
 
 
@@ -50,7 +60,6 @@ export const renderMultiSelect = (selectOptions, selectedValues) => {
     return ({input, label, type, meta: {touched, error, warning}}) => (
         <div className="select-picker">
             <Select2 {...input} multiple
-                     defaultValue={defaultValues}
                      data={selectOptions}
             />
             {touched && ((error && <span className='input-errors'>{error}</span>) || (warning &&
@@ -58,6 +67,12 @@ export const renderMultiSelect = (selectOptions, selectedValues) => {
         </div>
     )
 }
+
+export const renderCheckbox = props => (
+    <Checkbox label={props.label}
+              checked={props.value ? true : false}
+              onCheck={props.onChange}/>
+)
 
 export const renderPreviewFile = (file, doDeleteNewUploadFile) => {
     let previewClass = "pdf-image-preview";

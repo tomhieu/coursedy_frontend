@@ -5,7 +5,8 @@ const TutorAccount = (state = {
   editEducationMode: false,
   editPasswordMode: false,
   showEmailConfirmationModal: false,
-  user: {}
+  user: {},
+  tutor: {degrees: [], categories: [], districts: []}
 }, action) => {
   switch (action.type) {
     case types.ENABLE_EDIT_TUTOR_PROFILE_MODE:
@@ -22,6 +23,10 @@ const TutorAccount = (state = {
       return {...state, editPasswordMode: false}
     case types.SET_ACCOUNT_USER:
       return {...state, user: action.payload}
+    case types.SET_ACCOUNT_TUTOR:
+      return {...state, tutor: action.payload}
+    case types.UPDATE_TUTOR_EDU:
+      return {...state, tutor: action.payload}
     case types.SHOW_REQUIRED_EMAIL_CONFIRMATION_MODAL:
       return {...state, showEmailConfirmationModal: true}
     case types.HIDE_REQUIRED_EMAIL_CONFIRMATION_MODAL:

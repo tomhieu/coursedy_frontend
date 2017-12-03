@@ -5,7 +5,7 @@ import * as LessonActions from "../../actions/LessonActionCreator";
 import * as CourseActions from "../../actions/CourseFormActionCreator";
 import {connect} from "react-redux";
 import {Card, CardHeader, CardText} from "material-ui/Card";
-import {IconButton} from "material-ui";
+import {CardContent, IconButton} from "material-ui";
 import {ActionDelete, ContentAddCircle} from "material-ui/svg-icons/index";
 import {grey600, red900} from "material-ui/styles/colors";
 import cssModules from "react-css-modules";
@@ -43,7 +43,7 @@ class SectionLessonContainer extends Component {
     render() {
         const {section, showPopupEdit = false, activatedField} = this.props;
         return (
-            <div>
+            <div key={'__section__' + section.id}>
                 <Card>
                     <CardHeader actAsExpander={section.lessons.length > 0} showExpandableButton={section.lessons.length > 0}>
                         <div className="d-flex flex-horizontal">
@@ -68,7 +68,7 @@ class SectionLessonContainer extends Component {
                             <div className="col-md-12 col-sm-12">
                                 {
                                     section.lessons.map(lesson => (
-                                        <LessonDetailFormContainer key={lesson.id} lesson={lesson} onSubmit={this.saveLesson.bind(this)} sectionUniqueKey={"__lesson_" + lesson.title}
+                                        <LessonDetailFormContainer key={'___lesson__' + lesson.id} lesson={lesson} onSubmit={this.saveLesson.bind(this)} sectionUniqueKey={"__lesson_" + lesson.title}
                                                                    initialValues={ this.isActivatedFieldOfLesson(activatedField, lesson) === true ? lesson : {}} {...this.props}>
                                         </LessonDetailFormContainer>
                                     ))

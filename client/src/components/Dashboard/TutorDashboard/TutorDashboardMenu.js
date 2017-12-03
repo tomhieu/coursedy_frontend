@@ -4,7 +4,7 @@ class TutorDashboardMenu extends Component {
   render(){
     return (
       <div className="dashboard-menu-panel">
-        <div className="dashboard-link"><a className="active" href="http://sudoedu.ca/tutor/index"><i className="fa fa-tachometer"></i>Dashboard</a></div>
+        <div className="dashboard-link"><a className="active" href="http://localhost:3000/tutor/index"><i className="fa fa-tachometer"></i>Dashboard</a></div>
 
         <div className="panel panel-default">
           <div className="panel-heading">
@@ -16,14 +16,14 @@ class TutorDashboardMenu extends Component {
           <div id="collapseOne" className="panel-collapse collapse">
             <div className="panel-body">
               <ul className="dashboard-links">
-                <li><a href="http://sudoedu.ca/student-enquiries">All </a></li>
-                <li><a href="http://sudoedu.ca/student-enquiries/pending">Pending </a></li>
-                <li><a href="http://sudoedu.ca/student-enquiries/approved">Approved </a></li>
-                <li><a href="http://sudoedu.ca/student-enquiries/session_initiated">Session Initiated </a></li>
-                <li><a href="http://sudoedu.ca/student-enquiries/running">Running </a></li>
-                <li><a href="http://sudoedu.ca/student-enquiries/completed">Completed </a></li>
-                <li><a href="http://sudoedu.ca/student-enquiries/called_for_admin_intervention">Claim For Admin Intervention </a></li>
-                <li><a href="http://sudoedu.ca/student-enquiries/closed">Closed </a></li>
+                <li><a href="http://localhost:3000/student-enquiries">All </a></li>
+                <li><a href="http://localhost:3000/student-enquiries/pending">Pending </a></li>
+                <li><a href="http://localhost:3000/student-enquiries/approved">Approved </a></li>
+                <li><a href="http://localhost:3000/student-enquiries/session_initiated">Session Initiated </a></li>
+                <li><a href="http://localhost:3000/student-enquiries/running">Running </a></li>
+                <li><a href="http://localhost:3000/student-enquiries/completed">Completed </a></li>
+                <li><a href="http://localhost:3000/student-enquiries/called_for_admin_intervention">Claim For Admin Intervention </a></li>
+                <li><a href="http://localhost:3000/student-enquiries/closed">Closed </a></li>
               </ul>
             </div>
           </div>
@@ -40,11 +40,11 @@ class TutorDashboardMenu extends Component {
           <div id="collapseManage" className="panel-collapse collapse">
             <div className="panel-body">
               <ul className="dashboard-links">
-                <li><a href="http://sudoedu.ca/tutor/manage-courses">Courses </a></li>
-                <li><a href="http://sudoedu.ca/tutor/manage-locations">Locations </a></li>
-                <li><a href="http://sudoedu.ca/tutor/manage-teaching-types">Teaching Type</a></li>
-                <li><a href="http://sudoedu.ca/tutor/certificates">Certificates</a></li>
-                <li><a href="http://sudoedu.ca/tutor/manage-privacy">Privacy</a></li>
+                <li><a href="http://localhost:3000/tutor/manage-courses">Courses </a></li>
+                <li><a href="http://localhost:3000/tutor/manage-locations">Locations </a></li>
+                <li><a href="http://localhost:3000/tutor/manage-teaching-types">Teaching Type</a></li>
+                <li><a href="http://localhost:3000/tutor/certificates">Certificates</a></li>
+                <li><a href="http://localhost:3000/tutor/manage-privacy">Privacy</a></li>
               </ul>
             </div>
           </div>
@@ -60,8 +60,8 @@ class TutorDashboardMenu extends Component {
           <div id="collapsePackages" className="panel-collapse collapse">
             <div className="panel-body">
               <ul className="dashboard-links">
-                <li><a href="http://sudoedu.ca/tutor/list-packages">List Packages </a></li>
-                <li><a href="http://sudoedu.ca/tutor/mysubscriptions">My Subscriptions </a></li>
+                <li><a href="http://localhost:3000/tutor/list-packages">List Packages </a></li>
+                <li><a href="http://localhost:3000/tutor/mysubscriptions">My Subscriptions </a></li>
               </ul>
             </div>
           </div>
@@ -77,13 +77,13 @@ class TutorDashboardMenu extends Component {
           <div id="collapseSellCourses" className="panel-collapse collapse">
             <div className="panel-body">
               <ul className="dashboard-links">
-                <li><a href="http://sudoedu.ca/tutor/sell-courses-online">Publish </a></li>
-                <li><a href="http://sudoedu.ca/tutor/list-selling-courses">List Selling Courses </a></li>
+                <li><a href="http://localhost:3000/tutor/sell-courses-online">Publish </a></li>
+                <li><a href="http://localhost:3000/tutor/list-selling-courses">List Selling Courses </a></li>
               </ul>
             </div>
           </div>
         </div>
-        <div className="dashboard-link"><a href="http://sudoedu.ca/user-reviews"><i className="fa fa-retweet"></i>Reviews</a></div>
+        <div className="dashboard-link"><a href="http://localhost:3000/user-reviews"><i className="fa fa-retweet"></i>Reviews</a></div>
         <div className="panel panel-default">
           <div className="panel-heading">
             <h4 className="panel-title">
@@ -94,19 +94,19 @@ class TutorDashboardMenu extends Component {
           <div id="collapseThree" className="panel-collapse collapse">
             <div className="panel-body">
               <ul className="dashboard-links">
-                <li><a href="http://sudoedu.ca/tutor/personal-info">Personnel Information </a></li>
-                <li><a href="http://sudoedu.ca/tutor/profile-information">Profile Information </a></li>
-                <li><a href="http://sudoedu.ca/tutor/experience">Experience </a></li>
-                <li><a href="http://sudoedu.ca/tutor/contact-information">Contact Information</a></li>
-                <li><a href="http://sudoedu.ca/tutor/my-gallery">Gallery</a></li>
-                <li><a href="http://sudoedu.ca/auth/change-password">Change Password</a></li>
+                <li><a href="http://localhost:3000/tutor/personal-info">Personnel Information </a></li>
+                <li><a href="http://localhost:3000/tutor/profile-information">Profile Information </a></li>
+                <li><a href="http://localhost:3000/tutor/experience">Experience </a></li>
+                <li><a href="http://localhost:3000/tutor/contact-information">Contact Information</a></li>
+                <li><a href="http://localhost:3000/tutor/my-gallery">Gallery</a></li>
+                <li><a href="http://localhost:3000/auth/change-password">Change Password</a></li>
               </ul>
             </div>
           </div>
         </div>
 
         <div className="panel panel-default">
-          <div className="dashboard-link"><a href="http://sudoedu.ca/auth/logout"><i className="fa fa-sign-out"></i>Logout</a></div>
+          <div className="dashboard-link"><a href="http://localhost:3000/auth/logout"><i className="fa fa-sign-out"></i>Logout</a></div>
         </div>
 
       </div>

@@ -12,13 +12,14 @@ class CourseList extends Component {
     super(props);
   }
   render() {
+    const {deleteCourse} = this.props;
     return (
-      <div className="course-group-list-2">
+      <div className={styles.courseListContainer + " row"}>
       {
         this.props.courses.map(function (item, index) {
           return (
             <div className="col-xs-12 col-sm-12 col-md-6" key={index}>
-              <CourseItem item={item}/>
+              <CourseItem item={item} deleteCourse={deleteCourse}/>
             </div>
           )
         })

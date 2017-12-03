@@ -1278,7 +1278,7 @@ Main Navigation bar  - Navbar-default
 }
 
 .nav-btn {
-  border-radius: 5px;
+  border-radius: 2px;
   background-color: #e27d7f;
   border: 2px solid #e27d7f;
   padding: 10px 24px;
@@ -3262,18 +3262,10 @@ Page >>Blog     #Blog cards
 
 
 .dark-picker .select2-container--default .select2-selection--single {
-  background-color: #e7e7e7;
-  border: 1px solid #e7e7e7;
-  border-right: 0;
   font-size: 14px;
   padding: 6px 4px;
-  height: 40px;
+  height: 34px;
   border-radius: 5px;
-}
-
-.dark-picker-bright .select2-container--default .select2-selection--single {
-  background-color: #f2f2f2;
-  border-color: #f2f2f2;
 }
 
 .dark-picker .select2-container--default .select2-selection--single .select2-selection__arrow {
@@ -3282,12 +3274,16 @@ Page >>Blog     #Blog cards
   right: 3px;
   width: 33px;
   border-radius: 5px;
-  height: 35px;
-  background: url("../images/caret.png") no-repeat center;
+  height: 27px;
+  font: normal normal normal 14px/1 FontAwesome;
+  padding-left: 12px;
+  padding-top: 2px;
+  font-size: 19px;
 }
 
-
-/* popular videos >>blog page */
+.select2-selection__arrow:before {
+  content: "\f106";
+}
 
 .video-tabs li {
   height: 138px;
@@ -4472,11 +4468,16 @@ color: #e27d7f;
 }
 
 .select2-container--default .select2-selection--multiple {
-  background-color: #f2f2f2;
+  background-color: #ffffff;
   height: auto;
-  border: 0;
-  border-radius: 5px;
-  padding-bottom: 8px;min-height: 40px;
+  border: 1px solid rgba(48,51,57,.15);
+  border-radius: 2px;
+  padding-bottom: 8px;
+  min-height: 40px;
+}
+
+.select2-container--default.select2-container--focus .select2-selection--multiple {
+  border-color: #0D7CC9;
 }
 
 .select2-container--default .select2-selection--multiple .select2-selection__rendered {
@@ -4505,10 +4506,6 @@ color: #e27d7f;
   line-height: 12px;
   border-radius: 50%;
   text-align: center;
-}
-
-.select2-container--default.select2-container--focus .select2-selection--multiple {
-  border: 0;
 }
 
 .ad-opacity {
@@ -5805,7 +5802,7 @@ ul.dashboard-links li {
 }
 textarea.form-control{
   height: auto !important;
-  border-radius: 5px !important;
+  border-radius: 2px !important;
 }
 .pretty-radio-buttons .radio input, .pretty-radio-buttons .checkbox input {
   position: static;

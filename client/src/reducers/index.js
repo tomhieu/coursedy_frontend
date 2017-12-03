@@ -19,10 +19,12 @@ import TutorProfile from "./TutorProfile";
 import loadPersonData from "./TutorPersonalInfo";
 import loadEducationData from "./TutorEducation";
 import addNewDocumentFile from "./AddDocumentFile";
+import LoadingMask from "./LoadingMask";
 import TutorAccount from "./TutorAccount";
 
 const rootReducer = combineReducers({
     // Apply all of the reducers here.
+    LoadingMask,
     i18nState,
     LoginComponent,
     SignUpComponent,
