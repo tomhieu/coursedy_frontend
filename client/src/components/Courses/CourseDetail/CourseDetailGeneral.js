@@ -1,6 +1,8 @@
 import React, { Component} from 'react';
+import {Modal, Button} from 'react-bootstrap';
 import cssModules from 'react-css-modules';
 import styles from '../Course.module.scss';
+import { PublicCourseDetailFollowModalContainer } from '../../../containers/index'
 
 /**
   * @Course group template 2
@@ -59,9 +61,14 @@ class CourseDetailGeneral extends Component {
         </div>{/* Course thumb */}
         <div className="clearfix"></div>
         
-        <div className="col-md-12">
+        <br/>
+        <div className="col-md-11">
           <h2 className="heading-line course-title">{this.props.course.title}</h2>
         </div>{/* Course title */}
+        <div className="col-md-1">
+          <PublicCourseDetailFollowModalContainer />
+        </div>{/* Course follow */}
+        <div className="clearfix"></div>
 
         <div className={'col-md-12 ' + styles.noPad}>
           <div className="col-md-7">

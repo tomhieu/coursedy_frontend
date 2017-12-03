@@ -13,6 +13,7 @@ import CourseDetail from './Courses/CourseDetail';
 import CourseDetailGeneral from './Courses/CourseDetail/CourseDetailGeneral';
 import CourseDetailLessons from './Courses/CourseDetail/CourseDetailLessons';
 import CourseDetailComments from './Courses/CourseDetail/CourseDetailComments';
+import CourseDetailFollowModal from './Courses/CourseDetail/CourseDetailFollowModal';
 
 import CourseFilter from './Courses/CourseFilter';
 
@@ -49,6 +50,8 @@ export {
   CourseDetail,
   CourseDetailLessons,
   CourseDetailComments,
+  CourseDetailFollowModal,
+
   CourseFilter,
 
   TutorSearchForm,

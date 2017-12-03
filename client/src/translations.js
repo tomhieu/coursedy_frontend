@@ -25,6 +25,7 @@ export const translations = {
         "last_name": "Họ",
         "full_name": "Họ và tên",
         "role_required": "Vui lòng chọn tài khoản người dùng",
+        "email_required": "Vui lòng nhập địa chỉ e-mail",
         "first_name_required": "Vui lòng nhập tên",
         "confirm_password": "Xác Nhận Mật Khẩu",
         "phone_number": "Số Điện Thoại",
@@ -164,7 +165,12 @@ export const translations = {
         "course_detail": "Chi tiết khóa học",
         "tutor_info": "Thông tin giáo viên",
         "course_subscribe": "Đăng ký",
-        "course_comments": "Phản hồi"
+        "course_comments": "Phản hồi",
+
+        "course_follow": "Theo dõi khóa học",
+        "course_follow_submit_success": "Gửi email theo dõi thành công",
+        "course_follow_submit_fail": "Gửi email theo dõi thất bại",
+
   },
   "en": {
     "home_page": "Home",
