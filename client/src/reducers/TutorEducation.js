@@ -4,7 +4,7 @@ import {
 } from "actions/TutorAccountActionCreator";
 import {RECEIVE_CERTIFICATES_DATA, RECEIVE_SKILLS_DATA} from "../actions/TutorAccountActionCreator";
 
-const loadEducationData = (state = {}, action) => {
+const EducationData = (state = {}, action) => {
   switch (action.type) {
     case RECEIVE_EDUCATION_DATA:
       return {
@@ -27,4 +27,4 @@ const loadEducationData = (state = {}, action) => {
   }
 }
 
-export default loadEducationData;
+export default EducationData;

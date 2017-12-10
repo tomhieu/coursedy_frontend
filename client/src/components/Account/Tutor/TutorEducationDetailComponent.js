@@ -35,32 +35,6 @@ class TutorEducationDetailComponent extends Component {
 
           <div className='row'>
             <div className='col-sm-4'>
-              <label className='control-label'>{this.context.t("account.tutot.edu.level.title")}</label>
-            </div>
-            <div className='col-sm-8'>
-              <span>{tutor.highest_education}</span>
-            </div>
-          </div>
-          <hr/>
-
-          <div className='row'>
-            <div className='col-sm-4'>
-              <label className='control-label'>{this.context.t("account.tutot.edu.degree.title")}</label>
-            </div>
-            <div className='col-sm-8'>
-              {
-                tutor.degrees.map((d) => {
-                  return (<div key={d.id}>
-                    <a>{d.name}</a>
-                  </div>)
-                })
-              }
-            </div>
-          </div>
-          <hr/>
-
-          <div className='row'>
-            <div className='col-sm-4'>
               <label className='control-label'>{this.context.t("fields_of_teaching")}</label>
             </div>
             <div className='col-sm-8'>
@@ -73,29 +47,15 @@ class TutorEducationDetailComponent extends Component {
           </div>
           <hr/>
 
-          <div className='row'>
-            <div className='col-sm-4'>
-              <label className='control-label'>{this.context.t("area_of_teaching")}</label>
-            </div>
-            <div className='col-sm-8'>
-              {
-                tutor.districts.map((d) => {
-                  return d.name
-                }).join(', ')
-              }
-            </div>
-          </div>
-          <hr/>
-
-          <div className='row'>
-            <div className='col-sm-4'>
-              <label className='control-label'>{this.context.t("tutor_rate")}</label>
-            </div>
-            <div className='col-sm-8'>
-              <span>{tutor.hour_rate}</span> &nbsp;
-              <span>{tutor.currency}</span>
-            </div>
-          </div>
+          {/*<div className='row'>*/}
+            {/*<div className='col-sm-4'>*/}
+              {/*<label className='control-label'>{this.context.t("tutor_rate")}</label>*/}
+            {/*</div>*/}
+            {/*<div className='col-sm-8'>*/}
+              {/*<span>{tutor.hour_rate}</span> &nbsp;*/}
+              {/*<span>{tutor.currency}</span>*/}
+            {/*</div>*/}
+          {/*</div>*/}
         </div>
       </div>
     )

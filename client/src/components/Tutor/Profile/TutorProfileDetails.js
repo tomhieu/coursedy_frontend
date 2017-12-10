@@ -5,6 +5,7 @@ import InlineEditFormComponent from '../../Core/InlineEditFormField'
 import cssModules from 'react-css-modules';
 import styles from './TutorProfileDetails.module.scss';
 
+
 class TutorProfileDetails extends Component {
   componentWillMount() {
     this.props.dispatch(Actions.fetchTutor())
