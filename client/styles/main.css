@@ -3096,7 +3096,7 @@ a.link-alt:hover {
  */
 
 .form-control {
-  border-radius: 0 !important;
+  border-radius: 2px !important;
   box-shadow: none;
   height: 40px;
   border-color: #CCC;

@@ -1,6 +1,5 @@
 import React from "react";
 import "react-datepicker/dist/react-datepicker.css";
-import {connect} from "react-redux";
 import {FormGroup} from "react-bootstrap";
 import FormField from "./FormField";
 
@@ -69,8 +68,4 @@ InlineEditFormField.propTypes = {
   content: React.PropTypes.string.isRequired
 }
 
-const mapStateToProps = (state) => ({});
-
-export default connect(
-  mapStateToProps
-)(InlineEditFormField)
+export default InlineEditFormField;

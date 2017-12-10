@@ -14,7 +14,7 @@ class RegisterForm extends Component {
   render() {
     const {handleSubmit} = this.props;
     return (
-      <form onSubmit={handleSubmit(this.props.onSubmit)} className="form-signin comment-form">
+      <form onSubmit={handleSubmit(this.props.onSubmit)} className="form-signin">
         <FormGroup controlId="formHorizontalEmail">
           <ControlLabel> {this.context.t("register_as")} &nbsp;<font color="red">*</font> </ControlLabel>
           <Field

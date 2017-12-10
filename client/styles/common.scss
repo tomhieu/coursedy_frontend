@@ -924,10 +924,11 @@ ul.no-margin,
 }
 
 .form-control {
-  border-radius: 0 !important;
+  border-radius: 2px !important;
   box-shadow: none;
   border-color: #CCC;
   font-size: 13px;
+  height: 100%;
 }
 
 .form-control:focus {
@@ -972,7 +973,11 @@ input[type="url"]:focus, input[type="text"]:focus, textarea:focus, .form-control
 }
 
 .select2-container--default.select2-container--open.select2-container--below .select2-selection__arrow:before {
-  content: "\f107";
+  content: "\f106";
+}
+
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+  line-height: 16px;
 }
 
 .currency-field, .type-field {

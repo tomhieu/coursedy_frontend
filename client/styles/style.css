@@ -279,7 +279,7 @@ div.error, p.error {
   margin-top: 50px;
   padding: 8px 28px;
   border: 1px solid #e27d7f;
-  border-radius: 5px;
+  border-radius: 2px;
   text-align: center;
   background: #e27d7f;
   -webkit-transition: all .2s ease-in-out;
@@ -303,7 +303,7 @@ div.error, p.error {
 
 .btn-success {
   padding: 4px 12px;
-  border-radius: 3px;
+  border-radius: 2px;
   background-color: #2eaf83;
   color: #ffffff;
   font-size: 14px;
@@ -312,7 +312,7 @@ div.error, p.error {
 
 .btn-danger {
   padding: 4px 12px;
-  border-radius: 3px;
+  border-radius: 2px;
   background-color: #e27d7f;
   color: #ffffff;
   font-size: 14px;
@@ -325,7 +325,7 @@ div.error, p.error {
 }
 
 .btn-accept {
-  border-radius: 5px;
+  border-radius: 2px;
   padding: 12px 24px;
   color: #ffffff;
   font-size: 14px;
@@ -338,7 +338,7 @@ div.error, p.error {
 }
 
 .btn-reject {
-  border-radius: 5px;
+  border-radius: 2px;
   padding: 12px 24px;
   color: #ffffff;
   font-size: 14px;
@@ -362,7 +362,7 @@ div.error, p.error {
 }
 
 .btn-add {
-  border-radius: 5px;
+  border-radius: 2px;
   padding: 10px 26px;
   color: #ffffff !important;
   font-size: 14px;
@@ -373,7 +373,7 @@ div.error, p.error {
   display: inline-block;
 }
 .btn-edit {
-  border-radius: 5px;
+  border-radius: 2px;
   padding: 10px 26px;
   color: #ffffff;
   font-size: 14px;
@@ -384,7 +384,7 @@ div.error, p.error {
   display: inline-block;
 }
 .btn-delete {
-  border-radius: 5px;
+  border-radius: 2px;
   padding: 10px 26px;
   color: #ffffff;
   font-size: 14px;
@@ -3264,14 +3264,13 @@ Page >>Blog     #Blog cards
 .dark-picker .select2-container--default .select2-selection--single {
   font-size: 14px;
   padding: 6px 4px;
-  height: 34px;
-  border-radius: 5px;
+  height: 29px;
 }
 
 .dark-picker .select2-container--default .select2-selection--single .select2-selection__arrow {
   position: absolute;
-  top: 5px;
-  right: 3px;
+  top: 3px;
+  right: 0px;
   width: 33px;
   border-radius: 5px;
   height: 27px;
@@ -3282,7 +3281,7 @@ Page >>Blog     #Blog cards
 }
 
 .select2-selection__arrow:before {
-  content: "\f106";
+  content: "\f107";
 }
 
 .video-tabs li {
@@ -3897,10 +3896,6 @@ Page >> Login / Register
 .sign-block {
   max-width: 370px;
   height: auto;
-}
-
-.sign-block .comment-form input {
-  background-color: #f0f0f0;
 }
 
 .comment-form input[type=checkbox] {
