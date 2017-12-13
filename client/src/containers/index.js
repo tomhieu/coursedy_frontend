@@ -5,6 +5,7 @@ import PersonInfoContainer from './AccountContainer/Tutor/PersonInfo';
 import TutorEducation from './AccountContainer/Tutor/TutorEducation';
 import PublicCourseListContainer from './CoursesContainer/PublicCourseListContainer';
 import PublicCourseDetailContainer from './CoursesContainer/PublicCourseDetailContainer';
+import PublicCourseDetailFollowModalContainer from './CoursesContainer/PublicCourseDetailFollowModalContainer';
 import CourseFilterContainer from './CoursesContainer/CourseFilterContainer';
 import RoleAuthorization from '../components/RoleAuthorization';
 
@@ -17,5 +18,6 @@ export {
   //Front-end
   PublicCourseListContainer,
   PublicCourseDetailContainer,
+  PublicCourseDetailFollowModalContainer,
   CourseFilterContainer
 }
