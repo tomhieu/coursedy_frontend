@@ -3264,12 +3264,12 @@ Page >>Blog     #Blog cards
 .dark-picker .select2-container--default .select2-selection--single {
   font-size: 14px;
   padding: 6px 4px;
-  height: 29px;
+  height: 32px;
 }
 
 .dark-picker .select2-container--default .select2-selection--single .select2-selection__arrow {
   position: absolute;
-  top: 3px;
+  top: 5px;
   right: 0px;
   width: 33px;
   border-radius: 5px;
@@ -4464,11 +4464,11 @@ color: #e27d7f;
 
 .select2-container--default .select2-selection--multiple {
   background-color: #ffffff;
-  height: auto;
+  height: 32px;
   border: 1px solid rgba(48,51,57,.15);
   border-radius: 2px;
-  padding-bottom: 8px;
-  min-height: 40px;
+  padding-bottom: 0px;
+  min-height: 32px;
 }
 
 .select2-container--default.select2-container--focus .select2-selection--multiple {
@@ -4480,24 +4480,27 @@ color: #e27d7f;
 }
 
 .select2-container--default .select2-selection--multiple .select2-selection__choice {
-  background-color: #ffffff;
-  border: 0;
-  border-radius: 5px;
-  color: #e27d7f;
+  background-color: #d3d7dc;
+  border-radius: 50px;
+  border: none;
+  color: #646971;
+  fill: #646971;
   font-size: 12px;
-  height: 30px;
+  height: 27px;
   padding: 0px 8px;
-  line-height: 30px;
+  line-height: 28px;
+  margin: 1px 0 0;
 }
 
 .select2-container--default .select2-selection--multiple .select2-selection__choice__remove {
   float: right;
-  margin-top: -5px;
+  margin-top: 8px;
   margin-right: -4px;
+  margin-left: 3px;
   width: 12px;
   height: 12px;
-  background: #e27d7e;
-  color: #fff;
+  background: #a9afb6;
+  color: #646971;
   line-height: 12px;
   border-radius: 50%;
   text-align: center;
