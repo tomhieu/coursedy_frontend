@@ -7,7 +7,7 @@ const CourseFilter = (state = {
   locations: {},
   weekdays: {},
   totalResult: 0,
-  viewType: 'grid',
+  displayMode: 'grid',
   pageSize: 4,
   currentPage: 1,
   selectedCourses: [],
@@ -23,8 +23,8 @@ const CourseFilter = (state = {
       return {...state, weekdays: action.payload}
     case types.FETCH_LOCATIONS_SUCCESSFULLY:
       return {...state, locations: action.payload}
-    case types.CHANGE_VIEW_TYPE:
-      return {...state, viewType: action.payload}
+    case types.CHANGE_DISPLAY_MODE:
+      return {...state, displayMode: action.payload}
     case types.CHANGE_CURRENT_PAGE:
       return {...state, currentPage: action.payload}
     case types.CHANGE_SORT_BY:

@@ -17,8 +17,8 @@ class CourseFilterContainer extends Component {
     this.props.dispatch(Actions.searchCourse(query))
   }
 
-  changeViewType(type) {
-    this.props.dispatch(Actions.changeViewType(type))
+  changeDisplayMode(mode) {
+    this.props.dispatch(Actions.changeDisplayMode(mode))
   }
 
   changeCurrentPage(page) {
@@ -29,7 +29,7 @@ class CourseFilterContainer extends Component {
     return (
       <CourseFilter {...this.props} 
         onSubmit={this.searchCourse.bind(this)}
-        changeViewTypeHdl={this.changeViewType}
+        changeDisplayModeHdl={this.changeDisplayMode}
         changeCurrentPageHdl={this.changeCurrentPage}
       />
     )

@@ -97,7 +97,7 @@ class CourseFilter extends Component {
             selectedCategories, 
             weekdays, 
             totalResult,
-            changeViewTypeHdl,
+            changeDisplayModeHdl,
             changeCurrentPageHdl
         } = this.props
         const orderList = [{id: 'created_at', text: this.context.t("sort_by_time")}, {
@@ -237,11 +237,11 @@ class CourseFilter extends Component {
                                         <div className="d-flex flex-horizontal">
                                             <FlatButton secondary={true} 
                                                 icon={<ActionViewModule style={internalStyles.defaultColorStyle} />}
-                                                onClick={changeViewTypeHdl.bind(this, "grid")}
+                                                onClick={changeDisplayModeHdl.bind(this, "grid")}
                                             />
                                             <FlatButton secondary={true} 
                                                 icon={<ActionViewList style={internalStyles.defaultColorStyle} />}
-                                                onClick={changeViewTypeHdl.bind(this, "list")}
+                                                onClick={changeDisplayModeHdl.bind(this, "list")}
                                             />
                                         </div>
                                     </div>

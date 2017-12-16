@@ -164,11 +164,11 @@ export const searchCourse = (query) => {
   }
 }
 
-export const changeViewType = (type) => {
+export const changeDisplayMode = (mode) => {
   return dispatch => {
     dispatch({
-      type: types.CHANGE_VIEW_TYPE,
-      payload: type
+      type: types.CHANGE_DISPLAY_MODE,
+      payload: mode
     })
   }
 }

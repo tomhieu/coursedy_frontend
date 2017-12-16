@@ -89,7 +89,7 @@ const mapStateToProps = (state) => ({
   currentPage: state.CourseFilter.currentPage,
   pageSize: state.CourseFilter.pageSize,
   totalResult: state.CourseFilter.totalResult,
-
+  displayMode: state.CourseFilter.displayMode,
   sortBy: state.CourseFilter.sortBy,
   sortOrder: state.CourseFilter.sortOrder
 });
