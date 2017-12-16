@@ -8,12 +8,13 @@ import {
   renderMultiSelect,
   renderSelect,
   renderSingleFileInput,
-  renderTextAreaField, renderTimePicker,
+  renderTextAreaField,
   renderToggle
 } from "./CustomComponents";
 import styles from "./FormField.module.scss";
 import cssModules from "react-css-modules";
-import {TimePicker, Checkbox, RadioButtonGroup} from 'redux-form-material-ui'
+import {Checkbox, RadioButtonGroup, TimePicker} from 'redux-form-material-ui'
+import {mStyles} from "utils/CustomStylesUtil";
 
 class FormField extends Component {
   constructor(props) {
@@ -83,8 +84,8 @@ class FormField extends Component {
       }
 
       case "checkbox": {
-        fieldComponent = <Field name={formControlName} label={this.props.formLabel}
-                                component={Checkbox} className={customClassName}/>
+        fieldComponent = <Field name={formControlName} label={this.props.formLabel} iconStyle={this.props.iconStyle}
+                                component={renderCheckbox} className={customClassName}/>
         break;
       }
       case "radiobox": {

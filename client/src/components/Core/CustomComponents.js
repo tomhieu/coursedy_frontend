@@ -6,7 +6,10 @@ import moment from "moment";
 import Dropzone from "react-dropzone";
 import {TT} from "../../utils/locale";
 import ObjectUtils from "../../utils/ObjectUtils";
-import {Checkbox, TimePicker} from "material-ui";
+import {Checkbox, FlatButton, RaisedButton, TimePicker} from "material-ui";
+import {mStyles} from "utils/CustomStylesUtil";
+import {ActionSearch} from "material-ui/svg-icons/index";
+import {fullWhite} from "material-ui/styles/colors";
 
 export const renderField = ({input, label, type = 'text', customClassName, meta: {touched, error, warning}}) => (
     <div className='full-width-input-wrapper'>
@@ -21,16 +24,6 @@ export const renderTextAreaField = ({input, label, type, meta: {touched, error, 
         {touched && ((error && <span className='input-errors'>{error}</span>) || (warning && <span>{warning}</span>))}
     </div>
 )
-
-const styles = {
-    circle: {
-        backgroundColor: "#e27d7f"
-    }
-};
-export const renderTimePicker = () => (
-    <TimePicker style={styles}/>
-)
-
 
 export const renderDatePicker = ({input, label, type, meta: {touched, error, warning}}) => {
     return (<div>
@@ -55,8 +48,7 @@ export const renderSelect = (selectOptions) => {
     )
 }
 
-export const renderMultiSelect = (selectOptions, selectedValues) => {
-    const defaultValues = Array.isArray(selectedValues) ? selectedValues.map(val => val.id) : []
+export const renderMultiSelect = (selectOptions) => {
     return ({input, label, type, meta: {touched, error, warning}}) => (
         <div className="select-picker">
             <Select2 {...input} multiple
@@ -68,11 +60,56 @@ export const renderMultiSelect = (selectOptions, selectedValues) => {
     )
 }
 
-export const renderCheckbox = props => (
-    <Checkbox label={props.label}
-              checked={props.value ? true : false}
-              onCheck={props.onChange}/>
-)
+export const AutoComplete = (props) =>
+  <div className="select-picker">
+    <Select2 {...input}
+    />
+  </div>
+
+/**
+ * A wrapper of Checkbox Material UI
+ * @param input
+ * @param label
+ * @param iconStyle
+ */
+export const renderCheckbox = ({ input, label, iconStyle }) =>
+  <Checkbox
+    label={label}
+    checked={input.value ? true : false}
+    onCheck={input.onChange}
+    style={mStyles.checkbox}
+    iconStyle={iconStyle}
+  />
+
+/**
+ * A wrapper of RaiseButton of material UI
+ * @param props
+ * @constructor
+ */
+export const RaiseButton = (props) =>
+  <RaisedButton
+    backgroundColor="#e27d7f"
+    labelColor={fullWhite}
+    label={props.label}
+    type="submit"
+    style={mStyles.raiseBtn}
+    icon={<ActionSearch color={fullWhite} />}
+  />
+
+/**
+ * A wrapper of FlatButton of material UI
+ * @param props
+ * @constructor
+ */
+export const EFlatButton = (props) =>
+  <FlatButton
+    label={props.label}
+    type="button"
+    secondary={props.secondary}
+    onClick={props.onClick}
+    style={mStyles.flatBtn}
+    icon={props.icon}
+  />
 
 export const renderPreviewFile = (file, doDeleteNewUploadFile) => {
     let previewClass = "pdf-image-preview";

@@ -4,12 +4,16 @@ import styles from './Course.module.scss';
 import {tuitionFees} from '../../constants/CourseFilter'
 import FormField from "../Core/FormField";
 import {FieldArray} from "redux-form";
-import {Checkbox, FlatButton, RaisedButton} from "material-ui";
+import {EFlatButton, raiseButton, RaiseButton} from "../Core/CustomComponents";
 import {
-    ActionFavorite, ActionSearch, ActionViewList, ActionViewModule, NavigationExpandLess,
-    NavigationExpandMore
+  ActionFavorite,
+  ActionViewList,
+  ActionViewModule,
+  NavigationExpandLess,
+  NavigationExpandMore
 } from "material-ui/svg-icons/index";
-import {fullWhite, red900} from "material-ui/styles/colors";
+import {red900} from "material-ui/styles/colors";
+import {mStyles} from "utils/CustomStylesUtil";
 
 class CourseFilter extends Component {
 
@@ -141,9 +145,10 @@ class CourseFilter extends Component {
                                 {/* Area*/}
                                 <div className="col-md-2 col-sm-2">
                                     <div className="d-flex flex-horizontal">
-                                        <RaisedButton backgroundColor="#e27d7f" labelColor={fullWhite} label={this.context.t('filter')} type="submit" icon={<ActionSearch color={fullWhite} />}/>
-                                        <FlatButton label={this.context.t("filter_more")}  type="button" onClick={this.toggleFilter.bind(this)} style={internalStyles.defaultColorStyle}
-                                                    icon={this.state.openAdFilter ? <NavigationExpandLess /> : <NavigationExpandMore />}/>
+                                        <RaiseButton label={this.context.t('filter')}/>
+                                        <EFlatButton label={this.context.t("filter_more")}
+                                                    onClick={this.toggleFilter.bind(this)}
+                                                    icon={this.state.openAdFilter ? <NavigationExpandLess style={mStyles.iconFlatBtn} /> : <NavigationExpandMore style={mStyles.iconFlatBtn} />} />
                                     </div>
                                 </div>
                             </div>
@@ -206,9 +211,10 @@ class CourseFilter extends Component {
                             <div className="d-flex flex-horizontal align-items-center">
                                 <div className={styles.listResultInfo + " d-flex flex-horizontal justify-content-left"}>
                                     <div className={styles.checkAllBtn + " d-flex align-items-center"}>
-                                        <Checkbox style={internalStyles.checkbox}/>
+                                        <FormField formGroupId="select_all_id" showLabel={false} formControlName="select_all"
+                                                   typeField="checkbox" iconStyle={mStyles.iconCheckBox}></FormField>
                                     </div>
-                                    <FlatButton label={this.context.t("save_favorite")} style={internalStyles.defaultColorStyle} icon={<ActionFavorite color={red900} />}/>
+                                    <EFlatButton label={this.context.t("save_favorite")} icon={<ActionFavorite color={red900} />}/>
                                     <span className={styles.textTotalResult}>
                                             {this.context.t("total_result", {total: totalResult != undefined ? totalResult : 0})}
                                     </span>
@@ -221,8 +227,8 @@ class CourseFilter extends Component {
                                     </div>
                                     <div className={styles.displayModeBtn}>
                                         <div className="d-flex flex-horizontal">
-                                            <FlatButton secondary={true} icon={<ActionViewModule style={internalStyles.defaultColorStyle} />}/>
-                                            <FlatButton secondary={true} icon={<ActionViewList style={internalStyles.defaultColorStyle} />}/>
+                                            <EFlatButton secondary={true} icon={<ActionViewModule style={internalStyles.defaultColorStyle} />}/>
+                                            <EFlatButton secondary={true} icon={<ActionViewList style={internalStyles.defaultColorStyle} />}/>
                                         </div>
                                     </div>
                                 </div>

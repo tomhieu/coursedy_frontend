@@ -10,7 +10,7 @@ import {ActionDelete, ContentAddCircle} from "material-ui/svg-icons/index";
 import {grey600, red900} from "material-ui/styles/colors";
 import cssModules from "react-css-modules";
 import styles from "./SectionDetail.module.scss";
-import {btnStyles} from "../../utils/CustomStylesUtil";
+import {mStyles} from "../../utils/CustomStylesUtil";
 import LessonDetailFormContainer from "./LessonDetailFormContainer";
 import SectionDetailContainer from "./SectionDetailContainer";
 
@@ -53,10 +53,10 @@ class SectionLessonContainer extends Component {
                                 </SectionDetailContainer>
                             </div>
                             <div className="d-flex flex-horizontal">
-                                <IconButton iconStyle={btnStyles.largeIcon} style={btnStyles.large} onClick={() => this.addLesson(section.id)}>
+                                <IconButton iconStyle={mStyles.largeIcon} style={mStyles.large} onClick={() => this.addLesson(section.id)}>
                                     <ContentAddCircle color={red900} />
                                 </IconButton>
-                                <IconButton iconStyle={btnStyles.largeIcon} style={btnStyles.large}
+                                <IconButton iconStyle={mStyles.largeIcon} style={mStyles.large}
                                             onClick={() => this.deleteSection(section.id)}>
                                     <ActionDelete color={grey600} />
                                 </IconButton>
