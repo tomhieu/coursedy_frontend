@@ -28,7 +28,7 @@ class PublicCourseDetailFollowModalContainer extends Component {
     }
   }
 
-  saveCourseFollowhandleSumit({email}) {
+  saveCourseFollowHandleSumit({email}) {
     this.props.dispatch(PublicCourseActions.submitFollowEmail(this.props.course.id, email));
   }
 
@@ -49,10 +49,10 @@ class PublicCourseDetailFollowModalContainer extends Component {
     return (
       <div className="text-center">
         <Button className={'btn btn-primary'} onClick={this.showPopup.bind(this)}>
-          <i className="fa fa-heart"></i>
+          <i className={this.props.submit_follow_success ? 'fa fa-heart' : 'fa fa-heart-o'}></i>
         </Button>
         <Modal show={this.props.show_follow_modal} onHide={this.hidePopup.bind(this)}>
-          <form onSubmit={handleSubmit(this.saveCourseFollowhandleSumit.bind(this))} className='inline-form'>  
+          <form onSubmit={handleSubmit(this.saveCourseFollowHandleSumit.bind(this))} className='inline-form'>  
             <Modal.Header>
               <Modal.Title>{this.context.t('course_follow')}</Modal.Title>
             </Modal.Header>
