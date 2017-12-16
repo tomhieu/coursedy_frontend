@@ -11,8 +11,9 @@ import {
   loadListDegreesData,
   removeNewDocument,
   removeUploadedDocument,
-  loadListSkillData
+  loadListSkillData,
 } from "../../../actions/TutorAccountActionCreator";
+import {fetchTutor} from "actions/TutorProfileActionCreator"
 import {updateTutorEducation} from "actions/TutorAccountActionCreator";
 import {renderPreviewFile} from "../../../components/Core/CustomComponents";
 
@@ -20,10 +21,6 @@ class TutorEducation extends Component {
   constructor(props) {
     super(props);
     this.updateEducation.bind(this);
-  }
-
-  componentWillMount() {
-    this.props.dispatch(loadListSkillData())
   }
 
   doDownload(documentId) {
@@ -81,8 +78,7 @@ class TutorEducation extends Component {
             {/*</div>*/}
             <div>
               <FormField formGroupId="skillsId" formLabel={this.context.t("account_tutor_skill_title")}
-                         options={skillSet}
-                         selectedValues={skills} formControlName="categories" typeField="multi_select"/>
+                         options={skillSet} formControlName="categories" typeField="multi_select"/>
             </div>
 
             <div className='form-group'>
@@ -133,16 +129,20 @@ TutorEducation.contextTypes = {
 }
 
 const mapStateToProps = state => {
-  const {loadEducationData, addNewDocumentFile} = state;
-  const {degrees, skillSet} = loadEducationData;
+  const {EducationData, addNewDocumentFile} = state;
+  const {degrees, skillSet} = EducationData;
   const {uploadFiles} = addNewDocumentFile;
   const tutor = state.TutorAccount.tutor
+  const skills = tutor.categories.map((t) => {
+    return t.id
+  })
+
   return {
     degrees,
     uploadFiles,
     skillSet,
     tutor,
-    initialValues: tutor
+    initialValues: {...tutor, categories: skills }
   }
 };
 

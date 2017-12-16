@@ -7,11 +7,13 @@ import PersonInfoContainer from "./PersonInfo";
 import {UserInfo} from 'components/index'
 import * as Actions from '../../../actions/TutorAccountActionCreator'
 import {closeEmailConfirmationModal} from "../../../actions/TutorAccountActionCreator";
+import {loadListSkillData} from "../../../actions/TutorAccountActionCreator";
 import {RequireEmailConfirmationModal, TutorEducationDetailComponent} from '../../../components/index'
 
 class TutorAccount extends Component {
   componentWillMount(){
     this.props.dispatch(Actions.fetchUser())
+    this.props.dispatch(loadListSkillData())
   }
 
   showProfileEditForm(){

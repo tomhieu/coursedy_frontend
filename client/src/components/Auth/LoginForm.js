@@ -16,7 +16,7 @@ class LoginForm extends Component {
     const {errors} = this.props.LoginComponent;
 
     return (
-      <form onSubmit={handleSubmit(this.props.onSubmit)} className="form-signin comment-form">
+      <form onSubmit={handleSubmit(this.props.onSubmit)} className="form-signin">
         <div className={errors ? styles.shouldBeVisible : styles.shouldNotBeVisible}>
           <span className="error">
             <div className="alert alert-danger">

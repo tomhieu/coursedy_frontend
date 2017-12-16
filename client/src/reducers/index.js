@@ -17,7 +17,7 @@ import CourseFormComponent from "./CourseFormReducer";
 import session from "./Session";
 import TutorProfile from "./TutorProfile";
 import loadPersonData from "./TutorPersonalInfo";
-import loadEducationData from "./TutorEducation";
+import EducationData from "./TutorEducation";
 import addNewDocumentFile from "./AddDocumentFile";
 import LoadingMask from "./LoadingMask";
 import TutorAccount from "./TutorAccount";
@@ -42,7 +42,7 @@ const rootReducer = combineReducers({
     toastr: toastrReducer,
     // Person Info screen
     loadPersonData,
-    loadEducationData,
+    EducationData,
     addNewDocumentFile,
     CourseFilter,
     TutorAccount

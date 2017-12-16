@@ -73,6 +73,7 @@ export const updateCourse = (id, title, description, category_id, course_level_i
         type: types.UPDATE_SUCCESSFULLY,
         payload: response
       });
+      loadCourseDetail(response.id);
     }, (errors) => {
       dispatch({
         type: types.UPDATE_COURSE_FAILED,
