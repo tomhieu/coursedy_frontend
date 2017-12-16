@@ -40,6 +40,7 @@ export const translations = {
         "invalid_phone_number": "Số điện thoại không đúng",
         "sign_up_success": "Đăng Ký Thành Công !",
         "congrat_sign_up_success": "Chúc mừng bạn đã đăng ký thành viên của EzyLearning thành công. Chúng tôi đã gửi email xác nhận đến địa chỉ email của bạn. Vui lòng kiểm tra hộp thư đến để kích hoạt tài khoản",
+        "ok": "Đồng ý",
         "close": "Đóng",
         'change_email_success': 'Yêu cầu đổi email đã được gửi',
         'update_email_successfully': 'Bạn vừa yêu cầu thay đổi email. Hệ thống đã gửi 1 email đến địa chỉ email mới của bạn. Vui lòng kiểm tra email và xác nhận địa chỉ email mới',
@@ -182,7 +183,7 @@ export const translations = {
         "name_lesson_field": "Tên Buổi Học",
         "field_number_validator": "Vui lòng nhập số",
         'updating': 'Đang cập nhật',
-        "total_result": "{total} Khóa Học",
+        "total_result": "{total} khóa học",
         "save_favorite": "Lưu vào khóa học ưu thích",
         "order_list": "Sắp xếp:",
         "order_by_time": "Mới nhất",
@@ -204,6 +205,12 @@ export const translations = {
         "course_follow_submit_success": "Gửi email theo dõi thành công",
         "course_follow_submit_fail": "Gửi email theo dõi thất bại",
 
+        "course_enroll_require_login": "Yêu cầu đăng nhập",
+        "course_enroll_require_login_message": "Bạn cần đăng nhập để đăng ký khóa học",
+
+        "course_enroll_status": "Kết quả đăng ký",
+        "course_enroll_success": "Đăng ký khóa học thành công",
+        "course_enroll_fail": "Đăng ký khóa học thất bại",
   },
   "en": {
     "home_page": "Home",

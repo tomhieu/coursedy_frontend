@@ -17,9 +17,21 @@ class CourseFilterContainer extends Component {
     this.props.dispatch(Actions.searchCourse(query))
   }
 
+  changeViewType(type) {
+    this.props.dispatch(Actions.changeViewType(type))
+  }
+
+  changeCurrentPage(page) {
+    this.props.dispatch(Actions.changeCurrentPage(page))
+  }
+
   render(){
     return (
-      <CourseFilter {...this.props} onSubmit={this.searchCourse.bind(this)}/>
+      <CourseFilter {...this.props} 
+        onSubmit={this.searchCourse.bind(this)}
+        changeViewTypeHdl={this.changeViewType}
+        changeCurrentPageHdl={this.changeCurrentPage}
+      />
     )
   }
 }
@@ -41,13 +53,13 @@ const getSelectedCategories = (categories, selectedCategoryIds) => {
 
 const mapStateToProps = (state) => {
     const {CourseFilter, form = {}} = state;
-    const {categories = [], locations = {}, weekdays = {}} = CourseFilter;
+    const {categories = [], locations = {}, weekdays = {}, totalResult = 0} = CourseFilter;
     const {courseFilterForm = {}} = form;
     if (!courseFilterForm.values) {
-        return {categories, locations, weekdays, selectedCategories : []};
+        return {categories, locations, weekdays, totalResult, selectedCategories : []};
     } else {
         const {filter_category_ids, filter_location_ids, course_schedule_day = []} = courseFilterForm.values;
-        return {categories, locations, weekdays, filter_category_ids, filter_location_ids, course_schedule_day,
+        return {categories, locations, weekdays, totalResult, filter_category_ids, filter_location_ids, course_schedule_day,
             selectedCategories : getSelectedCategories(categories, filter_category_ids)
         };
     }
