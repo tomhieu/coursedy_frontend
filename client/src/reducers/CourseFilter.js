@@ -10,7 +10,9 @@ const CourseFilter = (state = {
   viewType: 'grid',
   pageSize: 4,
   currentPage: 1,
-  selectedCourses: []
+  selectedCourses: [],
+  sortBy: '',
+  sortOrder: 'desc',
 }, action) => {
   switch (action.type) {
     case types.FETCH_CATEGORIES_SUCCESSFULLY:
@@ -25,6 +27,8 @@ const CourseFilter = (state = {
       return {...state, viewType: action.payload}
     case types.CHANGE_CURRENT_PAGE:
       return {...state, currentPage: action.payload}
+    case types.CHANGE_SORT_BY:
+      return {...state, sortBy: action.payload}
     default:
       return state;
   }

@@ -10,6 +10,9 @@ import {
     NavigationExpandMore
 } from "material-ui/svg-icons/index";
 import {fullWhite, red900} from "material-ui/styles/colors";
+//Custom for sort by
+import {Field} from "redux-form";
+import { renderSelect } from "../Core/CustomComponents";
 
 class CourseFilter extends Component {
 
@@ -97,10 +100,10 @@ class CourseFilter extends Component {
             changeViewTypeHdl,
             changeCurrentPageHdl
         } = this.props
-        const orderList = [{id: 1, text: this.context.t("order_by_time")}, {
-            id: 2,
-            text: this.context.t("order_by_view")
-        }, {id: 3, text: this.context.t("order_by_register")}];
+        const orderList = [{id: 'created_at', text: this.context.t("sort_by_time")}, {
+            id: 'view',
+            text: this.context.t("sort_by_view")
+        }, {id: 'enroll', text: this.context.t("sort_by_enroll")}];
         const displayModes = [{id: 1, text: this.context.t("display_mode_full")}, {
             id: 2,
             text: this.context.t("display_mode_compress")
@@ -116,10 +119,11 @@ class CourseFilter extends Component {
                 backgroundColor: "#e27d7f"
             }
         };
+        const submitter = this.props.handleSubmit(this.props.onSubmit)
         return (
             <div className="row">
                 <div className="col-xs-12 col-sm-12">
-                    <form onSubmit={handleSubmit(this.props.onSubmit)} className='inline-form' multiple={true}>
+                    <form onSubmit={handleSubmit(this.props.onSubmit)} className='inline-form' multiple={true} ref="form">
                         <div className={styles.filterActionBlock + " col-md-12 col-sm-12"}>
                             <div className="row">
                                 <div className={"col-md-6 col-sm-6"}>
@@ -224,9 +228,10 @@ class CourseFilter extends Component {
                                 </div>
                                 <div className={styles.orderDisplayResult + " d-flex flex-horizontal justify-content-end"}>
                                     <div className={styles.orderBtn}>
-                                        <FormField formGroupId="order_by_id" showLabel={false} formLabel={this.context.t("order_list")}
-                                                   options={orderList} formControlName="order_by"
-                                                   typeField="custom_select"></FormField>
+                                        <Field name={"sort_by"} 
+                                            component={renderSelect(orderList)} 
+                                            className={"form-control"} 
+                                            onChange={(e) => {submitter()}} />
                                     </div>
                                     <div className={styles.displayModeBtn}>
                                         <div className="d-flex flex-horizontal">

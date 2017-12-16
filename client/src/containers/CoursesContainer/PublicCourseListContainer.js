@@ -20,6 +20,9 @@ class PublicCourseListContainer extends Component {
     query['end_time'] = this.props.endTime
     query['per_page'] = this.props.pageSize
     query['current_page'] = this.props.currentPage
+
+    query['sort_by'] = this.props.sortBy
+    query['sort_order'] = this.props.sortOrder
     this.props.dispatch(Actions.searchCourse(query))
   }
 
@@ -37,6 +40,9 @@ class PublicCourseListContainer extends Component {
     query['end_time'] = this.props.endTime
     query['per_page'] = this.props.pageSize
     query['current_page'] = currentPage
+
+    query['sort_by'] = this.props.sortBy
+    query['sort_order'] = this.props.sortOrder
     this.props.dispatch(Actions.searchCourse(query))
   }
 
@@ -83,6 +89,9 @@ const mapStateToProps = (state) => ({
   currentPage: state.CourseFilter.currentPage,
   pageSize: state.CourseFilter.pageSize,
   totalResult: state.CourseFilter.totalResult,
+
+  sortBy: state.CourseFilter.sortBy,
+  sortOrder: state.CourseFilter.sortOrder
 });
 
 export default connect(

@@ -181,3 +181,12 @@ export const changeCurrentPage = (page) => {
     })
   }
 }
+
+export const changeSortBy = (sortBy) => {
+  return dispatch => {
+    dispatch({
+      type: types.CHANGE_SORT_BY,
+      payload: sortBy
+    })
+  }
+}
