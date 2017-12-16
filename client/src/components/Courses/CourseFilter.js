@@ -91,7 +91,16 @@ class CourseFilter extends Component {
 
 
     render() {
-        let {handleSubmit, categories, locations, selectedCategories, weekdays, totalResult} = this.props
+        let {
+            handleSubmit, 
+            categories, 
+            locations, 
+            selectedCategories, 
+            weekdays, 
+            totalResult,
+            changeViewTypeHdl,
+            changeCurrentPageHdl
+        } = this.props
         const orderList = [{id: 1, text: this.context.t("order_by_time")}, {
             id: 2,
             text: this.context.t("order_by_view")
@@ -216,7 +225,7 @@ class CourseFilter extends Component {
                                     </div>
                                     <EFlatButton label={this.context.t("save_favorite")} icon={<ActionFavorite color={red900} />}/>
                                     <span className={styles.textTotalResult}>
-                                            {this.context.t("total_result", {total: totalResult != undefined ? totalResult : 0})}
+                                        {this.context.t("total_result", {total: totalResult != undefined ? totalResult : 0})}
                                     </span>
                                 </div>
                                 <div className={styles.orderDisplayResult + " d-flex flex-horizontal justify-content-end"}>
@@ -227,8 +236,12 @@ class CourseFilter extends Component {
                                     </div>
                                     <div className={styles.displayModeBtn}>
                                         <div className="d-flex flex-horizontal">
-                                            <EFlatButton secondary={true} icon={<ActionViewModule style={internalStyles.defaultColorStyle} />}/>
-                                            <EFlatButton secondary={true} icon={<ActionViewList style={internalStyles.defaultColorStyle} />}/>
+                                            <EFlatButton secondary={true}
+                                                         onClick={changeViewTypeHdl.bind(this, "grid")}
+                                                         icon={<ActionViewModule style={internalStyles.defaultColorStyle} />}/>
+                                            <EFlatButton secondary={true}
+                                                         onClick={changeViewTypeHdl.bind(this, "list")}
+                                                         icon={<ActionViewList style={internalStyles.defaultColorStyle} />} />
                                         </div>
                                     </div>
                                 </div>

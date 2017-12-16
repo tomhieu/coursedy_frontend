@@ -4,13 +4,13 @@ import Network from '../utils/network'
 import {globalHistory} from '../utils/globalHistory'
 import {TT} from '../utils/locale'
 
-export const loginUser = (email, password) => {
+export const loginUser = (email, password, redirectPage = '/') => {
   return dispatch => {
     let body = {email, password}
 
     Network().post('auth/sign_in', body).then((response) => {
       dispatch(Actions.setCurrentUser(() => {
-        globalHistory.replace('/');
+        globalHistory.push(redirectPage);
       }))
     }, (errors) => {
       const error_messages = (errors && errors.constructor == Array && errors.length > 0)?

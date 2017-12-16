@@ -163,3 +163,21 @@ export const searchCourse = (query) => {
     })
   }
 }
+
+export const changeViewType = (type) => {
+  return dispatch => {
+    dispatch({
+      type: types.CHANGE_VIEW_TYPE,
+      payload: type
+    })
+  }
+}
+
+export const changeCurrentPage = (page) => {
+  return dispatch => {
+    dispatch({
+      type: types.CHANGE_CURRENT_PAGE,
+      payload: page
+    })
+  }
+}

@@ -1,4 +1,5 @@
 import * as types from '../constants/Courses';
+import * as sessionTypes from '../constants/Session';
 import Network from '../utils/network'
 import {globalHistory} from '../utils/globalHistory'
 import {TT} from '../utils/locale'
@@ -82,7 +83,35 @@ export const closePublishCourseFollowModal = () => {
   }
 }
 
+export const showPublishRequireLoginModal = () => {
+  return dispatch => {
+    dispatch({
+      type: types.PUBLIC_COURSE_SHOW_REQUIRE_LOGIN_MODAL,
+    })
+  }
+}
+export const closePublishRequireLoginModal = () => {
+  return dispatch => {
+    dispatch({
+      type: types.PUBLIC_COURSE_CLOSE_REQUIRE_LOGIN_MODAL,
+    })
+  }
+}
 
+export const showPublishEnrollStatusModal = () => {
+  return dispatch => {
+    dispatch({
+      type: types.PUBLIC_COURSE_SHOW_ENROLL_STATUS_MODAL,
+    })
+  }
+}
+export const closePublishEnrollStatusModal = () => {
+  return dispatch => {
+    dispatch({
+      type: types.PUBLIC_COURSE_CLOSE_ENROLL_STATUS_MODAL,
+    })
+  }
+}
 export const submitFollowEmail = (courseId, email = '') => {
   const params = email == '' ? {} : {email: email}
   return dispatch => {
@@ -99,6 +128,35 @@ export const submitFollowEmail = (courseId, email = '') => {
         type: types.PUBLIC_COURSE_SUBMIT_FOLLOW_FAILL,
         payload: {errors: error_messages}
       })
+    })
+  }
+}
+
+export const submitEnrollCourse = (courseId) => {
+  return dispatch => {
+    Network().post('courses/'+courseId+'/enroll', {}).then((response) => {
+      dispatch({
+        type: types.PUBLIC_COURSE_SUBMIT_ENROLL_SUCCESSFULLY,
+        payload: response
+      })
+    }, (errors) => {
+      const error_messages = (errors && errors.constructor == Array && errors.length > 0) ?
+        errors :
+        [TT.t('submit_enroll_fail')]
+      dispatch({
+        type: types.PUBLIC_COURSE_SUBMIT_ENROLL_FAILL,
+        payload: {errors: error_messages}
+      })
+    })
+  }
+}
+
+export const redirectEnrollCourse = (courseId) => {
+  return dispatch => {
+    globalHistory.push('/login');
+    dispatch({
+      type: sessionTypes.SET_REDIRECT_PAGE,
+      payload: 'course/'+courseId
     })
   }
 }

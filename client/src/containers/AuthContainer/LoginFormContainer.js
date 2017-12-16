@@ -9,7 +9,8 @@ import {reduxForm} from 'redux-form';
 
 class LoginFormContainer extends Component {
   loginUser({email, password}) {
-    this.props.dispatch(Action.loginUser(email, password));
+
+    this.props.dispatch(Action.loginUser(email, password, this.props.redirectPage));
   }
 
   render() {
@@ -32,7 +33,8 @@ LoginFormContainer.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  LoginComponent: state.LoginComponent
+  LoginComponent: state.LoginComponent,
+  redirectPage: state.session.redirectPage
 });
 
 const StyledComponent = cssModules(LoginFormContainer, styles);

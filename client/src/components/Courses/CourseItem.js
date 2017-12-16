@@ -3,7 +3,7 @@ import cssModules from 'react-css-modules';
 import styles from './Course.module.scss';
 import { LinkContainer } from 'react-router-bootstrap'
 import {SERVER_NAME} from "utils/CommonConstant";
-
+import {Checkbox} from 'redux-form-material-ui'
 
 
 /**
@@ -14,8 +14,12 @@ class CourseItem extends Component {
   constructor(props) {
     super(props);
   }
+  selectedCourseHdl() {
+
+  }
+
   render() {
-    const {deleteCourse} = this.props;
+    const {deleteCourse, selectCourse} = this.props;
     return (
       <div className="col-xs-12 no-ml no-mr">
         <div className="row pt-15 pb-15 course-container">
@@ -24,6 +28,7 @@ class CourseItem extends Component {
               <LinkContainer to={ !this.props.item.onlyTutor ? '/course/' + this.props.item.id : '/dashboard/courses/detail/' + this.props.item.id } className={styles.fullWidth + ' img-responsive'}>
                 <img src={!this.props.item.cover_image ? 'http://placehold.it/200x100' : SERVER_NAME + this.props.item.cover_image } alt="" />
               </LinkContainer>
+              {/*<Checkbox onCheck={selectCourse} onChange={this.selectedCourseHdl}/>*/}
             </div>
           </div>{/* End course thumb */}
 

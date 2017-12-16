@@ -3,6 +3,8 @@ import {Modal, Button} from 'react-bootstrap';
 import cssModules from 'react-css-modules';
 import styles from '../Course.module.scss';
 import { PublicCourseDetailFollowModalContainer } from '../../../containers/index'
+import { PublicCourseDetailEnrollContainer } from '../../../containers/index'
+import {SERVER_NAME} from "utils/CommonConstant";
 
 /**
   * @Course group template 2
@@ -55,16 +57,19 @@ class CourseDetailGeneral extends Component {
         <div className="col-md-12 text-center">
           <img src={
             this.props.course.cover_image ? 
-            this.props.course.cover_image : 
+            SERVER_NAME + this.props.course.cover_image : 
             'http://placehold.it/1200x400'
-          } alt="" className="img-responsive"/>
+          } alt=""/>
         </div>{/* Course thumb */}
         <div className="clearfix"></div>
         
         <br/>
-        <div className="col-md-11">
+        <div className="col-md-10">
           <h2 className="heading-line course-title">{this.props.course.title}</h2>
         </div>{/* Course title */}
+        <div className="col-md-1">
+          <PublicCourseDetailEnrollContainer />
+        </div>
         <div className="col-md-1">
           <PublicCourseDetailFollowModalContainer />
         </div>{/* Course follow */}
