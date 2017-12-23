@@ -211,6 +211,10 @@ export const translations = {
         "course_enroll_status": "Kết quả đăng ký",
         "course_enroll_success": "Đăng ký khóa học thành công",
         "course_enroll_fail": "Đăng ký khóa học thất bại",
+        /* search teachers page */
+        "search_teachers_keyword": "Tìm kiếm theo tên, lĩnh vực",
+        "search_teachers_field_label": "Lĩnh Vực:",
+        "teacher_list_more": "Xem thêm",
   },
   "en": {
     "home_page": "Home",
