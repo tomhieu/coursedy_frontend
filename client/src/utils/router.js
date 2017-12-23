@@ -6,6 +6,8 @@ import * as Pages from '../pages/';
 import ReduxToastr from 'react-redux-toastr';
 import {Route, Router, Switch} from 'react-router-dom'
 import {globalHistory} from "utils/globalHistory";
+import ListTeacherContainer from '../containers/ListTeacher/ListTeacherContainer';
+
 
 const router = (
   <Provider store={store}>
@@ -22,9 +24,9 @@ const router = (
             <Route path="/login" component={Pages.LoginRegisterPage} />
             <Route path="/courses" component={Pages.PublicCourseListPage} />
             <Route path="/course/:id" component={Pages.PublicCourseDetailPage}/>
-            <Route path="/tutors" component={Pages.TutorPage} />
+            <Route path="/teachers" component={ListTeacherContainer} />
             <Route path="/dashboard" component={Pages.TutorDashboard} />
-            <Route path="/404" component={Pages.NotFoundPage} />
+            <Route path="*" component={Pages.NotFoundPage} />
           </Switch>
         </App>
       </Router>

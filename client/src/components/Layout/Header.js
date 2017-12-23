@@ -19,11 +19,8 @@ class Header extends Component {
             <LinkContainer to="/" role="button">
               <NavItem eventKey={1}> {this.context.t('home_page')} </NavItem>
             </LinkContainer>
-            <LinkContainer to="/tutor" role="button">
-              <NavItem eventKey={2}> {this.context.t('find_tutors')} </NavItem>
-            </LinkContainer>
-            <LinkContainer to="/" role="button">
-              <NavItem eventKey={3}> {this.context.t('find_teachers')} </NavItem>
+            <LinkContainer to="/teachers" role="button">
+              <NavItem eventKey={2}> {this.context.t('find_teachers')} </NavItem>
             </LinkContainer>
             <LinkContainer to="/courses" role="button">
               <NavItem eventKey={3}> {this.context.t('find_courses')} </NavItem>
