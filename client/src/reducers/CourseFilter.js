@@ -10,7 +10,8 @@ const CourseFilter = (state = {
   viewType: 'grid',
   pageSize: 4,
   currentPage: 1,
-  selectedCourses: []
+  selectedCourses: [],
+  filters: []
 }, action) => {
   switch (action.type) {
     case types.FETCH_CATEGORIES_SUCCESSFULLY:
@@ -25,6 +26,12 @@ const CourseFilter = (state = {
       return {...state, viewType: action.payload}
     case types.CHANGE_CURRENT_PAGE:
       return {...state, currentPage: action.payload}
+    case types.LOAD_SUGGESTION_COMPLETE:
+      return {...state, groupSugestions: action.payload}
+    case types.ADD_FILTER_CRITERIA:
+      let filters = JSON.parse(JSON.stringify(state.filters));
+      filters.push(action.data);
+      return {...state, filters: filters}
     default:
       return state;
   }

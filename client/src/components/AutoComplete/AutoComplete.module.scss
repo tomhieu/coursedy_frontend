@@ -1,0 +1,28 @@
+.modalSuggestion {
+  position: absolute;
+  z-index: 9999;
+  background-color: #fff;
+  border: 1px solid rgba(48,51,57,.15);
+  max-height: 250px;
+  overflow-y: auto;
+  border-radius: 0 0 2px 2px;
+  padding-bottom: 10px;
+  width: 100%;
+}
+
+.suggestionLine {
+  padding: 5px 20px;
+  font-size: 14px;
+  line-height: 1.45em;
+  color: #000;
+  background-color: #fff;
+  cursor: pointer;
+}
+
+.suggestionLine:hover {
+  background-color: #f4f5f9;
+}
+
+.suggestionGroup {
+  border-bottom: 1px solid rgba(48,51,57,.15);
+}

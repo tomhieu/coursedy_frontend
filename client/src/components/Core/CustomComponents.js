@@ -60,12 +60,6 @@ export const renderMultiSelect = (selectOptions) => {
     )
 }
 
-export const AutoComplete = (props) =>
-  <div className="select-picker">
-    <Select2 {...input}
-    />
-  </div>
-
 /**
  * A wrapper of Checkbox Material UI
  * @param input
