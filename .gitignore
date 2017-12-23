@@ -2,3 +2,4 @@
 /.idea/*
 /client/build/*
 /client/dist/*
+package-lock.json
