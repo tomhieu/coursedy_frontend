@@ -22,7 +22,10 @@ import {SERVER_NAME} from "./CommonConstant";
        'v1'
      ];
 
-     if (path.trim() && path.trim() != '/') parameters = parameters.concat([path]);
+     if (!(path.includes(SERVER_NAME) && path.includes('api') && path.includes('v1'))) {
+       if (path.trim() && path.trim() != '/') parameters = parameters.concat([path]);
+     }
+
      if (resource) parameters = parameters.concat([resource]);
      if (id) parameters = parameters.concat([id]);
      return parameters.join('/');
