@@ -24,7 +24,7 @@ class AutoComplete extends Component {
           {
             suggestions.map((s) => (
               <div className={styles.suggestionLine}>
-                <a className="pl-10 pt-5" onClick={searchHandler(s.type, s.id, s.title)}>{s.title}</a>
+                <a className="pl-10 pt-5" onClick={() => searchHandler(s.type, s.id, s.title)}>{s.title}</a>
               </div>
             ))
           }
@@ -35,7 +35,7 @@ class AutoComplete extends Component {
 
   onBlur() {
     console.log("on blur event");
-    this.setState({show: false});
+    // this.setState({show: false});
   }
 
   onFocus() {
@@ -73,7 +73,7 @@ AutoComplete.propTypes = {
   searchHandler: React.PropTypes.func.isRequired,
   fieldName: React.PropTypes.string.isRequired,
   fieldId: React.PropTypes.string.isRequired,
-  groupSugestions: React.PropTypes.object.isRequired,
+  groupSugestions: React.PropTypes.array.isRequired,
   loadSuggestions: React.PropTypes.func.isRequired
 };
 

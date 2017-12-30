@@ -11,8 +11,8 @@ class CourseFilterContainer extends Component {
     this.props.dispatch(Actions.fetchWeekdays());
   }
 
-  searchCourse({key_word, filter_category_ids, filter_location_ids, filter_course_levels, course_schedule_days, fees, start_time, end_time, order_by, display_mode}){
-    const query = {q: key_word, categories: filter_category_ids, locations: filter_location_ids, levels: filter_course_levels,
+  searchCourse({filter, filter_category_ids, filter_location_ids, filter_course_levels, course_schedule_days, fees, start_time, end_time, order_by, display_mode}){
+    const query = {q: filter, categories: filter_category_ids, locations: filter_location_ids, levels: filter_course_levels,
          week_day: course_schedule_days, fees, start_time, end_time, order_by, display_mode};
     this.props.dispatch(Actions.searchCourse(query))
   }
