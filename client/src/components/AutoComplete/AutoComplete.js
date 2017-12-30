@@ -73,7 +73,7 @@ AutoComplete.propTypes = {
   searchHandler: React.PropTypes.func.isRequired,
   fieldName: React.PropTypes.string.isRequired,
   fieldId: React.PropTypes.string.isRequired,
-  groupSugestions: React.PropTypes.object.isRequired,
+  groupSugestions: React.PropTypes.array.isRequired,
   loadSuggestions: React.PropTypes.func.isRequired
 };
 

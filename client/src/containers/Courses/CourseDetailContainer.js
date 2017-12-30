@@ -59,10 +59,10 @@ const getCourseLevelFromCategory = (categories, selectedCategoryId) => {
 }
 
 const mapStateToProps = (state) => {
-    const {CourseFormComponent, CourseFilter, form} = state;
+    const {CourseFormComponent, form} = state;
     const {courseCreationForm} = form;
     const {courseData, editMode, activatedField, createCourseSucess} = CourseFormComponent;
-    const {categories} = CourseFilter;
+    const categories = state.Categories.data;
     // retrieve the preview image url from redux store when user navigate back.
     const {cover_image} = courseData;
 

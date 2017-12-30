@@ -12,7 +12,6 @@ class SearchSectionContainer extends Component {
   }
 
   onSubmit(data) {
-    console.log('data', data)
     this.props.dispatch(TeacherActions.fetchTeachers(data))
   }
 
@@ -80,5 +79,5 @@ export default connect(
   mapStateToProps
 )(reduxForm({
   form: 'teacherFilterForm',
-  fields: ['key_word', 'filter_category_ids']
+  fields: ['key_word', 'category_ids']
 })(SearchSectionContainer));

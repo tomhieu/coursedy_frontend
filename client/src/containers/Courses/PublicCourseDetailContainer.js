@@ -59,10 +59,10 @@ const getCourseLevel = (categories, course) => {
 }
 
 const mapStateToProps = (state) => {
-  const categories = state.CourseFilter.categories
+  const categories = state.Categories.data
   const course = state.PublicCourseDetail.course
   return {
-    categories: state.CourseFilter.categories,
+    categories: state.Categories.data,
     course: state.PublicCourseDetail.course, 
     course_category: getCourseCategory(categories, course),
     course_level: getCourseLevel(categories, course),

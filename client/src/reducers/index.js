@@ -22,6 +22,7 @@ import addNewDocumentFile from "./AddDocumentFile";
 import LoadingMask from "./LoadingMask";
 import TutorAccount from "./TutorAccount";
 import TeachersFilter from './Teachers'
+import Categories from './CategoriesReducer'
 
 
 const rootReducer = combineReducers({
@@ -47,6 +48,7 @@ const rootReducer = combineReducers({
     EducationData,
     addNewDocumentFile,
     CourseFilter,
+    Categories,
     TutorAccount,
     TeachersFilter
 });
