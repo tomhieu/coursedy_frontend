@@ -31,6 +31,10 @@ export const mStyles = {
     height: 23,
     fill: '#303339'
   },
+  timePicker: {
+    width: 100,
+
+  },
   iconCheckBox: {
     fill: 'rgba(48,51,57,.15)',
     color: 'rgba(48,51,57,.15)'

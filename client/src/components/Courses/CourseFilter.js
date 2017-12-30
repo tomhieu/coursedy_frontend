@@ -131,7 +131,7 @@ class CourseFilter extends Component {
                 <div className={"col-md-6 col-sm-6"}>
                   <AutoComplete placeholder={this.context.t('search_course')}
                                 fieldName="key_word" fieldId="key_word_filter"
-                                groupSugestions={groupSugestions} searchHandler={handleSubmit}
+                                groupSugestions={groupSugestions} searchHandler={this.props.onSubmit}
                                 loadSuggestions={loadSuggestions}
                   />
                 </div>

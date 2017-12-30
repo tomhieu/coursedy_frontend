@@ -829,7 +829,7 @@ ul.no-margin,
 }
 
 .datepicker-box {
-  width: 150px;
+  width: 180px;
 }
 
 .red {
@@ -946,6 +946,12 @@ input[type="url"], input[type="text"], textarea, .form-control {
   padding: 5px 10px;
 }
 
+input:disabled, textarea:disabled, .form-control:disabled,
+.dark-picker-bright .select2-container--default.select2-container--disabled .select2-selection--single{
+  background-color: #F0F0EF;
+  cursor: not-allowed;
+}
+
 input:not([type]):focus, input[type="email"]:focus, input[type="number"]:focus, input[type="password"]:focus, input[type="tel"]:focus,
 input[type="url"]:focus, input[type="text"]:focus, textarea:focus, .form-control:focus {
   border-color: #534051;
@@ -1011,4 +1017,12 @@ input[type="url"]:focus, input[type="text"]:focus, textarea:focus, .form-control
 
 .margin30 {
   margin-bottom: 30px;
+}
+
+.free-course {
+  width: 100%;
+  padding-top: 35px;
+  .form-group {
+    margin-bottom: 5px;
+  }
 }

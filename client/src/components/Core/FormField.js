@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import {ControlLabel, FormGroup} from "react-bootstrap";
 import {Field} from "redux-form";
 import {
+  CustomTimePicker,
   renderCheckbox,
   renderDatePicker,
   renderField,
@@ -52,60 +53,60 @@ class FormField extends Component {
         break;
       }
       case "custom_input": {
-        fieldComponent = <Field name={formControlName} placeholder={placeholder} type={type} component={renderField}
+        fieldComponent = <Field name={formControlName} placeholder={placeholder} type={type} disabled={this.props.disabled} component={renderField}
                                 customClassName={customClassName}/>;
         break;
       }
       case "custom_select": {
-        fieldComponent = <Field name={formControlName} placeholder={placeholder}
+        fieldComponent = <Field name={formControlName} placeholder={placeholder} disabled={this.props.disabled}
                                 component={renderSelect(options)} className={customClassName}/>;
         break;
       }
       case "datepicker": {
         fieldComponent = <Field name={formControlName} placeholder={placeholder} component={renderDatePicker}
-                                className={customClassName}/>;
+                                className={customClassName} disabled={this.props.disabled} />;
         break;
       }
       case "upload_file": {
         fieldComponent = <Field name={formControlName} placeholder={placeholder} zoneHeight={zoneHeight}
-                                internalPreview={internalPreview}
+                                internalPreview={internalPreview} disabled={this.props.disabled}
                                 previewUrl={previewUrl} onUpload={onUpload} component={renderSingleFileInput}/>
         break;
       }
       case "multi_select": {
-        fieldComponent = <Field name={formControlName} placeholder={placeholder}
+        fieldComponent = <Field name={formControlName} placeholder={placeholder} disabled={this.props.disabled}
                                 component={renderMultiSelect(options, selectedValues)} className={customClassName}/>
         break;
       }
       case "custom_textarea": {
-        fieldComponent = <Field name={formControlName} placeholder={placeholder} rows={rows}
+        fieldComponent = <Field name={formControlName} placeholder={placeholder} rows={rows} disabled={this.props.disabled}
                                 component={renderTextAreaField} className={customClassName}/>
         break;
       }
 
       case "checkbox": {
-        fieldComponent = <Field name={formControlName} label={this.props.formLabel} iconStyle={this.props.iconStyle}
+        fieldComponent = <Field name={formControlName} label={this.props.formLabel} iconStyle={this.props.iconStyle} disabled={this.props.disabled}
                                 component={renderCheckbox} className={customClassName}/>
         break;
       }
       case "radiobox": {
         fieldComponent =
-          <Field name={formControlName} placeholder={placeholder} rows={rows} label={this.props.formLabel}
+          <Field name={formControlName} placeholder={placeholder} rows={rows} label={this.props.formLabel} disabled={this.props.disabled}
                  component={RadioButtonGroup} className={customClassName}/>
         break;
       }
       case "toggle": {
-        fieldComponent = <Field name={formControlName} placeholder={placeholder} rows={rows}
+        fieldComponent = <Field name={formControlName} placeholder={placeholder} rows={rows} disabled={this.props.disabled}
                                 component={renderToggle(toggled, onToggle)} className={customClassName}/>
         break;
       }
       case "timePicker": {
-        fieldComponent = <Field name={formControlName} label={this.props.formLabel} component={TimePicker} format={null}
+        fieldComponent = <Field name={formControlName} label={this.props.formLabel} component={CustomTimePicker} format={null} disabled={this.props.disabled}
                                 hintText={placeholder}/>
         break;
       }
       default: {
-        fieldComponent = <Field name={formControlName} placeholder={placeholder} component={typeField}
+        fieldComponent = <Field name={formControlName} placeholder={placeholder} component={typeField} disabled={this.props.disabled}
                                 className={customClassName}/>;
       }
     }

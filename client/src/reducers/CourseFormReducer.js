@@ -2,11 +2,13 @@ import * as types from "../constants/CourseFormComponent";
 import {
   ADD_DOCUMENT_FOR_LESSON,
   ADD_MODIFY_COURSE_LESSON,
-  ADD_MORE_LESSON, CANCEL_PUBLISH_COURSE,
-  CLEAR_COURSE_DATA,
+  ADD_MORE_LESSON,
+  CANCEL_PUBLISH_COURSE,
+  CREATE_NEW_COURSE,
   DELETE_LESSON,
   EDIT_DETAIL_LESSON,
-  HIDE_LESSON_POPUP_EDIT, VALIDATE_BEFORE_PUBLISH_COURSE
+  HIDE_LESSON_POPUP_EDIT,
+  VALIDATE_BEFORE_PUBLISH_COURSE
 } from "actions/CourseFormActionCreator";
 import {
   ADD_NEW_SECTION,
@@ -61,7 +63,7 @@ const CourseFormComponent = (state = {
         start_date: fr_start_date, end_date: fr_end_date
       });
       return Object.assign({}, state, {courseData: courseData, editMode: true});
-    case CLEAR_COURSE_DATA:
+    case CREATE_NEW_COURSE:
       return Object.assign({}, state, {
         courseData: {cover_image: null}, editMode: false,
         listSection: [], showSectionPopup: false, activatedField: null, createCourseSucess: false

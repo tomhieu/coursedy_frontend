@@ -23,7 +23,7 @@ class CourseFormContainer extends Component {
         if (this.courseId) {
             this.props.dispatch(CourseActions.loadCourseDetail(this.courseId));
         } else {
-            this.props.dispatch(CourseActions.clearCourseData());
+            this.props.dispatch(CourseActions.createNewCourse());
         }
         this.props.dispatch(FilterActions.fetchCategories())
     }
@@ -55,7 +55,7 @@ class CourseFormContainer extends Component {
     }
 
     cancelPopup() {
-        this.props.dispatch(CourseActions.clearCourseData());
+        this.props.dispatch(CourseActions.createNewCourse());
         this.context.router.history.push('/dashboard/courses/list/');
     }
 
