@@ -2,30 +2,22 @@ import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import * as TeacherActions from "../../actions/TeacherCreators";
 import {connect} from 'react-redux';
+import { bindActionCreators } from 'redux';
 
 
 class PublicTeacherListContainer extends Component {
   componentDidMount() {
-    this.props.dispatch(TeacherActions.fetchTeachers())
+    this.props.fetchTeachers();
   }
 
   loadMoreTeacher() {
-    // let url = this.props.teachers.next
-    // this.props.dispatch(TeacherActions.fetchMoreTeachers())
+    this.props.fetchTeachers({page: this.props.teachers.nextPage});
   }
 
   renderTeacherList() {
-    let teacherListData = [
-      {id: 1, name: "Nguyễn Văn Sĩ", field: "Giáo viên tiếng anh", email: "sivan@gmail.com", cover_image: "http://lorempixel.com/425/299/nature"},
-      {id: 2, name: "Hồ Thị Ánh Nguyệt", field: "Giáo viên tiếng toán", email: "tuyetho@gmail.com", cover_image: "http://lorempixel.com/425/299/nature"},
-      {id: 3, name: "Nguyễn Văn Sĩ", field: "Giáo viên tiếng CNPM", email: "sivan@gmail.com", cover_image: "http://lorempixel.com/425/299/nature"},
-      {id: 4, name: "Hồ Thị Ánh Nguyệt", field: "Giáo viên tiếng anh", email: "tuyetho@gmail.com", cover_image: "http://lorempixel.com/425/299/nature"},
-      {id: 5, name: "Nguyễn Trung Thành", field: "Giáo viên tiếng anh", email: "trungthanh@gmail.com", cover_image: "http://lorempixel.com/425/299/nature"},
-      {id: 6, name: "Nguyễn Thành Trung", field: "Giáo viên tiếng anh", email: "trungthanh@gmail.com", cover_image: "http://lorempixel.com/425/299/nature"},
-      {id: 7, name: "Hồ Phát Đạt", field: "Giáo viên tiếng anh", email: "datho@gmail.com", cover_image: "http://lorempixel.com/425/299/nature"},
-    ];
+    let teachersData = this.props.teachers.data
 
-    let teacherRender = teacherListData.map((item) => {
+    let teacherRender = teachersData.map((item) => {
       return (
         <div className="col-md-3 col-sm-3 margin30 teacher-item" key={item.id}>
           <Link to={`#`} className="teacher-item__info">
@@ -62,7 +54,12 @@ class PublicTeacherListContainer extends Component {
     return (
       <div className="row footer-section teacher-list-footer">
         <div className="col-md-12 col-sm-12 footer-section__loadmore">
-          <button onClick={this.loadMoreTeacher} className="btn__load-more">{this.context.t('teacher_list_more')}</button>
+          {
+            (this.props.teachers.nextPage
+              ? <button onClick={this.loadMoreTeacher} className="btn__load-more">{this.context.t('teacher_list_more')}</button>
+              : null
+            )
+          }
         </div>
       </div>
     )
@@ -84,14 +81,12 @@ PublicTeacherListContainer.contextTypes = {
 
 const mapStateToProps = (state) => {
   return {
-    teachers: state.TeachersFilter.teachers
+    teachers: state.Teachers
   }
 };
 
 const mapDispatchToProps = (dispatch) => {
-  return {
-    dispatch
-  };
+  return bindActionCreators(TeacherActions, dispatch)
 }
 
 export default connect(

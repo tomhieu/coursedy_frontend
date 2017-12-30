@@ -21,7 +21,7 @@ import EducationData from "./TutorEducation";
 import addNewDocumentFile from "./AddDocumentFile";
 import LoadingMask from "./LoadingMask";
 import TutorAccount from "./TutorAccount";
-import TeachersFilter from './Teachers'
+import Teachers from './TeachersReducer'
 import Categories from './CategoriesReducer'
 
 
@@ -50,7 +50,7 @@ const rootReducer = combineReducers({
     CourseFilter,
     Categories,
     TutorAccount,
-    TeachersFilter
+    Teachers
 });
 
 export default rootReducer;

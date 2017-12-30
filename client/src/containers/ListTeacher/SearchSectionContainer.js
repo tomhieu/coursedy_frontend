@@ -4,11 +4,12 @@ import {RaiseButton} from '../../components/Core/CustomComponents';
 import {reduxForm} from 'redux-form';
 import {connect} from 'react-redux';
 import * as TeacherActions from "../../actions/TeacherCreators";
+import {fetchCategories} from 'actions/CourseFilterActionCreator';
 
 
 class SearchSectionContainer extends Component {
   componentDidMount() {
-    this.props.dispatch(TeacherActions.fetchCategories())
+    this.props.dispatch(fetchCategories())
   }
 
   onSubmit(data) {
@@ -20,8 +21,7 @@ class SearchSectionContainer extends Component {
       handleSubmit
     } = this.props
 
-    // let categories = [{name: 'All', id: 0}, {name: 'Ngoại Ngữ', id: 1}, {name: 'CNTT', id: 2}]
-    let categories = this.props.categories.data
+    let { categories }  = this.props
 
     return(
       <div className="container search-teacher-container">
@@ -71,7 +71,7 @@ SearchSectionContainer.contextTypes = {
 
 const mapStateToProps = (state) => {
   return {
-    categories: state.TeachersFilter.categories
+    categories: state.Categories.data
   }
 }
 
