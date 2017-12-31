@@ -37,7 +37,7 @@ class CourseFilter extends Component {
       <div className="checkbox-group">
         {
           selectedCategories.map(cate =>
-            <div>
+            <div key={cate.id}>
               <span>{cate.name}</span>
               <FieldArray name="filter_course_levels" component={() =>
                 <div className="d-flex flex-horizontal flex-wrap">
@@ -46,7 +46,8 @@ class CourseFilter extends Component {
                       <FormField formGroupId="filter_course_levels" showLabel={false}
                                  formLabel={filter_course_level.name}
                                  formControlName={"filter_course_levels[" + filter_course_level.id + "]"}
-                                 typeField="checkbox"></FormField>
+                                 typeField="checkbox">
+                      </FormField>
                     </div>
                   )}
                 </div>
@@ -70,7 +71,8 @@ class CourseFilter extends Component {
                   <FormField formGroupId="course_schedule_day" showLabel={false}
                              formLabel={weekdays[k]}
                              formControlName={"course_schedule_days[" + k + "]"}
-                             typeField="checkbox"></FormField>
+                             typeField="checkbox">
+                  </FormField>
                 </div>
               )
             }
@@ -85,7 +87,8 @@ class CourseFilter extends Component {
       <div className="d-flex flex-horizontal">
         <div className="select-course-fee">
           <FormField formGroupId="filter_min_fees" showLabel={false} options={tuitionFees}
-                     formControlName={"fees"} typeField="custom_select"></FormField>
+                     formControlName={"fees"} typeField="custom_select">
+          </FormField>
         </div>
       </div>
     )
@@ -148,7 +151,8 @@ class CourseFilter extends Component {
                              })}
                              placeholder={this.context.t('category')}
                              formControlName="filter_category_ids"
-                             typeField="multi_select"></FormField>
+                             typeField="multi_select">
+                  </FormField>
                 </div>
                 {/* Field */}
                 <div className={"col-md-1 col-sm-1"}>
@@ -158,7 +162,8 @@ class CourseFilter extends Component {
                              })}
                              placeholder={this.context.t("location")}
                              formControlName="filter_location_ids"
-                             typeField="custom_select"></FormField>
+                             typeField="custom_select">
+                  </FormField>
                 </div>
                 {/* Area*/}
                 <div className="col-md-2 col-sm-2">
@@ -200,7 +205,8 @@ class CourseFilter extends Component {
                             <FormField formGroupId="start_time_id" showLabel={false}
                                        placeholder={this.context.t("start_time")}
                                        formControlName="start_time"
-                                       typeField="timePicker"></FormField>
+                                       typeField="timePicker">
+                            </FormField>
                           </div>
                         </div>
                         <div className='row dark-picker dark-picker-bright margin-top15'>
@@ -208,7 +214,8 @@ class CourseFilter extends Component {
                             <FormField formGroupId="end_time_id" showLabel={false}
                                        placeholder={this.context.t("end_time")}
                                        formControlName="end_time"
-                                       typeField="timePicker"></FormField>
+                                       typeField="timePicker">
+                            </FormField>
                           </div>
                         </div>
                       </div>
@@ -231,7 +238,8 @@ class CourseFilter extends Component {
                 <div className={styles.listResultInfo + " d-flex flex-horizontal justify-content-left"}>
                   <div className={styles.checkAllBtn + " d-flex align-items-center"}>
                     <FormField formGroupId="select_all_id" showLabel={false} formControlName="select_all"
-                               typeField="checkbox" iconStyle={mStyles.iconCheckBox}></FormField>
+                               typeField="checkbox" iconStyle={mStyles.iconCheckBox}>
+                    </FormField>
                   </div>
                   <EFlatButton label={this.context.t("save_favorite")} icon={<ActionFavorite color={red900}/>}/>
                   <span className={styles.textTotalResult}>
@@ -242,7 +250,8 @@ class CourseFilter extends Component {
                   <div className={styles.orderBtn}>
                     <FormField formGroupId="order_by_id" showLabel={false} formLabel={this.context.t("order_list")}
                                options={orderList} formControlName="order_by"
-                               typeField="custom_select"></FormField>
+                               typeField="custom_select">
+                    </FormField>
                   </div>
                   <div className={styles.displayModeBtn}>
                     <div className="d-flex flex-horizontal">

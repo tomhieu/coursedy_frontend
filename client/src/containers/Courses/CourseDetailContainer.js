@@ -82,17 +82,17 @@ const getCourseLevels = (specializes, selectedLevelId) => {
 }
 
 const mapStateToProps = (state) => {
-  const {CourseFormComponent, CourseFilter, form} = state;
-  const {courseCreationForm} = form;
-  const {editMode, activatedField, createCourseSucess} = CourseFormComponent;
-  const {categories} = CourseFilter;
-  const courseData = editMode ? CourseFormComponent.courseData : courseCreationForm != undefined ? courseCreationForm.values : {cover_image: null};
+  const {CourseFormComponent, Categories, form} = state
+  const {courseCreationForm} = form
+  const {editMode, activatedField, createCourseSucess} = CourseFormComponent
+  const categories = Categories.data
+  const courseData = editMode ? CourseFormComponent.courseData : courseCreationForm != undefined ? courseCreationForm.values : {cover_image: null}
 
-  const course_specializes = courseData ? getCourseSpecializeFromCategory(categories, courseData.category_id) : [];
+  const course_specializes = courseData ? getCourseSpecializeFromCategory(categories, courseData.category_id) : []
 
-  const course_levels = course_specializes.length > 0 ? getCourseLevels(course_specializes, courseData.specialize_id) : [];
+  const course_levels = course_specializes.length > 0 ? getCourseLevels(course_specializes, courseData.specialize_id) : []
 
-  const selectedDays = courseCreationForm && courseCreationForm.values.course_days ? DAYS_IN_WEEK.filter((day) => courseCreationForm.values.course_days.indexOf(day.name) >= 0) : [];
+  const selectedDays = courseCreationForm && courseCreationForm.values.course_days ? DAYS_IN_WEEK.filter((day) => courseCreationForm.values.course_days.indexOf(day.name) >= 0) : []
   const isSamePeriod = courseCreationForm && courseCreationForm.values.is_same_period != undefined ? courseCreationForm.values.is_same_period : true
   const isFree = courseCreationForm && courseCreationForm.values.is_free ? courseCreationForm.values.is_free : false
 
@@ -103,8 +103,8 @@ const mapStateToProps = (state) => {
     course_levels: course_levels,
     selectedDays,
     initialValues: editMode ? activatedField != null ? courseData : {} : {is_same_period: true}
-  };
-};
+  }
+}
 
 export default connect(
   mapStateToProps

@@ -58,7 +58,8 @@ const getSelectedCategories = (categories, selectedCategoryIds) => {
 
 const mapStateToProps = (state) => {
     const {CourseFilter, form = {}} = state;
-    const {categories = [], locations = {}, weekdays = {}, totalResult = 0, groupSugestions = []} = CourseFilter;
+    const categories = state.Categories.data || []
+    const { locations = {}, weekdays = {}, totalResult = 0, groupSugestions = []} = CourseFilter;
     const {courseFilterForm = {}} = form;
     if (!courseFilterForm.values) {
         return {categories, locations, weekdays, totalResult, selectedCategories : [], groupSugestions: []};

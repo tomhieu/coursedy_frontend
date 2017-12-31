@@ -3,11 +3,17 @@ import FormField from '../../components/Core/FormField';
 import {RaiseButton} from '../../components/Core/CustomComponents';
 import {reduxForm} from 'redux-form';
 import {connect} from 'react-redux';
+import * as TeacherActions from "../../actions/TeacherCreators";
+import {fetchCategories} from 'actions/CourseFilterActionCreator';
 
 
 class SearchSectionContainer extends Component {
+  componentDidMount() {
+    this.props.dispatch(fetchCategories())
+  }
+
   onSubmit(data) {
-    console.log('data', data)
+    this.props.dispatch(TeacherActions.fetchTeachers(data))
   }
 
   render() {
@@ -15,11 +21,12 @@ class SearchSectionContainer extends Component {
       handleSubmit
     } = this.props
 
-    let categories = [{name: 'All', id: 0}, {name: 'Ngoại Ngữ', id: 1}, {name: 'CNTT', id: 2}]
+    let { categories }  = this.props
+
     return(
       <div className="container search-teacher-container">
         <div className="row">
-          <form onSubmit={handleSubmit(this.onSubmit)} className="inline-form">
+          <form onSubmit={handleSubmit(this.onSubmit.bind(this))} className="inline-form">
             <div className="search-teacher-container__form col-md-12 col-sm-12">
               <div className="row">
                 <div className={"col-md-6 col-sm-6 search-teacher-container__keyword"}>
@@ -31,16 +38,13 @@ class SearchSectionContainer extends Component {
 
                 <div className={"col-md-4 col-sm-4 search-teacher-container__fields"}>
                   <div className="row">
-                    <div className="col-md-4 col-sm-4">
-                      <label htmlFor="categories_id" className="control-label">{this.context.t('search_teachers_field_label')}</label>
-                    </div>
-                    <div className="col-md-8 col-sm-8">
+                    <div className="col-md-12 col-sm-12">
                       <FormField formGroupId="categories_id" showLabel={false}
                                  options={categories.map((x) => {
                                    return {text: x.name, id: x.id}
                                  })}
                                  placeholder={this.context.t('category')}
-                                 formControlName="filter_category_ids"
+                                 formControlName="category_ids"
                                  typeField="multi_select">
                       </FormField>
                     </div>
@@ -65,14 +69,15 @@ SearchSectionContainer.contextTypes = {
   t: React.PropTypes.func.isRequired
 }
 
-const mapStateToProps = () => {
+const mapStateToProps = (state) => {
   return {
-
+    categories: state.Categories.data
   }
 }
+
 export default connect(
   mapStateToProps
 )(reduxForm({
   form: 'teacherFilterForm',
-  fields: ['key_word', 'filter_category_ids']
-})(SearchSectionContainer))
+  fields: ['key_word', 'category_ids']
+})(SearchSectionContainer));
