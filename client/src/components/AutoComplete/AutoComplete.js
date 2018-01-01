@@ -13,7 +13,7 @@ class AutoComplete extends Component {
     super();
   }
 
-  renderGroupSuggestion(group, searchHandler) {
+  renderGroupSuggestion(group, handleAddCriteria) {
     const {name, suggestions} = group;
     return (
       <div className={styles.suggestionGroup + " flex flex-horizontal"} key={"suggestion_" + name}>
@@ -24,7 +24,7 @@ class AutoComplete extends Component {
           {
             suggestions.map((s) => (
               <div className={styles.suggestionLine}>
-                <a className="pl-10 pt-5" onClick={() => searchHandler(s.group, s.id, s.text)}>{s.text}</a>
+                <a className="pl-10 pt-5" onClick={() => handleAddCriteria(s.group, s.id, s.text)}>{s.text}</a>
               </div>
             ))
           }
@@ -43,7 +43,7 @@ class AutoComplete extends Component {
   }
 
   render() {
-    const {show, handleRequestDeleteChip, placeholder, fieldName, groupSugestions, searchHandler, loadSuggestions, filters} = this.props;
+    const {show, handleRequestDeleteChip, placeholder, fieldName, dataSource, handleAddCriteria, loadSuggestions, filters} = this.props;
     return (
       <div className={styles.filterBox + " d-flex flex-vertical"}>
         <div className="d-flex flex-horizontal">
@@ -64,11 +64,11 @@ class AutoComplete extends Component {
           </div>
         </div>
         {
-          groupSugestions.length > 0 && show ?
+          dataSource.length > 0 && show ?
             <div className={styles.modalSuggestion + " flex flex-vertical"}>
               {
-                groupSugestions.map((gs) => (
-                  this.renderGroupSuggestion(gs, searchHandler)
+                dataSource.map((gs) => (
+                  this.renderGroupSuggestion(gs, handleAddCriteria)
                 ))
               }
             </div> : <div></div>
@@ -86,10 +86,10 @@ AutoComplete.contextTypes = {
 AutoComplete.propTypes = {
   show: React.PropTypes.bool.isRequired,
   placeholder: React.PropTypes.string.isRequired,
-  searchHandler: React.PropTypes.func.isRequired,
+  handleAddCriteria: React.PropTypes.func.isRequired,
   fieldName: React.PropTypes.string.isRequired,
   fieldId: React.PropTypes.string.isRequired,
-  groupSugestions: React.PropTypes.array.isRequired,
+  dataSource: React.PropTypes.array.isRequired,
   loadSuggestions: React.PropTypes.func.isRequired,
   handleRequestDeleteChip: React.PropTypes.func.isRequired
 };
