@@ -134,7 +134,7 @@ const dummySuggestions = [
 ]
 
 const filterSuggestion = (term, group) => {
-  const filterSuggest = group.suggestions.filter((s) => s.text.includes(term));
+  const filterSuggest = group.suggestions.filter((s) => s.text.toLowerCase().includes(term.toLowerCase()));
   return filterSuggest.length > 0 ? {...group, suggestions: filterSuggest} : null;
 }
 
