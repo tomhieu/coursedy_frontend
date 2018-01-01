@@ -38,5 +38,17 @@ export const mStyles = {
   iconCheckBox: {
     fill: 'rgba(48,51,57,.15)',
     color: 'rgba(48,51,57,.15)'
+  },
+  chip: {
+    margin: 3
+  },
+  chipLabelStyle: {
+    lineHeight: '24px'
+  },
+  chipIconDelete: {
+    height: 18,
+    width: 18,
+    marginTop: 3,
+    marginRight: 3
   }
 };

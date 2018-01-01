@@ -7,7 +7,8 @@
   overflow-y: auto;
   border-radius: 0 0 2px 2px;
   padding-bottom: 10px;
-  width: 100%;
+  width: calc(100% - 15px);
+  top: 30px;
 }
 
 .suggestionLine {
@@ -25,4 +26,11 @@
 
 .suggestionGroup {
   border-bottom: 1px solid rgba(48,51,57,.15);
+}
+
+.filterBox {
+  border: 1px solid rgba(48, 51, 57, 0.15);
+  input {
+    border: none;
+  }
 }

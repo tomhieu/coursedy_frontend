@@ -94,9 +94,9 @@ class CourseFilter extends Component {
     )
   }
 
-  autoCompleteSearchCourse(category, id, key_word) {
-    const filter = {category, id, key_word};
-    this.props.onSubmit({filter});
+  autoCompleteSearchCourse(group, id, text) {
+    const filter = {group, id, text};
+    this.props.onSelectFilter(filter);
   }
 
   render() {
@@ -109,7 +109,10 @@ class CourseFilter extends Component {
       totalResult,
       changeViewTypeHdl,
       groupSugestions,
-      loadSuggestions
+      loadSuggestions,
+      onRemoveFilter,
+      filters,
+      showSuggestion
     } = this.props
     const orderList = [{id: 1, text: this.context.t("order_by_time")}, {
       id: 2,
@@ -139,8 +142,12 @@ class CourseFilter extends Component {
                 <div className={"col-md-6 col-sm-6"}>
                   <AutoComplete placeholder={this.context.t('search_course')}
                                 fieldName="key_word" fieldId="key_word_filter"
-                                groupSugestions={groupSugestions} searchHandler={this.autoCompleteSearchCourse.bind(this)}
+                                groupSugestions={groupSugestions}
+                                searchHandler={this.autoCompleteSearchCourse.bind(this)}
+                                handleRequestDeleteChip={onRemoveFilter}
                                 loadSuggestions={loadSuggestions}
+                                filters={filters}
+                                show={showSuggestion}
                   />
                 </div>
                 {/* Title search */}
@@ -282,6 +289,11 @@ CourseFilter.propTypes = {
   categories: React.PropTypes.array.isRequired,
   locations: React.PropTypes.object.isRequired,
   weekdays: React.PropTypes.object.isRequired,
+  onSelectFilter: React.PropTypes.func.isRequired,
+  groupSugestions: React.PropTypes.array.isRequired,
+  loadSuggestions: React.PropTypes.func.isRequired,
+  onRemoveFilter: React.PropTypes.func.isRequired,
+  filters: React.PropTypes.array.isRequired
 };
 
 export default cssModules(CourseFilter, styles);

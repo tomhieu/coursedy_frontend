@@ -1,22 +1,22 @@
 import {Component} from "react";
 import * as React from "react";
-import FormField from "../Core/FormField";
+import {mStyles} from "utils/CustomStylesUtil";
 import cssModules from 'react-css-modules';
 import styles from './AutoComplete.module.scss';
 import {renderField} from "../Core/CustomComponents";
 import Field from "redux-form/es/Field";
+import {Chip} from "material-ui";
 
 class AutoComplete extends Component {
 
   constructor() {
     super();
-    this.state = {show: true}
   }
 
   renderGroupSuggestion(group, searchHandler) {
     const {name, suggestions} = group;
     return (
-      <div className={styles.suggestionGroup + " flex flex-horizontal"}>
+      <div className={styles.suggestionGroup + " flex flex-horizontal"} key={"suggestion_" + name}>
         <div className={styles.suggestionLine}>
           <span>{name}</span>
         </div>
@@ -24,7 +24,7 @@ class AutoComplete extends Component {
           {
             suggestions.map((s) => (
               <div className={styles.suggestionLine}>
-                <a className="pl-10 pt-5" onClick={() => searchHandler(s.type, s.id, s.title)}>{s.title}</a>
+                <a className="pl-10 pt-5" onClick={() => searchHandler(s.group, s.id, s.text)}>{s.text}</a>
               </div>
             ))
           }
@@ -40,16 +40,31 @@ class AutoComplete extends Component {
 
   onFocus() {
     console.log("on focus event");
-    this.setState({show: true});
   }
 
   render() {
-    const {placeholder, fieldName, fieldId, groupSugestions, searchHandler, loadSuggestions} = this.props;
+    const {show, handleRequestDeleteChip, placeholder, fieldName, groupSugestions, searchHandler, loadSuggestions, filters} = this.props;
     return (
-      <div>
-        <Field name={fieldName} placeholder={placeholder} onBlur={this.onBlur.bind(this)} onFocus={this.onFocus.bind(this)} onChange={loadSuggestions} component={renderField}/>
+      <div className={styles.filterBox + " d-flex flex-vertical"}>
+        <div className="d-flex flex-horizontal">
+          <div className="d-flex flex-horizontal">
+            {
+              filters.map((f) =>
+                <Chip key={"filter_" + f.id}
+                      onRequestDelete={() => handleRequestDeleteChip(f.id)}
+                      style={mStyles.chip}
+                      labelStyle={mStyles.chipLabelStyle}
+                      deleteIconStyle={mStyles.chipIconDelete}
+                >{f.text}</Chip>
+              )
+            }
+          </div>
+          <div className="input-without-border">
+            <Field name={fieldName} placeholder={placeholder} onBlur={this.onBlur.bind(this)} onFocus={this.onFocus.bind(this)} onChange={loadSuggestions} component={renderField}/>
+          </div>
+        </div>
         {
-          groupSugestions.length > 0 && this.state.show ?
+          groupSugestions.length > 0 && show ?
             <div className={styles.modalSuggestion + " flex flex-vertical"}>
               {
                 groupSugestions.map((gs) => (
@@ -69,12 +84,14 @@ AutoComplete.contextTypes = {
 }
 
 AutoComplete.propTypes = {
+  show: React.PropTypes.bool.isRequired,
   placeholder: React.PropTypes.string.isRequired,
   searchHandler: React.PropTypes.func.isRequired,
   fieldName: React.PropTypes.string.isRequired,
   fieldId: React.PropTypes.string.isRequired,
   groupSugestions: React.PropTypes.array.isRequired,
-  loadSuggestions: React.PropTypes.func.isRequired
+  loadSuggestions: React.PropTypes.func.isRequired,
+  handleRequestDeleteChip: React.PropTypes.func.isRequired
 };
 
 export default cssModules(AutoComplete, styles);

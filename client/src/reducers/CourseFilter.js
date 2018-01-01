@@ -10,7 +10,8 @@ const CourseFilter = (state = {
   pageSize: 4,
   currentPage: 1,
   selectedCourses: [],
-  filters: []
+  filters: [],
+  showSuggestion: false
 }, action) => {
   switch (action.type) {
     case courseActionTypes.FETCH_COURSES_SUCCESS:
@@ -24,11 +25,15 @@ const CourseFilter = (state = {
     case types.CHANGE_CURRENT_PAGE:
       return {...state, currentPage: action.payload}
     case types.LOAD_SUGGESTION_COMPLETE:
-      return {...state, groupSugestions: action.payload}
+      return {...state, groupSugestions: action.payload, showSuggestion: action.payload.length > 0}
     case types.ADD_FILTER_CRITERIA:
-      let filters = JSON.parse(JSON.stringify(state.filters));
-      filters.push(action.data);
-      return {...state, filters: filters}
+      let newFilters = JSON.parse(JSON.stringify(state.filters))
+      newFilters.push(action.data)
+      return {...state, filters: newFilters, showSuggestion: false}
+    case types.REMOVE_FILTER_CRITERIA:
+      const clonedFilters = JSON.parse(JSON.stringify(state.filters))
+      const removedFilters = clonedFilters.filter(f => f.id != Number(action.data))
+      return {...state, filters: removedFilters}
     default:
       return state;
   }

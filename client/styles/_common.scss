@@ -1026,3 +1026,7 @@ input[type="url"]:focus, input[type="text"]:focus, textarea:focus, .form-control
     margin-bottom: 5px;
   }
 }
+
+.input-without-border input {
+  border: none;
+}

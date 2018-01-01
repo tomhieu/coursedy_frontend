@@ -75,19 +75,19 @@ const dummySuggestions = [
     name: "Địa điểm",
     suggestions: [
       {
-        title: "Thành Phố Hồ Chí Minh",
+        text: "Thành Phố Hồ Chí Minh",
         id: 1,
-        type: "location"
+        group: "location"
       },
       {
-        title: "Hà Nội",
+        text: "Hà Nội",
         id: 2,
-        type: "location"
+        group: "location"
       },
       {
-        title: "Đà Nẵng",
+        text: "Đà Nẵng",
         id: 3,
-        type: "location"
+        group: "location"
       }
     ]
   },
@@ -95,19 +95,19 @@ const dummySuggestions = [
     name: "Loại Khoá ",
     suggestions: [
       {
-        title: "Ngoại Ngữ",
+        text: "Ngoại Ngữ",
         id: 1,
-        type: "category"
+        group: "category"
       },
       {
-        title: "Luyện Thi Đại Học",
+        text: "Luyện Thi Đại Học",
         id: 2,
-        type: "category"
+        group: "category"
       },
       {
-        title: "Chương Trình THPT",
+        text: "Chương Trình THPT",
         id: 3,
-        type: "category"
+        group: "category"
       }
     ]
   },
@@ -115,26 +115,26 @@ const dummySuggestions = [
     name: "Khoá Học Đang Mo",
     suggestions: [
       {
-        title: "Luyện Thi TOIEC 500-650",
+        text: "Luyện Thi TOIEC 500-650",
         id: 1,
-        type: "course"
+        group: "course"
       },
       {
-        title: "Luyện Thi IELTS 5.5 - 6.5",
+        text: "Luyện Thi IELTS 5.5 - 6.5",
         id: 2,
-        type: "course"
+        group: "course"
       },
       {
-        title: "Luyện Thi TOFLE 160 - 200",
+        text: "Luyện Thi TOFLE 160 - 200",
         id: 3,
-        type: "course"
+        group: "course"
       }
     ]
   }
 ]
 
 const filterSuggestion = (term, group) => {
-  const filterSuggest = group.suggestions.filter((s) => s.title.includes(term));
+  const filterSuggest = group.suggestions.filter((s) => s.text.includes(term));
   return filterSuggest.length > 0 ? {...group, suggestions: filterSuggest} : null;
 }
 
@@ -155,8 +155,19 @@ export const loadSuggestions = (term) => {
 }
 
 export const addFilterSuggestion = (filter) => {
-  return dispatch({
-    type: types.ADD_FILTER_CRITERIA,
-    data: filter
-  })
+  return dispatch => {
+    dispatch({
+      type: types.ADD_FILTER_CRITERIA,
+      data: filter
+    })
+  }
+}
+
+export const removeFilterSuggestion = (filterId) => {
+  return dispatch => {
+    dispatch({
+      type: types.REMOVE_FILTER_CRITERIA,
+      data: filterId
+    })
+  }
 }
