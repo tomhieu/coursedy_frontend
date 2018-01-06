@@ -46,15 +46,18 @@ class PublicCourseListContainer extends Component {
     this.props.dispatch(Actions.searchCourse(query))
   }
 
-  selectCourse(courseId) {
-    console.log("DEBUG selectCourse")
-    console.log(courseId)
+  selectCourseHdl(courseId) {
+    if (!this.props.selectedCourses.includes(courseId)) {
+      this.props.dispatch(Actions.selectCourse(courseId))
+    } else {
+      this.props.dispatch(Actions.removeCourse(courseId))
+    }
   }
 
   render() {
     return (
       <div className="public-course-list">
-        <CourseList {...this.props} selectCourse={this.selectCourse}/>
+        <CourseList {...this.props} selectCourseHdl={this.selectCourseHdl.bind(this)}/>
         <div className="clear-fix"></div>
         <Pagination
           activePage={this.props.currentPage}
@@ -90,6 +93,7 @@ const mapStateToProps = (state) => ({
   pageSize: state.CourseFilter.pageSize,
   totalResult: state.CourseFilter.totalResult,
   displayMode: state.CourseFilter.displayMode,
+  selectedCourses: state.CourseFilter.selectedCourses,
   sortBy: state.CourseFilter.sortBy,
   sortOrder: state.CourseFilter.sortOrder
 });

@@ -211,6 +211,8 @@ export const translations = {
         "course_enroll_status": "Kết quả đăng ký",
         "course_enroll_success": "Đăng ký khóa học thành công",
         "course_enroll_fail": "Đăng ký khóa học thất bại",
+
+        "course_enroll_deposit_more": "Nạp thêm",
   },
   "en": {
     "home_page": "Home",

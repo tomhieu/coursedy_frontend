@@ -155,11 +155,18 @@ export const setEndTimeError = (error) => {
 
 export const searchCourse = (query) => {
   return dispatch => {
-    Network().get('courses', query).then((response) => {
-      dispatch({
-        type: courseActionTypes.FETCH_COURSES_SUCCESS,
-        payload: response
-      })
+    //FIXME: Comment for dummy data
+    // Network().get('courses', query).then((response) => {
+    //   dispatch({
+    //     type: courseActionTypes.FETCH_COURSES_SUCCESS,
+    //     payload: response
+    //   })
+    // })
+
+    //FIXME: Remove me
+    dispatch({
+      type: courseActionTypes.FETCH_COURSES_SUCCESS,
+      payload: types.dummyCourses
     })
   }
 }
@@ -187,6 +194,38 @@ export const changeSortBy = (sortBy) => {
     dispatch({
       type: types.CHANGE_SORT_BY,
       payload: sortBy
+    })
+  }
+}
+
+
+export const selectCourse = (courseId) => {
+  return dispatch => {
+    dispatch({
+      type: types.SELECT_COURSE,
+      payload: courseId
+    })
+  }
+}
+export const selectAllCourses = () => {
+  return dispatch => {
+    dispatch({
+      type: types.SELECT_ALL_COURSES,
+    })
+  }
+}
+export const removeCourse = (courseId) => {
+  return dispatch => {
+    dispatch({
+      type: types.REMOVE_COURSE,
+      payload: courseId
+    })
+  }
+}
+export const removeAllCourses = () => {
+  return dispatch => {
+    dispatch({
+      type: types.REMOVE_ALL_COURSES,
     })
   }
 }

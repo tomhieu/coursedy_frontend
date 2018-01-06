@@ -39,24 +39,48 @@ class PublicCourseDetailEnrollContainer extends Component {
   }
 
   hideEnrollStatusModal() {
-      this.props.dispatch(PublicCourseActions.closePublishEnrollStatusModal())
+    this.props.dispatch(PublicCourseActions.closePublishEnrollStatusModal())
   }
   showEnrollStatusModal() {
     this.props.dispatch(PublicCourseActions.showPublishEnrollStatusModal())
   }
-
+  moveToPaymentPage() {
+    // globalHistory.push('')
+  }
 
   render() {
     let enrollMessage = null;
+    let budgetButton = null;
     if (this.props.submit_enroll_success) {
       enrollMessage = <div className="alert alert-success">
         {this.context.t('course_enroll_success')}  
       </div>
     }
     if (this.props.submit_enroll_fail) {
-      enrollMessage = <div className="alert alert-danger">
-        {this.context.t('course_enroll_fail')}
-      </div>
+      if (this.props.submit_enroll_errors.length > 0) {
+        switch (this.props.submit_enroll_errors[0].status_code) {
+          case 1://Exceed class limit
+              enrollMessage = <div className="alert alert-danger">
+                {this.props.submit_enroll_errors[0].message}
+              </div>
+            break;
+          case 2://Not enough bubget
+              enrollMessage = <div className="alert alert-danger">
+                {this.props.submit_enroll_errors[0].message}
+              </div>
+              budgetButton = <Button onClick={this.moveToPaymentPage.bind(this)}>{this.context.t('course_enroll_deposit_more')}</Button>
+            break;
+          default:
+            enrollMessage = <div className="alert alert-danger">
+              {this.context.t('course_enroll_fail')}
+            </div>
+            break;
+        }
+      } else {
+        enrollMessage = <div className="alert alert-danger">
+          {this.context.t('course_enroll_fail')}
+        </div>
+      }
     }
 
     return (
@@ -88,6 +112,7 @@ class PublicCourseDetailEnrollContainer extends Component {
             {enrollMessage}
           </Modal.Body>
           <Modal.Footer>
+            {budgetButton}
             <Button onClick={this.hideEnrollStatusModal.bind(this)}>{this.context.t('close')}</Button>
           </Modal.Footer>
         </Modal>
@@ -111,6 +136,7 @@ const mapStateToProps = (state) => {
     show_enroll_status_modal: state.PublicCourseDetail.show_enroll_status_modal,
     submit_enroll_success: state.PublicCourseDetail.submit_enroll_success,
     submit_enroll_fail: state.PublicCourseDetail.submit_enroll_fail,
+    submit_enroll_errors: state.PublicCourseDetail.submit_enroll_errors
   }
 }
 

@@ -12,7 +12,7 @@ class CourseList extends Component {
     super(props);
   }
   render() {
-    const {deleteCourse, selectCourse, displayMode} = this.props;
+    const {deleteCourse, selectCourseHdl, displayMode, selectedCourses} = this.props;
     var rows = [];
     if (displayMode == 'grid') {
       for (var i = 0; i < this.props.courses.length; i++) {
@@ -25,8 +25,9 @@ class CourseList extends Component {
           <div className="col-xs-12 col-sm-6 col-md-3" key={'course-' +i}>
             <CourseItem item={this.props.courses[i]} 
               deleteCourse={deleteCourse}
-              selectCourse={selectCourse}
+              selectCourseHdl={selectCourseHdl.bind(this)}
               displayMode={displayMode}
+              selectedCourses={selectedCourses}
             />
           </div>
         )
@@ -37,8 +38,9 @@ class CourseList extends Component {
           <div className="col-xs-12 col-sm-12 col-md-12" key={'course-' +i}>
             <CourseItem item={this.props.courses[i]} 
               deleteCourse={deleteCourse}
-              selectCourse={selectCourse}
+              selectCourseHdl={selectCourseHdl.bind(this)}
               displayMode={displayMode}
+              selectedCourses={selectedCourses}
             />
           </div>
         )

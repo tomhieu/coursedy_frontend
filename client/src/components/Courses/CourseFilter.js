@@ -93,12 +93,15 @@ class CourseFilter extends Component {
         let {
             handleSubmit, 
             categories, 
+            courses,
+            selectedCourses,
             locations, 
             selectedCategories, 
             weekdays, 
             totalResult,
             changeDisplayModeHdl,
-            changeCurrentPageHdl
+            changeCurrentPageHdl,
+            selectAllCoursesHdl
         } = this.props
         const orderList = [{id: 'created_at', text: this.context.t("sort_by_time")}, {
             id: 'view',
@@ -219,7 +222,10 @@ class CourseFilter extends Component {
                             <div className="d-flex flex-horizontal align-items-center">
                                 <div className={styles.listResultInfo + " d-flex flex-horizontal justify-content-left"}>
                                     <div className={styles.checkAllBtn + " d-flex align-items-center"}>
-                                        <Checkbox style={internalStyles.checkbox}/>
+                                        <Checkbox style={internalStyles.checkbox}
+                                            checked={courses.length == selectedCourses.length}
+                                            onCheck={selectAllCoursesHdl.bind(this, courses.length == selectedCourses.length)}
+                                        />
                                     </div>
                                     <FlatButton label={this.context.t("save_favorite")} style={internalStyles.defaultColorStyle} icon={<ActionFavorite color={red900} />}/>
                                     <span className={styles.textTotalResult}>

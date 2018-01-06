@@ -3,7 +3,7 @@ import cssModules from 'react-css-modules';
 import styles from './Course.module.scss';
 import { LinkContainer } from 'react-router-bootstrap'
 import {SERVER_NAME} from "utils/CommonConstant";
-import {Checkbox} from 'redux-form-material-ui'
+import {Checkbox} from 'material-ui'
 
 
 /**
@@ -14,12 +14,9 @@ class CourseItem extends Component {
   constructor(props) {
     super(props);
   }
-  selectedCourseHdl() {
-
-  }
 
   render() {
-    const {deleteCourse, selectCourse, displayMode} = this.props;
+    const {deleteCourse, selectCourseHdl, displayMode, selectedCourses} = this.props;
     let courseItem = null;
     if (displayMode == 'grid') {
       courseItem = <div className="col-xs-12 no-ml no-mr">
@@ -29,7 +26,11 @@ class CourseItem extends Component {
               <LinkContainer to={ !this.props.item.onlyTutor ? '/course/' + this.props.item.id : '/dashboard/courses/detail/' + this.props.item.id } className={styles.fullWidth + ' img-responsive'}>
                 <img src={!this.props.item.cover_image ? 'http://placehold.it/200x100' : SERVER_NAME + this.props.item.cover_image } alt="" />
               </LinkContainer>
-              {/*<Checkbox onCheck={selectCourse} onChange={this.selectedCourseHdl}/>*/}
+              <Checkbox 
+                style={{position: 'absolute', top: '5px', right: '-20px'}}
+                checked={selectedCourses.indexOf(this.props.item.id) >= 0}
+                onCheck={selectCourseHdl.bind(this, this.props.item.id)}
+                />
             </div>
           </div>{/* End course thumb */}
 
@@ -100,7 +101,11 @@ class CourseItem extends Component {
               <LinkContainer to={ !this.props.item.onlyTutor ? '/course/' + this.props.item.id : '/dashboard/courses/detail/' + this.props.item.id } className={styles.fullWidth + ' img-responsive'}>
                 <img src={!this.props.item.cover_image ? 'http://placehold.it/200x100' : SERVER_NAME + this.props.item.cover_image } alt="" />
               </LinkContainer>
-              {/*<Checkbox onCheck={selectCourse} onChange={this.selectedCourseHdl}/>*/}
+              <Checkbox 
+                style={{position: 'absolute', top: '5px', right: '-20px'}}
+                checked={selectedCourses.indexOf(this.props.item.id) >= 0}
+                onCheck={selectCourseHdl.bind(this, this.props.item.id)}
+                />
             </div>
           </div>{/* End course thumb */}
 

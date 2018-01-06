@@ -29,6 +29,14 @@ const CourseFilter = (state = {
       return {...state, currentPage: action.payload}
     case types.CHANGE_SORT_BY:
       return {...state, sortBy: action.payload}
+    case types.SELECT_COURSE:
+      return {...state, selectedCourses: [...state.selectedCourses, action.payload]}
+    case types.SELECT_ALL_COURSES:
+      return {...state, selectedCourses: state.courses.map((course) => {return course.id})}
+    case types.REMOVE_COURSE:
+      return {...state, selectedCourses: state.selectedCourses.filter((courseId) => {return courseId != action.payload})}
+    case types.REMOVE_ALL_COURSES:
+      return {...state, selectedCourses: []}
     default:
       return state;
   }
