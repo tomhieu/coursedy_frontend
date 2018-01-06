@@ -60,7 +60,7 @@ body {
   -webkit-font-smoothing: antialiased !important;
   font-family: 'Lato', sans-serif;
   /*    overflow-x: hidden;*/
-  color: #534051;
+  color: #000000;
   font-weight: 400;
   background-color: #fdfdfd;
 }
@@ -3713,7 +3713,7 @@ Page >>Single Tutor Details
 label {
   font-weight: 400;
   margin-bottom: 8px;
-  color: #9b9b9b;
+  color: #000000;
 }
 
 .appointment-table {
@@ -4818,6 +4818,7 @@ select[multiple]::-webkit-scrollbar-thumb {
 .form-control {
   border-color: #e5e5e5;
   box-shadow: none;
+  color: #000000;
 }
 
 .file-tag {

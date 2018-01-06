@@ -4,7 +4,7 @@ import * as FilterActions from "../../actions/CourseFilterActionCreator";
 import {connect} from "react-redux";
 import SectionCreationPopupContainer from "./SectionCreationPopupContainer";
 import SectionLessonContainer from "./SectionLessonContainer";
-import {btnStyles} from "../../utils/CustomStylesUtil";
+import {mStyles} from "../../utils/CustomStylesUtil";
 import {FlatButton} from "material-ui";
 import {ContentAddCircle, EditorPublish} from "material-ui/svg-icons/index";
 import {red900} from "material-ui/styles/colors";
@@ -23,7 +23,7 @@ class CourseFormContainer extends Component {
         if (this.courseId) {
             this.props.dispatch(CourseActions.loadCourseDetail(this.courseId));
         } else {
-            this.props.dispatch(CourseActions.clearCourseData());
+            this.props.dispatch(CourseActions.createNewCourse());
         }
         this.props.dispatch(FilterActions.fetchCategories())
     }
@@ -55,7 +55,7 @@ class CourseFormContainer extends Component {
     }
 
     cancelPopup() {
-        this.props.dispatch(CourseActions.clearCourseData());
+        this.props.dispatch(CourseActions.createNewCourse());
         this.context.router.history.push('/dashboard/courses/list/');
     }
 
@@ -79,13 +79,13 @@ class CourseFormContainer extends Component {
                                     <div className="row">
                                         <div className="col-md-6 col-sm-6">
                                             <FlatButton label={this.context.t('lesson_link_edit')}
-                                                        style={btnStyles.defaultFlatBtn}
+                                                        style={mStyles.defaultFlatBtn}
                                                         secondary={true} onClick={this.addNewSection.bind(this)}
                                                         icon={<ContentAddCircle color="#e27d7f"/>}/>
                                         </div>
                                         <div className="col-md-6 col-sm-6">
                                             <FlatButton label={this.context.t('course_publish')}
-                                                        style={btnStyles.defaultFlatBtn}
+                                                        style={mStyles.defaultFlatBtn}
                                                         secondary={true} onClick={this.validateBeforePublishCourse.bind(this)}
                                                         icon={<EditorPublish color="#e27d7f"/>}/>
                                         </div>

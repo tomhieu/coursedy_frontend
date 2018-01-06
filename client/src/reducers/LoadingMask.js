@@ -1,11 +1,11 @@
-import {FETCHING_COMPLETE, FETCHING_DATA} from "../actions/actionCreators";
+import {HIDE_LOADING_MASK, SHOW_LOADING_MASK} from "../actions/actionCreators";
 const LoadingMask = (state = {
     isFetching: false
 }, action) => {
     switch (action.type) {
-        case FETCHING_DATA:
+        case SHOW_LOADING_MASK:
             return Object.assign({}, state, {isFetching: true});
-        case FETCHING_COMPLETE:
+        case HIDE_LOADING_MASK:
             return Object.assign({}, state, {isFetching: false});
         default:
             return state;

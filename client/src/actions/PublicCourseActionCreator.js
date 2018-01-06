@@ -159,7 +159,7 @@ export const submitEnrollCourse = (courseId) => {
         type: types.PUBLIC_COURSE_SUBMIT_ENROLL_FAILL,
         payload: {errors: [{
           status_code: 2,
-          message: "Tài khoản không đủ số dư"
+          message: "Không đủ số dư"
         }]}
       })      
     })

@@ -7,10 +7,10 @@
  * @returns {promise}
  */
 import store from "../store/store";
-import {FETCHING_COMPLETE, FETCHING_DATA} from "actions/actionCreators";
+import {HIDE_LOADING_MASK, SHOW_LOADING_MASK} from "actions/actionCreators";
 
 export default function request(url, options) {
-  store.dispatch({type: FETCHING_DATA});
+  store.dispatch({type: SHOW_LOADING_MASK});
   return new Promise((resolve, reject) => {
     if (!url) reject(new Error('URL parameter required'));
     if (!options) reject(new Error('Options parameter required'));
@@ -33,7 +33,7 @@ export default function request(url, options) {
       .then(response => {
         if (response.errors) reject(response.errors);
         else resolve(response);
-        store.dispatch({type: FETCHING_COMPLETE});
+        store.dispatch({type: HIDE_LOADING_MASK});
       })
       .catch(reject)
   });

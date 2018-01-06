@@ -6,35 +6,28 @@ import moment from "moment";
 import Dropzone from "react-dropzone";
 import {TT} from "../../utils/locale";
 import ObjectUtils from "../../utils/ObjectUtils";
-import {Checkbox, TimePicker} from "material-ui";
+import {Checkbox, FlatButton, RaisedButton, TimePicker} from "material-ui";
+import {mStyles} from "utils/CustomStylesUtil";
+import {ActionSearch} from "material-ui/svg-icons/index";
+import {fullWhite} from "material-ui/styles/colors";
 
-export const renderField = ({input, label, type = 'text', customClassName, meta: {touched, error, warning}}) => (
+export const renderField = ({input, label, type = 'text', disabled = false, customClassName, meta: {touched, error, warning}}) => (
     <div className='full-width-input-wrapper'>
-        <input {...input} placeholder={label} type={type} className={customClassName}/>
+        <input {...input} placeholder={label} type={type} disabled={disabled} className={customClassName}/>
         {touched && ((error && <span className='input-errors'>{error}</span>) || (warning && <span>{warning}</span>))}
     </div>
 )
 
-export const renderTextAreaField = ({input, label, type, meta: {touched, error, warning}}) => (
+export const renderTextAreaField = ({input, label, type, disabled = false, meta: {touched, error, warning}}) => (
     <div className='full-width-input-wrapper'>
-        <textarea {...input} placeholder={label} type={type} className='form-control' rows={6}/>
+        <textarea {...input} placeholder={label} type={type} disabled={disabled} className='form-control' rows={6}/>
         {touched && ((error && <span className='input-errors'>{error}</span>) || (warning && <span>{warning}</span>))}
     </div>
 )
 
-const styles = {
-    circle: {
-        backgroundColor: "#e27d7f"
-    }
-};
-export const renderTimePicker = () => (
-    <TimePicker style={styles}/>
-)
-
-
-export const renderDatePicker = ({input, label, type, meta: {touched, error, warning}}) => {
+export const renderDatePicker = ({input, label, type, disabled = false, meta: {touched, error, warning}}) => {
     return (<div>
-        <DatePicker {...input}
+        <DatePicker {...input} disabled={disabled}
                     selected={input.value ? moment(input.value, 'DD/MM/YYYY') : null}
                     placeholderText='dd/mm/yyyy'
                     className="form-control"
@@ -46,20 +39,19 @@ export const renderDatePicker = ({input, label, type, meta: {touched, error, war
 }
 
 export const renderSelect = (selectOptions) => {
-    return ({input, label, type, meta: {touched, error, warning}}) => (
+    return ({input, label, type, disabled = false, meta: {touched, error, warning}}) => (
         <div className="dark-picker dark-picker-bright">
-            <Select2 {...input} data={selectOptions}/>
+            <Select2 {...input} disabled={disabled} data={selectOptions}/>
             {touched && ((error && <span className='input-errors'>{error}</span>) || (warning &&
             <span>{warning}</span>))}
         </div>
     )
 }
 
-export const renderMultiSelect = (selectOptions, selectedValues) => {
-    const defaultValues = Array.isArray(selectedValues) ? selectedValues.map(val => val.id) : []
-    return ({input, label, type, meta: {touched, error, warning}}) => (
+export const renderMultiSelect = (selectOptions) => {
+    return ({input, label, type, disabled = false, meta: {touched, error, warning}}) => (
         <div className="select-picker">
-            <Select2 {...input} multiple
+            <Select2 {...input} multiple disabled={disabled}
                      data={selectOptions}
             />
             {touched && ((error && <span className='input-errors'>{error}</span>) || (warning &&
@@ -68,11 +60,66 @@ export const renderMultiSelect = (selectOptions, selectedValues) => {
     )
 }
 
-export const renderCheckbox = props => (
-    <Checkbox label={props.label}
-              checked={props.value ? true : false}
-              onCheck={props.onChange}/>
-)
+/**
+ * A wrapper of Checkbox Material UI
+ * @param input
+ * @param label
+ * @param iconStyle
+ */
+export const renderCheckbox = ({ input, label, disabled = false, iconStyle }) =>
+  <Checkbox
+    label={label}
+    disabled={disabled}
+    checked={input.value ? true : false}
+    onCheck={input.onChange}
+    style={mStyles.checkbox}
+    iconStyle={iconStyle}
+  />
+
+/**
+ * A wrapper of RaiseButton of material UI
+ * @param props
+ * @constructor
+ */
+export const RaiseButton = (props) =>
+  <RaisedButton
+    backgroundColor="#e27d7f"
+    labelColor={fullWhite}
+    label={props.label}
+    disabled={props.disabled ? props.disabled : false}
+    type="submit"
+    style={mStyles.raiseBtn}
+    icon={<ActionSearch color={fullWhite} />}
+  />
+
+/**
+ * A wrapper of FlatButton of material UI
+ * @param props
+ * @constructor
+ */
+export const EFlatButton = (props) =>
+  <FlatButton
+    label={props.label}
+    type="button"
+    secondary={props.secondary}
+    onClick={props.onClick}
+    disabled={props.disabled ? props.disabled : false}
+    style={mStyles.flatBtn}
+    icon={props.icon}
+  />
+
+export const CustomTimePicker = ({ input: { onChange, value}, label, disabled = false, hintText, meta: { touched, error, warning }}) =>
+  <div className="d-flex flex-vertical">
+    <TimePicker
+      textFieldStyle={mStyles.timePicker}
+      hintText={hintText}
+      cancelLabel={TT.t('cancel')}
+      okLabel={TT.t('select')}
+      disabled={disabled}
+      onChange={(oldValue, newValue) => onChange(newValue)}
+    />
+    {((error && <span className='input-errors'>{error}</span>) || (warning && <span>{warning}</span>))}
+  </div>
 
 export const renderPreviewFile = (file, doDeleteNewUploadFile) => {
     let previewClass = "pdf-image-preview";

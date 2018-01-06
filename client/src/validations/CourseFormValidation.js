@@ -1,5 +1,4 @@
 import {TT} from '../utils/locale'
-import Network from '../utils/network'
 import moment from 'moment'
 
 export const validate = (values) => {
@@ -10,23 +9,12 @@ export const validate = (values) => {
   }
 
   const start_date = moment(values.start_date, 'DD/MM/YYYY');
-  const end_date = moment(values.end_date, 'DD/MM/YYYY');
   const now = moment();
 
-  if (!values.start_date) {
-    errors.start_date = TT.t('start_date_required')
-  } else if (start_date.diff(now) < 0) {
+  if (values.start_date && start_date == null) {
     errors.start_date = TT.t('invalid_start_date')
-  }
-
-  if (!values.end_date) {
-    errors.end_date = TT.t('end_date_required')
-  } else if (end_date.diff(now) < 0) {
-    errors.end_date = TT.t('invalid_end_date')
-  }
-
-  if (values.start_date && values.end_date && end_date.diff(start_date) < 0) {
-    errors.end_date = TT.t('invalid_start_and_end_date')
+  } else if (values.start_date && start_date.diff(now) < 0) {
+    errors.start_date = TT.t('start_date_less_now')
   }
 
   if (!values.number_of_students) {
@@ -45,10 +33,12 @@ export const validate = (values) => {
     errors.period_type = TT.t('period_type_mandatory')
   }
 
-  if (!values.tuition_fee) {
+  if (!values.is_free && !values.tuition_fee) {
     errors.tuition_fee = TT.t('tuition_fee_mandatory')
-  } else if (isNaN(values.tuition_fee)){
+  } else if (values.tuition_fee && isNaN(values.tuition_fee)){
     errors.tuition_fee = TT.t('not_a_number')
+  } else {
+    errors.tuition_fee = ''
   }
 
   if (!values.currency) {
@@ -65,6 +55,37 @@ export const validate = (values) => {
 
   if (!values.course_level_id) {
     errors.course_level_id = TT.t('course_level_mandatory')
+  }
+
+  if (values.is_same_period) {
+    if (!values.start_time) {
+      errors.start_time = TT.t('teaching_start_time_per_week_madatory')
+    }
+
+    if (!values.end_time) {
+      errors.end_time = TT.t('teaching_end_time_per_week_madatory')
+    }
+
+    if (values.start_time && values.end_time && values.start_time > values.end_time) {
+      errors.start_time = TT.t('start_time_error');
+      errors.end_time = TT.t('end_time_error');
+    }
+  } else {
+    values.course_days.map(day => {
+
+      if (!values[day + '_start_time']) {
+        errors[day + '_start_time'] = TT.t('teaching_start_time_per_day_madatory', {date: TT.t(day)})
+      }
+
+      if (!values[day + '_end_time']) {
+        errors[day + '_end_time'] = TT.t('teaching_end_time_per_day_madatory', {date: TT.t(day)})
+      }
+
+      if (values[day + '_start_time'] && values[day + '_end_time'] && values[day + '_start_time'] > values[day + '_end_time']) {
+        errors[day + '_start_time'] = TT.t('start_time_error');
+        errors[day + '_end_time'] = TT.t('end_time_error');
+      }
+    })
   }
 
   return errors

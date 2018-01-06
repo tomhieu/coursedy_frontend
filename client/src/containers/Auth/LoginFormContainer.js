@@ -4,8 +4,8 @@ import styles from './LoginFormContainer.module.scss';
 import cssModules from 'react-css-modules';
 import * as Action from '../../actions/LoginActionCreator';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 import {reduxForm} from 'redux-form';
+
 
 class LoginFormContainer extends Component {
   loginUser({email, password}) {
