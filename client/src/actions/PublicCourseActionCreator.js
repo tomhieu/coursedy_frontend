@@ -6,24 +6,30 @@ import {TT} from '../utils/locale'
 
 export const fetchPublicCourse = (courseId) => {
   return dispatch => {
-    Network().get('courses/'+courseId).then((response) => {
-      dispatch(fetchPublicCourseSections(courseId));
-      dispatch(fetchPublicCourseTutor(response.user.id));
-      dispatch({
-        type: types.FETCH_PUBLIC_COURSE_SUCCESSFULLY,
-        payload: response
-      })
-    }, (errors) => {
-      const error_messages = (errors && errors.constructor == Array && errors.length > 0) ?
-        errors :
-        [TT.t('fetch_course_fail')]
+    //FIXME: Comment for dummy data
+    // Network().get('courses/'+courseId).then((response) => {
+    //   dispatch(fetchPublicCourseSections(courseId));
+    //   dispatch(fetchPublicCourseTutor(response.user.id));
+    //   dispatch({
+    //     type: types.FETCH_PUBLIC_COURSE_SUCCESSFULLY,
+    //     payload: response
+    //   })
+    // }, (errors) => {
+    //   const error_messages = (errors && errors.constructor == Array && errors.length > 0) ?
+    //     errors :
+    //     [TT.t('fetch_course_fail')]
 
-      dispatch({
-        type: types.FETCH_PUBLIC_COURSE_FAIL,
-        payload: {errors: error_messages}
-      })
+    //   dispatch({
+    //     type: types.FETCH_PUBLIC_COURSE_FAIL,
+    //     payload: {errors: error_messages}
+    //   })
+    // })
+
+    //FIXME: Remove me
+    dispatch({
+      type: types.FETCH_PUBLIC_COURSE_SUCCESSFULLY,
+      payload: types.dummyCourse
     })
-
 
   }
 }
@@ -141,12 +147,21 @@ export const submitEnrollCourse = (courseId) => {
       })
     }, (errors) => {
       const error_messages = (errors && errors.constructor == Array && errors.length > 0) ?
-        errors :
-        [TT.t('submit_enroll_fail')]
+        errors : {errors: [{status_code: 1, message: TT.t('submit_enroll_fail')}]}
+      //FIXME: Comment for dummy data
+      // dispatch({
+      //   type: types.PUBLIC_COURSE_SUBMIT_ENROLL_FAILL,
+      //   payload: {errors: error_messages}
+      // })
+
+      //FIXME: Remove me
       dispatch({
         type: types.PUBLIC_COURSE_SUBMIT_ENROLL_FAILL,
-        payload: {errors: error_messages}
-      })
+        payload: {errors: [{
+          status_code: 2,
+          message: "Không đủ số dư"
+        }]}
+      })      
     })
   }
 }

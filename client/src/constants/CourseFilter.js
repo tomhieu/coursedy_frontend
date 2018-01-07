@@ -1,8 +1,13 @@
 export const FETCH_CATEGORIES_SUCCESSFULLY = "FETCH_CATEGORIES_SUCCESSFULLY"
 export const FETCH_LOCATIONS_SUCCESSFULLY = "FETCH_LOCATIONS_SUCCESSFULLY"
 export const FETCH_WEEKDAYS_SUCCESSFULLY = "FETCH_WEEKDAYS_SUCCESSFULLY"
-export const CHANGE_VIEW_TYPE = "CHANGE_VIEW_TYPE"
+export const CHANGE_DISPLAY_MODE = "CHANGE_DISPLAY_MODE"
 export const CHANGE_CURRENT_PAGE = "CHANGE_CURRENT_PAGE"
+export const CHANGE_SORT_BY = "CHANGE_SORT_BY"
+export const SELECT_COURSE = "SELECT_COURSE"
+export const SELECT_ALL_COURSES = "SELECT_ALL_COURSES"
+export const REMOVE_COURSE = "REMOVE_COURSE"
+export const REMOVE_ALL_COURSES = "REMOVE_ALL_COURSES"
 export const LOAD_SUGGESTION_COMPLETE = "LOAD_SUGGESTION_COMPLETE"
 export const ADD_FILTER_CRITERIA = "ADD_FILTER_CRITERIA"
 export const REMOVE_FILTER_CRITERIA = "REMOVE_FILTER_CRITERIA"
@@ -50,3 +55,87 @@ export const tuitionFees = [
     {id: 5000000, text: '5tr - 10tr'},
     {id: 10000000, text: 'Trên 10tr'}
 ]
+
+//FIXME: Remove me
+export const dummyCourses = [
+  {
+    id : 1,
+    category_id : 1,
+    course_days : [0, 1],
+    cover_image: "http://placehold.it/1024x768",
+    currency: "vnd",
+    description: "lorem ipsum",
+    end_time: "2017-12-30T06:30:45.784Z",
+    is_free: true,
+    is_same_period: false,
+    monday_end_time: "2017-12-30T06:55:50.063Z",
+    monday_start_time: "2017-12-30T05:30:43.794Z",
+    number_of_students: "5",
+    period: "12",
+    start_date: "2018-01-06",
+    start_time : "2017-12-30T05:00:40.454Z",
+    title: "Course 1",
+    tuesday_end_time: "2017-12-30T09:30:06.302Z",
+    tuesday_start_time: "2017-12-30T07:30:59.884Z",
+    tuition_fee: "2000000",
+    user: {
+      id: 1,
+      avatar: 'http://placehold.it/100x100',
+      first_name: 'Tin',
+      last_name: 'Huynh'
+    }
+  }, {
+    id: 1,
+    category_id : 2,
+    course_days : [0, 1],
+    cover_image: "http://placehold.it/1024x768",
+    currency: "vnd",
+    description: "lorem ipsum",
+    end_time: "2017-12-30T06:30:45.784Z",
+    is_free: true,
+    is_same_period: false,
+    monday_end_time: "2017-12-30T06:55:50.063Z",
+    monday_start_time: "2017-12-30T05:30:43.794Z",
+    number_of_students: "5",
+    period: "12",
+    start_date: "2018-01-06",
+    start_time : "2017-12-30T05:00:40.454Z",
+    title: "Course 2",
+    tuesday_end_time: "2017-12-30T09:30:06.302Z",
+    tuesday_start_time: "2017-12-30T07:30:59.884Z",
+    tuition_fee: "2000000",
+    user: {
+      id: 1,
+      avatar: 'http://placehold.it/100x100',
+      first_name: 'Tin',
+      last_name: 'Huynh'
+    }
+  }, {
+    id : 3,
+    category_id : 3,
+    course_days : [0, 1],
+    cover_image: "http://placehold.it/1024x768",
+    currency: "vnd",
+    description: "lorem ipsum",
+    end_time: "2017-12-30T06:30:45.784Z",
+    is_free: true,
+    is_same_period: false,
+    monday_end_time: "2017-12-30T06:55:50.063Z",
+    monday_start_time: "2017-12-30T05:30:43.794Z",
+    number_of_students: "5",
+    period: "12",
+    start_date: "2018-01-06",
+    start_time : "2017-12-30T05:00:40.454Z",
+    title: "Course 3",
+    tuesday_end_time: "2017-12-30T09:30:06.302Z",
+    tuesday_start_time: "2017-12-30T07:30:59.884Z",
+    tuition_fee: "2000000",
+    user: {
+      id: 1,
+      avatar: 'http://placehold.it/100x100',
+      first_name: 'Tin',
+      last_name: 'Huynh'
+    }
+  }
+];
+

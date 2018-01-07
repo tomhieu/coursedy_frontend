@@ -6,10 +6,12 @@ const CourseFilter = (state = {
   locations: {},
   weekdays: {},
   totalResult: 0,
-  viewType: 'grid',
+  displayMode: 'grid',
   pageSize: 4,
   currentPage: 1,
   selectedCourses: [],
+  sortBy: '',
+  sortOrder: 'desc',
   filters: [],
   showSuggestion: false
 }, action) => {
@@ -20,10 +22,20 @@ const CourseFilter = (state = {
       return {...state, weekdays: action.payload}
     case types.FETCH_LOCATIONS_SUCCESSFULLY:
       return {...state, locations: action.payload}
-    case types.CHANGE_VIEW_TYPE:
-      return {...state, viewType: action.payload}
+    case types.CHANGE_DISPLAY_MODE:
+      return {...state, displayMode: action.payload}
     case types.CHANGE_CURRENT_PAGE:
       return {...state, currentPage: action.payload}
+    case types.CHANGE_SORT_BY:
+      return {...state, sortBy: action.payload}
+    case types.SELECT_COURSE:
+      return {...state, selectedCourses: [...state.selectedCourses, action.payload]}
+    case types.SELECT_ALL_COURSES:
+      return {...state, selectedCourses: state.courses.map((course) => {return course.id})}
+    case types.REMOVE_COURSE:
+      return {...state, selectedCourses: state.selectedCourses.filter((courseId) => {return courseId != action.payload})}
+    case types.REMOVE_ALL_COURSES:
+      return {...state, selectedCourses: []}
     case types.LOAD_SUGGESTION_COMPLETE:
       return {...state, groupSugestions: action.payload, showSuggestion: action.payload.length > 0}
     case types.ADD_FILTER_CRITERIA:

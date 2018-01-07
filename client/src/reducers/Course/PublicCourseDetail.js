@@ -10,6 +10,7 @@ const PublicCourseDetail = (state = {
     submit_follow_fail: false,
     submit_enroll_success: false,
     submit_enroll_fail: false,
+    submit_enroll_errors: [],
 
     show_require_login_modal: false,
     show_enroll_status_modal: false,
@@ -39,7 +40,7 @@ const PublicCourseDetail = (state = {
     case courseTypes.PUBLIC_COURSE_SUBMIT_ENROLL_SUCCESSFULLY:
       return {...state, submit_enroll_success: true}
     case courseTypes.PUBLIC_COURSE_SUBMIT_ENROLL_FAILL:
-      return {...state, submit_enroll_fail: true}
+      return {...state, submit_enroll_fail: true, submit_enroll_errors: action.payload.errors}
 
 
     case courseTypes.PUBLIC_COURSE_SHOW_REQUIRE_LOGIN_MODAL:

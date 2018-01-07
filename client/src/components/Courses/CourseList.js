@@ -12,22 +12,39 @@ class CourseList extends Component {
     super(props);
   }
   render() {
-    const {deleteCourse, selectCourse} = this.props;
+    const {deleteCourse, selectCourseHdl, displayMode, selectedCourses} = this.props;
     var rows = [];
-    for (var i = 0; i < this.props.courses.length; i++) {
-      if (i % 4 == 0) {
+    if (displayMode == 'grid') {
+      for (var i = 0; i < this.props.courses.length; i++) {
+        if (i % 4 == 0) {
+          rows.push(
+            <div className="clearfix" key={'course-separator-'+i}></div>
+          )
+        }
         rows.push(
-          <div className="clearfix" key={'course-separator-'+i}></div>
+          <div className="col-xs-12 col-sm-6 col-md-3" key={'course-' +i}>
+            <CourseItem item={this.props.courses[i]} 
+              deleteCourse={deleteCourse}
+              selectCourseHdl={selectCourseHdl.bind(this)}
+              displayMode={displayMode}
+              selectedCourses={selectedCourses}
+            />
+          </div>
         )
       }
-      rows.push(
-        <div className="col-xs-12 col-sm-6 col-md-3" key={'course-' +i}>
-          <CourseItem item={this.props.courses[i]} 
-            deleteCourse={deleteCourse}
-            selectCourse={selectCourse}
-          />
-        </div>
-      )
+    } else if (displayMode == 'list') {
+      for (var i = 0; i < this.props.courses.length; i++) {
+        rows.push(
+          <div className="col-xs-12 col-sm-12 col-md-12" key={'course-' +i}>
+            <CourseItem item={this.props.courses[i]} 
+              deleteCourse={deleteCourse}
+              selectCourseHdl={selectCourseHdl.bind(this)}
+              displayMode={displayMode}
+              selectedCourses={selectedCourses}
+            />
+          </div>
+        )
+      }
     }
     return (
         <div className={styles.courseListContainer + " row"}>

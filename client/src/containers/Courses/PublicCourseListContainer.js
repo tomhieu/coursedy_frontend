@@ -20,6 +20,9 @@ class PublicCourseListContainer extends Component {
     query['end_time'] = this.props.endTime
     query['per_page'] = this.props.pageSize
     query['current_page'] = this.props.currentPage
+
+    query['sort_by'] = this.props.sortBy
+    query['sort_order'] = this.props.sortOrder
     this.props.dispatch(Actions.searchCourse(query))
   }
 
@@ -37,18 +40,24 @@ class PublicCourseListContainer extends Component {
     query['end_time'] = this.props.endTime
     query['per_page'] = this.props.pageSize
     query['current_page'] = currentPage
+
+    query['sort_by'] = this.props.sortBy
+    query['sort_order'] = this.props.sortOrder
     this.props.dispatch(Actions.searchCourse(query))
   }
 
-  selectCourse(courseId) {
-    console.log("DEBUG selectCourse")
-    console.log(courseId)
+  selectCourseHdl(courseId) {
+    if (!this.props.selectedCourses.includes(courseId)) {
+      this.props.dispatch(Actions.selectCourse(courseId))
+    } else {
+      this.props.dispatch(Actions.removeCourse(courseId))
+    }
   }
 
   render() {
     return (
       <div className="public-course-list">
-        <CourseList {...this.props} selectCourse={this.selectCourse}/>
+        <CourseList {...this.props} selectCourseHdl={this.selectCourseHdl.bind(this)}/>
         <div className="clear-fix"></div>
         <Pagination
           activePage={this.props.currentPage}
@@ -83,6 +92,10 @@ const mapStateToProps = (state) => ({
   currentPage: state.CourseFilter.currentPage,
   pageSize: state.CourseFilter.pageSize,
   totalResult: state.CourseFilter.totalResult,
+  displayMode: state.CourseFilter.displayMode,
+  selectedCourses: state.CourseFilter.selectedCourses,
+  sortBy: state.CourseFilter.sortBy,
+  sortOrder: state.CourseFilter.sortOrder
 });
 
 export default connect(

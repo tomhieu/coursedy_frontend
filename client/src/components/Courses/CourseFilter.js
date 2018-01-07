@@ -107,7 +107,7 @@ class CourseFilter extends Component {
       selectedCategories,
       weekdays,
       totalResult,
-      changeViewTypeHdl,
+      changeDisplayModeHdl,
       groupSugestions,
       loadSuggestions,
       onRemoveFilter,
@@ -263,10 +263,10 @@ class CourseFilter extends Component {
                   <div className={styles.displayModeBtn}>
                     <div className="d-flex flex-horizontal">
                       <EFlatButton secondary={true}
-                                   onClick={changeViewTypeHdl.bind(this, "grid")}
+                                   onClick={changeDisplayModeHdl.bind(this, "grid")}
                                    icon={<ActionViewModule style={internalStyles.defaultColorStyle}/>}/>
                       <EFlatButton secondary={true}
-                                   onClick={changeViewTypeHdl.bind(this, "list")}
+                                   onClick={changeDisplayModeHdl.bind(this, "list")}
                                    icon={<ActionViewList style={internalStyles.defaultColorStyle}/>}/>
                     </div>
                   </div>

@@ -17,12 +17,20 @@ class CourseFilterContainer extends Component {
     this.props.dispatch(Actions.searchCourse(query))
   }
 
-  changeViewType(type) {
-    this.props.dispatch(Actions.changeViewType(type))
+  changeDisplayMode(mode) {
+    this.props.dispatch(Actions.changeDisplayMode(mode))
   }
 
   changeCurrentPage(page) {
     this.props.dispatch(Actions.changeCurrentPage(page))
+  }
+
+  selectAllCourses(isTrue) {
+    if (isTrue) {
+      this.props.dispatch(Actions.removeAllCourses())
+    } else {
+      this.props.dispatch(Actions.selectAllCourses())
+    }
   }
 
   loadSuggestions(event) {
@@ -41,8 +49,9 @@ class CourseFilterContainer extends Component {
     return (
       <CourseFilter {...this.props} 
         onSubmit={this.searchCourse.bind(this)}
-        changeViewTypeHdl={this.changeViewType}
+        changeDisplayModeHdl={this.changeDisplayMode}
         changeCurrentPageHdl={this.changeCurrentPage}
+        selectAllCoursesHdl={this.selectAllCourses}
         loadSuggestions={this.loadSuggestions.bind(this)}
         onSelectFilter={this.doSelectFilter.bind(this)}
         onRemoveFilter={this.doRemoveFilter.bind(this)}
@@ -69,13 +78,13 @@ const getSelectedCategories = (categories, selectedCategoryIds) => {
 const mapStateToProps = (state) => {
     const {CourseFilter, form = {}} = state;
     const categories = state.Categories.data || []
-    const { locations = {}, weekdays = {}, totalResult = 0, groupSugestions = [], filters, showSuggestion} = CourseFilter;
+    const {courses = [], selectedCourses = [], locations = {}, weekdays = {}, totalResult = 0, groupSugestions = [], filters, showSuggestion} = CourseFilter;
     const {courseFilterForm = {}} = form;
     if (!courseFilterForm.values) {
-        return {categories, locations, weekdays, totalResult, selectedCategories : [], groupSugestions: [], filters, showSuggestion};
+        return {categories, courses, selectedCourses, locations, weekdays, totalResult, selectedCategories : [], groupSugestions: [], filters, showSuggestion};
     } else {
         const {filter_category_ids, filter_location_ids, course_schedule_day = []} = courseFilterForm.values;
-        return {categories, locations, weekdays, totalResult, filters, showSuggestion,
+        return {categories, courses, selectedCourses, locations, weekdays, totalResult, filters, showSuggestion,
           filter_category_ids, filter_location_ids, course_schedule_day,
           selectedCategories : getSelectedCategories(categories, filter_category_ids),
           groupSugestions: groupSugestions
@@ -88,5 +97,5 @@ export default connect(
   mapStateToProps
 )(reduxForm({
     form: 'courseFilterForm',
-    fields: ['key_word', 'filter_category_ids', 'filter_location_ids', 'filter_course_levels', 'course_schedule_day', 'fees', 'start_time', 'end_time', 'order_by', 'display_mode']
+    fields: ['key_word', 'filter_category_ids', 'filter_location_ids', 'filter_course_levels', 'course_schedule_day', 'fees', 'start_time', 'end_time', 'sort_by', 'display_mode']
 })(CourseFilterContainer))

@@ -43,20 +43,27 @@ export const fetchWeekdays = () => {
 
 export const searchCourse = (query) => {
   return dispatch => {
-    Network().get('courses', query).then((response) => {
-      dispatch({
-        type: courseActionTypes.FETCH_COURSES_SUCCESS,
-        payload: response
-      })
+    //FIXME: Comment for dummy data
+    // Network().get('courses', query).then((response) => {
+    //   dispatch({
+    //     type: courseActionTypes.FETCH_COURSES_SUCCESS,
+    //     payload: response
+    //   })
+    // })
+
+    //FIXME: Remove me
+    dispatch({
+      type: courseActionTypes.FETCH_COURSES_SUCCESS,
+      payload: types.dummyCourses
     })
   }
 }
 
-export const changeViewType = (type) => {
+export const changeDisplayMode = (mode) => {
   return dispatch => {
     dispatch({
-      type: types.CHANGE_VIEW_TYPE,
-      payload: type
+      type: types.CHANGE_DISPLAY_MODE,
+      payload: mode
     })
   }
 }
@@ -163,6 +170,47 @@ export const addFilterSuggestion = (filter) => {
   }
 }
 
+
+export const changeSortBy = (sortBy) => {
+  return dispatch => {
+    dispatch({
+      type: types.CHANGE_SORT_BY,
+      payload: sortBy
+    })
+  }
+}
+
+
+export const selectCourse = (courseId) => {
+  return dispatch => {
+    dispatch({
+      type: types.SELECT_COURSE,
+      payload: courseId
+    })
+  }
+}
+export const selectAllCourses = () => {
+  return dispatch => {
+    dispatch({
+      type: types.SELECT_ALL_COURSES,
+    })
+  }
+}
+export const removeCourse = (courseId) => {
+  return dispatch => {
+    dispatch({
+      type: types.REMOVE_COURSE,
+      payload: courseId
+    })
+  }
+}
+export const removeAllCourses = () => {
+  return dispatch => {
+    dispatch({
+      type: types.REMOVE_ALL_COURSES,
+    })
+  }
+}
 export const removeFilterSuggestion = (filterId) => {
   return dispatch => {
     dispatch({
