@@ -7,6 +7,10 @@ class DateUtils {
         const formatedDate = locale === 'vn' ? l10nVN.format(new Date(dateValue)) : l10nEN.format(new Date(dateValue));
         return formatedDate;
     }
+
+    static getHourFromDate(dateValue) {
+        return !dateValue ? null : moment(dateValue).format('HH:mm:ss')
+    }
 }
 
 export default DateUtils;

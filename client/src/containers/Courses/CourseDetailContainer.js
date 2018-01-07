@@ -7,6 +7,7 @@ import {connect} from "react-redux";
 import {reduxForm} from "redux-form";
 import {validate} from "../../validations/CourseFormValidation"
 import LoadingMask from "../../components/LoadingMask/LoadingMask";
+import DateUtils from "utils/DateUtils";
 
 class CourseDetailContainer extends Component {
   constructor(props) {
@@ -24,17 +25,27 @@ class CourseDetailContainer extends Component {
     const {courseId} = this.props;
     if (!courseId) {
       this.props.dispatch(CourseActions.createCourse(title, description, start_date, period,
-        number_of_students, tuition_fee, currency, is_free, course_days, is_same_period, start_time, end_time,
-        monday_start_time, monday_end_time, tuesday_start_time, tuesday_end_time,
-        wednesday_start_time, wednesday_end_time, thursday_start_time, thursday_end_time,
-        friday_start_time, friday_end_time, saturday_start_time, saturday_end_time, sunday_start_time, sunday_end_time,
+        number_of_students, tuition_fee, currency, is_free, course_days, is_same_period,
+        DateUtils.getHourFromDate(start_time), DateUtils.getHourFromDate(end_time),
+        DateUtils.getHourFromDate(monday_start_time), DateUtils.getHourFromDate(monday_end_time),
+        DateUtils.getHourFromDate(tuesday_start_time), DateUtils.getHourFromDate(tuesday_end_time),
+        DateUtils.getHourFromDate(wednesday_start_time), DateUtils.getHourFromDate(wednesday_end_time),
+        DateUtils.getHourFromDate(thursday_start_time), DateUtils.getHourFromDate(thursday_end_time),
+        DateUtils.getHourFromDate(friday_start_time), DateUtils.getHourFromDate(friday_end_time),
+        DateUtils.getHourFromDate(saturday_start_time), DateUtils.getHourFromDate(saturday_end_time),
+        DateUtils.getHourFromDate(sunday_start_time), DateUtils.getHourFromDate(sunday_end_time),
         category_id, course_specialize, this.coverImage));
     } else {
       this.props.dispatch(CourseActions.updateCourse(courseId, title, description, start_date, period,
-        number_of_students, tuition_fee, currency, is_free, course_days, is_same_period, start_time, end_time,
-        monday_start_time, monday_end_time, tuesday_start_time, tuesday_end_time,
-        wednesday_start_time, wednesday_end_time, thursday_start_time, thursday_end_time,
-        friday_start_time, friday_end_time, saturday_start_time, saturday_end_time, sunday_start_time, sunday_end_time,
+        number_of_students, tuition_fee, currency, is_free, course_days, is_same_period,
+        DateUtils.getHourFromDate(start_time), DateUtils.getHourFromDate(end_time),
+        DateUtils.getHourFromDate(monday_start_time), DateUtils.getHourFromDate(monday_end_time),
+        DateUtils.getHourFromDate(tuesday_start_time), DateUtils.getHourFromDate(tuesday_end_time),
+        DateUtils.getHourFromDate(wednesday_start_time), DateUtils.getHourFromDate(wednesday_end_time),
+        DateUtils.getHourFromDate(thursday_start_time), DateUtils.getHourFromDate(thursday_end_time),
+        DateUtils.getHourFromDate(friday_start_time), DateUtils.getHourFromDate(friday_end_time),
+        DateUtils.getHourFromDate(saturday_start_time), DateUtils.getHourFromDate(saturday_end_time),
+        DateUtils.getHourFromDate(sunday_start_time), DateUtils.getHourFromDate(sunday_end_time),
         cover_image, category_id, course_specialize, this.coverImage));
     }
   }
