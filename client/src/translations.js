@@ -31,7 +31,7 @@ export const translations = {
     "phone_number": "Số Điện Thoại",
     "forgot_password": "Quên Mật Khẩu?",
     "registration_email_require": "Vui lòng nhập email",
-    "invalid_email": "Email không hợp ",
+    "invalid_email": "Email không hợp lệ",
     "password_required": "Vui lòng nhập mật khẩu",
     "password_confirmation_required": "Vui lòng xác  mật khẩu",
     "invalid_password": "Mật khẩu quá ngắn (ít nhất 8 ký tự)",
@@ -209,6 +209,7 @@ export const translations = {
     "course_comments": "Phản hồi",
 
     "course_follow": "Theo dõi khóa học",
+    "course_follow_status": "Kết quả theo dõi khóa học",
     "course_follow_submit_success": "Gửi email theo dõi thành công",
     "course_follow_submit_fail": "Gửi email theo dõi thất bại",
 

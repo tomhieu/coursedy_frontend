@@ -74,21 +74,60 @@ export const fetchPublicCourseTutor = (tutorId) => {
   }
 }
 
-export const showPublishCourseFollowModal = () => {
+export const showPublicCourseFollowModal = (page = 'detail') => {
   return dispatch => {
-    dispatch({
-      type: types.PUBLIC_COURSE_SHOW_FOLLOW_MODAL,
-    })
+    if (page == 'list') {
+      dispatch({
+        type: types.PUBLIC_COURSE_LIST_SHOW_FOLLOW_MODAL,
+      })  
+    } else if (page == 'detail')
+      dispatch({
+        type: types.PUBLIC_COURSE_DETAIL_SHOW_FOLLOW_MODAL,
+      })  
   }
 }
-export const closePublishCourseFollowModal = () => {
+export const closePublicCourseFollowModal = (page = 'detail') => {
   return dispatch => {
-    dispatch({
-      type: types.PUBLIC_COURSE_CLOSE_FOLLOW_MODAL,
-    })
+    if (page == 'list') {
+      dispatch({
+        type: types.PUBLIC_COURSE_LIST_CLOSE_FOLLOW_MODAL,
+      })  
+    } else if (page == 'detail') {
+      dispatch({
+        type: types.PUBLIC_COURSE_DETAIL_CLOSE_FOLLOW_MODAL,
+      })
+    }
+    
   }
 }
-
+export const showPublicCourseFollowStatusModal = (page = 'detail') => {
+  return dispatch => {
+    if (page == 'list') {
+      dispatch({
+        type: types.PUBLIC_COURSE_LIST_SHOW_FOLLOW_STATUS_MODAL,
+      })  
+    } else if (page == 'detail') {
+      dispatch({
+        type: types.PUBLIC_COURSE_DETAIL_SHOW_FOLLOW_STATUS_MODAL,
+      })
+    }
+    
+  }
+}
+export const closePublicCourseFollowStatusModal = (page = 'detail') => {
+  return dispatch => {
+    if (page == 'list') {
+      dispatch({
+        type: types.PUBLIC_COURSE_LIST_CLOSE_FOLLOW_STATUS_MODAL,
+      })  
+    } else if (page == 'detail') {
+      dispatch({
+        type: types.PUBLIC_COURSE_DETAIL_CLOSE_FOLLOW_STATUS_MODAL,
+      })
+    }
+    
+  }
+}
 export const showPublishRequireLoginModal = () => {
   return dispatch => {
     dispatch({
@@ -118,22 +157,40 @@ export const closePublishEnrollStatusModal = () => {
     })
   }
 }
-export const submitFollowEmail = (courseId, email = '') => {
-  const params = email == '' ? {} : {email: email}
+export const submitFollowEmail = (courses = [], email = '', page = 'detail') => {
+  const params = {
+    courses: courses,
+    email: email
+  }
   return dispatch => {
-    Network().post('courses/'+courseId+'/follow', params).then((response) => {
-      dispatch({
-        type: types.PUBLIC_COURSE_SUBMIT_FOLLOW_SUCCESSFULLY,
-        payload: response
-      })
+    Network().post('courses/follow', params).then((response) => {
+      if (page == 'list') {
+        dispatch({
+          type: types.PUBLIC_COURSE_LIST_SUBMIT_FOLLOW_SUCCESSFULLY,
+          payload: response
+        })  
+      } else if (page == 'detail') {
+        dispatch({
+          type: types.PUBLIC_COURSE_DETAIL_SUBMIT_FOLLOW_SUCCESSFULLY,
+          payload: response
+        })
+      }
     }, (errors) => {
       const error_messages = (errors && errors.constructor == Array && errors.length > 0) ?
         errors :
         [TT.t('submit_follow_fail')]
-      dispatch({
-        type: types.PUBLIC_COURSE_SUBMIT_FOLLOW_FAILL,
-        payload: {errors: error_messages}
-      })
+      if (page == 'list') {
+        dispatch({
+          type: types.PUBLIC_COURSE_LIST_SUBMIT_FOLLOW_FAILL,
+          payload: {errors: error_messages}
+        })  
+      } else if (page == 'detail') {
+        dispatch({
+          type: types.PUBLIC_COURSE_DETAIL_SUBMIT_FOLLOW_FAILL,
+          payload: {errors: error_messages}
+        })
+      }
+      
     })
   }
 }
