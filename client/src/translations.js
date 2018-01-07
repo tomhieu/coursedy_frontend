@@ -207,14 +207,19 @@ export const translations = {
     "tutor_info": "Thông tin giáo viên",
     "course_subscribe": "Đăng ký",
     "course_comments": "Phản hồi",
+
     "course_follow": "Theo dõi khóa học",
     "course_follow_submit_success": "Gửi email theo dõi thành công",
     "course_follow_submit_fail": "Gửi email theo dõi thất bại",
+
     "course_enroll_require_login": "Yêu cầu đăng nhập",
     "course_enroll_require_login_message": "Bạn cần đăng nhập để đăng ký khóa học",
+
     "course_enroll_status": "Kết quả đăng ký",
     "course_enroll_success": "Đăng ký khóa học thành công",
     "course_enroll_fail": "Đăng ký khóa học thất bại",
+
+    "course_enroll_deposit_more": "Nạp thêm",
     /* search teachers page */
     "search_teachers_keyword": "Tìm kiếm theo tên, lĩnh vực",
     "search_teachers_field_label": "Lĩnh Vực:",
