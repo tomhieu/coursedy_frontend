@@ -37,8 +37,8 @@ class CourseFilterContainer extends Component {
     this.props.dispatch(Actions.loadSuggestions(event.target.value))
   }
 
-  doSelectFilter(filter) {
-    this.props.dispatch(Actions.addFilterSuggestion(filter))
+  doSelectFilter(filter, category) {
+    this.props.dispatch(Actions.addFilterSuggestion(filter, category))
   }
 
   doRemoveFilter(filterId) {
@@ -78,10 +78,10 @@ const getSelectedCategories = (categories, selectedCategoryIds) => {
 const mapStateToProps = (state) => {
     const {CourseFilter, form = {}} = state;
     const categories = state.Categories.data || []
-    const {courses = [], selectedCourses = [], locations = {}, weekdays = {}, totalResult = 0, groupSugestions = [], filters, showSuggestion} = CourseFilter;
+    const { courses = [], selectedCourses = [], locations, weekdays, totalResult = 0, groupSugestions, filters, showSuggestion} = CourseFilter;
     const {courseFilterForm = {}} = form;
     if (!courseFilterForm.values) {
-        return {categories, courses, selectedCourses, locations, weekdays, totalResult, selectedCategories : [], groupSugestions: [], filters, showSuggestion};
+        return {categories, courses, selectedCourses, locations, weekdays, totalResult, selectedCategories : [], groupSugestions, filters, showSuggestion};
     } else {
         const {filter_category_ids, filter_location_ids, course_schedule_day = []} = courseFilterForm.values;
         return {categories, courses, selectedCourses, locations, weekdays, totalResult, filters, showSuggestion,

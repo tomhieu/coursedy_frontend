@@ -161,11 +161,11 @@ export const loadSuggestions = (term) => {
   }
 }
 
-export const addFilterSuggestion = (filter) => {
+export const addFilterSuggestion = (filter, category) => {
   return dispatch => {
     dispatch({
       type: types.ADD_FILTER_CRITERIA,
-      data: filter
+      data: {type: category, value: filter}
     })
   }
 }

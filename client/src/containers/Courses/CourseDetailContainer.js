@@ -16,37 +16,26 @@ class CourseDetailContainer extends Component {
     this.coverImage = this.props.cover_image;
   }
 
-  createCourse({title, description, start_date, period,
-                 number_of_students, tuition_fee, currency, is_free, course_days, is_same_period, start_time, end_time,
-                 monday_start_time, monday_end_time, tuesday_start_time, tuesday_end_time,
-                 wednesday_start_time, wednesday_end_time, thursday_start_time, thursday_end_time,
-                 friday_start_time, friday_end_time, saturday_start_time, saturday_end_time, sunday_start_time, sunday_end_time,
-                 cover_image, category_id, course_specialize}) {
+  createCourse(course) {
     const {courseId} = this.props;
+    const teaching_dates = {};
+    course.course_days.forEach((day) => Object.defineProperty(teaching_dates, day, {
+      value: {
+        start_time: !course.is_same_period ? DateUtils.getHourFromDate(Object.getOwnPropertyDescriptor(course, day + '_start_time').value) :
+          DateUtils.getHourFromDate(Object.getOwnPropertyDescriptor(course, 'start_time').value),
+        end_time: !course.is_same_period ? DateUtils.getHourFromDate(Object.getOwnPropertyDescriptor(course, day + '_end_time').value) :
+          DateUtils.getHourFromDate(Object.getOwnPropertyDescriptor(course, 'end_time').value)
+      },
+      writable: false
+    }))
     if (!courseId) {
-      this.props.dispatch(CourseActions.createCourse(title, description, start_date, period,
-        number_of_students, tuition_fee, currency, is_free, course_days, is_same_period,
-        DateUtils.getHourFromDate(start_time), DateUtils.getHourFromDate(end_time),
-        DateUtils.getHourFromDate(monday_start_time), DateUtils.getHourFromDate(monday_end_time),
-        DateUtils.getHourFromDate(tuesday_start_time), DateUtils.getHourFromDate(tuesday_end_time),
-        DateUtils.getHourFromDate(wednesday_start_time), DateUtils.getHourFromDate(wednesday_end_time),
-        DateUtils.getHourFromDate(thursday_start_time), DateUtils.getHourFromDate(thursday_end_time),
-        DateUtils.getHourFromDate(friday_start_time), DateUtils.getHourFromDate(friday_end_time),
-        DateUtils.getHourFromDate(saturday_start_time), DateUtils.getHourFromDate(saturday_end_time),
-        DateUtils.getHourFromDate(sunday_start_time), DateUtils.getHourFromDate(sunday_end_time),
-        category_id, course_specialize, this.coverImage));
+      this.props.dispatch(CourseActions.createCourse(course.title, course.description, course.start_date, course.period,
+        course.number_of_students, course.tuition_fee, course.currency, course.is_free, teaching_dates, course.is_same_period,
+        course.category_id, course.course_specialize, this.coverImage));
     } else {
-      this.props.dispatch(CourseActions.updateCourse(courseId, title, description, start_date, period,
-        number_of_students, tuition_fee, currency, is_free, course_days, is_same_period,
-        DateUtils.getHourFromDate(start_time), DateUtils.getHourFromDate(end_time),
-        DateUtils.getHourFromDate(monday_start_time), DateUtils.getHourFromDate(monday_end_time),
-        DateUtils.getHourFromDate(tuesday_start_time), DateUtils.getHourFromDate(tuesday_end_time),
-        DateUtils.getHourFromDate(wednesday_start_time), DateUtils.getHourFromDate(wednesday_end_time),
-        DateUtils.getHourFromDate(thursday_start_time), DateUtils.getHourFromDate(thursday_end_time),
-        DateUtils.getHourFromDate(friday_start_time), DateUtils.getHourFromDate(friday_end_time),
-        DateUtils.getHourFromDate(saturday_start_time), DateUtils.getHourFromDate(saturday_end_time),
-        DateUtils.getHourFromDate(sunday_start_time), DateUtils.getHourFromDate(sunday_end_time),
-        cover_image, category_id, course_specialize, this.coverImage));
+      this.props.dispatch(CourseActions.updateCourse(courseId, course.title, course.description, course.start_date, course.period,
+        course.number_of_students, course.tuition_fee, course.currency, course.is_free, teaching_dates, course.is_same_period,
+        course.cover_image, course.category_id, course.course_specialize, this.coverImage));
     }
   }
 

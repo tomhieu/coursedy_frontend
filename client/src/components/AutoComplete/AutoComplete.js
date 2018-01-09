@@ -1,11 +1,9 @@
-import {Component} from "react";
 import * as React from "react";
-import {mStyles} from "utils/CustomStylesUtil";
+import {Component} from "react";
 import cssModules from 'react-css-modules';
 import styles from './AutoComplete.module.scss';
 import {renderField} from "../Core/CustomComponents";
 import Field from "redux-form/es/Field";
-import {Chip} from "material-ui";
 
 class AutoComplete extends Component {
 
@@ -47,18 +45,6 @@ class AutoComplete extends Component {
     return (
       <div className={styles.filterBox + " d-flex flex-vertical"}>
         <div className="d-flex flex-horizontal">
-          <div className="d-flex flex-horizontal">
-            {
-              filters.map((f) =>
-                <Chip key={"filter_" + f.id}
-                      onRequestDelete={() => handleRequestDeleteChip(f.id)}
-                      style={mStyles.chip}
-                      labelStyle={mStyles.chipLabelStyle}
-                      deleteIconStyle={mStyles.chipIconDelete}
-                >{f.text}</Chip>
-              )
-            }
-          </div>
           <div className="input-without-border">
             <Field name={fieldName} placeholder={placeholder} onBlur={this.onBlur.bind(this)} onFocus={this.onFocus.bind(this)} onChange={loadSuggestions} component={renderField}/>
           </div>
@@ -91,7 +77,6 @@ AutoComplete.propTypes = {
   fieldId: React.PropTypes.string.isRequired,
   dataSource: React.PropTypes.array.isRequired,
   loadSuggestions: React.PropTypes.func.isRequired,
-  handleRequestDeleteChip: React.PropTypes.func.isRequired
 };
 
 export default cssModules(AutoComplete, styles);
