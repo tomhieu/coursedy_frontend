@@ -18,23 +18,26 @@ class CourseDetailContainer extends Component {
 
   createCourse(course) {
     const {courseId} = this.props;
-    const teaching_dates = {};
-    course.course_days.forEach((day) => Object.defineProperty(teaching_dates, day, {
-      value: {
-        start_time: !course.is_same_period ? DateUtils.getHourFromDate(Object.getOwnPropertyDescriptor(course, day + '_start_time').value) :
+    const week_day_schedules = [];
+    course.course_days.forEach((day) => {
+      const name_day = day.split("_")[0]
+      const id_day = day.split("_")[1]
+      week_day_schedules.push({
+        day: id_day,
+        start_time: !course.is_same_period ? DateUtils.getHourFromDate(Object.getOwnPropertyDescriptor(course, name_day + '_start_time').value) :
           DateUtils.getHourFromDate(Object.getOwnPropertyDescriptor(course, 'start_time').value),
-        end_time: !course.is_same_period ? DateUtils.getHourFromDate(Object.getOwnPropertyDescriptor(course, day + '_end_time').value) :
+        end_time: !course.is_same_period ? DateUtils.getHourFromDate(Object.getOwnPropertyDescriptor(course, name_day + '_end_time').value) :
           DateUtils.getHourFromDate(Object.getOwnPropertyDescriptor(course, 'end_time').value)
-      },
-      writable: false
-    }))
+      })
+    })
+
     if (!courseId) {
       this.props.dispatch(CourseActions.createCourse(course.title, course.description, course.start_date, course.period,
-        course.number_of_students, course.tuition_fee, course.currency, course.is_free, teaching_dates, course.is_same_period,
+        course.number_of_students, course.tuition_fee, course.currency, course.is_free, week_day_schedules, course.is_same_period,
         course.category_id, course.course_specialize, this.coverImage));
     } else {
       this.props.dispatch(CourseActions.updateCourse(courseId, course.title, course.description, course.start_date, course.period,
-        course.number_of_students, course.tuition_fee, course.currency, course.is_free, teaching_dates, course.is_same_period,
+        course.number_of_students, course.tuition_fee, course.currency, course.is_free, week_day_schedules, course.is_same_period,
         course.cover_image, course.category_id, course.course_specialize, this.coverImage));
     }
   }
@@ -92,7 +95,7 @@ const mapStateToProps = (state) => {
 
   const course_levels = course_specializes.length > 0 ? getCourseLevels(course_specializes, courseData.specialize_id) : []
 
-  const selectedDays = courseCreationForm && courseCreationForm.values.course_days ? DAYS_IN_WEEK.filter((day) => courseCreationForm.values.course_days.indexOf(day.name) >= 0) : []
+  const selectedDays = courseCreationForm && courseCreationForm.values.course_days ? DAYS_IN_WEEK.filter((day) => courseCreationForm.values.course_days.indexOf(day.name + "_" + day.id) >= 0) : []
   const isSamePeriod = courseCreationForm && courseCreationForm.values.is_same_period != undefined ? courseCreationForm.values.is_same_period : true
   const isFree = courseCreationForm && courseCreationForm.values.is_free ? courseCreationForm.values.is_free : false
 

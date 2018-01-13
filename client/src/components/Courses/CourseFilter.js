@@ -173,7 +173,7 @@ class CourseFilter extends Component {
             <br/>
 
             <div className="col-md-12 col-sm-12">
-              <div className="row">
+              <div className="row ml-15">
                 <div className="col-md-2 col-sm-2">
                   <FilterOption label={this.context.t('day_of_week')}
                                 options={Object.keys(weekdays).map((e) => {

@@ -10,8 +10,17 @@ class SectionDetailContainer extends Component {
         const {handleSubmit, section} = this.props;
         return (
             <form onSubmit={handleSubmit(this.props.onSubmit)} className='inline-form' multiple={true}>
-                <InlineEditFormField activated={this.props.activatedField === "sectionTitleId_" + section.id} formGroupId={"sectionTitleId_" + section.id} showLabel={false} formLabel={this.context.t("section_title")} placeholder={this.context.t("section_title")}
-                                     content={section.title} isMandatoryField={true} formControlName="title" typeField="custom_input" {...this.props}></InlineEditFormField>
+                <InlineEditFormField activated={this.props.activatedField === "sectionTitleId_" + section.id}
+                                     formGroupId={"sectionTitleId_" + section.id}
+                                     showLabel={false}
+                                     formLabel={this.context.t("section_title")}
+                                     placeholder={this.context.t("section_title")}
+                                     content={section.title}
+                                     isMandatoryField={true}
+                                     formControlName="title"
+                                     typeField="custom_input"
+                                     {...this.props}>
+                </InlineEditFormField>
             </form>
         )
     }

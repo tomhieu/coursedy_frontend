@@ -24,13 +24,13 @@ export const CREATE_UPDATE_SECTION_SUCESSFULLY = 'CREATE_UPDATE_SECTION_SUCESSFU
  * List days of week
  */
 export const DAYS_IN_WEEK = [
-  {id: 1, text: TT.t('monday'), name: 'monday'},
-  {id: 2, text: TT.t('tuesday'), name: 'tuesday'},
-  {id: 3, text: TT.t('wednesday'), name: 'wednesday'},
-  {id: 4, text: TT.t('thursday'), name: 'thursday'},
-  {id: 5, text: TT.t('friday'), name: 'friday'},
-  {id: 6, text: TT.t('saturday'), name: 'saturday'},
-  {id: 7, text: TT.t('sunday'), name: 'sunday'}
+  {id: 0, text: TT.t('monday'), name: 'monday'},
+  {id: 1, text: TT.t('tuesday'), name: 'tuesday'},
+  {id: 2, text: TT.t('wednesday'), name: 'wednesday'},
+  {id: 3, text: TT.t('thursday'), name: 'thursday'},
+  {id: 4, text: TT.t('friday'), name: 'friday'},
+  {id: 5, text: TT.t('saturday'), name: 'saturday'},
+  {id: 6, text: TT.t('sunday'), name: 'sunday'}
 ]
 
 /**
@@ -50,20 +50,12 @@ export const DAYS_IN_WEEK = [
  * @returns {function(*)}
  */
 
-export const createCourse = (title, description, start_date, period,
-                             number_of_students, tuition_fee, currency, is_free, course_days, is_same_period, start_time, end_time,
-                             monday_start_time, monday_end_time, tuesday_start_time, tuesday_end_time,
-                             wednesday_start_time, wednesday_end_time, thursday_start_time, thursday_end_time,
-                             friday_start_time, friday_end_time, saturday_start_time, saturday_end_time, sunday_start_time,
-                             sunday_end_time, category_id, course_specialize, cover_image) => {
+export const createCourse = (title, description, start_date, period, number_of_students, tuition_fee, currency,
+                             is_free, week_day_schedules, is_same_period, category_id, course_specialize, cover_image) => {
   return dispatch => {
     let body = {
-      title, description, start_date, period,
-      number_of_students, tuition_fee, currency, is_free, course_days, is_same_period, start_time, end_time,
-      monday_start_time, monday_end_time, tuesday_start_time, tuesday_end_time,
-      wednesday_start_time, wednesday_end_time, thursday_start_time, thursday_end_time,
-      friday_start_time, friday_end_time, saturday_start_time, saturday_end_time, sunday_start_time, sunday_end_time, category_id, course_specialize,
-      cover_image
+      title, description, start_date, period, number_of_students, tuition_fee, currency, is_free, week_day_schedules,
+      is_same_period, category_id, course_specialize, cover_image
     };
     Network().post('courses', body).then((response) => {
       dispatch({
@@ -80,18 +72,12 @@ export const createCourse = (title, description, start_date, period,
 };
 
 export const updateCourse = (id, title, description, start_date, period,
-                             number_of_students, tuition_fee, currency, is_free, course_days, is_same_period, start_time, end_time,
-                             monday_start_time, monday_end_time, tuesday_start_time, tuesday_end_time,
-                             wednesday_start_time, wednesday_end_time, thursday_start_time, thursday_end_time,
-                             friday_start_time, friday_end_time, saturday_start_time, saturday_end_time, sunday_start_time, sunday_end_time,
+                             number_of_students, tuition_fee, currency, is_free, week_day_schedules, is_same_period,
                              category_id, course_specialize, cover_image) => {
   return dispatch => {
     let body = {
       id, title, description, start_date, period,
-      number_of_students, tuition_fee, currency, is_free, course_days, is_same_period, start_time, end_time,
-      monday_start_time, monday_end_time, tuesday_start_time, tuesday_end_time,
-      wednesday_start_time, wednesday_end_time, thursday_start_time, thursday_end_time,
-      friday_start_time, friday_end_time, saturday_start_time, saturday_end_time, sunday_start_time, sunday_end_time,
+      number_of_students, tuition_fee, currency, is_free, week_day_schedules, is_same_period,
       cover_image, category_id, course_specialize
     };
     Network().update('courses/' + id, body).then((response) => {

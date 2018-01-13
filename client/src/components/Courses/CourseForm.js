@@ -16,18 +16,32 @@ class CourseForm extends Component {
   renderField(editMode, fieldId, showLabel, fieldLabel, placeholder, isMandatory, fieldName, typeField, disabled,
               content = "", options, displayStyle = "default-field", styleCustomField) {
     return editMode ? (
-      <InlineEditFormField activated={this.props.activatedField === fieldId} formGroupId={fieldId} showLabel={showLabel}
-                           formLabel={fieldLabel} content={content} displayStyle={displayStyle} options={options}
-                           placeholder={placeholder} isMandatoryField={isMandatory} customClassName={styleCustomField}
-                           formControlName={fieldName} typeField={typeField}
-                           onActivatedField={this.props.onActivatedField} {...this.props}
-
-      ></InlineEditFormField>
+      <InlineEditFormField activated={this.props.activatedField === fieldId}
+                           formGroupId={fieldId}
+                           showLabel={showLabel}
+                           formLabel={fieldLabel}
+                           content={content}
+                           displayStyle={displayStyle}
+                           options={options}
+                           placeholder={placeholder}
+                           isMandatoryField={isMandatory}
+                           customClassName={styleCustomField}
+                           formControlName={fieldName}
+                           typeField={typeField}
+                           onActivatedField={this.props.onActivatedField}
+                           {...this.props}>
+      </InlineEditFormField>
     ) : (
-      <FormField formGroupId={fieldId} formLabel={fieldLabel} options={options}
+      <FormField formGroupId={fieldId}
+                 formLabel={fieldLabel}
+                 options={options}
                  disabled={disabled}
-                 placeholder={placeholder} isMandatoryField={isMandatory} customClassName={styleCustomField}
-                 formControlName={fieldName} typeField={typeField}></FormField>
+                 placeholder={placeholder}
+                 isMandatoryField={isMandatory}
+                 customClassName={styleCustomField}
+                 formControlName={fieldName}
+                 typeField={typeField}>
+      </FormField>
     )
   }
 
@@ -48,11 +62,17 @@ class CourseForm extends Component {
             {
               editMode ? (
                 <div className={styles.avatarImage}>
-                  <FormField formGroupId="cover_image_Id" formLabel={null} showLabel={false}
+                  <FormField formGroupId="cover_image_Id"
+                             formLabel={null}
+                             showLabel={false}
                              isMandatoryField={false}
                              previewUrl={cover_image != null ? SERVER_NAME + cover_image : null}
-                             zoneHeight="150px" internalPreview={true} formControlName="cover_image"
-                             typeField="upload_file" onUpload={onDropCoverImage}></FormField>
+                             zoneHeight="150px"
+                             internalPreview={true}
+                             formControlName="cover_image"
+                             typeField="upload_file"
+                             onUpload={onDropCoverImage}>
+                  </FormField>
                 </div>
               ) : ('')
             }
@@ -115,10 +135,12 @@ class CourseForm extends Component {
                     false, "currency", "custom_select", isFree, "", concurrency)}
                 </div>
                 <div className="ml-20 free-course">
-                  <FormField formGroupId="is_free_id" showLabel={false}
+                  <FormField formGroupId="is_free_id"
+                             showLabel={false}
                              formLabel={this.context.t("course_free")}
                              formControlName={"is_free"}
-                             typeField="checkbox"></FormField>
+                             typeField="checkbox">
+                  </FormField>
                 </div>
               </div>
             </div>
@@ -127,16 +149,18 @@ class CourseForm extends Component {
             <div className='col-sm-8 col-md-8'>
               {this.renderField(editMode, "course_days_id", true, this.context.t("date_in_week_course"), this.context.t("teaching_period_per_day"),
                 true, "course_days", "multi_select", false, editMode ? courseData.category.name : "", DAYS_IN_WEEK.map((day) => {
-                  return {id: day.name, text: day.name}
+                  return {id: day.name + "_" + day.id, text: day.text}
                 }))}
             </div>
             {
               !editMode ?
                 <div className="col-sm-12 col-md-12">
-                  <FormField formGroupId="is_same_period_id" showLabel={false}
+                  <FormField formGroupId="is_same_period_id"
+                             showLabel={false}
                              formLabel={this.context.t("teaching_period_per_day_similar")}
                              formControlName={"is_same_period"}
-                             typeField="checkbox"></FormField>
+                             typeField="checkbox">
+                  </FormField>
                 </div> : null
             }
             <div className="col-md-12 col-sm-12">
@@ -147,27 +171,35 @@ class CourseForm extends Component {
                       <div className={styles.timePickerBox + " d-flex"} key={"date_" + day.id}>
                         <div className="d-flex flex-vertical">
                           <span>{day.text}</span>
-                          <FormField formGroupId={day.name + "_start_time_id"} showLabel={false}
+                          <FormField formGroupId={day.name + "_start_time_id"}
+                                     showLabel={false}
                                      placeholder={this.context.t("start_time")}
                                      formControlName={day.name + "_start_time"}
-                                     typeField="timePicker"></FormField>
-                          <FormField formGroupId={day.name + "_end_time_id"} showLabel={false}
+                                     typeField="timePicker">
+                          </FormField>
+                          <FormField formGroupId={day.name + "_end_time_id"}
+                                     showLabel={false}
                                      placeholder={this.context.t("end_time")}
                                      formControlName={day.name + "_end_time"}
-                                     typeField="timePicker"></FormField>
+                                     typeField="timePicker">
+                          </FormField>
                         </div>
                       </div>
                     ) :
                     <div className={styles.timePickerBox + " d-flex"}>
                       <div className="d-flex flex-vertical">
-                        <FormField formGroupId="start_time_id" showLabel={false}
+                        <FormField formGroupId="start_time_id"
+                                   showLabel={false}
                                    placeholder={this.context.t("start_time")}
                                    formControlName="start_time"
-                                   typeField="timePicker"></FormField>
-                        <FormField formGroupId="end_time_id" showLabel={false}
+                                   typeField="timePicker">
+                        </FormField>
+                        <FormField formGroupId="end_time_id"
+                                   showLabel={false}
                                    placeholder={this.context.t("end_time")}
                                    formControlName="end_time"
-                                   typeField="timePicker"></FormField>
+                                   typeField="timePicker">
+                        </FormField>
                       </div>
                     </div>
                 }
@@ -177,11 +209,16 @@ class CourseForm extends Component {
           {
             !editMode ? (
               <div className="avatar-image">
-                <FormField formGroupId="cover_image_Id" formLabel={this.context.t("cover_image")}
+                <FormField formGroupId="cover_image_Id"
+                           formLabel={this.context.t("cover_image")}
                            isMandatoryField={true}
                            previewUrl={cover_image != null ? cover_image.previewUrl : null}
-                           zoneHeight="200px" internalPreview={true} formControlName="cover_image"
-                           typeField="upload_file" onUpload={onDropCoverImage}></FormField>
+                           zoneHeight="200px"
+                           internalPreview={true}
+                           formControlName="cover_image"
+                           typeField="upload_file"
+                           onUpload={onDropCoverImage}>
+                </FormField>
               </div>
             ) : (<div></div>)
           }

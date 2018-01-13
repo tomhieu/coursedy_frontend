@@ -1,7 +1,7 @@
+import * as React from "react";
 import {Component} from "react";
 import styles from "./FilterOption.module.scss"
-import * as React from "react";
-import FontIcon from "material-ui/FontIcon";
+import {NavigationExpandLess, NavigationExpandMore} from "material-ui/svg-icons/index";
 
 export class FilterOption extends Component {
   constructor() {
@@ -61,24 +61,39 @@ export class FilterOption extends Component {
     }
   }
 
+  onMouseLeaveHandler() {
+    console.log("Mouse out!!!");
+    this.setState({show: false});
+  }
+
+  onMouseEnterHandler() {
+    console.log("Mouse over!!!");
+    this.setState({show: true});
+  }
+
   render() {
     const {label, type} = this.props
     return (
-      <div className="d-flex flex-vertical">
-        <div className={styles.filterHeader}>
+      <div className="d-flex flex-vertical" onMouseEnter={() => this.onMouseEnterHandler()} onMouseLeave={() => this.onMouseLeaveHandler()}>
+        <div className={styles.filterHeader + " d-flex flex-horizontal"}>
           <span className="mt-5">{label}</span>
-          <FontIcon className="material-icons">home</FontIcon>
+          {
+            this.state.show ? <NavigationExpandLess className="ml-10 mt-5" /> : <NavigationExpandMore className="ml-10 mt-5" />
+          }
         </div>
-        <div className={styles.filterContainer}>
-          <div className="d-flex flex-vertical">
-            <input onChange={(e) => this.filterOptions(e)}/>
-            <div>
-              {
-                type == undefined ? this.props.children : this.renderFilterBox(type)
-              }
-            </div>
-          </div>
-        </div>
+        {
+          this.state.show ?
+            <div className={styles.filterContainer} >
+              <div className="d-flex flex-vertical">
+                <input onChange={(e) => this.filterOptions(e)}/>
+                <div>
+                  {
+                    type == undefined ? this.props.children : this.renderFilterBox(type)
+                  }
+                </div>
+              </div>
+            </div> : null
+        }
       </div>
     )
   }
