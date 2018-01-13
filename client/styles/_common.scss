@@ -1033,13 +1033,18 @@ input[type="url"]:focus, input[type="text"]:focus, textarea:focus, .form-control
 
 .option-item {
   cursor: pointer;
-  padding: 5px;
+  padding: 5px 20px;
 }
 
 .option-item:hover {
   background-color: #e7e7e7;
 }
 
-.option-item .selected {
+.option-item.selected {
   background-color: #eaebf0;
+  cursor: not-allowed;
+}
+
+.option-item a {
+  color: #000000;
 }

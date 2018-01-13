@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import cssModules from 'react-css-modules';
 import styles from './Course.module.scss';
 import FormField from "../Core/FormField";
-import {FieldArray} from "redux-form";
+import {DAYS_IN_WEEK} from "../../actions/CourseFormActionCreator"
 import {FilterOption} from "../FilterOption/FilterOption"
 import {EFlatButton, RaiseButton} from "../Core/CustomComponents";
 import {
@@ -36,32 +36,6 @@ class CourseFilter extends Component {
   renderCourseLevels(selectedCategories) {
     return (
       <div className="checkbox-group">
-        {
-
-        }
-
-      </div>
-    )
-  }
-
-  renderDayOfWeek(weekdays) {
-    return (
-      <div className="checkbox-group">
-        <FieldArray name="course_schedule_days" component={() =>
-          <div className="d-flex flex-horizontal flex-wrap">
-            {
-              Object.keys(weekdays).map((k) =>
-                <div key={k} className="md-check-box-field">
-                  <FormField formGroupId="course_schedule_day" showLabel={false}
-                             formLabel={weekdays[k]}
-                             formControlName={"course_schedule_days[" + k + "]"}
-                             typeField="checkbox">
-                  </FormField>
-                </div>
-              )
-            }
-          </div>
-        }/>
       </div>
     )
   }
@@ -76,18 +50,17 @@ class CourseFilter extends Component {
       handleSubmit,
       categories,
       locations,
-      selectedCategories,
-      weekdays,
       totalResult,
       changeDisplayModeHdl,
       groupSugestions,
       loadSuggestions,
       onRemoveFilter,
       filters,
-      showSuggestion
+      showSuggestion,
+      loadingSuggestion
     } = this.props
 
-    const {selectedWeekDays, selectedLocations, selectedLevels} = filters
+    const {selectedWeekDays, selectedCategories, selectedLocations, tuition_fee, selectedLevels} = filters
 
     const orderList = [{id: 1, text: this.context.t("order_by_time")}, {
       id: 2,
@@ -154,6 +127,7 @@ class CourseFilter extends Component {
                                 loadSuggestions={loadSuggestions}
                                 filters={filters}
                                 show={showSuggestion}
+                                isLoading={loadingSuggestion}
                   />
                 </div>
 
@@ -176,12 +150,13 @@ class CourseFilter extends Component {
               <div className="row ml-15">
                 <div className="col-md-2 col-sm-2">
                   <FilterOption label={this.context.t('day_of_week')}
-                                options={Object.keys(weekdays).map((e) => {
-                                  return {id: e, text: weekdays[e]}
+                                options={DAYS_IN_WEEK.map((e) => {
+                                  return {id: e.id, text: e.text}
                                 })}
                                 selectedOptions={selectedWeekDays}
                                 onSelectFilter={this.props.onSelectFilter}
-                                type="single-select">
+                                type="single-select"
+                                name="selectedWeekDays">
                   </FilterOption>
                 </div>
                 <div className="col-md-2 col-sm-2">
@@ -191,7 +166,8 @@ class CourseFilter extends Component {
                                         })}
                                 selectedOptions={selectedCategories}
                                 onSelectFilter={this.props.onSelectFilter}
-                                type="multi-select">
+                                type="multi-select"
+                                name="selectedCategories">
                   </FilterOption>
                 </div>
                 <div className="col-md-2 col-sm-2">
@@ -201,12 +177,13 @@ class CourseFilter extends Component {
                                 })}
                                 selectedOptions={selectedLocations}
                                 onSelectFilter={this.props.onSelectFilter}
-                                type="single-select">
+                                type="single-select"
+                                name="selectedLocations">
                   </FilterOption>
                 </div>
                 <div className="col-md-2 col-sm-2">
-                  <FilterOption label={this.context.t('tuition_fee_filter')} onSelectFilter={this.props.onSelectFilter}>
-                    <div className="d-flex flex-horizontal">
+                  <FilterOption label={this.context.t('tuition_fee_filter')} onSelectFilter={this.props.onSelectFilter} name="tuition_fee">
+                    <div className="d-flex flex-horizontal pl-20">
                       <div className="select-course-fee">
                         <div className="d-flex flex-horizontal">
                           <FormField formGroupId="filter_min_fees" showLabel={false} placeholder={this.context.t('min_fee_placeholder')}
@@ -225,7 +202,8 @@ class CourseFilter extends Component {
                   <FilterOption label={this.context.t('level')} onSelectFilter={this.props.onSelectFilter}
                                 options={selectedCategories} isGroupOption={true}
                                 selectedOptions={selectedLevels}
-                                type="group-select">
+                                type="group-select"
+                                name="selectedLevels">
                   </FilterOption>
                 </div>
               </div>
@@ -279,7 +257,6 @@ CourseFilter.contextTypes = {
 CourseFilter.propTypes = {
   categories: React.PropTypes.array.isRequired,
   locations: React.PropTypes.object.isRequired,
-  weekdays: React.PropTypes.object.isRequired,
   onSelectFilter: React.PropTypes.func.isRequired,
   groupSugestions: React.PropTypes.array.isRequired,
   loadSuggestions: React.PropTypes.func.isRequired,

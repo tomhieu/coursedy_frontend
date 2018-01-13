@@ -8,7 +8,6 @@ class CourseFilterContainer extends Component {
   componentWillMount(){
     this.props.dispatch(Actions.fetchCategories());
     this.props.dispatch(Actions.fetchLocations());
-    this.props.dispatch(Actions.fetchWeekdays());
   }
 
   searchCourse({filter_category_ids, filter_location_ids, filter_course_levels, course_schedule_days, fees, start_time, end_time, order_by, display_mode}){
@@ -34,7 +33,7 @@ class CourseFilterContainer extends Component {
   }
 
   loadSuggestions(event) {
-    this.props.dispatch(Actions.loadSuggestions(event.target.value))
+    this.props.dispatch(Actions.loadSuggestions(this.props.filters, event.target.value))
   }
 
   doSelectFilter(filter, category) {
@@ -78,13 +77,13 @@ const getSelectedCategories = (categories, selectedCategoryIds) => {
 const mapStateToProps = (state) => {
     const {CourseFilter, form = {}} = state;
     const categories = state.Categories.data || []
-    const { courses = [], selectedCourses = [], locations, weekdays, totalResult = 0, groupSugestions, filters, showSuggestion} = CourseFilter;
+    const { courses = [], selectedCourses = [], locations, totalResult = 0, groupSugestions, filters, showSuggestion} = CourseFilter;
     const {courseFilterForm = {}} = form;
     if (!courseFilterForm.values) {
-        return {categories, courses, selectedCourses, locations, weekdays, totalResult, selectedCategories : [], groupSugestions, filters, showSuggestion};
+        return {categories, courses, selectedCourses, locations, totalResult, selectedCategories : [], groupSugestions, filters, showSuggestion};
     } else {
         const {filter_category_ids, filter_location_ids, course_schedule_day = []} = courseFilterForm.values;
-        return {categories, courses, selectedCourses, locations, weekdays, totalResult, filters, showSuggestion,
+        return {categories, courses, selectedCourses, locations, totalResult, filters, showSuggestion,
           filter_category_ids, filter_location_ids, course_schedule_day,
           selectedCategories : getSelectedCategories(categories, filter_category_ids),
           groupSugestions: groupSugestions

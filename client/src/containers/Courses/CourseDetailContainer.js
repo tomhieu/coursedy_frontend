@@ -18,12 +18,12 @@ class CourseDetailContainer extends Component {
 
   createCourse(course) {
     const {courseId} = this.props;
-    const week_day_schedules = [];
+    const week_day_schedules_attributes = [];
     course.course_days.forEach((day) => {
       const name_day = day.split("_")[0]
       const id_day = day.split("_")[1]
-      week_day_schedules.push({
-        day: id_day,
+      week_day_schedules_attributes.push({
+        day: Number(id_day),
         start_time: !course.is_same_period ? DateUtils.getHourFromDate(Object.getOwnPropertyDescriptor(course, name_day + '_start_time').value) :
           DateUtils.getHourFromDate(Object.getOwnPropertyDescriptor(course, 'start_time').value),
         end_time: !course.is_same_period ? DateUtils.getHourFromDate(Object.getOwnPropertyDescriptor(course, name_day + '_end_time').value) :
@@ -33,11 +33,11 @@ class CourseDetailContainer extends Component {
 
     if (!courseId) {
       this.props.dispatch(CourseActions.createCourse(course.title, course.description, course.start_date, course.period,
-        course.number_of_students, course.tuition_fee, course.currency, course.is_free, week_day_schedules, course.is_same_period,
+        course.number_of_students, course.tuition_fee, course.currency, course.is_free, week_day_schedules_attributes, course.is_same_period,
         course.category_id, course.course_specialize, this.coverImage));
     } else {
       this.props.dispatch(CourseActions.updateCourse(courseId, course.title, course.description, course.start_date, course.period,
-        course.number_of_students, course.tuition_fee, course.currency, course.is_free, week_day_schedules, course.is_same_period,
+        course.number_of_students, course.tuition_fee, course.currency, course.is_free, week_day_schedules_attributes, course.is_same_period,
         course.cover_image, course.category_id, course.course_specialize, this.coverImage));
     }
   }

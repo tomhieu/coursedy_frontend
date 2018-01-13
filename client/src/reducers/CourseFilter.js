@@ -14,7 +14,8 @@ const CourseFilter = (state = {
   sortOrder: 'desc',
   groupSugestions: [],
   filters: {selectedWeekDays: [], selectedLocations: [], selectedCategories: [], selectedLevels: []},
-  showSuggestion: false
+  showSuggestion: false,
+  loadingSuggestion: false
 }, action) => {
   switch (action.type) {
     case courseActionTypes.FETCH_COURSES_SUCCESS:
@@ -39,12 +40,17 @@ const CourseFilter = (state = {
       return {...state, selectedCourses: []}
     case types.LOAD_SUGGESTION_COMPLETE:
       return {...state, groupSugestions: action.payload, showSuggestion: action.payload.length > 0}
+    case types.LOADING_SUGGESTION:
+      return {...state, groupSugestions: [], showSuggestion: true, loadingSuggestion: true}
+    case types.LOAD_SUGGESTION_ERROR:
+      return {...state, groupSugestions: [], showSuggestion: false, loadingSuggestion: false}
     case types.ADD_FILTER_CRITERIA:
-      let selectedFilters = state.filters[action.data.type];
-      const newFilters = selectedFilters == undefined ? [] : JSON.parse(JSON.stringify(selectedFilters))
-      newFilters.push(action.data.value)
-      state.filters[action.data.type] = newFilters
-      return state
+      const currentFilters = Object.assign({}, state.filters)
+      let selectedFilters = currentFilters[action.data.type];
+      const newSelectedFilters = selectedFilters == undefined ? [] : JSON.parse(JSON.stringify(selectedFilters))
+      newSelectedFilters.push(action.data.value)
+      currentFilters[action.data.type] = newSelectedFilters
+      return Object.assign({}, state, {filters: currentFilters})
     case types.REMOVE_FILTER_CRITERIA:
       const clonedFilters = JSON.parse(JSON.stringify(state.filters))
       const removedFilters = clonedFilters.filter(f => f.id != Number(action.data))

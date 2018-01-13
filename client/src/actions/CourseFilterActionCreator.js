@@ -145,18 +145,20 @@ const filterSuggestion = (term, group) => {
   return filterSuggest.length > 0 ? {...group, suggestions: filterSuggest} : null;
 }
 
-export const loadSuggestions = (term) => {
-  const result = [];
-  dummySuggestions.map((group) => {
-    const g = filterSuggestion(term, group);
-    if (g != null) {
-      result.push(g);
-    }
-  })
+export const loadSuggestions = (filters, term) => {
   return dispatch => {
     dispatch({
-      type: types.LOAD_SUGGESTION_COMPLETE,
-      payload: result
+      type: types.LOADING_SUGGESTION,
+    })
+    Network().get('load-suggestions', {filters, term}).then((response) => {
+      dispatch({
+        type: types.LOAD_SUGGESTION_COMPLETE,
+        payload: response
+      })
+    }, (errors) => {
+      dispatch({
+        type: types.LOAD_SUGGESTION_ERROR
+      })
     })
   }
 }

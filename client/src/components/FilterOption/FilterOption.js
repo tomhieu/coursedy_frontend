@@ -10,27 +10,49 @@ export class FilterOption extends Component {
       show: false
     }
   }
+
+  componentDidMount() {
+    this.setState({
+      options: this.props.options,
+      dataSource: this.props.options
+    })
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      options: nextProps.options,
+      dataSource: nextProps.options
+    })
+  }
+
   filterOptions(e) {
-
+    const term = e.target.value
+    const filteredOptions = this.state.dataSource.filter(op => op.text.toLowerCase().includes(term.toLowerCase()))
+    this.setState({options: filteredOptions})
   }
 
-  onSelectOption(option, group) {
+  onSelectOption(option) {
     this.setState({show: false});
-    this.props.onSelectFilter(option, group)
+    this.props.onSelectFilter(option, this.props.name)
   }
 
-  renderOptions(options) {
+  isSelected(option) {
+    return this.props.selectedOptions.filter(op => op.id == option.id).length > 0
+  }
+
+  renderOptions() {
     return (
       <div>
         {
-          options.length > 0 ?
+          this.state.options.length > 0 ?
             <ul>
               {
-                options.map(op =>
-                  <li onClick={() => this.onSelectOption(op, null)} className="option-item">
+                this.state.options.map(op =>
+                  <li className={this.isSelected(op) ? "option-item selected" : "option-item"}
+                      key={"options_" + op.id}>
                     {
-                      this.props.selectedOptions.indexOf(op.id) >= 0 ?
-                        <span className="selected">{op.text}</span> : <span>{op.text}</span>
+                      this.isSelected(op) ?
+                        <span className="selected" disabled={true}>{op.text}</span> : <a onClick={() => this.onSelectOption(op, null)}>{op.text}</a>
                     }
                   </li>)
               }
@@ -40,9 +62,9 @@ export class FilterOption extends Component {
     )
   }
 
-  renderGroupOptions(groupOptions) {
+  renderGroupOptions() {
     return (
-      groupOptions.map(group =>
+      this.state.options.map(group =>
         <div key={group.id}>
           <span>{group.name}</span>
           {this.renderOptions(group.options)}
@@ -55,19 +77,17 @@ export class FilterOption extends Component {
     switch (type) {
       case 'single-select':
       case 'multi-select':
-        return (this.renderOptions(this.props.options))
+        return (this.renderOptions())
       case 'group-select':
-        return (this.renderGroupOptions(this.props.options))
+        return (this.renderGroupOptions())
     }
   }
 
   onMouseLeaveHandler() {
-    console.log("Mouse out!!!");
     this.setState({show: false});
   }
 
   onMouseEnterHandler() {
-    console.log("Mouse over!!!");
     this.setState({show: true});
   }
 
@@ -85,8 +105,13 @@ export class FilterOption extends Component {
           this.state.show ?
             <div className={styles.filterContainer} >
               <div className="d-flex flex-vertical">
-                <input onChange={(e) => this.filterOptions(e)}/>
-                <div>
+                {
+                  type != undefined ?
+                    <div className={styles.filterInput}>
+                      <input onChange={(e) => this.filterOptions(e)}/>
+                    </div> : null
+                }
+                <div className={styles.optionContainer}>
                   {
                     type == undefined ? this.props.children : this.renderFilterBox(type)
                   }

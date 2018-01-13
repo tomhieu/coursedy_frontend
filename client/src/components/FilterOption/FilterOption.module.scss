@@ -5,14 +5,20 @@
   border: 1px solid rgba(48, 51, 57, 0.15);
   z-index: 9999;
   background-color: #ffffff;
-  padding: 20px;
 }
 
 .filterOption {
-  padding: 10px;
   cursor: pointer;
 }
 
 .filterHeader {
   height: 30px;
+}
+
+.filterInput {
+  padding: 10px 20px;
+}
+
+.optionContainer {
+  padding: 10px 0px;
 }

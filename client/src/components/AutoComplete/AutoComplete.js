@@ -40,13 +40,25 @@ class AutoComplete extends Component {
     console.log("on focus event");
   }
 
+  onKeyPress(e) {
+    console.log("on key press");
+    if (e.key == 'Enter') {
+      this.props.handleAddCriteria("", "", e.target.value)
+    }
+  }
+
   render() {
-    const {show, handleRequestDeleteChip, placeholder, fieldName, dataSource, handleAddCriteria, loadSuggestions, filters} = this.props;
+    const {show, isLoading, handleRequestDeleteChip, placeholder, fieldName, dataSource, handleAddCriteria, loadSuggestions, filters} = this.props;
     return (
       <div className={styles.filterBox + " d-flex flex-vertical"}>
         <div className="d-flex flex-horizontal">
           <div className="input-without-border">
-            <Field name={fieldName} placeholder={placeholder} onBlur={this.onBlur.bind(this)} onFocus={this.onFocus.bind(this)} onChange={loadSuggestions} component={renderField}/>
+            <Field name={fieldName} placeholder={placeholder}
+                   onBlur={this.onBlur.bind(this)}
+                   onFocus={this.onFocus.bind(this)}
+                   onChange={loadSuggestions}
+                   component={renderField}
+                   onKeyPress={this.onKeyPress.bind(this)}/>
           </div>
         </div>
         {
@@ -57,7 +69,7 @@ class AutoComplete extends Component {
                   this.renderGroupSuggestion(gs, handleAddCriteria)
                 ))
               }
-            </div> : <div></div>
+            </div> : isLoading ? <div>Loading...</div> : null
         }
       </div>
     )
@@ -71,6 +83,7 @@ AutoComplete.contextTypes = {
 
 AutoComplete.propTypes = {
   show: React.PropTypes.bool.isRequired,
+  isLoading: React.PropTypes.bool.isRequired,
   placeholder: React.PropTypes.string.isRequired,
   handleAddCriteria: React.PropTypes.func.isRequired,
   fieldName: React.PropTypes.string.isRequired,
