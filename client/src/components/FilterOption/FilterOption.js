@@ -94,7 +94,7 @@ export class FilterOption extends Component {
   render() {
     const {label, type} = this.props
     return (
-      <div className="d-flex flex-vertical" onMouseEnter={() => this.onMouseEnterHandler()} onMouseLeave={() => this.onMouseLeaveHandler()}>
+      <div className={styles.filterOptionContainer + " d-flex flex-vertical"} onMouseEnter={() => this.onMouseEnterHandler()} onMouseLeave={() => this.onMouseLeaveHandler()}>
         <div className={styles.filterHeader + " d-flex flex-horizontal"}>
           <span className="mt-5">{label}</span>
           {

@@ -69,8 +69,18 @@
   }
 }
 
+.filterInputBox {
+  width: 100%;
+}
+
 .filterActionBlock {
-  padding: 0px 30px;
+  padding: 0px 5px;
+  font-size: 14px;
+  height: 65px;
+}
+
+.filterOptionContainer {
+  width: 20%;
 }
 
 .listResultInfo {

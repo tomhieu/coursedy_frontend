@@ -1027,6 +1027,10 @@ input[type="url"]:focus, input[type="text"]:focus, textarea:focus, .form-control
   }
 }
 
+.input-without-border {
+  width: 100%;
+}
+
 .input-without-border input {
   border: none;
 }
@@ -1047,4 +1051,16 @@ input[type="url"]:focus, input[type="text"]:focus, textarea:focus, .form-control
 
 .option-item a {
   color: #000000;
+}
+
+.full-width-input-wrapper {
+  width: 100%;
+}
+
+.full-height {
+  height: 100%;
+}
+
+.st-border-left {
+  border-left: 1px solid rgba(48, 51, 57, 0.15);
 }

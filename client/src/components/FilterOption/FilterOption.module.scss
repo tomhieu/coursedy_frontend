@@ -1,7 +1,7 @@
 .filterContainer {
   position: absolute;
-  top: 30px;
-  left: 10px;
+  top: 50px;
+  right: 10px;
   border: 1px solid rgba(48, 51, 57, 0.15);
   z-index: 9999;
   background-color: #ffffff;
@@ -21,4 +21,8 @@
 
 .optionContainer {
   padding: 10px 0px;
+}
+
+.filterOptionContainer {
+  position: relative;
 }

@@ -174,7 +174,7 @@ export const translations = {
     "filter": "Tìm kiếm",
     "filter_more": "Thêm",
     "location": "Khu vực",
-    "course_category_title": "Loại khoá học",
+    "course_category_title": "Khoá học",
     "tuition_fee_filter": "Học phí",
     "to": "Đến",
     "time_schedule": "Giờ học",
