@@ -213,11 +213,14 @@ export const removeAllCourses = () => {
     })
   }
 }
-export const removeFilterSuggestion = (filterId) => {
+export const removeFilterSuggestion = (filterId, filterType) => {
   return dispatch => {
     dispatch({
       type: types.REMOVE_FILTER_CRITERIA,
-      data: filterId
+      data: {
+        type: filterType,
+        filterId: filterId
+      }
     })
   }
 }

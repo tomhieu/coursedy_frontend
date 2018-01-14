@@ -57,10 +57,13 @@ class CourseFilter extends Component {
       onRemoveFilter,
       filters,
       showSuggestion,
-      loadingSuggestion
+      loadingSuggestion,
+      selectedMaxFee,
+      selectedMinFee,
+      listSpecializes
     } = this.props
 
-    const {selectedWeekDays, selectedCategories, selectedLocations, tuition_fee, selectedLevels} = filters
+    const {selectedWeekDays, selectedCategories, selectedLocations, selectedSpecializes} = filters
 
     const orderList = [{id: 1, text: this.context.t("order_by_time")}, {
       id: 2,
@@ -93,31 +96,59 @@ class CourseFilter extends Component {
                       {
                         selectedWeekDays.map((f) =>
                           <Chip key={"filter_days_" + f.id}
-                                onRequestDelete={() => onRemoveFilter(f.id)}
+                                onRequestDelete={() => onRemoveFilter(f.id, 'selectedWeekDays')}
                                 style={mStyles.chip}
                                 labelStyle={mStyles.chipLabelStyle}
                                 deleteIconStyle={mStyles.chipIconDelete}
-                          >{f.text}</Chip>
+                          >{f.name}</Chip>
+                        )
+                      }
+                      {
+                        selectedCategories.map((sc) =>
+                          <Chip key={"filter_categories_" + sc.id}
+                                onRequestDelete={() => onRemoveFilter(sc.id, 'selectedCategories')}
+                                style={mStyles.chip}
+                                labelStyle={mStyles.chipLabelStyle}
+                                deleteIconStyle={mStyles.chipIconDelete}
+                          >{sc.name}</Chip>
                         )
                       }
                       {
                         selectedLocations.map((f) =>
                           <Chip key={"filter_locs_" + f.id}
-                                onRequestDelete={() => onRemoveFilter(f.id)}
+                                onRequestDelete={() => onRemoveFilter(f.id, 'selectedLocations')}
                                 style={mStyles.chip}
                                 labelStyle={mStyles.chipLabelStyle}
                                 deleteIconStyle={mStyles.chipIconDelete}
-                          >{f.text}</Chip>
+                          >{f.name}</Chip>
                         )
                       }
                       {
-                        selectedLevels.map((f) =>
-                          <Chip key={"filter_levels_" + f.id}
-                                onRequestDelete={() => onRemoveFilter(f.id)}
+                        selectedMinFee ?
+                        <Chip key="filter_max_fee"
+                              onRequestDelete={() => onRemoveFilter(null, 'selectedMixFee')}
+                              style={mStyles.chip}
+                              labelStyle={mStyles.chipLabelStyle}
+                              deleteIconStyle={mStyles.chipIconDelete}
+                        >{selectedMinFee}</Chip> : null
+                      }
+                      {
+                        selectedMaxFee ?
+                        <Chip key="filter_min_fee"
+                              onRequestDelete={() => onRemoveFilter(null, 'selectedMaxFee')}
+                              style={mStyles.chip}
+                              labelStyle={mStyles.chipLabelStyle}
+                              deleteIconStyle={mStyles.chipIconDelete}
+                        >{selectedMaxFee}</Chip> : null
+                      }
+                      {
+                        selectedSpecializes.map((sl) =>
+                          <Chip key={"filter_levels_" + sl.id}
+                                onRequestDelete={() => onRemoveFilter(sl.id, 'selectedSpecializes')}
                                 style={mStyles.chip}
                                 labelStyle={mStyles.chipLabelStyle}
                                 deleteIconStyle={mStyles.chipIconDelete}
-                          >{f.text}</Chip>
+                          >{sl.name}</Chip>
                         )
                       }
                     </div>
@@ -138,7 +169,7 @@ class CourseFilter extends Component {
                     <div className={styles.filterOptionContainer}>
                       <FilterOption label={this.context.t('day_of_week')}
                                     options={DAYS_IN_WEEK.map((e) => {
-                                      return {id: e.id, text: e.text}
+                                      return {id: e.id, name: e.text}
                                     })}
                                     selectedOptions={selectedWeekDays}
                                     onSelectFilter={this.props.onSelectFilter}
@@ -149,7 +180,7 @@ class CourseFilter extends Component {
                     <div className={styles.filterOptionContainer}>
                       <FilterOption label={this.context.t('course_category_title')}
                                     options={categories.map((x) => {
-                                      return {text: x.name, id: x.id}
+                                      return {name: x.name, id: x.id}
                                     })}
                                     selectedOptions={selectedCategories}
                                     onSelectFilter={this.props.onSelectFilter}
@@ -160,7 +191,7 @@ class CourseFilter extends Component {
                     <div className={styles.filterOptionContainer}>
                       <FilterOption label={this.context.t('location')}
                                     options={Object.keys(locations).map((x) => {
-                                      return {text: locations[x], id: x}
+                                      return {name: locations[x], id: x}
                                     })}
                                     selectedOptions={selectedLocations}
                                     onSelectFilter={this.props.onSelectFilter}
@@ -170,15 +201,15 @@ class CourseFilter extends Component {
                     </div>
                     <div className={styles.filterOptionContainer}>
                       <FilterOption label={this.context.t('tuition_fee_filter')} onSelectFilter={this.props.onSelectFilter} name="tuition_fee">
-                        <div className="d-flex flex-horizontal pl-20">
+                        <div className="d-flex flex-horizontal">
                           <div className="select-course-fee">
                             <div className="d-flex flex-horizontal">
-                              <FormField formGroupId="filter_min_fees" showLabel={false} placeholder={this.context.t('min_fee_placeholder')}
-                                         formControlName={"min_fees"} typeField="custom_input">
+                              <FormField className="md-number-field" formGroupId="filter_min_fees" showLabel={false} placeholder={this.context.t('min_fee_placeholder')}
+                                         formControlName="selectedMinFee" typeField="custom_input">
                               </FormField>
                               <span className="ml-10 mr-10 mt-5">{this.context.t('to')}</span>
-                              <FormField formGroupId="filter_max_fees" showLabel={false} placeholder={this.context.t('max_fee_placeholder')}
-                                         formControlName={"max_fees"} typeField="custom_input">
+                              <FormField className="md-number-field" formGroupId="filter_max_fees" showLabel={false} placeholder={this.context.t('max_fee_placeholder')}
+                                         formControlName="selectedMaxFee" typeField="custom_input">
                               </FormField>
                             </div>
                           </div>
@@ -187,10 +218,10 @@ class CourseFilter extends Component {
                     </div>
                     <div className={styles.filterOptionContainer}>
                       <FilterOption label={this.context.t('level')} onSelectFilter={this.props.onSelectFilter}
-                                    options={selectedCategories} isGroupOption={true}
-                                    selectedOptions={selectedLevels}
+                                    options={listSpecializes} isGroupOption={true}
+                                    selectedOptions={selectedSpecializes}
                                     type="group-select"
-                                    name="selectedLevels">
+                                    name="selectedSpecializes">
                       </FilterOption>
                     </div>
                   </div>

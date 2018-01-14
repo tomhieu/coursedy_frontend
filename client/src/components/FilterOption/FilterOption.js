@@ -27,7 +27,7 @@ export class FilterOption extends Component {
 
   filterOptions(e) {
     const term = e.target.value
-    const filteredOptions = this.state.dataSource.filter(op => op.text.toLowerCase().includes(term.toLowerCase()))
+    const filteredOptions = this.state.dataSource.filter(op => op.name.toLowerCase().includes(term.toLowerCase()))
     this.setState({options: filteredOptions})
   }
 
@@ -40,19 +40,19 @@ export class FilterOption extends Component {
     return this.props.selectedOptions.filter(op => op.id == option.id).length > 0
   }
 
-  renderOptions() {
+  renderOptions(options) {
     return (
       <div>
         {
-          this.state.options.length > 0 ?
+          options.length > 0 ?
             <ul>
               {
-                this.state.options.map(op =>
+                options.map(op =>
                   <li className={this.isSelected(op) ? "option-item selected" : "option-item"}
                       key={"options_" + op.id}>
                     {
                       this.isSelected(op) ?
-                        <span className="selected" disabled={true}>{op.text}</span> : <a onClick={() => this.onSelectOption(op, null)}>{op.text}</a>
+                        <span className="selected" disabled={true}>{op.name}</span> : <a className="full-width" onClick={() => this.onSelectOption(op, null)}>{op.name}</a>
                     }
                   </li>)
               }
@@ -62,11 +62,13 @@ export class FilterOption extends Component {
     )
   }
 
-  renderGroupOptions() {
+  renderGroupOptions(options) {
     return (
-      this.state.options.map(group =>
-        <div key={group.id}>
-          <span>{group.name}</span>
+      options.map(group =>
+        <div key={group.id} className="full-width">
+          <div className="group-header full-width">
+            <span>{group.name}</span>
+          </div>
           {this.renderOptions(group.options)}
         </div>
       )
@@ -77,9 +79,9 @@ export class FilterOption extends Component {
     switch (type) {
       case 'single-select':
       case 'multi-select':
-        return (this.renderOptions())
+        return (this.renderOptions(this.state.options))
       case 'group-select':
-        return (this.renderGroupOptions())
+        return (this.renderGroupOptions(this.state.options))
     }
   }
 

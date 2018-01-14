@@ -904,7 +904,8 @@ ul.no-margin,
 }
 
 .select-course-fee {
-  width: 30%;
+  width: 180px;
+  padding: 0 15px;
 }
 
 .md-check-box-field {
@@ -1042,6 +1043,9 @@ input[type="url"]:focus, input[type="text"]:focus, textarea:focus, .form-control
 
 .option-item:hover {
   background-color: #e7e7e7;
+  a {
+    color: #169BD5;
+  }
 }
 
 .option-item.selected {
@@ -1063,4 +1067,13 @@ input[type="url"]:focus, input[type="text"]:focus, textarea:focus, .form-control
 
 .st-border-left {
   border-left: 1px solid rgba(48, 51, 57, 0.15);
+}
+
+.md-number-field {
+  width: 80px;
+}
+
+.group-header {
+  padding: 5px;
+  border-bottom: 1px solid rgba(48, 51, 57, 0.15);
 }
