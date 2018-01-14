@@ -58,84 +58,19 @@ export const tuitionFees = [
 
 //FIXME: Remove me
 export const dummyCourses = [
-  {
-    id : 1,
-    category_id : 1,
-    course_days : [0, 1],
-    cover_image: "http://placehold.it/1024x768",
-    currency: "vnd",
-    description: "lorem ipsum",
-    end_time: "2017-12-30T06:30:45.784Z",
-    is_free: true,
-    is_same_period: false,
-    monday_end_time: "2017-12-30T06:55:50.063Z",
-    monday_start_time: "2017-12-30T05:30:43.794Z",
-    number_of_students: "5",
-    period: "12",
-    start_date: "2018-01-06",
-    start_time : "2017-12-30T05:00:40.454Z",
-    title: "Course 1",
-    tuesday_end_time: "2017-12-30T09:30:06.302Z",
-    tuesday_start_time: "2017-12-30T07:30:59.884Z",
-    tuition_fee: "2000000",
-    user: {
-      id: 1,
-      avatar: 'http://placehold.it/100x100',
-      first_name: 'Tin',
-      last_name: 'Huynh'
-    }
-  }, {
-    id: 1,
-    category_id : 2,
-    course_days : [0, 1],
-    cover_image: "http://placehold.it/1024x768",
-    currency: "vnd",
-    description: "lorem ipsum",
-    end_time: "2017-12-30T06:30:45.784Z",
-    is_free: true,
-    is_same_period: false,
-    monday_end_time: "2017-12-30T06:55:50.063Z",
-    monday_start_time: "2017-12-30T05:30:43.794Z",
-    number_of_students: "5",
-    period: "12",
-    start_date: "2018-01-06",
-    start_time : "2017-12-30T05:00:40.454Z",
-    title: "Course 2",
-    tuesday_end_time: "2017-12-30T09:30:06.302Z",
-    tuesday_start_time: "2017-12-30T07:30:59.884Z",
-    tuition_fee: "2000000",
-    user: {
-      id: 1,
-      avatar: 'http://placehold.it/100x100',
-      first_name: 'Tin',
-      last_name: 'Huynh'
-    }
-  }, {
-    id : 3,
-    category_id : 3,
-    course_days : [0, 1],
-    cover_image: "http://placehold.it/1024x768",
-    currency: "vnd",
-    description: "lorem ipsum",
-    end_time: "2017-12-30T06:30:45.784Z",
-    is_free: true,
-    is_same_period: false,
-    monday_end_time: "2017-12-30T06:55:50.063Z",
-    monday_start_time: "2017-12-30T05:30:43.794Z",
-    number_of_students: "5",
-    period: "12",
-    start_date: "2018-01-06",
-    start_time : "2017-12-30T05:00:40.454Z",
-    title: "Course 3",
-    tuesday_end_time: "2017-12-30T09:30:06.302Z",
-    tuesday_start_time: "2017-12-30T07:30:59.884Z",
-    tuition_fee: "2000000",
-    user: {
-      id: 1,
-      avatar: 'http://placehold.it/100x100',
-      first_name: 'Tin',
-      last_name: 'Huynh'
-    }
-  }
-];
+  {id: 1, name: 'Tiếng Anh', coverImage: 'https://udemy-images.udemy.com/course/240x135/374568_550b_5.jpg'},
+  {id: 2, name: 'IES Exam', coverImage: 'https://udemy-images.udemy.com/course/240x135/374568_550b_5.jpg'},
+  {id: 3, name: 'Toán Hình Học', coverImage: 'https://udemy-images.udemy.com/course/240x135/374568_550b_5.jpg'},
+  {id: 4, name: 'Vật Lý ', coverImage: 'https://udemy-images.udemy.com/course/240x135/374568_550b_5.jpg'},
+]
 
+//FIXME: Remove me
+export const dummyPopularCourses = {
+  total: 1000,
+  courses: [
+    {id: 1, name: 'Tiếng Anh', coverImage: 'https://udemy-images.udemy.com/course/240x135/374568_550b_5.jpg'},
+    {id: 2, name: 'IES Exam', coverImage: 'https://udemy-images.udemy.com/course/240x135/374568_550b_5.jpg'},
+    {id: 3, name: 'Toán Hình Học', coverImage: 'https://udemy-images.udemy.com/course/240x135/374568_550b_5.jpg'},
+    {id: 4, name: 'Vật Lý ', coverImage: 'https://udemy-images.udemy.com/course/240x135/374568_550b_5.jpg'},
+  ]
+}

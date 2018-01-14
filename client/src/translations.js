@@ -231,10 +231,19 @@ export const translations = {
     "thursday": "Thứ năm",
     "friday": "Thứ sáu",
     "saturday": "Thứ bảy",
-    "sunday": "Chủ nhật"
+    "sunday": "Chủ nhật",
+    /* home page */
+    "popular_courses": "Khoá học phổ biến",
+    "search_your_teacher": "Tìm giáo viên",
+    "all_courses": "Tất cả khoá ",
+    "more_course": "Xem Thêm",
+    "new_courses": "Khoá Học Mới Mở",
+    "how_study": "Học Như Thế Nào",
+    "student_comment_on_platform": "Nhận Xét Học Sinh",
+    "you_are_teacher": "Bạn Là Giáo Viên?",
   },
   "en": {
     "home_page": "Home",
-    "find_tutors": "Find Tutors"
+    "find_tutors": "Find Tutors",
   }
 }

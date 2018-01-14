@@ -1,9 +1,16 @@
-import React, { Component} from 'react';
-import cssModules from 'react-css-modules';
-import styles from './CourseGroup.module.scss';
-import {Link} from 'react-router-dom';
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+import {Link} from 'react-router-dom'
 
-class CourseGroup extends Component {
+export default class NewCourse extends Component {
+  static propTypes = {
+    course: PropTypes.object.isRequired
+  }
+
+  static defaultProps = {
+    course: {}
+  }
+
   render() {
     let { course } = this.props
 
@@ -21,12 +28,3 @@ class CourseGroup extends Component {
     )
   }
 }
-
-CourseGroup.contextTypes = {
-  t: React.PropTypes.func.isRequired
-}
-
-CourseGroup.propTypes = {
-};
-
-export default cssModules(CourseGroup, styles);

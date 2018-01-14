@@ -23,6 +23,7 @@ import LoadingMask from "./LoadingMask";
 import TutorAccount from "./TutorAccount";
 import Teachers from './TeachersReducer'
 import Categories from './CategoriesReducer'
+import HomePage from './HomePageReducer';
 
 
 const rootReducer = combineReducers({
@@ -50,7 +51,8 @@ const rootReducer = combineReducers({
     CourseFilter,
     Categories,
     TutorAccount,
-    Teachers
+    Teachers,
+    HomePage,
 });
 
 export default rootReducer;
