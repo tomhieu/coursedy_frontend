@@ -13,7 +13,8 @@ const CourseFilter = (state = {
   sortBy: '',
   sortOrder: 'desc',
   groupSugestions: [],
-  filters: {selectedWeekDays: [], selectedLocations: [], selectedCategories: [], selectedSpecializes: []},
+  filters: {selectedWeekDays: [], selectedLocations: [], selectedCategories: [], selectedSpecializes: [],
+    resetMinFee: false, resetMaxFee: false},
   showSuggestion: false,
   loadingSuggestion: false
 }, action) => {
@@ -45,7 +46,7 @@ const CourseFilter = (state = {
     case types.LOAD_SUGGESTION_ERROR:
       return {...state, groupSugestions: [], showSuggestion: false, loadingSuggestion: false}
     case types.ADD_FILTER_CRITERIA:
-      const currentFilters = Object.assign({}, state.filters)
+      const currentFilters = Object.assign({}, state.filters, {resetMinFee: false, resetMaxFee: false})
       let selectedFilters = currentFilters[action.data.type]
       const newSelectedFilters = selectedFilters == undefined ? [] : JSON.parse(JSON.stringify(selectedFilters))
       newSelectedFilters.push(action.data.value)
@@ -53,9 +54,13 @@ const CourseFilter = (state = {
       return Object.assign({}, state, {filters: currentFilters})
     case types.REMOVE_FILTER_CRITERIA:
       const removedFilters = Object.assign({}, state.filters)
-      const clonedFilters = JSON.parse(JSON.stringify(removedFilters[action.data.type]))
-      const updatedSelectedFilters = clonedFilters.filter(f => f.id != Number(action.data.filterId))
-      removedFilters[action.data.type] = updatedSelectedFilters
+      if (Array.isArray(removedFilters[action.data.type])) {
+        const clonedFilters = JSON.parse(JSON.stringify(removedFilters[action.data.type]))
+        const updatedSelectedFilters = clonedFilters.filter(f => f.id != Number(action.data.filterId))
+        removedFilters[action.data.type] = updatedSelectedFilters
+      } else {
+        removedFilters[action.data.type] = true;
+      }
       return {...state, filters: removedFilters}
     default:
       return state;

@@ -93,12 +93,20 @@ const mapStateToProps = (state) => {
   const categories = state.Categories.data || []
   const {courses = [], selectedCourses = [], locations, totalResult = 0, groupSugestions, filters, showSuggestion} = CourseFilter;
   const {courseFilterForm = {}} = form
+  let initializeFields = {}
+
+  if (courseFilterForm.values && filters.resetMinFee) {
+    initializeFields = Object.assign({}, courseFilterForm.values, {selectedMinFee: undefined})
+  } else if (courseFilterForm.values && filters.resetMaxFee) {
+    initializeFields = Object.assign({}, courseFilterForm.values, {selectedMaxFee: undefined})
+  }
 
   return {
     categories, courses, selectedCourses, locations, totalResult, filters, showSuggestion, groupSugestions,
     selectedMaxFee: courseFilterForm.values ? courseFilterForm.values.selectedMaxFee : undefined,
     selectedMinFee: courseFilterForm.values ? courseFilterForm.values.selectedMinFee : undefined,
-    listSpecializes: getSelectedSpecializesFromCategory(categories, filters.selectedCategories)
+    listSpecializes: getSelectedSpecializesFromCategory(categories, filters.selectedCategories),
+    initialValues: initializeFields
   };
 };
 
@@ -107,5 +115,6 @@ export default connect(
   mapStateToProps
 )(reduxForm({
   form: 'courseFilterForm',
-  fields: ['key_word', 'filter_category_ids', 'filter_location_ids', 'filter_course_levels', 'course_schedule_day', 'fees', 'start_time', 'end_time', 'sort_by', 'display_mode']
+  enableReinitialize: true,
+  fields: ['key_word', 'selectedMinFee', 'selectedMaxFee', 'sort_by', 'display_mode']
 })(CourseFilterContainer))
