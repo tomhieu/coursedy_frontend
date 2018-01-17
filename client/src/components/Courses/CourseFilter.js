@@ -58,8 +58,7 @@ class CourseFilter extends Component {
       filters,
       showSuggestion,
       loadingSuggestion,
-      selectedMaxFee,
-      selectedMinFee,
+      formfieldValues,
       listSpecializes
     } = this.props
 
@@ -124,22 +123,22 @@ class CourseFilter extends Component {
                         )
                       }
                       {
-                        selectedMinFee ?
+                        formfieldValues.selectedMinFee ?
                         <Chip key="filter_max_fee"
                               onRequestDelete={() => onRemoveFilter(null, 'resetMinFee')}
                               style={mStyles.chip}
                               labelStyle={mStyles.chipLabelStyle}
                               deleteIconStyle={mStyles.chipIconDelete}
-                        >{this.context.t('min_fee_chip', {min_fee: selectedMinFee})}</Chip> : null
+                        >{this.context.t('min_fee_chip', {min_fee: formfieldValues.selectedMinFee})}</Chip> : null
                       }
                       {
-                        selectedMaxFee ?
+                        formfieldValues.selectedMaxFee ?
                         <Chip key="filter_min_fee"
                               onRequestDelete={() => onRemoveFilter(null, 'resetMaxFee')}
                               style={mStyles.chip}
                               labelStyle={mStyles.chipLabelStyle}
                               deleteIconStyle={mStyles.chipIconDelete}
-                        >{this.context.t('max_fee_chip', {max_fee: selectedMaxFee})}</Chip> : null
+                        >{this.context.t('max_fee_chip', {max_fee: formfieldValues.selectedMaxFee})}</Chip> : null
                       }
                       {
                         selectedSpecializes.map((sl) =>
@@ -205,11 +204,12 @@ class CourseFilter extends Component {
                           <div className="select-course-fee">
                             <div className="d-flex flex-horizontal">
                               <FormField className="md-number-field" formGroupId="filter_min_fees" showLabel={false} placeholder={this.context.t('min_fee_placeholder')}
-                                         onChange={this.props.onSelectFilter} formControlName="selectedMinFee" typeField="custom_input">
+                                         onChange={(e) => this.props.onSelectFilter(e.target.value, 'resetMinFee')}
+                                         formControlName="selectedMinFee" typeField="custom_input">
                               </FormField>
                               <span className="ml-10 mr-10 mt-5">{this.context.t('to')}</span>
                               <FormField className="md-number-field" formGroupId="filter_max_fees" showLabel={false} placeholder={this.context.t('max_fee_placeholder')}
-                                         onChange={this.props.onSelectFilter} formControlName="selectedMaxFee" typeField="custom_input">
+                                         onChange={(e) => this.props.onSelectFilter(e.target.value, 'resetMaxFee')} formControlName="selectedMaxFee" typeField="custom_input">
                               </FormField>
                             </div>
                           </div>

@@ -14,7 +14,7 @@ const CourseFilter = (state = {
   sortOrder: 'desc',
   groupSugestions: [],
   filters: {selectedWeekDays: [], selectedLocations: [], selectedCategories: [], selectedSpecializes: [],
-    resetMinFee: false, resetMaxFee: false},
+    resetMinFee: false, resetMaxFee: false, term: ''},
   showSuggestion: false,
   loadingSuggestion: false
 }, action) => {
@@ -47,11 +47,21 @@ const CourseFilter = (state = {
       return {...state, groupSugestions: [], showSuggestion: false, loadingSuggestion: false}
     case types.ADD_FILTER_CRITERIA:
       const currentFilters = Object.assign({}, state.filters, {resetMinFee: false, resetMaxFee: false})
-      let selectedFilters = currentFilters[action.data.type]
-      const newSelectedFilters = selectedFilters == undefined ? [] : JSON.parse(JSON.stringify(selectedFilters))
-      newSelectedFilters.push(action.data.value)
-      currentFilters[action.data.type] = newSelectedFilters
-      return Object.assign({}, state, {filters: currentFilters})
+
+      // handle for multiple select filter options
+      if (Array.isArray(currentFilters[action.data.type])) {
+        let selectedFilters = JSON.parse(JSON.stringify(currentFilters[action.data.type]));
+        selectedFilters.push(action.data.value)
+        currentFilters[action.data.type] = selectedFilters
+        return Object.assign({}, state, {filters: currentFilters})
+      } else if (action.data.type === 'resetMinFee' || action.data.type === 'resetMaxFee') {
+        // handle for boolean select filter options
+        return Object.assign({}, state, {filters: currentFilters})
+      } else {
+        currentFilters.term = action.data.value
+        return Object.assign({}, state, {filters: currentFilters})
+      }
+
     case types.REMOVE_FILTER_CRITERIA:
       const removedFilters = Object.assign({}, state.filters)
       if (Array.isArray(removedFilters[action.data.type])) {
