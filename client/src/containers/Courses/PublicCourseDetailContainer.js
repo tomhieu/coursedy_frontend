@@ -13,8 +13,25 @@ class PublicCourseDetailContainer extends Component {
   componentWillMount() {
     this.props.dispatch(FilterActions.fetchCategories())
     if (this.props.courseId) {
+      //Fetch course
       this.props.dispatch(PublicCourseActions.fetchPublicCourse(this.props.courseId));
+
+      //Fetch comments
+
+      this.props.dispatch(PublicCourseActions.fetchCourseComments(
+        this.props.courseId, 
+        this.props.course_comments.length > 0 ? 
+          this.props.course_comments[this.props.course_comments.length - 1] : 0
+      ));
     }
+  }
+
+  loadMoreComments() {
+    this.props.dispatch(PublicCourseActions.fetchCourseComments(
+      this.props.courseId, 
+      this.props.course_comments.length > 0 ? 
+        this.props.course_comments[this.props.course_comments.length - 1] : 0
+    ))
   }
 
   render() {
@@ -26,7 +43,9 @@ class PublicCourseDetailContainer extends Component {
         course_level={this.props.course_level}
         course_tutor={this.props.course_tutor} 
         course_sections={this.props.course_sections}
-        course_comments={this.props.course_comments}/>
+        course_comments={this.props.course_comments}
+        loadMoreCommentsHdl={this.loadMoreComments.bind(this)}
+        />
     )
   }
 }

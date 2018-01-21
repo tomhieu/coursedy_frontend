@@ -31,7 +31,7 @@ export const translations = {
     "phone_number": "Số Điện Thoại",
     "forgot_password": "Quên Mật Khẩu?",
     "registration_email_require": "Vui lòng nhập email",
-    "invalid_email": "Email không hợp ",
+    "invalid_email": "Email không hợp lệ",
     "password_required": "Vui lòng nhập mật khẩu",
     "password_confirmation_required": "Vui lòng xác  mật khẩu",
     "invalid_password": "Mật khẩu quá ngắn (ít nhất 8 ký tự)",
@@ -215,17 +215,23 @@ export const translations = {
     "course_comments": "Phản hồi",
 
     "course_follow": "Theo dõi khóa học",
+    "course_follow_status": "Kết quả theo dõi khóa học",
     "course_follow_submit_success": "Gửi email theo dõi thành công",
     "course_follow_submit_fail": "Gửi email theo dõi thất bại",
 
     "course_enroll_require_login": "Yêu cầu đăng nhập",
     "course_enroll_require_login_message": "Bạn cần đăng nhập để đăng ký khóa học",
+    "course_submit_comment_require_login_message": "Bạn cần đăng nhập để đăng phản hồi",
 
     "course_enroll_status": "Kết quả đăng ký",
     "course_enroll_success": "Đăng ký khóa học thành công",
     "course_enroll_fail": "Đăng ký khóa học thất bại",
 
     "course_enroll_deposit_more": "Nạp thêm",
+
+    "course_submit_comment_status": "Kết quả gửi phản hồi",
+    "course_submit_comment_success": "Gửi phản hồi thành công",
+    "course_submit_comment_fail": "Gửi phản hồi thất bại",
     /* search teachers page */
     "search_teachers_keyword": "Tìm kiếm theo tên, lĩnh vực",
     "search_teachers_field_label": "Lĩnh Vực:",

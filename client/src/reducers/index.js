@@ -9,6 +9,7 @@ import SignUpComponent from "./SignUpComponent";
 
 import CourseFilter from "./CourseFilter";
 import CourseListReducer from "./Course/CourseListReducer";
+import PublicCourseList from "./Course/PublicCourseList";
 import PublicCourseDetail from "./Course/PublicCourseDetail";
 import TutorCourseList from "./Course/TutorCourseListReducer";
 
@@ -34,6 +35,7 @@ const rootReducer = combineReducers({
 
     //Reducers for course
     CourseListReducer,
+    PublicCourseList,
     PublicCourseDetail,
     CourseFormComponent,
     TutorCourseList,

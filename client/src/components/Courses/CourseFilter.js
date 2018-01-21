@@ -15,6 +15,7 @@ import {
 import {red900} from "material-ui/styles/colors";
 import {mStyles} from "utils/CustomStylesUtil";
 import AutoComplete from "../AutoComplete/AutoComplete";
+import {PublicCourseListFollowModalContainer} from '../../containers/index'
 import {Chip} from "material-ui";
 
 class CourseFilter extends Component {
@@ -238,7 +239,7 @@ class CourseFilter extends Component {
                                typeField="checkbox" iconStyle={mStyles.iconCheckBox}>
                     </FormField>
                   </div>
-                  <EFlatButton label={this.context.t("save_favorite")} icon={<ActionFavorite color={red900}/>}/>
+                  <PublicCourseListFollowModalContainer />
                   <span className={styles.textTotalResult}>
                                         {this.context.t("total_result", {total: totalResult != undefined ? totalResult : 0})}
                                     </span>

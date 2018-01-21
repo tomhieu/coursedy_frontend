@@ -27,22 +27,22 @@ class PublicCourseDetailEnrollContainer extends Component {
   }
 
   hideRequireLoginModal() {
-      this.props.dispatch(PublicCourseActions.closePublishRequireLoginModal())
+      this.props.dispatch(PublicCourseActions.closePublicRequireLoginModal())
   }
   showRequireLoginModal() {
-    this.props.dispatch(PublicCourseActions.showPublishRequireLoginModal())
+    this.props.dispatch(PublicCourseActions.showPublicRequireLoginModal(this.context.t('course_enroll_require_login_message')))
   }
 
   redirectToLogin() {
     this.hideRequireLoginModal()
-    this.props.dispatch(PublicCourseActions.redirectEnrollCourse(this.props.course.id))
+    this.props.dispatch(PublicCourseActions.redirectAfterLogin('course/'+this.props.course.id))
   }
 
   hideEnrollStatusModal() {
-    this.props.dispatch(PublicCourseActions.closePublishEnrollStatusModal())
+    this.props.dispatch(PublicCourseActions.closePublicEnrollStatusModal())
   }
   showEnrollStatusModal() {
-    this.props.dispatch(PublicCourseActions.showPublishEnrollStatusModal())
+    this.props.dispatch(PublicCourseActions.showPublicEnrollStatusModal())
   }
   moveToPaymentPage() {
     // globalHistory.push('')
@@ -95,7 +95,7 @@ class PublicCourseDetailEnrollContainer extends Component {
             <Modal.Title>{this.context.t('course_enroll_require_login')}</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            {this.context.t('course_enroll_require_login_message')}
+            {this.props.require_login_message}
           </Modal.Body>
           <Modal.Footer>
             <Button onClick={this.redirectToLogin.bind(this)}>{this.context.t('ok')}</Button>
@@ -136,7 +136,8 @@ const mapStateToProps = (state) => {
     show_enroll_status_modal: state.PublicCourseDetail.show_enroll_status_modal,
     submit_enroll_success: state.PublicCourseDetail.submit_enroll_success,
     submit_enroll_fail: state.PublicCourseDetail.submit_enroll_fail,
-    submit_enroll_errors: state.PublicCourseDetail.submit_enroll_errors
+    submit_enroll_errors: state.PublicCourseDetail.submit_enroll_errors,
+    require_login_message: state.PublicCourseDetail.require_login_message
   }
 }
 
