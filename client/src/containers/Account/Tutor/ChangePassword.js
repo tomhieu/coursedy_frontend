@@ -42,7 +42,7 @@ class ChangePassword extends Component {
 
           <div className='form-group'>
             <button type="submit"
-                    className="top20 btn-link-dark">{this.context.t("account_tutor_new_password_btn")}</button>
+                    className="mt-15 btn-link-dark">{this.context.t("account_tutor_new_password_btn")}</button>
           </div>
         </form>
       </div>
