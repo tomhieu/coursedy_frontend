@@ -1,0 +1,28 @@
+.filterContainer {
+  position: absolute;
+  top: 45px;
+  right: 10px;
+  border: 1px solid rgba(48, 51, 57, 0.15);
+  z-index: 9999;
+  background-color: #ffffff;
+}
+
+.filterOption {
+  cursor: pointer;
+}
+
+.filterHeader {
+  height: 50px;
+}
+
+.filterInput {
+  padding: 10px 20px;
+}
+
+.optionContainer {
+  padding: 10px 0px;
+}
+
+.filterOptionContainer {
+  position: relative;
+}

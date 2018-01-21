@@ -53,7 +53,9 @@ class FormField extends Component {
         break;
       }
       case "custom_input": {
-        fieldComponent = <Field name={formControlName} placeholder={placeholder} type={type} disabled={this.props.disabled} component={renderField}
+        fieldComponent = <Field name={formControlName} placeholder={placeholder}
+                                type={type} disabled={this.props.disabled}
+                                component={renderField} onChange={this.props.onChange}
                                 customClassName={customClassName}/>;
         break;
       }
@@ -74,39 +76,47 @@ class FormField extends Component {
         break;
       }
       case "multi_select": {
-        fieldComponent = <Field name={formControlName} placeholder={placeholder} disabled={this.props.disabled}
-                                component={renderMultiSelect(options, selectedValues)} className={customClassName}/>
+        fieldComponent = <Field name={formControlName} placeholder={placeholder}
+                                disabled={this.props.disabled}
+                                component={renderMultiSelect(options, selectedValues)}
+                                className={customClassName}/>
         break;
       }
       case "custom_textarea": {
-        fieldComponent = <Field name={formControlName} placeholder={placeholder} rows={rows} disabled={this.props.disabled}
+        fieldComponent = <Field name={formControlName} placeholder={placeholder}
+                                rows={rows} disabled={this.props.disabled}
                                 component={renderTextAreaField} className={customClassName}/>
         break;
       }
 
       case "checkbox": {
-        fieldComponent = <Field name={formControlName} label={this.props.formLabel} iconStyle={this.props.iconStyle} disabled={this.props.disabled}
+        fieldComponent = <Field name={formControlName} label={this.props.formLabel}
+                                iconStyle={this.props.iconStyle} disabled={this.props.disabled}
                                 component={renderCheckbox} className={customClassName}/>
         break;
       }
       case "radiobox": {
-        fieldComponent =
-          <Field name={formControlName} placeholder={placeholder} rows={rows} label={this.props.formLabel} disabled={this.props.disabled}
-                 component={RadioButtonGroup} className={customClassName}/>
+        fieldComponent = <Field name={formControlName} placeholder={placeholder}
+                                rows={rows} label={this.props.formLabel}
+                                disabled={this.props.disabled} component={RadioButtonGroup}
+                                className={customClassName}/>
         break;
       }
       case "toggle": {
-        fieldComponent = <Field name={formControlName} placeholder={placeholder} rows={rows} disabled={this.props.disabled}
+        fieldComponent = <Field name={formControlName} placeholder={placeholder}
+                                rows={rows} disabled={this.props.disabled}
                                 component={renderToggle(toggled, onToggle)} className={customClassName}/>
         break;
       }
       case "timePicker": {
-        fieldComponent = <Field name={formControlName} label={this.props.formLabel} component={CustomTimePicker} format={null} disabled={this.props.disabled}
-                                hintText={placeholder}/>
+        fieldComponent = <Field name={formControlName} label={this.props.formLabel}
+                                component={CustomTimePicker} format={null}
+                                disabled={this.props.disabled} hintText={placeholder}/>
         break;
       }
       default: {
-        fieldComponent = <Field name={formControlName} placeholder={placeholder} component={typeField} disabled={this.props.disabled}
+        fieldComponent = <Field name={formControlName} placeholder={placeholder}
+                                component={typeField} disabled={this.props.disabled}
                                 className={customClassName}/>;
       }
     }

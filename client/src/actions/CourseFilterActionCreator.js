@@ -145,27 +145,29 @@ const filterSuggestion = (term, group) => {
   return filterSuggest.length > 0 ? {...group, suggestions: filterSuggest} : null;
 }
 
-export const loadSuggestions = (term) => {
-  const result = [];
-  dummySuggestions.map((group) => {
-    const g = filterSuggestion(term, group);
-    if (g != null) {
-      result.push(g);
-    }
-  })
+export const loadSuggestions = (filters, term) => {
   return dispatch => {
     dispatch({
-      type: types.LOAD_SUGGESTION_COMPLETE,
-      payload: result
+      type: types.LOADING_SUGGESTION,
+    })
+    Network().get('load-suggestions', {filters, term}).then((response) => {
+      dispatch({
+        type: types.LOAD_SUGGESTION_COMPLETE,
+        payload: response
+      })
+    }, (errors) => {
+      dispatch({
+        type: types.LOAD_SUGGESTION_ERROR
+      })
     })
   }
 }
 
-export const addFilterSuggestion = (filter) => {
+export const addFilterSuggestion = (filter, category) => {
   return dispatch => {
     dispatch({
       type: types.ADD_FILTER_CRITERIA,
-      data: filter
+      data: {type: category, value: filter}
     })
   }
 }
@@ -211,11 +213,14 @@ export const removeAllCourses = () => {
     })
   }
 }
-export const removeFilterSuggestion = (filterId) => {
+export const removeFilterSuggestion = (filterId, filterType) => {
   return dispatch => {
     dispatch({
       type: types.REMOVE_FILTER_CRITERIA,
-      data: filterId
+      data: {
+        type: filterType,
+        filterId: filterId
+      }
     })
   }
 }

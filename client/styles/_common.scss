@@ -904,7 +904,8 @@ ul.no-margin,
 }
 
 .select-course-fee {
-  width: 30%;
+  width: 180px;
+  padding: 0 15px;
 }
 
 .md-check-box-field {
@@ -939,7 +940,7 @@ ul.no-margin,
 input:not([type]), input[type="email"], input[type="number"], input[type="password"], input[type="tel"],
 input[type="url"], input[type="text"], textarea, .form-control {
   background-color: #ffffff;
-  line-height: 1.3em;
+  line-height: 1.45em;
   border-radius: 2px;
   border: 1px solid rgba(48, 51, 57, .15);
   font-size: 14px;
@@ -1027,6 +1028,52 @@ input[type="url"]:focus, input[type="text"]:focus, textarea:focus, .form-control
   }
 }
 
+.input-without-border {
+  width: 100%;
+}
+
 .input-without-border input {
   border: none;
+}
+
+.option-item {
+  cursor: pointer;
+  padding: 5px 20px;
+}
+
+.option-item:hover {
+  background-color: #e7e7e7;
+  a {
+    color: #169BD5;
+  }
+}
+
+.option-item.selected {
+  background-color: #eaebf0;
+  cursor: not-allowed;
+}
+
+.option-item a {
+  color: #000000;
+}
+
+.full-width-input-wrapper {
+  width: 100%;
+}
+
+.full-height {
+  height: 100%;
+}
+
+.st-border-left {
+  border-left: 1px solid rgba(48, 51, 57, 0.15);
+}
+
+.md-number-field {
+  width: 150px;
+}
+
+.group-header {
+  padding: 5px;
+  border-bottom: 1px solid rgba(48, 51, 57, 0.15);
 }

@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import cssModules from 'react-css-modules';
 import styles from './Course.module.scss';
-import {tuitionFees} from '../../constants/CourseFilter'
 import FormField from "../Core/FormField";
-import {FieldArray} from "redux-form";
+import {DAYS_IN_WEEK} from "../../actions/CourseFormActionCreator"
+import {FilterOption} from "../FilterOption/FilterOption"
 import {EFlatButton, RaiseButton} from "../Core/CustomComponents";
 import {
   ActionFavorite,
@@ -16,6 +16,7 @@ import {red900} from "material-ui/styles/colors";
 import {mStyles} from "utils/CustomStylesUtil";
 import AutoComplete from "../AutoComplete/AutoComplete";
 import {PublicCourseListFollowModalContainer} from '../../containers/index'
+import {Chip} from "material-ui";
 
 class CourseFilter extends Component {
 
@@ -36,61 +37,6 @@ class CourseFilter extends Component {
   renderCourseLevels(selectedCategories) {
     return (
       <div className="checkbox-group">
-        {
-          selectedCategories.map(cate =>
-            <div key={cate.id}>
-              <span>{cate.name}</span>
-              <FieldArray name="filter_course_levels" component={() =>
-                <div className="d-flex flex-horizontal flex-wrap">
-                  {cate.course_levels.map((filter_course_level) =>
-                    <div key={filter_course_level.id} className="lg-check-box-field">
-                      <FormField formGroupId="filter_course_levels" showLabel={false}
-                                 formLabel={filter_course_level.name}
-                                 formControlName={"filter_course_levels[" + filter_course_level.id + "]"}
-                                 typeField="checkbox">
-                      </FormField>
-                    </div>
-                  )}
-                </div>
-              }/>
-            </div>
-          )
-        }
-
-      </div>
-    )
-  }
-
-  renderDayOfWeek(weekdays) {
-    return (
-      <div className="checkbox-group">
-        <FieldArray name="course_schedule_days" component={() =>
-          <div className="d-flex flex-horizontal flex-wrap">
-            {
-              Object.keys(weekdays).map((k) =>
-                <div key={k} className="md-check-box-field">
-                  <FormField formGroupId="course_schedule_day" showLabel={false}
-                             formLabel={weekdays[k]}
-                             formControlName={"course_schedule_days[" + k + "]"}
-                             typeField="checkbox">
-                  </FormField>
-                </div>
-              )
-            }
-          </div>
-        }/>
-      </div>
-    )
-  }
-
-  renderTutorFees(tuitionFees) {
-    return (
-      <div className="d-flex flex-horizontal">
-        <div className="select-course-fee">
-          <FormField formGroupId="filter_min_fees" showLabel={false} options={tuitionFees}
-                     formControlName={"fees"} typeField="custom_select">
-          </FormField>
-        </div>
       </div>
     )
   }
@@ -105,16 +51,20 @@ class CourseFilter extends Component {
       handleSubmit,
       categories,
       locations,
-      selectedCategories,
-      weekdays,
       totalResult,
       changeDisplayModeHdl,
       groupSugestions,
       loadSuggestions,
       onRemoveFilter,
       filters,
-      showSuggestion
+      showSuggestion,
+      loadingSuggestion,
+      formfieldValues,
+      listSpecializes
     } = this.props
+
+    const {selectedWeekDays, selectedCategories, selectedLocations, selectedSpecializes} = filters
+
     const orderList = [{id: 1, text: this.context.t("order_by_time")}, {
       id: 2,
       text: this.context.t("order_by_view")
@@ -139,107 +89,147 @@ class CourseFilter extends Component {
         <div className="col-xs-12 col-sm-12">
           <form onSubmit={handleSubmit(this.props.onSubmit)} className='inline-form' multiple={true}>
             <div className={styles.filterActionBlock + " col-md-12 col-sm-12"}>
-              <div className="row">
-                <div className={"col-md-6 col-sm-6"}>
-                  <AutoComplete placeholder={this.context.t('search_course')}
-                                fieldName="key_word" fieldId="key_word_filter"
-                                dataSource={groupSugestions}
-                                handleAddCriteria={this.autoCompleteSearchCourse.bind(this)}
-                                handleRequestDeleteChip={onRemoveFilter}
-                                loadSuggestions={loadSuggestions}
-                                filters={filters}
-                                show={showSuggestion}
-                  />
-                </div>
-                {/* Title search */}
-                <div className={"col-md-3 col-sm-3"}>
-                  <FormField formGroupId="categories_id" showLabel={false}
-                             options={categories.map((x) => {
-                               return {text: x.name, id: x.id}
-                             })}
-                             placeholder={this.context.t('category')}
-                             formControlName="filter_category_ids"
-                             typeField="multi_select">
-                  </FormField>
-                </div>
-                {/* Field */}
-                <div className={"col-md-1 col-sm-1"}>
-                  <FormField formGroupId="locations_id" showLabel={false}
-                             options={Object.keys(locations).map((x) => {
-                               return {text: locations[x], id: x}
-                             })}
-                             placeholder={this.context.t("location")}
-                             formControlName="filter_location_ids"
-                             typeField="custom_select">
-                  </FormField>
-                </div>
-                {/* Area*/}
-                <div className="col-md-2 col-sm-2">
-                  <div className="d-flex flex-horizontal">
-                    <RaiseButton label={this.context.t('filter')}/>
-                    <EFlatButton label={this.context.t("filter_more")}
-                                 onClick={this.toggleFilter.bind(this)}
-                                 icon={this.state.openAdFilter ? <NavigationExpandLess style={mStyles.iconFlatBtn}/> :
-                                   <NavigationExpandMore style={mStyles.iconFlatBtn}/>}/>
+              <div className="row full-height">
+                <div className="col-md-7 col-sm-7 full-height">
+                  <div className={styles.filterInputBox + " d-flex flex-vertical justify-content-center full-height"}>
+                    <div className="d-flex flex-horizontal">
+                      {
+                        selectedWeekDays.map((f) =>
+                          <Chip key={"filter_days_" + f.id}
+                                onRequestDelete={() => onRemoveFilter(f.id, 'selectedWeekDays')}
+                                style={mStyles.chip}
+                                labelStyle={mStyles.chipLabelStyle}
+                                deleteIconStyle={mStyles.chipIconDelete}
+                          >{f.name}</Chip>
+                        )
+                      }
+                      {
+                        selectedCategories.map((sc) =>
+                          <Chip key={"filter_categories_" + sc.id}
+                                onRequestDelete={() => onRemoveFilter(sc.id, 'selectedCategories')}
+                                style={mStyles.chip}
+                                labelStyle={mStyles.chipLabelStyle}
+                                deleteIconStyle={mStyles.chipIconDelete}
+                          >{sc.name}</Chip>
+                        )
+                      }
+                      {
+                        selectedLocations.map((f) =>
+                          <Chip key={"filter_locs_" + f.id}
+                                onRequestDelete={() => onRemoveFilter(f.id, 'selectedLocations')}
+                                style={mStyles.chip}
+                                labelStyle={mStyles.chipLabelStyle}
+                                deleteIconStyle={mStyles.chipIconDelete}
+                          >{f.name}</Chip>
+                        )
+                      }
+                      {
+                        formfieldValues.selectedMinFee ?
+                        <Chip key="filter_max_fee"
+                              onRequestDelete={() => onRemoveFilter(null, 'resetMinFee')}
+                              style={mStyles.chip}
+                              labelStyle={mStyles.chipLabelStyle}
+                              deleteIconStyle={mStyles.chipIconDelete}
+                        >{this.context.t('min_fee_chip', {min_fee: formfieldValues.selectedMinFee})}</Chip> : null
+                      }
+                      {
+                        formfieldValues.selectedMaxFee ?
+                        <Chip key="filter_min_fee"
+                              onRequestDelete={() => onRemoveFilter(null, 'resetMaxFee')}
+                              style={mStyles.chip}
+                              labelStyle={mStyles.chipLabelStyle}
+                              deleteIconStyle={mStyles.chipIconDelete}
+                        >{this.context.t('max_fee_chip', {max_fee: formfieldValues.selectedMaxFee})}</Chip> : null
+                      }
+                      {
+                        selectedSpecializes.map((sl) =>
+                          <Chip key={"filter_levels_" + sl.id}
+                                onRequestDelete={() => onRemoveFilter(sl.id, 'selectedSpecializes')}
+                                style={mStyles.chip}
+                                labelStyle={mStyles.chipLabelStyle}
+                                deleteIconStyle={mStyles.chipIconDelete}
+                          >{sl.name}</Chip>
+                        )
+                      }
+                    </div>
+                    <AutoComplete placeholder={this.context.t('search_course')}
+                                  fieldName="key_word" fieldId="key_word_filter"
+                                  dataSource={groupSugestions}
+                                  handleAddCriteria={this.autoCompleteSearchCourse.bind(this)}
+                                  loadSuggestions={loadSuggestions}
+                                  filters={filters}
+                                  show={showSuggestion}
+                                  isLoading={loadingSuggestion}
+                    />
                   </div>
                 </div>
-              </div>
-            </div>
-            {/* Basic Filter Block */}
-            <br/>
 
-            <div className={styles.filterActionBlock + " col-md-12 col-sm-12"}>
-              <div
-                className={styles.advancedFilter + " collapse " + (this.state.openAdFilter ? "in" : "")}>
-                <div className="row">
-                  <div className="col-md-6 col-sm-6">
-                    <h4>{this.context.t("day_of_week")}</h4>
-                    {this.renderDayOfWeek(weekdays)}
-                  </div>
-                  {/* Schedule days */}
-
-                  <div className="col-md-6 col-sm-6">
-                    <div className="row">
-                      {/* Tuition fee */}
-                      <div className="col-md-12 col-sm-12">
-                        <h4>{this.context.t('tuition_fee_filter')}</h4>
-                        {this.renderTutorFees(tuitionFees)}
-                      </div>
-                      {/* Schedule time */}
-                      <div className="col-md-12 col-sm-12">
-                        <h4>{this.context.t('time_schedule')}</h4>
-                        <div className='row dark-picker dark-picker-bright'>
-                          <div className='col-sm-9'>
-                            <FormField formGroupId="start_time_id" showLabel={false}
-                                       placeholder={this.context.t("start_time")}
-                                       formControlName="start_time"
-                                       typeField="timePicker">
-                            </FormField>
+                <div className="col-md-5 col-sm-5 full-height st-border-left">
+                  <div className="d-flex flex-horizontal align-items-center flex-nowrap ml-15 mt-20">
+                    <div className={styles.filterOptionContainer}>
+                      <FilterOption label={this.context.t('day_of_week')}
+                                    options={DAYS_IN_WEEK.map((e) => {
+                                      return {id: e.id, name: e.text}
+                                    })}
+                                    selectedOptions={selectedWeekDays}
+                                    onSelectFilter={this.props.onSelectFilter}
+                                    type="single-select"
+                                    name="selectedWeekDays">
+                      </FilterOption>
+                    </div>
+                    <div className={styles.filterOptionContainer}>
+                      <FilterOption label={this.context.t('course_category_title')}
+                                    options={categories.map((x) => {
+                                      return {name: x.name, id: x.id}
+                                    })}
+                                    selectedOptions={selectedCategories}
+                                    onSelectFilter={this.props.onSelectFilter}
+                                    type="multi-select"
+                                    name="selectedCategories">
+                      </FilterOption>
+                    </div>
+                    <div className={styles.filterOptionContainer}>
+                      <FilterOption label={this.context.t('location')}
+                                    options={Object.keys(locations).map((x) => {
+                                      return {name: locations[x], id: x}
+                                    })}
+                                    selectedOptions={selectedLocations}
+                                    onSelectFilter={this.props.onSelectFilter}
+                                    type="single-select"
+                                    name="selectedLocations">
+                      </FilterOption>
+                    </div>
+                    <div className={styles.filterOptionContainer}>
+                      <FilterOption label={this.context.t('tuition_fee_filter')} onSelectFilter={this.props.onSelectFilter} name="tuition_fee">
+                        <div className="d-flex flex-horizontal">
+                          <div className="select-course-fee">
+                            <div className="d-flex flex-horizontal">
+                              <FormField className="md-number-field" formGroupId="filter_min_fees" showLabel={false} placeholder={this.context.t('min_fee_placeholder')}
+                                         onChange={(e) => this.props.onSelectFilter(e.target.value, 'resetMinFee')}
+                                         formControlName="selectedMinFee" typeField="custom_input">
+                              </FormField>
+                              <span className="ml-10 mr-10 mt-5">{this.context.t('to')}</span>
+                              <FormField className="md-number-field" formGroupId="filter_max_fees" showLabel={false} placeholder={this.context.t('max_fee_placeholder')}
+                                         onChange={(e) => this.props.onSelectFilter(e.target.value, 'resetMaxFee')} formControlName="selectedMaxFee" typeField="custom_input">
+                              </FormField>
+                            </div>
                           </div>
                         </div>
-                        <div className='row dark-picker dark-picker-bright margin-top15'>
-                          <div className='col-sm-9'>
-                            <FormField formGroupId="end_time_id" showLabel={false}
-                                       placeholder={this.context.t("end_time")}
-                                       formControlName="end_time"
-                                       typeField="timePicker">
-                            </FormField>
-                          </div>
-                        </div>
-                      </div>
+                      </FilterOption>
+                    </div>
+                    <div className={styles.filterOptionContainer}>
+                      <FilterOption label={this.context.t('level')} onSelectFilter={this.props.onSelectFilter}
+                                    options={listSpecializes} isGroupOption={true}
+                                    selectedOptions={selectedSpecializes}
+                                    type="group-select"
+                                    name="selectedSpecializes">
+                      </FilterOption>
                     </div>
                   </div>
                 </div>
-                <div className="row">
-                  <div className="col-md-12 col-sm-12">
-                    <h4>{this.context.t('level')}</h4>
-                    {this.renderCourseLevels(selectedCategories)}
-                  </div>
-                </div>
-
-
               </div>
             </div>
+
             {/* Result Block */}
             <div className={'col-md-12 ' + styles.filterResultBlock}>
               <div className="d-flex flex-horizontal align-items-center">
@@ -289,12 +279,11 @@ CourseFilter.contextTypes = {
 CourseFilter.propTypes = {
   categories: React.PropTypes.array.isRequired,
   locations: React.PropTypes.object.isRequired,
-  weekdays: React.PropTypes.object.isRequired,
   onSelectFilter: React.PropTypes.func.isRequired,
   groupSugestions: React.PropTypes.array.isRequired,
   loadSuggestions: React.PropTypes.func.isRequired,
   onRemoveFilter: React.PropTypes.func.isRequired,
-  filters: React.PropTypes.array.isRequired
+  filters: React.PropTypes.object.isRequired
 };
 
 export default cssModules(CourseFilter, styles);

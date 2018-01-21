@@ -12,8 +12,11 @@ const CourseFilter = (state = {
   selectedCourses: [],
   sortBy: '',
   sortOrder: 'desc',
-  filters: [],
-  showSuggestion: false
+  groupSugestions: [],
+  filters: {selectedWeekDays: [], selectedLocations: [], selectedCategories: [], selectedSpecializes: [],
+    resetMinFee: false, resetMaxFee: false, term: ''},
+  showSuggestion: false,
+  loadingSuggestion: false
 }, action) => {
   switch (action.type) {
     case courseActionTypes.FETCH_COURSES_SUCCESS:
@@ -38,13 +41,36 @@ const CourseFilter = (state = {
       return {...state, selectedCourses: []}
     case types.LOAD_SUGGESTION_COMPLETE:
       return {...state, groupSugestions: action.payload, showSuggestion: action.payload.length > 0}
+    case types.LOADING_SUGGESTION:
+      return {...state, groupSugestions: [], showSuggestion: true, loadingSuggestion: true}
+    case types.LOAD_SUGGESTION_ERROR:
+      return {...state, groupSugestions: [], showSuggestion: false, loadingSuggestion: false}
     case types.ADD_FILTER_CRITERIA:
-      let newFilters = JSON.parse(JSON.stringify(state.filters))
-      newFilters.push(action.data)
-      return {...state, filters: newFilters, showSuggestion: false}
+      const currentFilters = Object.assign({}, state.filters, {resetMinFee: false, resetMaxFee: false})
+
+      // handle for multiple select filter options
+      if (Array.isArray(currentFilters[action.data.type])) {
+        let selectedFilters = JSON.parse(JSON.stringify(currentFilters[action.data.type]));
+        selectedFilters.push(action.data.value)
+        currentFilters[action.data.type] = selectedFilters
+        return Object.assign({}, state, {filters: currentFilters})
+      } else if (action.data.type === 'resetMinFee' || action.data.type === 'resetMaxFee') {
+        // handle for boolean select filter options
+        return Object.assign({}, state, {filters: currentFilters})
+      } else {
+        currentFilters.term = action.data.value
+        return Object.assign({}, state, {filters: currentFilters})
+      }
+
     case types.REMOVE_FILTER_CRITERIA:
-      const clonedFilters = JSON.parse(JSON.stringify(state.filters))
-      const removedFilters = clonedFilters.filter(f => f.id != Number(action.data))
+      const removedFilters = Object.assign({}, state.filters)
+      if (Array.isArray(removedFilters[action.data.type])) {
+        const clonedFilters = JSON.parse(JSON.stringify(removedFilters[action.data.type]))
+        const updatedSelectedFilters = clonedFilters.filter(f => f.id != Number(action.data.filterId))
+        removedFilters[action.data.type] = updatedSelectedFilters
+      } else {
+        removedFilters[action.data.type] = true;
+      }
       return {...state, filters: removedFilters}
     default:
       return state;

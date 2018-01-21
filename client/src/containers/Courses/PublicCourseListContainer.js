@@ -13,7 +13,7 @@ class PublicCourseListContainer extends Component {
     query['q'] = this.props.keyWord
     query['categories'] = this.props.selectedCategoryIds
     query['locations'] = this.props.selectedLocationIds
-    query['levels'] = this.props.selectedLevels
+    query['levels'] = this.props.selectedSpecializes
     query['week_day'] = this.props.selectedWeekdays
     query['fees'] = this.props.selectedFees
     query['start_time'] = this.props.startTime
@@ -33,7 +33,7 @@ class PublicCourseListContainer extends Component {
     query['q'] = this.props.keyWord
     query['categories'] = this.props.selectedCategoryIds
     query['locations'] = this.props.selectedLocationIds
-    query['levels'] = this.props.selectedLevels
+    query['levels'] = this.props.selectedSpecializes
     query['week_day'] = this.props.selectedWeekdays
     query['fees'] = this.props.selectedFees
     query['start_time'] = this.props.startTime
@@ -86,7 +86,7 @@ const mapStateToProps = (state) => ({
   selectedFees: state.CourseFilter.selectedFees,
   selectedCategoryIds: state.CourseFilter.selectedCategoryIds,
   selectedLocationIds: state.CourseFilter.selectedLocationIds,
-  selectedLevels: state.CourseFilter.selectedLevels,
+  selectedSpecializes: state.CourseFilter.selectedSpecializes,
   selectedWeekdays: state.CourseFilter.selectedWeekdays,
   courses: state.CourseFilter.courses,
   currentPage: state.CourseFilter.currentPage,

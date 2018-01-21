@@ -168,13 +168,14 @@ export const translations = {
     "course_specialize": "Ngành Học",
     "category": "Lớp học",
     "level": "Cấp độ",
-    /**
+    /*
      * Filter Course Page
      */
     "filter": "Tìm kiếm",
     "filter_more": "Thêm",
     "location": "Khu vực",
-    "tuition_fee_filter": "Học phí (Cả khóa)",
+    "course_category_title": "Khoá học",
+    "tuition_fee_filter": "Học phí",
     "to": "Đến",
     "time_schedule": "Giờ học",
     "start_time": "Bắt đầu",
@@ -199,6 +200,11 @@ export const translations = {
     "display_mode": "Hiển thị:",
     "display_mode_list": "Danh sách",
     "display_mode_grid": "Dạng Lưới",
+    "min_fee_placeholder": "Học phí thấp nhất",
+    "min_fee_chip": "Từ {min_fee}",
+    "max_fee_placeholder": "Học phí cao nhất",
+    "max_fee_chip": "Đến {max_fee}",
+    "general_search_placeholder": "Tìm kiếm theo lĩnh vữc, loại khoá học, tên khoá học ... ",
     /*
         Public course detail
     */

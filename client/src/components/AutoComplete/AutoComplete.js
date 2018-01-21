@@ -1,11 +1,10 @@
-import {Component} from "react";
 import * as React from "react";
-import {mStyles} from "utils/CustomStylesUtil";
+import {Component} from "react";
 import cssModules from 'react-css-modules';
 import styles from './AutoComplete.module.scss';
 import {renderField} from "../Core/CustomComponents";
 import Field from "redux-form/es/Field";
-import {Chip} from "material-ui";
+import {SvgIcon} from "material-ui";
 
 class AutoComplete extends Component {
 
@@ -42,25 +41,29 @@ class AutoComplete extends Component {
     console.log("on focus event");
   }
 
+  onKeyPress(e) {
+    console.log("on key press");
+    if (e.key == 'Enter') {
+      this.props.handleAddCriteria("", "", e.target.value)
+    }
+  }
+
   render() {
-    const {show, handleRequestDeleteChip, placeholder, fieldName, dataSource, handleAddCriteria, loadSuggestions, filters} = this.props;
+    const {show, isLoading, handleRequestDeleteChip, placeholder, fieldName, dataSource, handleAddCriteria, loadSuggestions, filters} = this.props;
     return (
       <div className={styles.filterBox + " d-flex flex-vertical"}>
         <div className="d-flex flex-horizontal">
-          <div className="d-flex flex-horizontal">
-            {
-              filters.map((f) =>
-                <Chip key={"filter_" + f.id}
-                      onRequestDelete={() => handleRequestDeleteChip(f.id)}
-                      style={mStyles.chip}
-                      labelStyle={mStyles.chipLabelStyle}
-                      deleteIconStyle={mStyles.chipIconDelete}
-                >{f.text}</Chip>
-              )
-            }
-          </div>
+          <SvgIcon>
+            <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+            <path d="M0 0h24v24H0z" fill="none"/>
+          </SvgIcon>
           <div className="input-without-border">
-            <Field name={fieldName} placeholder={placeholder} onBlur={this.onBlur.bind(this)} onFocus={this.onFocus.bind(this)} onChange={loadSuggestions} component={renderField}/>
+            <Field name={fieldName} placeholder={placeholder}
+                   onBlur={this.onBlur.bind(this)}
+                   onFocus={this.onFocus.bind(this)}
+                   onChange={loadSuggestions}
+                   component={renderField}
+                   onKeyPress={this.onKeyPress.bind(this)}/>
           </div>
         </div>
         {
@@ -71,7 +74,7 @@ class AutoComplete extends Component {
                   this.renderGroupSuggestion(gs, handleAddCriteria)
                 ))
               }
-            </div> : <div></div>
+            </div> : isLoading ? <div>Loading...</div> : null
         }
       </div>
     )
@@ -85,13 +88,13 @@ AutoComplete.contextTypes = {
 
 AutoComplete.propTypes = {
   show: React.PropTypes.bool.isRequired,
+  isLoading: React.PropTypes.bool.isRequired,
   placeholder: React.PropTypes.string.isRequired,
   handleAddCriteria: React.PropTypes.func.isRequired,
   fieldName: React.PropTypes.string.isRequired,
   fieldId: React.PropTypes.string.isRequired,
   dataSource: React.PropTypes.array.isRequired,
   loadSuggestions: React.PropTypes.func.isRequired,
-  handleRequestDeleteChip: React.PropTypes.func.isRequired
 };
 
 export default cssModules(AutoComplete, styles);
