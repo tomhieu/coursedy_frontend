@@ -44,18 +44,18 @@ export const fetchWeekdays = () => {
 export const searchCourse = (query) => {
   return dispatch => {
     //FIXME: Comment for dummy data
-    // Network().get('courses', query).then((response) => {
-    //   dispatch({
-    //     type: courseActionTypes.FETCH_COURSES_SUCCESS,
-    //     payload: response
-    //   })
-    // })
+    Network().get('courses', query).then((response) => {
+      dispatch({
+        type: courseActionTypes.FETCH_COURSES_SUCCESS,
+        payload: response
+      })
+    })
 
     //FIXME: Remove me
-    dispatch({
-      type: courseActionTypes.FETCH_COURSES_SUCCESS,
-      payload: types.dummyCourses
-    })
+    // dispatch({
+    //   type: courseActionTypes.FETCH_COURSES_SUCCESS,
+    //   payload: types.dummyCourses
+    // })
   }
 }
 

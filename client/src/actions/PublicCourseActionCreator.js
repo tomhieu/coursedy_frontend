@@ -6,30 +6,36 @@ import {TT} from '../utils/locale'
 
 export const fetchPublicCourse = (courseId) => {
   return dispatch => {
-    //FIXME: Comment for dummy data
-    // Network().get('courses/'+courseId).then((response) => {
-    //   dispatch(fetchPublicCourseSections(courseId));
-    //   dispatch(fetchPublicCourseTutor(response.user.id));
-    //   dispatch({
-    //     type: types.FETCH_PUBLIC_COURSE_SUCCESSFULLY,
-    //     payload: response
-    //   })
-    // }, (errors) => {
-    //   const error_messages = (errors && errors.constructor == Array && errors.length > 0) ?
-    //     errors :
-    //     [TT.t('fetch_course_fail')]
+    Network().get('courses/'+courseId).then((response) => {
+      dispatch(fetchPublicCourseSections(courseId));
+      dispatch(fetchPublicCourseTutor(response.user.id));
+      dispatch({
+        type: types.FETCH_PUBLIC_COURSE_SUCCESSFULLY,
+        payload: response
+      })
+    }, (errors) => {
+      const error_messages = (errors && errors.constructor == Array && errors.length > 0) ?
+        errors :
+        [TT.t('fetch_course_fail')]
 
-    //   dispatch({
-    //     type: types.FETCH_PUBLIC_COURSE_FAIL,
-    //     payload: {errors: error_messages}
-    //   })
-    // })
+      //TODO tinhuynh: Fix me after API server return 404 error
+      //Redirect to 404 page
+      if (error_messages.indexOf("course not found") >= 0) {
+        globalHistory.push('/404')
+      } else {
+        dispatch({
+          type: types.FETCH_PUBLIC_COURSE_FAIL,
+          payload: {errors: error_messages}
+        })  
+      }
+      
+    })
 
     //FIXME: Remove me
-    dispatch({
-      type: types.FETCH_PUBLIC_COURSE_SUCCESSFULLY,
-      payload: types.dummyCourse
-    })
+    // dispatch({
+    //   type: types.FETCH_PUBLIC_COURSE_SUCCESSFULLY,
+    //   payload: types.dummyCourse
+    // })
 
   }
 }
