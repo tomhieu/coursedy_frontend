@@ -13,6 +13,8 @@ import PublicCourseDetailEnrollContainer from './Courses/PublicCourseDetailEnrol
 import CourseFilterContainer from './Courses/CourseFilterContainer';
 import RoleAuthorization from '../components/RoleAuthorization';
 
+import CommentFormContainer from './Courses/CourseDetail/CommentFormContainer';
+
 export {
   LoginFormContainer,
   RegisterFormContainer,
@@ -27,5 +29,6 @@ export {
   PublicCourseDetailFollowModalContainer,
   PublicCourseDetailEnrollContainer,
 
-  CourseFilterContainer
+  CourseFilterContainer,
+  CommentFormContainer,
 }

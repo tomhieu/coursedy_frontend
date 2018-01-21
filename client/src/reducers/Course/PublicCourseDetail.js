@@ -13,8 +13,15 @@ const PublicCourseDetail = (state = {
     submit_enroll_errors: [],
 
     show_require_login_modal: false,
+    require_login_message: '',
     show_enroll_status_modal: false,
     show_follow_status_modal: false,
+
+
+    show_comment_status_modal: false,
+    submit_comment_success: false,
+    submit_comment_fail: false,
+    submit_comment_errors: [],
   }, action) => {
   switch (action.type) {
     case courseTypes.FETCH_PUBLIC_COURSE_SUCCESSFULLY:
@@ -47,19 +54,58 @@ const PublicCourseDetail = (state = {
 
 
     //Handle enroll actions
-    case courseTypes.PUBLIC_COURSE_SUBMIT_ENROLL_SUCCESSFULLY:
+    case courseTypes.PUBLIC_COURSE_DETAIL_SUBMIT_ENROLL_SUCCESSFULLY:
       return {...state, submit_enroll_success: true}
-    case courseTypes.PUBLIC_COURSE_SUBMIT_ENROLL_FAILL:
+    case courseTypes.PUBLIC_COURSE_DETAIL_SUBMIT_ENROLL_FAILL:
       return {...state, submit_enroll_fail: true, submit_enroll_errors: action.payload.errors}
+      
     case courseTypes.PUBLIC_COURSE_SHOW_REQUIRE_LOGIN_MODAL:
-      return {...state, show_require_login_modal: true}
+      return {
+        ...state, 
+        show_require_login_modal: true, 
+        require_login_message: action.payload
+      }
     case courseTypes.PUBLIC_COURSE_CLOSE_REQUIRE_LOGIN_MODAL:
       return {...state, show_require_login_modal: false}
+    
     case courseTypes.PUBLIC_COURSE_SHOW_ENROLL_STATUS_MODAL:
       return {...state, show_enroll_status_modal: true}
     case courseTypes.PUBLIC_COURSE_CLOSE_ENROLL_STATUS_MODAL:
       return {...state, show_enroll_status_modal: false}
 
+
+    //Handle comments actions
+    case courseTypes.PUBLIC_COURSE_DETAIL_FETCH_COMMENTS_SUCCESSFULLY:
+      return {...state, 
+        course_comments: [...new Set([...state.course_comments ,...action.payload])].filter((obj, index, self) =>
+          index === self.findIndex((t) => (
+            t.id === obj.id
+          ))
+        ) 
+      }
+    case courseTypes.PUBLIC_COURSE_DETAIL_FETCH_COMMENTS_FAIL:
+      return state
+    case courseTypes.PUBLIC_COURSE_DETAIL_SUBMIT_COMMENT_SUCCESSFULLY:
+      return {
+        ...state, 
+        submit_comment_success: true, 
+        show_comment_status_modal: true,
+        course_comments: state.course_comments.concat(action.payload).filter((obj, index, self) =>
+          index === self.findIndex((t) => (
+            t.id === obj.id
+          ))
+        ) 
+      }
+    case courseTypes.PUBLIC_COURSE_DETAIL_SUBMIT_COMMENT_FAIL:
+      return {
+        ...state, 
+        submit_comment_fail: true, 
+        show_comment_status_modal: true
+      }
+    case courseTypes.PUBLIC_COURSE_DETAIL_SUBMIT_COMMENT_SHOW_STATUS_MODAL:
+      return {...state, show_comment_status_modal: true}
+    case courseTypes.PUBLIC_COURSE_DETAIL_SUBMIT_COMMENT_CLOSE_STATUS_MODAL:
+      return {...state, show_comment_status_modal: false}
     default:
       return state;
   }

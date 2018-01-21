@@ -1,6 +1,7 @@
 import React, { Component} from 'react';
 import cssModules from 'react-css-modules';
 import styles from '../Course.module.scss';
+import {SERVER_NAME} from "utils/CommonConstant";
 
 /**
   * @Course group template 2
@@ -14,21 +15,24 @@ class CourseDetailComments extends Component {
     return (
       <div className="course-detail-comments">
         <div className="col-md-12">
-          <h3 className="heading-line">{this.context.t('course_comments')}</h3>
           <ul className="tree">
           {
-            [1,2,3].map(item => (
-            <li key={item}>
+            this.props.course_comments.map(item => (
+            <li key={'course-comment-' + item.id}>
               <div className="media comments-list">
                 <div className="media-left">
-                  <img src="http://tutors.projectmenorah.com/assets/uploads/profiles/thumbs/3.jpg" alt="" className="comment-profile img-circle" />
+                  <img src={item.user.avatar ? 
+                      SERVER_NAME + item.user.avatar : 
+                      'http://placehold.it/75x75'} 
+                    alt="" 
+                    className="comment-profile img-circle" />
                 </div>
                 <div className="media-body">
                   <h4>
-                    <strong>Azalya Abia</strong> 11/11/2017
+                    <strong>{item.user.first_name} {item.user.last_name}</strong> {item.created_at}
                     <span className="avg_rating"></span>
                   </h4>
-                  <p>Thank you! dedicated time to me and was not distracted or impatient. Very good knowledgeable. </p>
+                  <div>{item.content}</div>
                 </div>
               </div>
             </li>  
