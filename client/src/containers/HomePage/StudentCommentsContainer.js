@@ -6,8 +6,8 @@ import {bindActionCreators} from 'redux';
 
 
 class StudentComments extends Component {
-  componentDidMount() {
-    this.props.fetchStudentsComment()
+  static contextTypes = {
+    t: PropTypes.func.isRequired
   }
 
   static propTypes = {
@@ -16,6 +16,10 @@ class StudentComments extends Component {
 
   static defaultProps = {
     appraises: []
+  }
+
+  componentDidMount() {
+    this.props.fetchStudentsComment()
   }
 
   renderItems() {
@@ -44,18 +48,20 @@ class StudentComments extends Component {
 
   render() {
     return (
-      <section className="container row-margin">
-        <div className="row">
-          <h2 className="heading">Nhận Xét Học Sinh</h2>
-        </div>
-        <div className="row">
-          <div className="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-            <div className="carousel slide" id="myCarousel">
-              <div className="carousel-inner">
-                { this.renderItems() }
+      <section className="course__student-comment">
+        <div className="container course__student-comment__content-wrap">
+          <div className="row-margin">
+            <h2 className="heading" dangerouslySetInnerHTML={{__html: this.context.t('student_top_comments')}} />
+            <div className="row">
+              <div className="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                <div className="carousel slide" id="myCarousel">
+                  <div className="carousel-inner">
+                    { this.renderItems() }
+                  </div>
+                  <a className="left carousel-control" href="#myCarousel" data-slide="prev"><i className="glyphicon glyphicon-chevron-left"></i></a>
+                  <a className="right carousel-control" href="#myCarousel" data-slide="next"><i className="glyphicon glyphicon-chevron-right"></i></a>
+                </div>
               </div>
-              <a className="left carousel-control" href="#myCarousel" data-slide="prev"><i className="glyphicon glyphicon-chevron-left"></i></a>
-              <a className="right carousel-control" href="#myCarousel" data-slide="next"><i className="glyphicon glyphicon-chevron-right"></i></a>
             </div>
           </div>
         </div>

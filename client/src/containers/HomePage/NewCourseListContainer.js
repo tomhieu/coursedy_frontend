@@ -20,35 +20,52 @@ class NewCourseList extends Component {
   }
 
   renderCourses() {
-    // const settings = {
-    //   className: 'center',
-    //   infinite: true,
-    //   centerPadding: '60px',
-    //   slidesToShow: 3,
-    //   // swipeToSlide: true,
-    //   slidesToScroll: 3,
-    //   speed: 1500,
-    //   afterChange: function (index) {
-    //     console.log(`Slider Changed to: ${index + 1}, background: #222; color: #bada55`);
-    //   }
-    // };
+    const settings = {
+      dots: true,
+      infinite: false,
+      speed: 500,
+      slidesToShow: 4,
+      slidesToScroll: 4,
+      initialSlide: 0,
+      responsive: [{
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 3,
+          infinite: true,
+          dots: true
+        }
+      }, {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          initialSlide: 2
+        }
+      }, {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1
+        }
+      }]
+    };
 
-    // return (
-    //   <div>
-    //     <h2>Swipe To Slide</h2>
-    //     <Slider {...settings}>
-    //       <div><h3>1</h3></div>
-    //       <div><h3>2</h3></div>
-    //       <div><h3>3</h3></div>
-    //       <div><h3>4</h3></div>
-    //       <div><h3>5</h3></div>
-    //       <div><h3>6</h3></div>
-    //       <div><h3>7</h3></div>
-    //       <div><h3>8</h3></div>
-    //       <div><h3>9</h3></div>
-    //     </Slider>
-    //   </div>
-    // )
+    return (
+      <div>
+        <h2> Responsive </h2>
+        <Slider {...settings}>
+          <div><h3>1</h3></div>
+          <div><h3>2</h3></div>
+          <div><h3>3</h3></div>
+          <div><h3>4</h3></div>
+          <div><h3>5</h3></div>
+          <div><h3>6</h3></div>
+          <div><h3>7</h3></div>
+          <div><h3>8</h3></div>
+        </Slider>
+      </div>
+    )
 
     let { courses } = this.props
 
@@ -59,12 +76,16 @@ class NewCourseList extends Component {
 
   render() {
     return (
-      <section className="container row-margin course-section course-section__new-courses">
-        <div className="row">
-          <h2 className="heading">Khoá Học Mới Mở</h2>
-        </div>
-        <div className="row course-section__content">
-          { this.renderCourses() }
+      <section className="course__new-courses">
+        <div className="container course__new-courses__content-wrap">
+          <div className="row-margin">
+            <div className="course__new-courses__heading">
+              <h2 className="heading">Khoá Học Mới Mở</h2>
+            </div>
+            <div className="row course__new-courses__content">
+              { this.renderCourses() }
+            </div>
+          </div>
         </div>
       </section>
     )

@@ -39,15 +39,13 @@ export default class HowToLearn extends Component {
   renderItem(item) {
     return(
       <div className="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-3" key={ item.id }>
-        <div className="panel panel-default">
-          <div className="panel-body">
-            <Link to={'#'} title={ item.name } >
+          <div className="item-group">
+            <Link className="item-group__heading-icon" to={'#'} title={ item.name } >
               <img src={ item.icon } alt={ item.name }/>
             </Link>
-            <strong>{ item.name }</strong>
-            <div>{ item.description }</div>
+            <strong className="item-group__title">{ item.name }</strong>
+            <div className="item-group__description">{ item.description }</div>
           </div>
-        </div>
       </div>
     )
   }
@@ -67,12 +65,20 @@ export default class HowToLearn extends Component {
 
   render() {
     return (
-      <section className="container row-margin course-how-to-learn">
-        <div className="row">
-          <h2 className="heading">Học Như Thế Nào?</h2>
+      <section className="course__how-to-learn">
+        <div className="container course__how-to-learn__content-wrap">
+          <div className="row-margin">
+            <div className="course__how-to-learn__heading">
+              <h2 className="heading" dangerouslySetInnerHTML={{__html: this.context.t('how_study')}} />
+            </div>
+            { this.renderCheckList() }
+          </div>
         </div>
-        { this.renderCheckList() }
       </section>
     )
   }
+}
+
+HowToLearn.contextTypes = {
+  t: React.PropTypes.func.isRequired
 }

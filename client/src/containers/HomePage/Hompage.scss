@@ -1,13 +1,84 @@
-.course-section {
-  &__new-courses {
+$row_margin_top: 99px;
+$row_margin_bottom: 100px;
 
-  }
-  &__header {
-    color: #534051;
-    p {
-      font-weight: 400;
-      font-style: normal;
-      font-size: 30px;
+@mixin content-wrap {
+  background-color: #f2f2f2;
+}
+
+.course {
+  &__popular {
+    &__content-wrap {
+      @include content-wrap;
     }
   }
+
+  &__new-courses {
+    &__header {
+      color: #534051;
+      p {
+        font-weight: 400;
+        font-style: normal;
+        font-size: 30px;
+      }
+    }
+  }
+
+  &__how-to-learn {
+    &__content-wrap {
+      @include content-wrap;
+    }
+  }
+
+  &__student-comment {
+
+  }
+
+  &__top-teacher {
+    color: #534051;
+    &__content-wrap {
+      @include content-wrap;
+    }
+
+    &__heading {
+      padding-left: 36px;
+      padding-top: 64px;
+      background-color: rgba(1, 81, 176, 1);
+      height: 170px;
+      color: #fff;
+      font-size: 30px;
+      margin-bottom: 0;
+    }
+
+    &__body {
+      background-color: rgba(242, 242, 242, 1);
+      margin-right: 0;
+      margin-left: 0;
+      &__heading {
+        padding: 30px 0 58px 64px;
+      }
+    }
+  }
+
+  &__teacher-guide {
+    color: #534051;
+    text-align: center;
+    &__heading {
+      margin-bottom: 65px;
+      &__title {
+        font-weight: 400;
+        font-style: normal;
+        font-size: 28px;
+        padding-bottom: 5px;
+      }
+    }
+  }
+}
+
+.introduction-text-decoration {
+  text-decoration: none;
+  border-bottom: 2px solid #e27d7f;
+}
+
+.title-highlight {
+  color:#E27D7F;
 }

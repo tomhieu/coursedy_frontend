@@ -31,15 +31,13 @@ export default class YouAreTeacher extends Component {
     let { utilities } = this.props
     return utilities.map((item) => {
       return (
-        <div className="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-3" key={ item.id }>
-          <div className="panel panel-default">
-            <div className="panel-body">
-              <Link to={'#'}>
+        <div className="col-12 col-sm-6 col-md-4" key={ item.id }>
+            <div className="item-group">
+              <Link className="item-group__heading-icon" to={'#'}>
                 <img src={ item.icon } alt=""/>
               </Link>
-              <div>{ item.description }</div>
+              <div className="item-group__description">{ item.description }</div>
             </div>
-          </div>
         </div>
       )
     })
@@ -47,16 +45,19 @@ export default class YouAreTeacher extends Component {
 
   render() {
     return (
-      <section className="container row-margin teacher-guide">
-        <div className="row">
-          <h2 className="heading">Bạn Là Giáo Viên?</h2>
-        </div>
-        <div className="row">
-          <p className="text-center">Và đang tìm kiếm một nơi để dạy online tốt. Ezylearning chính là nơi lý tưởng để bạn thực hiện điều đó.</p>
-          <p className="text-center">Hãy {<Link to={'/dang-ky'}>đăng kí</Link>} làm giáo viên tại Ezylearning.</p>
-        </div>
-        <div className="row">
-          { this.renderUtilities() }
+      <section className="course__teacher-guide">
+        <div className="container course__teacher-guide__content-wrap">
+          <div className="row-margin">
+            <div className="course__teacher-guide__heading">
+              <h2 className="course__teacher-guide__heading__title">Bạn Là Giáo Viên?</h2>
+              <p className="course__teacher-guide__heading__description">Và đang tìm kiếm một nơi để dạy online tốt. Ezylearning chính là nơi lý tưởng để bạn thực hiện điều đó.</p>
+              <p className="course__teacher-guide__heading__description">Hãy {<Link to={'/dang-ky'}>đăng kí</Link>} làm giáo viên tại Ezylearning.</p>
+            </div>
+
+            <div className="row course__teacher-guide__body">
+              { this.renderUtilities() }
+            </div>
+          </div>
         </div>
       </section>
     )

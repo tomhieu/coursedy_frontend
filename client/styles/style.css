@@ -253,12 +253,13 @@ div.error, p.error {
 /* Primary button styling */
 
 .btn-link {
-  color: #534051;
+  display: inline-block;
+  color: #0151B0;
   font-size: 16px;
   font-weight: 400;
   margin-top: 50px;
   padding: 14px 28px;
-  border: 2px solid #534051;
+  border: 2px solid #0151B0;
   border-radius: 5px;
   text-align: center;
 }
@@ -2165,16 +2166,6 @@ Homepage >> Advantages
   color: #e27d7f;
 }
 
-.advantage h4:after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 35px;
-  height: 2px;
-  background-color: #e27d7f;
-}
-
 .advantage p {
   font-size: 15px;
   font-weight: 400;
@@ -2186,10 +2177,6 @@ Homepage >> Advantages
 /* ----------------------------------
 Homepage >> Our-Popular
 ---------------------------------- */
-
-section.our-popular {
-  background-color: #f1f1f1;
-}
 
 .pop-list {
   position: relative;
@@ -5242,7 +5229,7 @@ Media Queries for Responsive
   }
   /* centering elements of bootstrap media-objects*/
   .advantage {
-      margin-bottom: 30px;
+    margin-bottom: 30px;
   }
   .advantage h4:after {
       left: 0;

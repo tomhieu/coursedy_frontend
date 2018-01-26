@@ -1,0 +1,18 @@
+.course-group {
+  &__content {
+    position: relative;
+    display: block;
+    &__img {
+      width: 100%;
+    }
+
+    &__title {
+      display: block;
+      color: #fff;
+      background-color: #0151b0;
+      padding-left: 16px;
+      height: 46px;
+      padding-top: 12px;
+    }
+  }
+}

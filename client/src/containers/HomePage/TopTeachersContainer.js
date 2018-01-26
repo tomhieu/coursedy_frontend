@@ -6,6 +6,10 @@ import {bindActionCreators} from 'redux';
 
 
 class TopTeachers extends Component {
+  static contextTypes = {
+    t: PropTypes.func.isRequired
+  }
+
   static propTypes = {
     teachers: PropTypes.array.isRequired,
     totalCourses: PropTypes.number.isRequired,
@@ -43,22 +47,23 @@ class TopTeachers extends Component {
 
   render() {
     return (
-      <section className="container teacher-top">
-        <div className="row">
-          <h2 className="heading">Với Hơn { this.props.totalTeachers } Giáo Viên Giỏi Và { this.props.totalCourses } Khoá Học Đang Được Dạy</h2>
-        </div>
-        <div className="row">
-          <h3>TOP GIÁO VIÊN NỔI TIẾNG TRONG THÁNG</h3>
-        </div>
-
-        <div className="row">
-          <div className="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-            <div className="carousel slide" id="myCarousel">
-              <div className="carousel-inner">
-                { this.renderItems() }
-              </div>
-              <a className="left carousel-control" href="#myCarousel" data-slide="prev"><i className="glyphicon glyphicon-chevron-left"></i></a>
-              <a className="right carousel-control" href="#myCarousel" data-slide="next"><i className="glyphicon glyphicon-chevron-right"></i></a>
+      <section className="course__top-teacher">
+        <div className="container course__top-teacher__content-wrap">
+          <div className="row-margin">
+              <h2 className="course__top-teacher__heading">Với Hơn { this.props.totalTeachers } Giáo Viên Giỏi Và { this.props.totalCourses } Khoá Học Đang Được Dạy</h2>
+              <div className="row course__top-teacher__body">
+                <div className="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                  <h3 className="course__top-teacher__body__heading" dangerouslySetInnerHTML={{__html: this.context.t('top_teacher_month')}} />
+                </div>
+                <div className="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                  <div className="carousel slide" id="myCarousel">
+                    <div className="carousel-inner">
+                      { this.renderItems() }
+                    </div>
+                    <a className="left carousel-control" href="#myCarousel" data-slide="prev"><i className="glyphicon glyphicon-chevron-left"></i></a>
+                    <a className="right carousel-control" href="#myCarousel" data-slide="next"><i className="glyphicon glyphicon-chevron-right"></i></a>
+                  </div>
+                </div>
             </div>
           </div>
         </div>
