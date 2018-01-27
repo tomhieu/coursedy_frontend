@@ -15,6 +15,7 @@ import {
 import {red900} from "material-ui/styles/colors";
 import {mStyles} from "utils/CustomStylesUtil";
 import AutoComplete from "../AutoComplete/AutoComplete";
+import {DAYS_IN_WEEK} from "../../actions/CourseFormActionCreator"
 
 class CourseFilter extends Component {
 
@@ -60,21 +61,21 @@ class CourseFilter extends Component {
     )
   }
 
-  renderDayOfWeek(weekdays) {
+  renderDayOfWeek() {
     return (
       <div className="checkbox-group">
         <FieldArray name="course_schedule_days" component={() =>
           <div className="d-flex flex-horizontal flex-wrap">
             {
-              Object.keys(weekdays).map((k) =>
-                <div key={k} className="md-check-box-field">
+              DAYS_IN_WEEK.map((day) => {
+                <div key={day.id} className="md-check-box-field">
                   <FormField formGroupId="course_schedule_day" showLabel={false}
-                             formLabel={weekdays[k]}
-                             formControlName={"course_schedule_days[" + k + "]"}
+                             formLabel={day.text}
+                             formControlName={"course_schedule_days[" + day.id + "]"}
                              typeField="checkbox">
                   </FormField>
                 </div>
-              )
+              })
             }
           </div>
         }/>
@@ -105,7 +106,6 @@ class CourseFilter extends Component {
       categories,
       locations,
       selectedCategories,
-      weekdays,
       totalResult,
       changeDisplayModeHdl,
       groupSugestions,
@@ -193,7 +193,7 @@ class CourseFilter extends Component {
                 <div className="row">
                   <div className="col-md-6 col-sm-6">
                     <h4>{this.context.t("day_of_week")}</h4>
-                    {this.renderDayOfWeek(weekdays)}
+                    {this.renderDayOfWeek()}
                   </div>
                   {/* Schedule days */}
 

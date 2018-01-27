@@ -8,7 +8,6 @@ class CourseFilterContainer extends Component {
   componentWillMount(){
     this.props.dispatch(Actions.fetchCategories());
     this.props.dispatch(Actions.fetchLocations());
-    this.props.dispatch(Actions.fetchWeekdays());
   }
 
   searchCourse({filter_category_ids, filter_location_ids, filter_course_levels, course_schedule_days, fees, start_time, end_time, order_by, display_mode}){
