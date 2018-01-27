@@ -9,6 +9,8 @@ import {mStyles} from "utils/CustomStylesUtil";
 import AutoComplete from "../AutoComplete/AutoComplete";
 import {PublicCourseListFollowModalContainer} from '../../containers/index'
 import {Chip} from "material-ui";
+import cssModules from 'react-css-modules';
+
 
 class CourseFilter extends Component {
   constructor(props) {
@@ -95,7 +97,6 @@ class CourseFilter extends Component {
       handleSubmit,
       categories,
       locations,
-      selectedCategories,
       totalResult,
       changeDisplayModeHdl,
       groupSugestions,
