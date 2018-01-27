@@ -23,7 +23,7 @@ class CommentFormContainer extends Component {
       this.showRequireLoginModal()
     } else {
       //Submit comment
-      this.props.dispatch(Actions.submitCourseComment(content));
+      this.props.dispatch(Actions.submitCourseComment(content, this.props.course.id, this.props.user.id));
       //Sshow comment status
       this.showSubmitCommentStatusModal();
     }

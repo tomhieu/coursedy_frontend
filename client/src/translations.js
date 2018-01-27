@@ -232,6 +232,7 @@ export const translations = {
     "course_submit_comment_status": "Kết quả gửi phản hồi",
     "course_submit_comment_success": "Gửi phản hồi thành công",
     "course_submit_comment_fail": "Gửi phản hồi thất bại",
+    "course_comments_no_comment": "Chưa có phản hồi",
     /* search teachers page */
     "search_teachers_keyword": "Tìm kiếm theo tên, lĩnh vực",
     "search_teachers_field_label": "Lĩnh Vực:",

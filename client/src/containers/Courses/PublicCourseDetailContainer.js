@@ -20,8 +20,7 @@ class PublicCourseDetailContainer extends Component {
 
       this.props.dispatch(PublicCourseActions.fetchCourseComments(
         this.props.courseId, 
-        this.props.course_comments.length > 0 ? 
-          this.props.course_comments[this.props.course_comments.length - 1] : 0
+        this.props.course_comments_page
       ));
     }
   }
@@ -29,8 +28,7 @@ class PublicCourseDetailContainer extends Component {
   loadMoreComments() {
     this.props.dispatch(PublicCourseActions.fetchCourseComments(
       this.props.courseId, 
-      this.props.course_comments.length > 0 ? 
-        this.props.course_comments[this.props.course_comments.length - 1] : 0
+      this.props.course_comments_page+1
     ))
   }
 
@@ -87,7 +85,8 @@ const mapStateToProps = (state) => {
     course_level: getCourseLevel(categories, course),
     course_tutor: state.PublicCourseDetail.course_tutor,
     course_sections: state.PublicCourseDetail.course_sections,
-    course_comments: state.PublicCourseDetail.course_comments
+    course_comments: state.PublicCourseDetail.course_comments,
+    course_comments_page: state.PublicCourseDetail.course_comments_page
   }
 }
 
