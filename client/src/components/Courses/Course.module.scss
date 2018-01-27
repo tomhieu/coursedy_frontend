@@ -64,6 +64,8 @@
 .filterResultBlock {
   background-color: $white-background;
   padding: 20px 30px;
+  border-top: 1px solid rgba(48, 51, 57, 0.15);
+  border-bottom: 1px solid rgba(48, 51, 57, 0.15);
   select {
     padding: 3px;
     margin-left: 5px;

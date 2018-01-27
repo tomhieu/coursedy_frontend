@@ -57,7 +57,7 @@ class PublicCourseListContainer extends Component {
   render() {
     return (
       <div className="public-course-list">
-        <CourseList {...this.props} selectCourseHdl={this.selectCourseHdl.bind(this)}/>
+        <CourseList {...this.props} selectCourseHdl={this.selectCourseHdl.bind(this)} isPublic={true}/>
         <div className="clear-fix"></div>
         <Pagination
           activePage={this.props.currentPage}
