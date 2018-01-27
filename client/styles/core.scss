@@ -1,0 +1,16 @@
+.item-group {
+  position: relative;
+  display: block;
+  text-align: center;
+  &__heading-icon {
+    display: block;
+  }
+
+  &__title {
+    display: block;
+  }
+  &__description {
+    display: block;
+
+  }
+}

@@ -1,28 +1,18 @@
 import React, {Component} from 'react';
-import cssModules from 'react-css-modules';
 import styles from './Course.module.scss';
 import FormField from "../Core/FormField";
 import {DAYS_IN_WEEK} from "../../actions/CourseFormActionCreator"
 import {FilterOption} from "../FilterOption/FilterOption"
-import {EFlatButton, RaiseButton} from "../Core/CustomComponents";
-import {
-  ActionFavorite,
-  ActionViewList,
-  ActionViewModule,
-  NavigationExpandLess,
-  NavigationExpandMore
-} from "material-ui/svg-icons/index";
-import {red900} from "material-ui/styles/colors";
+import {EFlatButton} from "../Core/CustomComponents";
+import {ActionViewList, ActionViewModule} from "material-ui/svg-icons/index";
 import {mStyles} from "utils/CustomStylesUtil";
 import AutoComplete from "../AutoComplete/AutoComplete";
 import {PublicCourseListFollowModalContainer} from '../../containers/index'
 import {Chip} from "material-ui";
 
 class CourseFilter extends Component {
-
   constructor(props) {
     super(props);
-
     this.state = {
       openAdFilter: false
     }
@@ -37,6 +27,60 @@ class CourseFilter extends Component {
   renderCourseLevels(selectedCategories) {
     return (
       <div className="checkbox-group">
+        {
+          selectedCategories.map(cate =>
+            <div key={cate.id}>
+              <span>{cate.name}</span>
+              <FieldArray name="filter_course_levels" component={() =>
+                <div className="d-flex flex-horizontal flex-wrap">
+                  {cate.course_levels.map((filter_course_level) =>
+                    <div key={filter_course_level.id} className="lg-check-box-field">
+                      <FormField formGroupId="filter_course_levels" showLabel={false}
+                                 formLabel={filter_course_level.name}
+                                 formControlName={"filter_course_levels[" + filter_course_level.id + "]"}
+                                 typeField="checkbox">
+                      </FormField>
+                    </div>
+                  )}
+                </div>
+              }/>
+            </div>
+          )
+        }
+      </div>
+    )
+  }
+
+  renderDayOfWeek() {
+    return (
+      <div className="checkbox-group">
+        <FieldArray name="course_schedule_days" component={() =>
+          <div className="d-flex flex-horizontal flex-wrap">
+            {
+              DAYS_IN_WEEK.map((day) => {
+                <div key={day.id} className="md-check-box-field">
+                  <FormField formGroupId="course_schedule_day" showLabel={false}
+                             formLabel={day.text}
+                             formControlName={"course_schedule_days[" + day.id + "]"}
+                             typeField="checkbox">
+                  </FormField>
+                </div>
+              })
+            }
+          </div>
+        }/>
+      </div>
+    )
+  }
+
+  renderTutorFees(tuitionFees) {
+    return (
+      <div className="d-flex flex-horizontal">
+        <div className="select-course-fee">
+          <FormField formGroupId="filter_min_fees" showLabel={false} options={tuitionFees}
+                     formControlName={"fees"} typeField="custom_select">
+          </FormField>
+        </div>
       </div>
     )
   }
@@ -51,6 +95,7 @@ class CourseFilter extends Component {
       handleSubmit,
       categories,
       locations,
+      selectedCategories,
       totalResult,
       changeDisplayModeHdl,
       groupSugestions,
@@ -163,7 +208,6 @@ class CourseFilter extends Component {
                     />
                   </div>
                 </div>
-
                 <div className="col-md-5 col-sm-5 full-height st-border-left">
                   <div className="d-flex flex-horizontal align-items-center flex-nowrap ml-15 mt-20">
                     <div className={styles.filterOptionContainer}>
@@ -264,7 +308,6 @@ class CourseFilter extends Component {
                 </div>
               </div>
             </div>
-
           </form>
         </div>
       </div>

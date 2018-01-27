@@ -250,9 +250,26 @@ export const translations = {
     "bank_name": "Chủ Tài Khoản",
     "bank_number": "Số Tài Khoản",
     "transaction_office": "Phòng Giao Dịch",
+    /* home page */
+    "popular_courses": "Khoá học phổ biến",
+    "search_your_teacher": "Tìm giáo viên",
+    "all_courses": "Tất cả khoá ",
+    "watch_all_courses": "Xem Tất Cả Khoá Học",
+    "more_course": "Xem Thêm",
+    "new_courses": "Khoá Học Mới Mở",
+    "how_study": "Học N<span class='introduction-text-decoration'>hư Th</span>ế Nào?",
+    "student_top_comments": "Nhận <span class='introduction-text-decoration'>Xét Họ</span>c Sinh",
+    "top_teacher_month": "<span class='title-highlight'>TOP</span> GIÁO VIÊN <span class='title-highlight'>NỔI TIẾNG TRONG THÁNG</span>",
+    "you_are_teacher": "Bạn Là Giáo Viên?",
+    "introduction_interactive_title": "Tương Tác <span class='introduction-text-decoration'>Trực T</span>iếp Với Giáo Viên",
+    "introduction_interactive_description": "Listen to our teachers spexeches and see our video testimonials before you take any decisions",
+    "introduction_save_cost_title": "<span class='introduction-text-decoration'>Tiết K</span>iệm Chi Phí",
+    "introduction_save_cost_description": "We have rated teachers for safety and convenience as we know how important this is for you",
+    "introduction_save_time_title": "<span class='introduction-text-decoration'>Tiết K</span>iệm Thời Gian",
+    "introduction_save_time_description": "No more emails, Calls or messaging friends for recommendations - Get acces to real reviews in seconds"
   },
   "en": {
     "home_page": "Home",
-    "find_tutors": "Find Tutors"
+    "find_tutors": "Find Tutors",
   }
 }

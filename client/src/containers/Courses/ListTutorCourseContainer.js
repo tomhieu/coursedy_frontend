@@ -8,7 +8,7 @@ import {deleteCourse} from "actions/CourseFormActionCreator";
 class ListTutorCourseContainer extends Component {
 
     componentDidMount() {
-        this.props.dispatch(fetchListTutorCourse({}))
+        this.props.dispatch(fetchListTutorCourse())
     }
 
     addNewCourses() {
