@@ -5,6 +5,7 @@ import PublicCourseListPage from './CoursePage/PublicCourseListPage'
 import PublicCourseDetailPage from './CoursePage/PublicCourseDetailPage'
 import TutorPage from './TutorPage/TutorPage'
 import TutorDashboard from './TutorDashboard/TutorDashboard'
+import PaymentPage from './PaymentPage/PaymentPage'
 
 
 export {
@@ -16,5 +17,6 @@ export {
   PublicCourseDetailPage,
   
   TutorPage,
-  TutorDashboard
+  TutorDashboard,
+  PaymentPage
 };

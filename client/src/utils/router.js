@@ -26,6 +26,7 @@ const router = (
             <Route path="/course/:id" component={Pages.PublicCourseDetailPage}/>
             <Route path="/teachers" component={ListTeacherContainer} />
             <Route path="/dashboard" component={Pages.TutorDashboard} />
+            <Route path="/payment" component={Pages.PaymentPage} />
             <Route path="*" component={Pages.NotFoundPage} />
           </Switch>
         </App>

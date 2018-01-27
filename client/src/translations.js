@@ -243,7 +243,13 @@ export const translations = {
     "thursday": "Thứ năm",
     "friday": "Thứ sáu",
     "saturday": "Thứ bảy",
-    "sunday": "Chủ nhật"
+    "sunday": "Chủ nhật",
+    /* payment */
+    "total_payment": "Tổng Cộng",
+    "payment_methods": "Phương Thức Thanh Toán",
+    "bank_name": "Chủ Tài Khoản",
+    "bank_number": "Số Tài Khoản",
+    "transaction_office": "Phòng Giao Dịch",
   },
   "en": {
     "home_page": "Home",
