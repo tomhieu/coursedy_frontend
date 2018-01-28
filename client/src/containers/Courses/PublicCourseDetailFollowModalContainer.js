@@ -7,6 +7,7 @@ import {Modal, Button} from 'react-bootstrap';
 import * as PublicCourseActions from '../../actions/PublicCourseActionCreator';
 import FormField from "../../components/Core/FormField";
 import {validate} from "../../validations/PublicCourseDetailFollowModalValidator"
+import SimpleDialogComponent from '../../components/Core/SimpleDialogComponent'
 
 /**
   * @Course group template 2
@@ -87,17 +88,13 @@ class PublicCourseDetailFollowModalContainer extends Component {
         </Modal>
 
         {/* Follow course status modal */}
-        <Modal show={this.props.show_follow_status_modal} onHide={this.hidePublicCourseFollowStatusModal.bind(this)}>
-          <Modal.Header>
-            <Modal.Title>{this.context.t('course_follow_status')}</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            {submitAlert}
-          </Modal.Body>
-          <Modal.Footer>
-            <Button onClick={this.hidePublicCourseFollowStatusModal.bind(this)}>{this.context.t('close')}</Button>
-          </Modal.Footer>
-        </Modal>
+        <SimpleDialogComponent
+          show={this.props.show_follow_status_modal}
+          title={this.context.t('course_follow_status')}
+          cancelCallback={this.hidePublicCourseFollowStatusModal.bind(this)}
+        >
+          {submitAlert}
+        </SimpleDialogComponent>
 
       </div>
     )

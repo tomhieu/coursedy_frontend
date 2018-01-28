@@ -5,6 +5,7 @@ import {connect} from "react-redux";
 import {Modal, Button} from 'react-bootstrap';
 import * as PublicCourseActions from '../../actions/PublicCourseActionCreator';
 import {globalHistory} from '../../utils/globalHistory'
+import SimpleDialogComponent from '../../components/Core/SimpleDialogComponent'
 
 /**
   * @Course group template 2
@@ -104,18 +105,13 @@ class PublicCourseDetailEnrollContainer extends Component {
         </Modal>
 
         {/* Submit enroll course message */}
-        <Modal show={this.props.show_enroll_status_modal} onHide={this.hideEnrollStatusModal.bind(this)}>
-          <Modal.Header>
-            <Modal.Title>{this.context.t('course_enroll_status')}</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            {enrollMessage}
-          </Modal.Body>
-          <Modal.Footer>
-            {budgetButton}
-            <Button onClick={this.hideEnrollStatusModal.bind(this)}>{this.context.t('close')}</Button>
-          </Modal.Footer>
-        </Modal>
+        <SimpleDialogComponent
+          show={this.props.show_enroll_status_modal}
+          title={this.context.t('course_enroll_status')}
+          cancelCallback={this.hideEnrollStatusModal.bind(this)}
+        >
+          {enrollMessage}
+        </SimpleDialogComponent>
       </div>
     )
   }
