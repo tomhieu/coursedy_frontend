@@ -56,7 +56,7 @@ class PublicCourseDetailFollowModalContainer extends Component {
     }
 
     return (
-      <div className="text-center">
+      <div>
         <Button className={'btn btn-primary'} onClick={this.showPublicCourseFollowModal.bind(this)}>
           <i className={this.props.submit_follow_success ? 'fa fa-heart' : 'fa fa-heart-o'}></i>
         </Button>

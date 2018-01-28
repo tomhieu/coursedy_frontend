@@ -20,22 +20,18 @@ class CourseDetail extends Component {
     super(props);
   }
   render() {
-    let courseDetailGeneral = null;
-    //Handle 
-    if (this.props.course && this.props.categories.length > 0) {
-      courseDetailGeneral = <CourseDetailGeneral 
-          categories={this.props.categories}
-          course={this.props.course}
-          course_category={this.props.course_category}
-          course_level={this.props.course_level}
-          course_tutor={this.props.course_tutor}
-        />
-    }
-    //Handle render course comment
-    
     return (
       <div className="course-detail">
-        {courseDetailGeneral}
+        {
+          this.props.course && this.props.categories.length > 0 ?
+            <CourseDetailGeneral 
+              categories={this.props.categories}
+              course={this.props.course}
+              course_category={this.props.course_category}
+              course_level={this.props.course_level}
+              course_tutor={this.props.course_tutor}
+            /> : null
+        }
         <div className="clearfix"></div>
         <hr/>
         <CourseDetailLessons course_sections={this.props.course_sections}/>
@@ -47,18 +43,17 @@ class CourseDetail extends Component {
 
         {/* Course comment block */}
         <div className="col-md-12">
-          <h3 className="heading-line">{this.context.t('course_comments')}</h3>
+          <h3 className={"heading-line " + styles.noMarginBottom}>{this.context.t('course_comments')}</h3>
         </div>
         <CommentFormContainer />
         <div className="clearfix"></div>
-        <div className="col-md-12">
-          <hr/>
-        </div>
         {
           this.props.course_comments.length > 0 ? 
             <CourseDetailComments course_comments={this.props.course_comments}/> :
             <div className="col-md-12">
-              {this.context.t('course_comments_no_comment')}
+              <div className="alert alert-info text-center">
+                <strong>{this.context.t('course_comments_no_comment')}</strong>
+              </div>
             </div>
         }
         {

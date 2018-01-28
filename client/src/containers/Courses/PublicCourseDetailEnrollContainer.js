@@ -1,6 +1,6 @@
 import React, { Component} from 'react';
 import cssModules from 'react-css-modules';
-// import styles from '../Course.module.scss';
+import styles from './PublicCourseDetail.module.scss';
 import {connect} from "react-redux";
 import {Modal, Button} from 'react-bootstrap';
 import * as PublicCourseActions from '../../actions/PublicCourseActionCreator';
@@ -85,8 +85,8 @@ class PublicCourseDetailEnrollContainer extends Component {
 
     return (
       <div className="text-center">
-        <Button className={'btn btn-primary'} onClick={this.enrollCourse.bind(this)}>
-          <i className="fa fa-paper-plane-o"></i>
+        <Button className={'btn btn-primary ' + styles.fullWidth} onClick={this.enrollCourse.bind(this)}>
+          {this.context.t('course_subscribe')}
         </Button>
 
         {/* Require login modal */}
