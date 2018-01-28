@@ -71,19 +71,6 @@ class CourseDetail extends Component {
   }
 }
 
-// const LoadMoreCommentButton = (props) => {
-//   return (
-//     <div className="col-md-12">
-//       <div className="clearfix"></div>
-//       <div className="text-center">
-//         <Button type="button" className="btn-primary btn-link" onClick={props.loadMoreCommentsHdl}>
-//           Tải thêm
-//         </Button>
-//       </div>
-//     </div>
-//   )
-// }
-
 CourseDetail.contextTypes = {
   t: React.PropTypes.func.isRequired
 }

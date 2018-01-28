@@ -8,6 +8,7 @@ import {SERVER_NAME} from "utils/CommonConstant";
 import { TT } from "../../../utils/locale"
 import DateUtils from "../../../utils/DateUtils"
 import ObjectUtils from "../../../utils/ObjectUtils"
+import { Link } from 'react-router-dom'
 
 /**
   * @Course group template 2
@@ -107,14 +108,20 @@ const CourseTutor = (props) => {
         </tr>
       </thead>
       <tbody>
-        <tr><td className="text-center" colSpan="4">
-          <img src={course.user.avatar ? course.user.avatar : 'http://placehold.it/75x75'} className="img-circle" alt=""/>
-        </td></tr>
-        <tr><td className="text-center" colSpan="4">
-          <b>{course.user.name ? 
-          course.user.name :
-          TT.t('updating')}</b>
-        </td></tr>
+        <tr>
+          <td className="text-center" colSpan="4">
+            <Link to={"/teachers/" + course.user.id}>
+              <img src={course.user.avatar ? course.user.avatar : 'http://placehold.it/75x75'} className="img-circle" alt=""/>
+            </Link>
+          </td>
+        </tr>
+        <tr>
+          <td className="text-center" colSpan="4">
+            <Link to={"/teachers/" + course.user.id}>
+              <b>{course.user.name ? course.user.name : TT.t('updating')}</b>
+            </Link>
+          </td>
+        </tr>
         <tr><td className="text-center" colSpan="4">
         {course_tutor.description}
         </td></tr>
