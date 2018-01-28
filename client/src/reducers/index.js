@@ -24,6 +24,7 @@ import LoadingMask from "./LoadingMask";
 import TutorAccount from "./TutorAccount";
 import Teachers from './TeachersReducer'
 import Categories from './CategoriesReducer'
+import HomePage from './HomePageReducer'
 import Payment from './Payment'
 
 
@@ -54,7 +55,9 @@ const rootReducer = combineReducers({
     Categories,
     TutorAccount,
     Teachers,
-    Payment
+    Payment,
+    HomePage
+
 });
 
 export default rootReducer;

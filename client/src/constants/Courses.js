@@ -5,6 +5,15 @@ export const FETCH_COURSES = 'FETCH_COURSES'
 export const FETCH_COURSES_SUCCESS = 'FETCH_COURSES_SUCCESS'
 export const FETCH_COURSES_FAIL = 'FETCH_COURSES_FAIL'
 
+export const FETCH_POPULAR_COURSES = 'FETCH_POPULAR_COURSES'
+export const FETCH_POPULAR_COURSES_SUCCESS = 'FETCH_POPULAR_COURSES_SUCCESS'
+export const FETCH_POPULAR_COURSES_FAILURE = 'FETCH_POPULAR_COURSES_FAILURE'
+
+export const FETCH_NEW_COURSES = 'FETCH_NEW_COURSES'
+export const FETCH_NEW_COURSES_SUCCESS = 'FETCH_NEW_COURSES_SUCCESS'
+export const FETCH_NEW_COURSES_FAILURE = 'FETCH_NEW_COURSES_FAILURE'
+
+
 export const FETCH_PUBLIC_COURSE_SUCCESSFULLY = 'FETCH_PUBLIC_COURSE_SUCCESSFULLY'
 export const FETCH_PUBLIC_COURSE_FAIL = 'FETCH_PUBLIC_COURSE_FAIL'
 
@@ -49,13 +58,14 @@ export const PUBLIC_COURSE_DETAIL_SUBMIT_COMMENT_FAIL = 'PUBLIC_COURSE_DETAIL_SU
 export const PUBLIC_COURSE_DETAIL_SUBMIT_COMMENT_SHOW_STATUS_MODAL = 'PUBLIC_COURSE_DETAIL_SUBMIT_COMMENT_SHOW_STATUS_MODAL'
 export const PUBLIC_COURSE_DETAIL_SUBMIT_COMMENT_CLOSE_STATUS_MODAL = 'PUBLIC_COURSE_DETAIL_SUBMIT_COMMENT_CLOSE_STATUS_MODAL'
 
-export const PUBLIC_COURSE_MAX_NUMBER_COMMENTS_PER_LOAD = 10
+// export const PUBLIC_COURSE_MAX_NUMBER_COMMENTS_PER_LOAD = 10
+export const PUBLIC_COURSE_MAX_NUMBER_COMMENTS_PER_LOAD = 1
 
 //FIXME: Remove me
 export const dummyCourse = {
-  id : 1,
-  category_id : 1,
-  course_days : [0, 1],
+  id: 1,
+  category_id: 1,
+  course_days: [0, 1],
   cover_image: "http://placehold.it/1024x768",
   currency: "vnd",
   description: "lorem ipsum",
@@ -67,7 +77,7 @@ export const dummyCourse = {
   number_of_students: "5",
   period: "12",
   start_date: "2018-01-06",
-  start_time : "2017-12-30T05:00:40.454Z",
+  start_time: "2017-12-30T05:00:40.454Z",
   title: "Course 1",
   tuesday_end_time: "2017-12-30T09:30:06.302Z",
   tuesday_start_time: "2017-12-30T07:30:59.884Z",

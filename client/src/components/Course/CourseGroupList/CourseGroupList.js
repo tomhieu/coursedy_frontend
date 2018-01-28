@@ -2,12 +2,20 @@ import React, { Component} from 'react';
 import cssModules from 'react-css-modules';
 import styles from './CourseGroupList.module.scss';
 import { CourseGroup } from '../../index'
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+import * as CoursesActions from 'actions/CoursesActionCreator'
+
 
 /**
   * @Course group template 1
   * @Use for HomePage
   */
 class CourseGroupList extends Component {
+  componentDidMount() {
+    this.props.fetchPopularCourses()
+  }
+
   render() {
     return (
       <section className="our-popular">
@@ -15,22 +23,20 @@ class CourseGroupList extends Component {
           <div className="row-margin">
             <div className="row ">
               <div className="col-sm-12 ">
-                <h2 className="heading">Our Popular Courses</h2>
+                <h2 className="heading">{this.context.t('popular_courses')}</h2>
               </div>
             </div>
             {
-              [1,2,3,4,5,6,7,8].map(function (x) {
+              this.props.courses.map((course, index) => {
                 return (
-                  <div className="col-md-3 col-sm-6 col-xs-12" key={x}>
-                    <CourseGroup/>
-                  </div>
+                  <CourseGroup course={course} key={index}/>
                 )
               })
             }
             <div className="row">
               <div className="col-sm-12 text-center">
                 <div className="mtop4">
-                  <a href="http://dev.mindsworthy.com/tutorsci/demo/courses" className="btn-link">Check All Courses</a>
+                  <a href="http://dev.mindsworthy.com/tutorsci/demo/courses" className="btn-link">{this.context.t('all_courses')}</a>
                 </div>
               </div>
             </div>
@@ -48,4 +54,17 @@ CourseGroupList.contextTypes = {
 CourseGroupList.propTypes = {
 };
 
-export default cssModules(CourseGroupList, styles);
+const mapStateToProps = (state) => {
+  return {
+    courses: state.HomePage.popularCourses
+  }
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators(CoursesActions, dispatch)
+};
+
+
+export default cssModules(connect(
+  mapStateToProps, mapDispatchToProps
+)(CourseGroupList), styles);

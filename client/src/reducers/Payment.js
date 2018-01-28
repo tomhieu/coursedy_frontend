@@ -10,3 +10,5 @@ const Payment = (state = {
       return state
   }
 }
+
+export default Payment;

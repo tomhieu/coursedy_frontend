@@ -8,6 +8,7 @@ import styles from './Course.module.scss';
 import {CommentFormContainer} from '../../containers/index';
 import {Button} from 'react-bootstrap';
 
+import CustomButton from '../core/CustomButton';
 import { PUBLIC_COURSE_MAX_NUMBER_COMMENTS_PER_LOAD } from '../../constants/Courses'; 
 
 /**
@@ -20,7 +21,6 @@ class CourseDetail extends Component {
   }
   render() {
     let courseDetailGeneral = null;
-    let courseCommentsSection = null;
     //Handle 
     if (this.props.course && this.props.categories.length > 0) {
       courseDetailGeneral = <CourseDetailGeneral 
@@ -32,23 +32,7 @@ class CourseDetail extends Component {
         />
     }
     //Handle render course comment
-    if (this.props.course_comments.length > 0) {
-      courseCommentsSection = <CourseDetailComments course_comments={this.props.course_comments}/>
-      if (this.props.course_comments.length % PUBLIC_COURSE_MAX_NUMBER_COMMENTS_PER_LOAD == 0) {
-        courseCommentsSection += <div className="col-md-12">
-          <div className="clearfix"></div>
-          <div className="text-center">
-            <Button type="button" className="btn-primary" onClick={this.props.loadMoreCommentsHdl}>
-              Tải thêm
-            </Button>
-          </div>
-        </div>
-      }
-    } else {
-      courseCommentsSection = <div className="col-md-12">
-        {this.context.t('course_comments_no_comment')}
-      </div>
-    }
+    
     return (
       <div className="course-detail">
         {courseDetailGeneral}
@@ -70,12 +54,40 @@ class CourseDetail extends Component {
         <div className="col-md-12">
           <hr/>
         </div>
-        { courseCommentsSection }
-
+        {
+          this.props.course_comments.length > 0 ? 
+            <CourseDetailComments course_comments={this.props.course_comments}/> :
+            <div className="col-md-12">
+              {this.context.t('course_comments_no_comment')}
+            </div>
+        }
+        {
+          this.props.course_comments.length > 0 && 
+            this.props.course_comments.length % PUBLIC_COURSE_MAX_NUMBER_COMMENTS_PER_LOAD == 0 ?
+          <CustomButton 
+            onClickCallback={this.props.loadMoreCommentsHdl}
+            label={"Tải thêm"}
+            containerClasses={""}
+            btnClasses={"btn-lg"}
+          ></CustomButton> : null
+        }
       </div>
     )
   }
 }
+
+// const LoadMoreCommentButton = (props) => {
+//   return (
+//     <div className="col-md-12">
+//       <div className="clearfix"></div>
+//       <div className="text-center">
+//         <Button type="button" className="btn-primary btn-link" onClick={props.loadMoreCommentsHdl}>
+//           Tải thêm
+//         </Button>
+//       </div>
+//     </div>
+//   )
+// }
 
 CourseDetail.contextTypes = {
   t: React.PropTypes.func.isRequired
