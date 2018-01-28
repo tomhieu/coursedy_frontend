@@ -12,7 +12,7 @@ class CourseList extends Component {
     super(props);
   }
   render() {
-    const {deleteCourse, selectCourseHdl, displayMode, selectedCourses} = this.props;
+    const {deleteCourse, selectCourseHdl, displayMode, selectedCourses, isPublic} = this.props;
     var rows = [];
     if (displayMode == 'grid') {
       for (var i = 0; i < this.props.courses.length; i++) {
@@ -25,9 +25,9 @@ class CourseList extends Component {
           <div className="col-xs-12 col-sm-6 col-md-3" key={'course-' +i}>
             <CourseItem item={this.props.courses[i]} 
               deleteCourse={deleteCourse}
-              selectCourseHdl={selectCourseHdl.bind(this)}
+              selectCourseHdl={selectCourseHdl}
               displayMode={displayMode}
-              selectedCourses={selectedCourses}
+              selectedCourses={selectedCourses} isPublic={isPublic}
             />
           </div>
         )
@@ -38,9 +38,9 @@ class CourseList extends Component {
           <div className="col-xs-12 col-sm-12 col-md-12" key={'course-' +i}>
             <CourseItem item={this.props.courses[i]} 
               deleteCourse={deleteCourse}
-              selectCourseHdl={selectCourseHdl.bind(this)}
+              selectCourseHdl={selectCourseHdl}
               displayMode={displayMode}
-              selectedCourses={selectedCourses}
+              selectedCourses={selectedCourses} isPublic={isPublic}
             />
           </div>
         )
@@ -59,6 +59,9 @@ CourseList.contextTypes = {
 }
 
 CourseList.propTypes = {
+  displayMode: React.PropTypes.string.isRequired,
+  // the public course list have some additional features like following course...
+  isPublic: React.PropTypes.bool.isRequired
 };
 
 export default cssModules(CourseList, styles);

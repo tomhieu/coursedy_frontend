@@ -16,7 +16,7 @@ class CourseItem extends Component {
   }
 
   render() {
-    const {deleteCourse, selectCourseHdl, displayMode, selectedCourses} = this.props;
+    const {deleteCourse, selectCourseHdl, displayMode, selectedCourses, isPublic} = this.props;
     let courseItem = null;
     if (displayMode == 'grid') {
       courseItem = <div className="col-xs-12 no-ml no-mr">
@@ -26,11 +26,13 @@ class CourseItem extends Component {
               <LinkContainer to={ !this.props.item.onlyTutor ? '/course/' + this.props.item.id : '/dashboard/courses/detail/' + this.props.item.id } className={styles.fullWidth + ' img-responsive'}>
                 <img src={!this.props.item.cover_image ? 'http://placehold.it/200x100' : SERVER_NAME + this.props.item.cover_image } alt="" />
               </LinkContainer>
-              <Checkbox 
-                style={{position: 'absolute', top: '5px', right: '-20px'}}
-                checked={selectedCourses.indexOf(this.props.item.id) >= 0}
-                onCheck={selectCourseHdl.bind(this, this.props.item.id)}
-                />
+              {
+                isPublic ? <Checkbox
+                  style={{position: 'absolute', top: '5px', right: '-20px'}}
+                  checked={selectedCourses.indexOf(this.props.item.id) >= 0}
+                  onCheck={selectCourseHdl.bind(this, this.props.item.id)}
+                /> : null
+              }
             </div>
           </div>{/* End course thumb */}
 
@@ -101,11 +103,13 @@ class CourseItem extends Component {
               <LinkContainer to={ !this.props.item.onlyTutor ? '/course/' + this.props.item.id : '/dashboard/courses/detail/' + this.props.item.id } className={styles.fullWidth + ' img-responsive'}>
                 <img src={!this.props.item.cover_image ? 'http://placehold.it/200x100' : SERVER_NAME + this.props.item.cover_image } alt="" />
               </LinkContainer>
-              <Checkbox 
-                style={{position: 'absolute', top: '5px', right: '-20px'}}
-                checked={selectedCourses.indexOf(this.props.item.id) >= 0}
-                onCheck={selectCourseHdl.bind(this, this.props.item.id)}
-                />
+              {
+                isPublic ? <Checkbox
+                  style={{position: 'absolute', top: '5px', right: '-20px'}}
+                  checked={selectedCourses.indexOf(this.props.item.id) >= 0}
+                  onCheck={selectCourseHdl.bind(this, this.props.item.id)}
+                /> : null
+              }
             </div>
           </div>{/* End course thumb */}
 
@@ -168,6 +172,8 @@ CourseItem.contextTypes = {
 }
 
 CourseItem.propTypes = {
+  // the public course will have some additional feature like following
+  isPublic: React.PropTypes.bool.isRequired
 };
 
 export default cssModules(CourseItem, styles);
