@@ -17,7 +17,7 @@ class CourseGroup extends Component {
     let { course } = this.props
 
     return (
-      <div className="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-3 course-group"
+      <div className="slick-slide_item course-group"
            key={course.id}>
         <Link to={'#'} title={course.name} className="course-group__content">
           <img className="course-group__content__img" src={course.coverImage}

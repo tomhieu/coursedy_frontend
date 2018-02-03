@@ -6,6 +6,7 @@ import * as CoursesActions from 'actions/CoursesActionCreator'
 import CourseGroup from 'components/Course/CourseGroup/CourseGroup'
 import CourseGroupHeading from '../../components/Course/CourseGroup/CourseGroupHeading'
 import CourseGroupFooter from '../../components/Course/CourseGroup/CourseGroupFooter'
+import { Slider } from '../../components/Slider/SliderComponent'
 
 
 class PopularCourseList extends Component {
@@ -31,15 +32,11 @@ class PopularCourseList extends Component {
         <div className="container course__popular__content-wrap">
           <div className="row-margin">
             <CourseGroupHeading title={this.context.t('popular_courses')}/>
-            <div className="row">
-              {
-                this.props.courses.map((course, index) => {
-                  return (
-                    <CourseGroup course={course} key={index}/>
-                  )
-                })
-              }
-            </div>
+
+            {<Slider items={this.props.courses.map((course, index) => {
+              return <CourseGroup course={course} key={index}/>
+            })}/>}
+
             <CourseGroupFooter
               redirectUrl="/courses"
               btnName={this.context.t('watch_all_courses')}/>
