@@ -1,9 +1,9 @@
 import * as React from "react";
 import {Component} from "react";
 import {reduxForm} from "redux-form";
-import SectionCreationPopupComponent from "../../components/Courses/SectionCreationPopupComponent";
+import SectionCreationPopupComponent from "../../../components/Courses/SectionCreationPopupComponent";
 import {connect} from "react-redux";
-import * as CourseActions from "../../actions/CourseFormActionCreator";
+import * as CourseActions from "../../../actions/CourseFormActionCreator";
 class SectionCreationPopupContainer extends Component {
     saveSection({id, title, name}) {
         this.props.dispatch(CourseActions.saveOrUpdateSection(this.props.courseId, title, name));

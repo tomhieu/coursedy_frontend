@@ -9,12 +9,12 @@ import {
   RoleAuthorization,
   LoadingMask
 } from '../../components/index';
-import CourseFormContainer from '../../containers/Courses/CourseFormContainer';
+import CourseFormContainer from '../../containers/Courses/CourseForm/CourseFormContainer';
 import TutorProfileDetailsContainer from '../../containers/Tutor/Profile/TutorProfileDetailsContainer';
 import {connect} from 'react-redux';
 import {setCurrentUser} from "actions/SessionActionCreator";
-import ListLessonContainer from "../../containers/Courses/ListLessonContainer";
-import ListTutorCourseContainer from "../../containers/Courses/ListTutorCourseContainer";
+import ListLessonContainer from "../../containers/Courses/Lesson/ListLessonContainer";
+import ListTutorCourseContainer from "../../containers/Courses/CourseList/ListTutorCourseContainer";
 import TutorAccount from "../../containers/Account/Tutor/TutorAccountContainer";
 
 class TutorDashboard extends RoleAuthorization {

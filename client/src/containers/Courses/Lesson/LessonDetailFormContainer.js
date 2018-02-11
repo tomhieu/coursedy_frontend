@@ -1,11 +1,11 @@
-import InlineEditFormField from "../../components/Core/InlineEditFormField";
-import FormField from "../../components/Core/FormField";
+import InlineEditFormField from "../../../components/Core/InlineEditFormField";
+import FormField from "../../../components/Core/FormField";
 import {Component} from "react";
-import {renderPreviewFile} from "../../components/Core/CustomComponents";
-import * as LessonActions from "../../actions/LessonActionCreator";
+import {renderPreviewFile} from "../../../components/Core/CustomComponents";
+import * as LessonActions from "../../../actions/LessonActionCreator";
 import {reduxForm} from "redux-form";
 import {connect} from "react-redux";
-import {validate} from '../../validations/LessonFormValidator';
+import {validate} from '../../../validations/LessonFormValidator';
 import * as React from "react";
 class LessonDetailFormContainer extends Component {
     addDocumentForLesson(sectionId, lessonId, document) {

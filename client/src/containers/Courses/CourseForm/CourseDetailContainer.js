@@ -1,12 +1,11 @@
 import * as React from "react";
 import {Component} from "react";
-import CourseForm from "../../components/Courses/CourseForm";
-import * as CourseActions from "../../actions/CourseFormActionCreator";
-import {DAYS_IN_WEEK} from "../../actions/CourseFormActionCreator";
+import CourseForm from "../../../components/Courses/CourseForm";
+import * as CourseActions from "../../../actions/CourseFormActionCreator";
+import {DAYS_IN_WEEK} from "../../../actions/CourseFormActionCreator";
 import {connect} from "react-redux";
 import {reduxForm} from "redux-form";
-import {validate} from "../../validations/CourseFormValidation"
-import LoadingMask from "../../components/LoadingMask/LoadingMask";
+import {validate} from "../../../validations/CourseFormValidation"
 import DateUtils from "utils/DateUtils";
 
 class CourseDetailContainer extends Component {
@@ -34,11 +33,11 @@ class CourseDetailContainer extends Component {
     if (!courseId) {
       this.props.dispatch(CourseActions.createCourse(course.title, course.description, course.start_date, course.period,
         course.number_of_students, course.tuition_fee, course.currency, course.is_free, week_day_schedules_attributes, course.is_same_period,
-        course.category_id, course.course_specialize, this.coverImage));
+        course.course_specialize_id, this.coverImage));
     } else {
       this.props.dispatch(CourseActions.updateCourse(courseId, course.title, course.description, course.start_date, course.period,
         course.number_of_students, course.tuition_fee, course.currency, course.is_free, week_day_schedules_attributes, course.is_same_period,
-        course.cover_image, course.category_id, course.course_specialize, this.coverImage));
+        course.cover_image, course.course_specialize_id, this.coverImage));
     }
   }
 
@@ -49,10 +48,8 @@ class CourseDetailContainer extends Component {
   render() {
     const {editMode, courseData} = this.props;
     return (
-      <LoadingMask>
-        <CourseForm onSubmit={this.createCourse.bind(this)} onDropCoverImage={this.onDropCoverImage.bind(this)}
-                    editMode={editMode} courseData={courseData} courseId={this.courseId} {...this.props}/>
-      </LoadingMask>
+      <CourseForm onSubmit={this.createCourse.bind(this)} onDropCoverImage={this.onDropCoverImage.bind(this)}
+                  editMode={editMode} courseData={courseData} courseId={this.courseId} {...this.props}/>
     )
   }
 }
@@ -84,6 +81,38 @@ const getCourseLevels = (specializes, selectedLevelId) => {
   });
 }
 
+const getDayId = (dayName) => {
+  const matchedDays = DAYS_IN_WEEK.filter(d => d.name === dayName);
+  return matchedDays.length > 0 ? matchedDays[0].id : 0;
+}
+
+const initializeCourseDetail = (courseData, categories) => {
+  let course_days = [];
+  let course_times = {};
+  courseData.course_days.forEach(d => {
+    course_days.push(d.day + '_' + getDayId(d.day))
+    Object.defineProperty(course_times, d.day + '_start_time', {value: d.start_time});
+    Object.defineProperty(course_times, d.day + '_end_time', {value: d.end_time});
+  });
+
+  // updated the category and course specialize after the list of course category is loaded
+  // only update one time
+  if (categories.length > 0 && courseData.course_specialize === undefined) {
+    const selectSpecialized = courseData.category;
+    const selectedCategories = categories.length > 0 ?
+      categories.filter((c) => c.children.filter(s => s.id === selectSpecialized.id).length > 0) : [];
+    const selectedCategory = selectedCategories.length > 0 ? selectedCategories[0] : {id: 0};
+
+    // update the category and specilize of course
+    courseData.course_specialize = selectSpecialized;
+    courseData.category = selectedCategory;
+    return Object.assign({}, courseData, {course_days: course_days, category_id: selectedCategory.id,
+      course_specialize_id: selectSpecialized.id});
+  } else {
+    return Object.assign({}, courseData, {course_days: course_days});
+  }
+}
+
 const mapStateToProps = (state) => {
   const {CourseFormComponent, Categories, form} = state
   const {courseCreationForm} = form
@@ -91,21 +120,22 @@ const mapStateToProps = (state) => {
   const categories = Categories.data
   const courseData = editMode ? CourseFormComponent.courseData : courseCreationForm != undefined ? courseCreationForm.values : {cover_image: null}
 
-  const course_specializes = courseData ? getCourseSpecializeFromCategory(categories, courseData.category_id) : []
+  const course_specializes = !editMode ? getCourseSpecializeFromCategory(categories, courseData.category_id) : courseData.category.children ? courseData.category.children : []
 
-  const course_levels = course_specializes.length > 0 ? getCourseLevels(course_specializes, courseData.specialize_id) : []
+  const course_levels = course_specializes.length > 0 ? getCourseLevels(course_specializes, courseData.course_specialize_id) : []
 
   const selectedDays = courseCreationForm && courseCreationForm.values.course_days ? DAYS_IN_WEEK.filter((day) => courseCreationForm.values.course_days.indexOf(day.name + "_" + day.id) >= 0) : []
   const isSamePeriod = courseCreationForm && courseCreationForm.values.is_same_period != undefined ? courseCreationForm.values.is_same_period : true
   const isFree = courseCreationForm && courseCreationForm.values.is_free ? courseCreationForm.values.is_free : false
 
+  const initializedValue = editMode ? initializeCourseDetail(courseData, categories) : {is_same_period: true}
   return {
     courseCreationForm, courseData, categories, editMode, createCourseSucess, isSamePeriod, isFree,
     cover_image: !courseData ? null : courseData.cover_image,
     courseSpecializes: course_specializes,
     course_levels: course_levels,
     selectedDays,
-    initialValues: editMode ? activatedField != null ? courseData : {} : {is_same_period: true}
+    initialValues: initializedValue
   }
 }
 

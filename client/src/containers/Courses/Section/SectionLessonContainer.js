@@ -1,8 +1,7 @@
 import * as React from "react";
 import {Component} from "react";
-import EditLessonFormContainer from "./EditLessonFormContainer";
-import * as LessonActions from "../../actions/LessonActionCreator";
-import * as CourseActions from "../../actions/CourseFormActionCreator";
+import * as LessonActions from "../../../actions/LessonActionCreator";
+import * as CourseActions from "../../../actions/CourseFormActionCreator";
 import {connect} from "react-redux";
 import {Card, CardHeader, CardText} from "material-ui/Card";
 import {CardContent, IconButton} from "material-ui";
@@ -10,9 +9,10 @@ import {ActionDelete, ContentAddCircle} from "material-ui/svg-icons/index";
 import {grey600, red900} from "material-ui/styles/colors";
 import cssModules from "react-css-modules";
 import styles from "./SectionDetail.module.scss";
-import {mStyles} from "../../utils/CustomStylesUtil";
-import LessonDetailFormContainer from "./LessonDetailFormContainer";
+import {mStyles} from "../../../utils/CustomStylesUtil";
+import LessonDetailFormContainer from "../Lesson/LessonDetailFormContainer";
 import SectionDetailContainer from "./SectionDetailContainer";
+import EditLessonFormContainer from "../Lesson/EditLessonFormContainer";
 
 class SectionLessonContainer extends Component {
 

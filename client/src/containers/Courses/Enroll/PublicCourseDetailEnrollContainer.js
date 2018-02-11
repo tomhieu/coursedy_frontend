@@ -1,10 +1,7 @@
-import React, { Component} from 'react';
-import cssModules from 'react-css-modules';
-// import styles from '../Course.module.scss';
+import React, {Component} from 'react';
 import {connect} from "react-redux";
-import {Modal, Button} from 'react-bootstrap';
-import * as PublicCourseActions from '../../actions/PublicCourseActionCreator';
-import {globalHistory} from '../../utils/globalHistory'
+import {Button, Modal} from 'react-bootstrap';
+import * as PublicCourseActions from '../../../actions/PublicCourseActionCreator';
 
 /**
   * @Course group template 2

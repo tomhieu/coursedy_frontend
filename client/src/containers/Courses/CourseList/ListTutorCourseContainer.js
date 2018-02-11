@@ -1,10 +1,11 @@
 import * as React from "react";
 import {Component} from "react";
-import CourseList from "../../components/Courses/CourseList";
+import CourseList from "../../../components/Courses/CourseList";
 import {connect} from "react-redux";
-import {fetchListTutorCourse} from "../../actions/ListTutorCourseActionCreator";
-import LoadingMask from "../../components/LoadingMask/LoadingMask";
+import {fetchListTutorCourse} from "../../../actions/ListTutorCourseActionCreator";
+import LoadingMask from "../../../components/LoadingMask/LoadingMask";
 import {deleteCourse} from "actions/CourseFormActionCreator";
+
 class ListTutorCourseContainer extends Component {
 
     componentDidMount() {

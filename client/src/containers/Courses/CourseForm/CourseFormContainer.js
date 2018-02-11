@@ -1,16 +1,14 @@
 import React, {Component} from "react";
-import * as CourseActions from "../../actions/CourseFormActionCreator";
-import * as FilterActions from "../../actions/CourseFilterActionCreator";
+import * as CourseActions from "../../../actions/CourseFormActionCreator";
+import * as FilterActions from "../../../actions/CourseFilterActionCreator";
 import {connect} from "react-redux";
-import SectionCreationPopupContainer from "./SectionCreationPopupContainer";
-import SectionLessonContainer from "./SectionLessonContainer";
-import {mStyles} from "../../utils/CustomStylesUtil";
+import {mStyles} from "../../../utils/CustomStylesUtil";
 import {FlatButton} from "material-ui";
 import {ContentAddCircle, EditorPublish} from "material-ui/svg-icons/index";
-import {red900} from "material-ui/styles/colors";
 import CourseDetailContainer from "./CourseDetailContainer";
-import LoadingMask from "../../components/LoadingMask/LoadingMask";
-import SimpleDialogComponent from "../../components/Core/SimpleDialogComponent";
+import SimpleDialogComponent from "../../../components/Core/SimpleDialogComponent";
+import SectionCreationPopupContainer from "../Section/SectionCreationPopupContainer";
+import SectionLessonContainer from "../Section/SectionLessonContainer";
 
 class CourseFormContainer extends Component {
   constructor(props) {
@@ -100,19 +98,17 @@ class CourseFormContainer extends Component {
                   </div>
                 </div>
                 <div className="col-sm-12 col-md-12">
-                  <LoadingMask>
-                    {
-                      listSection.map((section) =>
-                        <SectionLessonContainer
-                          section={section}
-                          key={'__section__' + section.id}
-                          showPopupEdit={section.showLessonPopup}
-                          onActivatedField={this.onActivatedField.bind(this)}
-                          onClosedField={this.onClosedField.bind(this)}
-                          {...this.props}>
-                        </SectionLessonContainer>)
-                    }
-                  </LoadingMask>
+                  {
+                    listSection.map((section) =>
+                      <SectionLessonContainer
+                        section={section}
+                        key={'__section__' + section.id}
+                        showPopupEdit={section.showLessonPopup}
+                        onActivatedField={this.onActivatedField.bind(this)}
+                        onClosedField={this.onClosedField.bind(this)}
+                        {...this.props}>
+                      </SectionLessonContainer>)
+                  }
                 </div>
                 <SectionCreationPopupContainer courseId={this.courseId}>
                 </SectionCreationPopupContainer>

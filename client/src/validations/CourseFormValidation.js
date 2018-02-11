@@ -72,13 +72,13 @@ export const validate = (values) => {
     }
   } else {
     values.course_days.map(day => {
-
+      const day_key = day.split('_')[0];
       if (!values[day + '_start_time']) {
-        errors[day + '_start_time'] = TT.t('teaching_start_time_per_day_madatory', {date: TT.t(day)})
+        errors[day + '_start_time'] = TT.t('teaching_start_time_per_day_madatory', {date: TT.t(day_key)})
       }
 
       if (!values[day + '_end_time']) {
-        errors[day + '_end_time'] = TT.t('teaching_end_time_per_day_madatory', {date: TT.t(day)})
+        errors[day + '_end_time'] = TT.t('teaching_end_time_per_day_madatory', {date: TT.t(day_key)})
       }
 
       if (values[day + '_start_time'] && values[day + '_end_time'] && values[day + '_start_time'] > values[day + '_end_time']) {

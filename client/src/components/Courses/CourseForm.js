@@ -171,35 +171,33 @@ class CourseForm extends Component {
                       <div className={styles.timePickerBox + " d-flex"} key={"date_" + day.id}>
                         <div className="d-flex flex-vertical">
                           <span>{day.text}</span>
-                          <FormField formGroupId={day.name + "_start_time_id"}
-                                     showLabel={false}
-                                     placeholder={this.context.t("start_time")}
-                                     formControlName={day.name + "_start_time"}
-                                     typeField="timePicker">
-                          </FormField>
-                          <FormField formGroupId={day.name + "_end_time_id"}
-                                     showLabel={false}
-                                     placeholder={this.context.t("end_time")}
-                                     formControlName={day.name + "_end_time"}
-                                     typeField="timePicker">
-                          </FormField>
+                          <div>
+                            {this.renderField(editMode, day.name + "_start_time_id", false, this.context.t("start_time"), this.context.t("start_time"),
+                              true, day.name + "_start_time", "timePicker", false, editMode ? retrieveStartTimeOfDay(courseData.course_days, day.name) : "")}
+                          </div>
+                          {
+                            editMode ? TT.t('to') : null
+                          }
+                          <div>
+                            {this.renderField(editMode, day.name + "_end_time_id", false, this.context.t("end_time"), this.context.t("end_time"),
+                              true, day.name + "_end_time", "timePicker", false, editMode ? retrieveEndTimeOfDay(courseData.course_days, day.name) : "")}
+                          </div>
                         </div>
                       </div>
                     ) :
                     <div className={styles.timePickerBox + " d-flex"}>
                       <div className="d-flex flex-vertical">
-                        <FormField formGroupId="start_time_id"
-                                   showLabel={false}
-                                   placeholder={this.context.t("start_time")}
-                                   formControlName="start_time"
-                                   typeField="timePicker">
-                        </FormField>
-                        <FormField formGroupId="end_time_id"
-                                   showLabel={false}
-                                   placeholder={this.context.t("end_time")}
-                                   formControlName="end_time"
-                                   typeField="timePicker">
-                        </FormField>
+                        <div>
+                          {this.renderField(editMode, "start_time_id", false, this.context.t("start_time"), this.context.t("start_time"),
+                            true, "start_time_id", "timePicker", false, editMode ? retrieveStartTimeOfDay(courseData.course_days, null) : "")}
+                        </div>
+                        {
+                          editMode ? TT.t('to') : null
+                        }
+                        <div>
+                          {this.renderField(editMode, "end_time_id", false, this.context.t("end_time"), this.context.t("end_time"),
+                            true, "end_time_id", "timePicker", false, editMode ? retrieveEndTimeOfDay(courseData.course_days, null) : "")}
+                        </div>
                       </div>
                     </div>
                 }
@@ -243,6 +241,16 @@ class CourseForm extends Component {
       </div>
     )
   }
+}
+
+const retrieveStartTimeOfDay = (courseDays, day) => {
+  const selectedDay = day != null ? courseDays.filter((d) => d.name === day) : courseDays[0];
+  return selectedDay.start_time;
+}
+
+const retrieveEndTimeOfDay = (courseDays, day) => {
+  const selectedDay = day != null ? courseDays.filter((d) => d.name === day) : courseDays[0];
+  return selectedDay.end_time;
 }
 
 CourseForm.contextTypes = {

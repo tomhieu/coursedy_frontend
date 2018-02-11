@@ -4,13 +4,13 @@ import SearchFormContainer from './SearchForm/SearchFormContainer';
 import PersonInfoContainer from './Account/Tutor/PersonInfo';
 import TutorEducation from './Account/Tutor/TutorEducation';
 
-import PublicCourseListContainer from './Courses/PublicCourseListContainer';
-import PublicCourseListFollowModalContainer from './Courses/PublicCourseListFollowModalContainer';
+import PublicCourseListContainer from './Courses/CourseList/PublicCourseListContainer';
+import PublicCourseListFollowModalContainer from './Courses/Follow/PublicCourseListFollowModalContainer';
 
-import PublicCourseDetailContainer from './Courses/PublicCourseDetailContainer';
-import PublicCourseDetailFollowModalContainer from './Courses/PublicCourseDetailFollowModalContainer';
-import PublicCourseDetailEnrollContainer from './Courses/PublicCourseDetailEnrollContainer';
-import CourseFilterContainer from './Courses/CourseFilterContainer';
+import PublicCourseDetailContainer from './Courses/CourseDetail/PublicCourseDetailContainer';
+import PublicCourseDetailFollowModalContainer from './Courses/Follow/PublicCourseDetailFollowModalContainer';
+import PublicCourseDetailEnrollContainer from './Courses/Enroll/PublicCourseDetailEnrollContainer';
+import CourseFilterContainer from './Courses/Filter/CourseFilterContainer';
 import RoleAuthorization from '../components/RoleAuthorization';
 
 import CommentFormContainer from './Courses/CourseDetail/CommentFormContainer';

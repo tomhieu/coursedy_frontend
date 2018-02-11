@@ -1,44 +1,45 @@
 import React, { Component} from 'react';
 import cssModules from 'react-css-modules';
-// import styles from '../Course.module.scss';
 import {connect} from "react-redux";
 import {reduxForm} from "redux-form";
 import {Modal, Button} from 'react-bootstrap';
-import * as PublicCourseActions from '../../actions/PublicCourseActionCreator';
-import FormField from "../../components/Core/FormField";
-import {validate} from "../../validations/PublicCourseDetailFollowModalValidator"
-
+import * as PublicCourseActions from '../../../actions/PublicCourseActionCreator';
+import FormField from "../../../components/Core/FormField";
+import {validate} from "../../../validations/PublicCourseListFollowModalValidator"
+import {EFlatButton} from "../../../components/Core/CustomComponents";
+import {ActionFavorite} from "material-ui/svg-icons/index";
+import {red900} from "material-ui/styles/colors";
 /**
   * @Course group template 2
   * @Use for CoursePage
   */
-class PublicCourseDetailFollowModalContainer extends Component {
+class PublicCourseListFollowModalContainer extends Component {
   constructor(props) {
     super(props);
   }
 
   hidePublicCourseFollowModal() {
-      this.props.dispatch(PublicCourseActions.closePublicCourseFollowModal())
+      this.props.dispatch(PublicCourseActions.closePublicCourseFollowModal('list'))
   }
   showPublicCourseFollowModal() {
     if (!this.props.user) {
-      this.props.dispatch(PublicCourseActions.showPublicCourseFollowModal())
+      this.props.dispatch(PublicCourseActions.showPublicCourseFollowModal('list'))
     } else {
-      this.props.dispatch(PublicCourseActions.submitFollowEmail(this.props.course.id));  
-      this.showPublicCourseFollowStatusModal()
+      this.props.dispatch(PublicCourseActions.submitFollowEmail(this.props.selectedCourses, this.props.user.email, 'list'));
+      this.showPublicCourseFollowStatusModal();
     }
   }
-  
+
   hidePublicCourseFollowStatusModal() {
-    this.props.dispatch(PublicCourseActions.closePublicCourseFollowStatusModal('detail'))
+    this.props.dispatch(PublicCourseActions.closePublicCourseFollowStatusModal('list'))
   }
   showPublicCourseFollowStatusModal() {
-    this.props.dispatch(PublicCourseActions.showPublicCourseFollowStatusModal('detail'))
+    this.props.dispatch(PublicCourseActions.showPublicCourseFollowStatusModal('list'))
   }
 
   saveCourseFollowHandleSumit({email}) {
-    this.props.dispatch(PublicCourseActions.submitFollowEmail([this.props.course.id], email));
-    this.showPublicCourseFollowStatusModal()
+    this.props.dispatch(PublicCourseActions.submitFollowEmail(this.props.selectedCourses, email, 'list'));
+    this.showPublicCourseFollowStatusModal();
   }
 
   render() {
@@ -57,9 +58,9 @@ class PublicCourseDetailFollowModalContainer extends Component {
 
     return (
       <div className="text-center">
-        <Button className={'btn btn-primary'} onClick={this.showPublicCourseFollowModal.bind(this)}>
-          <i className={this.props.submit_follow_success ? 'fa fa-heart' : 'fa fa-heart-o'}></i>
-        </Button>
+        <EFlatButton label={this.context.t("save_favorite")} 
+                      icon={<ActionFavorite color={red900}/>}
+                      onClick={this.showPublicCourseFollowModal.bind(this)}/>
         <Modal show={this.props.show_follow_modal} onHide={this.hidePublicCourseFollowModal.bind(this)}>
           <form onSubmit={handleSubmit(this.saveCourseFollowHandleSumit.bind(this))} className='inline-form'>  
             <Modal.Header>
@@ -86,6 +87,7 @@ class PublicCourseDetailFollowModalContainer extends Component {
           </form>
         </Modal>
 
+
         {/* Follow course status modal */}
         <Modal show={this.props.show_follow_status_modal} onHide={this.hidePublicCourseFollowStatusModal.bind(this)}>
           <Modal.Header>
@@ -98,35 +100,35 @@ class PublicCourseDetailFollowModalContainer extends Component {
             <Button onClick={this.hidePublicCourseFollowStatusModal.bind(this)}>{this.context.t('close')}</Button>
           </Modal.Footer>
         </Modal>
-
       </div>
     )
   }
 }
 
-PublicCourseDetailFollowModalContainer.contextTypes = {
+PublicCourseListFollowModalContainer.contextTypes = {
   t: React.PropTypes.func.isRequired
 }
 
-PublicCourseDetailFollowModalContainer.propTypes = {
+PublicCourseListFollowModalContainer.propTypes = {
 };
 
 const mapStateToProps = (state) => {
   return {
     user: state.session.currentUser,
-    course: state.PublicCourseDetail.course,
-    show_follow_modal: state.PublicCourseDetail.show_follow_modal,
-    submit_follow_success: state.PublicCourseDetail.submit_follow_success,
-    submit_follow_fail: state.PublicCourseDetail.submit_follow_fail,
-    show_follow_status_modal: state.PublicCourseDetail.show_follow_status_modal
+    selectedCourses: state.CourseFilter.selectedCourses,
+    show_follow_modal: state.PublicCourseList.show_follow_modal,
+    submit_follow_success: state.PublicCourseList.submit_follow_success,
+    submit_follow_fail: state.PublicCourseList.submit_follow_fail,
+
+    show_follow_status_modal: state.PublicCourseList.show_follow_status_modal,
   }
 }
 
 export default connect(
     mapStateToProps
 )(reduxForm({
-    form: 'publicCourseDetailFollowModal',
+    form: 'publicCourseListFollowModal',
     fields: ['email'],
     validate,
     enableReinitialize: true
-})(PublicCourseDetailFollowModalContainer));
+})(PublicCourseListFollowModalContainer));
