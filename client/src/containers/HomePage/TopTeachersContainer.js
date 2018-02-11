@@ -3,7 +3,21 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux';
 import * as TeacherActions from 'actions/TeacherCreators'
 import {bindActionCreators} from 'redux';
+import { Slider } from '../../components/Slider/SliderComponent'
 
+const Item = ({item}) => {
+  return (
+    <div className="slick-slide_item">
+      <div className="row">
+        <div className="col-lg-12 col-xs-12 col-md-12 col-sm-12">
+          <img src={item.avatar}/>
+          <strong>{item.full_name}</strong>
+          <span>{item.job}</span>
+        </div>
+      </div>
+    </div>
+  )
+}
 
 class TopTeachers extends Component {
   static contextTypes = {
@@ -56,13 +70,9 @@ class TopTeachers extends Component {
                   <h3 className="course__top-teacher__body__heading" dangerouslySetInnerHTML={{__html: this.context.t('top_teacher_month')}} />
                 </div>
                 <div className="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                  <div className="carousel slide" id="myCarousel">
-                    <div className="carousel-inner">
-                      { this.renderItems() }
-                    </div>
-                    <a className="left carousel-control" href="#myCarousel" data-slide="prev"><i className="glyphicon glyphicon-chevron-left"></i></a>
-                    <a className="right carousel-control" href="#myCarousel" data-slide="next"><i className="glyphicon glyphicon-chevron-right"></i></a>
-                  </div>
+                  {<Slider settings={{slidesToShow: 3, slidesToScroll: 3}}
+                           items={this.props.teachers.map((item, index) => {return <Item item={item} key={index}/>})}
+                  />}
                 </div>
             </div>
           </div>
