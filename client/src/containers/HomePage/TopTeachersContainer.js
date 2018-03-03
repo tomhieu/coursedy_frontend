@@ -60,6 +60,10 @@ class TopTeachers extends Component {
   }
 
   render() {
+    if (!this.props.teachers.length) {
+      return null
+    }
+
     return (
       <section className="course__top-teacher">
         <div className="container course__top-teacher__content-wrap">

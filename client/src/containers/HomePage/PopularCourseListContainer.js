@@ -1,32 +1,36 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
-import PropTypes from 'prop-types'
-import * as HomePageActions from 'actions/HomePageActionCreator'
-import CourseGroup from 'components/Course/CourseGroup/CourseGroup'
-import CourseGroupHeading from '../../components/Course/CourseGroup/CourseGroupHeading'
-import CourseGroupFooter from '../../components/Course/CourseGroup/CourseGroupFooter'
-import { Slider } from '../../components/Slider/SliderComponent'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import PropTypes from 'prop-types';
+import * as HomePageActions from 'actions/HomePageActionCreator';
+import CourseGroup from 'components/Course/CourseGroup/CourseGroup';
+import CourseGroupHeading from '../../components/Course/CourseGroup/CourseGroupHeading';
+import CourseGroupFooter from '../../components/Course/CourseGroup/CourseGroupFooter';
+import { Slider } from '../../components/Slider/SliderComponent';
 
 
 class PopularCourseList extends Component {
   static contextTypes = {
     t: PropTypes.func.isRequired
-  }
+  };
 
   static propTypes = {
-    course: PropTypes.object.isRequired
-  }
+    courses: PropTypes.array.isRequired
+  };
 
   static defaultProps = {
-    course: {}
-  }
+    courses: []
+  };
 
   componentDidMount() {
-    this.props.fetchPopularCourses()
+    this.props.fetchPopularCourses();
   }
 
   render() {
+    if (!this.props.courses.length) {
+      return null;
+    }
+
     return (
       <section className="course__popular">
         <div className="container course__popular__content-wrap">
@@ -34,7 +38,7 @@ class PopularCourseList extends Component {
             <CourseGroupHeading title={this.context.t('popular_courses')}/>
 
             {<Slider items={this.props.courses.map((course, index) => {
-              return <CourseGroup course={course} key={index}/>
+              return <CourseGroup course={course} key={index}/>;
             })}/>}
 
             <CourseGroupFooter
@@ -43,20 +47,19 @@ class PopularCourseList extends Component {
           </div>
         </div>
       </section>
-    )
+    );
   }
 }
+
 
 const mapStateToProps = (state) => {
   return {
     courses: state.HomePage.popularCourses
-  }
-}
+  };
+};
 
 const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators(HomePageActions, dispatch)
-}
+  return bindActionCreators(HomePageActions, dispatch);
+};
 
-export default connect(
-  mapStateToProps, mapDispatchToProps
-)(PopularCourseList)
+export default connect(mapStateToProps, mapDispatchToProps)(PopularCourseList);

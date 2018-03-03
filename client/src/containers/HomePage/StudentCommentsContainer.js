@@ -31,15 +31,11 @@ class StudentComments extends Component {
     t: PropTypes.func.isRequired
   };
 
-  static propTypes = {
-    appraises: PropTypes.array.isRequired
-  };
-
-  static defaultProps = {
-    appraises: []
-  };
-
   render() {
+    if (!data.studentComments.length) {
+      return null;
+    }
+
     return (
       <section className="course__student-comment">
         <div className="container course__student-comment__content-wrap">

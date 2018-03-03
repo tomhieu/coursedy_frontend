@@ -25,6 +25,10 @@ class NewCourseList extends Component {
   }
 
   render() {
+    if (!this.props.courses.lenght) {
+      return null;
+    }
+
     return (
       <section className="course__new-courses">
         <div className="container course__new-courses__content-wrap">
