@@ -259,7 +259,7 @@ export const translations = {
     "new_courses": "Khoá Học Mới Mở",
     "how_study": "Học N<span class='introduction-text-decoration'>hư Th</span>ế Nào?",
     "student_top_comments": "Nhận <span class='introduction-text-decoration'>Xét Họ</span>c Sinh",
-    "top_teacher_month": "<span class='title-highlight'>TOP</span> GIÁO VIÊN <span class='title-highlight'>NỔI TIẾNG TRONG THÁNG</span>",
+    "top_teacher_month": "<span class='title-highlight'>TOP</span> GIÁO VIÊN <span class='title-highlight'>NỔI TIẾNG</span>",
     "you_are_teacher": "Bạn Là Giáo Viên?",
     "introduction_interactive_title": "Tương Tác <span class='introduction-text-decoration'>Trực T</span>iếp Với Giáo Viên",
     "introduction_interactive_description": "Listen to our teachers spexeches and see our video testimonials before you take any decisions",

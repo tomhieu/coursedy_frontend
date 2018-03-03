@@ -52,6 +52,7 @@
     "babel-preset-stage-0": "^6.24.1",
     "client": "0.0.1",
     "components": "^0.1.0",
+    "configs": "^1.0.3",
     "css-loader": "^0.28.9",
     "expect": "^1.20.2",
     "express": "^4.16.2",

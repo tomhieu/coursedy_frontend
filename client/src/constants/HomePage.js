@@ -1,10 +1,33 @@
-export const FETCH_STUDENT_TOP_COMMENTS = 'FETCH_STUDENT_TOP_COMMENTS'
-export const FETCH_STUDENT_TOP_COMMENTS_SUCCESS = 'FETCH_STUDENT_TOP_COMMENTS_SUCCESS'
-export const FETCH_STUDENT_TOP_COMMENTS_FAILURE = 'FETCH_STUDENT_TOP_COMMENTS_FAILURE'
+export const TOP_TEACHERS = 'TOP_TEACHERS'
 
+
+//FIXME: Remove me top teacher in month
+export const dummyTopTeachers = [
+    {
+      id: 1,
+      avatar: 'http://placehold.it/100x100',
+      full_name: 'Lê Vinh Hiệp',
+      job: 'Giáo viên Tiếng Anh',
+      starRate: 5
+    },
+    {
+      id: 2,
+      avatar: 'http://placehold.it/100x100',
+      full_name: 'Nguyễn Bao Anh',
+      job: 'Giáo viên Toán',
+      starRate: 4.5
+    },
+    {
+      id: 3,
+      avatar: 'http://placehold.it/100x100',
+      full_name: 'Phạm Quốc Việt',
+      job: 'Giáo viên Vật Lý',
+      starRate: 3
+    }
+]
 
 //FIXME: Remove me
-export const dummyComments = [
+export const STUDENT_COMMENTS = [
   {
     id : 1,
     comment: {

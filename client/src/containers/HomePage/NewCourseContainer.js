@@ -18,10 +18,10 @@ export default class NewCourse extends Component {
     return (
       <div className="slick-slide_item course-group"
            key={course.id}>
-        <Link className="course-group__content" to={'#'} title={course.name}>
-          <img className="course-group__content__img" src={course.coverImage}
-               alt={course.name}/>
-          <span className="course-group__content__title">{course.name}</span>
+        <Link className="course-group__content" to={'#'} title={course.title}>
+          <img className="course-group__content__img" src={course.cover_image}
+               alt={course.title}/>
+          <span className="course-group__content__title">{course.title}</span>
         </Link>
       </div>
     )

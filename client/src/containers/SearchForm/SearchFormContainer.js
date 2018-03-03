@@ -11,8 +11,8 @@ class SearchFormContainer extends Component {
         <div className="container">
           <div className="row header-margin">
             <div className="col-sm-12">
-              <h1 className="hero-title">Explore - Enrich - Excel</h1>
-              <p className="hero-tag">Everything you need in order to find the <strong>Right</strong> Class for you</p>
+              <h1 className="hero-title">EZYLEARNING</h1>
+              <p className="hero-tag">Tìm Kiếm Khoá Học Yêu Thích Của Bạn</p>
             </div>
             <div className="col-sm-12">
               <SearchForm/>

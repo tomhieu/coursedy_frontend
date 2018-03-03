@@ -4,7 +4,7 @@ import styles from './CourseGroupList.module.scss';
 import { CourseGroup } from '../../index'
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import * as CoursesActions from 'actions/CoursesActionCreator'
+import * as HomePageActions from 'actions/HomePageActionCreator'
 
 
 /**
@@ -61,7 +61,7 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators(CoursesActions, dispatch)
+  return bindActionCreators(HomePageActions, dispatch)
 };
 
 

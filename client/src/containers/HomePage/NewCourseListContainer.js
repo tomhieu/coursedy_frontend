@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import NewCourse from './NewCourseContainer'
 import { connect } from 'react-redux'
-import * as CoursesActions from 'actions/CoursesActionCreator'
+import * as HomePageActions from 'actions/HomePageActionCreator'
 import { bindActionCreators } from 'redux'
 import { Slider } from '../../components/Slider/SliderComponent'
 
@@ -51,7 +51,7 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators(CoursesActions, dispatch)
+  return bindActionCreators(HomePageActions, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(NewCourseList)

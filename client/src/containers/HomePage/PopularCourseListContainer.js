@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import PropTypes from 'prop-types'
-import * as CoursesActions from 'actions/CoursesActionCreator'
+import * as HomePageActions from 'actions/HomePageActionCreator'
 import CourseGroup from 'components/Course/CourseGroup/CourseGroup'
 import CourseGroupHeading from '../../components/Course/CourseGroup/CourseGroupHeading'
 import CourseGroupFooter from '../../components/Course/CourseGroup/CourseGroupFooter'
@@ -54,7 +54,7 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators(CoursesActions, dispatch)
+  return bindActionCreators(HomePageActions, dispatch)
 }
 
 export default connect(
