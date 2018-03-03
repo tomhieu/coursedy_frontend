@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { CourseDetail } from '../../components/index';
-import * as PublicCourseActions from '../../actions/PublicCourseActionCreator';
-import * as FilterActions from '../../actions/CourseFilterActionCreator'
+import { CourseDetail } from '../../../components/index';
+import * as PublicCourseActions from '../../../actions/PublicCourseActionCreator';
+import * as FilterActions from '../../../actions/CourseFilterActionCreator'
 import { connect } from 'react-redux';
 
 class PublicCourseDetailContainer extends Component {

@@ -1,4 +1,5 @@
 import * as courseTypes from '../../constants/Courses';
+import * as AsyncAction from "../../actions/AsyncActionCreator.js"
 
 const PublicCourseDetail = (state = {
     course: {},
@@ -108,6 +109,11 @@ const PublicCourseDetail = (state = {
       return {...state, show_comment_status_modal: true}
     case courseTypes.PUBLIC_COURSE_DETAIL_SUBMIT_COMMENT_CLOSE_STATUS_MODAL:
       return {...state, show_comment_status_modal: false}
+    //
+    case courseTypes.PUBIC_COURSE_DETAIL_SUBMIT_VIEW + AsyncAction.FULFILLED:
+      return state;
+    case courseTypes.PUBIC_COURSE_DETAIL_SUBMIT_VIEW + AsyncAction.REJECTED:
+      return state;
     default:
       return state;
   }

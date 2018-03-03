@@ -1,11 +1,11 @@
 import * as React from "react";
 import {Component} from "react";
 import {Button, Modal} from "react-bootstrap";
-import {LessonDetailComponent} from "../../components/Courses/LessonDetailComponent";
+import {LessonDetailComponent} from "../../../components/Courses/LessonDetailComponent";
 import {reduxForm} from "redux-form";
 import {connect} from "react-redux";
-import {addDocumentForLesson, deleteDocumentForLesson} from "../../actions/CourseFormActionCreator";
-import {validate} from '../../validations/LessonFormValidator';
+import {addDocumentForLesson, deleteDocumentForLesson} from "../../../actions/CourseFormActionCreator";
+import {validate} from '../../../validations/LessonFormValidator';
 
 class EditLessonFormContainer extends Component {
     constructor(props) {

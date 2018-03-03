@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { CourseList } from '../../components/index';
-import * as Actions from '../../actions/CourseFilterActionCreator'
+import { CourseList } from '../../../components/index';
+import * as Actions from '../../../actions/CourseFilterActionCreator'
 import { connect } from 'react-redux';
 import Pagination from 'react-js-pagination';
 
@@ -19,7 +19,7 @@ class PublicCourseListContainer extends Component {
     query['start_time'] = this.props.startTime
     query['end_time'] = this.props.endTime
     query['per_page'] = this.props.pageSize
-    query['current_page'] = this.props.currentPage
+    query['page'] = this.props.currentPage
 
     query['sort_by'] = this.props.sortBy
     query['sort_order'] = this.props.sortOrder
@@ -39,7 +39,7 @@ class PublicCourseListContainer extends Component {
     query['start_time'] = this.props.startTime
     query['end_time'] = this.props.endTime
     query['per_page'] = this.props.pageSize
-    query['current_page'] = currentPage
+    query['page'] = currentPage
 
     query['sort_by'] = this.props.sortBy
     query['sort_order'] = this.props.sortOrder

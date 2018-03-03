@@ -1,13 +1,11 @@
-import React, { Component} from 'react';
-import cssModules from 'react-css-modules';
+import React, {Component} from 'react';
 // import styles from '../Course.module.scss';
 import {connect} from "react-redux";
 import {reduxForm} from "redux-form";
 import {Modal, Button} from 'react-bootstrap';
-import * as PublicCourseActions from '../../actions/PublicCourseActionCreator';
-import FormField from "../../components/Core/FormField";
-import {validate} from "../../validations/PublicCourseDetailFollowModalValidator"
-import SimpleDialogComponent from '../../components/Core/SimpleDialogComponent'
+import * as PublicCourseActions from '../../../actions/PublicCourseActionCreator';
+import { CoreComponent } from "../../../components/index"
+import {validate} from "../../../validations/PublicCourseDetailFollowModalValidator"
 
 /**
   * @Course group template 2
@@ -70,9 +68,9 @@ class PublicCourseDetailFollowModalContainer extends Component {
               { submitAlert }
               <div className="">
                 <div className="public-course-follow-email">
-                  <FormField formGroupId={'emailId'} formLabel={this.context.t('account.person.info.email')}
+                  <CoreComponent.FormField formGroupId={'emailId'} formLabel={this.context.t('account.person.info.email')}
                      placeholder={this.context.t('account.person.info.email')} isMandatoryField={true}
-                     formControlName={'email'} typeField={'custom_input'}></FormField>
+                     formControlName={'email'} typeField={'custom_input'}></CoreComponent.FormField>
                 </div>
               </div>
             </Modal.Body>
@@ -88,13 +86,13 @@ class PublicCourseDetailFollowModalContainer extends Component {
         </Modal>
 
         {/* Follow course status modal */}
-        <SimpleDialogComponent
+        <CoreComponent.SimpleDialogComponent
           show={this.props.show_follow_status_modal}
           title={this.context.t('course_follow_status')}
           cancelCallback={this.hidePublicCourseFollowStatusModal.bind(this)}
         >
           {submitAlert}
-        </SimpleDialogComponent>
+        </CoreComponent.SimpleDialogComponent>
 
       </div>
     )

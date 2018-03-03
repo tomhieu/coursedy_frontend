@@ -8,7 +8,7 @@ import styles from './Course.module.scss';
 import {CommentFormContainer} from '../../containers/index';
 import {Button} from 'react-bootstrap';
 
-import CustomButton from '../core/CustomButton';
+import { CoreComponent } from '../index';
 import { PUBLIC_COURSE_MAX_NUMBER_COMMENTS_PER_LOAD } from '../../constants/Courses'; 
 
 /**
@@ -59,12 +59,12 @@ class CourseDetail extends Component {
         {
           this.props.course_comments.length > 0 && 
             this.props.course_comments.length % PUBLIC_COURSE_MAX_NUMBER_COMMENTS_PER_LOAD == 0 ?
-          <CustomButton 
+          <CoreComponent.CustomButton 
             onClickCallback={this.props.loadMoreCommentsHdl}
             label={"Tải thêm"}
             containerClasses={""}
             btnClasses={"btn-lg"}
-          ></CustomButton> : null
+          ></CoreComponent.CustomButton> : null
         }
       </div>
     )

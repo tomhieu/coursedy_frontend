@@ -51,11 +51,11 @@ export const DAYS_IN_WEEK = [
  */
 
 export const createCourse = (title, description, start_date, period, number_of_students, tuition_fee, currency,
-                             is_free, week_day_schedules_attributes, is_same_period, category_id, course_specialize, cover_image) => {
+                             is_free, week_day_schedules_attributes, is_same_period, category_id, cover_image) => {
   return dispatch => {
     let body = {
       title, description, start_date, period, number_of_students, tuition_fee, currency, is_free, week_day_schedules_attributes,
-      is_same_period, category_id, course_specialize, cover_image
+      is_same_period, category_id, cover_image
     };
     Network().post('courses', body).then((response) => {
       dispatch({
@@ -73,12 +73,12 @@ export const createCourse = (title, description, start_date, period, number_of_s
 
 export const updateCourse = (id, title, description, start_date, period,
                              number_of_students, tuition_fee, currency, is_free, week_day_schedules_attributes, is_same_period,
-                             category_id, course_specialize, cover_image) => {
+                             category_id, cover_image) => {
   return dispatch => {
     let body = {
       id, title, description, start_date, period,
       number_of_students, tuition_fee, currency, is_free, week_day_schedules_attributes, is_same_period,
-      cover_image, category_id, course_specialize
+      cover_image, category_id
     };
     Network().update('courses/' + id, body).then((response) => {
       dispatch({

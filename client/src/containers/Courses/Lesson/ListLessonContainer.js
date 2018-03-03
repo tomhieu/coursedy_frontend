@@ -1,6 +1,6 @@
 import * as React from "react";
 import {Component} from "react";
-import LessonLineComponent from "../../components/Courses/LessonLineComponent";
+import LessonLineComponent from "../../../components/Courses/LessonLineComponent";
 import {connect} from "react-redux";
 import cssModules from "react-css-modules";
 import styles from "./ListLesson.module.scss";
@@ -9,7 +9,7 @@ import {
     createCourse,
     deleteLesson,
     editLessonDetail
-} from "../../actions/CourseFormActionCreator";
+} from "../../../actions/CourseFormActionCreator";
 import {reduxForm} from "redux-form";
 import {Link} from "react-router-dom";
 class ListLessonContainer extends Component {

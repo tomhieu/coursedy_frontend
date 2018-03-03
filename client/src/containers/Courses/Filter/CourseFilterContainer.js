@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
-import {CourseFilter} from '../../components/index';
-import * as Actions from '../../actions/CourseFilterActionCreator'
+import {CourseFilter} from '../../../components/index';
+import * as Actions from '../../../actions/CourseFilterActionCreator'
 import {connect} from 'react-redux';
-import {reduxForm, submit} from "redux-form";
+import {reduxForm} from "redux-form";
 
 class CourseFilterContainer extends Component {
   componentWillMount() {

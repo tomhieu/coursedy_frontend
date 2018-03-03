@@ -1,14 +1,20 @@
-import * as types from '../constants/Courses';
-import * as sessionTypes from '../constants/Session';
+import * as types from '../constants/Courses'
+import * as sessionTypes from '../constants/Session'
 import Network from '../utils/network'
 import {globalHistory} from '../utils/globalHistory'
 import {TT} from '../utils/locale'
+import * as PublicCourseConstants from "../constants/PublicCourseConstants"
 
 export const fetchPublicCourse = (courseId) => {
   return dispatch => {
     Network().get('courses/'+courseId).then((response) => {
-      dispatch(fetchPublicCourseSections(courseId));
-      dispatch(fetchPublicCourseTutor(response.user.id));
+      dispatch(fetchPublicCourseSections(courseId))
+      dispatch(fetchPublicCourseTutor(response.user.id))
+
+      //Dispatch submit view after timeout
+      setTimeout(() => {
+        dispatch(submitViewCourse(courseId, response.token || ''))
+      }, PublicCourseConstants.PUBLIC_COURSE_DETAIL_SUBMIT_VIEW_TIMEOUT)
       dispatch({
         type: types.FETCH_PUBLIC_COURSE_SUCCESSFULLY,
         payload: response
@@ -302,8 +308,6 @@ export const submitCourseComment = (comment, courseId, userId) => {
       })
     })
   }
-
-
 }
 
 export const showPublicSubmitCommentStatusModal = () => {
@@ -317,6 +321,15 @@ export const closePublicSubmitCommentStatusModal = () => {
   return dispatch => {
     dispatch({
       type: types.PUBLIC_COURSE_DETAIL_SUBMIT_COMMENT_CLOSE_STATUS_MODAL,
+    })
+  }
+}
+
+export const submitViewCourse = (courseId, token) => {
+  return dispatch => {
+    dispatch({
+      type: types.PUBLIC_COURSE_DETAIL_SUBMIT_VIEW,
+      payload: Network().post(`courses/${courseId}/view`, {token: token})
     })
   }
 }

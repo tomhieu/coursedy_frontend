@@ -28,34 +28,14 @@ export const fetchLocations = () => {
   }
 }
 
-export const fetchWeekdays = () => {
-  return dispatch => {
-    Network().get('weekdays').then((response) => {
-      dispatch({
-        type: types.FETCH_WEEKDAYS_SUCCESSFULLY,
-        payload: response
-      })
-    }, (errors) => {
-      //  TODO handle error
-    })
-  }
-}
-
 export const searchCourse = (query) => {
   return dispatch => {
-    //FIXME: Comment for dummy data
-    Network().get('courses', query).then((response) => {
+    Network().get('courses/search', query).then((response) => {
       dispatch({
         type: courseActionTypes.FETCH_COURSES_SUCCESS,
         payload: response
       })
     })
-
-    //FIXME: Remove me
-    // dispatch({
-    //   type: courseActionTypes.FETCH_COURSES_SUCCESS,
-    //   payload: types.dummyCourses
-    // })
   }
 }
 
@@ -150,7 +130,7 @@ export const loadSuggestions = (filters, term) => {
     dispatch({
       type: types.LOADING_SUGGESTION,
     })
-    Network().get('load-suggestions', {filters, term}).then((response) => {
+    Network().get('courses/search', {filters, term}).then((response) => {
       dispatch({
         type: types.LOAD_SUGGESTION_COMPLETE,
         payload: response

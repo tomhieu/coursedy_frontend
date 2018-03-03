@@ -12,7 +12,7 @@ class ObjectUtils {
     static currencyFormat(value, currency = 'VND') {
         const l10nUSD = new Intl.NumberFormat('en-US', {style: 'currency', currency: 'USD'});
         const l10nVND = new Intl.NumberFormat('vi-VN', {style: 'currency', currency: 'VND'});
-        if (currency.toUpperCase() === 'VND') {
+        if (!currency || currency.toUpperCase() === 'VND') {
             return l10nVND.format(value);
         } else {
             return l10nUSD.format(value);

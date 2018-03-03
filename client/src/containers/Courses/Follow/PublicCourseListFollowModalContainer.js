@@ -3,10 +3,10 @@ import cssModules from 'react-css-modules';
 import {connect} from "react-redux";
 import {reduxForm} from "redux-form";
 import {Modal, Button} from 'react-bootstrap';
-import * as PublicCourseActions from '../../actions/PublicCourseActionCreator';
-import FormField from "../../components/Core/FormField";
-import {validate} from "../../validations/PublicCourseListFollowModalValidator"
-import {EFlatButton} from "../../components/Core/CustomComponents";
+import * as PublicCourseActions from '../../../actions/PublicCourseActionCreator';
+import FormField from "../../../components/Core/FormField";
+import {validate} from "../../../validations/PublicCourseListFollowModalValidator"
+import {EFlatButton} from "../../../components/Core/CustomComponents";
 import {ActionFavorite} from "material-ui/svg-icons/index";
 import {red900} from "material-ui/styles/colors";
 /**

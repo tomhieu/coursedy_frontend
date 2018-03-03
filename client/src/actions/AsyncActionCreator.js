@@ -1,3 +1,7 @@
+export const FULFILLED = '_FULFILLED';
+export const PENDING = '_PENDING';
+export const REJECTED = '_REJECTED';
+
 import {SHOW_LOADING_MASK} from "./actionCreators";
 import Network from '../utils/network'
 import {HIDE_LOADING_MASK} from "actions/actionCreators";

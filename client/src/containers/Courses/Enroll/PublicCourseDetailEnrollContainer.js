@@ -1,11 +1,11 @@
 import React, { Component} from 'react';
 import cssModules from 'react-css-modules';
-import styles from './PublicCourseDetail.module.scss';
+import styles from './PublicCourseDetailEnrollContainer.scss';
 import {connect} from "react-redux";
 import {Modal, Button} from 'react-bootstrap';
-import * as PublicCourseActions from '../../actions/PublicCourseActionCreator';
-import {globalHistory} from '../../utils/globalHistory'
-import SimpleDialogComponent from '../../components/Core/SimpleDialogComponent'
+import * as PublicCourseActions from '../../../actions/CoursesActionCreator.js';
+import {globalHistory} from '../../../utils/globalHistory'
+import { CoreComponent } from "../../../components/index"
 
 /**
   * @Course group template 2
@@ -14,6 +14,10 @@ import SimpleDialogComponent from '../../components/Core/SimpleDialogComponent'
 class PublicCourseDetailEnrollContainer extends Component {
   constructor(props) {
     super(props);
+  }
+
+  componentWillMount() {
+    console.log(styles);
   }
 
   enrollCourse() {
@@ -105,13 +109,13 @@ class PublicCourseDetailEnrollContainer extends Component {
         </Modal>
 
         {/* Submit enroll course message */}
-        <SimpleDialogComponent
+        <CoreComponent.SimpleDialogComponent
           show={this.props.show_enroll_status_modal}
           title={this.context.t('course_enroll_status')}
           cancelCallback={this.hideEnrollStatusModal.bind(this)}
         >
           {enrollMessage}
-        </SimpleDialogComponent>
+        </CoreComponent.SimpleDialogComponent>
       </div>
     )
   }
@@ -139,4 +143,4 @@ const mapStateToProps = (state) => {
 
 export default connect(
   mapStateToProps
-)(PublicCourseDetailEnrollContainer);
+)(cssModules(PublicCourseDetailEnrollContainer, styles))

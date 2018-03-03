@@ -136,6 +136,17 @@
     width: 100%;
 
     li {
+      position: relative;
+      display: inline-block;
+      height: 20px;
+      width: 20px;
+      margin: 0 5px;
+      padding: 0;
+      cursor: pointer;
+      &.slick-active button::before {
+        color: #000;
+        opacity: .75;
+      }
       button {
         border: 0;
         background: transparent;
@@ -157,7 +168,7 @@
           width: 20px;
           height: 20px;
           font-family: "slick";
-          font-size: 6px;
+          font-size: 20px;
           line-height: 20px;
           text-align: center;
           color: black;
@@ -204,6 +215,10 @@
     display: block;
     height: auto;
     border: 1px solid transparent;
+  }
+
+  .slick-slide_item {
+    margin: 10px;
   }
 }
 

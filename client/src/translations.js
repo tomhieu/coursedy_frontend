@@ -254,7 +254,7 @@ export const translations = {
     /* home page */
     "popular_courses": "Khoá học phổ biến",
     "search_your_teacher": "Tìm giáo viên",
-    "all_courses": "Tất cả khoá ",
+    "all_courses": "Tất cả khoá",
     "watch_all_courses": "Xem Tất Cả Khoá Học",
     "more_course": "Xem Thêm",
     "new_courses": "Khoá Học Mới Mở",

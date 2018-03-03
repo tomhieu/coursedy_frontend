@@ -55,11 +55,11 @@ const CourseFormComponent = (state = {
     case CLOSED_ACTIVATED_FIELD:
       return Object.assign({}, state, {activatedField: null});
     case FETCH_DETAIL_COURSE_SUCESSFULLY:
-      const {category, course_level, start_date, end_date} = action.payload;
+      const {category, course_level, start_date, end_date, week_day_schedules} = action.payload;
       const fr_start_date = DateUtils.formatDate(start_date);
       const fr_end_date = DateUtils.formatDate(end_date);
       const courseData = Object.assign({}, action.payload, {
-        category_id: category.id, course_level_id: course_level.id,
+        category_id: category.id, course_days: week_day_schedules,
         start_date: fr_start_date, end_date: fr_end_date
       });
       return Object.assign({}, state, {courseData: courseData, editMode: true});
