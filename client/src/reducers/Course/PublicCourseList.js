@@ -1,6 +1,8 @@
-import * as courseTypes from '../../constants/Courses';
+import * as courseTypes from '../../constants/Courses'
+import * as AsyncActions from '../../actions/AsyncActionCreator.js'
 
 const PublicCourseList = (state = {
+    followedCourses: [],
     show_follow_modal: false,
     submit_follow_success: false,
     submit_follow_fail: false,
@@ -8,6 +10,12 @@ const PublicCourseList = (state = {
   }, action) => {
   switch (action.type) {
     //Handle follow actions
+    case courseTypes.PUBLIC_COURSE_LIST_FETCH_FOLLOWED_COURSES + AsyncActions.PENDING:
+      return state;      
+    case courseTypes.PUBLIC_COURSE_LIST_FETCH_FOLLOWED_COURSES + AsyncActions.FULFILLED:
+      return {...state, followedCourses: action.payload}
+    case courseTypes.PUBLIC_COURSE_LIST_FETCH_FOLLOWED_COURSES + AsyncActions.REJECTED:
+      return state;
     case courseTypes.PUBLIC_COURSE_LIST_SHOW_FOLLOW_MODAL:
       return {...state, show_follow_modal: true}
     case courseTypes.PUBLIC_COURSE_LIST_CLOSE_FOLLOW_MODAL:
