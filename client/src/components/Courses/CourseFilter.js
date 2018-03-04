@@ -279,17 +279,20 @@ class CourseFilter extends Component {
             <div className={'col-md-12 ' + styles.filterResultBlock}>
               <div className="d-flex flex-horizontal align-items-center">
                 <div className={styles.listResultInfo + " d-flex flex-horizontal justify-content-left"}>
-                  <div className={styles.checkAllBtn + " d-flex align-items-center"}>
+                 {/*<div className={styles.checkAllBtn + " d-flex align-items-center"}>
                     <FormField formGroupId="select_all_id" showLabel={false} formControlName="select_all"
                                typeField="checkbox" iconStyle={mStyles.iconCheckBox}>
                     </FormField>
-                  </div>
-                  <PublicCourseListFollowModalContainer />
-                  <span className={styles.textTotalResult}>
-                                        {this.context.t("total_result", {total: totalResult != undefined ? totalResult : 0})}
-                                    </span>
+                  </div>*/}
+                  {/*<PublicCourseListFollowModalContainer />*/}
+
                 </div>
                 <div className={styles.orderDisplayResult + " d-flex flex-horizontal justify-content-end"}>
+                  <div className={styles.totalCoursesBox}>
+                    <span className={styles.textTotalResult}>
+                      {this.context.t("total_result", {total: totalResult != undefined ? totalResult : 0})}
+                    </span>
+                  </div>
                   <div className={styles.orderBtn}>
                     <FormField formGroupId="order_by_id" showLabel={false} formLabel={this.context.t("order_list")}
                                options={orderList} formControlName="order_by"
