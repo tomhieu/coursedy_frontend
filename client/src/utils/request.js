@@ -33,7 +33,7 @@ export default function request(url, options) {
       .then(response => {
         if (response.errors) reject(response.errors);
         else resolve(response);
-        store.dispatch({type: HIDE_LOADING_MASK});
+          store.dispatch({type: HIDE_LOADING_MASK});
       })
       .catch(reject)
   });

@@ -1,12 +1,11 @@
-import { createStore, compose, applyMiddleware } from 'redux';
-import { syncHistoryWithStore } from 'react-router-redux';
+import {applyMiddleware, compose, createStore} from 'redux';
+import {syncHistoryWithStore} from 'react-router-redux';
 import thunk from 'redux-thunk';
-import { createBrowserHistory } from 'history';
+import {createBrowserHistory} from 'history';
 import promiseMiddleware from 'redux-promise-middleware';
 import rootReducer from '../reducers/index';
 import initialState from './initialState';
-import { createLogger } from 'redux-logger'
-import {HIDE_LOADING_MASK, SHOW_LOADING_MASK} from "actions/actionCreators";
+import {createLogger} from 'redux-logger'
 
 /* Commonly used middlewares and enhancers */
 /* See: http://redux.js.org/docs/advanced/Middleware.html*/

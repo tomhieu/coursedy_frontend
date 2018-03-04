@@ -99,7 +99,7 @@ export const translations = {
     'popup_warning_publish_course_message_1': 'Bạn muốn đăng khoá học {course_title}.',
     'popup_warning_publish_course_message_2': 'Một khí khoá học đăng lên, tất cả mọi người đều có thể xem thông tin và nội dung khoá học',
     'popup_warning_publish_course_message_3': 'Khoá học {course_title} chưa có buổi học nào. Để giúp người học có thể năm được nội dung chi tiết khoá học, bạn nên thêm nội dung các buổi học trước khi đăng khoá học lên. ',
-
+    'course_periode_type': 'buổi học',
     /*
      * Lesson Page
      */
@@ -251,6 +251,7 @@ export const translations = {
     "bank_name": "Chủ Tài Khoản",
     "bank_number": "Số Tài Khoản",
     "transaction_office": "Phòng Giao Dịch",
+    "select_domestic_bank": "Lựa chọn ngân hàng",
     /* home page */
     "popular_courses": "Khoá học phổ biến",
     "search_your_teacher": "Tìm giáo viên",

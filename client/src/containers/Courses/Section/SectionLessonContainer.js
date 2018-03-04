@@ -92,7 +92,7 @@ SectionLessonContainer.contextTypes = {
 };
 
 const mapStateToProps = (state) => {
-    return {activatedField: state.CourseFormComponent.activatedField};
+    return {activatedField: state.courseDetails.activatedField};
 };
 
 export default connect(

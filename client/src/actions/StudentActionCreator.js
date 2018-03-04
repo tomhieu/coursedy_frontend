@@ -9,7 +9,7 @@ export const fetchStudentsComment = (query) => {
     //FIXME: Comment for dummy data
     // Network().get('comments', query).then((response) => {
     //   dispatch({
-    //     type: courseActionTypes.FETCH_COURSES_SUCCESS,
+    //     type: courseActionTypes.FETCH_COURSES,
     //     payload: response
     //   })
     // })

@@ -1,5 +1,5 @@
 import * as courseTypes from '../../constants/Courses';
-import * as AsyncAction from "../../actions/AsyncActionCreator.js"
+import * as asyncActs from '../../actions/AsyncActionCreator';
 
 const PublicCourseDetail = (state = {
     course: {},
@@ -24,19 +24,20 @@ const PublicCourseDetail = (state = {
     submit_comment_success: false,
     submit_comment_fail: false,
     submit_comment_errors: [],
+
   }, action) => {
   switch (action.type) {
     case courseTypes.FETCH_PUBLIC_COURSE_SUCCESSFULLY:
       return {...state, course: action.payload }
     case courseTypes.FETCH_PUBLIC_COURSE_FAIL:
       return {...state, course: null}
-    case courseTypes.FETCH_PUBLIC_COURSE_SECTIONS_SUCCESSFULLY:
+    case courseTypes.FETCH_PUBLIC_COURSE_SECTIONS + asyncActs.FULFILLED:
       return {...state, course_sections: action.payload }
-    case courseTypes.FETCH_PUBLIC_COURSE_SECTIONS_FAIL:
+    case courseTypes.FETCH_PUBLIC_COURSE_SECTIONS + asyncActs.REJECTED:
       return {...state, course_sections: []}
-    case courseTypes.FETCH_PUBLIC_COURSE_TUTOR_SUCCESSFULLY:
+    case courseTypes.FETCH_PUBLIC_COURSE_TUTOR + asyncActs.FULFILLED:
       return {...state, course_tutor: action.payload}
-    case courseTypes.FETCH_PUBLIC_COURSE_TUTOR_FAIL:
+    case courseTypes.FETCH_PUBLIC_COURSE_TUTOR + asyncActs.REJECTED:
       return {...state, course_tutor: null}
 
 
@@ -110,9 +111,9 @@ const PublicCourseDetail = (state = {
     case courseTypes.PUBLIC_COURSE_DETAIL_SUBMIT_COMMENT_CLOSE_STATUS_MODAL:
       return {...state, show_comment_status_modal: false}
     //
-    case courseTypes.PUBIC_COURSE_DETAIL_SUBMIT_VIEW + AsyncAction.FULFILLED:
+    case courseTypes.PUBIC_COURSE_DETAIL_SUBMIT_VIEW + asyncActs.FULFILLED:
       return state;
-    case courseTypes.PUBIC_COURSE_DETAIL_SUBMIT_VIEW + AsyncAction.REJECTED:
+    case courseTypes.PUBIC_COURSE_DETAIL_SUBMIT_VIEW + asyncActs.REJECTED:
       return state;
     default:
       return state;

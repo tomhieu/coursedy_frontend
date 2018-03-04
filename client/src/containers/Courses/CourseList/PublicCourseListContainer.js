@@ -3,6 +3,7 @@ import { CourseList } from '../../../components/index';
 import * as Actions from '../../../actions/CourseFilterActionCreator'
 import { connect } from 'react-redux';
 import Pagination from 'react-js-pagination';
+import LoadingMask from "../../../components/LoadingMask/LoadingMask";
 
 
 
@@ -56,22 +57,24 @@ class PublicCourseListContainer extends Component {
 
   render() {
     return (
-      <div className="public-course-list">
-        <CourseList 
-          {...this.props} 
-          selectCourseHdl={this.selectCourseHdl.bind(this)} 
-          isPublic={true}
-          itemPerRowInGridMode={4}
-        />
-        <div className="clear-fix"></div>
-        <Pagination
-          activePage={this.props.currentPage}
-          itemsCountPerPage={this.props.pageSize}
-          totalItemsCount={this.props.totalResult}
-          pageRangeDisplayed={5}
-          onChange={this.handlePageChange.bind(this)}
-        />
-      </div>
+      <LoadingMask>
+        <div className="public-course-list">
+          <CourseList
+            {...this.props}
+            selectCourseHdl={this.selectCourseHdl.bind(this)}
+            isPublic={true}
+            itemPerRowInGridMode={4}
+          />
+          <div className="clear-fix"></div>
+          <Pagination
+            activePage={this.props.currentPage}
+            itemsCountPerPage={this.props.pageSize}
+            totalItemsCount={this.props.totalResult}
+            pageRangeDisplayed={5}
+            onChange={this.handlePageChange.bind(this)}
+          />
+        </div>
+      </LoadingMask>
     )
   }
 }

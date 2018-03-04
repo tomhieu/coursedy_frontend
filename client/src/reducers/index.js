@@ -13,7 +13,7 @@ import PublicCourseList from "./Course/PublicCourseList";
 import PublicCourseDetail from "./Course/PublicCourseDetail";
 import TutorCourseList from "./Course/TutorCourseListReducer";
 
-import CourseFormComponent from "./CourseFormReducer";
+import courseDetails from "./CourseFormReducer";
 
 import session from "./Session";
 import TutorProfile from "./TutorProfile";
@@ -23,40 +23,40 @@ import addNewDocumentFile from "./AddDocumentFile";
 import LoadingMask from "./LoadingMask";
 import TutorAccount from "./TutorAccount";
 import Teachers from './TeachersReducer'
-import Categories from './CategoriesReducer'
+import referenceData from './ReferenceDataReducer'
 import HomePage from './HomePageReducer'
 import Payment from './Payment'
 
 
 const rootReducer = combineReducers({
-    // Apply all of the reducers here.
-    LoadingMask,
-    i18nState,
-    LoginComponent,
-    SignUpComponent,
+  // Apply all of the reducers here.
+  LoadingMask,
+  i18nState,
+  LoginComponent,
+  SignUpComponent,
 
-    //Reducers for course
-    CourseListReducer,
-    PublicCourseList,
-    PublicCourseDetail,
-    CourseFormComponent,
-    TutorCourseList,
+  //Reducers for course
+  CourseListReducer,
+  PublicCourseList,
+  PublicCourseDetail,
+  courseDetails,
+  TutorCourseList,
 
-    session,
-    TutorProfile,
-    routing: routerReducer,
-    form: formReducer,
-    toastr: toastrReducer,
-    // Person Info screen
-    loadPersonData,
-    EducationData,
-    addNewDocumentFile,
-    CourseFilter,
-    Categories,
-    TutorAccount,
-    Teachers,
-    Payment,
-    HomePage
+  session,
+  TutorProfile,
+  routing: routerReducer,
+  form: formReducer,
+  toastr: toastrReducer,
+  // Person Info screen
+  loadPersonData,
+  EducationData,
+  addNewDocumentFile,
+  CourseFilter,
+  referenceData,
+  TutorAccount,
+  Teachers,
+  Payment,
+  HomePage
 
 });
 
