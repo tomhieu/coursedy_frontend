@@ -1,3 +1,5 @@
+
+
 import {FETCH_SUPPORTED_BANK_LIST_COMPLETE} from "actions/PaymentActionCreator";
 
 const Payment = (state = {
@@ -5,7 +7,7 @@ const Payment = (state = {
 }, action) => {
   switch (action.type) {
     case FETCH_SUPPORTED_BANK_LIST_COMPLETE:
-      return {...state, supportedBankList: action.data}
+      return Object.assign({}, state, {supportedBankList: action.data})
     default:
       return state
   }

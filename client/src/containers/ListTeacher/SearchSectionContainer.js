@@ -71,7 +71,7 @@ SearchSectionContainer.contextTypes = {
 
 const mapStateToProps = (state) => {
   return {
-    categories: state.Categories.data
+    categories: state.referenceData.courseCategories
   }
 }
 

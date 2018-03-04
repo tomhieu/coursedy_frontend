@@ -18,6 +18,14 @@ class ObjectUtils {
             return l10nUSD.format(value);
         }
     }
+
+    static isTrue(value) {
+        if (typeof value === 'undefined' || typeof value != 'boolean') {
+            return false;
+        } else {
+            return value;
+        }
+    }
 }
 
 export default ObjectUtils;

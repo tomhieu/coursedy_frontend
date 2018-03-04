@@ -1,12 +1,13 @@
-import {Component} from "react";
 import * as React from "react";
+import {Component} from "react";
 import {TT} from "utils/locale";
+import Select2 from "react-select2-wrapper";
 
 export class DomesticBank extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedBank: undefined
+      selectedBank: {accountNumber: '', accountName: '', transactionOffice: ''}
     }
   }
 
@@ -16,11 +17,11 @@ export class DomesticBank extends Component {
   }
 
   render() {
-    const {supportedBankList} = this.props;
+    const {supportedBankList = []} = this.props;
     const {accountNumber, accountName, transactionOffice} = this.state.selectedBank;
     return (
       <div>
-        <Select2 {...input} disabled={disabled} data={supportedBankList} onChange={this.onSelectBank.bind(this)}/>
+        <Select2 placeholder={this.context.t('select_domestic_bank')} disabled={false} data={supportedBankList} onChange={this.onSelectBank.bind(this)}/>
         <BankAccount accountNumber={accountNumber} accountName={accountName} transaction={transactionOffice}>
         </BankAccount>
       </div>
@@ -53,5 +54,6 @@ DomesticBank.contextTypes = {
 }
 
 DomesticBank.propTypes = {
-  supportedBankList: React.PropTypes.array.isRequired
+  supportedBankList: React.PropTypes.array.isRequired,
+  handleSubmit: React.PropTypes.func.isRequired,
 };

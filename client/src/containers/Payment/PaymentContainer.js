@@ -1,4 +1,3 @@
-import {Component} from "react";
 import * as React from "react";
 import CheckoutForm from "../../components/Checkout/CheckoutForm";
 import {Elements} from "react-stripe-elements";
@@ -7,6 +6,7 @@ import * as Actions from '../../actions/PaymentActionCreator'
 import styles from './PaymentContainer.module.scss';
 import {connect} from "react-redux";
 import cssModules from 'react-css-modules';
+import {Component} from "react";
 
 class PaymentContainer extends Component {
   componentWillMount() {
@@ -36,7 +36,7 @@ PaymentContainer.propTypes = {};
 
 const mapStateToProps = (state) => {
   const {Payment} = state;
-  const {supportedBankList} = Payment;
+  const {supportedBankList = []} = Payment;
   return supportedBankList;
 };
 

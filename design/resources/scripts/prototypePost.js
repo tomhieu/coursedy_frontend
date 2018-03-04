@@ -2054,7 +2054,7 @@ $axure.internal(function($ax) {
             var obj = objects[i];
             pathCopy[path.length] = obj.id;
             if (!$ax.public.fn.IsReferenceDiagramObject(obj.type) && !$ax.public.fn.IsDynamicPanel(obj.type) && !$ax.public.fn.IsRepeater(obj.type) && !$ax.public.fn.IsLayer(obj.type)) {
-                if(_callFilterCheck(callFilter)) { //fire current event for all types
+                if(_callFilterCheck(callFilter)) { //fire current event for all asyncActs
                     if ($ax.public.fn.IsTable(obj.type) || $ax.public.fn.IsMenuObject(obj.type) || $ax.public.fn.IsTreeNodeObject(obj.type)) {
                         _fireEventsForTableMenuAndTree(obj, eventName, skipShowDescription, undefined, path, !synthetic);
                     } else {
@@ -2423,7 +2423,7 @@ $axure.internal(function($ax) {
             return;
         }
 
-        // Check other 2 types to see if either is empty, if so, we can't do anything, so just queue it up
+        // Check other 2 asyncActs to see if either is empty, if so, we can't do anything, so just queue it up
         var otherType1 = type == queueTypes.move ? queueTypes.resize : queueTypes.move;
         var otherType2 = type == queueTypes.rotate ? queueTypes.resize : queueTypes.rotate;
         if (!state[otherType1].queue.length || !state[otherType2].queue.length) {
