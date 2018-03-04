@@ -2,6 +2,9 @@ import React, { Component} from 'react';
 import cssModules from 'react-css-modules';
 import styles from './Course.module.scss';
 import { CourseItem } from '../index';
+import CourseListInListMode from './CourseList/CourseListInListMode'
+import CourseListInGridMode from './CourseList/CourseListInGridMode'
+
 
 /**
   * @Course group template 2
@@ -12,43 +15,13 @@ class CourseList extends Component {
     super(props);
   }
   render() {
-    const {deleteCourse, selectCourseHdl, displayMode, selectedCourses, isPublic} = this.props;
-    var rows = [];
-    if (displayMode == 'grid') {
-      for (var i = 0; i < this.props.courses.length; i++) {
-        if (i % 4 == 0) {
-          rows.push(
-            <div className="clearfix" key={'course-separator-'+i}></div>
-          )
-        }
-        rows.push(
-          <div className="col-xs-12 col-sm-6 col-md-3" key={'course-' +i}>
-            <CourseItem item={this.props.courses[i]} 
-              deleteCourse={deleteCourse}
-              selectCourseHdl={selectCourseHdl}
-              displayMode={displayMode}
-              selectedCourses={selectedCourses} isPublic={isPublic}
-            />
-          </div>
-        )
-      }
-    } else if (displayMode == 'list') {
-      for (var i = 0; i < this.props.courses.length; i++) {
-        rows.push(
-          <div className="col-xs-12 col-sm-12 col-md-12" key={'course-' +i}>
-            <CourseItem item={this.props.courses[i]} 
-              deleteCourse={deleteCourse}
-              selectCourseHdl={selectCourseHdl}
-              displayMode={displayMode}
-              selectedCourses={selectedCourses} isPublic={isPublic}
-            />
-          </div>
-        )
-      }
-    }
     return (
         <div className={styles.courseListContainer + " row"}>
-        { rows }
+        {
+          this.props.displayMode === 'grid' ?
+            <CourseListInGridMode {...this.props} /> :
+            <CourseListInListMode {...this.props} />
+        }
         </div>
     )
   }

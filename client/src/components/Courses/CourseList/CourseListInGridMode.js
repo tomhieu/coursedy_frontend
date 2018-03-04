@@ -1,0 +1,64 @@
+import React, { Component} from 'react';
+import cssModules from 'react-css-modules';
+import styles from '../Course.module.scss';
+import { CourseItem } from '../../index';
+
+/**
+  * @Course group template 2
+  * @Use for CoursePage
+  */
+class CourseListInGridMode extends Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    const {
+      deleteCourse, 
+      selectCourseHdl, 
+      displayMode, 
+      selectedCourses, 
+      isPublic,
+      followedCourses,
+      itemPerRowInGridMode
+    } = this.props;
+    const columnClasses = {
+      '6': 'col-xs-12 col-sm-3 col-md-2',
+      '4': 'col-xs-12 col-sm-6 col-md-3',
+      '2': 'col-xs-12 col-sm-12 col-md-6',
+      '1': 'col-xs-12 col-sm-12 col-md-12'
+    }
+    return (
+      <div className={styles.courseListContainer + " row"}>
+      {
+        this.props.courses.map((item, index) => (
+          <div key={'course-' +index}>
+            {(index % itemPerRowInGridMode == 0 ? <div className="clearfix"></div> : null)}
+            <div className={columnClasses[itemPerRowInGridMode]}>
+              <CourseItem item={item} 
+                deleteCourse={deleteCourse}
+                selectCourseHdl={selectCourseHdl}
+                displayMode={displayMode}
+                selectedCourses={selectedCourses} 
+                isPublic={isPublic}
+                isFollowed={isPublic ? (followedCourses.indexOf(item.id) >= 0) : false}
+              />
+            </div>
+          </div>
+        ))
+      }
+      </div>
+    )
+  }
+}
+
+CourseListInGridMode.contextTypes = {
+  t: React.PropTypes.func.isRequired
+}
+
+CourseListInGridMode.propTypes = {
+  displayMode: React.PropTypes.string.isRequired,
+  // the public course list have some additional features like following course...
+  isPublic: React.PropTypes.bool.isRequired
+};
+
+export default cssModules(CourseListInGridMode, styles);
