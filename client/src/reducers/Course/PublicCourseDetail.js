@@ -1,9 +1,11 @@
 import * as courseTypes from '../../constants/Courses';
+import * as AsyncAction from "../../actions/AsyncActionCreator.js"
 
 const PublicCourseDetail = (state = {
     course: {},
     course_sections: [],
     course_comments: [],
+    course_comments_page: 1,
     course_tutor: null,
     show_follow_modal: false,
     submit_follow_success: false,
@@ -77,11 +79,12 @@ const PublicCourseDetail = (state = {
     //Handle comments actions
     case courseTypes.PUBLIC_COURSE_DETAIL_FETCH_COMMENTS_SUCCESSFULLY:
       return {...state, 
-        course_comments: [...new Set([...state.course_comments ,...action.payload])].filter((obj, index, self) =>
+        course_comments: [...new Set([...state.course_comments ,...action.payload.comments])].filter((obj, index, self) =>
           index === self.findIndex((t) => (
             t.id === obj.id
           ))
-        ) 
+        ),
+        course_comments_page: action.payload.page
       }
     case courseTypes.PUBLIC_COURSE_DETAIL_FETCH_COMMENTS_FAIL:
       return state
@@ -106,6 +109,11 @@ const PublicCourseDetail = (state = {
       return {...state, show_comment_status_modal: true}
     case courseTypes.PUBLIC_COURSE_DETAIL_SUBMIT_COMMENT_CLOSE_STATUS_MODAL:
       return {...state, show_comment_status_modal: false}
+    //
+    case courseTypes.PUBIC_COURSE_DETAIL_SUBMIT_VIEW + AsyncAction.FULFILLED:
+      return state;
+    case courseTypes.PUBIC_COURSE_DETAIL_SUBMIT_VIEW + AsyncAction.REJECTED:
+      return state;
     default:
       return state;
   }

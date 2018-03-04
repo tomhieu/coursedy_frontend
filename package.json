@@ -87,7 +87,7 @@
     "react-router-redux": "^4.0.8",
     "react-select2": "^4.0.3",
     "react-slick": "^0.16.0",
-    "react-stripe-elements": "^1.4.0",
+    "react-stripe-elements": "^1.4.1",
     "reactstrap": "^4.8.0",
     "redux": "^3.7.2",
     "redux-file-upload": "0.0.18",

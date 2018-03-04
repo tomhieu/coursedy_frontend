@@ -1,7 +1,11 @@
-import React, {Component} from 'react';
+import React, { Component} from 'react';
+import cssModules from 'react-css-modules';
+import styles from './PublicCourseDetailEnrollContainer.scss';
 import {connect} from "react-redux";
-import {Button, Modal} from 'react-bootstrap';
-import * as PublicCourseActions from '../../../actions/PublicCourseActionCreator';
+import {Modal, Button} from 'react-bootstrap';
+import * as PublicCourseActions from '../../../actions/CoursesActionCreator.js';
+import {globalHistory} from '../../../utils/globalHistory'
+import { CoreComponent } from "../../../components/index"
 
 /**
   * @Course group template 2
@@ -10,6 +14,10 @@ import * as PublicCourseActions from '../../../actions/PublicCourseActionCreator
 class PublicCourseDetailEnrollContainer extends Component {
   constructor(props) {
     super(props);
+  }
+
+  componentWillMount() {
+    console.log(styles);
   }
 
   enrollCourse() {
@@ -82,8 +90,8 @@ class PublicCourseDetailEnrollContainer extends Component {
 
     return (
       <div className="text-center">
-        <Button className={'btn btn-primary'} onClick={this.enrollCourse.bind(this)}>
-          <i className="fa fa-paper-plane-o"></i>
+        <Button className={'btn btn-primary ' + styles.fullWidth} onClick={this.enrollCourse.bind(this)}>
+          {this.context.t('course_subscribe')}
         </Button>
 
         {/* Require login modal */}
@@ -101,18 +109,13 @@ class PublicCourseDetailEnrollContainer extends Component {
         </Modal>
 
         {/* Submit enroll course message */}
-        <Modal show={this.props.show_enroll_status_modal} onHide={this.hideEnrollStatusModal.bind(this)}>
-          <Modal.Header>
-            <Modal.Title>{this.context.t('course_enroll_status')}</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            {enrollMessage}
-          </Modal.Body>
-          <Modal.Footer>
-            {budgetButton}
-            <Button onClick={this.hideEnrollStatusModal.bind(this)}>{this.context.t('close')}</Button>
-          </Modal.Footer>
-        </Modal>
+        <CoreComponent.SimpleDialogComponent
+          show={this.props.show_enroll_status_modal}
+          title={this.context.t('course_enroll_status')}
+          cancelCallback={this.hideEnrollStatusModal.bind(this)}
+        >
+          {enrollMessage}
+        </CoreComponent.SimpleDialogComponent>
       </div>
     )
   }
@@ -140,4 +143,4 @@ const mapStateToProps = (state) => {
 
 export default connect(
   mapStateToProps
-)(PublicCourseDetailEnrollContainer);
+)(cssModules(PublicCourseDetailEnrollContainer, styles))

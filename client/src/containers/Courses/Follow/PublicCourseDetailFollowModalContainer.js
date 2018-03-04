@@ -2,9 +2,9 @@ import React, {Component} from 'react';
 // import styles from '../Course.module.scss';
 import {connect} from "react-redux";
 import {reduxForm} from "redux-form";
-import {Button, Modal} from 'react-bootstrap';
+import {Modal, Button} from 'react-bootstrap';
 import * as PublicCourseActions from '../../../actions/PublicCourseActionCreator';
-import FormField from "../../../components/Core/FormField";
+import { CoreComponent } from "../../../components/index"
 import {validate} from "../../../validations/PublicCourseDetailFollowModalValidator"
 
 /**
@@ -55,7 +55,7 @@ class PublicCourseDetailFollowModalContainer extends Component {
     }
 
     return (
-      <div className="text-center">
+      <div>
         <Button className={'btn btn-primary'} onClick={this.showPublicCourseFollowModal.bind(this)}>
           <i className={this.props.submit_follow_success ? 'fa fa-heart' : 'fa fa-heart-o'}></i>
         </Button>
@@ -68,9 +68,9 @@ class PublicCourseDetailFollowModalContainer extends Component {
               { submitAlert }
               <div className="">
                 <div className="public-course-follow-email">
-                  <FormField formGroupId={'emailId'} formLabel={this.context.t('account.person.info.email')}
+                  <CoreComponent.FormField formGroupId={'emailId'} formLabel={this.context.t('account.person.info.email')}
                      placeholder={this.context.t('account.person.info.email')} isMandatoryField={true}
-                     formControlName={'email'} typeField={'custom_input'}></FormField>
+                     formControlName={'email'} typeField={'custom_input'}></CoreComponent.FormField>
                 </div>
               </div>
             </Modal.Body>
@@ -86,17 +86,13 @@ class PublicCourseDetailFollowModalContainer extends Component {
         </Modal>
 
         {/* Follow course status modal */}
-        <Modal show={this.props.show_follow_status_modal} onHide={this.hidePublicCourseFollowStatusModal.bind(this)}>
-          <Modal.Header>
-            <Modal.Title>{this.context.t('course_follow_status')}</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            {submitAlert}
-          </Modal.Body>
-          <Modal.Footer>
-            <Button onClick={this.hidePublicCourseFollowStatusModal.bind(this)}>{this.context.t('close')}</Button>
-          </Modal.Footer>
-        </Modal>
+        <CoreComponent.SimpleDialogComponent
+          show={this.props.show_follow_status_modal}
+          title={this.context.t('course_follow_status')}
+          cancelCallback={this.hidePublicCourseFollowStatusModal.bind(this)}
+        >
+          {submitAlert}
+        </CoreComponent.SimpleDialogComponent>
 
       </div>
     )

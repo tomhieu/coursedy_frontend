@@ -13,15 +13,15 @@ export const FETCH_NEW_COURSES = 'FETCH_NEW_COURSES'
 export const FETCH_NEW_COURSES_SUCCESS = 'FETCH_NEW_COURSES_SUCCESS'
 export const FETCH_NEW_COURSES_FAILURE = 'FETCH_NEW_COURSES_FAILURE'
 
-
+//Constants for public course detail
 export const FETCH_PUBLIC_COURSE_SUCCESSFULLY = 'FETCH_PUBLIC_COURSE_SUCCESSFULLY'
 export const FETCH_PUBLIC_COURSE_FAIL = 'FETCH_PUBLIC_COURSE_FAIL'
-
 export const FETCH_PUBLIC_COURSE_SECTIONS_SUCCESSFULLY = 'FETCH_PUBLIC_COURSE_SECTIONS_SUCCESSFULLY'
 export const FETCH_PUBLIC_COURSE_SECTIONS_FAIL = 'FETCH_PUBLIC_COURSE_SECTIONS_FAIL'
-
 export const FETCH_PUBLIC_COURSE_TUTOR_SUCCESSFULLY = 'FETCH_PUBLIC_COURSE_TUTOR_SUCCESSFULLY'
 export const FETCH_PUBLIC_COURSE_TUTOR_FAIL = 'FETCH_PUBLIC_COURSE_TUTOR_FAIL'
+
+export const PUBLIC_COURSE_DETAIL_SUBMIT_VIEW = "PUBLIC_COURSE_DETAIL_SUBMIT_VIEW"
 
 //Constants for public course list follow
 export const PUBLIC_COURSE_LIST_SHOW_FOLLOW_MODAL = 'PUBLIC_COURSE_LIST_SHOW_FOLLOW_MODAL'
@@ -58,7 +58,12 @@ export const PUBLIC_COURSE_DETAIL_SUBMIT_COMMENT_FAIL = 'PUBLIC_COURSE_DETAIL_SU
 export const PUBLIC_COURSE_DETAIL_SUBMIT_COMMENT_SHOW_STATUS_MODAL = 'PUBLIC_COURSE_DETAIL_SUBMIT_COMMENT_SHOW_STATUS_MODAL'
 export const PUBLIC_COURSE_DETAIL_SUBMIT_COMMENT_CLOSE_STATUS_MODAL = 'PUBLIC_COURSE_DETAIL_SUBMIT_COMMENT_CLOSE_STATUS_MODAL'
 
+
+
+
+
 export const PUBLIC_COURSE_MAX_NUMBER_COMMENTS_PER_LOAD = 10
+
 
 //FIXME: Remove me
 export const dummyCourse = {
@@ -86,84 +91,5 @@ export const dummyCourse = {
     avatar: 'http://placehold.it/100x100',
     first_name: 'Tin',
     last_name: 'Huynh'
-  }
-}
-
-//FIXME: Remove me
-export const dummyComments = [
-  {
-    id: 1,
-    course_id: 1,
-    user_id: 10,
-    content: 'Comment no 10',
-    user: {
-      first_name: 'Tin',
-      last_name: 'Huynh',
-      avatar: '',
-    }
-  }, {
-    id: 2,
-    course_id: 1,
-    user_id: 10,
-    content: 'Comment no 11',
-    user: {
-      first_name: 'Tin',
-      last_name: 'Huynh',
-      avatar: '',
-    }
-  }, {
-    id: 3,
-    course_id: 1,
-    user_id: 10,
-    content: 'Comment no 12',
-    user: {
-      first_name: 'Tin',
-      last_name: 'Huynh',
-      avatar: '',
-    }
-  }
-]
-export const dummyExtraComments = [
-  {
-    id: 4,
-    course_id: 1,
-    user_id: 10,
-    content: 'Comment no 13',
-    user: {
-      first_name: 'Tin',
-      last_name: 'Huynh',
-      avatar: '',
-    }
-  }, {
-    id: 5,
-    course_id: 1,
-    user_id: 10,
-    content: 'Comment no 14',
-    user: {
-      first_name: 'Tin',
-      last_name: 'Huynh',
-      avatar: '',
-    }
-  }, {
-    id: 6,
-    course_id: 1,
-    user_id: 10,
-    content: 'Comment no 15',
-    user: {
-      first_name: 'Tin',
-      last_name: 'Huynh',
-      avatar: '',
-    }
-  }
-]
-export const dummySubmitedComment = {
-  id: 100,
-  course_id: 1,
-  user_id: 10,
-  content: 'Submited comment',
-  user: {
-    first_name: 'Tin',
-    last_name: 'Huynh',
-    avatar: '',
   }
 }
