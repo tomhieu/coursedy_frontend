@@ -28,7 +28,13 @@ class ListTutorCourseContainer extends Component {
                 </div>
                 <div className="col-md-12 col-sm-12">
                     <LoadingMask>
-                        <CourseList deleteCourse={this.deleteCourse.bind(this)} {...this.props} displayMode="grid" isPublic={false} />
+                        <CourseList 
+                            deleteCourse={this.deleteCourse.bind(this)} 
+                            {...this.props} 
+                            displayMode="grid" 
+                            itemPerRowInGridMode={2}
+                            isPublic={false} 
+                        />
                     </LoadingMask>
                 </div>
             </div>

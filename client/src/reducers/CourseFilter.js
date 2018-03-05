@@ -1,4 +1,4 @@
-import * as types from '../constants/CourseFilter';
+import * as asyncActs from '../actions/AsyncActionCreator';
 import * as courseActionTypes from '../constants/Courses';
 
 const CourseFilter = (state = {
@@ -19,59 +19,33 @@ const CourseFilter = (state = {
   loadingSuggestion: false
 }, action) => {
   switch (action.type) {
-    case courseActionTypes.FETCH_COURSES_SUCCESS:
+    case courseActionTypes.FETCH_COURSES + asyncActs.FULFILLED:
       return {...state, courses: action.payload, totalResult: action.payload.length}
-    case types.FETCH_WEEKDAYS_SUCCESSFULLY:
-      return {...state, weekdays: action.payload}
-    case types.FETCH_LOCATIONS_SUCCESSFULLY:
-      return {...state, locations: action.payload}
-    case types.CHANGE_DISPLAY_MODE:
+    case asyncActs.CHANGE_DISPLAY_MODE:
       return {...state, displayMode: action.payload}
-    case types.CHANGE_CURRENT_PAGE:
+    case asyncActs.CHANGE_CURRENT_PAGE:
       return {...state, currentPage: action.payload}
-    case types.CHANGE_SORT_BY:
+    case asyncActs.CHANGE_SORT_BY:
       return {...state, sortBy: action.payload}
-    case types.SELECT_COURSE:
+    case asyncActs.SELECT_COURSE:
       return {...state, selectedCourses: [...state.selectedCourses, action.payload]}
-    case types.SELECT_ALL_COURSES:
+    case asyncActs.SELECT_ALL_COURSES:
       return {...state, selectedCourses: state.courses.map((course) => {return course.id})}
-    case types.REMOVE_COURSE:
+    case asyncActs.REMOVE_COURSE:
       return {...state, selectedCourses: state.selectedCourses.filter((courseId) => {return courseId != action.payload})}
-    case types.REMOVE_ALL_COURSES:
+    case asyncActs.REMOVE_ALL_COURSES:
       return {...state, selectedCourses: []}
-    case types.LOAD_SUGGESTION_COMPLETE:
+    /**
+     * handle action to load suggestion to filter Course
+     */
+    case asyncActs.LOAD_SUGGESTION + asyncActs.FULFILLED:
       return {...state, groupSugestions: action.payload, showSuggestion: action.payload.length > 0}
-    case types.LOADING_SUGGESTION:
+    case asyncActs.LOAD_SUGGESTION + asyncActs.PENDING:
       return {...state, groupSugestions: [], showSuggestion: true, loadingSuggestion: true}
-    case types.LOAD_SUGGESTION_ERROR:
+    case asyncActs.LOAD_SUGGESTION + asyncActs.REJECTED:
       return {...state, groupSugestions: [], showSuggestion: false, loadingSuggestion: false}
-    case types.ADD_FILTER_CRITERIA:
-      const currentFilters = Object.assign({}, state.filters, {resetMinFee: false, resetMaxFee: false})
-
-      // handle for multiple select filter options
-      if (Array.isArray(currentFilters[action.data.type])) {
-        let selectedFilters = JSON.parse(JSON.stringify(currentFilters[action.data.type]));
-        selectedFilters.push(action.data.value)
-        currentFilters[action.data.type] = selectedFilters
-        return Object.assign({}, state, {filters: currentFilters})
-      } else if (action.data.type === 'resetMinFee' || action.data.type === 'resetMaxFee') {
-        // handle for boolean select filter options
-        return Object.assign({}, state, {filters: currentFilters})
-      } else {
-        currentFilters.term = action.data.value
-        return Object.assign({}, state, {filters: currentFilters})
-      }
-
-    case types.REMOVE_FILTER_CRITERIA:
-      const removedFilters = Object.assign({}, state.filters)
-      if (Array.isArray(removedFilters[action.data.type])) {
-        const clonedFilters = JSON.parse(JSON.stringify(removedFilters[action.data.type]))
-        const updatedSelectedFilters = clonedFilters.filter(f => f.id != Number(action.data.filterId))
-        removedFilters[action.data.type] = updatedSelectedFilters
-      } else {
-        removedFilters[action.data.type] = true;
-      }
-      return {...state, filters: removedFilters}
+    case asyncActs.UPDATE_FILTER_CRITERIA:
+      return Object.assign({}, state, {filters: action.data})
     default:
       return state;
   }

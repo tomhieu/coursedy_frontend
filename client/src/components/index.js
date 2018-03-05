@@ -1,6 +1,7 @@
 import Header from './Layout/Header';
 import Footer from './Layout/Footer';
 import Layout from './Layout/Layout';
+import * as CoreComponent from "./Core"
 import LoginForm from './Auth/LoginForm';
 import RegisterForm from './Auth/RegisterForm';
 import SearchForm from './SearchForm/SearchForm';
@@ -8,9 +9,6 @@ import Introduces from './Introduces/Introduces';
 import CourseGroup from './Course/CourseGroup/CourseGroup';
 import CourseGroupList from './Course/CourseGroupList/CourseGroupList';
 import CourseDetail from './Courses/CourseDetail';
-import CourseDetailLessons from './Courses/CourseDetail/CourseDetailLessons';
-import CourseDetailComments from './Courses/CourseDetail/CourseDetailComments';
-import CourseDetailFollowModal from './Courses/CourseDetail/CourseDetailFollowModal';
 import CourseFilter from './Courses/CourseFilter';
 import CourseItem from './Courses/CourseItem';
 import CourseList from './Courses/CourseList';
@@ -32,6 +30,7 @@ export {
   Header,
   Footer,
   Layout,
+  CoreComponent,
   LoginForm,
   RegisterForm,
   SearchForm,

@@ -1,24 +1,15 @@
-import * as types from '../constants/CourseFormComponent';
+import * as asyncActs from '../actions/AsyncActionCreator';
 import Network from '../utils/network'
 import {TT} from '../utils/locale'
 import {fetchListTutorCourse} from "actions/ListTutorCourseActionCreator";
+import {
+  ADD_NEW_SECTION, CLOSE_POPUP_ADD_SECTION, CLOSED_ACTIVATED_FIELD, CREATE_NEW_COURSE, CREATE_UPDATE_SECTION,
+  DELETE_SECTION, FETCH_DETAIL_COURSE,
+  FETCH_LIST_SECTION, PUBLISH_COURSE,
+  TRIGGER_ACTIVATE_FIELD,
+  VALIDATE_BEFORE_PUBLISH_COURSE
+} from "actions/AsyncActionCreator";
 
-
-export const FETCH_DETAIL_COURSE_SUCESSFULLY = 'FETCH_DETAIL_COURSE_SUCESSFULLY';
-export const CREATE_NEW_COURSE = 'CREATE_NEW_COURSE';
-export const PUBLISH_COURSE = 'PUBLISH_COURSE';
-export const CANCEL_PUBLISH_COURSE = 'CANCEL_PUBLISH_COURSE';
-export const VALIDATE_BEFORE_PUBLISH_COURSE = 'VALIDATE_BEFORE_PUBLISH_COURSE';
-export const TRIGGER_ACTIVATE_FIELD = 'TRIGGER_ACTIVATE_FIELD';
-export const CLOSED_ACTIVATED_FIELD = 'CLOSED_ACTIVATED_FIELD';
-/**
- * Define actions to create, edit or delete Section
- */
-export const FETCH_LIST_SECTION_SUCESSFULLY = 'FETCH_LIST_SECTION_SUCESSFULLY';
-export const ADD_NEW_SECTION = 'ADD_NEW_SECTION';
-export const CLOSE_POPUP_ADD_SECTION = 'CLOSE_POPUP_ADD_SECTION';
-export const DELETE_SECTION_SUCESSFULLY = 'DELETE_SECTION_SUCESSFULLY';
-export const CREATE_UPDATE_SECTION_SUCESSFULLY = 'CREATE_UPDATE_SECTION_SUCESSFULLY';
 
 /**
  * List days of week
@@ -57,16 +48,9 @@ export const createCourse = (title, description, start_date, period, number_of_s
       title, description, start_date, period, number_of_students, tuition_fee, currency, is_free, week_day_schedules_attributes,
       is_same_period, category_id, cover_image
     };
-    Network().post('courses', body).then((response) => {
-      dispatch({
-        type: types.CREATE_SUCCESSFULLY,
-        payload: response
-      });
-    }, (errors) => {
-      dispatch({
-        type: types.CREATE_COURSE_FAILED,
-        payload: {errors: errors.payload}
-      });
+    dispatch({
+      type: asyncActs.CREATE_NEW_COURSE,
+      payload: Network().post('courses', body)
     });
   }
 };
@@ -82,13 +66,13 @@ export const updateCourse = (id, title, description, start_date, period,
     };
     Network().update('courses/' + id, body).then((response) => {
       dispatch({
-        type: types.UPDATE_SUCCESSFULLY,
+        type: asyncActs.UPDATE_COURSE_SUCCESSFULLY,
         payload: response
       });
       loadCourseDetail(response.id);
     }, (errors) => {
       dispatch({
-        type: types.UPDATE_COURSE_FAILED,
+        type: asyncActs.UPDATE_COURSE_FAILED,
         payload: {errors: errors.payload}
       });
     });
@@ -105,13 +89,11 @@ export const deleteCourse = (course_id) => {
 
 export const loadCourseDetail = (courseId) => {
   return dispatch => {
-    Network().get(/courses/ + courseId).then((response) => {
-      dispatch(loadListSection(response.id));
-      dispatch({
-        type: FETCH_DETAIL_COURSE_SUCESSFULLY,
-        payload: response
-      });
+    dispatch({
+      type: FETCH_DETAIL_COURSE,
+      payload: Network().get(/courses/ + courseId)
     })
+    dispatch(loadListSection(courseId));
   };
 };
 
@@ -137,22 +119,18 @@ export const closedEditField = (fieldId) => {
 
 export const loadListSection = (courseId) => {
   return dispatch => {
-    Network().get('/course_sections?course_id=' + courseId).then((response) => {
-      dispatch({
-        type: FETCH_LIST_SECTION_SUCESSFULLY,
-        payload: response
-      })
+    dispatch({
+      type: FETCH_LIST_SECTION,
+      payload: Network().get('/course_sections?course_id=' + courseId)
     })
-  }
+ }
 }
 
 export const publishCourse = (courseId) => {
   return dispatch => {
-    Network().post('courses/publish', courseId).then((response) => {
-      dispatch({
-        type: FETCH_LIST_SECTION_SUCESSFULLY,
-        payload: response
-      })
+    dispatch({
+      type: PUBLISH_COURSE,
+      payload: Network().post('courses/publish', courseId)
     })
   }
 }
@@ -180,23 +158,18 @@ export const closePopupSection = () => {
 
 export const saveOrUpdateSection = (id, title) => {
   return dispatch => {
-    let body = {course_id: id, title};
-    Network().post('course_sections', body).then((response) => {
-      dispatch({
-        type: CREATE_UPDATE_SECTION_SUCESSFULLY,
-        payload: response
-      });
-    })
+    dispatch({
+      type: CREATE_UPDATE_SECTION,
+      payload: Network().post('course_sections', {course_id: id, title})
+    });
   }
 }
 
 export const deleteSection = (id) => {
   return dispatch => {
-    Network().delete('course_sections', id).then((response) => {
-      dispatch({
-        type: DELETE_SECTION_SUCESSFULLY,
-        payload: id
-      });
-    })
+    dispatch({
+      type: DELETE_SECTION,
+      payload: Network().delete('course_sections', id)
+    });
   }
 }

@@ -8,6 +8,10 @@
   padding: 0 !important;
 }
 
+.noMarginBottom {
+  margin-bottom: 0 !important;  
+}
+
 .text {
   font-size: 12px;
 }
@@ -88,7 +92,8 @@
 }
 
 .listResultInfo {
-  width: 75%;
+  /* width: 75%; */
+  flex: 2;
   padding-left: 15px;
 }
 
@@ -102,18 +107,25 @@
   padding: 5px 5px;
 }
 
+.totalCoursesBox {
+  flex: 2;
+}
+
 .orderBtn {
-  width: 60%;
+  /* width: 60%; */
+  flex: 5;
   margin-right: 15px;
 }
 
 .displayModeBtn {
-  width: 40%;
+  /* width: 40%; */
+  flex: 3;
   margin-right: 15px;
 }
 
 .orderDisplayResult {
-  width: 25%;
+  /* width: 25%; */
+  flex: 2
 }
 
 .rowPrimary {

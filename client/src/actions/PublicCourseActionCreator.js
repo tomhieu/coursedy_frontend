@@ -1,14 +1,20 @@
-import * as types from '../constants/Courses';
-import * as sessionTypes from '../constants/Session';
+import * as types from '../constants/Courses'
+import * as sessionTypes from '../constants/Session'
 import Network from '../utils/network'
 import {globalHistory} from '../utils/globalHistory'
 import {TT} from '../utils/locale'
+import * as PublicCourseConstants from "../constants/PublicCourseConstants"
 
 export const fetchPublicCourse = (courseId) => {
   return dispatch => {
     Network().get('courses/'+courseId).then((response) => {
-      dispatch(fetchPublicCourseSections(courseId));
-      dispatch(fetchPublicCourseTutor(response.user.id));
+      dispatch(fetchPublicCourseSections(courseId))
+      dispatch(fetchPublicCourseTutor(response.user.id))
+
+      //Dispatch submit view after timeout
+      setTimeout(() => {
+        dispatch(submitViewCourse(courseId, response.token || ''))
+      }, PublicCourseConstants.PUBLIC_COURSE_DETAIL_SUBMIT_VIEW_TIMEOUT)
       dispatch({
         type: types.FETCH_PUBLIC_COURSE_SUCCESSFULLY,
         payload: response
@@ -33,8 +39,8 @@ export const fetchPublicCourse = (courseId) => {
 
     //FIXME: Remove me
     // dispatch({
-    //   type: types.FETCH_PUBLIC_COURSE_SUCCESSFULLY,
-    //   payload: types.dummyCourse
+    //   type: asyncActs.FETCH_PUBLIC_COURSE_SUCCESSFULLY,
+    //   payload: asyncActs.dummyCourse
     // })
 
   }
@@ -42,40 +48,18 @@ export const fetchPublicCourse = (courseId) => {
 
 export const fetchPublicCourseSections = (courseId) => {
   return dispatch => {
-    Network().get('course_sections', {course_id: courseId}).then((response) => {
-      dispatch({
-        type: types.FETCH_PUBLIC_COURSE_SECTIONS_SUCCESSFULLY,
-        payload: response
-      })
-    }, (errors) => {
-      const error_messages = (errors && errors.constructor == Array && errors.length > 0) ?
-        errors :
-        [TT.t('fetch_course_fail')]
-
-      dispatch({
-        type: types.FETCH_PUBLIC_COURSE_SECTIONS_FAIL,
-        payload: {errors: error_messages}
-      })
+    dispatch({
+      type: types.FETCH_PUBLIC_COURSE_SECTIONS,
+      payload: Network().get('course_sections', {course_id: courseId})
     })
   }
 }
 
 export const fetchPublicCourseTutor = (tutorId) => {
   return dispatch => {
-    Network().get('tutors/tutor_by_user', {user_id: tutorId}).then((response) => {
-      dispatch({
-        type: types.FETCH_PUBLIC_COURSE_TUTOR_SUCCESSFULLY,
-        payload: response
-      })
-    }, (errors) => {
-      const error_messages = (errors && errors.constructor == Array && errors.length > 0) ?
-        errors :
-        [TT.t('fetch_course_fail')]
-
-      dispatch({
-        type: types.FETCH_PUBLIC_COURSE_TUTOR_FAIL,
-        payload: {errors: error_messages}
-      })
+    dispatch({
+      type: types.FETCH_PUBLIC_COURSE_TUTOR,
+      payload: Network().get('tutors/tutor_by_user', {user_id: tutorId})
     })
   }
 }
@@ -214,7 +198,7 @@ export const submitEnrollCourse = (courseId) => {
         errors : {errors: [{status_code: 1, message: TT.t('submit_enroll_fail')}]}
       //FIXME: Comment for dummy data
       // dispatch({
-      //   type: types.PUBLIC_COURSE_DETAIL_SUBMIT_ENROLL_FAILL,
+      //   type: asyncActs.PUBLIC_COURSE_DETAIL_SUBMIT_ENROLL_FAILL,
       //   payload: {errors: error_messages}
       // })
 
@@ -249,71 +233,53 @@ export const clearError = () => {
   }
 }
 
-export const fetchCourseComments = (courseId, lastCommentId = 0) => {
+export const fetchCourseComments = (courseId, page = 1) => {
   const params = {
     per_page: types.PUBLIC_COURSE_MAX_NUMBER_COMMENTS_PER_LOAD,
-    last_comment: lastCommentId
+    page: page
   }
-  //FIXME: Remove me after dummy
-  const payload = lastCommentId == 0 ? types.dummyComments : types.dummyExtraComments
   return dispatch => {
-      //FIXME: Remove me after dummy
+    Network().get(`courses/${courseId}/comments`, params).then((response) => {
       dispatch({
         type: types.PUBLIC_COURSE_DETAIL_FETCH_COMMENTS_SUCCESSFULLY,
-        payload: payload
+        payload: {
+          comments: response,
+          page: page
+        }
       })
-
-    // Network().get(`course/${courseId}/comments`, params).then((response) => {
-    //   dispatch({
-    //     type: types.PUBLIC_COURSE_DETAIL_FETCH_COMMENTS_SUCCESSFULLY,
-    //     payload: response
-    //   })
-    // }, (errors) => {
-    //   const error_messages = (errors && errors.constructor == Array && errors.length > 0) ?
-    //     errors :
-    //     [TT.t('fetch_comments_fail')]
-
-    //   dispatch({
-    //     type: types.PUBLIC_COURSE_DETAIL_FETCH_COMMENTS_FAIL,
-    //     payload: {errors: error_messages}
-    //   })
-    // })
+    }, (errors) => {
+      const error_messages = (errors && errors.constructor == Array && errors.length > 0) ?
+        errors :
+        [TT.t('fetch_comments_fail')]
+      dispatch({
+        type: types.PUBLIC_COURSE_DETAIL_FETCH_COMMENTS_FAIL,
+        payload: {errors: error_messages}
+      })
+    })
   }
 }
 
 export const submitCourseComment = (comment, courseId, userId) => {
   const params = {
-    user_id: userId,
-    comment: comment
+    content: comment
   }
-
-
   return dispatch => {
-    //FIXME: Remove me after dummy
-    dispatch({
-      type: types.PUBLIC_COURSE_DETAIL_SUBMIT_COMMENT_SUCCESSFULLY,
-      payload: types.dummySubmitedComment
+    Network().post(`courses/${courseId}/comments`, params).then((response) => {
+      dispatch({
+        type: types.PUBLIC_COURSE_DETAIL_SUBMIT_COMMENT_SUCCESSFULLY,
+        payload: response
+      })
+    }, (errors) => {
+      const error_messages = (errors && errors.constructor == Array && errors.length > 0) ?
+        errors :
+        [TT.t('submit_comment_fail')]
+
+      dispatch({
+        type: types.PUBLIC_COURSE_DETAIL_SUBMIT_COMMENT_FAIL,
+        payload: {errors: error_messages}
+      })
     })
-
-    
-    // Network().post(`course/${courseId}/comments`, params).then((response) => {
-    //   dispatch({
-    //     type: types.PUBLIC_COURSE_DETAIL_SUBMIT_COMMENT_SUCCESSFULLY,
-    //     payload: response
-    //   })
-    // }, (errors) => {
-    //   const error_messages = (errors && errors.constructor == Array && errors.length > 0) ?
-    //     errors :
-    //     [TT.t('submit_comment_fail')]
-
-    //   dispatch({
-    //     type: types.PUBLIC_COURSE_DETAIL_SUBMIT_COMMENT_FAIL,
-    //     payload: {errors: error_messages}
-    //   })
-    // })
   }
-
-
 }
 
 export const showPublicSubmitCommentStatusModal = () => {
@@ -327,6 +293,15 @@ export const closePublicSubmitCommentStatusModal = () => {
   return dispatch => {
     dispatch({
       type: types.PUBLIC_COURSE_DETAIL_SUBMIT_COMMENT_CLOSE_STATUS_MODAL,
+    })
+  }
+}
+
+export const submitViewCourse = (courseId, token) => {
+  return dispatch => {
+    dispatch({
+      type: types.PUBLIC_COURSE_DETAIL_SUBMIT_VIEW,
+      payload: Network().post(`courses/${courseId}/view`, {token: token})
     })
   }
 }

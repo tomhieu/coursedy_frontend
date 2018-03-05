@@ -18,8 +18,8 @@ class SectionCreationPopupContainer extends Component {
 }
 
 const mapStateToProps = (state) => {
-    const {CourseFormComponent} = state;
-    const {showSectionPopup} = CourseFormComponent;
+    const {courseDetails} = state;
+    const {showSectionPopup} = courseDetails;
 
     return {
         showSectionPopup

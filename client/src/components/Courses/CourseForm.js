@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import {TT} from "../../utils/locale";
-import {CURRENCIES, PERIOD_TYPES} from "../../constants/Courses";
+import {CURRENCIES} from "../../constants/Courses";
 import {DAYS_IN_WEEK} from "../../actions/CourseFormActionCreator"
 import FormField from "../Core/FormField";
 import InlineEditFormField from "../Core/InlineEditFormField";
@@ -48,9 +48,6 @@ class CourseForm extends Component {
   render() {
     const {handleSubmit, editMode, onDropCoverImage, cover_image, submitting, pristine,
       valid, courseData, categories, courseSpecializes, selectedDays, isSamePeriod, isFree} = this.props;
-    const periodTypes = PERIOD_TYPES.map((type) => {
-      return {text: TT.t(type), id: type};
-    });
     const concurrency = CURRENCIES.map((type) => {
       return {text: type, id: type};
     });
@@ -110,7 +107,7 @@ class CourseForm extends Component {
               <div className="d-flex flex-horizontal">
                 <div>
                   {this.renderField(editMode, "period_Id", true, this.context.t("period"), this.context.t("period"), true,
-                    "period", "custom_input", false, editMode ? courseData.period + " " + this.context.t(courseData.period_type) : "")}
+                    "period", "custom_input", false, editMode ? courseData.period + " " + this.context.t("course_periode_type") : "")}
                 </div>
               </div>
             </div>
@@ -263,7 +260,8 @@ CourseForm.propTypes = {
   onDropCoverImage: React.PropTypes.func.isRequired,
   categories: React.PropTypes.array.isRequired,
   courseSpecializes: React.PropTypes.array.isRequired,
-  isSamePeriod: React.PropTypes.bool.isRequired
+  isSamePeriod: React.PropTypes.bool.isRequired,
+  isFree: React.PropTypes.bool.isRequired
 };
 
 export default CourseForm;

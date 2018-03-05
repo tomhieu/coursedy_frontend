@@ -54,9 +54,9 @@ export const translations = {
     "invalid_start_date": "Ngày nhập  phải theo định dạng dd/MM/yyyy",
     "start_date_less_now": "Ngày bắt đầu dự kiến phải lớn hơn hiện tại",
     "not_a_number": "Vui lòng chỉ nhập số",
-    "period": "Số Buổi Học",
+    "period": "Số buổi học",
     "period_mandatory": "Vui lòng nhập thời gian học",
-    "number_of_students": "Số Học Sinh Tối ",
+    "number_of_students": "Số học viên",
     "num_student_mandatory": "Vui lòng nhập số học sinh",
     "tuition_fee": "Học phí",
     "tuition_fee_mandatory": "Vui lòng nhập học phí",
@@ -99,7 +99,7 @@ export const translations = {
     'popup_warning_publish_course_message_1': 'Bạn muốn đăng khoá học {course_title}.',
     'popup_warning_publish_course_message_2': 'Một khí khoá học đăng lên, tất cả mọi người đều có thể xem thông tin và nội dung khoá học',
     'popup_warning_publish_course_message_3': 'Khoá học {course_title} chưa có buổi học nào. Để giúp người học có thể năm được nội dung chi tiết khoá học, bạn nên thêm nội dung các buổi học trước khi đăng khoá học lên. ',
-
+    'course_periode_type': 'buổi học',
     /*
      * Lesson Page
      */
@@ -232,6 +232,7 @@ export const translations = {
     "course_submit_comment_status": "Kết quả gửi phản hồi",
     "course_submit_comment_success": "Gửi phản hồi thành công",
     "course_submit_comment_fail": "Gửi phản hồi thất bại",
+    "course_comments_no_comment": "Bạn là người đầu tiên phản hồi về khóa học này!!!",
     /* search teachers page */
     "search_teachers_keyword": "Tìm kiếm theo tên, lĩnh vực",
     "search_teachers_field_label": "Lĩnh Vực:",
@@ -250,6 +251,7 @@ export const translations = {
     "bank_name": "Chủ Tài Khoản",
     "bank_number": "Số Tài Khoản",
     "transaction_office": "Phòng Giao Dịch",
+    "select_domestic_bank": "Lựa chọn ngân hàng",
     /* home page */
     "product_title": "EZYLEARNING",
     "product_tag": "Tìm Kiếm Khoá Học Yêu Thích Của Bạn",

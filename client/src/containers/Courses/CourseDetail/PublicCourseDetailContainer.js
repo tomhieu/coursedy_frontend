@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { CourseDetail } from '../../../components/index';
 import * as PublicCourseActions from '../../../actions/PublicCourseActionCreator';
-import * as FilterActions from '../../../actions/CourseFilterActionCreator'
+import * as ReferActions from '../../../actions/ReferenceActions/ReferenceDataActionCreator';
 import { connect } from 'react-redux';
 
 class PublicCourseDetailContainer extends Component {
@@ -11,7 +11,7 @@ class PublicCourseDetailContainer extends Component {
   }
 
   componentWillMount() {
-    this.props.dispatch(FilterActions.fetchCategories())
+    this.props.dispatch(ReferActions.fetchCourseCategories())
     if (this.props.courseId) {
       //Fetch course
       this.props.dispatch(PublicCourseActions.fetchPublicCourse(this.props.courseId));
@@ -20,8 +20,7 @@ class PublicCourseDetailContainer extends Component {
 
       this.props.dispatch(PublicCourseActions.fetchCourseComments(
         this.props.courseId, 
-        this.props.course_comments.length > 0 ? 
-          this.props.course_comments[this.props.course_comments.length - 1] : 0
+        this.props.course_comments_page
       ));
     }
   }
@@ -29,8 +28,7 @@ class PublicCourseDetailContainer extends Component {
   loadMoreComments() {
     this.props.dispatch(PublicCourseActions.fetchCourseComments(
       this.props.courseId, 
-      this.props.course_comments.length > 0 ? 
-        this.props.course_comments[this.props.course_comments.length - 1] : 0
+      this.props.course_comments_page+1
     ))
   }
 
@@ -78,16 +76,16 @@ const getCourseLevel = (categories, course) => {
 }
 
 const mapStateToProps = (state) => {
-  const categories = state.Categories.data
+  const categories = state.referenceData.courseCategories
   const course = state.PublicCourseDetail.course
   return {
-    categories: state.Categories.data,
-    course: state.PublicCourseDetail.course, 
+    categories, course,
     course_category: getCourseCategory(categories, course),
     course_level: getCourseLevel(categories, course),
     course_tutor: state.PublicCourseDetail.course_tutor,
     course_sections: state.PublicCourseDetail.course_sections,
-    course_comments: state.PublicCourseDetail.course_comments
+    course_comments: state.PublicCourseDetail.course_comments,
+    course_comments_page: state.PublicCourseDetail.course_comments_page
   }
 }
 

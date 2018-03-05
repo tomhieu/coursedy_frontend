@@ -9,13 +9,21 @@ class ObjectUtils {
         return uuid;
     };
 
-    static currencyFormat(value, currency) {
+    static currencyFormat(value, currency = 'VND') {
         const l10nUSD = new Intl.NumberFormat('en-US', {style: 'currency', currency: 'USD'});
         const l10nVND = new Intl.NumberFormat('vi-VN', {style: 'currency', currency: 'VND'});
-        if (currency === 'VND') {
+        if (!currency || currency.toUpperCase() === 'VND') {
             return l10nVND.format(value);
         } else {
             return l10nUSD.format(value);
+        }
+    }
+
+    static isTrue(value) {
+        if (typeof value === 'undefined' || typeof value != 'boolean') {
+            return false;
+        } else {
+            return value;
         }
     }
 }

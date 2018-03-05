@@ -1,57 +1,97 @@
 import React, {Component} from 'react';
 import {CourseFilter} from '../../../components/index';
-import * as Actions from '../../../actions/CourseFilterActionCreator'
+import * as RefrenceActions from '../../../actions/ReferenceActions/ReferenceDataActionCreator'
+import * as CourseFilterActions from '../../../actions/CourseFilterActionCreator'
 import {connect} from 'react-redux';
 import {reduxForm} from "redux-form";
+import {MAX_FEE, MIN_FEE} from "utils/CommonConstant";
 
 class CourseFilterContainer extends Component {
+
   componentWillMount() {
-    this.props.dispatch(Actions.fetchCategories());
-    this.props.dispatch(Actions.fetchLocations());
+    this.props.dispatch(RefrenceActions.fetchCourseCategories());
+    this.props.dispatch(RefrenceActions.fetchLocations());
   }
 
-  searchCourse({selectedMinFee, selectedMaxFee, order_by, display_mode}) {
+  searchCourse(filters, selectedMinFee, selectedMaxFee, order_by, display_mode) {
     const query = {
-      q: this.props.filters.term,
-      categories: this.props.filters.selectedCategories,
-      locations: this.props.filters.selectedLocations,
-      specializes: this.props.filters.selectedSpecializes,
-      week_day: this.props.filters.selectedWeekDays,
+      q: filters.term,
+      categories: filters.selectedCategories.map(category => category.id),
+      locations: filters.selectedLocations.map(loc => loc.id),
+      specializes: filters.selectedSpecializes.map(spec => spec.id),
+      week_day: filters.selectedWeekDays.map(week => week.id),
       min_fee: selectedMinFee,
       max_fee: selectedMaxFee,
       order_by, display_mode
     };
-    this.props.dispatch(Actions.searchCourse(query))
+    this.props.dispatch(CourseFilterActions.searchCourse(query))
   }
 
   changeDisplayMode(mode) {
-    this.props.dispatch(Actions.changeDisplayMode(mode))
+    this.props.dispatch(CourseFilterActions.changeDisplayMode(mode))
   }
 
   changeCurrentPage(page) {
-    this.props.dispatch(Actions.changeCurrentPage(page))
+    this.props.dispatch(CourseFilterActions.changeCurrentPage(page))
   }
 
   selectAllCourses(isTrue) {
     if (isTrue) {
-      this.props.dispatch(Actions.removeAllCourses())
+      this.props.dispatch(CourseFilterActions.removeAllCourses())
     } else {
-      this.props.dispatch(Actions.selectAllCourses())
+      this.props.dispatch(CourseFilterActions.selectAllCourses())
     }
   }
 
   loadSuggestions(event) {
-    this.props.dispatch(Actions.loadSuggestions(this.props.filters, event.target.value))
+    this.props.dispatch(CourseFilterActions.loadSuggestions(this.props.filters, event.target.value))
   }
 
   doSelectFilter(filter, category) {
-    this.props.dispatch(Actions.addFilterSuggestion(filter, category))
-    this.searchCourse(this.props.formfieldValues)
+    let {selectedMinFee, selectedMaxFee, order_by, display_mode} = this.props.formfieldValues;
+    let nextFilters = this.props.filters;
+
+    if (category === MIN_FEE) {
+      selectedMinFee = filter;
+    } else if (category === MAX_FEE) {
+      selectedMaxFee = filter;
+    } else {
+      nextFilters = this.addFilterCriteria(this.props.filters, filter, category);
+    }
+
+    this.props.dispatch(CourseFilterActions.updateFilter(nextFilters))
+    this.searchCourse(nextFilters, selectedMinFee, selectedMaxFee, order_by, display_mode);
   }
 
   doRemoveFilter(filterId, typeFilter) {
-    this.props.dispatch(Actions.removeFilterSuggestion(filterId, typeFilter))
-    this.searchCourse(this.props.formfieldValues)
+    const {selectedMinFee, selectedMaxFee, order_by, display_mode} = this.props.formfieldValues;
+    const removedFilters = this.removeFilterCriteria(this.props.filters, filterId, typeFilter);
+    this.props.dispatch(CourseFilterActions.updateFilter(removedFilters))
+    this.searchCourse(removedFilters, selectedMinFee, selectedMaxFee, order_by, display_mode)
+  }
+
+  addFilterCriteria(currentFilters, filterValue, filterType) {
+    // handle for multiple select filter options
+    if (Array.isArray(currentFilters[filterType])) {
+      let selectedFilters = JSON.parse(JSON.stringify(currentFilters[filterType]));
+      selectedFilters.push(filterValue)
+      currentFilters[filterType] = selectedFilters
+    } else {
+      currentFilters.term = filterValue
+    }
+
+    return currentFilters;
+  }
+
+  removeFilterCriteria(currentFilters, filterValue, filterType) {
+    if (Array.isArray(currentFilters[filterType])) {
+      const clonedFilters = JSON.parse(JSON.stringify(currentFilters[filterType]))
+      const updatedSelectedFilters = clonedFilters.filter(f => f.id != Number(filterValue))
+      currentFilters[filterType] = updatedSelectedFilters
+    } else {
+      currentFilters[filterType] = true;
+    }
+    return currentFilters;
   }
 
   render() {
@@ -90,7 +130,8 @@ const getSelectedSpecializesFromCategory = (categories, selectedCategories) => {
 
 const mapStateToProps = (state) => {
   const {CourseFilter, form = {}} = state;
-  const categories = state.Categories.data || []
+  const categories = state.referenceData.courseCategories || []
+
   const {courses = [], selectedCourses = [], locations,
          totalResult = 0, groupSugestions, filters, showSuggestion, loadingSuggestion} = CourseFilter;
   const {courseFilterForm = {}} = form
