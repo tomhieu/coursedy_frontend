@@ -11,9 +11,13 @@ const Item = ({ item }) => {
     <div className="slick-slide_item">
       <div className="row">
         <div className="col-lg-12 col-xs-12 col-md-12 col-sm-12">
-          <img src={item.avatar}/>
-          <strong>{item.full_name}</strong>
-          <span>{item.job}</span>
+          <div className="user__avatar-left">
+            <img src={item.avatar}/>
+          </div>
+          <div className="user__info-right">
+            <div className="user__fullname">{item.full_name}</div>
+            <div className="user__job">{item.job}</div>
+          </div>
         </div>
       </div>
     </div>
@@ -27,40 +31,21 @@ class TopTeachers extends Component {
   };
 
   static propTypes = {
-    teachers: PropTypes.array.isRequired,
+    topTeachers: PropTypes.array.isRequired,
     totalCourses: PropTypes.number.isRequired,
     totalTeachers: PropTypes.number.isRequired
   };
 
   static defaultProps = {
-    teachers: [], totalCourses: 0, totalTeachers: 0
+    topTeachers: [], totalCourses: 0, totalTeachers: 0
   };
 
   componentDidMount() {
     this.props.fetchTopTeachers();
   }
 
-  renderItems() {
-    let { teachers } = this.props;
-    return teachers.map((item, index) => {
-      return (
-        <div className="item active" key={index}>
-          <div className="col-lg-4 col-xs-4 col-md-4 col-sm-4">
-            <div className="row">
-              <div className="col-lg-12 col-xs-12 col-md-12 col-sm-12">
-                <img src={item.avatar}/>
-                <strong>{item.full_name}</strong>
-                <span>{item.job}</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      );
-    });
-  }
-
   render() {
-    if (!this.props.teachers.length) {
+    if (!this.props.topTeachers.length) {
       return null
     }
 
@@ -78,7 +63,7 @@ class TopTeachers extends Component {
               </div>
               <div className="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
                 {<Slider settings={{ slidesToShow: 3, slidesToScroll: 3 }}
-                         items={this.props.teachers.map((item, index) => {
+                         items={this.props.topTeachers.map((item, index) => {
                            return <Item item={item} key={index}/>;
                          })}
                 />}
@@ -94,7 +79,7 @@ class TopTeachers extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    teachers: state.HomePage.topTeachers,
+    topTeachers: state.HomePage.topTeachers,
     totalCourses: state.HomePage.totalCourses,
     totalTeachers: state.HomePage.totalTeachers
   };

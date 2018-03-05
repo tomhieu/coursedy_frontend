@@ -76,16 +76,47 @@
     }
   }
 
+  button {
+    white-space: nowrap;
+    display: inline-block;
+    height: 28px;
+    line-height: 28px;
+    color: rgb(255, 255, 255);
+    box-shadow: none;
+    background-color: inherit;
+    font-size: 15px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.025em;
+    margin-top: 10px;
+    border-width: 0;
+    border-style: initial;
+    border-color: initial;
+    border-image: initial;
+    outline: 0;
+    padding: 0 14px;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: all 150ms ease;
+
+    &:hover {
+      background-color: inherit;
+      box-shadow: none;
+      height: 28px;
+    }
+  }
+
+
   .slick-prev, .slick-next {
     display: block;
     position: absolute;
-    height: 20px;
-    width: 20px;
+    height: 28px;
+    width: 28px;
     line-height: 0;
     font-size: 0;
     cursor: pointer;
-    background: transparent;
-    color: transparent;
+    //background: transparent;
+    //color: transparent;
     top: 50%;
     -webkit-transform: translate(0, -50%);
     -ms-transform: translate(0, -50%);
@@ -95,6 +126,7 @@
     outline: none;
 
     &.slick-disabled {
+      cursor: default;
       &:before {
         opacity: 0.25;
       }
@@ -114,14 +146,14 @@
   .slick-prev {
     left: -20px;
     &:before {
-      content: "\e079";
+      content: url(/left-arrow.png);
     }
   }
 
   .slick-next {
     right: -20px;
     &:before {
-      content: "\e080";
+      content: url(/right-arrow.png);
     }
   }
 
@@ -154,8 +186,8 @@
         height: 20px;
         width: 20px;
         outline: none;
-        line-height: 0px;
-        font-size: 0px;
+        line-height: 0;
+        font-size: 0;
         color: transparent;
         padding: 5px;
         cursor: pointer;
@@ -218,7 +250,35 @@
   }
 
   .slick-slide_item {
-    margin: 10px;
+    margin: 30px;
+    &__content {
+      background-color: rgba(242, 242, 242, 1);
+      box-sizing: border-box;
+      border-width: 3px;
+      border-style: solid;
+      border-color: rgba(226, 125, 127, 1);
+      border-top: 0;
+      border-right: 0;
+      border-bottom: 0;
+      border-radius: 6px;
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+      border-bottom-left-radius: 0;
+      -moz-box-shadow: none;
+      -webkit-box-shadow: none;
+      box-shadow: none;
+      margin-bottom: 10px;
+
+      ._quote {
+        font-weight: 400;
+        font-style: italic;
+        font-size: 60px;
+        color: #E27D7F;
+        text-align: center;
+        padding-top: 28px;
+      }
+    }
   }
 }
 

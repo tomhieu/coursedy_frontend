@@ -1,8 +1,9 @@
 $row_margin_top: 99px;
 $row_margin_bottom: 100px;
+$primary-font-size: 16px;
 
 @mixin content-wrap {
-  background-color: #f2f2f2;
+  //background-color: #f2f2f2;
 }
 
 .course {
@@ -71,6 +72,68 @@ $row_margin_bottom: 100px;
         padding-bottom: 5px;
       }
     }
+    .item-group {
+      &__heading-icon {
+        .red-circle-icon {
+          font-size: 25px;
+          position: absolute;
+          color: #e27d7f;
+        }
+
+        .util-icon {
+          border-width: 0;
+          width: 100px;
+          height: 100px;
+          background: inherit;
+          background-color: rgba(242, 242, 242, 1);
+          border: none;
+          border-radius: 80px;
+          -moz-box-shadow: none;
+          -webkit-box-shadow: none;
+          box-shadow: none;
+          display: inline-block;
+        }
+      }
+    }
+  }
+}
+
+.user {
+  &__avatar-left {
+    display: inline-block;
+    img {
+      border-width: 0;
+      width: 100px;
+      height: 100px;
+      background: inherit;
+      background-color: #f2f2f2;
+      border: none;
+      border-radius: 80px;
+      -moz-box-shadow: none;
+      -webkit-box-shadow: none;
+      box-shadow: none;
+      display: inline-block;
+    }
+  }
+
+  &__info-right {
+    display: inline-block;
+    position: absolute;
+    top: 25px;
+    left: 126px;
+  }
+
+  &__fullname {
+    font-weight: 400;
+    font-size: 18px;
+    color: #534051;
+  }
+
+  &__job {
+    font-weight: 400;
+    font-style: italic;
+    font-size: 15px;
+    color: #E27D7F;
   }
 }
 

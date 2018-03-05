@@ -29,7 +29,7 @@ class SearchForm extends Component {
             />
           </li>
           <li>
-            <button type="submit" className="btn btn-search"><i className="fa fa-search"></i>Search Your Teacher</button>
+            <button type="submit" className="btn btn-search _button-search"><i className="fa fa-search"></i>Search Your Teacher</button>
           </li>
         </ul>
       </Form>

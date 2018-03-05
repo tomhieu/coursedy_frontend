@@ -11,8 +11,8 @@ class SearchFormContainer extends Component {
         <div className="container">
           <div className="row header-margin">
             <div className="col-sm-12">
-              <h1 className="hero-title">EZYLEARNING</h1>
-              <p className="hero-tag">Tìm Kiếm Khoá Học Yêu Thích Của Bạn</p>
+              <h1 className="hero-title">{this.context.t('product_title')}</h1>
+              <p className="hero-tag">{this.context.t('product_tag')}</p>
             </div>
             <div className="col-sm-12">
               <SearchForm/>
