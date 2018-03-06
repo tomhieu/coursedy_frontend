@@ -123,15 +123,17 @@ class CourseForm extends Component {
           <div className='row'>
             <div className='col-md-12 col-sm-12'>
               <div className="d-flex flex-horizontal">
-                <div>
-                  {this.renderField(editMode, "tuition_fee_Id", true, this.context.t("tuition_fee"), this.context.t("tuition_fee"),
-                    true, "tuition_fee", "custom_input", isFree, editMode ? ObjectUtils.currencyFormat(courseData.tuition_fee, "VND") : "")}
+                <div className="d-flex flex-col-1">
+                  <div className="d-flex flex-col-3">
+                    {this.renderField(editMode, "tuition_fee_Id", true, this.context.t("tuition_fee"), this.context.t("tuition_fee"),
+                      true, "tuition_fee", "custom_input", isFree, editMode ? ObjectUtils.currencyFormat(courseData.tuition_fee, "VND") : "")}
+                  </div>
+                  <div className="ml-10 d-flex flex-col-1 currency-field">
+                    {this.renderField(editMode, "currency_Id", false, this.context.t("tuition_currency"), this.context.t("tuition_currency"),
+                      false, "currency", "custom_select", isFree, "", concurrency)}
+                  </div>
                 </div>
-                <div className="ml-10 currency-field">
-                  {this.renderField(editMode, "currency_Id", false, this.context.t("tuition_currency"), this.context.t("tuition_currency"),
-                    false, "currency", "custom_select", isFree, "", concurrency)}
-                </div>
-                <div className="ml-20 free-course">
+                <div className="ml-20 d-flex flex-col-1 course-free">
                   <FormField formGroupId="is_free_id"
                              showLabel={false}
                              formLabel={this.context.t("course_free")}
@@ -241,12 +243,18 @@ class CourseForm extends Component {
 }
 
 const retrieveStartTimeOfDay = (courseDays, day) => {
-  const selectedDay = day != null ? courseDays.filter((d) => d.name === day) : courseDays[0];
+  if (day == null) {
+    return courseDays[0].start_time;
+  }
+  const [selectedDay] = courseDays.filter((d) => d.day === day);
   return selectedDay.start_time;
 }
 
 const retrieveEndTimeOfDay = (courseDays, day) => {
-  const selectedDay = day != null ? courseDays.filter((d) => d.name === day) : courseDays[0];
+  if (day == null) {
+    return courseDays[0].end_time;
+  }
+  const [selectedDay] = courseDays.filter((d) => d.day === day);
   return selectedDay.end_time;
 }
 

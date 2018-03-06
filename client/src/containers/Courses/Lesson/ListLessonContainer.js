@@ -95,8 +95,8 @@ ListLessonContainer.contextTypes = {
 }
 
 const mapStateToProps = state => {
-    const { CourseFormComponent } = state;
-    const { lessonCreationForm, courseData } = CourseFormComponent;
+    const { courseDetails } = state;
+    const { lessonCreationForm, courseData } = courseDetails;
     const { title, description, start_date, end_date, number_of_students, period, period_type, tuition_fee, currency, cover_image } = courseData;
     const { lessonList, activeLesson } = lessonCreationForm;
     return {

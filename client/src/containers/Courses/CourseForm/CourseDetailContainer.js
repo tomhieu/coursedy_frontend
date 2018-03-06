@@ -24,10 +24,8 @@ class CourseDetailContainer extends Component {
       const id_day = day.split("_")[1]
       week_day_schedules_attributes.push({
         day: Number(id_day),
-        start_time: !course.is_same_period ? DateUtils.getHourFromDate(Object.getOwnPropertyDescriptor(course, name_day + '_start_time').value) :
-          DateUtils.getHourFromDate(Object.getOwnPropertyDescriptor(course, 'start_time_id').value),
-        end_time: !course.is_same_period ? DateUtils.getHourFromDate(Object.getOwnPropertyDescriptor(course, name_day + '_end_time').value) :
-          DateUtils.getHourFromDate(Object.getOwnPropertyDescriptor(course, 'end_time_id').value)
+        start_time: this.getStartTime(course, name_day),
+        end_time: this.getEndTime(course, name_day)
       })
     })
 
@@ -39,6 +37,28 @@ class CourseDetailContainer extends Component {
       this.props.dispatch(CourseActions.updateCourse(courseId, course.title, course.description, course.start_date, course.period,
         course.number_of_students, course.tuition_fee, course.currency, course.is_free, week_day_schedules_attributes, course.is_same_period,
         course.cover_image, course.course_specialize_id, this.coverImage));
+    }
+  }
+
+  getStartTime(course, name_day) {
+    let start_time = !course.is_same_period ? Object.getOwnPropertyDescriptor(course, name_day + '_start_time') :
+      Object.getOwnPropertyDescriptor(course, 'start_time_id');
+
+    if (start_time === undefined) {
+      return course.week_day_schedules.filter(d => d.day === name_day)[0].start_time;
+    } else {
+      return DateUtils.getHourFromDate(start_time.value);
+    }
+  }
+
+  getEndTime(course, name_day) {
+    let end_time = !course.is_same_period ? Object.getOwnPropertyDescriptor(course, name_day + '_end_time') :
+      Object.getOwnPropertyDescriptor(course, 'end_time_id');
+
+    if (end_time === undefined) {
+      return course.week_day_schedules.filter(d => d.day === name_day)[0].end_time;
+    } else {
+      return DateUtils.getHourFromDate(end_time.value);
     }
   }
 

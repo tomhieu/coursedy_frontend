@@ -32,8 +32,8 @@ SectionDetailContainer.contextTypes = {
 };
 
 const mapStateToProps = (state) => {
-    const {CourseFormComponent} = state;
-    const {editMode} = CourseFormComponent;
+    const {courseDetails} = state;
+    const {editMode} = courseDetails;
 
     return {editMode};
 };

@@ -51,7 +51,7 @@ EditLessonFormContainer.contextTypes = {
 };
 
 export default connect(state => ({
-    initialValues: state.CourseFormComponent.lessonCreationForm != undefined ? state.CourseFormComponent.lessonCreationForm.activeLesson : {}
+    initialValues: state.courseDetails.lessonCreationForm != undefined ? state.courseDetails.lessonCreationForm.activeLesson : {}
 }))(reduxForm({
     form: 'lessonDetailForm',
     fields: ['lessonName', 'lessonPeriod', 'lessonDocument', 'lessonDesciption'],
