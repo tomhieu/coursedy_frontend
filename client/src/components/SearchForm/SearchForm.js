@@ -29,7 +29,7 @@ class SearchForm extends Component {
             />
           </li>
           <li>
-            <button type="submit" className="btn btn-search _button-search"><i className="fa fa-search"></i>Search Your Teacher</button>
+            <button type="submit" className="btn btn-search _button-search"><i className="fa fa-search"></i>{this.context.t('home_search_teachers')}</button>
           </li>
         </ul>
       </Form>

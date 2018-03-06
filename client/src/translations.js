@@ -257,6 +257,7 @@ export const translations = {
     "product_tag": "Tìm Kiếm Khoá Học Yêu Thích Của Bạn",
     "product_description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut et lobortis diam vestibulum eget varius id, vulputate et mi. Nullam feugiat, diam quis interdum varius",
     "product_read_more": "Read more...",
+    "home_search_teachers": "Search Your Teacher",
     "footer_quick_link": "Quick Links",
     "footer_link_courses": "Courses",
     "footer_link_privacy_policy": "Privacy Policy",

@@ -1,4 +1,5 @@
 /* Slider */
+$body-color: #f2f2f2;
 
 @mixin slick-animation {
   -webkit-transform: translate3d(0, 0, 0);
@@ -81,7 +82,7 @@
     display: inline-block;
     height: 28px;
     line-height: 28px;
-    color: rgb(255, 255, 255);
+    color: 	#ffffff;
     box-shadow: none;
     background-color: inherit;
     font-size: 15px;
@@ -252,11 +253,11 @@
   .slick-slide_item {
     margin: 30px;
     &__content {
-      background-color: rgba(242, 242, 242, 1);
+      background-color: $body-color;
       box-sizing: border-box;
       border-width: 3px;
       border-style: solid;
-      border-color: rgba(226, 125, 127, 1);
+      border-color: #e27d7f;
       border-top: 0;
       border-right: 0;
       border-bottom: 0;

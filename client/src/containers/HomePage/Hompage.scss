@@ -1,6 +1,7 @@
 $row_margin_top: 99px;
 $row_margin_bottom: 100px;
 $primary-font-size: 16px;
+$body-color: #f2f2f2;
 
 @mixin content-wrap {
   //background-color: #f2f2f2;
@@ -43,7 +44,7 @@ $primary-font-size: 16px;
     &__heading {
       padding-left: 36px;
       padding-top: 64px;
-      background-color: rgba(1, 81, 176, 1);
+      background-color: #0151b0;
       height: 170px;
       color: #fff;
       font-size: 30px;
@@ -51,7 +52,7 @@ $primary-font-size: 16px;
     }
 
     &__body {
-      background-color: rgba(242, 242, 242, 1);
+      background-color: $body-color;
       margin-right: 0;
       margin-left: 0;
       &__heading {
@@ -85,7 +86,7 @@ $primary-font-size: 16px;
           width: 100px;
           height: 100px;
           background: inherit;
-          background-color: rgba(242, 242, 242, 1);
+          background-color: $body-color;
           border: none;
           border-radius: 80px;
           -moz-box-shadow: none;
@@ -106,7 +107,7 @@ $primary-font-size: 16px;
       width: 100px;
       height: 100px;
       background: inherit;
-      background-color: #f2f2f2;
+      background-color: $body-color;
       border: none;
       border-radius: 80px;
       -moz-box-shadow: none;
