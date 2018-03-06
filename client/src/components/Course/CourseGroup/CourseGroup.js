@@ -19,10 +19,10 @@ class CourseGroup extends Component {
     return (
       <div className="slick-slide_item course-group"
            key={course.id}>
-        <Link to={'#'} title={course.name} className="course-group__content">
-          <img className="course-group__content__img" src={course.coverImage}
-               alt={course.name}/>
-          <span className="course-group__content__title">{course.name}</span>
+        <Link to={'#'} title={course.title} className="course-group__content">
+          <img className="course-group__content__img" src={course.cover_image}
+               alt={course.title}/>
+          <span className="course-group__content__title">{course.title}</span>
         </Link>
       </div>
     )

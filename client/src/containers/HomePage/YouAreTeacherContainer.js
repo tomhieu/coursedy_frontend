@@ -34,7 +34,8 @@ export default class YouAreTeacher extends Component {
         <div className="col-12 col-sm-6 col-md-4" key={ item.id }>
             <div className="item-group">
               <Link className="item-group__heading-icon" to={'#'}>
-                <img src={ item.icon } alt=""/>
+                <span className="red-circle-icon"><i className="fa fa-check-circle"></i></span>
+                <span className="util-icon"></span>
               </Link>
               <div className="item-group__description">{ item.description }</div>
             </div>
