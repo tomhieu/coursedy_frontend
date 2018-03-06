@@ -10,7 +10,7 @@ const Item = ({ item }) => {
   return (
     <div className="slick-slide_item">
       <div className="row">
-        <div className="col-lg-12 col-xs-12 col-md-12 col-sm-12">
+        <div className="col-lg-12 col-xs-12 col-md-12 col-sm-12 user">
           <div className="user__avatar-left">
             <img src={item.avatar}/>
           </div>
