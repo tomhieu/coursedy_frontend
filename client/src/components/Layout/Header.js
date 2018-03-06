@@ -7,10 +7,10 @@ import { LinkContainer } from 'react-router-bootstrap'
 class Header extends Component {
   render() {
     return (
-      <Navbar className="navbar navbar-default yamm">
+      <Navbar className="navbar navbar-default">
         <Navbar.Header>
           <a href="/"><img
-            src="http://dev.mindsworthy.com/tutorsci/demo/assets/uploads/settings/setting_35.png" className="logo"
+            src="/logo2.png" className="logo"
             alt="logo"/></a>
           <Navbar.Toggle />
         </Navbar.Header>

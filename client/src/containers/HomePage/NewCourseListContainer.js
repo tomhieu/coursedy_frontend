@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import NewCourse from './NewCourseContainer'
 import { connect } from 'react-redux'
-import * as CoursesActions from 'actions/CoursesActionCreator'
+import * as HomePageActions from 'actions/HomePageActionCreator'
 import { bindActionCreators } from 'redux'
 import { Slider } from '../../components/Slider/SliderComponent'
 
@@ -25,6 +25,10 @@ class NewCourseList extends Component {
   }
 
   render() {
+    if (!this.props.courses.lenght) {
+      return null;
+    }
+
     return (
       <section className="course__new-courses">
         <div className="container course__new-courses__content-wrap">
@@ -51,7 +55,7 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators(CoursesActions, dispatch)
+  return bindActionCreators(HomePageActions, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(NewCourseList)

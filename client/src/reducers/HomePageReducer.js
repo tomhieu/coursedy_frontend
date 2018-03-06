@@ -1,6 +1,7 @@
 import * as courseTypes from 'constants/Courses';
-import * as studentTypes from 'constants/Students';
-import * as teacherTypes from 'constants/Teachers';
+import * as homePageTypes from 'constants/HomePage';
+import data from '../configs/data.json';
+import * as asyncActs from 'actions/AsyncActionCreator';
 
 
 const HomePage = (state = {
@@ -8,38 +9,41 @@ const HomePage = (state = {
   newCourses: [],
   studentsComment: [],
   topTeachers: [],
-  totalCourses: 0,
+  totalCourses: data.totalCourses,
   totalTeachers: 0
 }, action) => {
   switch (action.type) {
-    case courseTypes.FETCH_POPULAR_COURSES_SUCCESS:
+    // popular courses reducer
+    case courseTypes.POPULAR_COURSES + asyncActs.FULFILLED:
       return {
         ...state,
-        popularCourses: action.payload.courses,
-        totalCourses: action.payload.total
-      }
-    case courseTypes.FETCH_POPULAR_COURSES_FAILURE:
-      return {...state, popularCourses: [] }
-    case courseTypes.FETCH_NEW_COURSES_SUCCESS:
+        popularCourses: action.payload,
+        totalCourses: action.payload.length
+      };
+    case courseTypes.POPULAR_COURSES + asyncActs.REJECTED:
+      return { ...state, popularCourses: [], error: action.payload };
+
+    // new courses reducer
+    case courseTypes.NEW_COURSES + asyncActs.FULFILLED:
+      return {
+        ...state, newCourses: action.payload
+      };
+    case courseTypes.NEW_COURSES + asyncActs.REJECTED:
+      return { ...state, newCourses: [], error: action.payload };
+
+    // top teachers
+    case homePageTypes.TOP_TEACHERS + asyncActs.FULFILLED:
       return {
         ...state,
-        newCourses: action.payload.courses
-      }
-    case courseTypes.FETCH_NEW_COURSES_FAILURE:
-      return {...state, newCourses: []}
-    case studentTypes.FETCH_STUDENT_TOP_COMMENTS_SUCCESS:
+        topTeachers: action.payload,
+        totalTeachers: action.payload.length
+      };
+
+    case homePageTypes.TOP_TEACHERS + asyncActs.REJECTED:
       return {
-        ...state,
-        studentsComment: action.payload
-      }
-    case studentTypes.FETCH_STUDENT_TOP_COMMENTS_FAILURE:
-      return {...state, studentsComment: []}
-    case teacherTypes.FETCH_TOP_TEACHERS_SUCCESS:
-      return {
-        ...state,
-        topTeachers: action.payload.teachers,
-        totalTeachers: action.payload.total
-      }
+        ...state, topTeachers: [], totalTeachers: 0, error: action.payload
+      };
+
     default:
       return state;
   }

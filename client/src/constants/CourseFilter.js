@@ -43,21 +43,3 @@ export const tuitionFees = [
     {id: 10000000, text: 'Trên 10tr'}
 ]
 
-//FIXME: Remove me
-export const dummyCourses = [
-  {id: 1, name: 'Tiếng Anh', coverImage: 'https://udemy-images.udemy.com/course/240x135/374568_550b_5.jpg'},
-  {id: 2, name: 'IES Exam', coverImage: 'https://udemy-images.udemy.com/course/240x135/374568_550b_5.jpg'},
-  {id: 3, name: 'Toán Hình Học', coverImage: 'https://udemy-images.udemy.com/course/240x135/374568_550b_5.jpg'},
-  {id: 4, name: 'Vật Lý ', coverImage: 'https://udemy-images.udemy.com/course/240x135/374568_550b_5.jpg'},
-]
-
-//FIXME: Remove me
-export const dummyPopularCourses = {
-  total: 1000,
-  courses: [
-    {id: 1, name: 'Tiếng Anh', coverImage: 'https://udemy-images.udemy.com/course/240x135/374568_550b_5.jpg'},
-    {id: 2, name: 'IES Exam', coverImage: 'https://udemy-images.udemy.com/course/240x135/374568_550b_5.jpg'},
-    {id: 3, name: 'Toán Hình Học', coverImage: 'https://udemy-images.udemy.com/course/240x135/374568_550b_5.jpg'},
-    {id: 4, name: 'Vật Lý ', coverImage: 'https://udemy-images.udemy.com/course/240x135/374568_550b_5.jpg'},
-  ]
-}

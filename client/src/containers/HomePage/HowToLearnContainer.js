@@ -13,25 +13,25 @@ export default class HowToLearn extends Component {
         id: 1,
         name: 'TÌM KHOÁ HỌC',
         description: 'Search for online tutoring. Need help with your search? Request a tutor and we’ll have tutors contact you very soon!',
-        icon: 'https://www.shareicon.net/data/128x128/2015/09/11/99442_glasses_512x512.png'
+        icon: '/home_search_courses.png'
       },
       {
         id: 2,
         name: 'XEM NỘI DUNG KHOÁ HỌC',
         description: 'Read feedback and ratings from parents and students. Detailed tutor profiles also include photos more.',
-        icon: 'https://www.shareicon.net/data/128x128/2015/09/11/99442_glasses_512x512.png'
+        icon: '/home_browse_courses.png'
       },
       {
         id: 3,
         name: 'ĐĂNG KÝ LỊCH HỌC',
         description: 'Communicate directly with tutors to find a time that works for you. Whether you need a single lesson.',
-        icon: 'https://www.shareicon.net/data/128x128/2015/09/11/99442_glasses_512x512.png'
+        icon: '/home_register_courses.png'
       },
       {
         id: 4,
         name: 'THAM GIA HỌC',
         description: 'One-on-one instruction is the most effective way to learn. Let us handle payments and administrative details.',
-        icon: 'https://www.shareicon.net/data/128x128/2015/09/11/99442_glasses_512x512.png'
+        icon: '/home_join_courses.png'
       }
     ]
   }
