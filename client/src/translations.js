@@ -205,6 +205,8 @@ export const translations = {
     "max_fee_placeholder": "Học phí cao nhất",
     "max_fee_chip": "Đến {max_fee}",
     "general_search_placeholder": "Tìm kiếm theo lĩnh vữc, loại khoá học, tên khoá học ... ",
+    "teacher_info_suggestion": "Giáo viên: {teacher}",
+    "not_found_suggestion": "Không tìm thấy kết quả",
     /*
         Public course detail
     */

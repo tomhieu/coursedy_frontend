@@ -5,6 +5,7 @@ import * as CourseFilterActions from '../../../actions/CourseFilterActionCreator
 import {connect} from 'react-redux';
 import {reduxForm} from "redux-form";
 import {MAX_FEE, MIN_FEE} from "utils/CommonConstant";
+import {TT} from "utils/locale";
 
 class CourseFilterContainer extends Component {
 
@@ -44,7 +45,15 @@ class CourseFilterContainer extends Component {
   }
 
   loadSuggestions(event) {
-    this.props.dispatch(CourseFilterActions.loadSuggestions(this.props.filters, event.target.value))
+    const filters = this.props.filters;
+    const query = {
+      q: event.target.value,
+      categories: filters.selectedCategories.map(category => category.id),
+      locations: filters.selectedLocations.map(loc => loc.id),
+      specializes: filters.selectedSpecializes.map(spec => spec.id),
+      week_day: filters.selectedWeekDays.map(week => week.id),
+    };
+    this.props.dispatch(CourseFilterActions.loadSuggestions(query))
   }
 
   doSelectFilter(filter, category) {
@@ -129,12 +138,18 @@ const getSelectedSpecializesFromCategory = (categories, selectedCategories) => {
 }
 
 const mapStateToProps = (state) => {
-  const {CourseFilter, form = {}} = state;
-  const categories = state.referenceData.courseCategories || []
+  const {CourseFilter, form = {}, referenceData} = state;
+  const categories = referenceData.courseCategories || []
+  const locations = referenceData.locations || []
 
-  const {courses = [], selectedCourses = [], locations,
-         totalResult = 0, groupSugestions, filters, showSuggestion, loadingSuggestion} = CourseFilter;
-  const {courseFilterForm = {}} = form
+  const {courses = [], selectedCourses = [],
+         totalResult = 0, sugestions, filters, showSuggestion, loadingSuggestion} = CourseFilter;
+  const {courseFilterForm = {}} = form;
+  const filterSuggestions = [];
+  sugestions.map(sug =>
+    filterSuggestions.push({id: sug.id, avatar: sug.cover_image, title: sug.title,
+                      sub_title: TT.t('teacher_info_suggestion', {teacher: sug.user.name})}));
+
   let initializeFields = courseFilterForm.values ? Object.assign({}, courseFilterForm.values) : {}
 
   if (courseFilterForm.values && filters.resetMinFee) {
@@ -145,7 +160,7 @@ const mapStateToProps = (state) => {
 
   return {
     categories, courses, selectedCourses, locations,
-    totalResult, filters, showSuggestion, groupSugestions, loadingSuggestion,
+    totalResult, filters, showSuggestion, suggestions: filterSuggestions, loadingSuggestion,
     formfieldValues: courseFilterForm.values ? courseFilterForm.values : {},
     listSpecializes: getSelectedSpecializesFromCategory(categories, filters.selectedCategories),
     initialValues: initializeFields

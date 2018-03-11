@@ -36,7 +36,7 @@ class CourseDetailContainer extends Component {
     } else {
       this.props.dispatch(CourseActions.updateCourse(courseId, course.title, course.description, course.start_date, course.period,
         course.number_of_students, course.tuition_fee, course.currency, course.is_free, week_day_schedules_attributes, course.is_same_period,
-        course.cover_image, course.course_specialize_id, this.coverImage));
+        course.course_specialize_id, this.coverImage));
     }
   }
 
@@ -45,8 +45,10 @@ class CourseDetailContainer extends Component {
       Object.getOwnPropertyDescriptor(course, 'start_time_id');
 
     if (start_time === undefined) {
+      // in case update course, load course time from week_day_schedules
       return course.week_day_schedules.filter(d => d.day === name_day)[0].start_time;
     } else {
+      // in case create new course
       return DateUtils.getHourFromDate(start_time.value);
     }
   }
@@ -56,8 +58,10 @@ class CourseDetailContainer extends Component {
       Object.getOwnPropertyDescriptor(course, 'end_time_id');
 
     if (end_time === undefined) {
+      // in case update course, load course time from week_day_schedules
       return course.week_day_schedules.filter(d => d.day === name_day)[0].end_time;
     } else {
+      // in case create new course
       return DateUtils.getHourFromDate(end_time.value);
     }
   }
@@ -117,8 +121,8 @@ const initializeCourseDetail = (courseData, categories) => {
   if (Array.isArray(courseData.course_days)) {
     courseData.course_days.forEach(d => {
       course_days.push(d.day + '_' + getDayId(d.day))
-      Object.defineProperty(course_times, d.day + '_start_time', {value: d.start_time});
-      Object.defineProperty(course_times, d.day + '_end_time', {value: d.end_time});
+      Object.defineProperty(course_times, d.day + '_start_time', {value: d.start_time, writable: true});
+      Object.defineProperty(course_times, d.day + '_end_time', {value: d.end_time, writable: true});
     });
   }
 

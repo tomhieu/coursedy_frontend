@@ -4,6 +4,7 @@ import * as Actions from '../../../actions/CourseFilterActionCreator'
 import { connect } from 'react-redux';
 import Pagination from 'react-js-pagination';
 import LoadingMask from "../../../components/LoadingMask/LoadingMask";
+import * as CommonConstants from "utils/CommonConstant";
 
 
 
@@ -19,9 +20,7 @@ class PublicCourseListContainer extends Component {
     query['fees'] = this.props.selectedFees
     query['start_time'] = this.props.startTime
     query['end_time'] = this.props.endTime
-    query['per_page'] = this.props.pageSize
     query['page'] = this.props.currentPage
-
     query['sort_by'] = this.props.sortBy
     query['sort_order'] = this.props.sortOrder
     this.props.dispatch(Actions.searchCourse(query))
@@ -39,9 +38,7 @@ class PublicCourseListContainer extends Component {
     query['fees'] = this.props.selectedFees
     query['start_time'] = this.props.startTime
     query['end_time'] = this.props.endTime
-    query['per_page'] = this.props.pageSize
     query['page'] = currentPage
-
     query['sort_by'] = this.props.sortBy
     query['sort_order'] = this.props.sortOrder
     this.props.dispatch(Actions.searchCourse(query))
@@ -68,7 +65,7 @@ class PublicCourseListContainer extends Component {
           <div className="clear-fix"></div>
           <Pagination
             activePage={this.props.currentPage}
-            itemsCountPerPage={this.props.pageSize}
+            itemsCountPerPage={CommonConstants.MAX_ITEM_PER_PAGE}
             totalItemsCount={this.props.totalResult}
             pageRangeDisplayed={5}
             onChange={this.handlePageChange.bind(this)}
@@ -98,7 +95,6 @@ const mapStateToProps = (state) => ({
   selectedWeekdays: state.CourseFilter.selectedWeekdays,
   courses: state.CourseFilter.courses,
   currentPage: state.CourseFilter.currentPage,
-  pageSize: state.CourseFilter.pageSize,
   totalResult: state.CourseFilter.totalResult,
   displayMode: state.CourseFilter.displayMode,
   selectedCourses: state.CourseFilter.selectedCourses,

@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import * as CourseActions from "../../../actions/CourseFormActionCreator";
+import * as AsynActions from "../../../actions/AsyncActionCreator";
 import * as ReferenceActions from "../../../actions/ReferenceActions/ReferenceDataActionCreator";
 import {connect} from "react-redux";
 import {mStyles} from "../../../utils/CustomStylesUtil";
@@ -49,12 +50,12 @@ class CourseFormContainer extends Component {
 
   canclePublishCourse() {
     this.props.dispatch({
-      type: CourseActions.CANCEL_PUBLISH_COURSE
+      type: AsynActions.CANCEL_PUBLISH_COURSE
     });
   }
 
   cancelPopup() {
-    this.props.dispatch(CourseActions.createNewCourse());
+    this.props.dispatch({type: AsynActions.CLOSE_COURSE_POPUP});
     this.context.router.history.push('/dashboard/courses/list/');
   }
 

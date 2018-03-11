@@ -16,12 +16,10 @@ const courseDetails = (state = {
     /**
      * handle actions update an existing course
      */
-    case asyncActions.UPDATE_COURSE_SUCCESSFULLY:
-      const {id, title} = action.payload;
-      return Object.assign({}, state, {
-        courseData: {cover_image: null, title: title, id: id}, editMode: false,
-        listSection: [], showSectionPopup: false, activatedField: null, createCourseSucess: true
-      });
+    case asyncActions.UPDATE_COURSE + asyncActions.FULFILLED:
+      return Object.assign({}, state, {activatedField: null, createCourseSucess: true});
+    case asyncActions.CLOSE_COURSE_POPUP:
+      return Object.assign({}, state, {createCourseSucess: false});
     /**
      * handle actions publish an existing course
      */
@@ -42,7 +40,8 @@ const courseDetails = (state = {
       const fr_end_date = DateUtils.formatDate(end_date);
       const courseData = Object.assign({}, action.payload, {
         category_id: category.id, course_days: week_day_schedules,
-        start_date: fr_start_date, end_date: fr_end_date
+        start_date: fr_start_date, end_date: fr_end_date,
+        is_same_period: isSamePeriod(week_day_schedules)
       });
       return Object.assign({}, state, {courseData: courseData, editMode: true});
     /**
@@ -105,5 +104,13 @@ const courseDetails = (state = {
       return state;
   }
 };
+
+const isSamePeriod = (lessonPeriods) => {
+  if (!Array.isArray(lessonPeriods) || lessonPeriods.length == 0) {
+    return false;
+  }
+  const [firstDay] = lessonPeriods;
+  return lessonPeriods.filter((period) => period.start_time != firstDay.start_time || period.end_time != firstDay.end_time).length == 0
+}
 
 export default courseDetails;

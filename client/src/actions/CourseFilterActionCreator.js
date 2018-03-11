@@ -29,11 +29,11 @@ export const changeCurrentPage = (page) => {
   }
 }
 
-export const loadSuggestions = (filters, term) => {
+export const loadSuggestions = (query) => {
   return dispatch => {
     dispatch({
       type: asyncActs.LOAD_SUGGESTION,
-      payload: Network().get('courses/search', {filters, term})
+      payload: Network().get('courses/search', query)
     })
   }
 }

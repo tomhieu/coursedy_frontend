@@ -3317,3 +3317,19 @@ button:hover {
 .course-free .form-group {
   width: 100%;
 }
+
+.suggestion-line {
+  color: $black-color;
+  .header {
+    font-size: 18px;
+    margin: 8px 0;
+  }
+  .sub-header {
+    font-size: 16px;
+  }
+}
+
+.suggestion-line.not-found {
+  height: 60px;
+  text-align: center;
+}

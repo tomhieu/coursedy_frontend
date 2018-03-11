@@ -3,16 +3,13 @@ import * as courseActionTypes from '../constants/Courses';
 
 const CourseFilter = (state = {
   courses: [],
-  locations: {},
-  weekdays: {},
   totalResult: 0,
   displayMode: 'grid',
-  pageSize: 4,
   currentPage: 1,
   selectedCourses: [],
   sortBy: '',
   sortOrder: 'desc',
-  groupSugestions: [],
+  sugestions: [],
   filters: {selectedWeekDays: [], selectedLocations: [], selectedCategories: [], selectedSpecializes: [],
     resetMinFee: false, resetMaxFee: false, term: ''},
   showSuggestion: false,
@@ -39,11 +36,11 @@ const CourseFilter = (state = {
      * handle action to load suggestion to filter Course
      */
     case asyncActs.LOAD_SUGGESTION + asyncActs.FULFILLED:
-      return {...state, groupSugestions: action.payload, showSuggestion: action.payload.length > 0}
+      return {...state, sugestions: action.payload, showSuggestion: action.payload.length > 0, loadingSuggestion: false}
     case asyncActs.LOAD_SUGGESTION + asyncActs.PENDING:
-      return {...state, groupSugestions: [], showSuggestion: true, loadingSuggestion: true}
+      return {...state, sugestions: [], showSuggestion: true, loadingSuggestion: true}
     case asyncActs.LOAD_SUGGESTION + asyncActs.REJECTED:
-      return {...state, groupSugestions: [], showSuggestion: false, loadingSuggestion: false}
+      return {...state, sugestions: [], showSuggestion: false, loadingSuggestion: false}
     case asyncActs.UPDATE_FILTER_CRITERIA:
       return Object.assign({}, state, {filters: action.data})
     default:

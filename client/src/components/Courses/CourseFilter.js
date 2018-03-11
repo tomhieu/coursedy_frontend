@@ -87,9 +87,8 @@ class CourseFilter extends Component {
     )
   }
 
-  autoCompleteSearchCourse(group, id, text) {
-    const filter = {group, id, text};
-    this.props.onSelectFilter(filter);
+  autoCompleteSearchCourse(id, text) {
+    this.context.router.history.push('/course/' + id);
   }
 
   render() {
@@ -99,7 +98,7 @@ class CourseFilter extends Component {
       locations,
       totalResult,
       changeDisplayModeHdl,
-      groupSugestions,
+      suggestions,
       loadSuggestions,
       onRemoveFilter,
       filters,
@@ -200,7 +199,7 @@ class CourseFilter extends Component {
                     </div>
                     <AutoComplete placeholder={this.context.t('search_course')}
                                   fieldName="key_word" fieldId="key_word_filter"
-                                  dataSource={groupSugestions}
+                                  dataSource={suggestions}
                                   handleAddCriteria={this.autoCompleteSearchCourse.bind(this)}
                                   loadSuggestions={loadSuggestions}
                                   filters={filters}
@@ -235,8 +234,8 @@ class CourseFilter extends Component {
                     </div>
                     <div className={styles.filterOptionContainer}>
                       <FilterOption label={this.context.t('location')}
-                                    options={Object.keys(locations).map((x) => {
-                                      return {name: locations[x], id: x}
+                                    options={locations.map((x) => {
+                                      return {name: x.name, id: x.id}
                                     })}
                                     selectedOptions={selectedLocations}
                                     onSelectFilter={this.props.onSelectFilter}
@@ -320,14 +319,15 @@ class CourseFilter extends Component {
 }
 
 CourseFilter.contextTypes = {
-  t: React.PropTypes.func.isRequired
+  t: React.PropTypes.func.isRequired,
+  router: React.PropTypes.object
 }
 
 CourseFilter.propTypes = {
   categories: React.PropTypes.array.isRequired,
-  locations: React.PropTypes.object.isRequired,
+  locations: React.PropTypes.array.isRequired,
   onSelectFilter: React.PropTypes.func.isRequired,
-  groupSugestions: React.PropTypes.array.isRequired,
+  suggestions: React.PropTypes.array.isRequired,
   loadSuggestions: React.PropTypes.func.isRequired,
   onRemoveFilter: React.PropTypes.func.isRequired,
   filters: React.PropTypes.object.isRequired

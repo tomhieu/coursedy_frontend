@@ -5,6 +5,7 @@ import styles from './AutoComplete.module.scss';
 import {renderField} from "../Core/CustomComponents";
 import Field from "redux-form/es/Field";
 import {SvgIcon} from "material-ui";
+import {SERVER_NAME} from "utils/CommonConstant";
 
 class AutoComplete extends Component {
 
@@ -12,21 +13,17 @@ class AutoComplete extends Component {
     super();
   }
 
-  renderGroupSuggestion(group, handleAddCriteria) {
-    const {name, suggestions} = group;
+  renderSuggestion(suggestion, handleAddCriteria) {
     return (
-      <div className={styles.suggestionGroup + " flex flex-horizontal"} key={"suggestion_" + name}>
-        <div className={styles.suggestionLine}>
-          <span>{name}</span>
+      <div className="d-flex flex-horizontal pt-10 pl-10" key={"suggestion_" + suggestion.id}>
+        <div>
+          <img src={suggestion.avatar ? SERVER_NAME + suggestion.avatar : 'http://placehold.it/75x75'} alt="" className={styles.itemAvatar + ' img-responsive img-circle'} />
         </div>
-        <div className="flex flex-horizontal ">
-          {
-            suggestions.map((s) => (
-              <div className={styles.suggestionLine}>
-                <a className="pl-10 pt-5" onClick={() => handleAddCriteria(s.group, s.id, s.text)}>{s.text}</a>
-              </div>
-            ))
-          }
+        <div className={styles.suggestionLine}>
+          <a className="pl-10 d-flex flex-vertical suggestion-line" onClick={() => handleAddCriteria(suggestion.id, suggestion.title)}>
+            <span className="header">{suggestion.title}</span>
+            <span className="sub-header">{suggestion.sub_title}</span>
+          </a>
         </div>
       </div>
     );
@@ -71,10 +68,17 @@ class AutoComplete extends Component {
             <div className={styles.modalSuggestion + " flex flex-vertical"}>
               {
                 dataSource.map((gs) => (
-                  this.renderGroupSuggestion(gs, handleAddCriteria)
+                  this.renderSuggestion(gs, handleAddCriteria)
                 ))
               }
-            </div> : isLoading ? <div>Loading...</div> : null
+            </div> : isLoading ? <div>Loading...</div> :
+            <div className={styles.modalSuggestion + " flex flex-vertical"}>
+              <div className={styles.suggestionLine}>
+                <a className="pl-10 d-flex flex-vertical justify-content-center suggestion-line not-found">
+                  <span className="sub-header">{this.context.t('not_found_suggestion')}</span>
+                </a>
+              </div>
+            </div>
         }
       </div>
     )

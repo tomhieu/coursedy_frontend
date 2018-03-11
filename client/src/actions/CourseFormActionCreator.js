@@ -64,17 +64,9 @@ export const updateCourse = (id, title, description, start_date, period,
       number_of_students, tuition_fee, currency, is_free, week_day_schedules_attributes, is_same_period,
       cover_image, category_id
     };
-    Network().update('courses/' + id, body).then((response) => {
-      dispatch({
-        type: asyncActs.UPDATE_COURSE_SUCCESSFULLY,
-        payload: response
-      });
-      loadCourseDetail(response.id);
-    }, (errors) => {
-      dispatch({
-        type: asyncActs.UPDATE_COURSE_FAILED,
-        payload: {errors: errors.payload}
-      });
+    dispatch({
+      type: asyncActs.UPDATE_COURSE,
+      payload: Network().update('courses/' + id, body)
     });
   }
 }
