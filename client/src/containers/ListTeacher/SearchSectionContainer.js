@@ -4,12 +4,12 @@ import {RaiseButton} from '../../components/Core/CustomComponents';
 import {reduxForm} from 'redux-form';
 import {connect} from 'react-redux';
 import * as TeacherActions from "../../actions/TeacherCreators";
-import {fetchCategories} from 'actions/CourseFilterActionCreator';
+import { fetchCourseCategories } from 'actions/ReferenceActions/ReferenceDataActionCreator';
 
 
 class SearchSectionContainer extends Component {
   componentDidMount() {
-    this.props.dispatch(fetchCategories())
+    this.props.dispatch(fetchCourseCategories())
   }
 
   onSubmit(data) {

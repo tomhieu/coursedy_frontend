@@ -22,7 +22,7 @@ class CourseGroup extends Component {
         <Link to={'#'} title={course.title} className="course-group__content">
           <img className="course-group__content__img" src={course.cover_image}
                alt={course.title}/>
-          <span className="course-group__content__title">{course.title}</span>
+          <span className="course-group__content__title" title={course.title}>{course.title}</span>
         </Link>
       </div>
     )

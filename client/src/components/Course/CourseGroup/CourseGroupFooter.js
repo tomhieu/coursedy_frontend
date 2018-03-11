@@ -12,7 +12,7 @@ export default class CourseGroupFooter extends Component {
   render() {
     return (
       <div className="row">
-        <div className="col-sm-12 mtop4 text-center">
+        <div className="col-sm-12 course__footer">
           <Link to={ this.props.redirectUrl }
              className="btn-link">{this.props.btnName}</Link>
         </div>

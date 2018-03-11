@@ -10,7 +10,7 @@ const Item = ({ item }) => {
   return (
     <div className="slick-slide_item">
       <div className="row">
-        <div className="col-lg-12 col-xs-12 col-md-12 col-sm-12">
+        <div className="col-lg-12 col-xs-12 col-md-12 col-sm-12 user">
           <div className="user__avatar-left">
             <img src={item.avatar}/>
           </div>
@@ -51,22 +51,30 @@ class TopTeachers extends Component {
 
     return (
       <section className="course__top-teacher">
-        <div className="container course__top-teacher__content-wrap">
+        <div className="course__top-teacher__content-wrap">
           <div className="row-margin">
-            <h2 className="course__top-teacher__heading">Với
-              Hơn {this.props.totalTeachers} Giáo Viên Giỏi
-              Và {this.props.totalCourses} Khoá Học Đang Được Dạy</h2>
-            <div className="row course__top-teacher__body">
-              <div className="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                <h3 className="course__top-teacher__body__heading"
-                    dangerouslySetInnerHTML={{ __html: this.context.t('top_teacher_month') }}/>
+            <div className="course__top-teacher__heading">
+              <div className="container">
+                <h2>
+                  {this.context.t('top_teacher_pre')} {this.props.totalTeachers} {this.context.t('top_teacher_post')} {this.context.t('course_num_pre')} {this.props.totalCourses} {this.context.t('course_num_post')}
+                </h2>
               </div>
-              <div className="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                {<Slider settings={{ slidesToShow: 3, slidesToScroll: 3 }}
-                         items={this.props.topTeachers.map((item, index) => {
-                           return <Item item={item} key={index}/>;
-                         })}
-                />}
+            </div>
+            <div className="course__top-teacher__body">
+              <div className="container">
+                <div className="row">
+                  <div className="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                    <h3 className="course__top-teacher__body__heading"
+                        dangerouslySetInnerHTML={{ __html: this.context.t('top_teacher_month') }}/>
+                  </div>
+                  <div className="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                    {<Slider settings={{ slidesToShow: 3, slidesToScroll: 3 }}
+                             items={this.props.topTeachers.map((item, index) => {
+                               return <Item item={item} key={index}/>;
+                             })}
+                    />}
+                  </div>
+                </div>
               </div>
             </div>
           </div>
