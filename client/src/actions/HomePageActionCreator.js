@@ -25,7 +25,7 @@ export const fetchTopTeachers = () => {
   return dispatch => {
     dispatch({
       type: homePageTypes.TOP_TEACHERS,
-      payload: Network().get('teachers', {sort_by: 'top'})
+      payload: Network().get('tutors/top_teachers')
     });
   };
 };

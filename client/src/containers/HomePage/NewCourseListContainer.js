@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import * as HomePageActions from 'actions/HomePageActionCreator'
 import { bindActionCreators } from 'redux'
 import { Slider } from '../../components/Slider/SliderComponent'
+import CourseGroupFooter from '../../components/Course/CourseGroup/CourseGroupFooter'
 
 
 class NewCourseList extends Component {
@@ -25,7 +26,7 @@ class NewCourseList extends Component {
   }
 
   render() {
-    if (!this.props.courses.lenght) {
+    if (!this.props.courses.length) {
       return null;
     }
 
@@ -36,11 +37,16 @@ class NewCourseList extends Component {
             <div className="course__new-courses__heading">
               <h2 className="heading">{this.context.t('new_courses')}</h2>
             </div>
+
             <div className="course__new-courses__content">
               {<Slider items={this.props.courses.map((course, index) => {
                 return <NewCourse course={course} key={index}/>
               })}/>}
             </div>
+
+            <CourseGroupFooter
+              redirectUrl="/courses"
+              btnName={this.context.t('watch_all_courses')}/>
           </div>
         </div>
       </section>

@@ -1,5 +1,4 @@
 /* Slider */
-$body-color: #f2f2f2;
 
 @mixin slick-animation {
   -webkit-transform: translate3d(0, 0, 0);
@@ -23,7 +22,7 @@ $body-color: #f2f2f2;
   touch-action: pan-y;
   -webkit-tap-highlight-color: transparent;
 
-  margin: 30px 20px 50px;
+  margin: 0 20px;
 
   .slick-list {
     position: relative;
@@ -257,7 +256,7 @@ $body-color: #f2f2f2;
       box-sizing: border-box;
       border-width: 3px;
       border-style: solid;
-      border-color: #e27d7f;
+      border-color: $md-color-pink;
       border-top: 0;
       border-right: 0;
       border-bottom: 0;
@@ -275,7 +274,7 @@ $body-color: #f2f2f2;
         font-weight: 400;
         font-style: italic;
         font-size: 60px;
-        color: #E27D7F;
+        color: $md-color-pink;
         text-align: center;
         padding-top: 28px;
       }

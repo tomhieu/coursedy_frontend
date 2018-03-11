@@ -1,17 +1,8 @@
-$row_margin_top: 99px;
-$row_margin_bottom: 100px;
-$primary-font-size: 16px;
-$body-color: #f2f2f2;
-
-@mixin content-wrap {
-  //background-color: #f2f2f2;
-}
+@import "../../../styles/global_style";
 
 .course {
   &__popular {
-    &__content-wrap {
-      @include content-wrap;
-    }
+    background-color: $body-color;
   }
 
   &__new-courses {
@@ -26,29 +17,26 @@ $body-color: #f2f2f2;
   }
 
   &__how-to-learn {
-    &__content-wrap {
-      @include content-wrap;
-    }
-  }
-
-  &__student-comment {
-
+    background-color: $body-color;
   }
 
   &__top-teacher {
     color: #534051;
-    &__content-wrap {
-      @include content-wrap;
-    }
 
     &__heading {
-      padding-left: 36px;
-      padding-top: 64px;
       background-color: #0151b0;
-      height: 170px;
       color: #fff;
       font-size: 30px;
       margin-bottom: 0;
+
+      h2 {
+        padding-left: 36px;
+        padding-top: 64px;
+        height: 170px;
+        color: #fff;
+        font-size: 30px;
+        margin-bottom: 0;
+      }
     }
 
     &__body {
@@ -78,7 +66,7 @@ $body-color: #f2f2f2;
         .red-circle-icon {
           font-size: 25px;
           position: absolute;
-          color: #e27d7f;
+          color: $md-color-pink;
         }
 
         .util-icon {
@@ -97,9 +85,17 @@ $body-color: #f2f2f2;
       }
     }
   }
+
+  &__footer {
+    text-align: center;
+    a {
+      display: inline-block;
+    }
+  }
 }
 
 .user {
+  display: table;
   &__avatar-left {
     display: inline-block;
     img {
@@ -118,10 +114,8 @@ $body-color: #f2f2f2;
   }
 
   &__info-right {
-    display: inline-block;
-    position: absolute;
-    top: 25px;
-    left: 126px;
+    display: table-cell;
+    vertical-align: middle;
   }
 
   &__fullname {
@@ -134,15 +128,15 @@ $body-color: #f2f2f2;
     font-weight: 400;
     font-style: italic;
     font-size: 15px;
-    color: #E27D7F;
+    color: $md-color-pink;
   }
 }
 
 .introduction-text-decoration {
   text-decoration: none;
-  border-bottom: 2px solid #e27d7f;
+  border-bottom: 2px solid $md-color-pink;
 }
 
 .title-highlight {
-  color:#E27D7F;
+  color: $md-color-pink;
 }
