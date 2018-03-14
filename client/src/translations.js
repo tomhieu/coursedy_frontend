@@ -147,7 +147,6 @@ export const translations = {
     "account_tutor_new_password_title": "Mật Khẩu Mới",
     "account_tutor_new_password_again_title": "Nhập Lại Mật Khẩu Mới",
     "account_tutor_new_password_btn": "Đổi Mật Khẩu",
-    "save_course": "Lưu Khoá Học",
     "drag_and_drop": "Kéo thả tập tin vào đây",
     "speciality": "Chuyên môn",
     "save": "Lưu",
@@ -164,9 +163,7 @@ export const translations = {
      */
     "section_title": "Mô tả",
     "section_name": "Tên",
-    "course_category": "Loại khoá học",
     "course_specialize": "Ngành Học",
-    "category": "Lớp học",
     "level": "Cấp độ",
     /*
      * Filter Course Page

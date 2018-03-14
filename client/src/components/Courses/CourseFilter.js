@@ -10,6 +10,7 @@ import AutoComplete from "../AutoComplete/AutoComplete";
 import {PublicCourseListFollowModalContainer} from '../../containers/index'
 import {Chip} from "material-ui";
 import cssModules from 'react-css-modules';
+import { FieldArray } from 'redux-form'
 
 
 class CourseFilter extends Component {
@@ -289,7 +290,7 @@ class CourseFilter extends Component {
                 <div className={styles.orderDisplayResult + " d-flex flex-horizontal justify-content-end"}>
                   <div className={styles.totalCoursesBox}>
                     <span className={styles.textTotalResult}>
-                      {this.context.t("total_result", {total: totalResult != undefined ? totalResult : 0})}
+                      {this.context.t("total_result", {total: totalResult !== undefined ? totalResult : 0})}
                     </span>
                   </div>
                   <div className={styles.orderBtn}>
