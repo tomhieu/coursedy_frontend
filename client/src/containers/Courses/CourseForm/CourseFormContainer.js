@@ -63,8 +63,8 @@ class CourseFormContainer extends Component {
     const {editMode, listSection, courseTitle, createCourseSucess, publishCourse} = this.props;
     return (
       <div className="row dashboard-panel">
-        <LoadingMask>
-          <div className="col-sm-12 col-md-12">
+        <div className="col-sm-12 col-md-12">
+          <LoadingMask belongingActions={[AsynActions.CREATE_NEW_COURSE, AsynActions.UPDATE_COURSE]}>
             <CourseDetailContainer courseId={this.courseId}
                                    onActivatedField={this.onActivatedField.bind(this)}
                                    onClosedField={this.onClosedField.bind(this)}
@@ -77,66 +77,66 @@ class CourseFormContainer extends Component {
                 <span>{this.context.t('create_course_sucessfully_message', {title: 'Testing Dialog'})}</span>
               </div>
             </SimpleDialogComponent>
-          </div>
-          {
-            editMode ? (
-              <div className="col-sm-12 col-md-12">
-                <div className="row">
-                  <div className="col-sm-12 col-md-12">
-                    <div className="row">
-                      <div className="col-md-6 col-sm-6">
-                        <FlatButton label={this.context.t('lesson_link_edit')}
-                                    style={mStyles.defaultFlatBtn}
-                                    secondary={true}
-                                    onClick={this.addNewSection.bind(this)}
-                                    icon={<ContentAddCircle color="#e27d7f"/>}/>
-                      </div>
-                      <div className="col-md-6 col-sm-6">
-                        <FlatButton label={this.context.t('course_publish')}
-                                    style={mStyles.defaultFlatBtn}
-                                    secondary={true}
-                                    onClick={this.validateBeforePublishCourse.bind(this)}
-                                    icon={<EditorPublish color="#e27d7f"/>}/>
-                      </div>
+          </LoadingMask>
+        </div>
+        {
+          editMode ? (
+            <div className="col-sm-12 col-md-12">
+              <div className="row">
+                <div className="col-sm-12 col-md-12">
+                  <div className="row">
+                    <div className="col-md-6 col-sm-6">
+                      <FlatButton label={this.context.t('lesson_link_edit')}
+                                  style={mStyles.defaultFlatBtn}
+                                  secondary={true}
+                                  onClick={this.addNewSection.bind(this)}
+                                  icon={<ContentAddCircle color="#e27d7f"/>}/>
+                    </div>
+                    <div className="col-md-6 col-sm-6">
+                      <FlatButton label={this.context.t('course_publish')}
+                                  style={mStyles.defaultFlatBtn}
+                                  secondary={true}
+                                  onClick={this.validateBeforePublishCourse.bind(this)}
+                                  icon={<EditorPublish color="#e27d7f"/>}/>
                     </div>
                   </div>
-                  <div className="col-sm-12 col-md-12">
-                    {
-                      listSection.map((section) =>
-                        <SectionLessonContainer
-                          section={section}
-                          key={'__section__' + section.id}
-                          showPopupEdit={section.showLessonPopup}
-                          onActivatedField={this.onActivatedField.bind(this)}
-                          onClosedField={this.onClosedField.bind(this)}
-                          {...this.props}>
-                        </SectionLessonContainer>)
-                    }
-                  </div>
-                  <SectionCreationPopupContainer courseId={this.courseId}>
-                  </SectionCreationPopupContainer>
                 </div>
-                <SimpleDialogComponent title={this.context.t('popup_warning_publish_course_title')}
-                                       show={publishCourse}
-                                       acceptBtn={this.context.t("course_publish")}
-                                       cancelCallback={this.canclePublishCourse.bind(this)}
-                                       acceptCallback={this.publishCourse.bind(this)}>
-                  <div className="d-flex flex-vertical">
-                    <span>{this.context.t('popup_warning_publish_course_message_1', {course_title: courseTitle})}</span>
-                  </div>
+                <div className="col-sm-12 col-md-12">
                   {
-                    listSection.length === 0 ? (
-                      <div className="d-flex flex-vertical">
-                        <span>{this.context.t("popup_warning_publish_course_message_2")}</span>
-                        <span>{this.context.t("popup_warning_publish_course_message_3", {course_title: courseTitle})}</span>
-                      </div>
-                    ) : null
+                    listSection.map((section) =>
+                      <SectionLessonContainer
+                        section={section}
+                        key={'__section__' + section.id}
+                        showPopupEdit={section.showLessonPopup}
+                        onActivatedField={this.onActivatedField.bind(this)}
+                        onClosedField={this.onClosedField.bind(this)}
+                        {...this.props}>
+                      </SectionLessonContainer>)
                   }
-                </SimpleDialogComponent>
+                </div>
+                <SectionCreationPopupContainer courseId={this.courseId}>
+                </SectionCreationPopupContainer>
               </div>
-            ) : null
-          }
-        </LoadingMask>
+              <SimpleDialogComponent title={this.context.t('popup_warning_publish_course_title')}
+                                     show={publishCourse}
+                                     acceptBtn={this.context.t("course_publish")}
+                                     cancelCallback={this.canclePublishCourse.bind(this)}
+                                     acceptCallback={this.publishCourse.bind(this)}>
+                <div className="d-flex flex-vertical">
+                  <span>{this.context.t('popup_warning_publish_course_message_1', {course_title: courseTitle})}</span>
+                </div>
+                {
+                  listSection.length === 0 ? (
+                    <div className="d-flex flex-vertical">
+                      <span>{this.context.t("popup_warning_publish_course_message_2")}</span>
+                      <span>{this.context.t("popup_warning_publish_course_message_3", {course_title: courseTitle})}</span>
+                    </div>
+                  ) : null
+                }
+              </SimpleDialogComponent>
+            </div>
+          ) : null
+        }
       </div>
     )
   }

@@ -36,11 +36,13 @@ const CourseFilter = (state = {
      * handle action to load suggestion to filter Course
      */
     case asyncActs.LOAD_SUGGESTION + asyncActs.FULFILLED:
-      return {...state, sugestions: action.payload, showSuggestion: action.payload.length > 0, loadingSuggestion: false}
+      return {...state, sugestions: action.payload, loadingSuggestion: false, showSuggestion: true}
     case asyncActs.LOAD_SUGGESTION + asyncActs.PENDING:
       return {...state, sugestions: [], showSuggestion: true, loadingSuggestion: true}
     case asyncActs.LOAD_SUGGESTION + asyncActs.REJECTED:
       return {...state, sugestions: [], showSuggestion: false, loadingSuggestion: false}
+    case asyncActs.CLEAR_SUGGESTION:
+      return {...state, q: [], showSuggestion: false, loadingSuggestion: false}
     case asyncActs.UPDATE_FILTER_CRITERIA:
       return Object.assign({}, state, {filters: action.data})
     default:

@@ -5,6 +5,7 @@ import {connect} from "react-redux";
 import {fetchListTutorCourse} from "../../../actions/ListTutorCourseActionCreator";
 import LoadingMask from "../../../components/LoadingMask/LoadingMask";
 import {deleteCourse} from "actions/CourseFormActionCreator";
+import {FETCH_TUTOR_COURSES} from "actions/AsyncActionCreator";
 
 class ListTutorCourseContainer extends Component {
 
@@ -27,7 +28,7 @@ class ListTutorCourseContainer extends Component {
                     <button className="btn btn-primary" onClick={this.addNewCourses.bind(this)}>{this.context.t('course_add_btn')}</button>
                 </div>
                 <div className="col-md-12 col-sm-12">
-                    <LoadingMask>
+                    <LoadingMask belongingActions={[FETCH_TUTOR_COURSES]}>
                         <CourseList 
                             deleteCourse={this.deleteCourse.bind(this)} 
                             {...this.props} 

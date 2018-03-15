@@ -6,6 +6,7 @@ import promiseMiddleware from 'redux-promise-middleware';
 import rootReducer from '../reducers/index';
 import initialState from './initialState';
 import {createLogger} from 'redux-logger'
+import * as asyncActions from "actions/AsyncActionCreator";
 
 /* Commonly used middlewares and enhancers */
 /* See: http://redux.js.org/docs/advanced/Middleware.html*/
@@ -20,8 +21,27 @@ if (typeof devToolsExtension === 'function') {
   enhancers.push(devToolsExtension());
 }
 
+const loadingHandler = store => next => action => {
+  const pendingIndex = action.type.indexOf(asyncActions.PENDING);
+  const fulfillIndex = action.type.indexOf(asyncActions.FULFILLED);
+  const rejectIndex = action.type.indexOf(asyncActions.REJECTED);
+  // when a pending action is procession. Should show loading mask
+  if (pendingIndex >= 0) {
+    store.dispatch({
+      type: asyncActions.ADD_ASYNC_ACTION,
+      action: action.type.substr(0, pendingIndex)
+    });
+  } else if (fulfillIndex >= 0 || rejectIndex >= 0) {
+    store.dispatch({
+      type: asyncActions.REMOVE_ASYNC_ACTION,
+      action: action.type.substr(0, pendingIndex)
+    });
+  }
+  return next(action);
+}
+
 const composedEnhancers = compose(
-  applyMiddleware(...middlewares, createLogger()),
+  applyMiddleware(...middlewares, createLogger(), loadingHandler),
   ...enhancers
 );
 

@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import Pagination from 'react-js-pagination';
 import LoadingMask from "../../../components/LoadingMask/LoadingMask";
 import * as CommonConstants from "utils/CommonConstant";
+import {FETCH_COURSES} from "constants/Courses";
 
 
 
@@ -54,7 +55,7 @@ class PublicCourseListContainer extends Component {
 
   render() {
     return (
-      <LoadingMask>
+      <LoadingMask belongingActions={[FETCH_COURSES]}>
         <div className="public-course-list">
           <CourseList
             {...this.props}

@@ -8,11 +8,12 @@ import {red500, red900} from "material-ui/styles/colors";
 
 class LoadingMask extends Component {
   render() {
-    const {isFetching} = this.props;
+    const {belongingActions, processingActions} = this.props;
+    const isProcessing = belongingActions.filter(act => processingActions.indexOf(act) >= 0).length > 0;
     return (
       <div>
           {
-              isFetching ? (
+            isProcessing ? (
                   <div className={"d-flex justify-content-center " + styles.loadingMask}>
                       <div className="align-self-center">
                           <CircularProgress size={60} color={red900} />
@@ -27,8 +28,13 @@ class LoadingMask extends Component {
   }
 }
 
+LoadingMask.propTypes = {
+  processingActions: React.PropTypes.array.isRequired,
+  belongingActions: React.PropTypes.array.isRequired
+};
+
 const mapStateToProps = (state) => ({
-    isFetching: state.LoadingMask.isFetching
+  processingActions: state.LoadingMask.processingActions
 });
 
 export default connect(

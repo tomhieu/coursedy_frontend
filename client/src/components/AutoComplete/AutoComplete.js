@@ -64,21 +64,23 @@ class AutoComplete extends Component {
           </div>
         </div>
         {
-          dataSource.length > 0 && show ?
-            <div className={styles.modalSuggestion + " flex flex-vertical"}>
-              {
-                dataSource.map((gs) => (
-                  this.renderSuggestion(gs, handleAddCriteria)
-                ))
-              }
-            </div> : isLoading ? <div>Loading...</div> :
-            <div className={styles.modalSuggestion + " flex flex-vertical"}>
-              <div className={styles.suggestionLine}>
-                <a className="pl-10 d-flex flex-vertical justify-content-center suggestion-line not-found">
-                  <span className="sub-header">{this.context.t('not_found_suggestion')}</span>
-                </a>
+          isLoading ? <div>Loading...</div> :
+            show ? dataSource.length > 0 ?
+              <div className={styles.modalSuggestion + " flex flex-vertical"}>
+                {
+                  dataSource.map((gs) => (
+                    this.renderSuggestion(gs, handleAddCriteria)
+                  ))
+                }
+              </div> :
+              <div className={styles.modalSuggestion + " flex flex-vertical"}>
+                <div className={styles.suggestionLine}>
+                  <a className="pl-10 d-flex flex-vertical justify-content-center suggestion-line not-found">
+                    <span className="sub-header">{this.context.t('not_found_suggestion')}</span>
+                  </a>
+                </div>
               </div>
-            </div>
+              : null
         }
       </div>
     )
