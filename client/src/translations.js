@@ -233,7 +233,7 @@ export const translations = {
     "course_submit_comment_fail": "Gửi phản hồi thất bại",
     "course_comments_no_comment": "Bạn là người đầu tiên phản hồi về khóa học này!!!",
     /* search teachers page */
-    "search_teachers_keyword": "Tìm kiếm theo tên, lĩnh vực",
+    "search_teachers_keyword": "Tìm kiếm theo tên",
     "search_teachers_field_label": "Lĩnh Vực:",
     "teacher_list_more": "Xem thêm",
     /* danh sach ngay trong tuan */

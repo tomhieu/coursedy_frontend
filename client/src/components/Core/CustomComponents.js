@@ -11,9 +11,9 @@ import {mStyles} from "utils/CustomStylesUtil";
 import {ActionSearch} from "material-ui/svg-icons/index";
 import {fullWhite} from "material-ui/styles/colors";
 
-export const renderField = ({input, label, type = 'text', disabled = false, customClassName, meta: {touched, error, warning}}) => (
+export const renderField = ({input, label, placeholder, type = 'text', disabled = false, customClassName, meta: {touched, error, warning}}) => (
     <div className='full-width-input-wrapper'>
-        <input {...input} placeholder={label} type={type} disabled={disabled} className={customClassName}/>
+        <input {...input} placeholder={placeholder ? placeholder : label} type={type} disabled={disabled} className={customClassName}/>
         {touched && ((error && <span className='input-errors'>{error}</span>) || (warning && <span>{warning}</span>))}
     </div>
 )

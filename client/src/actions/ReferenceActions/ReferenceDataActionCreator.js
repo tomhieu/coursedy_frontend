@@ -12,13 +12,9 @@ export const fetchCourseCategories = () => {
 
 export const fetchLocations = () => {
   return dispatch => {
-    Network().get('locations').then((response) => {
-      dispatch({
-        type: types.FETCH_LOCATIONS,
-        payload: response
-      })
-    }, (errors) => {
-      //  TODO handle error
+    dispatch({
+      type: types.FETCH_LOCATIONS,
+      payload: Network().get('locations')
     })
   }
 }

@@ -4,12 +4,21 @@ import {RaiseButton} from '../../components/Core/CustomComponents';
 import {reduxForm} from 'redux-form';
 import {connect} from 'react-redux';
 import * as TeacherActions from "../../actions/TeacherCreators";
-import { fetchCourseCategories } from 'actions/ReferenceActions/ReferenceDataActionCreator';
+import {mStyles} from "utils/CustomStylesUtil";
+import AutoComplete from "components/AutoComplete/AutoComplete";
+import {Chip} from "material-ui";
+import {
+  fetchCourseCategories, fetchLocations
+} from 'actions/ReferenceActions/ReferenceDataActionCreator'
+import cssModules from 'react-css-modules';
+import styles from './ListTeacher.module.scss';
+import { FilterOption } from '../../components/FilterOption/FilterOption'
 
 
 class SearchSectionContainer extends Component {
   componentDidMount() {
     this.props.dispatch(fetchCourseCategories())
+    this.props.dispatch(fetchLocations())
   }
 
   onSubmit(data) {
@@ -21,39 +30,75 @@ class SearchSectionContainer extends Component {
       handleSubmit
     } = this.props
 
-    let { categories }  = this.props
-
+    let { categories, locations }  = this.props
+    locations = [{id: 1, name: 'Ha Noi'}, {id: 2, name: 'HCM'}]
     return(
-      <div className="container search-teacher-container">
-        <div className="row">
-          <form onSubmit={handleSubmit(this.onSubmit.bind(this))} className="inline-form">
-            <div className="search-teacher-container__form col-md-12 col-sm-12">
-              <div className="row">
-                <div className={"col-md-6 col-sm-6 search-teacher-container__keyword"}>
-                  <FormField formGroupId="key_word_filter" showLabel={false}
-                             placeholder={this.context.t('search_teachers_keyword')}
-                             formControlName="key_word" typeField="custom_input">
-                  </FormField>
-                </div>
-
-                <div className={"col-md-4 col-sm-4 search-teacher-container__fields"}>
-                  <div className="row">
-                    <div className="col-md-12 col-sm-12">
-                      <FormField formGroupId="categories_id" showLabel={false}
-                                 options={categories.map((x) => {
-                                   return {text: x.name, id: x.id}
-                                 })}
-                                 placeholder={this.context.t('category')}
-                                 formControlName="category_ids"
-                                 typeField="multi_select">
-                      </FormField>
+      <div className="row">
+        <div className="col-xs-12 col-sm-12">
+          <form onSubmit={handleSubmit(()=>{})} className='inline-form' multiple={true}>
+            <div className={styles.filterActionBlock + " col-md-12 col-sm-12"}>
+              <div className="row full-height">
+                {/* Left auto complete search part */}
+                <div className="col-md-9 col-sm-9 full-height">
+                  <div className={styles.filterInputBox + " d-flex flex-vertical justify-content-center full-height"}>
+                    <div className="d-flex flex-horizontal">
+                      {
+                        [].map((sc) =>
+                          <Chip key={"filter_categories_" + sc.id}
+                                onRequestDelete={() => onRemoveFilter(sc.id, 'selectedCategories')}
+                                style={mStyles.chip}
+                                labelStyle={mStyles.chipLabelStyle}
+                                deleteIconStyle={mStyles.chipIconDelete}
+                          >{sc.name}</Chip>
+                        )
+                      }
+                      {
+                        [].map((f) =>
+                          <Chip key={"filter_locs_" + f.id}
+                                onRequestDelete={() => {}}
+                                style={mStyles.chip}
+                                labelStyle={mStyles.chipLabelStyle}
+                                deleteIconStyle={mStyles.chipIconDelete}
+                          >{f.name}</Chip>
+                        )
+                      }
                     </div>
+                    <AutoComplete placeholder={this.context.t('search_teachers_keyword')}
+                                  fieldName="key_word" fieldId="key_word_filter"
+                                  dataSource={[]}
+                                  handleAddCriteria={()=>{}}
+                                  loadSuggestions={()=>{}}
+                                  filters={[]}
+                                  show={[]}
+                                  isLoading={[]}
+                    />
                   </div>
                 </div>
-
-                <div className="col-md-2 col-sm-2">
-                  <div className="d-flex flex-horizontal">
-                    <RaiseButton label={this.context.t('filter')}/>
+                {/* Right filter part */}
+                <div className="col-md-3 col-sm-3 full-height st-border-left">
+                  <div className="d-flex flex-horizontal align-items-center flex-nowrap ml-15 mt-20">
+                    <div className={styles.filterOptionContainer}>
+                      <FilterOption label={this.context.t('course_category_title')}
+                                    options={categories.map((x) => {
+                                      return {name: x.name, id: x.id}
+                                    })}
+                                    selectedOptions={[]}
+                                    onSelectFilter={()=>{}}
+                                    type="multi-select"
+                                    name="selectedCategories">
+                      </FilterOption>
+                    </div>
+                    <div className={styles.filterOptionContainer}>
+                      <FilterOption label={this.context.t('location')}
+                                    options={locations.map((x) => {
+                                      return {name: x.name, id: x.id}
+                                    })}
+                                    selectedOptions={[]}
+                                    onSelectFilter={()=>{}}
+                                    type="single-select"
+                                    name="selectedLocations">
+                      </FilterOption>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -70,14 +115,19 @@ SearchSectionContainer.contextTypes = {
 }
 
 const mapStateToProps = (state) => {
+  const categories = state.referenceData.courseCategories || []
+  const locations = state.referenceData.locations || []
+
   return {
-    categories: state.referenceData.courseCategories
+    categories,
+    locations
   }
 }
+
 
 export default connect(
   mapStateToProps
 )(reduxForm({
   form: 'teacherFilterForm',
   fields: ['key_word', 'category_ids']
-})(SearchSectionContainer));
+})(cssModules(SearchSectionContainer, styles)));
