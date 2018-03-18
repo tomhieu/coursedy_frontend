@@ -27,6 +27,7 @@ import referenceData from './ReferenceDataReducer'
 import HomePage from './HomePageReducer'
 import Payment from './Payment'
 
+import StudentAccountReducer from './Student/Account/StudentAccountReducer'
 
 const rootReducer = combineReducers({
   // Apply all of the reducers here.
@@ -41,6 +42,8 @@ const rootReducer = combineReducers({
   PublicCourseDetail,
   courseDetails,
   TutorCourseList,
+  //Reducers for student
+  StudentAccountReducer,
 
   session,
   TutorProfile,

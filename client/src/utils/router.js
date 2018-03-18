@@ -25,7 +25,10 @@ const router = (
             <Route path="/courses" component={Pages.PublicCourseListPage} />
             <Route path="/course/:id" component={Pages.PublicCourseDetailPage}/>
             <Route path="/teachers" component={ListTeacherContainer} />
+
             <Route path="/dashboard" component={Pages.TutorDashboard} />
+            <Route path="/student/dashboard" component={Pages.StudentDashboardPage} />
+
             <Route path="/payment" component={Pages.PaymentPage} />
             <Route path="*" component={Pages.NotFoundPage} />
           </Switch>

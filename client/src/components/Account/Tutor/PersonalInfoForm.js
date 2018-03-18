@@ -2,7 +2,7 @@ import {Component} from "react";
 import FormField from "../../Core/FormField";
 import * as React from "react";
 import {savePersonData} from "actions/TutorAccountActionCreator";
-import {genders} from '../../../constants/TutorAccount'
+import {TutorAccountConstants} from '../../../constants/index'
 
 export class PersonalInfoForm extends Component {
 
@@ -32,7 +32,7 @@ export class PersonalInfoForm extends Component {
             <div >
               <FormField formGroupId="genderId" formLabel={this.context.t("account.person.info.gender")}
                          formControlName="gender" typeField="custom_select"
-                         options = {genders.map(g => {return {id: g[0], text: self.context.t(g[1])}})}
+                         options = {TutorAccountConstants.genders.map(g => {return {id: g[0], text: self.context.t(g[1])}})}
               />
             </div>
           </div>
