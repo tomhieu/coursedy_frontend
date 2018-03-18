@@ -5,7 +5,9 @@ import { connect } from 'react-redux';
 import Pagination from 'react-js-pagination';
 import LoadingMask from "../../../components/LoadingMask/LoadingMask";
 import * as CommonConstants from "utils/CommonConstant";
-
+import {FETCH_COURSES} from "constants/Courses";
+import { withRouter } from 'react-router'
+import * as WebConstants from "constants/WebConstants";
 
 
 class PublicCourseListContainer extends Component {
@@ -24,7 +26,17 @@ class PublicCourseListContainer extends Component {
     query['sort_by'] = this.props.sortBy
     query['sort_order'] = this.props.sortOrder
     this.props.dispatch(Actions.searchCourse(query))
+    this.props.dispatch({
+      type: WebConstants.HIDE_FOOTER
+    });
   }
+
+  componentWillUnmount() {
+    this.props.dispatch({
+      type: WebConstants.SHOW_FOOTER
+    });
+  }
+
 
   handlePageChange(currentPage) {
     console.log('DEBUG')
@@ -53,8 +65,9 @@ class PublicCourseListContainer extends Component {
   }
 
   render() {
+    const {courses, isFetching} = this.props;
     return (
-      <LoadingMask>
+      <LoadingMask belongingActions={[FETCH_COURSES]}>
         <div className="public-course-list">
           <CourseList
             {...this.props}
@@ -62,14 +75,19 @@ class PublicCourseListContainer extends Component {
             isPublic={true}
             itemPerRowInGridMode={4}
           />
-          <div className="clear-fix"></div>
-          <Pagination
-            activePage={this.props.currentPage}
-            itemsCountPerPage={CommonConstants.MAX_ITEM_PER_PAGE}
-            totalItemsCount={this.props.totalResult}
-            pageRangeDisplayed={5}
-            onChange={this.handlePageChange.bind(this)}
-          />
+          {
+            !isFetching && courses.length > 0 ? (
+              <div className="pagination-course_list ">
+                <Pagination
+                  activePage={this.props.currentPage}
+                  itemsCountPerPage={CommonConstants.MAX_ITEM_PER_PAGE}
+                  totalItemsCount={this.props.totalResult}
+                  pageRangeDisplayed={5}
+                  onChange={this.handlePageChange.bind(this)}
+                />
+              </div>
+            ) : null
+          }
         </div>
       </LoadingMask>
     )
@@ -94,6 +112,7 @@ const mapStateToProps = (state) => ({
   selectedSpecializes: state.CourseFilter.selectedSpecializes,
   selectedWeekdays: state.CourseFilter.selectedWeekdays,
   courses: state.CourseFilter.courses,
+  isFetching: state.CourseFilter.isFetching,
   currentPage: state.CourseFilter.currentPage,
   totalResult: state.CourseFilter.totalResult,
   displayMode: state.CourseFilter.displayMode,
@@ -108,4 +127,4 @@ const mapStateToProps = (state) => ({
 
 export default connect(
   mapStateToProps
-)(PublicCourseListContainer);
+)(withRouter(PublicCourseListContainer));

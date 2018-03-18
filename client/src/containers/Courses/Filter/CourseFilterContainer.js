@@ -2,10 +2,12 @@ import React, {Component} from 'react';
 import {CourseFilter} from '../../../components/index';
 import * as RefrenceActions from '../../../actions/ReferenceActions/ReferenceDataActionCreator'
 import * as CourseFilterActions from '../../../actions/CourseFilterActionCreator'
+import * as asyncActions from '../../../actions/AsyncActionCreator'
 import {connect} from 'react-redux';
 import {reduxForm} from "redux-form";
 import {MAX_FEE, MIN_FEE} from "utils/CommonConstant";
 import {TT} from "utils/locale";
+import {dispatch} from "redux";
 
 class CourseFilterContainer extends Component {
 
@@ -45,6 +47,11 @@ class CourseFilterContainer extends Component {
   }
 
   loadSuggestions(event) {
+    if (event.target.value === '') {
+      this.props.dispatch({type: asyncActions.CLEAR_SUGGESTION});
+      return;
+    }
+
     const filters = this.props.filters;
     const query = {
       q: event.target.value,
@@ -92,6 +99,11 @@ class CourseFilterContainer extends Component {
     return currentFilters;
   }
 
+  autoCompleteSearchCourse(id) {
+    this.props.dispatch({type: asyncActions.CLEAR_SUGGESTION});
+    this.context.router.history.push('/course/' + id);
+  }
+
   removeFilterCriteria(currentFilters, filterValue, filterType) {
     if (Array.isArray(currentFilters[filterType])) {
       const clonedFilters = JSON.parse(JSON.stringify(currentFilters[filterType]))
@@ -113,13 +125,15 @@ class CourseFilterContainer extends Component {
                     loadSuggestions={this.loadSuggestions.bind(this)}
                     onSelectFilter={this.doSelectFilter.bind(this)}
                     onRemoveFilter={this.doRemoveFilter.bind(this)}
+                    onSelectSuggestion={this.autoCompleteSearchCourse.bind(this)}
       />
     )
   }
 }
 
 CourseFilterContainer.contextTypes = {
-  t: React.PropTypes.func.isRequired
+  t: React.PropTypes.func.isRequired,
+  router: React.PropTypes.object
 }
 
 export const getSelectedSpecializesFromCategory = (categories, selectedCategories) => {

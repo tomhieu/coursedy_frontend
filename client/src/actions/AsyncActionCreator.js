@@ -3,6 +3,14 @@ export const PENDING = '_PENDING';
 export const REJECTED = '_REJECTED';
 
 /**
+ * Define general action to manage async actions
+ * @type {string}
+ */
+export const ADD_ASYNC_ACTION = 'ADD_ASYNC_ACTION';
+export const REMOVE_ASYNC_ACTION = 'REMOVE_ASYNC_ACTION';
+
+
+/**
  * Define all actions for Course
  * @type {string}
  */
@@ -70,9 +78,14 @@ export const REMOVE_COURSE = "REMOVE_COURSE"
 export const REMOVE_ALL_COURSES = "REMOVE_ALL_COURSES"
 export const LOAD_SUGGESTION = "LOAD_SUGGESTION"
 export const UPDATE_FILTER_CRITERIA = "UPDATE_FILTER_CRITERIA"
+export const CLEAR_SUGGESTION = "CLEAR_SUGGESTION"
 
 /**
  * Define actions of Teachers page
  */
 export const LOAD_SUGGESTION_TEACHERS = 'LOAD_SUGGESTION_TEACHERS'
 export const UPDATE_FILTER_CRITERIA_TEACHERS = "UPDATE_FILTER_CRITERIA_TEACHERS"
+/**
+ * Define actions of Homepage
+ */
+export const TOP_TEACHERS = "TOP_TEACHERS"

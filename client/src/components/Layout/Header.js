@@ -7,70 +7,58 @@ import { LinkContainer } from 'react-router-bootstrap'
 class Header extends Component {
   render() {
     return (
-      <Navbar className="navbar navbar-default">
-        <Navbar.Header>
-          <a href="/"><img
-            src="/logo2.png" className="logo"
-            alt="logo"/></a>
-          <Navbar.Toggle />
-        </Navbar.Header>
-        <Navbar.Collapse id="responsive-menu">
-          <Nav pullRight>
-            <LinkContainer to="/" role="button">
-              <NavItem eventKey={1}> {this.context.t('home_page')} </NavItem>
-            </LinkContainer>
-            <LinkContainer to="/teachers" role="button">
-              <NavItem eventKey={2}> {this.context.t('find_teachers')} </NavItem>
-            </LinkContainer>
-            <LinkContainer to="/courses" role="button">
-              <NavItem eventKey={3}> {this.context.t('find_courses')} </NavItem>
-            </LinkContainer>
-
-            {/*<NavDropdown title={this.context.t('find_courses')} id="basic-nav-dropdown" className="vertical-megamenu">
-              <LinkContainer to="/" role="button">
-                <MenuItem eventKey={3.1}>Computer Science</MenuItem>
+      <nav className="navbar navbar-expand-lg navbar-light navbar-default bg-light">
+        <a className="navbar-brand" href="#"><img src="/logo2.png" className="logo" alt="logo"/></a>
+        <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span className="navbar-toggler-icon"></span>
+        </button>
+        <div className="collapse navbar-collapse" id="navbarNav">
+          <ul className="navbar-nav">
+            <li className="nav-item active">
+              <LinkContainer className="nav-link" to="/" role="button">
+                <div>
+                  <span>{this.context.t('home_page')}</span>
+                  <span className="sr-only">(current)</span>
+                </div>
               </LinkContainer>
-              <LinkContainer to="/ss" role="button">
-                <MenuItem eventKey={3.2}>Maths</MenuItem>
+            </li>
+            <li className="nav-item">
+              <LinkContainer className="nav-link" to="/teachers" role="button">
+                <span>{this.context.t('find_teachers')}</span>
               </LinkContainer>
-              <LinkContainer to="/" role="button">
-                <MenuItem eventKey={3.3}>Science</MenuItem>
+            </li>
+            <li className="nav-item">
+              <LinkContainer className="nav-link" to="/courses" role="button">
+                <span>{this.context.t('find_courses')}</span>
               </LinkContainer>
-              
-              <LinkContainer to="/" role="button">
-                <MenuItem eventKey={3.4}>SSSSSS</MenuItem>
+            </li>
+            <li className="nav-item">
+              <LinkContainer className="nav-link disabled" to="/" role="button">
+                <span>{this.context.t('forum')}</span>
               </LinkContainer>
-            </NavDropdown>*/}
+            </li>
+            <li className={this.props.session.currentUser ? 'hidden' : 'nav-item'}>
+              <LinkContainer className="nav-link" to="/login">
+                <span className="nav-btn"> <i className="fa  fa-sign-in"></i> &nbsp; {this.context.t('login')}
+                  <span className="hidden-navbtn"> | {this.context.t('register')} </span>
+                </span>
+              </LinkContainer>
+            </li>
 
-            {/*<LinkContainer to="/" role="button">*/}
-              {/*<NavItem eventKey={4}>{this.context.t('contact')}</NavItem>*/}
-            {/*</LinkContainer>*/}
-
-            <LinkContainer to="/" role="button">
-              <NavItem eventKey={5}> {this.context.t('forum')}</NavItem>
-            </LinkContainer>
-
-            <LinkContainer to="/login" className={this.props.session.currentUser ? 'hidden' : ''}>
-              <NavItem eventKey={6}>
-                <span className="nav-btn"> <i className="fa  fa-sign-in"></i> &nbsp; {this.context.t('login')} <span
-                  className="hidden-navbtn"> | {this.context.t('register')} </span></span>
-              </NavItem>
-            </LinkContainer>
-
-            <LinkContainer to="/dashboard/courses/list" className={this.props.session.currentUser ? '' : 'hidden'}>
-              <NavItem eventKey={8}>
+            <li className={this.props.session.currentUser ? 'nav-item' : 'hidden'}>
+              <LinkContainer className="nav-link" to="/dashboard/courses/list">
                 <span className="nav-btn"> <i className="fa fa-user"></i> &nbsp; {this.context.t('dashboard')}</span>
-              </NavItem>
-            </LinkContainer>
+              </LinkContainer>
+            </li>
 
-            <LinkContainer onClick={this.props.signOut} to="#" className={this.props.session.currentUser ? '' : 'hidden'}>
-              <NavItem eventKey={7}>
+            <li className={this.props.session.currentUser ? 'nav-item' : 'hidden'}>
+              <LinkContainer className="nav-link" onClick={this.props.signOut} to="#">
                 <span className="nav-btn"> <i className="fa fa-sign-out"></i> &nbsp; {this.context.t('signout')}</span>
-              </NavItem>
-            </LinkContainer>
-          </Nav>
-        </Navbar.Collapse>
-      </Navbar>
+              </LinkContainer>
+            </li>
+          </ul>
+        </div>
+      </nav>
     )
   }
 }

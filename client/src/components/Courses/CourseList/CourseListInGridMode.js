@@ -28,21 +28,18 @@ class CourseListInGridMode extends Component {
       '1': 'col-xs-12 col-sm-12 col-md-12'
     }
     return (
-      <div className={styles.courseListContainer + " row"}>
+      <div className="d-flex flex-horizontal flex-wrap">
       {
         this.props.courses.map((item, index) => (
-          <div key={'course-' +index}>
-            {(index % itemPerRowInGridMode == 0 ? <div className="clearfix"></div> : null)}
-            <div className={columnClasses[itemPerRowInGridMode]}>
-              <CourseItem item={item} 
-                deleteCourse={deleteCourse}
-                selectCourseHdl={selectCourseHdl}
-                displayMode={displayMode}
-                selectedCourses={selectedCourses} 
-                isPublic={isPublic}
-                isFollowed={isPublic ? (followedCourses.indexOf(item.id) >= 0) : false}
-              />
-            </div>
+          <div className="d-flex course-item-wrapper" key={'course-' +index}>
+            <CourseItem item={item}
+                        deleteCourse={deleteCourse}
+                        selectCourseHdl={selectCourseHdl}
+                        displayMode={displayMode}
+                        selectedCourses={selectedCourses}
+                        isPublic={isPublic}
+                        isFollowed={isPublic ? (followedCourses.indexOf(item.id) >= 0) : false}
+            />
           </div>
         ))
       }

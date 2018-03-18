@@ -31,26 +31,29 @@ class CourseDetailGeneral extends Component {
           } alt=""/>
         </div>{/* Course thumb */}
         <div className="clearfix"></div>
-        
-        <br/>
-        <div className="col-md-10">
-          <h2 className="heading-line course-title">{course.title}</h2>
-        </div>{/* Course title */}
 
-        <div className="col-md-2 text-right">
-          <PublicCourseDetailFollowModalContainer />
-        </div>{/* Course follow */}
+        <br/>
+        <div className="row">
+          <div className="col-md-10">
+            <h2 className="heading-line course-title">{course.title}</h2>
+          </div>{/* Course title */}
+
+          <div className="col-md-2 text-right">
+            <PublicCourseDetailFollowModalContainer />
+          </div>{/* Course follow */}
+        </div>
         <div className="clearfix"></div>
 
         <div className={'col-md-12 ' + styles.noPad}>
-          <div className="col-md-7">
-            <table className="table">
-              <thead>
+          <div className="row">
+            <div className="col-md-7">
+              <table className="table">
+                <thead>
                 <tr className={styles.rowPrimary}>
                   <th colSpan="2"><b>{this.context.t('course_info')}</b></th>
                 </tr>
-              </thead>
-              <tbody>
+                </thead>
+                <tbody>
                 <tr>
                   <td className="text-left">{this.context.t('tuition_fee')}</td>
                   <td className="text-right">{ObjectUtils.currencyFormat(course.tuition_fee, course.currency) }</td>
@@ -73,18 +76,19 @@ class CourseDetailGeneral extends Component {
                   <td className="text-left">{this.context.t('period')}</td>
                   <td className="text-right">{course.period} {course.period_type}</td>
                 </tr>
-              </tbody>
-            </table>
-          </div>{/* Course info */}
-          <div className="col-md-5">
-            {
-              course_tutor && course_tutor != undefined ?
-              <CourseTutor
-                course={course}
-                course_tutor={course_tutor}
-              ></CourseTutor> : null
-            }
-          </div>{/* Course tutor */}
+                </tbody>
+              </table>
+            </div>{/* Course info */}
+            <div className="col-md-5">
+              {
+                course_tutor && course_tutor != undefined ?
+                  <CourseTutor
+                    course={course}
+                    course_tutor={course_tutor}
+                  ></CourseTutor> : null
+              }
+            </div>{/* Course tutor */}
+          </div>
         </div>{/* Course info & course tutor */}
         <div className="clearfix"></div>
         

@@ -1,5 +1,4 @@
 import * as courseTypes from 'constants/Courses';
-import * as homePageTypes from 'constants/HomePage';
 import data from '../configs/data.json';
 import * as asyncActs from 'actions/AsyncActionCreator';
 
@@ -32,14 +31,13 @@ const HomePage = (state = {
       return { ...state, newCourses: [], error: action.payload };
 
     // top teachers
-    case homePageTypes.TOP_TEACHERS + asyncActs.FULFILLED:
+    case asyncActs.TOP_TEACHERS + asyncActs.FULFILLED:
       return {
         ...state,
         topTeachers: action.payload,
         totalTeachers: action.payload.length
       };
-
-    case homePageTypes.TOP_TEACHERS + asyncActs.REJECTED:
+    case asyncActs.TOP_TEACHERS + asyncActs.REJECTED:
       return {
         ...state, topTeachers: [], totalTeachers: 0, error: action.payload
       };

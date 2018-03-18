@@ -21,77 +21,6 @@ class CourseFilter extends Component {
     }
   }
 
-  toggleFilter() {
-    this.setState(
-      {openAdFilter: !this.state.openAdFilter}
-    )
-  }
-
-  renderCourseLevels(selectedCategories) {
-    return (
-      <div className="checkbox-group">
-        {
-          selectedCategories.map(cate =>
-            <div key={cate.id}>
-              <span>{cate.name}</span>
-              <FieldArray name="filter_course_levels" component={() =>
-                <div className="d-flex flex-horizontal flex-wrap">
-                  {cate.course_levels.map((filter_course_level) =>
-                    <div key={filter_course_level.id} className="lg-check-box-field">
-                      <FormField formGroupId="filter_course_levels" showLabel={false}
-                                 formLabel={filter_course_level.name}
-                                 formControlName={"filter_course_levels[" + filter_course_level.id + "]"}
-                                 typeField="checkbox">
-                      </FormField>
-                    </div>
-                  )}
-                </div>
-              }/>
-            </div>
-          )
-        }
-      </div>
-    )
-  }
-
-  renderDayOfWeek() {
-    return (
-      <div className="checkbox-group">
-        <FieldArray name="course_schedule_days" component={() =>
-          <div className="d-flex flex-horizontal flex-wrap">
-            {
-              DAYS_IN_WEEK.map((day) => {
-                <div key={day.id} className="md-check-box-field">
-                  <FormField formGroupId="course_schedule_day" showLabel={false}
-                             formLabel={day.text}
-                             formControlName={"course_schedule_days[" + day.id + "]"}
-                             typeField="checkbox">
-                  </FormField>
-                </div>
-              })
-            }
-          </div>
-        }/>
-      </div>
-    )
-  }
-
-  renderTutorFees(tuitionFees) {
-    return (
-      <div className="d-flex flex-horizontal">
-        <div className="select-course-fee">
-          <FormField formGroupId="filter_min_fees" showLabel={false} options={tuitionFees}
-                     formControlName={"fees"} typeField="custom_select">
-          </FormField>
-        </div>
-      </div>
-    )
-  }
-
-  autoCompleteSearchCourse(id, text) {
-    this.context.router.history.push('/course/' + id);
-  }
-
   render() {
     let {
       handleSubmit,
@@ -101,6 +30,7 @@ class CourseFilter extends Component {
       changeDisplayModeHdl,
       suggestions,
       loadSuggestions,
+      onSelectSuggestion,
       onRemoveFilter,
       filters,
       showSuggestion,
@@ -131,13 +61,13 @@ class CourseFilter extends Component {
       }
     };
     return (
-      <div className="row">
-        <div className="col-xs-12 col-sm-12">
-          <form onSubmit={handleSubmit(this.props.onSubmit)} className='inline-form' multiple={true}>
-            <div className={styles.filterActionBlock + " col-md-12 col-sm-12"}>
-              <div className="row full-height">
-                <div className="col-md-7 col-sm-7 full-height">
-                  <div className={styles.filterInputBox + " d-flex flex-vertical justify-content-center full-height"}>
+      <div className="d-flex flex-g1">
+        <div className="d-flex flex-g1">
+          <form onSubmit={handleSubmit(this.props.onSubmit)} className='flex-g1 course-filter-form inline-form flex-vertical' multiple={true}>
+            <div className={styles.filterActionBlock}>
+              <div className="d-flex flex-wrap full-height">
+                <div className={"d-flex flex-nowrap full-height " + styles.filterTextContainer}>
+                  <div className={styles.filterInputBox + " d-flex flex-nowrap flex-vertical justify-content-center full-height"}>
                     <div className="d-flex flex-horizontal">
                       {
                         selectedWeekDays.map((f) =>
@@ -201,7 +131,7 @@ class CourseFilter extends Component {
                     <AutoComplete placeholder={this.context.t('search_course')}
                                   fieldName="key_word" fieldId="key_word_filter"
                                   dataSource={suggestions}
-                                  handleAddCriteria={this.autoCompleteSearchCourse.bind(this)}
+                                  handleAddCriteria={onSelectSuggestion}
                                   loadSuggestions={loadSuggestions}
                                   filters={filters}
                                   show={showSuggestion}
@@ -209,7 +139,7 @@ class CourseFilter extends Component {
                     />
                   </div>
                 </div>
-                <div className="col-md-5 col-sm-5 full-height st-border-left">
+                <div className={"full-height st-border-left " + styles.advancedFilter}>
                   <div className="d-flex flex-horizontal align-items-center flex-nowrap ml-15 mt-20">
                     <div className={styles.filterOptionContainer}>
                       <FilterOption label={this.context.t('day_of_week')}
@@ -276,20 +206,11 @@ class CourseFilter extends Component {
             </div>
 
             {/* Result Block */}
-            <div className={'col-md-12 ' + styles.filterResultBlock}>
-              <div className="d-flex flex-horizontal align-items-center">
-                <div className={styles.listResultInfo + " d-flex flex-horizontal justify-content-left"}>
-                 {/*<div className={styles.checkAllBtn + " d-flex align-items-center"}>
-                    <FormField formGroupId="select_all_id" showLabel={false} formControlName="select_all"
-                               typeField="checkbox" iconStyle={mStyles.iconCheckBox}>
-                    </FormField>
-                  </div>*/}
-                  {/*<PublicCourseListFollowModalContainer />*/}
-
-                </div>
-                <div className={styles.orderDisplayResult + " d-flex flex-horizontal justify-content-end"}>
+            <div className={styles.filterResultBlock}>
+              <div className="d-flex flex-horizontal justify-content-end">
+                <div className={styles.orderDisplayResult + " d-flex flex-horizontal align-items-center justify-content-end"}>
                   <div className={styles.totalCoursesBox}>
-                    <span className={styles.textTotalResult}>
+                    <span className={styles.textTotalResult + " d-flex justify-content-end"}>
                       {this.context.t("total_result", {total: totalResult !== undefined ? totalResult : 0})}
                     </span>
                   </div>
@@ -320,8 +241,7 @@ class CourseFilter extends Component {
 }
 
 CourseFilter.contextTypes = {
-  t: React.PropTypes.func.isRequired,
-  router: React.PropTypes.object
+  t: React.PropTypes.func.isRequired
 }
 
 CourseFilter.propTypes = {
@@ -331,7 +251,9 @@ CourseFilter.propTypes = {
   suggestions: React.PropTypes.array.isRequired,
   loadSuggestions: React.PropTypes.func.isRequired,
   onRemoveFilter: React.PropTypes.func.isRequired,
-  filters: React.PropTypes.object.isRequired
+  filters: React.PropTypes.object.isRequired,
+  onSelectSuggestion: React.PropTypes.func.isRequired,
+  showSuggestion: React.PropTypes.bool.isRequired
 };
 
 export default cssModules(CourseFilter, styles);
