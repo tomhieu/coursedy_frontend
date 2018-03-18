@@ -122,7 +122,7 @@ CourseFilterContainer.contextTypes = {
   t: React.PropTypes.func.isRequired
 }
 
-const getSelectedSpecializesFromCategory = (categories, selectedCategories) => {
+export const getSelectedSpecializesFromCategory = (categories, selectedCategories) => {
   if (!selectedCategories) {
     return [];
   }

@@ -1,133 +1,171 @@
-import React, {Component} from 'react';
-import FormField from '../../components/Core/FormField';
-import {RaiseButton} from '../../components/Core/CustomComponents';
-import {reduxForm} from 'redux-form';
-import {connect} from 'react-redux';
-import * as TeacherActions from "../../actions/TeacherCreators";
-import {mStyles} from "utils/CustomStylesUtil";
-import AutoComplete from "components/AutoComplete/AutoComplete";
-import {Chip} from "material-ui";
+import React, { Component } from 'react';
+import { reduxForm } from 'redux-form';
+import { connect } from 'react-redux';
+import * as TeacherActions from '../../actions/TeacherCreators';
 import {
-  fetchCourseCategories, fetchLocations
-} from 'actions/ReferenceActions/ReferenceDataActionCreator'
+  fetchCourseCategories
+} from 'actions/ReferenceActions/ReferenceDataActionCreator';
 import cssModules from 'react-css-modules';
 import styles from './ListTeacher.module.scss';
-import { FilterOption } from '../../components/FilterOption/FilterOption'
+import autoCompleteStyles from 'components/AutoComplete/AutoComplete.module.scss';
+import { SERVER_NAME } from 'utils/CommonConstant';
+import { getSelectedSpecializesFromCategory } from '../Courses/Filter/CourseFilterContainer';
+import AutoCompleteSearchTeachers from './AutoCompleSearchTeachers';
+import SelectFilterTeachers from './SelectFilterTeachers';
 
 
 class SearchSectionContainer extends Component {
   componentDidMount() {
-    this.props.dispatch(fetchCourseCategories())
-    this.props.dispatch(fetchLocations())
+    this.props.dispatch(fetchCourseCategories());
+  }
+
+  searchQuery(q, filters) {
+    return {
+      q,
+      categories: filters.selectedCategories.map(category => category.id),
+      specializes: filters.selectedSpecializes.map(spec => spec.id)
+    };
+  }
+
+  searchTeachers(filters) {
+    this.props.dispatch(
+      TeacherActions.searchTeachers(
+        this.searchQuery(filters.term, filters)
+      )
+    );
+  }
+
+  loadSuggestionsTeacher(event) {
+    this.props.dispatch(
+      TeacherActions.loadSuggestionsTeacher(
+        this.searchQuery(event.target.value, this.props.filters)
+      )
+    );
   }
 
   onSubmit(data) {
-    this.props.dispatch(TeacherActions.fetchTeachers(data))
+    this.props.dispatch(
+      TeacherActions.searchTeachers(
+        this.searchQuery(data.key_word, this.props.filters)
+      )
+    );
+  }
+
+  renderSuggestion(suggestion, handleAddCriteria) {
+    if (!suggestion.user) {
+      return null
+    }
+    return (
+      <div className="d-flex flex-horizontal pt-10 pl-10"
+           key={'suggestion_' + suggestion.id}>
+        <div>
+          <img
+            src={suggestion.avatar ? SERVER_NAME + suggestion.avatar : 'http://placehold.it/75x75'}
+            alt=""
+            className={autoCompleteStyles.itemAvatar + ' img-responsive img-circle'}/>
+        </div>
+        <div className={autoCompleteStyles.suggestionLine}>
+          <a className="pl-10 d-flex flex-vertical suggestion-line"
+             onClick={() => handleAddCriteria(suggestion.id, suggestion.title)}>
+            <span className="header">{suggestion.title}</span>
+            <span className="sub-header">{suggestion.user.name}</span>
+          </a>
+        </div>
+      </div>
+    );
+  }
+
+  removeFilterCriteria(currentFilters, filterValue, filterType) {
+    if (Array.isArray(currentFilters[filterType])) {
+      const clonedFilters = JSON.parse(JSON.stringify(currentFilters[filterType]));
+      currentFilters[filterType] = clonedFilters.filter(f => f.id !== Number(filterValue));
+    } else {
+      currentFilters[filterType] = true;
+    }
+    return currentFilters;
+  }
+
+  addFilterCriteria(currentFilters, filterValue, filterType) {
+    // handle for multiple select filter options
+    if (Array.isArray(currentFilters[filterType])) {
+      let selectedFilters = JSON.parse(JSON.stringify(currentFilters[filterType]));
+      selectedFilters.push(filterValue);
+      currentFilters[filterType] = selectedFilters;
+    } else {
+      currentFilters.term = filterValue;
+    }
+
+    return currentFilters;
+  }
+
+  doRemoveFilter(filterId, typeFilter) {
+    const removedFilters = this.removeFilterCriteria(this.props.filters, filterId, typeFilter);
+    this.props.dispatch(TeacherActions.updateFilterTeacher(removedFilters));
+    this.searchTeachers(removedFilters);
+  }
+
+  doSelectFilter(filter, category) {
+    let nextFilters = this.addFilterCriteria(this.props.filters, filter, category);
+    this.props.dispatch(TeacherActions.updateFilterTeacher(nextFilters));
+    this.searchTeachers(nextFilters);
+  }
+
+  handleAddCriteria(id, title) {
+    this.context.router.history.push('/teacher/' + id);
   }
 
   render() {
     let {
-      handleSubmit
-    } = this.props
+      handleSubmit, categories, suggestions, showSuggestion, loadingSuggestion, filters, listSpecializes
+    } = this.props;
+    const { selectedCategories, selectedSpecializes } = filters;
 
-    let { categories, locations }  = this.props
-    locations = [{id: 1, name: 'Ha Noi'}, {id: 2, name: 'HCM'}]
-    return(
+    return (
       <div className="row">
         <div className="col-xs-12 col-sm-12">
-          <form onSubmit={handleSubmit(()=>{})} className='inline-form' multiple={true}>
-            <div className={styles.filterActionBlock + " col-md-12 col-sm-12"}>
+          <form onSubmit={handleSubmit(this.onSubmit.bind(this))} className='inline-form' multiple={true}>
+            <div className={styles.filterActionBlock + ' col-md-12 col-sm-12'}>
               <div className="row full-height">
-                {/* Left auto complete search part */}
-                <div className="col-md-9 col-sm-9 full-height">
-                  <div className={styles.filterInputBox + " d-flex flex-vertical justify-content-center full-height"}>
-                    <div className="d-flex flex-horizontal">
-                      {
-                        [].map((sc) =>
-                          <Chip key={"filter_categories_" + sc.id}
-                                onRequestDelete={() => onRemoveFilter(sc.id, 'selectedCategories')}
-                                style={mStyles.chip}
-                                labelStyle={mStyles.chipLabelStyle}
-                                deleteIconStyle={mStyles.chipIconDelete}
-                          >{sc.name}</Chip>
-                        )
-                      }
-                      {
-                        [].map((f) =>
-                          <Chip key={"filter_locs_" + f.id}
-                                onRequestDelete={() => {}}
-                                style={mStyles.chip}
-                                labelStyle={mStyles.chipLabelStyle}
-                                deleteIconStyle={mStyles.chipIconDelete}
-                          >{f.name}</Chip>
-                        )
-                      }
-                    </div>
-                    <AutoComplete placeholder={this.context.t('search_teachers_keyword')}
-                                  fieldName="key_word" fieldId="key_word_filter"
-                                  dataSource={[]}
-                                  handleAddCriteria={()=>{}}
-                                  loadSuggestions={()=>{}}
-                                  filters={[]}
-                                  show={[]}
-                                  isLoading={[]}
-                    />
-                  </div>
-                </div>
-                {/* Right filter part */}
-                <div className="col-md-3 col-sm-3 full-height st-border-left">
-                  <div className="d-flex flex-horizontal align-items-center flex-nowrap ml-15 mt-20">
-                    <div className={styles.filterOptionContainer}>
-                      <FilterOption label={this.context.t('course_category_title')}
-                                    options={categories.map((x) => {
-                                      return {name: x.name, id: x.id}
-                                    })}
-                                    selectedOptions={[]}
-                                    onSelectFilter={()=>{}}
-                                    type="multi-select"
-                                    name="selectedCategories">
-                      </FilterOption>
-                    </div>
-                    <div className={styles.filterOptionContainer}>
-                      <FilterOption label={this.context.t('location')}
-                                    options={locations.map((x) => {
-                                      return {name: x.name, id: x.id}
-                                    })}
-                                    selectedOptions={[]}
-                                    onSelectFilter={()=>{}}
-                                    type="single-select"
-                                    name="selectedLocations">
-                      </FilterOption>
-                    </div>
-                  </div>
-                </div>
+                <AutoCompleteSearchTeachers {...{
+                  selectedCategories, selectedSpecializes, suggestions,
+                  filters, showSuggestion, loadingSuggestion,
+                  doRemoveFilter: this.doRemoveFilter.bind(this),
+                  handleAddCriteria: this.handleAddCriteria.bind(this),
+                  loadSuggestionsTeacher: this.loadSuggestionsTeacher.bind(this),
+                  renderSuggestion: this.renderSuggestion.bind(this),
+                }}/>
+
+                <SelectFilterTeachers {...{
+                  categories, selectedCategories, selectedSpecializes,
+                  listSpecializes, doSelectFilter: this.doSelectFilter.bind(this),
+                }} />
               </div>
             </div>
           </form>
         </div>
       </div>
-    )
+    );
   }
 }
+
 
 SearchSectionContainer.contextTypes = {
-  t: React.PropTypes.func.isRequired
-}
+  t: React.PropTypes.func.isRequired, router: React.PropTypes.object
+};
 
 const mapStateToProps = (state) => {
+  const { suggestions, filters, showSuggestion, loadingSuggestion } = state.Teachers
   const categories = state.referenceData.courseCategories || []
-  const locations = state.referenceData.locations || []
-
   return {
     categories,
-    locations
+    suggestions,
+    filters,
+    showSuggestion,
+    loadingSuggestion,
+    listSpecializes: getSelectedSpecializesFromCategory(categories, filters.selectedCategories),
   }
-}
+};
 
-
-export default connect(
-  mapStateToProps
-)(reduxForm({
-  form: 'teacherFilterForm',
-  fields: ['key_word', 'category_ids']
+export default connect(mapStateToProps)(reduxForm({
+  form: 'teacherFilterForm', fields: ['key_word', 'category_ids']
 })(cssModules(SearchSectionContainer, styles)));

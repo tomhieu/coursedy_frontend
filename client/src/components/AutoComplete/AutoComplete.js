@@ -30,23 +30,19 @@ class AutoComplete extends Component {
   }
 
   onBlur() {
-    console.log("on blur event");
-    // this.setState({show: false});
   }
 
   onFocus() {
-    console.log("on focus event");
   }
 
   onKeyPress(e) {
-    console.log("on key press");
     if (e.key === 'Enter') {
       this.props.handleAddCriteria("", "", e.target.value)
     }
   }
 
   render() {
-    const {show, isLoading, handleRequestDeleteChip, placeholder, fieldName, dataSource, handleAddCriteria, loadSuggestions, filters} = this.props;
+    const {show, isLoading, handleRequestDeleteChip, placeholder, fieldName, dataSource, handleAddCriteria, loadSuggestions, filters, renderSuggestion} = this.props;
     return (
       <div className={styles.filterBox + " d-flex flex-vertical"}>
         <div className="d-flex flex-horizontal">
@@ -63,13 +59,15 @@ class AutoComplete extends Component {
                    onKeyPress={this.onKeyPress.bind(this)}/>
           </div>
         </div>
+
         {
-          dataSource.length > 0 && show ?
+          dataSource.length && show ?
             <div className={styles.modalSuggestion + " flex flex-vertical"}>
               {
-                dataSource.map((gs) => (
-                  this.renderSuggestion(gs, handleAddCriteria)
-                ))
+                renderSuggestion ? renderSuggestion() :
+                  dataSource.map((gs) => (
+                    this.renderSuggestion(gs, handleAddCriteria)
+                  ))
               }
             </div> : isLoading ? <div>Loading...</div> :
             <div className={styles.modalSuggestion + " flex flex-vertical"}>
