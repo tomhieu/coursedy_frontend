@@ -1,13 +1,13 @@
 import {Component} from "react";
-import FormField from "../../../components/Core/FormField";
+import FormField from "../../components/Core/FormField";
 import * as React from "react";
 import {connect} from "react-redux";
 import {reduxForm} from "redux-form";
-import styles from './ChangePassword.module.scss';
+import styles from './ChangePasswordContainer.module.scss';
 import cssModules from 'react-css-modules';
-import {updatePassword} from "../../../actions/TutorAccountActionCreator";
+import {updatePassword} from "../../actions/TutorAccountActionCreator";
 
-class ChangePassword extends Component {
+class ChangePasswordContainer extends Component {
   constructor(props) {
     super(props);
     this.updatePassword = this.updatePassword.bind(this);
@@ -50,7 +50,7 @@ class ChangePassword extends Component {
   }
 };
 
-ChangePassword.contextTypes = {
+ChangePasswordContainer.contextTypes = {
   t: React.PropTypes.func.isRequired
 }
 
@@ -61,4 +61,4 @@ const mapStateToProps = state => {
 export default connect(mapStateToProps)(reduxForm({
   form: 'changePasswordForm',
   fields: ['currentPassword', 'newPassword', 'newPassword2']
-})(cssModules(ChangePassword, styles)));
+})(cssModules(ChangePasswordContainer, styles)));

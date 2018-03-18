@@ -1,7 +1,7 @@
 import LoginFormContainer from './Auth/LoginFormContainer';
 import RegisterFormContainer from './Auth/RegisterFormContainer';
 import SearchFormContainer from './SearchForm/SearchFormContainer';
-import PersonInfoContainer from './Account/Tutor/PersonInfo';
+import PersonInfoContainer from './Account/PersonInfoContainer';
 import TutorEducation from './Account/Tutor/TutorEducation';
 
 import PublicCourseListContainer from './Courses/CourseList/PublicCourseListContainer';
@@ -14,6 +14,8 @@ import CourseFilterContainer from './Courses/Filter/CourseFilterContainer';
 import RoleAuthorization from '../components/RoleAuthorization';
 
 import CommentFormContainer from './Courses/CourseDetail/CommentFormContainer';
+import * as AccountContainers from './Account'
+import * as StudentContainers from './Student'
 
 export {
   LoginFormContainer,
@@ -31,4 +33,7 @@ export {
 
   CourseFilterContainer,
   CommentFormContainer,
+  
+  AccountContainers,
+  StudentContainers,
 }
