@@ -1,8 +1,10 @@
-import {RECEIVE_DRGREES_DATA, RECEIVE_EDUCATION_DATA, RECEIVE_PERSON_DATA} from "actions/TutorAccountActionCreator";
+import {
+  TutorAccountTypes
+} from "../constants/index";
 
 const loadPersonData = (state = {}, action) => {
   switch (action.type) {
-    case RECEIVE_PERSON_DATA:
+    case TutorAccountTypes.RECEIVE_PERSON_DATA:
       return {
         ...state,
         data: {

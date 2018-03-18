@@ -1,22 +1,12 @@
 import Network from "utils/network";
-import { TutorAccountTypes } from '../constants/index'
-
-export const RECEIVE_PERSON_DATA = 'RECEIVE_PERSON_DATA';
-export const RECEIVE_EDUCATION_DATA = 'RECEIVE_EDUCATION_DATA';
-export const RECEIVE_DRGREES_DATA = 'RECEIVE_DEGREES_DATA';
-export const RECEIVE_SKILLS_DATA = 'RECEIVE_SKILLS_DATA';
-export const RECEIVE_CERTIFICATES_DATA = 'RECEIVE_CERTIFICATES_DATA';
-export const ADD_NEW_DOCUMENT_FILE = 'ADD_NEW_DOCUMENT_FILE';
-export const REMOVE_NEW_DOCUMENT_FILE = 'REMOVE_NEW_DOCUMENT_FILE';
-export const REMOVE_UPLOADED_DOCUMENT = 'REMOVE_UPLOADED_DOCUMENT';
-export const DOWNLOAD_UPLOADED_DOCUMENT = 'DOWNLOAD_UPLOADED_DOCUMENT';
-export const SAVE_PERSON_DATA = 'SAVE_PERSON_DATA';
-
-
+import { 
+  AccountTypes,
+  TutorAccountTypes 
+} from '../../../constants/index'
 
 export const loadListDegreesData = () => {
   return {
-    type: RECEIVE_DRGREES_DATA,
+    type: TutorAccountTypes.RECEIVE_DRGREES_DATA,
     data: listDegrees
   }
 }
@@ -25,7 +15,7 @@ export const loadListSkillData = () => {
   return dispatch => {
     Network().get('categories').then((response) => {
       dispatch({
-        type: RECEIVE_SKILLS_DATA,
+        type: TutorAccountTypes.RECEIVE_SKILLS_DATA,
         data: response.map((category) => {
           return {id: category.id,  text: category.name}
         })
@@ -47,35 +37,35 @@ export const deleteDegree = (degreeId) => {
 
 export const addNewDocument = (file) => {
   return {
-    type: ADD_NEW_DOCUMENT_FILE,
+    type: TutorAccountTypes.ADD_NEW_DOCUMENT_FILE,
     payload: file
   }
 }
 
 export const removeNewDocument = (fileId) => {
   return {
-    type: REMOVE_NEW_DOCUMENT_FILE,
+    type: TutorAccountTypes.REMOVE_NEW_DOCUMENT_FILE,
     data: fileId
   }
 }
 
 export const removeUploadedDocument = (documentId) => {
   return {
-    type: REMOVE_UPLOADED_DOCUMENT,
+    type: TutorAccountTypes.REMOVE_UPLOADED_DOCUMENT,
     data: documentId
   }
 }
 
 export const removeSkill = (skillId) => {
   return {
-    type: REMOVE_NEW_DOCUMENT_FILE,
+    type: TutorAccountTypes.REMOVE_NEW_DOCUMENT_FILE,
     data: fileId
   }
 }
 
 export const removeCertificate = (certificateId) => {
   return {
-    type: REMOVE_UPLOADED_DOCUMENT,
+    type: TutorAccountTypes.REMOVE_UPLOADED_DOCUMENT,
     data: documentId
   }
 }
@@ -97,7 +87,7 @@ export const fetchUser = () => {
     Network().get('current_user')
       .then((data) => {
         dispatch({
-          type: TutorAccountTypes.SET_ACCOUNT_USER,
+          type: AccountTypes.SET_ACCOUNT_USER,
           payload: data
         })
 
@@ -115,42 +105,6 @@ export const fetchTutor = (userId) => {
           payload: data
         })
       })
-  }
-}
-
-export const closeEmailConfirmationModal = () => {
-  return {
-    type: TutorAccountTypes.HIDE_REQUIRED_EMAIL_CONFIRMATION_MODAL
-  }
-}
-
-export const savePersonData = (name, email, date_of_birth, address, gender, emailChanged) => {
-  let body = {name, email, date_of_birth, address, gender}
-  return dispatch => {
-    Network().update('/auth', body).then((response) => {
-      if (emailChanged){
-        dispatch({
-          type: TutorAccountTypes.SHOW_REQUIRED_EMAIL_CONFIRMATION_MODAL
-        })
-      }
-      dispatch({
-        type: TutorAccountTypes.SET_ACCOUNT_USER,
-        payload: response
-      })
-      dispatch(hideProfileEditForm())
-    })
-  }
-}
-
-export const showProfileEditForm = () => {
-  return {
-    type: TutorAccountTypes.ENABLE_EDIT_TUTOR_PROFILE_MODE
-  }
-}
-
-export const hideProfileEditForm = () => {
-  return {
-    type: TutorAccountTypes.DISABLE_EDIT_TUTOR_PROFILE_MODE
   }
 }
 

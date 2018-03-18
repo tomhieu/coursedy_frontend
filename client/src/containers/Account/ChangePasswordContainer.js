@@ -5,7 +5,9 @@ import {connect} from "react-redux";
 import {reduxForm} from "redux-form";
 import styles from './ChangePasswordContainer.module.scss';
 import cssModules from 'react-css-modules';
-import {updatePassword} from "../../actions/TutorAccountActionCreator";
+import {
+  AccountActions
+} from '../../actions/index'
 
 class ChangePasswordContainer extends Component {
   constructor(props) {
@@ -14,7 +16,7 @@ class ChangePasswordContainer extends Component {
   }
 
   updatePassword({currentPassword, newPassword, newPassword2}) {
-    this.props.dispatch(updatePassword({currentPassword, newPassword, newPassword2}));
+    this.props.dispatch(AccountActions.updatePassword({currentPassword, newPassword, newPassword2}));
   }
 
   render() {

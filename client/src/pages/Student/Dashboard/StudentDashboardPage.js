@@ -21,7 +21,7 @@ import {connect} from 'react-redux';
 class StudentDashboardPage extends RoleAuthorization {
   constructor(props) {
     super(props)
-    this.authorizedRoles = ['teacher']
+    this.authorizedRoles = ['student']
     this.unauthorizedPath = '/'
   }
 

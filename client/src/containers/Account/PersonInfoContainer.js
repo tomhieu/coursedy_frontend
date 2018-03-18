@@ -6,7 +6,7 @@ import styles from './PersonInfoContainer.module.scss';
 import cssModules from 'react-css-modules';
 import {connect} from "react-redux";
 import {dispatch} from "redux";
-import {savePersonData} from "../../actions/TutorAccountActionCreator";
+import {AccountActions} from "../../actions/index";
 import {validate} from '../../validations/PersonFormValidator'
 
 class PersonInfoContainer extends Component {
@@ -16,7 +16,7 @@ class PersonInfoContainer extends Component {
 
 
   savePersonInfo({name, email, date_of_birth, address, gender}) {
-    this.props.dispatch(savePersonData(name, email, date_of_birth, address, gender, this.props.initialValues.email != email));
+    this.props.dispatch(AccountActions.savePersonData(name, email, date_of_birth, address, gender, this.props.initialValues.email != email));
   }
 
 
@@ -39,7 +39,7 @@ PersonInfoContainer.contextTypes = {
 }
 
 export default connect(state => ({
-  initialValues: state.TutorAccount.user
+  initialValues: state.AccountReducer.user
 }))(reduxForm({
   form: 'personInfo',
   fields: ['name', 'email', 'address', 'date_of_birth'],
