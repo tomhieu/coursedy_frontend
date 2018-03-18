@@ -50,9 +50,9 @@ ListTutorCourseContainer.contextTypes = {
 
 const mapStateToProps = (state) => {
     const {TutorCourseList} = state;
-    const {courses} = TutorCourseList;
+    const {courses, isFetching} = TutorCourseList;
     return {
-        courses
+        courses, isFetching
     }
 
 };

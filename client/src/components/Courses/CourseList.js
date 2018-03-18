@@ -17,18 +17,6 @@ class CourseList extends Component {
   }
   render() {
     const {courses, isFetching} = this.props;
-    if (courses.length === 0) {
-      return (
-        <div className={styles.courseListContainer + " row justify-content-center"}>
-          <div className="d-flex flex-auto align-items-center">
-            <div className="d-flex flex-vertical flex-auto align-items-center">
-              <img src="/search-not-found.svg" width={100} height={100} alt="search-not-found"/>
-              <h3>{this.context.t("search_empty_result", {type: this.context.t("search_course")})}</h3>
-            </div>
-          </div>
-        </div>
-      )
-    }
     return (
         <div className={styles.courseListContainer + " row"}>
           {

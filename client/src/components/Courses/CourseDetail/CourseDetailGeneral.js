@@ -31,7 +31,7 @@ class CourseDetailGeneral extends Component {
           } alt=""/>
         </div>{/* Course thumb */}
         <div className="clearfix"></div>
-        
+
         <br/>
         <div className="row">
           <div className="col-md-10">
