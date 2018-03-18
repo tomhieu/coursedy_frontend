@@ -21,7 +21,7 @@ class SearchSectionContainer extends Component {
       handleSubmit
     } = this.props
 
-    let { categories }  = this.propsO
+    let { categories }  = this.props
 
     return(
       <div className="container search-teacher-container">

@@ -2,13 +2,7 @@ import React from 'react';
 import cssModules from 'react-css-modules';
 import styles from './TutorDashboard.module.scss';
 import {Route} from 'react-router-dom'
-import {
-  LoadingMask,
-  RoleAuthorization,
-  TutorDashboardIndex,
-  TutorDashboardMenu,
-  TutorProfile
-} from '../../components/index';
+import {RoleAuthorization, TutorDashboardIndex, TutorDashboardMenu, TutorProfile} from '../../components/index';
 import CourseFormContainer from '../../containers/Courses/CourseForm/CourseFormContainer';
 import TutorProfileDetailsContainer from '../../containers/Tutor/Profile/TutorProfileDetailsContainer';
 import {connect} from 'react-redux';
@@ -36,7 +30,7 @@ class TutorDashboard extends RoleAuthorization {
                 <TutorDashboardMenu/>
               </div>
             </div>
-            <div className="col-xs-12 col-sm-8">
+            <div className="col-xs-12 col-sm-8 d-flex">
               <switch>
                 <Route exact path="/dashboard" component={TutorDashboardIndex}/>
                 <Route exact path="/dashboard/account" component={TutorAccount}/>

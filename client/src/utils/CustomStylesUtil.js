@@ -21,6 +21,7 @@ export const mStyles = {
   flatBtn: {
     color: "#e27d7f",
     height: 32,
+    lineHeight: "34px",
     marginLeft: 5
   },
   iconFlatBtn: {

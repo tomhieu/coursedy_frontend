@@ -4,7 +4,8 @@ import {withRouter} from 'react-router-dom';
 
 // Map the global state to global props here.
 const mapStateToProps = (state) => ({
-  session: state.session
+  session: state.session,
+  footer: state.footer
 });
 
 // Use connect both here and in your components.

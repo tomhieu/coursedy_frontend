@@ -79,3 +79,8 @@ export const REMOVE_ALL_COURSES = "REMOVE_ALL_COURSES"
 export const LOAD_SUGGESTION = "LOAD_SUGGESTION"
 export const CLEAR_SUGGESTION = "CLEAR_SUGGESTION"
 export const UPDATE_FILTER_CRITERIA = "UPDATE_FILTER_CRITERIA"
+
+/**
+ * Define actions of Homepage
+ */
+export const TOP_TEACHERS = "TOP_TEACHERS";

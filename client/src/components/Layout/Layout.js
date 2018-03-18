@@ -19,24 +19,21 @@ class Layout extends Component {
 
 
   render() {
+    const {footer, session} = this.props;
     return (
       <I18n translations={translations} initialLang={TT.locale}>
-        <div className="">
-          <Header session={this.props.session} signOut={this.signOut.bind(this)}/>
+        <div className="main-content">
+          <Header session={session} signOut={this.signOut.bind(this)}/>
           <div className='custom-container'>
             {this.props.children}
           </div>
-          <Footer/>
+          {
+            footer.show ? <Footer/> : null
+          }
         </div>
       </I18n>
     )
   }
 }
-
-Layout.propTypes = {
-  // content: PropTypes.string.isRequired,
-  // onRemove: PropTypes.func.isRequired,
-  // id: PropTypes.number.isRequired
-};
 
 export default Layout;
