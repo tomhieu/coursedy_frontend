@@ -433,6 +433,7 @@ Main Navigation bar  - Navbar-default
   position: fixed;
   width: 100%;
   z-index: 999;
+  padding: 0;
 }
 
 .navbar-default .navbar-nav>li>a {
@@ -3413,7 +3414,7 @@ body {
 .custom-container {
   display: flex;
   flex: 1 1 auto;
-  margin-top: 85px;
+  margin-top: 71px;
 }
 
 div[data-reactroot] {

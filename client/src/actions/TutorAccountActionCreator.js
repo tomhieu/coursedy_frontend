@@ -1,5 +1,5 @@
 import Network from "utils/network";
-import * as types from '../constants/TutorAccount'
+import { TutorAccountTypes } from '../constants/index'
 
 export const RECEIVE_PERSON_DATA = 'RECEIVE_PERSON_DATA';
 export const RECEIVE_EDUCATION_DATA = 'RECEIVE_EDUCATION_DATA';
@@ -11,7 +11,7 @@ export const REMOVE_NEW_DOCUMENT_FILE = 'REMOVE_NEW_DOCUMENT_FILE';
 export const REMOVE_UPLOADED_DOCUMENT = 'REMOVE_UPLOADED_DOCUMENT';
 export const DOWNLOAD_UPLOADED_DOCUMENT = 'DOWNLOAD_UPLOADED_DOCUMENT';
 export const SAVE_PERSON_DATA = 'SAVE_PERSON_DATA';
-export const COMPLETE_UPDATE_PASSWORD = 'COMPLETE_UPDATE_PASSWORD';
+
 
 
 export const loadListDegreesData = () => {
@@ -80,22 +80,11 @@ export const removeCertificate = (certificateId) => {
   }
 }
 
-export const updatePassword = (data) => {
-  dispatch => {
-    Network().post('/account/tutor/change/password', data).then((response) => {
-      dispatch({
-        type: COMPLETE_UPDATE_PASSWORD
-      })
-    });
-  }
-}
-
-
 export const updateTutorEducation = (id, data) => {
   return dispatch => {
     Network().update(`tutors/${id}`, data).then((response) => {
       dispatch({
-        type: types.UPDATE_TUTOR_EDU,
+        type: TutorAccountTypes.UPDATE_TUTOR_EDU,
         payload: response
       })
       dispatch(hideEducationEditForm())
@@ -108,7 +97,7 @@ export const fetchUser = () => {
     Network().get('current_user')
       .then((data) => {
         dispatch({
-          type: types.SET_ACCOUNT_USER,
+          type: TutorAccountTypes.SET_ACCOUNT_USER,
           payload: data
         })
 
@@ -122,7 +111,7 @@ export const fetchTutor = (userId) => {
     Network().get('tutors/tutor_by_user', {user_id: userId})
       .then((data) => {
         dispatch({
-          type: types.SET_ACCOUNT_TUTOR,
+          type: TutorAccountTypes.SET_ACCOUNT_TUTOR,
           payload: data
         })
       })
@@ -131,7 +120,7 @@ export const fetchTutor = (userId) => {
 
 export const closeEmailConfirmationModal = () => {
   return {
-    type: types.HIDE_REQUIRED_EMAIL_CONFIRMATION_MODAL
+    type: TutorAccountTypes.HIDE_REQUIRED_EMAIL_CONFIRMATION_MODAL
   }
 }
 
@@ -141,11 +130,11 @@ export const savePersonData = (name, email, date_of_birth, address, gender, emai
     Network().update('/auth', body).then((response) => {
       if (emailChanged){
         dispatch({
-          type: types.SHOW_REQUIRED_EMAIL_CONFIRMATION_MODAL
+          type: TutorAccountTypes.SHOW_REQUIRED_EMAIL_CONFIRMATION_MODAL
         })
       }
       dispatch({
-        type: types.SET_ACCOUNT_USER,
+        type: TutorAccountTypes.SET_ACCOUNT_USER,
         payload: response
       })
       dispatch(hideProfileEditForm())
@@ -155,36 +144,24 @@ export const savePersonData = (name, email, date_of_birth, address, gender, emai
 
 export const showProfileEditForm = () => {
   return {
-    type: types.ENABLE_EDIT_TUTOR_PROFILE_MODE
+    type: TutorAccountTypes.ENABLE_EDIT_TUTOR_PROFILE_MODE
   }
 }
 
 export const hideProfileEditForm = () => {
   return {
-    type: types.DISABLE_EDIT_TUTOR_PROFILE_MODE
+    type: TutorAccountTypes.DISABLE_EDIT_TUTOR_PROFILE_MODE
   }
 }
 
 export const showEducationEditForm = () => {
   return {
-    type: types.ENABLE_EDIT_TUTOR_EDUCATION_MODE
+    type: TutorAccountTypes.ENABLE_EDIT_TUTOR_EDUCATION_MODE
   }
 }
 
 export const hideEducationEditForm = () => {
   return {
-    type: types.DISABLE_EDIT_TUTOR_EDUCATION_MODE
-  }
-}
-
-export const showPasswordEditForm = () => {
-  return {
-    type: types.ENABLE_EDIT_TUTOR_PASSWORD_MODE
-  }
-}
-
-export const hidePasswordEditForm = () => {
-  return {
-    type: types.DISABLE_EDIT_TUTOR_PASSWORD_MODE
+    type: TutorAccountTypes.DISABLE_EDIT_TUTOR_EDUCATION_MODE
   }
 }
