@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './ListTeacher.module.scss';
+import styles from '../../../styles/components/CommonFilterObjects.module.scss';
 import { FilterOption } from '../../components/FilterOption/FilterOption';
 
 const SelectFilterTeachers = (

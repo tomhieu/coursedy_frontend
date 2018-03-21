@@ -2,9 +2,9 @@ import React from 'react';
 import AutoComplete from '../../components/AutoComplete/AutoComplete';
 import { Chip } from 'material-ui';
 import { mStyles } from 'utils/CustomStylesUtil';
-import styles from './ListTeacher.module.scss';
+import styles from '../../../styles/components/CommonFilterObjects.module.scss';
 
-const AutoCompleteSearchTeachers = (
+const TeacherSearchBox = (
   {
     selectedCategories, selectedSpecializes, suggestions,
     filters, showSuggestion, loadingSuggestion,
@@ -57,8 +57,8 @@ const AutoCompleteSearchTeachers = (
   )
 }
 
-AutoCompleteSearchTeachers.contextTypes = {
+TeacherSearchBox.contextTypes = {
   t: React.PropTypes.func.isRequired
 }
 
-export default AutoCompleteSearchTeachers;
+export default TeacherSearchBox;

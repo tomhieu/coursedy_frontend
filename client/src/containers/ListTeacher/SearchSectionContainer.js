@@ -6,11 +6,11 @@ import {
   fetchCourseCategories
 } from 'actions/ReferenceActions/ReferenceDataActionCreator';
 import cssModules from 'react-css-modules';
-import styles from './ListTeacher.module.scss';
+import styles from '../../../styles/components/CommonFilterObjects.module.scss';
 import autoCompleteStyles from 'components/AutoComplete/AutoComplete.module.scss';
 import { SERVER_NAME } from 'utils/CommonConstant';
 import { getSelectedSpecializesFromCategory } from '../Courses/Filter/CourseFilterContainer';
-import AutoCompleteSearchTeachers from './AutoCompleSearchTeachers';
+import TeacherSearchBox from './TeacherSearchBox';
 import SelectFilterTeachers from './SelectFilterTeachers';
 
 
@@ -126,7 +126,7 @@ class SearchSectionContainer extends Component {
           <form onSubmit={handleSubmit(this.onSubmit.bind(this))} className='inline-form' multiple={true}>
             <div className={styles.filterActionBlock + ' col-md-12 col-sm-12'}>
               <div className="row full-height">
-                <AutoCompleteSearchTeachers {...{
+                <TeacherSearchBox {...{
                   selectedCategories, selectedSpecializes, suggestions,
                   filters, showSuggestion, loadingSuggestion,
                   doRemoveFilter: this.doRemoveFilter.bind(this),

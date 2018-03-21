@@ -5,9 +5,9 @@ import {
 import { SERVER_NAME } from 'utils/CommonConstant';
 
 
-class DefaultAvatar extends Component {
+class UserAvatar extends Component {
   render() {
-    let { username, url } = this.props;
+    const { username, url } = this.props;
 
     if (url) {
       return (
@@ -15,15 +15,10 @@ class DefaultAvatar extends Component {
       );
     }
 
-    let color = generateRandomColorFromUsername(username);
-    let style = {};
-
-    if (color) {
-      style.background = color;
-    }
+    const color = generateRandomColorFromUsername(username);
 
     return (
-      <div className={this.props.classNames} style={style}>
+      <div className={this.props.classNames} style={{background: color}}>
         {username ? generateShortName(username) : ''}
       </div>
     );
@@ -31,8 +26,8 @@ class DefaultAvatar extends Component {
 }
 
 
-DefaultAvatar.propTypes = {
+UserAvatar.propTypes = {
   username: React.PropTypes.string.isRequired
 };
 
-export default DefaultAvatar;
+export default UserAvatar;

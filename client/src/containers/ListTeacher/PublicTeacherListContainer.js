@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import * as TeacherActions from '../../actions/TeacherCreators';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import DefaultAvatar from '../../components/Account/DefaultAvatar';
+import UserAvatar from '../../components/Account/UserAvatar';
 
 
 class PublicTeacherListContainer extends Component {
@@ -25,7 +25,7 @@ class PublicTeacherListContainer extends Component {
         <div className="col-md-3 col-sm-3 margin30 teacher-item" key={item.id}>
           <Link to={`/teacher/${item.id}`} className="teacher-item__info">
             <div className="item-img-wrap">
-              <DefaultAvatar classNames="avatar__cover" url={item.user.avatar}
+              <UserAvatar classNames="avatar__cover" url={item.user.avatar}
                              username={item.user.name}/>
               <div className="item-img-overlay">
                 <div className="show-image">
