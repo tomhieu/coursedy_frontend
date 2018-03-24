@@ -3,7 +3,7 @@ import {Component} from "react";
 import cssModules from 'react-css-modules';
 import styles from './AutoComplete.module.scss';
 import {renderField} from "../Core/CustomComponents";
-import { Field } from 'redux-form';
+import Field from "redux-form/es/Field";
 import {SvgIcon} from "material-ui";
 import {SERVER_NAME} from "utils/CommonConstant";
 
@@ -42,7 +42,7 @@ class AutoComplete extends Component {
   }
 
   render() {
-    const {show, isLoading, handleRequestDeleteChip, placeholder, fieldName, dataSource, handleAddCriteria, loadSuggestions, filters, renderSuggestion} = this.props;
+    const {show, isLoading, handleRequestDeleteChip, placeholder, fieldName, dataSource, handleAddCriteria, loadSuggestions, filters} = this.props;
     return (
       <div className={styles.filterBox + " d-flex flex-vertical"}>
         <div className="d-flex flex-horizontal">
@@ -59,17 +59,15 @@ class AutoComplete extends Component {
                    onKeyPress={this.onKeyPress.bind(this)}/>
           </div>
         </div>
-
         {
           isLoading ? <div>Loading...</div> :
             show ? dataSource.length > 0 ?
               <div className={styles.modalSuggestion + " flex flex-vertical"}>
-              {
-                renderSuggestion ? renderSuggestion() :
+                {
                   dataSource.map((gs) => (
                     this.renderSuggestion(gs, handleAddCriteria)
                   ))
-              }
+                }
               </div> :
               <div className={styles.modalSuggestion + " flex flex-vertical"}>
                 <div className={styles.suggestionLine}>
@@ -102,4 +100,3 @@ AutoComplete.propTypes = {
 };
 
 export default cssModules(AutoComplete, styles);
-

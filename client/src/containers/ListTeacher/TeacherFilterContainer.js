@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React  from 'react';
 import { reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import * as TeacherActions from '../../actions/TeacherCreators';
@@ -7,14 +7,14 @@ import {
 } from 'actions/ReferenceActions/ReferenceDataActionCreator';
 import cssModules from 'react-css-modules';
 import styles from '../../../styles/components/CommonFilterObjects.module.scss';
-import autoCompleteStyles from 'components/AutoComplete/AutoComplete.module.scss';
-import { SERVER_NAME } from 'utils/CommonConstant';
 import { getSelectedSpecializesFromCategory } from '../Courses/Filter/CourseFilterContainer';
-import TeacherSearchBox from './TeacherSearchBox';
+import SuggestionBox from './SuggestionBox';
 import SelectFilterTeachers from './SelectFilterTeachers';
+import AbstractFilter from '../../components/Core/AbstractFilterComponent';
+import * as asyncActions from 'actions/AsyncActionCreator';
 
 
-class SearchSectionContainer extends Component {
+class TeacherFilterContainer extends AbstractFilter {
   componentDidMount() {
     this.props.dispatch(fetchCourseCategories());
   }
@@ -36,9 +36,14 @@ class SearchSectionContainer extends Component {
   }
 
   loadSuggestionsTeacher(event) {
+    if (event.target.value.trim() === '') {
+      this.props.dispatch({type: asyncActions.CLEAR_SUGGESTION});
+      return;
+    }
+
     this.props.dispatch(
       TeacherActions.loadSuggestionsTeacher(
-        this.searchQuery(event.target.value, this.props.filters)
+        this.searchQuery(event.target.value.trim(), this.props.filters)
       )
     );
   }
@@ -49,53 +54,6 @@ class SearchSectionContainer extends Component {
         this.searchQuery(data.key_word, this.props.filters)
       )
     );
-  }
-
-  renderSuggestion(suggestion, handleAddCriteria) {
-    if (!suggestion.user) {
-      return null
-    }
-    return (
-      <div className="d-flex flex-horizontal pt-10 pl-10"
-           key={'suggestion_' + suggestion.id}>
-        <div>
-          <img
-            src={suggestion.avatar ? SERVER_NAME + suggestion.avatar : 'http://placehold.it/75x75'}
-            alt=""
-            className={autoCompleteStyles.itemAvatar + ' img-responsive img-circle'}/>
-        </div>
-        <div className={autoCompleteStyles.suggestionLine}>
-          <a className="pl-10 d-flex flex-vertical suggestion-line"
-             onClick={() => handleAddCriteria(suggestion.id, suggestion.title)}>
-            <span className="header">{suggestion.title}</span>
-            <span className="sub-header">{suggestion.user.name}</span>
-          </a>
-        </div>
-      </div>
-    );
-  }
-
-  removeFilterCriteria(currentFilters, filterValue, filterType) {
-    if (Array.isArray(currentFilters[filterType])) {
-      const clonedFilters = JSON.parse(JSON.stringify(currentFilters[filterType]));
-      currentFilters[filterType] = clonedFilters.filter(f => f.id !== Number(filterValue));
-    } else {
-      currentFilters[filterType] = true;
-    }
-    return currentFilters;
-  }
-
-  addFilterCriteria(currentFilters, filterValue, filterType) {
-    // handle for multiple select filter options
-    if (Array.isArray(currentFilters[filterType])) {
-      let selectedFilters = JSON.parse(JSON.stringify(currentFilters[filterType]));
-      selectedFilters.push(filterValue);
-      currentFilters[filterType] = selectedFilters;
-    } else {
-      currentFilters.term = filterValue;
-    }
-
-    return currentFilters;
   }
 
   doRemoveFilter(filterId, typeFilter) {
@@ -111,11 +69,12 @@ class SearchSectionContainer extends Component {
   }
 
   handleAddCriteria(id, title) {
+    this.props.dispatch({type: asyncActions.CLEAR_SUGGESTION});
     this.context.router.history.push('/teacher/' + id);
   }
 
   render() {
-    let {
+    const {
       handleSubmit, categories, suggestions, showSuggestion, loadingSuggestion, filters, listSpecializes
     } = this.props;
     const { selectedCategories, selectedSpecializes } = filters;
@@ -126,13 +85,12 @@ class SearchSectionContainer extends Component {
           <form onSubmit={handleSubmit(this.onSubmit.bind(this))} className='inline-form' multiple={true}>
             <div className={styles.filterActionBlock + ' col-md-12 col-sm-12'}>
               <div className="row full-height">
-                <TeacherSearchBox {...{
+                <SuggestionBox {...{
                   selectedCategories, selectedSpecializes, suggestions,
                   filters, showSuggestion, loadingSuggestion,
                   doRemoveFilter: this.doRemoveFilter.bind(this),
                   handleAddCriteria: this.handleAddCriteria.bind(this),
-                  loadSuggestionsTeacher: this.loadSuggestionsTeacher.bind(this),
-                  renderSuggestion: this.renderSuggestion.bind(this),
+                  loadSuggestionsTeacher: this.loadSuggestionsTeacher.bind(this)
                 }}/>
 
                 <SelectFilterTeachers {...{
@@ -149,13 +107,22 @@ class SearchSectionContainer extends Component {
 }
 
 
-SearchSectionContainer.contextTypes = {
+TeacherFilterContainer.contextTypes = {
   t: React.PropTypes.func.isRequired, router: React.PropTypes.object
 };
 
 const mapStateToProps = (state) => {
-  const { suggestions, filters, showSuggestion, loadingSuggestion } = state.Teachers
+  const { filters, showSuggestion, loadingSuggestion } = state.Teachers
   const categories = state.referenceData.courseCategories || []
+  const suggestions = state.Teachers.suggestions.map((s) => {
+    return {
+      avatar: s.avatar || null,
+      id: s.id,
+      title: s.title || '',
+      sub_title: s.user ? s.user.name : ''
+    }
+  })
+
   return {
     categories,
     suggestions,
@@ -168,4 +135,4 @@ const mapStateToProps = (state) => {
 
 export default connect(mapStateToProps)(reduxForm({
   form: 'teacherFilterForm', fields: ['key_word', 'category_ids']
-})(cssModules(SearchSectionContainer, styles)));
+})(cssModules(TeacherFilterContainer, styles)));

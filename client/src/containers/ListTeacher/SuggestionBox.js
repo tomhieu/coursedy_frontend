@@ -4,7 +4,7 @@ import { Chip } from 'material-ui';
 import { mStyles } from 'utils/CustomStylesUtil';
 import styles from '../../../styles/components/CommonFilterObjects.module.scss';
 
-const TeacherSearchBox = (
+const SuggestionBox = (
   {
     selectedCategories, selectedSpecializes, suggestions,
     filters, showSuggestion, loadingSuggestion,
@@ -43,11 +43,6 @@ const TeacherSearchBox = (
           dataSource={suggestions}
           handleAddCriteria={handleAddCriteria}
           loadSuggestions={loadSuggestionsTeacher}
-          renderSuggestion={() => {
-            return suggestions.map((gs) => (
-              renderSuggestion(gs, handleAddCriteria)
-            ));
-          }}
           filters={filters}
           show={showSuggestion}
           isLoading={loadingSuggestion}
@@ -57,8 +52,8 @@ const TeacherSearchBox = (
   )
 }
 
-TeacherSearchBox.contextTypes = {
+SuggestionBox.contextTypes = {
   t: React.PropTypes.func.isRequired
 }
 
-export default TeacherSearchBox;
+export default SuggestionBox;

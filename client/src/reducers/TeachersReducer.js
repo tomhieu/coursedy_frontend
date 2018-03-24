@@ -25,11 +25,13 @@ const Teachers = (state = {
      * handle action to load suggestion to filter Course
      */
     case asyncActs.LOAD_SUGGESTION_TEACHERS + asyncActs.FULFILLED:
-      return {...state, suggestions: action.payload, showSuggestion: action.payload.length > 0, loadingSuggestion: false}
+      return {...state, suggestions: action.payload, showSuggestion: true, loadingSuggestion: false}
     case asyncActs.LOAD_SUGGESTION_TEACHERS + asyncActs.PENDING:
       return {...state, suggestions: [], showSuggestion: true, loadingSuggestion: true}
     case asyncActs.LOAD_SUGGESTION_TEACHERS + asyncActs.REJECTED:
       return {...state, suggestions: [], error: action.error, showSuggestion: false, loadingSuggestion: false}
+    case asyncActs.CLEAR_SUGGESTION:
+      return {...state, filters: {...state.filters, term: ''}, suggestions: [], showSuggestion: false, loadingSuggestion: false}
     case asyncActs.UPDATE_FILTER_CRITERIA_TEACHERS:
       return Object.assign({}, state, {filters: action.data})
     default:

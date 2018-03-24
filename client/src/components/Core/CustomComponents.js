@@ -13,14 +13,14 @@ import {fullWhite} from "material-ui/styles/colors";
 
 export const renderField = ({input, label, placeholder, type = 'text', disabled = false, customClassName, meta: {touched, error, warning}}) => (
     <div className='full-width-input-wrapper'>
-        <input {...input} placeholder={placeholder ? placeholder : label} type={type} disabled={disabled} className={customClassName}/>
+        <input {...input} placeholder={placeholder ? placeholder : ''} type={type} disabled={disabled} className={customClassName}/>
         {touched && ((error && <span className='input-errors'>{error}</span>) || (warning && <span>{warning}</span>))}
     </div>
 )
 
-export const renderTextAreaField = ({input, label, type, disabled = false, meta: {touched, error, warning}}) => (
+export const renderTextAreaField = ({input, label, placeholder, type, disabled = false, meta: {touched, error, warning}}) => (
     <div className='full-width-input-wrapper'>
-        <textarea {...input} placeholder={label} type={type} disabled={disabled} className='form-control' rows={6}/>
+        <textarea {...input} placeholder={placeholder ? placeholder : ''} type={type} disabled={disabled} className='form-control' rows={6}/>
         {touched && ((error && <span className='input-errors'>{error}</span>) || (warning && <span>{warning}</span>))}
     </div>
 )
