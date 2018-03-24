@@ -187,15 +187,15 @@ class renderFileInput extends Component {
                     }}
                     accept="image/*">
                     <div className="d-flex flex-auto justify-content-center">
-                        <div className={internalPreview ? 'hidden' : 'd-flex flex-horizontal align-self-center'}>
+                        <div className={internalPreview ? 'd-none' : 'd-flex flex-horizontal align-self-center'}>
                             <a className="icon-upload"></a>
                             <p className="ml-10">{TT.t('drag_and_drop')}</p>
                         </div>
                     </div>
 
-                    <img className={internalPreview && this.state.previewUrl != null ? '' : 'hidden'}
+                    <img className={internalPreview && this.state.previewUrl != null ? '' : 'd-none'}
                          src={this.state.previewUrl} height={zoneHeight} style={previewImageStyle}></img>
-                    <input className='hidden' {...input}/>
+                    <input className='d-none' {...input}/>
                 </Dropzone>
             </div>
         )

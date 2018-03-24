@@ -24,9 +24,9 @@ export class CertificateForm extends Component {
         {/*form for uploading certificates*/}
         <div className='row mt-30'>
           <div className={'col-sm-12'}>
-            <FormField formGroupId="degreesId" formLabel={this.context.t("account.tutot.edu.degree.title")}
+            <FormField formGroupId="degreesId" formLabel={this.context.t("account.tutot.edu.degree.field_label")}
                        onUpload={this.props.upload} isMandatoryField={false} formControlName="degrees"
-                       typeField="upload_file"/>
+                       internalPreview={false} typeField="upload_file"/>
           </div>
         </div>
       </form>
@@ -39,7 +39,7 @@ function renderUploadedDegree(degree, props) {
   let extension = degree.name ? degree.name.split('.').pop() : '';
   if (['jpg', 'png', 'jpeg', 'gif'].indexOf(extension) >= 0) {
     previewImage = <img src={degree.url} width='auto' height='30'></img>;
-  } else if (extension == 'docx' || extension == 'doc'){
+  } else if (extension == 'docx' || extension == 'doc') {
     previewImage = <div className='doc-image-preview'></div>;
   }
 
