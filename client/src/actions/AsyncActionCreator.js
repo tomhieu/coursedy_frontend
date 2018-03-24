@@ -2,6 +2,13 @@ export const FULFILLED = '_FULFILLED';
 export const PENDING = '_PENDING';
 export const REJECTED = '_REJECTED';
 
+
+export const CERTIFICATE = {
+  load_tutor_certificate_list: 'LOAD_TUTOR_CERTIFICATE_LIST',
+  remove_uploaded_certificate: 'REMOVE_UPLOADED_CERTIFICATE',
+  upload_new_document: 'UPLOAD_NEW_DOCUMENT'
+}
+
 /**
  * Define general action to manage async actions
  * @type {string}

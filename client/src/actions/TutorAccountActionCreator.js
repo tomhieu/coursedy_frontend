@@ -1,5 +1,6 @@
 import Network from "utils/network";
 import { TutorAccountTypes } from '../constants/index'
+import { CERTIFICATE } from '../actions/AsyncActionCreator.js';
 
 export const RECEIVE_PERSON_DATA = 'RECEIVE_PERSON_DATA';
 export const RECEIVE_EDUCATION_DATA = 'RECEIVE_EDUCATION_DATA';
@@ -14,10 +15,10 @@ export const SAVE_PERSON_DATA = 'SAVE_PERSON_DATA';
 
 
 
-export const loadListDegreesData = () => {
+export const loadDegrees = () => {
   return {
-    type: RECEIVE_DRGREES_DATA,
-    data: listDegrees
+    type: CERTIFICATE.load_tutor_certificate_list,
+    payload: Network().get('degrees')
   }
 }
 
@@ -34,49 +35,17 @@ export const loadListSkillData = () => {
   }
 }
 
-export const downloadDegree = (degreeId) => {
-  return dispatch => {
-    Network().get('/account/tutor/degree/download?degreeId' + degreeId);
-  }
-}
-
-export const deleteDegree = (degreeId) => {
-  return "";
-//    return Network().delete('/account/tutor/degree/delete?degreeId' + degreeId);
-}
-
 export const addNewDocument = (file) => {
   return {
-    type: ADD_NEW_DOCUMENT_FILE,
-    payload: file
-  }
-}
-
-export const removeNewDocument = (fileId) => {
-  return {
-    type: REMOVE_NEW_DOCUMENT_FILE,
-    data: fileId
+    type: CERTIFICATE.upload_new_document,
+    payload: Network().post('degrees', {degree: {item: file.content, name: file.fileName}})
   }
 }
 
 export const removeUploadedDocument = (documentId) => {
   return {
-    type: REMOVE_UPLOADED_DOCUMENT,
-    data: documentId
-  }
-}
-
-export const removeSkill = (skillId) => {
-  return {
-    type: REMOVE_NEW_DOCUMENT_FILE,
-    data: fileId
-  }
-}
-
-export const removeCertificate = (certificateId) => {
-  return {
-    type: REMOVE_UPLOADED_DOCUMENT,
-    data: documentId
+    type: CERTIFICATE.remove_uploaded_certificate,
+    payload: Network().delete(`degrees/${documentId}`)
   }
 }
 

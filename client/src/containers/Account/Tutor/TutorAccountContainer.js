@@ -4,6 +4,7 @@ import TutorEducation from "./TutorEducation";
 import cssModules from 'react-css-modules';
 import {connect} from "react-redux";
 import PersonInfoContainer from "../PersonInfoContainer";
+import Certificate from "./Certificate";
 import {UserInfo} from 'components/index'
 import * as Actions from '../../../actions/TutorAccountActionCreator'
 import {closeEmailConfirmationModal} from "../../../actions/TutorAccountActionCreator";
@@ -56,6 +57,13 @@ class TutorAccount extends Component {
             {tutorForm}
           </div>
         </div>
+
+        <div className="col-md-12 col-xs-12 col-sm-12 dashboard-content-section ">
+          <div className="">
+            <Certificate/>
+          </div>
+        </div>
+
         <div className="col-md-12 col-xs-12 col-sm-12 dashboard-content-section ">
           <div className="t">
             <ChangePasswordContainer/>
