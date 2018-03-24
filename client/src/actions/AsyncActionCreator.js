@@ -58,6 +58,13 @@ export const FETCH_TUTOR_COURSES = 'FETCH_TUTOR_COURSES';
 export const FETCH_TUTOR_COURSES_FAIL = 'FETCH_TUTOR_COURSES_FAIL';
 
 /**
+ * Define actions of Tutor
+ * @type {string}
+ */
+export const FETCH_STUDENT_ENROLL_COURSES = 'FETCH_STUDENT_ENROLL_COURSES';
+export const FETCH_STUDENT_FOLLOW_COURSES = 'FETCH_STUDENT_FOLLOW_COURSES';
+
+/**
  * Define actions to load Reference Data
  * @type {string}
  */

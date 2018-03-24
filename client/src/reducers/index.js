@@ -29,6 +29,7 @@ import Payment from './Payment'
 
 import AccountReducer from './AccountReducer'
 import StudentAccountReducer from './Student/StudentAccountReducer'
+import StudentCourseListReducer from './Student/StudentCourseListReducer'
 import TutorAccountReducer from './Tutor/TutorAccountReducer'
 
 const rootReducer = combineReducers({
@@ -44,11 +45,12 @@ const rootReducer = combineReducers({
   PublicCourseDetail,
   courseDetails,
   TutorCourseList,
+  StudentCourseListReducer,
   //Reducers for account
   AccountReducer,
   StudentAccountReducer,
   TutorAccountReducer,
-
+  
   session,
   footer,
   TutorProfile,

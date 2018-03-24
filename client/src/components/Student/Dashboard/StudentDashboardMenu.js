@@ -13,11 +13,11 @@ class StudentDashboardMenu extends Component {
         <div className="panel panel-default">
           <div className="panel-heading">
             <h4 className="panel-title">
-              <a className="collapsed" data-toggle="collapse" data-parent="#accordion" href="#student-dashboard-menu">
+              <a className="collapsed" data-toggle="collapse" data-parent="#accordion" href="#student-dashboard-account-menu">
                 <i className="fa fa-calendar-check-o"></i>My Account</a>
             </h4>
           </div>
-          <div id="student-dashboard-menu" className="panel-collapse collapse">
+          <div id="student-dashboard-account-menu" className="panel-collapse collapse">
             <div className="panel-body">
               <ul className="dashboard-links">
                 <li>
@@ -34,15 +34,18 @@ class StudentDashboardMenu extends Component {
         <div className="panel panel-default">
           <div className="panel-heading">
             <h4 className="panel-title">
-              <a className="collapsed" data-toggle="collapse" data-parent="#accordion" href="#student-dashboard-menu">
+              <a className="collapsed" data-toggle="collapse" data-parent="#accordion" href="#student-dashboard-courses-menu">
                 <i className="fa fa-calendar-check-o"></i>Courses</a>
             </h4>
           </div>
-          <div id="student-dashboard-menu" className="panel-collapse collapse">
+          <div id="student-dashboard-courses-menu" className="panel-collapse collapse">
             <div className="panel-body">
               <ul className="dashboard-links">
                 <li>
-                  <Link to={'/student/dashboard/courses/enroll'}>Enroll</Link>
+                  <Link to={'/student/dashboard/courses/enrolled'}>Enrolled</Link>
+                </li>
+                <li>
+                  <Link to={'/student/dashboard/courses/enrolling'}>Enrolling</Link>
                 </li>
                 <li>
                   <Link to={'/student/dashboard/courses/follow'}>Followed</Link>

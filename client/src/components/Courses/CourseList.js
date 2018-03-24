@@ -16,9 +16,12 @@ class CourseList extends Component {
     super(props);
   }
   render() {
-    const {courses, isFetching} = this.props;
+    const {courses, isFetching, fullHeight = false} = this.props;
     return (
-        <div className={styles.courseListContainer + " row"}>
+        <div className={
+          (fullHeight ? 
+            styles.courseListContainerFullHeight :
+            styles.courseListContainer) + " row"}>
           {
             isFetching ? <div></div> : courses.length === 0
               ? (

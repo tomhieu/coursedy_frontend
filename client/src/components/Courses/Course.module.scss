@@ -154,6 +154,17 @@
   overflow-y: auto;
 }
 
+.courseListContainerFullHeight {
+  position: absolute;
+  top: 0;
+  left: 15px;
+  width: 100%;
+  heigth: 100%;
+  background-color: $gray-background;
+  padding: 20px 30px;
+  overflow-y: auto;
+}
+
 .courseSelectCheckbox {
   opacity: 1 !important;
   position: absolute;

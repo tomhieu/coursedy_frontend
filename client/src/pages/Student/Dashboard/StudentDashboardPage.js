@@ -40,7 +40,7 @@ class StudentDashboardPage extends RoleAuthorization {
                 <StudentComponents.StudentDashboardMenu/>
               </div>
             </div>
-            <div className="col-xs-12 col-sm-8">
+            <div className="col-xs-12 col-sm-8 d-flex">
               <switch>
                 <Route exact 
                   path="/student/dashboard" 
@@ -55,11 +55,15 @@ class StudentDashboardPage extends RoleAuthorization {
                   component={StudentContainers.StudentBalanceContainer}
                 />
                 <Route exact 
-                  path="/student/dashboard/courses/enroll" 
-                  component={StudentContainers.StudentCoursesEnrollContainer}
+                  path="/student/dashboard/courses/enrolled" 
+                  component={StudentContainers.StudentCoursesEnrolledContainer}
                 />
                 <Route exact 
-                  path="student/dashboard/courses/follow" 
+                  path="/student/dashboard/courses/enrolling" 
+                  component={StudentContainers.StudentCoursesEnrollingContainer}
+                />
+                <Route exact 
+                  path="/student/dashboard/courses/follow" 
                   component={StudentContainers.StudentCoursesFollowContainer}
                 />
               </switch>

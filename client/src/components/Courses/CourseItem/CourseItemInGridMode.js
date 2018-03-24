@@ -31,7 +31,7 @@ class CourseItemInGridMode extends Component {
         <div className="col-md-12 col-sm-12">
           <div className="row">
             <CourseInfo deleteCourse={deleteCourse} item={item} />
-            {!this.props.item.onlyTutor ? (<TutorInfo item={item} />) : null}
+            {!this.props.item.onlyTutor && this.props.item.user ? (<TutorInfo item={item} />) : null}
           </div>
         </div>
       </div>
