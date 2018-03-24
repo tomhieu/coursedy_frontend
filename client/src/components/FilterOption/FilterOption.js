@@ -37,7 +37,7 @@ export class FilterOption extends Component {
   }
 
   isSelected(option) {
-    return this.props.selectedOptions.filter(op => op.id == option.id).length > 0
+    return this.props.selectedOptions.filter(op => op.id === option.id).length > 0
   }
 
   renderOptions(options) {
@@ -108,14 +108,14 @@ export class FilterOption extends Component {
             <div className={styles.filterContainer} >
               <div className="d-flex flex-vertical">
                 {
-                  type != undefined ?
+                  type !== undefined ?
                     <div className={styles.filterInput}>
                       <input onChange={(e) => this.filterOptions(e)}/>
                     </div> : null
                 }
                 <div className={styles.optionContainer}>
                   {
-                    type == undefined ? this.props.children : this.renderFilterBox(type)
+                    type === undefined ? this.props.children : this.renderFilterBox(type)
                   }
                 </div>
               </div>

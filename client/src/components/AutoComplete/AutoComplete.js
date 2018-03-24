@@ -30,17 +30,13 @@ class AutoComplete extends Component {
   }
 
   onBlur() {
-    console.log("on blur event");
-    // this.setState({show: false});
   }
 
   onFocus() {
-    console.log("on focus event");
   }
 
   onKeyPress(e) {
-    console.log("on key press");
-    if (e.key == 'Enter') {
+    if (e.key === 'Enter') {
       this.props.handleAddCriteria("", "", e.target.value)
     }
   }
@@ -104,4 +100,3 @@ AutoComplete.propTypes = {
 };
 
 export default cssModules(AutoComplete, styles);
-
