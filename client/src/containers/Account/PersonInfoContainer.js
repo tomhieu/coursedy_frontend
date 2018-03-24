@@ -1,13 +1,13 @@
 import * as React from "react";
 import {Component} from "react";
-import {PersonalInfoForm} from "../../../components/Account/Tutor/PersonalInfoForm";
+import {PersonalInfoForm} from "../../components/Account/Tutor/PersonalInfoForm";
 import {reduxForm} from "redux-form";
-import styles from './PersonInfo.module.scss';
+import styles from './PersonInfoContainer.module.scss';
 import cssModules from 'react-css-modules';
 import {connect} from "react-redux";
 import {dispatch} from "redux";
-import {savePersonData} from "../../../actions/TutorAccountActionCreator";
-import {validate} from '../../../validations/PersonFormValidator'
+import {savePersonData} from "../../actions/TutorAccountActionCreator";
+import {validate} from '../../validations/PersonFormValidator'
 
 class PersonInfoContainer extends Component {
   constructor(props) {

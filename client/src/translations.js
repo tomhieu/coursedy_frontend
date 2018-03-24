@@ -135,6 +135,8 @@ export const translations = {
     "account.tutor.edu.description": "Giới Thiệu",
     "account.tutor.edu.specialty": "Kĩnh Vực Giảng Dạy",
     "account.tutot.edu.degree.title": "Bằng Cấp",
+    "account.tutot.edu.degree.field_label": "Upload chứng chỉ/bằng Cấp",
+    "account.tutot.edu.degree.no_degrees": "Không có bằng cấp / giấy chứng nhận",
     "account_tutor_skill_title": "Kỹ Năng",
     "account_tutor_certificate_title": "Chứng Chỉ",
     "fields_of_teaching": "Lĩnh Vực Giảng Dạy",
@@ -147,7 +149,6 @@ export const translations = {
     "account_tutor_new_password_title": "Mật Khẩu Mới",
     "account_tutor_new_password_again_title": "Nhập Lại Mật Khẩu Mới",
     "account_tutor_new_password_btn": "Đổi Mật Khẩu",
-    "save_course": "Lưu Khoá Học",
     "drag_and_drop": "Kéo thả tập tin vào đây",
     "speciality": "Chuyên môn",
     "save": "Lưu",
@@ -164,9 +165,7 @@ export const translations = {
      */
     "section_title": "Mô tả",
     "section_name": "Tên",
-    "course_category": "Loại khoá học",
     "course_specialize": "Ngành Học",
-    "category": "Lớp học",
     "level": "Cấp độ",
     /*
      * Filter Course Page
@@ -236,7 +235,7 @@ export const translations = {
     "course_submit_comment_fail": "Gửi phản hồi thất bại",
     "course_comments_no_comment": "Bạn là người đầu tiên phản hồi về khóa học này!!!",
     /* search teachers page */
-    "search_teachers_keyword": "Tìm kiếm theo tên, lĩnh vực",
+    "search_teachers_keyword": "Tìm kiếm theo tên",
     "search_teachers_field_label": "Lĩnh Vực:",
     "teacher_list_more": "Xem thêm",
     /* danh sach ngay trong tuan */

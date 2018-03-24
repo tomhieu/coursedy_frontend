@@ -17,6 +17,9 @@ import TutorItem from './Tutor/TutorItem/TutorItem';
 import TutorList from './Tutor/TutorList/TutorList';
 import TutorProfileDetails from './Tutor/Profile/TutorProfileDetails';
 import TutorProfile from './Dashboard/TutorDashboard/TutorProfile';
+
+import * as StudentComponents from './Student'
+
 import RoleAuthorization from './RoleAuthorization';
 import LoadingMask from './LoadingMask/LoadingMask'
 import TutorDashboardMenu from './Dashboard/TutorDashboard/TutorDashboardMenu'
@@ -49,6 +52,9 @@ export {
   LoadingMask,
   TutorDashboardMenu,
   TutorDashboardIndex,
+
+  StudentComponents,
+
   CourseForm,
   TutorProfileDetails,
   UserInfo,

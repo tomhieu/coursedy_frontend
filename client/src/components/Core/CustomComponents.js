@@ -11,16 +11,16 @@ import {mStyles} from "utils/CustomStylesUtil";
 import {ActionSearch} from "material-ui/svg-icons/index";
 import {fullWhite} from "material-ui/styles/colors";
 
-export const renderField = ({input, label, type = 'text', disabled = false, customClassName, meta: {touched, error, warning}}) => (
+export const renderField = ({input, label, placeholder, type = 'text', disabled = false, customClassName, meta: {touched, error, warning}}) => (
     <div className='full-width-input-wrapper'>
-        <input {...input} placeholder={label} type={type} disabled={disabled} className={customClassName}/>
+        <input {...input} placeholder={placeholder ? placeholder : ''} type={type} disabled={disabled} className={customClassName}/>
         {touched && ((error && <span className='input-errors'>{error}</span>) || (warning && <span>{warning}</span>))}
     </div>
 )
 
-export const renderTextAreaField = ({input, label, type, disabled = false, meta: {touched, error, warning}}) => (
+export const renderTextAreaField = ({input, label, placeholder, type, disabled = false, meta: {touched, error, warning}}) => (
     <div className='full-width-input-wrapper'>
-        <textarea {...input} placeholder={label} type={type} disabled={disabled} className='form-control' rows={6}/>
+        <textarea {...input} placeholder={placeholder ? placeholder : ''} type={type} disabled={disabled} className='form-control' rows={6}/>
         {touched && ((error && <span className='input-errors'>{error}</span>) || (warning && <span>{warning}</span>))}
     </div>
 )
@@ -148,10 +148,11 @@ class renderFileInput extends Component {
 
 
     onChange(files) {
+        let self = this
         let fileReader = new FileReader
         fileReader.onload = () => {
-            this.setState({previewUrl: files[0].preview});
-            this.handleUpload({
+            self.setState({previewUrl: files[0].preview});
+            self.handleUpload({
                 uid: ObjectUtils.generateUUID(),
                 fileName: files[0].name,
                 previewUrl: files[0].preview,
@@ -186,15 +187,15 @@ class renderFileInput extends Component {
                     }}
                     accept="image/*">
                     <div className="d-flex flex-auto justify-content-center">
-                        <div className={internalPreview ? 'hidden' : 'd-flex flex-horizontal align-self-center'}>
+                        <div className={internalPreview ? 'd-none' : 'd-flex flex-horizontal align-self-center'}>
                             <a className="icon-upload"></a>
                             <p className="ml-10">{TT.t('drag_and_drop')}</p>
                         </div>
                     </div>
 
-                    <img className={internalPreview && this.state.previewUrl != null ? '' : 'hidden'}
+                    <img className={internalPreview && this.state.previewUrl != null ? '' : 'd-none'}
                          src={this.state.previewUrl} height={zoneHeight} style={previewImageStyle}></img>
-                    <input className='hidden' {...input}/>
+                    <input className='d-none' {...input}/>
                 </Dropzone>
             </div>
         )

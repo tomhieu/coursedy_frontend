@@ -1,4 +1,4 @@
-import * as types from '../constants/TutorAccount';
+import { TutorAccountTypes } from '../constants/index';
 
 const TutorAccount = (state = {
   editProfileMode: false,
@@ -9,27 +9,27 @@ const TutorAccount = (state = {
   tutor: {degrees: [], categories: [], districts: []}
 }, action) => {
   switch (action.type) {
-    case types.ENABLE_EDIT_TUTOR_PROFILE_MODE:
+    case TutorAccountTypes.ENABLE_EDIT_TUTOR_PROFILE_MODE:
       return {...state, editProfileMode: true}
-    case types.DISABLE_EDIT_TUTOR_PROFILE_MODE:
+    case TutorAccountTypes.DISABLE_EDIT_TUTOR_PROFILE_MODE:
       return {...state, editProfileMode: false}
-    case types.ENABLE_EDIT_TUTOR_EDUCATION_MODE:
+    case TutorAccountTypes.ENABLE_EDIT_TUTOR_EDUCATION_MODE:
       return {...state, editEducationMode: true}
-    case types.DISABLE_EDIT_TUTOR_EDUCATION_MODE:
+    case TutorAccountTypes.DISABLE_EDIT_TUTOR_EDUCATION_MODE:
       return {...state, editEducationMode: false}
-    case types.ENABLE_EDIT_TUTOR_PASSWORD_MODE:
+    case TutorAccountTypes.ENABLE_EDIT_TUTOR_PASSWORD_MODE:
       return {...state, editPasswordMode: true}
-    case types.DISABLE_EDIT_TUTOR_PASSWORD_MODE:
+    case TutorAccountTypes.DISABLE_EDIT_TUTOR_PASSWORD_MODE:
       return {...state, editPasswordMode: false}
-    case types.SET_ACCOUNT_USER:
+    case TutorAccountTypes.SET_ACCOUNT_USER:
       return {...state, user: action.payload}
-    case types.SET_ACCOUNT_TUTOR:
+    case TutorAccountTypes.SET_ACCOUNT_TUTOR:
       return {...state, tutor: action.payload}
-    case types.UPDATE_TUTOR_EDU:
+    case TutorAccountTypes.UPDATE_TUTOR_EDU:
       return {...state, tutor: action.payload}
-    case types.SHOW_REQUIRED_EMAIL_CONFIRMATION_MODAL:
+    case TutorAccountTypes.SHOW_REQUIRED_EMAIL_CONFIRMATION_MODAL:
       return {...state, showEmailConfirmationModal: true}
-    case types.HIDE_REQUIRED_EMAIL_CONFIRMATION_MODAL:
+    case TutorAccountTypes.HIDE_REQUIRED_EMAIL_CONFIRMATION_MODAL:
       return {...state, showEmailConfirmationModal: false}
     default:
       return state;

@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {CourseFilter} from '../../../components/index';
 import * as RefrenceActions from '../../../actions/ReferenceActions/ReferenceDataActionCreator'
 import * as CourseFilterActions from '../../../actions/CourseFilterActionCreator'
@@ -8,8 +8,9 @@ import {reduxForm} from "redux-form";
 import {MAX_FEE, MIN_FEE} from "utils/CommonConstant";
 import {TT} from "utils/locale";
 import {dispatch} from "redux";
+import AbstractFilter from '../../../components/Core/AbstractFilterComponent';
 
-class CourseFilterContainer extends Component {
+class CourseFilterContainer extends AbstractFilter {
 
   componentWillMount() {
     this.props.dispatch(RefrenceActions.fetchCourseCategories());
@@ -86,33 +87,9 @@ class CourseFilterContainer extends Component {
     this.searchCourse(removedFilters, selectedMinFee, selectedMaxFee, order_by, display_mode)
   }
 
-  addFilterCriteria(currentFilters, filterValue, filterType) {
-    // handle for multiple select filter options
-    if (Array.isArray(currentFilters[filterType])) {
-      let selectedFilters = JSON.parse(JSON.stringify(currentFilters[filterType]));
-      selectedFilters.push(filterValue)
-      currentFilters[filterType] = selectedFilters
-    } else {
-      currentFilters.term = filterValue
-    }
-
-    return currentFilters;
-  }
-
   autoCompleteSearchCourse(id) {
     this.props.dispatch({type: asyncActions.CLEAR_SUGGESTION});
     this.context.router.history.push('/course/' + id);
-  }
-
-  removeFilterCriteria(currentFilters, filterValue, filterType) {
-    if (Array.isArray(currentFilters[filterType])) {
-      const clonedFilters = JSON.parse(JSON.stringify(currentFilters[filterType]))
-      const updatedSelectedFilters = clonedFilters.filter(f => f.id != Number(filterValue))
-      currentFilters[filterType] = updatedSelectedFilters
-    } else {
-      currentFilters[filterType] = true;
-    }
-    return currentFilters;
   }
 
   render() {
@@ -136,7 +113,7 @@ CourseFilterContainer.contextTypes = {
   router: React.PropTypes.object
 }
 
-const getSelectedSpecializesFromCategory = (categories, selectedCategories) => {
+export const getSelectedSpecializesFromCategory = (categories, selectedCategories) => {
   if (!selectedCategories) {
     return [];
   }
