@@ -2,6 +2,7 @@ import * as asyncActs from '../actions/AsyncActionCreator';
 import * as courseActionTypes from '../constants/Courses';
 
 const CourseFilter = (state = {
+  isFetching: true,
   courses: [],
   totalResult: 0,
   displayMode: 'grid',
@@ -16,8 +17,10 @@ const CourseFilter = (state = {
   loadingSuggestion: false
 }, action) => {
   switch (action.type) {
+    case courseActionTypes.FETCH_COURSES + asyncActs.PENDING:
+      return {...state, isFetching: true}
     case courseActionTypes.FETCH_COURSES + asyncActs.FULFILLED:
-      return {...state, courses: action.payload, totalResult: action.payload.length}
+      return {...state, courses: action.payload, totalResult: action.payload.length, isFetching: false}
     case asyncActs.CHANGE_DISPLAY_MODE:
       return {...state, displayMode: action.payload}
     case asyncActs.CHANGE_CURRENT_PAGE:

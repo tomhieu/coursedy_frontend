@@ -148,10 +148,11 @@ class renderFileInput extends Component {
 
 
     onChange(files) {
+        let self = this
         let fileReader = new FileReader
         fileReader.onload = () => {
-            this.setState({previewUrl: files[0].preview});
-            this.handleUpload({
+            self.setState({previewUrl: files[0].preview});
+            self.handleUpload({
                 uid: ObjectUtils.generateUUID(),
                 fileName: files[0].name,
                 previewUrl: files[0].preview,

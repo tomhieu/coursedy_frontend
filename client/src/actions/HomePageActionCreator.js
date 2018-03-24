@@ -1,6 +1,6 @@
 import * as courseActionTypes from 'constants/Courses';
 import Network from 'utils/network';
-import * as homePageTypes from 'constants/HomePage';
+import * as asyncActs from 'actions/AsyncActionCreator';
 
 
 export const fetchPopularCourses = () => {
@@ -24,7 +24,7 @@ export const fetchNewCourses = () => {
 export const fetchTopTeachers = () => {
   return dispatch => {
     dispatch({
-      type: homePageTypes.TOP_TEACHERS,
+      type: asyncActs.TOP_TEACHERS,
       payload: Network().get('tutors/top_teachers')
     });
   };

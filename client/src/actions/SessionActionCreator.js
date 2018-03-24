@@ -5,7 +5,7 @@ import queryString from 'query-string'
 import Network from '../utils/network'
 
 const fetchCurrentUser = (dispatch, callback, error = () => {
-    globalHistory.replace('/404');
+    console.warn("Load user fails");
 }) => {
   dispatch({
     type: types.START_FETCHING_CURRENT_USER

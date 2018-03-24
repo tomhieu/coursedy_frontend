@@ -3,12 +3,11 @@ import React from 'react';
 import {CourseFilterContainer, PublicCourseListContainer} from '../../containers/index';
 
 const PublicCourseListPage = (props) => (
-  <div className="row">
-      <div className="col-md-12 col-sm-12">
+  <div className="d-flex flex-g1 flex-vertical">
+      <div className="d-flex flex-auto course-filter-container">
           <CourseFilterContainer />
       </div>
-      <div className="clearfix"></div>
-      <div className="col-md-12 col-sm-12">
+      <div className="d-flex flex-stretch">
           <PublicCourseListContainer />
       </div>
   </div>

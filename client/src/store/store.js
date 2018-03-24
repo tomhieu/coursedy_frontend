@@ -32,10 +32,13 @@ const loadingHandler = store => next => action => {
       action: action.type.substr(0, pendingIndex)
     });
   } else if (fulfillIndex >= 0 || rejectIndex >= 0) {
-    store.dispatch({
-      type: asyncActions.REMOVE_ASYNC_ACTION,
-      action: action.type.substr(0, pendingIndex)
-    });
+    setTimeout(() => {
+      store.dispatch({
+        type: asyncActions.REMOVE_ASYNC_ACTION,
+        action: action.type.substr(0, pendingIndex)
+      })
+    }, 1000);
+
   }
   return next(action);
 }

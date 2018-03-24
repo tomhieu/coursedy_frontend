@@ -16,6 +16,7 @@ import TutorCourseList from "./Course/TutorCourseListReducer";
 import courseDetails from "./CourseFormReducer";
 
 import session from "./Session";
+import footer from "./FooterReducer";
 import TutorProfile from "./TutorProfile";
 import loadPersonData from "./TutorPersonalInfo";
 import EducationData from "./TutorEducation";
@@ -48,8 +49,8 @@ const rootReducer = combineReducers({
   StudentAccountReducer,
   TutorAccountReducer,
 
-
   session,
+  footer,
   TutorProfile,
   routing: routerReducer,
   form: formReducer,

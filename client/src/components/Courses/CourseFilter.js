@@ -60,13 +60,13 @@ class CourseFilter extends Component {
       }
     };
     return (
-      <div className="row">
-        <div className="col-xs-12 col-sm-12">
-          <form onSubmit={handleSubmit(this.props.onSubmit)} className='inline-form' multiple={true}>
-            <div className={styles.filterActionBlock + " col-md-12 col-sm-12"}>
-              <div className="row full-height">
-                <div className="col-md-7 col-sm-7 full-height">
-                  <div className={styles.filterInputBox + " d-flex flex-vertical justify-content-center full-height"}>
+      <div className="d-flex flex-g1">
+        <div className="d-flex flex-g1">
+          <form onSubmit={handleSubmit(this.props.onSubmit)} className='flex-g1 course-filter-form inline-form flex-vertical' multiple={true}>
+            <div className={styles.filterActionBlock}>
+              <div className="d-flex flex-wrap full-height">
+                <div className={"d-flex flex-nowrap full-height " + styles.filterTextContainer}>
+                  <div className={styles.filterInputBox + " d-flex flex-nowrap flex-vertical justify-content-center full-height"}>
                     <div className="d-flex flex-horizontal">
                       {
                         selectedWeekDays.map((f) =>
@@ -138,7 +138,7 @@ class CourseFilter extends Component {
                     />
                   </div>
                 </div>
-                <div className="col-md-5 col-sm-5 full-height st-border-left">
+                <div className={"full-height st-border-left " + styles.advancedFilter}>
                   <div className="d-flex flex-horizontal align-items-center flex-nowrap ml-15 mt-20">
                     <div className={styles.filterOptionContainer}>
                       <FilterOption label={this.context.t('day_of_week')}
@@ -205,20 +205,11 @@ class CourseFilter extends Component {
             </div>
 
             {/* Result Block */}
-            <div className={'col-md-12 ' + styles.filterResultBlock}>
-              <div className="d-flex flex-horizontal align-items-center">
-                <div className={styles.listResultInfo + " d-flex flex-horizontal justify-content-left"}>
-                 {/*<div className={styles.checkAllBtn + " d-flex align-items-center"}>
-                    <FormField formGroupId="select_all_id" showLabel={false} formControlName="select_all"
-                               typeField="checkbox" iconStyle={mStyles.iconCheckBox}>
-                    </FormField>
-                  </div>*/}
-                  {/*<PublicCourseListFollowModalContainer />*/}
-
-                </div>
-                <div className={styles.orderDisplayResult + " d-flex flex-horizontal justify-content-end"}>
+            <div className={styles.filterResultBlock}>
+              <div className="d-flex flex-horizontal justify-content-end">
+                <div className={styles.orderDisplayResult + " d-flex flex-horizontal align-items-center justify-content-end"}>
                   <div className={styles.totalCoursesBox}>
-                    <span className={styles.textTotalResult}>
+                    <span className={styles.textTotalResult + " d-flex justify-content-end"}>
                       {this.context.t("total_result", {total: totalResult != undefined ? totalResult : 0})}
                     </span>
                   </div>

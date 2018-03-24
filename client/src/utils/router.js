@@ -8,7 +8,6 @@ import {Route, Router, Switch} from 'react-router-dom'
 import {globalHistory} from "utils/globalHistory";
 import ListTeacherContainer from '../containers/ListTeacher/ListTeacherContainer';
 
-
 const router = (
   <Provider store={store}>
     <div>
