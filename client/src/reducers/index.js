@@ -59,7 +59,6 @@ const rootReducer = combineReducers({
   Teachers,
   Payment,
   HomePage
-
 });
 
 export default rootReducer;

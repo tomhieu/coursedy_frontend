@@ -1,28 +1,53 @@
 import {Component} from "react";
 import {Button, Modal} from "react-bootstrap";
 import * as React from "react";
+import {Dialog, FlatButton} from "material-ui";
 
 class SimpleDialogComponent extends Component {
     constructor(props) {
         super(props);
     }
     render() {
-        const {show, title, acceptBtn, acceptCallback, cancelCallback} = this.props;
-        return (
-            <Modal show={show} onHide={cancelCallback}>
-                <Modal.Header closeButton>
-                    <Modal.Title>{title}</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                    {this.props.children}
-                </Modal.Body>
-                <Modal.Footer>
-                    {
-                        acceptCallback ? <Button onClick={acceptCallback} className="btn ml-15 mr-15 mt-0 btn-primary btn-link-dark">{acceptBtn}</Button> : ''
-                    }
-                    <Button onClick={cancelCallback} className="btn btn-default">{this.context.t('close')}</Button>
-                </Modal.Footer>
-            </Modal>
+      const {show, title, acceptCallback, cancelCallback} = this.props;
+      const actions = [
+        <FlatButton
+          label="Cancel"
+          primary={true}
+          onClick={cancelCallback}
+        />,
+        <FlatButton
+          label="Submit"
+          primary={true}
+          keyboardFocused={true}
+          onClick={acceptCallback}
+        />,
+      ];
+
+      const dialogStyle = {
+        display: 'block'
+      }
+
+      const titleDialogStyle = {
+        backgroundColor: '#534051',
+        color: '#FFFFFF'
+      }
+
+      const bodyDialogStyle = {
+        padding: '0'
+      }
+
+      return (
+            <Dialog open={show} title={title}
+                    style={dialogStyle}
+                    titleStyle={titleDialogStyle}
+                    bodyStyle={bodyDialogStyle}
+                    autoScrollBodyContent={true}
+                    onRequestClose={cancelCallback}
+                    actions={actions}>
+              <div className="dialog-body-container">
+                {this.props.children}
+              </div>
+            </Dialog>
         )
     }
 }

@@ -19,7 +19,7 @@ class LessonDetailFormContainer extends Component {
         const {handleSubmit, lesson, sectionUniqueKey} = this.props;
         const {documents = []} = lesson;
         return (
-            <form onSubmit={handleSubmit(this.props.onSubmit)} className='inline-form' multiple={true}>
+            <form onSubmit={handleSubmit(this.props.onSubmit)} className='inline-form lesson-detail-form' multiple={true}>
                 <div key={lesson.id} className="lesson-section-seperator">
                     <div className="row">
                         <div className="col-sm-8 col-md-8">

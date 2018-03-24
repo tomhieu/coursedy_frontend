@@ -54,29 +54,40 @@ class CourseFormContainer extends Component {
     });
   }
 
+  saveSection({title}) {
+    this.props.dispatch(CourseActions.saveOrUpdateSection(this.courseId, title, name));
+  }
+
   cancelPopup() {
     this.props.dispatch({type: AsynActions.CLOSE_COURSE_POPUP});
     this.context.router.history.push('/dashboard/courses/list/');
   }
 
   render() {
-    const {editMode, listSection, courseTitle, createCourseSucess, publishCourse} = this.props;
+    const {editMode, listSection, courseTitle, createCourseSucess, publishCourse, isFetching} = this.props;
+
     return (
       <div className="row dashboard-panel">
         <div className="col-sm-12 col-md-12">
-          <LoadingMask belongingActions={[AsynActions.CREATE_NEW_COURSE, AsynActions.UPDATE_COURSE]}>
-            <CourseDetailContainer courseId={this.courseId}
-                                   onActivatedField={this.onActivatedField.bind(this)}
-                                   onClosedField={this.onClosedField.bind(this)}
-                                   {...this.props}>
-            </CourseDetailContainer>
-            <SimpleDialogComponent title={this.context.t('create_course_sucessfully')}
-                                   show={createCourseSucess}
-                                   cancelCallback={this.cancelPopup.bind(this)}>
-              <div className="d-flex flex-vertical">
-                <span>{this.context.t('create_course_sucessfully_message', {title: 'Testing Dialog'})}</span>
-              </div>
-            </SimpleDialogComponent>
+          <LoadingMask belongingActions={[AsynActions.CREATE_NEW_COURSE, AsynActions.UPDATE_COURSE, AsynActions.FETCH_DETAIL_COURSE, AsynActions.FETCH_CATEGORIES]}>
+            {
+              !isFetching ? (
+                <div className="container">
+                  <CourseDetailContainer courseId={this.courseId}
+                                         onActivatedField={this.onActivatedField.bind(this)}
+                                         onClosedField={this.onClosedField.bind(this)}
+                                         {...this.props}>
+                  </CourseDetailContainer>
+                  <SimpleDialogComponent title={this.context.t('create_course_sucessfully')}
+                                         show={createCourseSucess}
+                                         cancelCallback={this.cancelPopup.bind(this)}>
+                    <div className="d-flex flex-vertical">
+                      <span>{this.context.t('create_course_sucessfully_message', {title: 'Testing Dialog'})}</span>
+                    </div>
+                  </SimpleDialogComponent>
+                </div>
+              ) : <div className="d-flex flex-g1 waiting-container"></div>
+            }
           </LoadingMask>
         </div>
         {
@@ -114,7 +125,7 @@ class CourseFormContainer extends Component {
                       </SectionLessonContainer>)
                   }
                 </div>
-                <SectionCreationPopupContainer courseId={this.courseId}>
+                <SectionCreationPopupContainer courseId={this.courseId} onSubmit={this.saveSection.bind(this)}>
                 </SectionCreationPopupContainer>
               </div>
               <SimpleDialogComponent title={this.context.t('popup_warning_publish_course_title')}
@@ -151,10 +162,10 @@ CourseFormContainer.propTypes = {};
 
 const mapStateToProps = (state) => {
   const {courseDetails} = state;
-  const {listSection, editMode, activatedField, createCourseSucess, courseData = {}, publishCourse} = courseDetails;
+  const {listSection, editMode, activatedField, createCourseSucess, courseData = {}, publishCourse, isFetching} = courseDetails;
   const {cover_image, title} = courseData;
   return {
-    listSection, editMode, activatedField, createCourseSucess, cover_image, publishCourse, courseTitle: title
+    listSection, editMode, activatedField, createCourseSucess, cover_image, publishCourse, courseTitle: title, isFetching
   };
 };
 

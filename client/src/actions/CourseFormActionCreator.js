@@ -110,20 +110,16 @@ export const closedEditField = (fieldId) => {
 }
 
 export const loadListSection = (courseId) => {
-  return dispatch => {
-    dispatch({
-      type: FETCH_LIST_SECTION,
-      payload: Network().get('/course_sections?course_id=' + courseId)
-    })
- }
+  return {
+    type: FETCH_LIST_SECTION,
+    payload: Network().get('/course_sections?course_id=' + courseId)
+  }
 }
 
 export const publishCourse = (courseId) => {
-  return dispatch => {
-    dispatch({
-      type: PUBLISH_COURSE,
-      payload: Network().post('courses/publish', courseId)
-    })
+  return {
+    type: PUBLISH_COURSE,
+    payload: Network().post('courses/publish', courseId)
   }
 }
 
@@ -149,19 +145,15 @@ export const closePopupSection = () => {
 }
 
 export const saveOrUpdateSection = (id, title) => {
-  return dispatch => {
-    dispatch({
-      type: CREATE_UPDATE_SECTION,
-      payload: Network().post('course_sections', {course_id: id, title})
-    });
+  return {
+    type: CREATE_UPDATE_SECTION,
+    payload: Network().post('course_sections', {course_id: id, title})
   }
 }
 
 export const deleteSection = (id) => {
-  return dispatch => {
-    dispatch({
-      type: DELETE_SECTION,
-      payload: Network().delete('course_sections', id)
-    });
+  return {
+    type: DELETE_SECTION,
+    payload: Network().delete('course_sections', id)
   }
 }

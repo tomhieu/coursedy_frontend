@@ -6,6 +6,7 @@ import {Modal, Button} from 'react-bootstrap';
 import * as PublicCourseActions from '../../../actions/PublicCourseActionCreator';
 import { CoreComponent } from "../../../components/index"
 import {validate} from "../../../validations/PublicCourseDetailFollowModalValidator"
+import SimpleDialogComponent from "../../../components/Core/SimpleDialogComponent";
 
 /**
   * @Course group template 2
@@ -59,31 +60,19 @@ class PublicCourseDetailFollowModalContainer extends Component {
         <Button className={'btn btn-primary'} onClick={this.showPublicCourseFollowModal.bind(this)}>
           <i className={this.props.submit_follow_success ? 'fa fa-heart' : 'fa fa-heart-o'}></i>
         </Button>
-        <Modal show={this.props.show_follow_modal} onHide={this.hidePublicCourseFollowModal.bind(this)}>
-          <form onSubmit={handleSubmit(this.saveCourseFollowHandleSumit.bind(this))} className='inline-form'>  
-            <Modal.Header>
-              <Modal.Title>{this.context.t('course_follow')}</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-              { submitAlert }
-              <div className="">
-                <div className="public-course-follow-email">
-                  <CoreComponent.FormField formGroupId={'emailId'} formLabel={this.context.t('account.person.info.email')}
-                     placeholder={this.context.t('account.person.info.email')} isMandatoryField={true}
-                     formControlName={'email'} typeField={'custom_input'}></CoreComponent.FormField>
-                </div>
-              </div>
-            </Modal.Body>
-            <Modal.Footer>
-              <Button type="submit" disabled={!valid} className="btn-primary"
-              >
-                {this.context.t('save')}
-              </Button>
-
-              <Button onClick={this.hidePublicCourseFollowModal.bind(this)}>{this.context.t('close')}</Button>
-            </Modal.Footer>
-          </form>
-        </Modal>
+        <SimpleDialogComponent show={this.props.show_follow_modal}
+                               title={this.context.t('course_follow')}
+                               acceptCallback={handleSubmit(this.saveCourseFollowHandleSumit.bind(this))}
+                               cancelCallback={this.hidePublicCourseFollowModal.bind(this)}>
+          { submitAlert }
+          <div className="">
+            <div className="public-course-follow-email">
+              <CoreComponent.FormField formGroupId={'emailId'} formLabel={this.context.t('account.person.info.email')}
+                                       placeholder={this.context.t('account.person.info.email')} isMandatoryField={true}
+                                       formControlName={'email'} typeField={'custom_input'}></CoreComponent.FormField>
+            </div>
+          </div>
+        </SimpleDialogComponent>
 
         {/* Follow course status modal */}
         <CoreComponent.SimpleDialogComponent

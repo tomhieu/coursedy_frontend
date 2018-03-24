@@ -54,8 +54,7 @@ class CourseForm extends Component {
     return (
       <div>
         <form onSubmit={handleSubmit(this.props.onSubmit)} className='inline-form' multiple={true}>
-          <div
-            className={editMode ? "d-flex flex-horizontal justify-content-center mt-30 mb-30" : "d-flex flex-horizontal"}>
+          <div className={editMode ? "d-flex flex-horizontal justify-content-center mt-30 mb-30" : "d-flex flex-horizontal"}>
             {
               editMode ? (
                 <div className={styles.avatarImage}>
@@ -79,7 +78,7 @@ class CourseForm extends Component {
             </div>
           </div>
           <div className='row'>
-            <div className='col-sm-6'>
+            <div className='col-sm col-md'>
               {this.renderField(editMode, "category_id", true, this.context.t("course_category"), this.context.t("course_category"),
                 true, "category_id", "custom_select", false, editMode ? courseData.category.name : "", categories.map((category) => {
                   return {id: category.id, text: category.name}
@@ -87,7 +86,7 @@ class CourseForm extends Component {
             </div>
             {
               courseSpecializes.length > 0 ?
-                <div className='col-sm-6'>
+                <div className='col-sm col-md'>
                   {this.renderField(editMode, "course_specialize_id", true, this.context.t("course_specialize"), this.context.t("course_specialize"),
                     true, "course_specialize_id", "custom_select", false, editMode ? courseData.course_specialize.name : "", courseSpecializes)}
                 </div>
@@ -97,13 +96,13 @@ class CourseForm extends Component {
           {/* Course category and course level */}
 
           <div className='row'>
-            <div className='col-sm-6'>
+            <div className='col-sm col-md'>
               <div className={!editMode ? "datepicker-box" : ""}>
                 {this.renderField(editMode, "start_date_Id", true, this.context.t("start_date"), this.context.t("start_date"), true,
                   "start_date", "datepicker", false, editMode ? courseData.start_date : "")}
               </div>
             </div>
-            <div className='col-md-6 col-sm-6'>
+            <div className='col-md col-sm'>
               <div className="d-flex flex-horizontal">
                 <div>
                   {this.renderField(editMode, "period_Id", true, this.context.t("period"), this.context.t("period"), true,
@@ -114,7 +113,7 @@ class CourseForm extends Component {
           </div>
 
           <div className="row">
-            <div className="col-sm-3">
+            <div className="col-sm-12 col-md-12">
               {this.renderField(editMode, "number_of_students_Id", true, this.context.t("number_of_students"), this.context.t("number_of_students"),
                 true, "number_of_students", "custom_input", false, editMode ? courseData.number_of_students.toString() : "")}
             </div>
@@ -145,7 +144,7 @@ class CourseForm extends Component {
             </div>
           </div>
           <div className="row">
-            <div className='col-sm-8 col-md-8'>
+            <div className='col-sm col-md'>
               {this.renderField(editMode, "course_days_id", true, this.context.t("date_in_week_course"), this.context.t("teaching_period_per_day"),
                 true, "course_days", "multi_select", false, editMode ? courseData.category.name : "", DAYS_IN_WEEK.map((day) => {
                   return {id: day.name + "_" + day.id, text: day.text}

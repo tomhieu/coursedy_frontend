@@ -1,20 +1,13 @@
-import React, { Component } from 'react';
-import {Modal, Button} from 'react-bootstrap';
+import React, {Component} from 'react';
+import SimpleDialogComponent from "../Core/SimpleDialogComponent";
 
 class SignUpSuccessModal extends Component {
   render(){
+    const {show, close} = this.props;
     return (
-      <Modal show={this.props.show} onHide={this.props.close}>
-        <Modal.Header closeButton>
-          <Modal.Title>{this.context.t('sign_up_success')}</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <p> {this.context.t('congrat_sign_up_success')} </p>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button onClick={this.props.close}>{this.context.t('close')}</Button>
-        </Modal.Footer>
-      </Modal>
+      <SimpleDialogComponent show={show} title={this.context.t('sign_up_success')} cancelCallback={close}>
+        <p> {this.context.t('congrat_sign_up_success')} </p>
+      </SimpleDialogComponent>
     )
   }
 }

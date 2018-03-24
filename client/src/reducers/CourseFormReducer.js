@@ -3,6 +3,7 @@ import DateUtils from "utils/DateUtils";
 import {FULFILLED} from "actions/AsyncActionCreator";
 
 const courseDetails = (state = {
+  isFetching: true,
   courseData: {cover_image: null},
   editMode: false,
   listSection: [],
@@ -34,6 +35,8 @@ const courseDetails = (state = {
     /**
      * handle actions to load the details of course
      */
+    case asyncActions.FETCH_DETAIL_COURSE + asyncActions.PENDING:
+      return Object.assign({}, state, {editMode: true, isFetching: true});
     case asyncActions.FETCH_DETAIL_COURSE + FULFILLED:
       const {category, course_level, start_date, end_date, week_day_schedules} = action.payload;
       const fr_start_date = DateUtils.formatDate(start_date);
@@ -43,7 +46,7 @@ const courseDetails = (state = {
         start_date: fr_start_date, end_date: fr_end_date,
         is_same_period: isSamePeriod(week_day_schedules)
       });
-      return Object.assign({}, state, {courseData: courseData, editMode: true});
+      return Object.assign({}, state, {courseData: courseData, editMode: true, isFetching: false});
     /**
      * handle creation course actions
      */

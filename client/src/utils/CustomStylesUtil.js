@@ -51,5 +51,8 @@ export const mStyles = {
     width: 18,
     marginTop: 3,
     marginRight: 3
+  },
+  cartText: {
+    padding: '0'
   }
 };
