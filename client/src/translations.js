@@ -288,7 +288,23 @@ export const translations = {
     "introduction_save_time_title": "<span class='introduction-text-decoration'>Tiết K</span>iệm Thời Gian",
     "introduction_save_time_description": "No more emails, Calls or messaging friends for recommendations - Get acces to real reviews in seconds",
     "search_empty_result": "Thật tiếc chúng tôi không tìm thấy {type} nào",
-    "search_course": "Khoá Học"
+    "search_course": "Khoá Học",
+
+    "my_account": "Tài khoản",
+    "my_profile": "Thông tin người dùng",
+    "my_balance": "Thanh toán",
+
+    "my_courses": "Khóa học",
+    "enrolled_courses": "Đã tham gia",
+    "enrolling_courses": "Đang tham gia",
+    "followed_courses": "Đang theo dõi",
+
+    "payment_created_at": "Ngày",
+    "payment_order": "Đơn hàng",
+    "payment_content": " ",
+    "payment_invoice": " ",
+    "payment_status": " ",
+    "payment_value": "Giá trị"
   },
   "en": {
     "home_page": "Home",
