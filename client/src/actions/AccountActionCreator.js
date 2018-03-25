@@ -1,4 +1,5 @@
-import AccountTypes from '../constants/index'
+import {ACCOUNT} from '../actions/AsyncActionCreator'
+import Network from "utils/network";
 
 export const showPasswordEditForm = () => {
   return {
@@ -13,11 +14,8 @@ export const hidePasswordEditForm = () => {
 }
 
 export const updatePassword = (data) => {
-  dispatch => {
-    Network().post('/account/tutor/change/password', data).then((response) => {
-      dispatch({
-        type: AccountTypes.COMPLETE_UPDATE_PASSWORD
-      })
-    });
+  return {
+    type: ACCOUNT.complete_updating_password,
+    payload: Network().update('auth', data)
   }
 }

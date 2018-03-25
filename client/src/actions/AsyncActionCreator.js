@@ -9,6 +9,12 @@ export const CERTIFICATE = {
   upload_new_document: 'UPLOAD_NEW_DOCUMENT'
 }
 
+export const ACCOUNT = {
+  enable_edit_password_mode: 'ENABLE_EDIT_PASSWORD_MODE',
+  disable_edit_password_mdode: 'DISABLE_EDIT_PASSWORD_MODE',
+  complete_updating_password: 'COMPLETE_UPDATE_PASSWORD'
+}
+
 /**
  * Define general action to manage async actions
  * @type {string}
