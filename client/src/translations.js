@@ -254,6 +254,8 @@ export const translations = {
     "bank_number": "Số Tài Khoản",
     "transaction_office": "Phòng Giao Dịch",
     "select_domestic_bank": "Lựa chọn ngân hàng",
+    "make_a_payment": "Nạp tiền",
+    "fetch_payment_history_fail": "Lấy lịch sử thanh toán thất bại",
     /* home page */
     "product_title": "EZYLEARNING",
     "product_tag": "Tìm Kiếm Khoá Học Yêu Thích Của Bạn",

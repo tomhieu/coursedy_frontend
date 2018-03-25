@@ -29,6 +29,8 @@ import UserInfo from './Account/UserInfo'
 import RequireEmailConfirmationModal from './Account/RequireEmailConfirmationModal'
 import TutorEducationDetailComponent from './Account/Tutor/TutorEducationDetailComponent'
 
+import * as PaymentComponents from './Payment'
+
 export {
   Header,
   Footer,
@@ -54,6 +56,7 @@ export {
   TutorDashboardIndex,
 
   StudentComponents,
+  PaymentComponents,
 
   CourseForm,
   TutorProfileDetails,

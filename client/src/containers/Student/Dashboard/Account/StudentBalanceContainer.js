@@ -1,11 +1,57 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
+import { PaymentComponents } from '../../../../components/index';
+import {connect} from "react-redux";
+import {
+  PaymentActions
+} from "../../../../actions/index";
+import LoadingMask from "../../../../components/LoadingMask/LoadingMask";
+import {FETCH_PAYMENT_HISTORY} from "../../../../actions/AsyncActionCreator";
+import { LinkContainer } from 'react-router-bootstrap'
 
-class StudentDashboardAccountBalanceContainer extends Component {
+class StudentBalanceContainer extends Component {
+  componentWillMount() {
+    this.props.dispatch(PaymentActions.fetchPaymentHistory())
+  }
+
   render() {
+    const { paymentHistory, isFetching } = this.props
     return (
-      <h2>StudentDashboardAccountBalanceContainer</h2>
+      <div className="d-flex flex-vertical flex-auto">
+        <div className="d-flex justify-content-left mb-10">
+          
+          <LinkContainer className="nav-link" to="/login">
+            <span className="nav-btn">{this.context.t('make_a_payment')}</span>
+          </LinkContainer>
+        </div>
+        <div className="d-flex flex-auto">
+            <LoadingMask belongingActions={[FETCH_PAYMENT_HISTORY]}>
+            {
+              paymentHistory.length !== 0 ?
+                <PaymentComponents.PaymentHistory 
+                  paymentHistory={paymentHistory}
+                /> : null
+            }
+            </LoadingMask>
+        </div>
+      </div>
     )
   }
 }
 
-export default StudentDashboardAccountBalanceContainer
+StudentBalanceContainer.contextTypes = {
+    t: React.PropTypes.func.isRequired,
+    router: React.PropTypes.object
+}
+
+const mapStateToProps = (state) => {
+  const {Payment} = state;
+  const {
+    isFetchingPaymentHistory,
+    paymentHistory
+  } = Payment;
+  return { paymentHistory: paymentHistory, isFetching: isFetchingPaymentHistory }
+};
+
+export default connect(
+    mapStateToProps
+)(StudentBalanceContainer)

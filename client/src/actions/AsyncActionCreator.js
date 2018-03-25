@@ -91,3 +91,8 @@ export const UPDATE_FILTER_CRITERIA = "UPDATE_FILTER_CRITERIA"
  * Define actions of Homepage
  */
 export const TOP_TEACHERS = "TOP_TEACHERS";
+
+/**
+ * Define actions of payment
+ */
+export const FETCH_PAYMENT_HISTORY = "FETCH_PAYMENT_HISTORY"
