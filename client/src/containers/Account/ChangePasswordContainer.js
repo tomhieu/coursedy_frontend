@@ -6,6 +6,7 @@ import {reduxForm} from "redux-form";
 import styles from './ChangePasswordContainer.module.scss';
 import cssModules from 'react-css-modules';
 import {updatePassword} from "../../actions/AccountActionCreator";
+import {validate} from '../../validations/ChangePasswordFormValidator'
 
 class ChangePasswordContainer extends Component {
   updatePassword({current_password, password, password_confirmation}) {
@@ -55,5 +56,6 @@ const mapStateToProps = state => {
 
 export default connect(mapStateToProps)(reduxForm({
   form: 'changePasswordForm',
-  fields: ['currentPassword', 'newPassword', 'newPassword2']
+  fields: ['current_password', 'password', 'password_confirmation'],
+  validate
 })(cssModules(ChangePasswordContainer, styles)));
