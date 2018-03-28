@@ -34,7 +34,7 @@ export const translations = {
     "registration_email_require": "Vui lòng nhập email",
     "invalid_email": "Email không hợp lệ",
     "password_required": "Vui lòng nhập mật khẩu",
-    "password_confirmation_required": "Vui lòng xác mật khẩu",
+    "password_confirmation_required": "Vui lòng xác nhận mật khẩu",
     "invalid_password": "Mật khẩu quá ngắn (ít nhất 8 ký tự)",
     "password_confirmation_not_match": "Xác nhận mật khẩu không đúng",
     "phone_number_required": "Vui lòng nhập số điện thoại",
