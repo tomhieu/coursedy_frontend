@@ -37,7 +37,7 @@ PaymentContainer.propTypes = {};
 const mapStateToProps = (state) => {
   const {Payment} = state;
   const {supportedBankList = []} = Payment;
-  return supportedBankList;
+  return {supportedBankList};
 };
 
 

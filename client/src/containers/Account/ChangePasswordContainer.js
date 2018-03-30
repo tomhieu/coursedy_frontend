@@ -25,18 +25,18 @@ class ChangePasswordContainer extends Component {
         </div>
         <form onSubmit={e => updatePassword(e.target.value)}>
           <div>
-            <FormField formGroupId="currentPasswordId"
-                       formLabel={this.context.t("account_tutor_current_password_title")}
+            <FormField fieldId="currentPasswordId"
+                       fieldLabel={this.context.t("account_tutor_current_password_title")}
                        formControlName="currentPassword" type="password" typeField="custom_input" {...this.props}/>
           </div>
 
           <div>
-            <FormField formGroupId="newPasswordId" formLabel={this.context.t("account_tutor_new_password_title")}
+            <FormField fieldId="newPasswordId" fieldLabel={this.context.t("account_tutor_new_password_title")}
                        formControlName="newPassword" type="password" typeField="custom_input"/>
           </div>
 
           <div>
-            <FormField formGroupId="newPassword2Id" formLabel={this.context.t("account_tutor_new_password_again_title")}
+            <FormField fieldId="newPassword2Id" fieldLabel={this.context.t("account_tutor_new_password_again_title")}
                        formControlName="newPassword2" type="password" typeField="custom_input"/>
           </div>
 

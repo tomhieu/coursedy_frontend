@@ -18,7 +18,7 @@ const courseDetails = (state = {
      * handle actions update an existing course
      */
     case asyncActions.UPDATE_COURSE + asyncActions.FULFILLED:
-      return Object.assign({}, state, {activatedField: null, createCourseSucess: true});
+      return Object.assign({}, state, {activatedField: null, courseData: action.payload, createCourseSucess: false});
     case asyncActions.CLOSE_COURSE_POPUP:
       return Object.assign({}, state, {createCourseSucess: false});
     /**
@@ -65,7 +65,7 @@ const courseDetails = (state = {
     case asyncActions.CLOSE_POPUP_ADD_SECTION:
       return Object.assign({}, state, {showSectionPopup: false});
     case asyncActions.DELETE_SECTION + asyncActions.FULFILLED:
-      let deletedSectionList = currentSectionList.filter((section) => section.id != action.data.id);
+      let deletedSectionList = currentSectionList.filter((section) => section.id != action.payload.id);
       return Object.assign({}, state, {listSection: deletedSectionList});
     case asyncActions.CREATE_UPDATE_SECTION + asyncActions.FULFILLED:
       currentSectionList.push(action.payload);
@@ -77,6 +77,13 @@ const courseDetails = (state = {
       let [modifiedSection] = currentSectionList.filter(section => section.id === action.data);
       modifiedSection['showLessonPopup'] = true;
       return Object.assign({}, state, {listSection: currentSectionList});
+    case asyncActions.SAVE_LESSON + asyncActions.PENDING:
+      currentSectionList.forEach((section) => {
+        if (section.showLessonPopup) {
+          section.showLessonPopup = false;
+        }
+      });
+      return Object.assign({}, state, {listSection: currentSectionList, showSectionPopup: false});
     case asyncActions.SAVE_LESSON + asyncActions.FULFILLED:
       const {course_section_id} = action.payload;
       let [updatedSection] = currentSectionList.filter(section => section.id === course_section_id);

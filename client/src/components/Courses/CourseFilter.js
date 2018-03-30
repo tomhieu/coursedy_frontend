@@ -179,12 +179,12 @@ class CourseFilter extends Component {
                         <div className="d-flex flex-horizontal">
                           <div className="select-course-fee">
                             <div className="d-flex flex-horizontal">
-                              <FormField className="md-number-field" formGroupId="filter_min_fees" showLabel={false} placeholder={this.context.t('min_fee_placeholder')}
+                              <FormField className="md-number-field" fieldId="filter_min_fees" showLabel={false} placeholder={this.context.t('min_fee_placeholder')}
                                          onChange={(e) => this.props.onSelectFilter(e.target.value, 'resetMinFee')}
                                          formControlName="selectedMinFee" typeField="custom_input">
                               </FormField>
                               <span className="ml-10 mr-10 mt-5">{this.context.t('to')}</span>
-                              <FormField className="md-number-field" formGroupId="filter_max_fees" showLabel={false} placeholder={this.context.t('max_fee_placeholder')}
+                              <FormField className="md-number-field" fieldId="filter_max_fees" showLabel={false} placeholder={this.context.t('max_fee_placeholder')}
                                          onChange={(e) => this.props.onSelectFilter(e.target.value, 'resetMaxFee')} formControlName="selectedMaxFee" typeField="custom_input">
                               </FormField>
                             </div>
@@ -215,7 +215,7 @@ class CourseFilter extends Component {
                     </span>
                   </div>
                   <div className={styles.orderBtn}>
-                    <FormField formGroupId="order_by_id" showLabel={false} formLabel={this.context.t("order_list")}
+                    <FormField fieldId="order_by_id" showLabel={false} fieldLabel={this.context.t("order_list")}
                                options={orderList} formControlName="order_by"
                                typeField="custom_select">
                     </FormField>

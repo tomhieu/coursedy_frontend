@@ -38,11 +38,11 @@ class TutorEducation extends Component {
           </div>
           <form onSubmit={handleSubmit(this.updateEducation.bind(this))}>
             <div>
-              <FormField formGroupId="titleId" formLabel={this.context.t("account.tutot.edu.ocupation")}
+              <FormField fieldId="titleId" fieldLabel={this.context.t("account.tutot.edu.ocupation")}
                          isMandatoryField={true} formControlName="title" typeField="custom_input"/>
             </div>
             <div>
-              <FormField formGroupId="descriptionId" formLabel={this.context.t("account.tutor.edu.description")}
+              <FormField fieldId="descriptionId" fieldLabel={this.context.t("account.tutor.edu.description")}
                          isMandatoryField={true} formControlName="description" typeField="custom_textarea"/>
             </div>
 
@@ -61,7 +61,7 @@ class TutorEducation extends Component {
               {/*</div>*/}
             {/*</div>*/}
             <div>
-              <FormField formGroupId="skillsId" formLabel={this.context.t("account_tutor_skill_title")}
+              <FormField fieldId="skillsId" fieldLabel={this.context.t("account_tutor_skill_title")}
                          options={skillSet} formControlName="categories" typeField="multi_select"/>
             </div>
 

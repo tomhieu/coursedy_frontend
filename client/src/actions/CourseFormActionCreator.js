@@ -154,6 +154,6 @@ export const saveOrUpdateSection = (id, title) => {
 export const deleteSection = (id) => {
   return {
     type: DELETE_SECTION,
-    payload: Network().delete('course_sections', id)
+    payload: Network().delete('course_sections/' + id)
   }
 }

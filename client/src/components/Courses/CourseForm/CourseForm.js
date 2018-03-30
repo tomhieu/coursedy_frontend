@@ -17,9 +17,9 @@ class CourseForm extends Component {
               content = "", options, displayStyle = "default-field", styleCustomField) {
     return editMode ? (
       <InlineEditFormField activated={this.props.activatedField === fieldId}
-                           formGroupId={fieldId}
+                           fieldId={fieldId}
                            showLabel={showLabel}
-                           formLabel={fieldLabel}
+                           fieldLabel={fieldLabel}
                            content={content}
                            displayStyle={displayStyle}
                            options={options}
@@ -32,8 +32,8 @@ class CourseForm extends Component {
                            {...this.props}>
       </InlineEditFormField>
     ) : (
-      <FormField formGroupId={fieldId}
-                 formLabel={fieldLabel}
+      <FormField fieldId={fieldId}
+                 fieldLabel={fieldLabel}
                  options={options}
                  disabled={disabled}
                  placeholder={placeholder}
@@ -43,6 +43,13 @@ class CourseForm extends Component {
                  typeField={typeField}>
       </FormField>
     )
+  }
+
+  getDayInWeekOfCourse(course) {
+    const days = course.week_day_schedules.forEach((day) => {
+      return day.name
+    });
+    return days ? days.join(', ') : '';
   }
 
   render() {
@@ -58,8 +65,7 @@ class CourseForm extends Component {
             {
               editMode ? (
                 <div className={styles.avatarImage}>
-                  <FormField formGroupId="cover_image_Id"
-                             formLabel={null}
+                  <FormField fieldId="cover_image_Id"
                              showLabel={false}
                              isMandatoryField={false}
                              previewUrl={cover_image != null ? SERVER_NAME + cover_image : null}
@@ -80,7 +86,7 @@ class CourseForm extends Component {
           <div className='row'>
             <div className='col-sm col-md'>
               {this.renderField(editMode, "category_id", true, this.context.t("course_category"), this.context.t("course_category"),
-                true, "category_id", "custom_select", false, editMode ? courseData.category.name : "", categories.map((category) => {
+                true, "category_id", "custom_select", false, editMode && courseData.category ? courseData.category.name : "", categories.map((category) => {
                   return {id: category.id, text: category.name}
                 }))}
             </div>
@@ -88,7 +94,7 @@ class CourseForm extends Component {
               courseSpecializes.length > 0 ?
                 <div className='col-sm col-md'>
                   {this.renderField(editMode, "course_specialize_id", true, this.context.t("course_specialize"), this.context.t("course_specialize"),
-                    true, "course_specialize_id", "custom_select", false, editMode ? courseData.course_specialize.name : "", courseSpecializes)}
+                    true, "course_specialize_id", "custom_select", false, editMode && courseData.course_specialize ? courseData.course_specialize.name : "", courseSpecializes)}
                 </div>
                 : null
             }
@@ -133,7 +139,7 @@ class CourseForm extends Component {
                   </div>
                 </div>
                 <div className="ml-20 d-flex flex-col-1 course-free">
-                  <FormField formGroupId="is_free_id"
+                  <FormField fieldId="is_free_id"
                              showLabel={false}
                              formLabel={this.context.t("course_free")}
                              formControlName={"is_free"}
@@ -144,69 +150,13 @@ class CourseForm extends Component {
             </div>
           </div>
           <div className="row">
-            <div className='col-sm col-md'>
-              {this.renderField(editMode, "course_days_id", true, this.context.t("date_in_week_course"), this.context.t("teaching_period_per_day"),
-                true, "course_days", "multi_select", false, editMode ? courseData.category.name : "", DAYS_IN_WEEK.map((day) => {
-                  return {id: day.name + "_" + day.id, text: day.text}
-                }))}
-            </div>
-            {
-              !editMode ?
-                <div className="col-sm-12 col-md-12">
-                  <FormField formGroupId="is_same_period_id"
-                             showLabel={false}
-                             formLabel={this.context.t("teaching_period_per_day_similar")}
-                             formControlName={"is_same_period"}
-                             typeField="checkbox">
-                  </FormField>
-                </div> : null
-            }
-            <div className="col-md-12 col-sm-12">
-              <div className={styles.timePickerContainer + " d-flex flex-horizontal flex-wrap"}>
-                {
-                  !isSamePeriod ?
-                    selectedDays.map((day) =>
-                      <div className={styles.timePickerBox + " d-flex"} key={"date_" + day.id}>
-                        <div className="d-flex flex-vertical">
-                          <span>{day.text}</span>
-                          <div>
-                            {this.renderField(editMode, day.name + "_start_time_id", false, this.context.t("start_time"), this.context.t("start_time"),
-                              true, day.name + "_start_time", "timePicker", false, editMode ? retrieveStartTimeOfDay(courseData.course_days, day.name) : "")}
-                          </div>
-                          {
-                            editMode ? TT.t('to') : null
-                          }
-                          <div>
-                            {this.renderField(editMode, day.name + "_end_time_id", false, this.context.t("end_time"), this.context.t("end_time"),
-                              true, day.name + "_end_time", "timePicker", false, editMode ? retrieveEndTimeOfDay(courseData.course_days, day.name) : "")}
-                          </div>
-                        </div>
-                      </div>
-                    ) :
-                    <div className={styles.timePickerBox + " d-flex"}>
-                      <div className="d-flex flex-vertical">
-                        <div>
-                          {this.renderField(editMode, "start_time_id", false, this.context.t("start_time"), this.context.t("start_time"),
-                            true, "start_time_id", "timePicker", false, editMode ? retrieveStartTimeOfDay(courseData.course_days, null) : "")}
-                        </div>
-                        {
-                          editMode ? TT.t('to') : null
-                        }
-                        <div>
-                          {this.renderField(editMode, "end_time_id", false, this.context.t("end_time"), this.context.t("end_time"),
-                            true, "end_time_id", "timePicker", false, editMode ? retrieveEndTimeOfDay(courseData.course_days, null) : "")}
-                        </div>
-                      </div>
-                    </div>
-                }
-              </div>
-            </div>
+
           </div>
           {
             !editMode ? (
               <div className="avatar-image">
-                <FormField formGroupId="cover_image_Id"
-                           formLabel={this.context.t("cover_image")}
+                <FormField fieldId="cover_image_Id"
+                           fieldLabel={this.context.t("cover_image")}
                            isMandatoryField={true}
                            previewUrl={cover_image != null ? cover_image.previewUrl : null}
                            zoneHeight="200px"
@@ -242,6 +192,9 @@ class CourseForm extends Component {
 }
 
 const retrieveStartTimeOfDay = (courseDays, day) => {
+  if (!Array.isArray(courseDays) || courseDays.length === 0) {
+    return null;
+  }
   if (day == null) {
     return courseDays[0].start_time;
   }
@@ -250,6 +203,10 @@ const retrieveStartTimeOfDay = (courseDays, day) => {
 }
 
 const retrieveEndTimeOfDay = (courseDays, day) => {
+  if (!Array.isArray(courseDays) || courseDays.length === 0) {
+    return null;
+  }
+
   if (day == null) {
     return courseDays[0].end_time;
   }

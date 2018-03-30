@@ -54,5 +54,15 @@ export const mStyles = {
   },
   cartText: {
     padding: '0'
+  },
+  dialogStyle: {
+    display: 'block'
+  },
+  titleDialogStyle: {
+    backgroundColor: '#534051',
+    color: '#FFFFFF'
+  },
+  bodyDialogStyle: {
+    padding: '0'
   }
 };

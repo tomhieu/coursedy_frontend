@@ -21,7 +21,11 @@ export class DomesticBank extends Component {
     const {accountNumber, accountName, transactionOffice} = this.state.selectedBank;
     return (
       <div>
-        <Select2 placeholder={this.context.t('select_domestic_bank')} disabled={false} data={supportedBankList} onChange={this.onSelectBank.bind(this)}/>
+        <Select2 placeholder={this.context.t('select_domestic_bank')}
+                 disabled={false} data={supportedBankList.map((bank) => {
+                   return {id: bank.id, text: bank.name}
+                  })}
+                 onChange={this.onSelectBank.bind(this)}/>
         <BankAccount accountNumber={accountNumber} accountName={accountName} transaction={transactionOffice}>
         </BankAccount>
       </div>
@@ -55,5 +59,4 @@ DomesticBank.contextTypes = {
 
 DomesticBank.propTypes = {
   supportedBankList: React.PropTypes.array.isRequired,
-  handleSubmit: React.PropTypes.func.isRequired,
 };

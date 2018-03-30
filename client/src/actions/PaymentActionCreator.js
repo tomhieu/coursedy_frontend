@@ -1,6 +1,7 @@
 export const FETCH_SUPPORTED_BANK_LIST_COMPLETE = "FETCH_SUPPORTED_BANK_LIST_COMPLETE"
 const domesticBankList = [
   {
+    id: 1,
     name: "ACB",
     bankAccount: {
       bankName: "Pham Duy Bao Trung",

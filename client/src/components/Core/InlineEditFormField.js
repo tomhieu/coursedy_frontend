@@ -49,9 +49,9 @@ class InlineEditFormField extends FormField {
       } else {
         return (
           <div className={displayStyle + ' inline-field d-flex flex-horizontal'}>
-            {showLabel ? (<label className="control-label">{this.props.formLabel}: </label>) : ''}
+            {showLabel ? (<label className="control-label">{this.props.fieldLabel}: </label>) : ''}
             <span className='pre-wrap'>{this.props.content}</span>
-            <span className='inline-edit' onClick={() => this.showEditForm(this.props.formGroupId)}><i
+            <span className='inline-edit' onClick={() => this.showEditForm(this.props.fieldId)}><i
               className="fa fa-pencil"></i></span>
           </div>
         )
@@ -65,7 +65,9 @@ InlineEditFormField.contextTypes = {
 }
 
 InlineEditFormField.propTypes = {
-  content: React.PropTypes.string.isRequired
+  content: React.PropTypes.string.isRequired,
+  fieldId: React.PropTypes.string.isRequired,
+  fieldLabel: React.PropTypes.string.isRequired
 }
 
 export default InlineEditFormField;

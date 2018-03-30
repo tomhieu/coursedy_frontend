@@ -66,7 +66,7 @@ class CommentFormContainer extends Component {
       <div className="course-detail-comment-form" id="comment-section">
         <div className="col-md-12">
           <form onSubmit={handleSubmit(this.submitComment.bind(this))} className='inline-form'>
-            <FormField formGroupId={'content'} formLabel={'Nội dung phải hồi'}
+            <FormField fieldId={'content'} fieldLabel={'Nội dung phải hồi'}
                      placeholder={'Nội dung phản hồi'} isMandatoryField={true}
                      formControlName={'content'} typeField={'custom_textarea'}></FormField>
             <Button type="submit" disabled={!valid} className="btn-primary">

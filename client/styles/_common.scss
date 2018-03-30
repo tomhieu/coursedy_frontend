@@ -432,7 +432,7 @@ Main Navigation bar  - Navbar-default
   background: $primary-color !important;
   position: fixed;
   width: 100%;
-  z-index: 999;
+  z-index: 9999;
   padding: 0;
 }
 
@@ -3237,7 +3237,7 @@ input[type="url"]:focus, input[type="text"]:focus, textarea:focus, .form-control
  */
 
 .Checkout {
-  margin: 0 auto;
+  margin: 0 15px;
   max-width: 800px;
   box-sizing: border-box;
   padding: 0 5px;
@@ -3330,7 +3330,7 @@ button:hover {
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 9999;
+  z-index: 9090;
   background-color: #f1f1f1;
 }
 

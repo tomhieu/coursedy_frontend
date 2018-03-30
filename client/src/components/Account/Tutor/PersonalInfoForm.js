@@ -13,24 +13,24 @@ export class PersonalInfoForm extends Component {
     return (
       <form onSubmit={handleSubmit(this.props.onSubmit)}>
         <div>
-          <FormField formGroupId="firstNameId" formLabel={this.context.t("account.person.info.full_name")}
+          <FormField fieldId="firstNameId" fieldLabel={this.context.t("account.person.info.full_name")}
                      placeholder={this.context.t("account.person.info.full_name")} isMandatoryField={true}
                      formControlName="name" typeField="custom_input"/>
         </div>
         <div>
-          <FormField formGroupId="emailId" formLabel={this.context.t("account.person.info.email")}
+          <FormField fieldId="emailId" fieldLabel={this.context.t("account.person.info.email")}
                      isMandatoryField={true} formControlName="email" typeField="custom_input"/>
         </div>
         <div className='row'>
           <div className='col-sm-4'>
             <div className="datepicker-box">
-              <FormField formGroupId="birthDateId" formLabel={this.context.t("account.person.info.birth.date")}
+              <FormField fieldId="birthDateId" fieldLabel={this.context.t("account.person.info.birth.date")}
                          formControlName="date_of_birth" typeField="datepicker"/>
             </div>
           </div>
           <div className='col-sm-3'>
             <div >
-              <FormField formGroupId="genderId" formLabel={this.context.t("account.person.info.gender")}
+              <FormField fieldId="genderId" fieldLabel={this.context.t("account.person.info.gender")}
                          formControlName="gender" typeField="custom_select"
                          options = {TutorAccountConstants.genders.map(g => {return {id: g[0], text: self.context.t(g[1])}})}
               />
@@ -38,7 +38,7 @@ export class PersonalInfoForm extends Component {
           </div>
         </div>
         <div>
-          <FormField formGroupId="addressId" formLabel={this.context.t("account.person.info.address")}
+          <FormField fieldId="addressId" fieldLabel={this.context.t("account.person.info.address")}
                      placeholder={this.context.t("account.person.info.address")}
                      formControlName="address" typeField="custom_input"/>
         </div>

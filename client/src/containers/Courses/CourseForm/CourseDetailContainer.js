@@ -1,6 +1,6 @@
 import * as React from "react";
 import {Component} from "react";
-import CourseForm from "../../../components/Courses/CourseForm";
+import CourseForm from "../../../components/Courses/CourseForm/CourseForm";
 import * as CourseActions from "../../../actions/CourseFormActionCreator";
 import {DAYS_IN_WEEK} from "../../../actions/CourseFormActionCreator";
 import {connect} from "react-redux";
@@ -34,6 +34,7 @@ class CourseDetailContainer extends Component {
         course.number_of_students, course.tuition_fee, course.currency, course.is_free, week_day_schedules_attributes, course.is_same_period,
         course.course_specialize_id, this.coverImage));
     } else {
+      debugger
       this.props.dispatch(CourseActions.updateCourse(courseId, course.title, course.description, course.start_date, course.period,
         course.number_of_students, course.tuition_fee, course.currency, course.is_free, week_day_schedules_attributes, course.is_same_period,
         course.course_specialize_id, this.coverImage));
