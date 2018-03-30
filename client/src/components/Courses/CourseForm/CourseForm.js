@@ -79,8 +79,15 @@ class CourseForm extends Component {
               ) : ('')
             }
             <div className={editMode ? styles.courseTitle + ' d-flex align-items-center' : 'creation-course-title'}>
-              {this.renderField(editMode, "titleId", false, editMode ? null : this.context.t("course_title"), this.context.t("sample_course_title"), true, "title", "custom_input",
-                false, editMode ? courseData.title : "", null, "", "inline-form-control")}
+              <CourseFormItem editMode={editMode} fieldId="titleId" showLabel={false}
+                              fieldLabel={editMode ? null : this.context.t("course_title")}
+                              placeholder={this.context.t("sample_course_title")}
+                              isMandatory={true}
+                              fieldName="title"
+                              typeField="custom_input"
+                              content={editMode ? courseData.title : ""}
+                              styleCustomField="inline-form-control">
+              </CourseFormItem>
             </div>
           </div>
           <div className='row'>
