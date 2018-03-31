@@ -25,6 +25,20 @@ export default function request(url, options) {
           localStorage.setItem('ezyLearningUid', uid)
         }
 
+        let xPage = response.headers.get('X-Page');
+        let xPerPage = response.headers.get('X-Per-Page');
+        let xTotal = response.headers.get('X-Total');
+
+        if (xPage && xPerPage && xTotal) {
+          return resolve({
+            headers: {
+              xPage,
+              xPerPage,
+              xTotal
+            },
+            body: response.json()
+          })          
+        }
         return response.json()
       })
       .then(response => {

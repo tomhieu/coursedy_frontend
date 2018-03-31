@@ -41,14 +41,14 @@ class PaymentHistory extends Component {
             </table>
 
             {
-              !isFetching && paymentHistory.length > 0 ? (
+              !isFetching && paymentHistory.length > PAYMENT_HISTORY_PAGINATION_MAX_ITEM_PER_PAGE ? (
                 <div className="pagination-course_list ">
                   <Pagination
                     activePage={currentPage}
                     itemsCountPerPage={PAYMENT_HISTORY_PAGINATION_MAX_ITEM_PER_PAGE}
                     totalItemsCount={totalResult}
                     pageRangeDisplayed={PAYMENT_HISTORY_PAGINATION_MAX_NUMBER_DISPLAY_PAGE}
-                    onChange={handlePageChange.bind(this)}
+                    onChange={handlePageChange}
                   />
                 </div>
               ) : null

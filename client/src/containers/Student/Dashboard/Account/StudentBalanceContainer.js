@@ -40,6 +40,7 @@ class StudentBalanceContainer extends Component {
                   paymentHistory={paymentHistory}
                   currentPage={paymentHistoryPagination.currentPage}
                   totalResult={paymentHistoryPagination.totalResult}
+                  handlePageChange={this.handlePageChange.bind(this)}
                 /> : null
             }
             </LoadingMask>

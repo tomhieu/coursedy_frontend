@@ -21,6 +21,8 @@ const CourseFilter = (state = {
       return {...state, isFetching: true}
     case courseActionTypes.FETCH_COURSES + asyncActs.FULFILLED:
       return {...state, courses: action.payload, totalResult: action.payload.length, isFetching: false}
+    case courseActionTypes.FETCH_COURSES + asyncActs.HEADERS:
+      return state
     case asyncActs.CHANGE_DISPLAY_MODE:
       return {...state, displayMode: action.payload}
     case asyncActs.CHANGE_CURRENT_PAGE:
