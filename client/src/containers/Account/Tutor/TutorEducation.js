@@ -16,22 +16,6 @@ class TutorEducation extends Component {
     this.updateEducation.bind(this);
   }
 
-  doDownload(documentId) {
-    this.props.dispatch(TutorAccountActions.downloadDegree(documentId));
-  }
-
-  doDeleteUploadedFile(documentId) {
-    this.props.dispatch(TutorAccountActions.removeUploadedDocument(documentId));
-  }
-
-  doDeleteNewUploadFile(fileId) {
-    this.props.dispatch(TutorAccountActions.removeNewDocument(fileId));
-  }
-
-  doUploadFile(file) {
-    this.props.dispatch(TutorAccountActions.addNewDocument(file));
-  }
-
 
   updateEducation(data) {
     this.props.dispatch(TutorAccountActions.updateTutorEducation(this.props.tutor.id, data));

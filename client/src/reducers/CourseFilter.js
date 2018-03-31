@@ -47,7 +47,7 @@ const CourseFilter = (state = {
     case asyncActs.LOAD_SUGGESTION + asyncActs.REJECTED:
       return {...state, sugestions: [], showSuggestion: false, loadingSuggestion: false}
     case asyncActs.CLEAR_SUGGESTION:
-      return {...state, q: [], showSuggestion: false, loadingSuggestion: false}
+      return {...state, filters: {...state.filters, term: ''}, sugestions: [], showSuggestion: false, loadingSuggestion: false}
     case asyncActs.UPDATE_FILTER_CRITERIA:
       return Object.assign({}, state, {filters: action.data})
     default:

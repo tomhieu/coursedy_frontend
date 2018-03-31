@@ -1,34 +1,54 @@
 import * as React from "react";
 import {Component} from "react";
 import {reduxForm} from "redux-form";
-import SectionCreationPopupComponent from "../../../components/Courses/SectionCreationPopupComponent";
-import {connect} from "react-redux";
 import * as CourseActions from "../../../actions/CourseFormActionCreator";
-class SectionCreationPopupContainer extends Component {
-    saveSection({id, title, name}) {
-        this.props.dispatch(CourseActions.saveOrUpdateSection(this.props.courseId, title, name));
-    }
+import FormField from "../../../components/Core/FormField";
+import FormDialogComponent from "../../Dialog/FormDialogContainer";
+import {connect} from "react-redux";
 
-    render() {
-        const {showSectionPopup} = this.props;
-        return (
-            <SectionCreationPopupComponent show={showSectionPopup} onSubmit={this.saveSection.bind(this)} hidePopup={() => this.props.dispatch(CourseActions.closePopupSection())} {...this.props}></SectionCreationPopupComponent>
-        )
-    }
+class SectionCreationPopupContainer extends Component {
+  render() {
+    const {handleSubmit, showSectionPopup} = this.props;
+    return (
+      <FormDialogComponent show={showSectionPopup}
+                           title={this.context.t('lesson_popup_edit_title')}
+                           formName="sectionCreationForm"
+                           cancelCallback={() => this.props.dispatch(CourseActions.closePopupSection())}
+                           {...this.props}>
+        <form onSubmit={handleSubmit(this.props.onSubmit)} className='inline-form dialog-body-container'
+              multiple={true}>
+          <div className="row">
+            <div className="col-md-12 col-sm-12">
+              <FormField formGroupId="sectionTitleId"
+                         formLabel={this.context.t("section_title")}
+                         placeholder={this.context.t("section_title")}
+                         isMandatoryField={true}
+                         formControlName="title"
+                         typeField="custom_input">
+              </FormField>
+            </div>
+          </div>
+        </form>
+      </FormDialogComponent>
+    )
+  }
 }
 
-const mapStateToProps = (state) => {
-    const {courseDetails} = state;
-    const {showSectionPopup} = courseDetails;
+SectionCreationPopupContainer.contextTypes = {
+  t: React.PropTypes.func.isRequired
+};
 
-    return {
-        showSectionPopup
-    };
+const mapStateToProps = (state) => {
+  const {courseDetails} = state;
+  const {showSectionPopup} = courseDetails;
+
+  return {
+    showSectionPopup
+  };
 };
 
 export default connect(
-    mapStateToProps
+  mapStateToProps
 )(reduxForm({
-    form: 'sectionCreationForm',
-    fields: ['name', 'title']
+  form: 'sectionCreationForm'
 })(SectionCreationPopupContainer));

@@ -54,7 +54,7 @@ class CourseDetailContainer extends Component {
   }
 
   getEndTime(course, name_day) {
-    let end_time = !course.is_same_period ? Object.getOwnPropertyDescriptor(course, name_day + '_end_time') :
+    const end_time = !course.is_same_period ? Object.getOwnPropertyDescriptor(course, name_day + '_end_time') :
       Object.getOwnPropertyDescriptor(course, 'end_time_id');
 
     if (end_time === undefined) {

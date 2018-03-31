@@ -25,6 +25,7 @@ import LoadingMask from "./LoadingMask";
 import Teachers from './TeachersReducer'
 import referenceData from './ReferenceDataReducer'
 import HomePage from './HomePageReducer'
+import Certificate from './Certificate'
 import Payment from './Payment'
 
 import AccountReducer from './AccountReducer'
@@ -65,7 +66,8 @@ const rootReducer = combineReducers({
   referenceData,
   Teachers,
   Payment,
-  HomePage
+  HomePage,
+  Certificate
 });
 
 export default rootReducer;

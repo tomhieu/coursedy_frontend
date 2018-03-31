@@ -2,6 +2,19 @@ export const FULFILLED = '_FULFILLED';
 export const PENDING = '_PENDING';
 export const REJECTED = '_REJECTED';
 export const HEADERS = '_HEADERS';
+
+export const CERTIFICATE = {
+  load_tutor_certificate_list: 'LOAD_TUTOR_CERTIFICATE_LIST',
+  remove_uploaded_certificate: 'REMOVE_UPLOADED_CERTIFICATE',
+  upload_new_document: 'UPLOAD_NEW_DOCUMENT'
+}
+
+export const ACCOUNT = {
+  enable_edit_password_mode: 'ENABLE_EDIT_PASSWORD_MODE',
+  disable_edit_password_mdode: 'DISABLE_EDIT_PASSWORD_MODE',
+  complete_updating_password: 'COMPLETE_UPDATE_PASSWORD'
+}
+
 /**
  * Define general action to manage async actions
  * @type {string}
@@ -84,9 +97,14 @@ export const SELECT_ALL_COURSES = "SELECT_ALL_COURSES"
 export const REMOVE_COURSE = "REMOVE_COURSE"
 export const REMOVE_ALL_COURSES = "REMOVE_ALL_COURSES"
 export const LOAD_SUGGESTION = "LOAD_SUGGESTION"
-export const CLEAR_SUGGESTION = "CLEAR_SUGGESTION"
 export const UPDATE_FILTER_CRITERIA = "UPDATE_FILTER_CRITERIA"
+export const CLEAR_SUGGESTION = "CLEAR_SUGGESTION"
 
+/**
+ * Define actions of Teachers page
+ */
+export const LOAD_SUGGESTION_TEACHERS = 'LOAD_SUGGESTION_TEACHERS'
+export const UPDATE_FILTER_CRITERIA_TEACHERS = "UPDATE_FILTER_CRITERIA_TEACHERS"
 /**
  * Define actions of Homepage
  */

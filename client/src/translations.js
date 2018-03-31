@@ -27,13 +27,14 @@ export const translations = {
     "role_required": "Vui lòng chọn tài khoản người dùng",
     "email_required": "Vui lòng nhập địa chỉ e-mail",
     "first_name_required": "Vui lòng nhập tên",
+    "current_password_required": "Vui lòng nhập mật khẩu hiện tại",
     "confirm_password": "Xác Nhận Mật Khẩu",
     "phone_number": "Số Điện Thoại",
     "forgot_password": "Quên Mật Khẩu?",
     "registration_email_require": "Vui lòng nhập email",
     "invalid_email": "Email không hợp lệ",
     "password_required": "Vui lòng nhập mật khẩu",
-    "password_confirmation_required": "Vui lòng xác  mật khẩu",
+    "password_confirmation_required": "Vui lòng xác nhận mật khẩu",
     "invalid_password": "Mật khẩu quá ngắn (ít nhất 8 ký tự)",
     "password_confirmation_not_match": "Xác nhận mật khẩu không đúng",
     "phone_number_required": "Vui lòng nhập số điện thoại",
@@ -137,6 +138,8 @@ export const translations = {
     "account.tutor.edu.description": "Giới Thiệu",
     "account.tutor.edu.specialty": "Kĩnh Vực Giảng Dạy",
     "account.tutot.edu.degree.title": "Bằng Cấp",
+    "account.tutot.edu.degree.field_label": "Upload chứng chỉ/bằng Cấp",
+    "account.tutot.edu.degree.no_degrees": "Không có bằng cấp / giấy chứng nhận",
     "account_tutor_skill_title": "Kỹ Năng",
     "account_tutor_certificate_title": "Chứng Chỉ",
     "fields_of_teaching": "Lĩnh Vực Giảng Dạy",
@@ -149,7 +152,6 @@ export const translations = {
     "account_tutor_new_password_title": "Mật Khẩu Mới",
     "account_tutor_new_password_again_title": "Nhập Lại Mật Khẩu Mới",
     "account_tutor_new_password_btn": "Đổi Mật Khẩu",
-    "save_course": "Lưu Khoá Học",
     "drag_and_drop": "Kéo thả tập tin vào đây",
     "speciality": "Chuyên môn",
     "save": "Lưu",
@@ -166,9 +168,7 @@ export const translations = {
      */
     "section_title": "Mô tả",
     "section_name": "Tên",
-    "course_category": "Loại khoá học",
     "course_specialize": "Ngành Học",
-    "category": "Lớp học",
     "level": "Cấp độ",
     /*
      * Filter Course Page
@@ -237,7 +237,7 @@ export const translations = {
     "course_submit_comment_fail": "Gửi phản hồi thất bại",
     "course_comments_no_comment": "Bạn là người đầu tiên phản hồi về khóa học này!!!",
     /* search teachers page */
-    "search_teachers_keyword": "Tìm kiếm theo tên, lĩnh vực",
+    "search_teachers_keyword": "Tìm kiếm theo tên",
     "search_teachers_field_label": "Lĩnh Vực:",
     "teacher_list_more": "Xem thêm",
     /* danh sach ngay trong tuan */

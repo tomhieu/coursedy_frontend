@@ -1,4 +1,5 @@
 @import '/../../../styles/global_style.scss';
+@import "../../../styles/components/CommonFilterObjects.module";
 
 .courseAvatar {
   width: 100%;
@@ -75,16 +76,6 @@
   }
 }
 
-.filterInputBox {
-  width: 100%;
-}
-
-.filterActionBlock {
-  padding: 0px 5px;
-  font-size: 14px;
-  height: 65px;
-}
-
 .filterOptionContainer {
   max-width: 120px;
   min-width: 92px;
@@ -92,7 +83,6 @@
 }
 
 .listResultInfo {
-  /* width: 75%; */
   flex: 2;
   padding-left: 15px;
 }

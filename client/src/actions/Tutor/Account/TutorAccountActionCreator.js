@@ -1,13 +1,24 @@
 import Network from "utils/network";
-import { 
-  AccountTypes,
-  TutorAccountTypes 
-} from '../../../constants/index'
+import { TutorAccountTypes } from '../../../constants/'
+import { CERTIFICATE } from '../../../actions/AsyncActionCreator';
 
-export const loadListDegreesData = () => {
+export const RECEIVE_PERSON_DATA = 'RECEIVE_PERSON_DATA';
+export const RECEIVE_EDUCATION_DATA = 'RECEIVE_EDUCATION_DATA';
+export const RECEIVE_DRGREES_DATA = 'RECEIVE_DEGREES_DATA';
+export const RECEIVE_SKILLS_DATA = 'RECEIVE_SKILLS_DATA';
+export const RECEIVE_CERTIFICATES_DATA = 'RECEIVE_CERTIFICATES_DATA';
+export const ADD_NEW_DOCUMENT_FILE = 'ADD_NEW_DOCUMENT_FILE';
+export const REMOVE_NEW_DOCUMENT_FILE = 'REMOVE_NEW_DOCUMENT_FILE';
+export const REMOVE_UPLOADED_DOCUMENT = 'REMOVE_UPLOADED_DOCUMENT';
+export const DOWNLOAD_UPLOADED_DOCUMENT = 'DOWNLOAD_UPLOADED_DOCUMENT';
+export const SAVE_PERSON_DATA = 'SAVE_PERSON_DATA';
+
+
+
+export const loadDegrees = () => {
   return {
-    type: TutorAccountTypes.RECEIVE_DRGREES_DATA,
-    data: listDegrees
+    type: CERTIFICATE.load_tutor_certificate_list,
+    payload: Network().get('degrees')
   }
 }
 
@@ -24,49 +35,17 @@ export const loadListSkillData = () => {
   }
 }
 
-export const downloadDegree = (degreeId) => {
-  return dispatch => {
-    Network().get('/account/tutor/degree/download?degreeId' + degreeId);
-  }
-}
-
-export const deleteDegree = (degreeId) => {
-  return "";
-//    return Network().delete('/account/tutor/degree/delete?degreeId' + degreeId);
-}
-
 export const addNewDocument = (file) => {
   return {
-    type: TutorAccountTypes.ADD_NEW_DOCUMENT_FILE,
-    payload: file
-  }
-}
-
-export const removeNewDocument = (fileId) => {
-  return {
-    type: TutorAccountTypes.REMOVE_NEW_DOCUMENT_FILE,
-    data: fileId
+    type: CERTIFICATE.upload_new_document,
+    payload: Network().post('degrees', {degree: {item: file.content, name: file.fileName}})
   }
 }
 
 export const removeUploadedDocument = (documentId) => {
   return {
-    type: TutorAccountTypes.REMOVE_UPLOADED_DOCUMENT,
-    data: documentId
-  }
-}
-
-export const removeSkill = (skillId) => {
-  return {
-    type: TutorAccountTypes.REMOVE_NEW_DOCUMENT_FILE,
-    data: fileId
-  }
-}
-
-export const removeCertificate = (certificateId) => {
-  return {
-    type: TutorAccountTypes.REMOVE_UPLOADED_DOCUMENT,
-    data: documentId
+    type: CERTIFICATE.remove_uploaded_certificate,
+    payload: Network().delete(`degrees/${documentId}`)
   }
 }
 
