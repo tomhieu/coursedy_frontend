@@ -7,3 +7,9 @@ export const HIDE_FOOTER = "HIDE_FOOTER";
 export const UNSTARTED_COURSE = 0;
 export const STARTED_COURSE = 1;
 export const TERMINATED_COURSE = 2;
+
+
+
+//Payment
+export const PAYMENT_HISTORY_PAGINATION_MAX_ITEM_PER_PAGE = 20;
+export const PAYMENT_HISTORY_PAGINATION_MAX_NUMBER_DISPLAY_PAGE = 5;

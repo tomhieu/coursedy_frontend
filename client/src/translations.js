@@ -100,6 +100,8 @@ export const translations = {
     'popup_warning_publish_course_message_2': 'Một khí khoá học đăng lên, tất cả mọi người đều có thể xem thông tin và nội dung khoá học',
     'popup_warning_publish_course_message_3': 'Khoá học {course_title} chưa có buổi học nào. Để giúp người học có thể năm được nội dung chi tiết khoá học, bạn nên thêm nội dung các buổi học trước khi đăng khoá học lên. ',
     'course_periode_type': 'buổi học',
+    'course_comments': 'Bình luận',
+    'course_comment_content': 'Nội dung bình luận',
     /*
      * Lesson Page
      */
@@ -214,7 +216,6 @@ export const translations = {
     "course_detail": "Chi tiết khóa học",
     "tutor_info": "Thông tin giáo viên",
     "course_subscribe": "Đăng ký",
-    "course_comments": "Phản hồi",
 
     "course_follow": "Theo dõi khóa học",
     "course_follow_status": "Kết quả theo dõi khóa học",
@@ -292,7 +293,7 @@ export const translations = {
 
     "my_account": "Tài khoản",
     "my_profile": "Thông tin người dùng",
-    "my_balance": "Thanh toán",
+    "my_balance": "Số dư tài khoản",
 
     "my_courses": "Khóa học",
     "enrolled_courses": "Đã tham gia",

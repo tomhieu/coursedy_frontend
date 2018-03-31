@@ -95,4 +95,5 @@ export const TOP_TEACHERS = "TOP_TEACHERS";
 /**
  * Define actions of payment
  */
+export const FETCH_USER_BALANCE = "FETCH_USER_BALANCE"
 export const FETCH_PAYMENT_HISTORY = "FETCH_PAYMENT_HISTORY"

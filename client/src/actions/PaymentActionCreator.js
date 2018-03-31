@@ -1,5 +1,6 @@
 import Network from "utils/network";
 import { 
+  FETCH_USER_BALANCE,
   FETCH_PAYMENT_HISTORY
 } from "./AsyncActionCreator";
 
@@ -24,6 +25,21 @@ export const loadDomesticBankList = () => {
   }
 }
 
+
+export const fetchUserBalance = () => {
+  return dispatch => {
+    // dispatch({
+    //   type: FETCH_USER_BALANCE,
+    //   payload: Network().get('users/balance')
+    // })
+    dispatch({
+      type: 'FETCH_USER_BALANCE_FULFILLED',
+      payload: {
+        value: '1000000'
+      }
+    })
+  }
+}
 
 export const fetchPaymentHistory = () => {
   return dispatch => {

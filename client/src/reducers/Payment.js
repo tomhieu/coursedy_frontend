@@ -5,6 +5,10 @@ import {TT} from "utils/locale";
 const Payment = (state = {
   supportedBankList: [],
   paymentHistory: [],
+  paymentHistoryPagination: {
+    currentPage: 1,
+    totalResult: 0,
+  },
   isFetchingPaymentHistory: true,
   errors: []
 }, action) => {

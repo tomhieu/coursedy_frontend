@@ -13,8 +13,17 @@ class StudentBalanceContainer extends Component {
     this.props.dispatch(PaymentActions.fetchPaymentHistory())
   }
 
+  handlePageChange(currentPage) {
+    console.log('DEBUG')
+    console.log(currentPage)
+    let query = {}
+    query['page'] = currentPage
+
+    this.props.dispatch(PaymentActions.fetchPaymentHistory(query))
+  }
+
   render() {
-    const { paymentHistory, isFetching } = this.props
+    const { paymentHistory, paymentHistoryPagination, isFetching } = this.props
     return (
       <div className="d-flex flex-vertical flex-auto">
         <div className="d-flex justify-content-left mb-10">
@@ -29,6 +38,8 @@ class StudentBalanceContainer extends Component {
               paymentHistory.length !== 0 ?
                 <PaymentComponents.PaymentHistory 
                   paymentHistory={paymentHistory}
+                  currentPage={paymentHistoryPagination.currentPage}
+                  totalResult={paymentHistoryPagination.totalResult}
                 /> : null
             }
             </LoadingMask>
@@ -47,9 +58,10 @@ const mapStateToProps = (state) => {
   const {Payment} = state;
   const {
     isFetchingPaymentHistory,
-    paymentHistory
+    paymentHistory,
+    paymentHistoryPagination
   } = Payment;
-  return { paymentHistory: paymentHistory, isFetching: isFetchingPaymentHistory }
+  return { paymentHistory, paymentHistoryPagination, isFetching: isFetchingPaymentHistory }
 };
 
 export default connect(

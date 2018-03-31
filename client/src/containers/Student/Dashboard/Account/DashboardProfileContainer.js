@@ -1,31 +1,33 @@
 import React, {Component} from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
+import {
+  PaymentActions
+} from '../../../../actions/index'
+import ObjectUtils from '../../../../utils/ObjectUtils'
 
 class StudentProfileContainer extends Component {
+  componentWillMount() {
+    this.props.dispatch(PaymentActions.fetchUserBalance())
+  }
   render() {
-    const { currentUser } = this.props
+    const { currentUser, userBalance } = this.props
     return (
       <div className="dashboard-profile">
         <div className="media media-team">
-          <Link to={'/student/dashboard'}>
-            <div className="media-left">
-              <figure className="imghvr-zoom-in">
-                <img className="media-object img-circle" 
-                  src="http://placehold.it/100x100" 
-                  alt={currentUser.name}
-                />
-                <figcaption></figcaption>
-              </figure>
-            </div>
-            <div className="media-body">
-              <h4>{ currentUser.name }</h4>
-              <p>User Login: 23/09/2017 08:22:03</p>
-            </div>
-            <p>Account Balance: <strong>0</strong>
-              <span className="pull-right">Per Credit Value: <strong>$2</strong></span>
-            </p>
-          </Link>
+          <div className="media-left">
+            <figure className="imghvr-zoom-in">
+              <img className="media-object img-circle" 
+                src="http://placehold.it/100x100" 
+                alt={currentUser.name}
+              />
+              <figcaption></figcaption>
+            </figure>
+          </div>
+          <div className="media-body">
+            <h4>{ currentUser.name }</h4>
+            <p>{this.context.t('my_balance')}: <strong>{ ObjectUtils.currencyFormat(userBalance) }</strong></p>
+          </div>
         </div>
       </div>
     )
@@ -33,8 +35,16 @@ class StudentProfileContainer extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  currentUser: state.session.currentUser
+  currentUser: state.session.currentUser,
+  userBalance: state.session.userBalance
 })
+
+StudentProfileContainer.contextTypes = {
+  t: React.PropTypes.func.isRequired
+}
+
+StudentProfileContainer.propTypes = {
+}
 
 export default connect(
   mapStateToProps

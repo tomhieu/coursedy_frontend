@@ -1,9 +1,14 @@
 import React, { Component } from 'react'
 import ObjectUtils from '../../utils/ObjectUtils'
+import Pagination from 'react-js-pagination';
+import {
+  PAYMENT_HISTORY_PAGINATION_MAX_ITEM_PER_PAGE,
+  PAYMENT_HISTORY_PAGINATION_MAX_NUMBER_DISPLAY_PAGE
+} from '../../constants/WebConstants'
 
 class PaymentHistory extends Component {
   render() {
-    const { paymentHistory, isFetching } = this.props
+    const { paymentHistory, isFetching, handlePageChange, currentPage, totalResult } = this.props
     return (
       <div className="col-xs-12">
         <div className="panel panel-primary">
@@ -34,6 +39,20 @@ class PaymentHistory extends Component {
               }
               </tbody>
             </table>
+
+            {
+              !isFetching && paymentHistory.length > 0 ? (
+                <div className="pagination-course_list ">
+                  <Pagination
+                    activePage={currentPage}
+                    itemsCountPerPage={PAYMENT_HISTORY_PAGINATION_MAX_ITEM_PER_PAGE}
+                    totalItemsCount={totalResult}
+                    pageRangeDisplayed={PAYMENT_HISTORY_PAGINATION_MAX_NUMBER_DISPLAY_PAGE}
+                    onChange={handlePageChange.bind(this)}
+                  />
+                </div>
+              ) : null
+            }
           </div>
         </div>
       </div>
