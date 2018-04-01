@@ -95,10 +95,10 @@ export const createNewCourse = () => {
   }
 }
 
-export const activatedEditField = (fieldId) => {
+export const activatedEditField = (fieldIds) => {
   return {
     type: TRIGGER_ACTIVATE_FIELD,
-    data: fieldId
+    data: fieldIds
   }
 }
 

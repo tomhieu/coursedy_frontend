@@ -10,7 +10,7 @@ class SectionDetailContainer extends Component {
         const {handleSubmit, section} = this.props;
         return (
             <form onSubmit={handleSubmit(this.props.onSubmit)} className='inline-form' multiple={true}>
-                <InlineEditFormField activated={this.props.activatedField === "sectionTitleId_" + section.id}
+                <InlineEditFormField activated={this.props.activatedField.indexOf("sectionTitleId_" + section.id) >= 0}
                                      fieldId={"sectionTitleId_" + section.id}
                                      showLabel={false}
                                      fieldLabel={this.context.t("section_title")}

@@ -76,6 +76,7 @@ export const translations = {
     "teaching_period_per_day_invalid": "Thời gian dạy %{day} vượt quá thời gian dạy %{periode_lesson}",
     "course_description": "Giới thiệu khoá học",
     "course_description_mandatory": "Vui lòng nhập giới thiệu khoá học",
+    "course_view": "Khoá học",
     "course_category": "Lớp học",
     "course_level": "Cấp độ",
     "category": "Lớp học",

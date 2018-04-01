@@ -23,12 +23,12 @@ class LessonDetailFormContainer extends Component {
                 <div key={lesson.id} className="lesson-section-seperator">
                     <div className="row">
                         <div className="col-sm-8 col-md-8">
-                            <InlineEditFormField activated={this.props.activatedField === "lessonNameId" + sectionUniqueKey} fieldId={"lessonNameId" + sectionUniqueKey} fieldLabel={this.context.t("lesson_name")}
+                            <InlineEditFormField activated={this.props.activatedField.indexOf("lessonNameId" + sectionUniqueKey) >= 0} fieldId={"lessonNameId" + sectionUniqueKey} fieldLabel={this.context.t("lesson_name")}
                                                  isMandatoryField={true} formControlName="title" typeField="custom_input" content={lesson.title} displayStyle="default-field" {...this.props}
                             ></InlineEditFormField>
                         </div>
                         <div className="col-sm-4 col-md-4">
-                            <InlineEditFormField activated={this.props.activatedField === "lessonPeriodId"  + sectionUniqueKey} fieldId={"lessonPeriodId" + sectionUniqueKey} fieldLabel={this.context.t("lesson_period")}
+                            <InlineEditFormField activated={this.props.activatedField.indexOf("lessonPeriodId" + sectionUniqueKey) >= 0} fieldId={"lessonPeriodId" + sectionUniqueKey} fieldLabel={this.context.t("lesson_period")}
                                                  isMandatoryField={true} formControlName="period" typeField="custom_input" content={lesson.period + ' phut'} displayStyle="default-field" {...this.props}
                             ></InlineEditFormField>
                         </div>
@@ -36,7 +36,7 @@ class LessonDetailFormContainer extends Component {
                     <div className="row">
                         <div className="col-sm-4 col-md-4">
                             <div className="d-flex flex-vertical">
-                                <InlineEditFormField activated={this.props.activatedField === "lessonDescId" + sectionUniqueKey} fieldId={"lessonDescId" + sectionUniqueKey} showLabel={false} fieldLabel={this.context.t("lesson_desc")}
+                                <InlineEditFormField activated={this.props.activatedField.indexOf("lessonDescId" + sectionUniqueKey) >= 0} fieldId={"lessonDescId" + sectionUniqueKey} showLabel={false} fieldLabel={this.context.t("lesson_desc")}
                                                      isMandatoryField={true} formControlName="description" typeField="custom_input" content={lesson.description} displayStyle="default-field" {...this.props}
                                 ></InlineEditFormField>
                             </div>

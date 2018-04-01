@@ -8,7 +8,7 @@ const courseDetails = (state = {
   editMode: false,
   listSection: [],
   showSectionPopup: false,
-  activatedField: null,
+  activatedField: [],
   createCourseSucess: false,
   publishCourse: false
 }, action) => {
@@ -18,7 +18,7 @@ const courseDetails = (state = {
      * handle actions update an existing course
      */
     case asyncActions.UPDATE_COURSE + asyncActions.FULFILLED:
-      return Object.assign({}, state, {activatedField: null, courseData: action.payload, createCourseSucess: false});
+      return Object.assign({}, state, {activatedField: [], courseData: action.payload, createCourseSucess: false});
     case asyncActions.CLOSE_COURSE_POPUP:
       return Object.assign({}, state, {createCourseSucess: false});
     /**
@@ -31,7 +31,7 @@ const courseDetails = (state = {
     case asyncActions.TRIGGER_ACTIVATE_FIELD:
       return Object.assign({}, state, {activatedField: action.data});
     case asyncActions.CLOSED_ACTIVATED_FIELD:
-      return Object.assign({}, state, {activatedField: null});
+      return Object.assign({}, state, {activatedField: []});
     /**
      * handle actions to load the details of course
      */
@@ -42,7 +42,7 @@ const courseDetails = (state = {
       const fr_start_date = DateUtils.formatDate(start_date);
       const fr_end_date = DateUtils.formatDate(end_date);
       const courseData = Object.assign({}, action.payload, {
-        category_id: category.id, course_days: week_day_schedules,
+        category: null, course_specialize: category, course_days: week_day_schedules,
         start_date: fr_start_date, end_date: fr_end_date,
         is_same_period: isSamePeriod(week_day_schedules)
       });
@@ -50,9 +50,14 @@ const courseDetails = (state = {
     /**
      * handle creation course actions
      */
+    case asyncActions.CREATE_NEW_COURSE:
+      return Object.assign({}, state, {
+        courseData: {cover_image: null}, editMode: false, isFetching: false,
+        listSection: [], showSectionPopup: false, activatedField: null, createCourseSucess: false
+      });
     case asyncActions.CREATE_NEW_COURSE + asyncActions.FULFILLED:
       return Object.assign({}, state, {
-        courseData: {cover_image: null}, editMode: false,
+        courseData: {cover_image: null}, editMode: false, isFetching: false,
         listSection: [], showSectionPopup: false, activatedField: null, createCourseSucess: true
       });
     /**

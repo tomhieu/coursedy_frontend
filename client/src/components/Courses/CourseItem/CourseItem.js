@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import cssModules from 'react-css-modules';
-import styles from './Course.module.scss';
-import CourseItemInListMode from './CourseItem/CourseItemInListMode'
-import CourseItemInGridMode from './CourseItem/CourseItemInGridMode'
+import styles from './../Course.module.scss';
+import CourseItemInGridMode from "./CourseItemInGridMode";
+import CourseItemInListMode from "./CourseItemInListMode";
 
 /**
   * @Course group item template 2

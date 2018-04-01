@@ -34,7 +34,6 @@ class CourseDetailContainer extends Component {
         course.number_of_students, course.tuition_fee, course.currency, course.is_free, week_day_schedules_attributes, course.is_same_period,
         course.course_specialize_id, this.coverImage));
     } else {
-      debugger
       this.props.dispatch(CourseActions.updateCourse(courseId, course.title, course.description, course.start_date, course.period,
         course.number_of_students, course.tuition_fee, course.currency, course.is_free, week_day_schedules_attributes, course.is_same_period,
         course.course_specialize_id, this.coverImage));
@@ -87,17 +86,23 @@ CourseDetailContainer.contextTypes = {
 
 CourseDetailContainer.propTypes = {};
 
-const getCourseSpecializeFromCategory = (categories, selectedCategoryId) => {
-  if (selectedCategoryId === undefined) {
-    return [];
-  }
-  const [selectedCategory = {children: []}] = categories.filter((category) => {
-    return Number(selectedCategoryId) === category.id;
-  });
+/**
+ * retreived list of course specialize from category.
+ * Because, the webservice return the course_category value from the course specialize.
+ * So, we need to lookup from category_id and category.children (Course specialize)
+ * @type {{children: Array}}
+ */
+const updateCourseCategoryAndSpecialize = (categories, course) => {
+  if (course.course_specialize != undefined && course.course_specialize != null) {
+    const [selectedCategory = {children: []}] = categories.filter((category) => {
+      return Number(course.course_specialize.id) === category.id
+        || category.children.filter((specialize) => specialize.id === category.id);
+    });
 
-  return selectedCategory.children.map((level) => {
-    return {id: level.id, text: level.name, course_levels: level.course_levels}
-  });
+    return selectedCategory;
+  } else {
+    return {children: []};
+  }
 }
 
 const getCourseLevels = (specializes, selectedLevelId) => {
@@ -127,27 +132,7 @@ const initializeCourseDetail = (courseData, categories) => {
     });
   }
 
-  if (categories.length > 0) {
-    return initializeCourseCategory(categories, courseData, course_days);
-  } else {
-    return Object.assign({}, courseData, {course_days: course_days});
-  }
-}
-
-const initializeCourseCategory = (categories, courseData, course_days) => {
-  if (categories.length > 0 && courseData.course_specialize === undefined) {
-    return Object.assign({}, courseData, {course_days: course_days});
-  }
-  const selectSpecialized = courseData.category;
-  const selectedCategories = categories.length > 0 ?
-    categories.filter((c) => c.children.filter(s => s.id === selectSpecialized.id).length > 0) : [];
-  const selectedCategory = selectedCategories.length > 0 ? selectedCategories[0] : {id: 0};
-
-  // update the category and specilize of course
-  courseData.course_specialize = selectSpecialized;
-  courseData.category = selectedCategory;
-  return Object.assign({}, courseData, {course_days: course_days, category_id: selectedCategory.id,
-    course_specialize_id: selectSpecialized.id});
+  return Object.assign({}, courseData, {course_days: course_days});
 }
 
 const mapStateToProps = (state) => {
@@ -172,7 +157,9 @@ const mapStateToProps = (state) => {
   }
 
   if (courseData != null) {
-    course_specializes = getCourseSpecializeFromCategory(courseCategories, courseData.category_id);
+    const courseCategory = updateCourseCategoryAndSpecialize(courseCategories, courseData);
+    courseData.category = courseCategory
+    course_specializes = courseCategory.children;
     course_levels = getCourseLevels(course_specializes, courseData.course_specialize_id);
   }
 

@@ -28,12 +28,12 @@ class CourseFormContainer extends Component {
     this.props.dispatch(ReferenceActions.fetchCourseCategories())
   }
 
-  onActivatedField(fieldId) {
-    this.props.dispatch(CourseActions.activatedEditField(fieldId));
+  onActivatedField(fieldIds) {
+    this.props.dispatch(CourseActions.activatedEditField(fieldIds));
   }
 
-  onClosedField(fieldId) {
-    this.props.dispatch(CourseActions.closedEditField(fieldId));
+  onClosedField(fieldIds) {
+    this.props.dispatch(CourseActions.closedEditField(fieldIds));
   }
 
   addNewSection() {
