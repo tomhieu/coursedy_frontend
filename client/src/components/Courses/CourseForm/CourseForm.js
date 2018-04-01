@@ -9,41 +9,6 @@ import CourseFormItem from "./CourseFormItem";
 import SelectionTeachingDay from "./SelectionTeachingDay";
 
 class CourseForm extends Component {
-  hideError(e) {
-    e.preventDefault();
-  }
-
-  renderField(editMode, fieldId, showLabel, fieldLabel, placeholder, isMandatory, fieldName, typeField, disabled,
-              content = "", options, displayStyle = "default-field", styleCustomField) {
-    return editMode ? (
-      <InlineEditFormField activated={this.props.activatedField.indexOf(fieldId) >= 0}
-                           fieldId={fieldId}
-                           showLabel={showLabel}
-                           fieldLabel={fieldLabel}
-                           content={content}
-                           displayStyle={displayStyle}
-                           options={options}
-                           placeholder={placeholder}
-                           isMandatoryField={isMandatory}
-                           customClassName={styleCustomField}
-                           formControlName={fieldName}
-                           typeField={typeField}
-                           onActivatedField={this.props.onActivatedField}
-                           {...this.props}>
-      </InlineEditFormField>
-    ) : (
-      <FormField fieldId={fieldId}
-                 fieldLabel={fieldLabel}
-                 options={options}
-                 disabled={disabled}
-                 placeholder={placeholder}
-                 isMandatoryField={isMandatory}
-                 customClassName={styleCustomField}
-                 formControlName={fieldName}
-                 typeField={typeField}>
-      </FormField>
-    )
-  }
 
   render() {
     const {handleSubmit, editMode, onDropCoverImage, cover_image, submitting, pristine,
@@ -108,7 +73,9 @@ class CourseForm extends Component {
                                   fieldName="course_specialize_id"
                                   typeField="custom_select"
                                   content={editMode && courseData.course_specialize ? courseData.course_specialize.name : ""}
-                                  options={courseSpecializes}
+                                  options={courseSpecializes.map((spec) => {
+                                      return {id: spec.id, text: spec.name}
+                                  })}
                                   styleCustomField="inline-form-control" {...this.props}>
                   </CourseFormItem>
                 </div>

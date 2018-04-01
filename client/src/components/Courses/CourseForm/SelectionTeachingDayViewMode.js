@@ -2,14 +2,14 @@ import {Component} from "react";
 import * as React from "react";
 import CourseFormItem from "./CourseFormItem";
 import FormField from "../../Core/FormField";
-import {DAYS_IN_WEEK} from "../../../actions/CourseFormActionCreator";
+import {DAYS_IN_WEEK, HOURS_IN_DAY} from "../../../actions/CourseFormActionCreator";
 import styles from "./../Course.module.scss";
 import DateUtils from "utils/DateUtils";
 import {TT} from "utils/locale";
 
 class SelectionTeachingDayViewMode extends Component {
   render() {
-    const {editable, courseData, isSamePeriod, selectedDays, onEditTechingDay} = this.props;
+    const {editable, courseData, isSamePeriod, selectedDays} = this.props;
     return (
       <div className="row">
         <div className='col-sm col-md'>
@@ -23,7 +23,6 @@ class SelectionTeachingDayViewMode extends Component {
                           options={DAYS_IN_WEEK.map((day) => {
                             return {id: day.name + "_" + day.id, text: day.text}
                           })}
-                          onActivatedField={onEditTechingDay}
                           styleCustomField="inline-form-control" {...this.props}>
           </CourseFormItem>
         </div>
@@ -51,7 +50,8 @@ class SelectionTeachingDayViewMode extends Component {
                                         fieldLabel={this.context.t("start_time")}
                                         isMandatory={true}
                                         fieldName={day.name + "_start_time"}
-                                        typeField="timePicker"
+                                        typeField="custom_select"
+                                        options={HOURS_IN_DAY}
                                         content={editable ? DateUtils.retrieveStartTimeOfDay(courseData.course_days, day.name) : ""}
                                         {...this.props}>
                         </CourseFormItem>
@@ -64,7 +64,8 @@ class SelectionTeachingDayViewMode extends Component {
                                         fieldLabel={this.context.t("end_time")}
                                         isMandatory={true}
                                         fieldName={day.name + "_end_time"}
-                                        typeField="timePicker"
+                                        typeField="custom_select"
+                                        options={HOURS_IN_DAY}
                                         content={editable ? DateUtils.retrieveEndTimeOfDay(courseData.course_days, day.name) : ""}
                                         {...this.props}>
                         </CourseFormItem>
@@ -79,7 +80,8 @@ class SelectionTeachingDayViewMode extends Component {
                                       fieldLabel={this.context.t("start_time")}
                                       isMandatory={true}
                                       fieldName="start_time_id"
-                                      typeField="timePicker"
+                                      typeField="custom_select"
+                                      options={HOURS_IN_DAY}
                                       content={editable ? DateUtils.retrieveStartTimeOfDay(courseData.course_days, null) : ""}
                                       {...this.props}>
                       </CourseFormItem>
@@ -92,7 +94,8 @@ class SelectionTeachingDayViewMode extends Component {
                                       fieldLabel={this.context.t("end_time")}
                                       isMandatory={true}
                                       fieldName="end_time_id"
-                                      typeField="timePicker"
+                                      typeField="custom_select"
+                                      options={HOURS_IN_DAY}
                                       content={editable ? DateUtils.retrieveEndTimeOfDay(courseData.course_days, null) : ""}
                                       {...this.props}>
                       </CourseFormItem>
