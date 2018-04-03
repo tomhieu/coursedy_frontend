@@ -44,6 +44,15 @@ class SectionLessonContainer extends Component {
     return activatedField != null && activatedField.indexOf("__lesson_" + lesson.title) >= 0;
   }
 
+  onActivatedField(fieldIds) {
+    this.props.dispatch(CourseActions.activatedEditField(fieldIds));
+  }
+
+  onClosedField(fieldIds) {
+    this.props.reset();
+    this.props.dispatch(CourseActions.closedEditField(fieldIds));
+  }
+
   render() {
     const {section, showPopupEdit = false, activatedField} = this.props;
     return (
@@ -51,11 +60,11 @@ class SectionLessonContainer extends Component {
                    belongingActions={[asyncActs.ADD_DOCUMENT_FOR_LESSON, asyncActs.ADD_MORE_LESSON_FOR_SECTION,
                      asyncActs.DELETE_DOCUMENT_FOR_LESSON, asyncActs.DELETE_LESSON, asyncActs.SAVE_LESSON,
                      asyncActs.DELETE_SECTION, asyncActs.CREATE_UPDATE_SECTION]}>
-        <div className="d-flex flex-auto">
+        <div className="d-flex flex-auto lesson-container">
           <Card className="d-flex flex-auto">
             <CardHeader actAsExpander={section.lessons.length > 0}
                         showExpandableButton={section.lessons.length > 0}
-                        className="d-flex flex-auto">
+                        className="d-flex flex-auto dsdsdsdsd">
               <div className="d-flex flex-horizontal">
                 <div className="section-title">
                   <SectionDetailContainer onSubmit={this.saveSection.bind(this)} section={section} {...this.props}
@@ -72,6 +81,8 @@ class SectionLessonContainer extends Component {
                       <LessonDetailFormContainer key={'___lesson__' + lesson.id} lesson={lesson}
                                                  onSubmit={this.saveLesson.bind(this)}
                                                  sectionUniqueKey={"__lesson_" + lesson.title}
+                                                 onActivatedField={this.onActivatedField.bind(this)}
+                                                 onClosedField={this.onClosedField.bind(this)}
                                                  initialValues={this.isActivatedFieldOfLesson(activatedField, lesson) === true ? lesson : {}} {...this.props}>
                       </LessonDetailFormContainer>
                     ))

@@ -1,5 +1,6 @@
 import moment from "moment";
 import {HOURS_IN_DAY} from "actions/CourseFormActionCreator";
+import {TT} from "utils/locale";
 
 class DateUtils {
     static formatDate(dateValue, locale = 'vn') {
@@ -41,21 +42,10 @@ class DateUtils {
 
     static getDayInWeekOfCourse(week_day_schedules) {
         const days = week_day_schedules.map((day) => {
-            return day.day
+            return TT.t(day.day)
         });
         return days ? days.join(', ') : '';
     }
-/**
-    static findHourFromId(id) {
-        const [hour] = HOURS_IN_DAY.filter((hour) => hour.id === id);
-        return hour.name;
-    }
-
-    static findHourFromVvalue(value) {
-        const [hour] = HOURS_IN_DAY.filter((hour) => hour.name === value);
-        return hour.id;
-    }
- */
 }
 
 export default DateUtils;

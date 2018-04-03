@@ -3534,3 +3534,13 @@ button {
     color: $dark-text-color;
   }
 }
+
+.course-details-form {
+  .control-label, .pre-wrap {
+    white-space: nowrap;
+  }
+}
+
+.lesson-container div {
+  width: 100%;
+}

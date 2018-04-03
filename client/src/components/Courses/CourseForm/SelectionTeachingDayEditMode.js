@@ -1,12 +1,11 @@
+import * as React from "react";
 import {Component} from "react";
 import FormField from "../../Core/FormField";
-import * as React from "react";
 import DateUtils from "utils/DateUtils";
 import {DAYS_IN_WEEK} from "../../../actions/CourseFormActionCreator";
 import styles from "./../Course.module.scss";
 import {TT} from "utils/locale";
 import {HOURS_IN_DAY} from "actions/CourseFormActionCreator";
-import {FormGroup} from "react-bootstrap";
 
 class SelectionTeachingDayEditMode extends Component {
 

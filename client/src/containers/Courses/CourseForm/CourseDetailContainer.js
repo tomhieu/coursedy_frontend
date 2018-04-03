@@ -2,12 +2,11 @@ import * as React from "react";
 import {Component} from "react";
 import CourseForm from "../../../components/Courses/CourseForm/CourseForm";
 import * as CourseActions from "../../../actions/CourseFormActionCreator";
-import * as AsyncAction from "../../../actions/AsyncActionCreator";
 import {DAYS_IN_WEEK} from "../../../actions/CourseFormActionCreator";
+import * as AsyncAction from "../../../actions/AsyncActionCreator";
 import {connect} from "react-redux";
 import {reduxForm} from "redux-form";
 import {validate} from "../../../validations/CourseFormValidation"
-import DateUtils from "utils/DateUtils";
 import ObjectUtils from "utils/ObjectUtils";
 
 class CourseDetailContainer extends Component {
@@ -72,7 +71,17 @@ class CourseDetailContainer extends Component {
     }
 
     onEditTechingDay() {
+        this.props.reset();
         this.props.dispatch({type: AsyncAction.EDIT_TEACHING_DAY});
+    }
+
+    onActivatedField(fieldIds) {
+      this.props.dispatch(CourseActions.activatedEditField(fieldIds));
+    }
+
+    onClosedField(fieldIds) {
+      this.props.reset();
+      this.props.dispatch(CourseActions.closedEditField(fieldIds));
     }
 
     render() {
@@ -80,6 +89,8 @@ class CourseDetailContainer extends Component {
         return (
             <CourseForm onSubmit={this.createCourse.bind(this)} onDropCoverImage={this.onDropCoverImage.bind(this)}
                         onEditTechingDay={this.onEditTechingDay.bind(this)}
+                        onActivatedField={this.onActivatedField.bind(this)}
+                        onClosedField={this.onClosedField.bind(this)}
                         editMode={editMode} courseData={courseData} courseId={this.courseId} {...this.props}/>
         )
     }
@@ -149,9 +160,6 @@ const mapStateToProps = (state) => {
 
     if (editMode && courseDetails.courseData != null) {
         courseData = courseDetails.courseData;
-        if (activatedField.length === 0) {
-            courseFormValues = Object.assign({}, courseFormValues, courseData);
-        }
     } else if (courseFormValues != null) {
         courseData = courseFormValues;
     }
@@ -161,7 +169,7 @@ const mapStateToProps = (state) => {
     const isSamePeriod = courseFormValues != null ? ObjectUtils.isTrue(courseFormValues.is_same_period) : true
     const isFree = courseFormValues != null ? ObjectUtils.isTrue(courseFormValues.is_free) : false
 
-    if (courseData != null) {
+    if (editMode && courseData != null) {
         const courseCategory = updateCourseCategoryAndSpecialize(courseCategories, courseData);
         courseData.category = courseCategory
         courseData.category_id = courseCategory.id
@@ -171,10 +179,10 @@ const mapStateToProps = (state) => {
     }
 
     const initializedValue = editMode && courseData != null ? initializeCourseDetail(courseData) : {is_same_period: true};
-    if (courseData.is_same_period) {
+    if (editMode && courseData.is_same_period) {
         Object.defineProperty(initializedValue, 'start_time_id', {value: courseData.course_days[0].start_time, writable: true});
         Object.defineProperty(initializedValue, 'end_time_id', {value: courseData.course_days[0].end_time, writable: true});
-    } else {
+    } else if (editMode) {
         courseData.course_days.forEach(d => {
             Object.defineProperty(initializedValue, d.day + '_start_time', {value: d.start_time, writable: true});
             Object.defineProperty(initializedValue, d.day + '_end_time', {value: d.end_time, writable: true});

@@ -25,7 +25,7 @@ class FormField extends Component {
   render() {
     const {
       formControlName, fieldLabel, showLabel = true, placeholder, isMandatoryField = false,
-      typeField, type, zoneHeight = "200px", internalPreview = false, previewUrl, onUpload, rows, options,
+      typeField, type, zoneHeight = "auto", internalPreview = false, previewUrl, onUpload, rows, options,
       selectedValues, customClassName = "form-control", checked, chosenValue, onCheck, toggled, onToggle
     } = this.props;
 

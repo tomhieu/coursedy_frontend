@@ -28,14 +28,6 @@ class CourseFormContainer extends Component {
     this.props.dispatch(ReferenceActions.fetchCourseCategories())
   }
 
-  onActivatedField(fieldIds) {
-    this.props.dispatch(CourseActions.activatedEditField(fieldIds));
-  }
-
-  onClosedField(fieldIds) {
-    this.props.dispatch(CourseActions.closedEditField(fieldIds));
-  }
-
   addNewSection() {
     this.props.dispatch(CourseActions.addNewSection());
   }
@@ -74,8 +66,6 @@ class CourseFormContainer extends Component {
               !isFetching ? (
                 <div className="container">
                   <CourseDetailContainer courseId={this.courseId}
-                                         onActivatedField={this.onActivatedField.bind(this)}
-                                         onClosedField={this.onClosedField.bind(this)}
                                          {...this.props}>
                   </CourseDetailContainer>
                   <SimpleDialogComponent title={this.context.t('create_course_sucessfully')}
@@ -119,8 +109,6 @@ class CourseFormContainer extends Component {
                         section={section}
                         key={'__section__' + section.id}
                         showPopupEdit={section.showLessonPopup}
-                        onActivatedField={this.onActivatedField.bind(this)}
-                        onClosedField={this.onClosedField.bind(this)}
                         {...this.props}>
                       </SectionLessonContainer>)
                   }

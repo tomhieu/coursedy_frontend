@@ -1,7 +1,6 @@
 import React, {Component} from "react";
 import {CURRENCIES} from "../../../constants/Courses";
 import FormField from "../../Core/FormField";
-import InlineEditFormField from "../../Core/InlineEditFormField";
 import ObjectUtils from "../../../utils/ObjectUtils";
 import styles from "./../Course.module.scss";
 import {SERVER_NAME} from "../../../utils/CommonConstant";
@@ -18,8 +17,8 @@ class CourseForm extends Component {
     });
     return (
       <div>
-        <form onSubmit={handleSubmit(this.props.onSubmit)} className='inline-form' multiple={true}>
-          <div className={editMode ? "d-flex flex-horizontal justify-content-center mt-30 mb-30" : "d-flex flex-horizontal"}>
+        <form onSubmit={handleSubmit(this.props.onSubmit)} className='inline-form course-details-form' multiple={true}>
+          <div className={editMode ? "d-flex flex-horizontal flex-auto justify-content-center mt-30 mb-30" : "d-flex flex-horizontal"}>
             {
               editMode ? (
                 <div className={styles.avatarImage}>
@@ -27,7 +26,6 @@ class CourseForm extends Component {
                              showLabel={false}
                              isMandatoryField={false}
                              previewUrl={cover_image != null ? SERVER_NAME + cover_image : null}
-                             zoneHeight="150px"
                              internalPreview={true}
                              formControlName="cover_image"
                              typeField="upload_file"
@@ -36,20 +34,24 @@ class CourseForm extends Component {
                 </div>
               ) : ('')
             }
-            <div className={editMode ? styles.courseTitle + ' d-flex align-items-center' : 'creation-course-title'}>
-              <CourseFormItem editMode={editMode} fieldId="titleId" showLabel={false}
-                              fieldLabel={editMode ? "" : this.context.t("course_title")}
-                              placeholder={this.context.t("sample_course_title")}
-                              isMandatory={true}
-                              fieldName="title"
-                              typeField="custom_input"
-                              content={editMode ? courseData.title : ""}
-                              styleCustomField="inline-form-control" {...this.props}>
-              </CourseFormItem>
+          </div>
+          <div className="row">
+            <div className="col-md-12 col-sm-12">
+              <div className={editMode ? styles.courseTitle + ' d-flex align-items-center justify-content-center' : 'creation-course-title'}>
+                <CourseFormItem editMode={editMode} fieldId="titleId" showLabel={false}
+                                fieldLabel={editMode ? "" : this.context.t("course_title")}
+                                placeholder={this.context.t("sample_course_title")}
+                                isMandatory={true}
+                                fieldName="title"
+                                typeField="custom_input"
+                                content={editMode ? courseData.title : ""}
+                                styleCustomField="inline-form-control" {...this.props}>
+                </CourseFormItem>
+              </div>
             </div>
           </div>
           <div className='row'>
-            <div className='col-sm col-md'>
+            <div className='col-sm col-md medium-text'>
               <CourseFormItem editMode={editMode} fieldId="categoryId"
                               fieldLabel={this.context.t("course_category")}
                               placeholder={this.context.t("course_category")}
@@ -86,7 +88,7 @@ class CourseForm extends Component {
 
           <div className='row'>
             <div className='col-sm col-md'>
-              <div className={!editMode ? "datepicker-box" : ""}>
+              <div className={!editMode ? "datepicker-box" : "long-text"}>
                 <CourseFormItem editMode={editMode} fieldId="start_date_Id"
                                 fieldLabel={this.context.t("start_date")}
                                 isMandatory={true}
@@ -166,10 +168,12 @@ class CourseForm extends Component {
           </div>
           </div>
           <div className="row">
-            <SelectionTeachingDay editable={editMode} courseData={courseData}
-                                  isSamePeriod={isSamePeriod}
-                                  selectedDays={selectedDays} {...this.props}>
-            </SelectionTeachingDay>
+            <div className="col-md-12 col-sm-12">
+              <SelectionTeachingDay editable={editMode} courseData={courseData}
+                                    isSamePeriod={isSamePeriod}
+                                    selectedDays={selectedDays} {...this.props}>
+              </SelectionTeachingDay>
+            </div>
           </div>
 
           {
