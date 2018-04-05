@@ -160,6 +160,7 @@ export const translations = {
     'gender.M': 'Nam',
     'gender.F': 'Nữ',
     "search_course": "Từ khoá tìm kiếm",
+    "view_details_lesson": "Xem bài học",
 
     /*
      * Section Page

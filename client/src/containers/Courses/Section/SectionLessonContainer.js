@@ -61,19 +61,22 @@ class SectionLessonContainer extends Component {
                      asyncActs.DELETE_DOCUMENT_FOR_LESSON, asyncActs.DELETE_LESSON, asyncActs.SAVE_LESSON,
                      asyncActs.DELETE_SECTION, asyncActs.CREATE_UPDATE_SECTION]}>
         <div className="d-flex flex-auto lesson-container">
-          <Card className="d-flex flex-auto">
-            <CardHeader actAsExpander={section.lessons.length > 0}
-                        showExpandableButton={section.lessons.length > 0}
-                        className="d-flex flex-auto dsdsdsdsd">
+          <div className="card">
+            <div className="card-header" id="headingOne">
               <div className="d-flex flex-horizontal">
-                <div className="section-title">
+                <div className="d-flex flex-auto">
                   <SectionDetailContainer onSubmit={this.saveSection.bind(this)} section={section} {...this.props}
                                           initialValues={activatedField === "sectionTitleId_" + section.id ? {title: section.title} : {}}>
                   </SectionDetailContainer>
                 </div>
+                <div className="d-flex flex-auto justify-content-right align-items-center">
+                  <span className="section-title" data-toggle="collapse" data-target="#collapseLesson" aria-expanded="true" aria-controls="collapseLesson">
+                  {this.context.t('view_details_lesson')}
+                </span>
+                </div>
               </div>
-            </CardHeader>
-            <CardText expandable={true} style={mStyles.cartText} className="d-flex flex-auto">
+            </div>
+            <div id="collapseLesson" className="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
               <div className="row">
                 <div className="col-md-12 col-sm-12">
                   {
@@ -89,16 +92,16 @@ class SectionLessonContainer extends Component {
                   }
                 </div>
               </div>
-            </CardText>
-            <CardActions>
+            </div>
+            <div className="card-actions">
               <FlatButton label="Add More" onClick={() => this.addLesson(section.id)}
                           secondary={true}
                           style={mStyles.defaultFlatBtn}
                           icon={<ContentAddCircle color="#e27d7f"/>}/>
               <FlatButton label="Delete" onClick={() => this.deleteSection(section.id)}
                           icon={<ActionDelete color="#000000" />}/>
-            </CardActions>
-          </Card>
+            </div>
+          </div>
           <EditLessonFormContainer show={showPopupEdit}
                                    hidePopup={this.hideLessonPopup.bind(this)}
                                    onSubmit={this.saveLesson.bind(this)}
