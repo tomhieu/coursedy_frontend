@@ -121,7 +121,7 @@ export const CustomTimePicker = ({ input: { onChange, value}, label, disabled = 
     {((error && <span className='input-errors'>{error}</span>) || (warning && <span>{warning}</span>))}
   </div>
 
-export const renderPreviewFile = (file, doDeleteNewUploadFile) => {
+export const renderPreviewFile = (file, doDeleteNewUploadFile, saveDocument) => {
     let previewClass = "pdf-image-preview";
     if (file.extension === "docx") {
         previewClass = "doc-image-preview";
@@ -133,6 +133,11 @@ export const renderPreviewFile = (file, doDeleteNewUploadFile) => {
                 <span className="degree-filename ml-10" title={file.fileName}>{file.fileName}</span>
             </div>
             <a className="icon-delete ml-10" onClick={() => doDeleteNewUploadFile(file.uid)} title={file.fileName}></a>
+           {
+             saveDocument !== undefined ?
+               <a className="icon-upload ml-10" onClick={() => saveDocument(file)} title={file.fileName}></a>
+               : null
+           }
         </div>
     )
 }
@@ -186,10 +191,10 @@ class renderFileInput extends Component {
                         borderColor: 'rgb(102, 102, 102)'
                     }}
                     accept="image/*">
-                    <div className="d-flex flex-auto justify-content-center">
+                    <div className="d-flex flex-auto justify-content-center align-items-center">
                         <div className={internalPreview ? 'd-none' : 'd-flex flex-horizontal align-self-center'}>
                             <a className="icon-upload"></a>
-                            <p className="ml-10">{TT.t('drag_and_drop')}</p>
+                            <a className="ml-10">{TT.t('drag_and_drop')}</a>
                         </div>
                     </div>
 

@@ -176,6 +176,9 @@ const mapStateToProps = (state) => {
         courseData.course_specialize_id = courseData.course_specialize.id
         course_specializes = courseCategory.children;
         course_levels = getCourseLevels(course_specializes, courseData.course_specialize_id);
+    } else if (!editMode && courseData != null) {
+        const [courseCategory] = courseCategories.filter((category) => category.id === Number(courseData.category_id));
+        course_specializes = courseCategory !== undefined ? courseCategory.children : [];
     }
 
     const initializedValue = editMode && courseData != null ? initializeCourseDetail(courseData) : {is_same_period: true};

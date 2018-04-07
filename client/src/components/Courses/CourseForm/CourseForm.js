@@ -116,7 +116,7 @@ class CourseForm extends Component {
           </div>
 
           <div className="row">
-            <div className="col-sm-12 col-md-12">
+            <div className="col-sm-6 col-md-6">
               <CourseFormItem editMode={editMode} fieldId="number_of_students_Id"
                               fieldLabel={this.context.t("number_of_students")}
                               isMandatory={true}
@@ -142,27 +142,26 @@ class CourseForm extends Component {
                                     disabled={isFree}
                                     {...this.props}>
                     </CourseFormItem>
-                  <div className="ml-10 d-flex flex-col-1 currency-field">
-                    <CourseFormItem editMode={editMode} fieldId="currency_Id"
-                                    fieldLabel={this.context.t("tuition_currency")}
-                                    isMandatory={false}
-                                    fieldName="currency"
-                                    typeField="custom_select"
-                                    content=""
-                                    disabled={isFree}
-                                    options={concurrency}
-                                    {...this.props}>
-                    </CourseFormItem>
+                    <div className="ml-10 d-flex flex-col-1 currency-field">
+                      <CourseFormItem editMode={editMode} fieldId="currency_Id"
+                                      fieldLabel={this.context.t("tuition_currency")}
+                                      isMandatory={false}
+                                      fieldName="currency"
+                                      typeField="custom_select"
+                                      content=""
+                                      disabled={isFree}
+                                      options={concurrency}
+                                      {...this.props}>
+                      </CourseFormItem>
+                    </div>
                   </div>
-                </div>
-                <div className="ml-20 d-flex flex-col-1 course-free">
-                  <FormField fieldId="is_free_id"
-                             showLabel={false}
-                             formLabel={this.context.t("course_free")}
-                             formControlName={"is_free"}
-                             typeField="checkbox">
-                  </FormField>
-                </div>
+                  <div className="ml-20 d-flex flex-col-1 course-free">
+                    <FormField fieldId="is_free_id"
+                               formLabel={this.context.t("course_free")}
+                               formControlName={"is_free"}
+                               typeField="checkbox">
+                    </FormField>
+                  </div>
               </div>
             </div>
           </div>

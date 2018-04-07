@@ -59,6 +59,12 @@ export const ADD_DOCUMENT_FOR_LESSON = 'ADD_DOCUMENT_FOR_LESSON';
 export const DELETE_DOCUMENT_FOR_LESSON = 'DELETE_DOCUMENT_FOR_LESSON';
 
 /**
+ * define actions for Document
+ */
+export const ADD_DOCUMENT = 'ADD_DOCUMENT';
+export const DELETE_DOCUMENT = 'DELETE_DOCUMENT';
+
+/**
  * Define actions of Tutor
  * @type {string}
  */

@@ -1,54 +1,31 @@
 import {Component} from "react";
-import {Button, Modal} from "react-bootstrap";
 import * as React from "react";
-import {Dialog, FlatButton} from "material-ui";
+import Modal from "react-bootstrap4-modal";
 
 class SimpleDialogComponent extends Component {
     constructor(props) {
         super(props);
     }
     render() {
-      const {show, title, acceptCallback, cancelCallback} = this.props;
-      const actions = [
-        <FlatButton
-          label="Cancel"
-          primary={true}
-          onClick={cancelCallback}
-        />,
-        <FlatButton
-          label="Submit"
-          primary={true}
-          keyboardFocused={true}
-          onClick={acceptCallback}
-        />,
-      ];
-
-      const dialogStyle = {
-        display: 'block'
-      }
-
-      const titleDialogStyle = {
-        backgroundColor: '#534051',
-        color: '#FFFFFF'
-      }
-
-      const bodyDialogStyle = {
-        padding: '0'
-      }
-
+      const {show, title, acceptCallback, acceptLabel = "OK", cancelCallback, cancelLabel = "Cancel"} = this.props;
       return (
-            <Dialog open={show} title={title}
-                    style={dialogStyle}
-                    titleStyle={titleDialogStyle}
-                    bodyStyle={bodyDialogStyle}
-                    autoScrollBodyContent={true}
-                    onRequestClose={cancelCallback}
-                    actions={actions}>
-              <div className="dialog-body-container">
-                {this.props.children}
-              </div>
-            </Dialog>
-        )
+        <Modal visible={show} onClickBackdrop={cancelCallback}>
+          <div className="modal-header">
+              <h5 className="modal-title">{title}</h5>
+          </div>
+          <div className="modal-body">
+            {this.props.children}
+          </div>
+          <div className="modal-footer">
+            <button type="button" className="btn btn-secondary" onClick={cancelCallback}>
+              {acceptLabel}
+            </button>
+            <button type="button" className="btn btn-primary" onClick={acceptCallback}>
+              {cancelLabel}
+            </button>
+          </div>
+        </Modal>
+      )
     }
 }
 
@@ -59,7 +36,10 @@ SimpleDialogComponent.contextTypes = {
 SimpleDialogComponent.propTypes = {
     show: React.PropTypes.bool.isRequired,
     title: React.PropTypes.string.isRequired,
-    cancelCallback: React.PropTypes.func.isRequired
+    cancelCallback: React.PropTypes.func.isRequired,
+    acceptLabel: React.PropTypes.string,
+    cancelLabel: React.PropTypes.string,
+    acceptCallback: React.PropTypes.func,
 }
 
 export default SimpleDialogComponent;

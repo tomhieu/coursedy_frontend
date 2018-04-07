@@ -22,10 +22,9 @@ class SectionLessonContainer extends Component {
   }
 
   saveLesson(lesson) {
-    this.props.dispatch(LessonActions.saveOrUpdateLesson(Object.assign(lesson, {
-      course_section_id: this.props.section.id,
-      course_id: this.props.section.course_id
-    })));
+    lesson.course_id = this.props.section.course_id;
+    lesson.course_section_id = this.props.section.id;
+    this.props.dispatch(LessonActions.saveOrUpdateLesson(lesson));
   }
 
   hideLessonPopup() {
@@ -40,40 +39,37 @@ class SectionLessonContainer extends Component {
     this.props.dispatch(CourseActions.deleteSection(id));
   }
 
-  isActivatedFieldOfLesson(activatedField, lesson) {
-    return activatedField != null && activatedField.indexOf("__lesson_" + lesson.title) >= 0;
-  }
-
   onActivatedField(fieldIds) {
     this.props.dispatch(CourseActions.activatedEditField(fieldIds));
-  }
-
-  onClosedField(fieldIds) {
-    this.props.reset();
-    this.props.dispatch(CourseActions.closedEditField(fieldIds));
   }
 
   render() {
     const {section, showPopupEdit = false, activatedField} = this.props;
     return (
       <LoadingMask key={'__section__' + section.id}
-                   belongingActions={[asyncActs.ADD_DOCUMENT_FOR_LESSON, asyncActs.ADD_MORE_LESSON_FOR_SECTION,
-                     asyncActs.DELETE_DOCUMENT_FOR_LESSON, asyncActs.DELETE_LESSON, asyncActs.SAVE_LESSON,
+                   belongingActions={[asyncActs.ADD_DOCUMENT, asyncActs.ADD_MORE_LESSON_FOR_SECTION,
+                     asyncActs.DELETE_DOCUMENT, asyncActs.DELETE_LESSON, asyncActs.SAVE_LESSON,
                      asyncActs.DELETE_SECTION, asyncActs.CREATE_UPDATE_SECTION]}>
         <div className="d-flex flex-auto lesson-container">
-          <div className="card">
+          <div className="card flex-auto">
             <div className="card-header" id="headingOne">
               <div className="d-flex flex-horizontal">
                 <div className="d-flex flex-auto">
-                  <SectionDetailContainer onSubmit={this.saveSection.bind(this)} section={section} {...this.props}
-                                          initialValues={activatedField === "sectionTitleId_" + section.id ? {title: section.title} : {}}>
+                  <SectionDetailContainer onSubmit={this.saveSection.bind(this)}
+                                          section={section} {...this.props}
+                                          onActivatedField={this.onActivatedField.bind(this)}>
                   </SectionDetailContainer>
                 </div>
-                <div className="d-flex flex-auto justify-content-right align-items-center">
-                  <span className="section-title" data-toggle="collapse" data-target="#collapseLesson" aria-expanded="true" aria-controls="collapseLesson">
-                  {this.context.t('view_details_lesson')}
-                </span>
-                </div>
+                {
+                  section.lessons.length > 0 ?
+                    (
+                      <div className="d-flex flex-auto justify-content-right align-items-center">
+                        <span className="section-title" data-toggle="collapse" data-target="#collapseLesson" aria-expanded="true" aria-controls="collapseLesson">
+                          {this.context.t('view_details_lesson')}
+                        </span>
+                      </div>
+                    ) : null
+                }
               </div>
             </div>
             <div id="collapseLesson" className="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
@@ -83,10 +79,9 @@ class SectionLessonContainer extends Component {
                     section.lessons.map(lesson => (
                       <LessonDetailFormContainer key={'___lesson__' + lesson.id} lesson={lesson}
                                                  onSubmit={this.saveLesson.bind(this)}
-                                                 sectionUniqueKey={"__lesson_" + lesson.title}
+                                                 sectionUniqueKey={"__lesson_" + lesson.id}
                                                  onActivatedField={this.onActivatedField.bind(this)}
-                                                 onClosedField={this.onClosedField.bind(this)}
-                                                 initialValues={this.isActivatedFieldOfLesson(activatedField, lesson) === true ? lesson : {}} {...this.props}>
+                                                 {...this.props}>
                       </LessonDetailFormContainer>
                     ))
                   }

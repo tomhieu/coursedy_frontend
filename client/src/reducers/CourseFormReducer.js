@@ -109,29 +109,36 @@ const courseDetails = (state = {
             });
             return Object.assign({}, state, {listSection: currentSectionList, showSectionPopup: false});
         case asyncActions.SAVE_LESSON + asyncActions.FULFILLED:
-            const {course_section_id} = action.payload;
+            const {id, course_section_id} = action.payload;
             let [updatedSection] = currentSectionList.filter(section => section.id === course_section_id);
             updatedSection.showLessonPopup = false;
-            updatedSection.lessons.push(action.payload);
-            return Object.assign({}, state, {listSection: currentSectionList, showSectionPopup: false});
+            const updateLessonIndex = updatedSection.lessons.findIndex((lesson) => lesson.id === id);
+            if (updateLessonIndex >= 0) {
+              updatedSection.lessons.splice(updateLessonIndex, 1, action.payload);
+            } else {
+              updatedSection.lessons.push(action.payload);
+            }
+            return Object.assign({}, state, {listSection: currentSectionList, showSectionPopup: false, activatedField: []});
         case asyncActions.HIDE_LESSON_POPUP_EDIT:
             let [activeSection] = currentSectionList.filter(section => section.id === action.data);
             activeSection.showLessonPopup = false;
             return Object.assign({}, state, {listSection: currentSectionList});
         case asyncActions.DELETE_LESSON + asyncActions.FULFILLED:
-            const {sectionId, deletedLessonId} = action.data;
-            let [impactedSection] = currentSectionList.filter(lesson => lesson.id === sectionId);
-            impactedSection = Object.assign({}, impactedSection, {lessons: impactedSection.lessons.filter(lesson => lesson.id != deletedLessonId)});
+            let [impactedSection] = currentSectionList.filter(section => {
+                return section.lessons.filter((lesson) => lesson.id === action.payload.id)
+            });
+            impactedSection = Object.assign({}, impactedSection, {lessons: impactedSection.lessons.filter(lesson => lesson.id != action.payload.id)});
+            const impactSectionIndex = currentSectionList.findIndex((section) => section.id === impactedSection.id);
+            currentSectionList.splice(impactSectionIndex, 1, impactedSection);
             return Object.assign({}, state, {listSection: currentSectionList});
         case asyncActions.ADD_DOCUMENT_FOR_LESSON:
         case asyncActions.DELETE_DOCUMENT_FOR_LESSON:
-            const {modifySectionId, modifyLessonId} = action.data;
-            let [modifySection] = currentSectionList.filter(session => session.id === modifySectionId);
-            let [modifyLesson] = modifySection.lessons.filter(lesson => lesson.id === modifyLessonId);
+            let [modifySection] = currentSectionList.filter(session => session.id === action.data.sectionId);
+            let [modifyLesson] = modifySection.lessons.filter(lesson => lesson.id === action.data.lessonId);
             if (action.type === asyncActions.ADD_DOCUMENT_FOR_LESSON) {
                 modifyLesson.documents.push(action.data.document);
             } else {
-                modifyLesson.documents.splice(modifyLesson.documents.findIndex(doc => doc.uid === action.data.document), 1);
+                modifyLesson.documents.splice(modifyLesson.documents.findIndex(doc => doc.id === action.data.documentId), 1);
             }
             return Object.assign({}, state, {listSection: currentSectionList});
         default:

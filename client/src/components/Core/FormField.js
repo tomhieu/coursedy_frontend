@@ -127,7 +127,12 @@ class FormField extends Component {
 FormField.propTypes = {
   formControlName: React.PropTypes.string.isRequired,
   typeField: React.PropTypes.string.isRequired,
-  fieldId: React.PropTypes.string.isRequired
+  fieldId: React.PropTypes.string.isRequired,
+  zoneHeight: React.PropTypes.string,
+  fieldLabel: React.PropTypes.string,
+  disabled: React.PropTypes.bool,
+  onChange: React.PropTypes.func,
+  isMandatoryField: React.PropTypes.bool,
 };
 
 export default cssModules(FormField, styles);

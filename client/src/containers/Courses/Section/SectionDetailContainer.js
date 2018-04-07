@@ -3,8 +3,13 @@ import * as React from "react";
 import InlineEditFormField from "../../../components/Core/InlineEditFormField";
 import {connect} from "react-redux";
 import {reduxForm} from "redux-form";
+import * as CourseActions from "actions/CourseFormActionCreator";
 
 class SectionDetailContainer extends Component {
+  onClosedField(fieldIds) {
+    this.props.reset();
+    this.props.dispatch(CourseActions.closedEditField(fieldIds));
+  }
 
     render() {
         const {handleSubmit, section} = this.props;
@@ -19,6 +24,7 @@ class SectionDetailContainer extends Component {
                                      isMandatoryField={true}
                                      formControlName="title"
                                      typeField="custom_input"
+                                     onClosedField={this.onClosedField.bind(this)}
                                      {...this.props}>
                 </InlineEditFormField>
             </form>
@@ -31,11 +37,12 @@ SectionDetailContainer.contextTypes = {
     router: React.PropTypes.object
 };
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, props) => {
     const {courseDetails} = state;
     const {editMode} = courseDetails;
 
-    return {editMode};
+
+    return {editMode, initialValues: {title: props.section.title}};
 };
 
 export default connect(

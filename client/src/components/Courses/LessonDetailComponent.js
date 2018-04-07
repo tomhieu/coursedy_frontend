@@ -38,6 +38,7 @@ export class LessonDetailComponent extends Component {
           <div>
             <FormField fieldId="lessonDocumentId" fieldLabel={this.context.t("lesson_material")}
                        onUpload={this.onDropDocument.bind(this)}
+                       zoneHeight="75px"
                        isMandatoryField={true} formControlName="documents" typeField="upload_file"/>
             <div className="d-flex flex-vertical ml-15 mt-5">
               {

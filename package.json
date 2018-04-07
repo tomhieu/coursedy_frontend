@@ -75,6 +75,7 @@
     "react-addons-css-transition-group": "^15.6.2",
     "react-addons-transition-group": "^15.6.2",
     "react-bootstrap": "^0.31.5",
+    "react-bootstrap4-modal": "^1.2.2",
     "react-css-modules": "^4.7.1",
     "react-datepicker": "^0.55.0",
     "react-dom": "^15.6.2",

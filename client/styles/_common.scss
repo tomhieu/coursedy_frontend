@@ -2908,7 +2908,7 @@ ul.no-margin,
 }
 
 .course-item-wrapper {
-  height: 350px;
+  min-height: 350px;
   width: 275px;
   margin: 20px;
 }
@@ -3336,6 +3336,7 @@ button:hover {
   height: 100%;
   z-index: 9090;
   background-color: #f1f1f1;
+  opacity: 0.5;
 }
 
 .show-loading .loading-spin-wrapper .loading-spin {
@@ -3545,10 +3546,10 @@ button {
   }
 }
 
-.lesson-container div {
-  width: 100%;
-}
-
 .card-header {
   background-color: $gray-background;
+}
+
+.modal {
+  z-index: 9999;
 }

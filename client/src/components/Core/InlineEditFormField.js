@@ -21,7 +21,6 @@ class InlineEditFormField extends FormField {
     this.setState({
       editMode: true
     });
-    debugger
     this.props.onActivatedField(activatedFieldIds);
   }
 
