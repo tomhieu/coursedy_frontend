@@ -101,6 +101,8 @@ export const translations = {
     'popup_warning_publish_course_message_2': 'Một khí khoá học đăng lên, tất cả mọi người đều có thể xem thông tin và nội dung khoá học',
     'popup_warning_publish_course_message_3': 'Khoá học {course_title} chưa có buổi học nào. Để giúp người học có thể năm được nội dung chi tiết khoá học, bạn nên thêm nội dung các buổi học trước khi đăng khoá học lên. ',
     'course_periode_type': 'buổi học',
+    'course_comments': 'Bình luận',
+    'course_comment_content': 'Nội dung bình luận',
     /*
      * Lesson Page
      */
@@ -214,7 +216,6 @@ export const translations = {
     "course_detail": "Chi tiết khóa học",
     "tutor_info": "Thông tin giáo viên",
     "course_subscribe": "Đăng ký",
-    "course_comments": "Phản hồi",
 
     "course_follow": "Theo dõi khóa học",
     "course_follow_status": "Kết quả theo dõi khóa học",
@@ -254,6 +255,8 @@ export const translations = {
     "bank_number": "Số Tài Khoản",
     "transaction_office": "Phòng Giao Dịch",
     "select_domestic_bank": "Lựa chọn ngân hàng",
+    "make_a_payment": "Nạp tiền",
+    "fetch_payment_history_fail": "Lấy lịch sử thanh toán thất bại",
     /* home page */
     "product_title": "EZYLEARNING",
     "product_tag": "Tìm Kiếm Khoá Học Yêu Thích Của Bạn",
@@ -286,7 +289,23 @@ export const translations = {
     "introduction_save_time_title": "<span class='introduction-text-decoration'>Tiết K</span>iệm Thời Gian",
     "introduction_save_time_description": "No more emails, Calls or messaging friends for recommendations - Get acces to real reviews in seconds",
     "search_empty_result": "Thật tiếc chúng tôi không tìm thấy {type} nào",
-    "search_course": "Khoá Học"
+    "search_course": "Khoá Học",
+
+    "my_account": "Tài khoản",
+    "my_profile": "Thông tin người dùng",
+    "my_balance": "Số dư tài khoản",
+
+    "my_courses": "Khóa học",
+    "enrolled_courses": "Đã tham gia",
+    "enrolling_courses": "Đang tham gia",
+    "followed_courses": "Đang theo dõi",
+
+    "payment_created_at": "Ngày",
+    "payment_order": "Đơn hàng",
+    "payment_content": " ",
+    "payment_invoice": " ",
+    "payment_status": " ",
+    "payment_value": "Giá trị"
   },
   "en": {
     "home_page": "Home",

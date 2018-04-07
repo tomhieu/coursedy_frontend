@@ -1,6 +1,6 @@
 import Network from "utils/network";
-import { TutorAccountTypes } from '../constants/index'
-import { CERTIFICATE } from '../actions/AsyncActionCreator.js';
+import { TutorAccountTypes } from '../../../constants/'
+import { CERTIFICATE } from '../../../actions/AsyncActionCreator';
 
 export const RECEIVE_PERSON_DATA = 'RECEIVE_PERSON_DATA';
 export const RECEIVE_EDUCATION_DATA = 'RECEIVE_EDUCATION_DATA';
@@ -26,7 +26,7 @@ export const loadListSkillData = () => {
   return dispatch => {
     Network().get('categories').then((response) => {
       dispatch({
-        type: RECEIVE_SKILLS_DATA,
+        type: TutorAccountTypes.RECEIVE_SKILLS_DATA,
         data: response.map((category) => {
           return {id: category.id,  text: category.name}
         })
@@ -66,7 +66,7 @@ export const fetchUser = () => {
     Network().get('current_user')
       .then((data) => {
         dispatch({
-          type: TutorAccountTypes.SET_ACCOUNT_USER,
+          type: AccountTypes.SET_ACCOUNT_USER,
           payload: data
         })
 
@@ -84,42 +84,6 @@ export const fetchTutor = (userId) => {
           payload: data
         })
       })
-  }
-}
-
-export const closeEmailConfirmationModal = () => {
-  return {
-    type: TutorAccountTypes.HIDE_REQUIRED_EMAIL_CONFIRMATION_MODAL
-  }
-}
-
-export const savePersonData = (name, email, date_of_birth, address, gender, emailChanged) => {
-  let body = {name, email, date_of_birth, address, gender}
-  return dispatch => {
-    Network().update('/auth', body).then((response) => {
-      if (emailChanged){
-        dispatch({
-          type: TutorAccountTypes.SHOW_REQUIRED_EMAIL_CONFIRMATION_MODAL
-        })
-      }
-      dispatch({
-        type: TutorAccountTypes.SET_ACCOUNT_USER,
-        payload: response
-      })
-      dispatch(hideProfileEditForm())
-    })
-  }
-}
-
-export const showProfileEditForm = () => {
-  return {
-    type: TutorAccountTypes.ENABLE_EDIT_TUTOR_PROFILE_MODE
-  }
-}
-
-export const hideProfileEditForm = () => {
-  return {
-    type: TutorAccountTypes.DISABLE_EDIT_TUTOR_PROFILE_MODE
   }
 }
 

@@ -6,15 +6,8 @@ import {reduxForm} from "redux-form";
 import {connect} from "react-redux";
 import cssModules from "react-css-modules";
 import {
-  addNewDocument,
-  downloadDegree,
-  loadListDegreesData,
-  removeNewDocument,
-  removeUploadedDocument,
-  loadListSkillData,
-} from "../../../actions/TutorAccountActionCreator";
-import {fetchTutor} from "actions/TutorProfileActionCreator"
-import {updateTutorEducation} from "actions/TutorAccountActionCreator";
+  TutorAccountActions
+} from '../../../actions/index'
 import {renderPreviewFile} from "../../../components/Core/CustomComponents";
 
 class TutorEducation extends Component {
@@ -25,7 +18,7 @@ class TutorEducation extends Component {
 
 
   updateEducation(data) {
-    this.props.dispatch(updateTutorEducation(this.props.tutor.id, data));
+    this.props.dispatch(TutorAccountActions.updateTutorEducation(this.props.tutor.id, data));
   }
 
   render() {
@@ -134,6 +127,6 @@ export default connect(mapStateToProps)(reduxForm({
   form: 'tutorEducation',
   fields: ['title', 'description', 'categories'],
   enableReinitialize: true,
-  onSubmit: updateTutorEducation(),
+  onSubmit: TutorAccountActions.updateTutorEducation(),
 })(cssModules(TutorEducation, styles)));
 

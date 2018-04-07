@@ -5,17 +5,17 @@ import {
   StudentCourseActions
 } from "../../../../actions/index";
 import LoadingMask from "../../../../components/LoadingMask/LoadingMask";
-import {FETCH_STUDENT_FOLLOW_COURSES} from "../../../../actions/AsyncActionCreator";
+import {FETCH_STUDENT_ENROLL_COURSES} from "../../../../actions/AsyncActionCreator";
 
-class StudentCoursesFollowContainer extends Component {
+class StudentCoursesEnrolledContainer extends Component {
   componentDidMount() {
-    this.props.dispatch(StudentCourseActions.fetchListStudentFollowCourses())
+    this.props.dispatch(StudentCourseActions.fetchListStudentEnrollCourses())
   }
   render() {
     return (
       <div className="d-flex flex-vertical flex-auto">
         <div className="d-flex flex-auto">
-          <LoadingMask belongingActions={[FETCH_STUDENT_FOLLOW_COURSES]}>
+          <LoadingMask belongingActions={[FETCH_STUDENT_ENROLL_COURSES]}>
             <CourseList 
               {...this.props} 
               displayMode="grid" 
@@ -30,7 +30,7 @@ class StudentCoursesFollowContainer extends Component {
   }
 }
 
-StudentCoursesFollowContainer.contextTypes = {
+StudentCoursesEnrolledContainer.contextTypes = {
     t: React.PropTypes.func.isRequired,
     router: React.PropTypes.object
 }
@@ -38,12 +38,12 @@ StudentCoursesFollowContainer.contextTypes = {
 const mapStateToProps = (state) => {
   const {StudentCourseListReducer} = state;
   const {
-    isFetchingFollowCourse,
-    followCourses
+    isFetchingEnrollCourse,
+    enrolledCourses
   } = StudentCourseListReducer;
-  return { courses: followCourses, isFetching: isFetchingFollowCourse }
+  return { courses: enrolledCourses, isFetching: isFetchingEnrollCourse }
 };
 
 export default connect(
     mapStateToProps
-)(StudentCoursesFollowContainer)
+)(StudentCoursesEnrolledContainer)

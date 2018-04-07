@@ -33,12 +33,12 @@ import {SERVER_NAME} from "./CommonConstant";
    var defaultOptions = {
      mode: 'cors',
      headers: {
-       'Accept': 'application/json',
-       'Content-Type': 'application/json',
-       'token-type': 'Bearer',
-       'access-token': localStorage.getItem('ezyLearningToken'),
-       'client': localStorage.getItem('ezyLearningClient'),
-       'uid': localStorage.getItem('ezyLearningUid')
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      'token-type': 'Bearer',
+      'access-token': localStorage.getItem('ezyLearningToken'),
+      'client': localStorage.getItem('ezyLearningClient'),
+      'uid': localStorage.getItem('ezyLearningUid')
      }
    };
 

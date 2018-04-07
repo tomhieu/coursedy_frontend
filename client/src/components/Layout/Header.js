@@ -3,9 +3,12 @@ import {Navbar, NavbarToggler, NavDropdown, MenuItem, Nav, NavItem, NavLink} fro
 import cssModules from 'react-css-modules';
 import styles from './Header.module.scss';
 import { LinkContainer } from 'react-router-bootstrap'
+import { dashboardUrls } from '../../actions/ReferenceActions/ReferenceData'
 
 class Header extends Component {
   render() {
+    let dashboardUrl = this.props.session.currentUser ? 
+      dashboardUrls[this.props.session.currentUser.roles[0]] : ''
     return (
       <nav className="navbar navbar-expand-lg navbar-light navbar-default bg-light">
         <div className="container">
@@ -41,7 +44,7 @@ class Header extends Component {
               {
                 this.props.session.currentUser ? (
                   <li className="nav-item">
-                    <LinkContainer className="nav-link" to="/dashboard/courses/list">
+                    <LinkContainer className="nav-link" to={dashboardUrl}>
                       <span className="nav-btn"> <i className="fa fa-user"></i> &nbsp; {this.context.t('dashboard')}</span>
                     </LinkContainer>
                   </li>

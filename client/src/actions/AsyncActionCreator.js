@@ -1,7 +1,7 @@
 export const FULFILLED = '_FULFILLED';
 export const PENDING = '_PENDING';
 export const REJECTED = '_REJECTED';
-
+export const HEADERS = '_HEADERS';
 
 export const CERTIFICATE = {
   load_tutor_certificate_list: 'LOAD_TUTOR_CERTIFICATE_LIST',
@@ -71,6 +71,13 @@ export const FETCH_TUTOR_COURSES = 'FETCH_TUTOR_COURSES';
 export const FETCH_TUTOR_COURSES_FAIL = 'FETCH_TUTOR_COURSES_FAIL';
 
 /**
+ * Define actions of Tutor
+ * @type {string}
+ */
+export const FETCH_STUDENT_ENROLL_COURSES = 'FETCH_STUDENT_ENROLL_COURSES';
+export const FETCH_STUDENT_FOLLOW_COURSES = 'FETCH_STUDENT_FOLLOW_COURSES';
+
+/**
  * Define actions to load Reference Data
  * @type {string}
  */
@@ -101,4 +108,10 @@ export const UPDATE_FILTER_CRITERIA_TEACHERS = "UPDATE_FILTER_CRITERIA_TEACHERS"
 /**
  * Define actions of Homepage
  */
-export const TOP_TEACHERS = "TOP_TEACHERS"
+export const TOP_TEACHERS = "TOP_TEACHERS";
+
+/**
+ * Define actions of payment
+ */
+export const FETCH_USER_BALANCE = "FETCH_USER_BALANCE"
+export const FETCH_PAYMENT_HISTORY = "FETCH_PAYMENT_HISTORY"

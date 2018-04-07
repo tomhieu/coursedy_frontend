@@ -22,14 +22,16 @@ import loadPersonData from "./TutorPersonalInfo";
 import EducationData from "./TutorEducation";
 import addNewDocumentFile from "./AddDocumentFile";
 import LoadingMask from "./LoadingMask";
-import TutorAccount from "./TutorAccount";
 import Teachers from './TeachersReducer'
 import referenceData from './ReferenceDataReducer'
 import HomePage from './HomePageReducer'
 import Certificate from './Certificate'
 import Payment from './Payment'
 
-import StudentAccountReducer from './Student/Account/StudentAccountReducer'
+import AccountReducer from './AccountReducer'
+import StudentAccountReducer from './Student/StudentAccountReducer'
+import StudentCourseListReducer from './Student/StudentCourseListReducer'
+import TutorAccountReducer from './Tutor/TutorAccountReducer'
 
 const rootReducer = combineReducers({
   // Apply all of the reducers here.
@@ -44,9 +46,12 @@ const rootReducer = combineReducers({
   PublicCourseDetail,
   courseDetails,
   TutorCourseList,
-  //Reducers for student
+  StudentCourseListReducer,
+  //Reducers for account
+  AccountReducer,
   StudentAccountReducer,
-
+  TutorAccountReducer,
+  
   session,
   footer,
   TutorProfile,
@@ -59,7 +64,6 @@ const rootReducer = combineReducers({
   addNewDocumentFile,
   CourseFilter,
   referenceData,
-  TutorAccount,
   Teachers,
   Payment,
   HomePage,

@@ -8,7 +8,7 @@ import {
   addNewDocument,
   removeUploadedDocument,
   loadDegrees
-} from "actions/TutorAccountActionCreator";
+} from "../../../actions/Tutor/Account/TutorAccountActionCreator";
 
 import * as asyncActs from '../../../actions/AsyncActionCreator';
 import * as courseActionTypes from '../../../constants/Courses';

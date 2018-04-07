@@ -4,43 +4,43 @@ import cssModules from 'react-css-modules';
 import { connect } from "react-redux";
 import { AccountContainers } from "../../index";
 import { UserInfo } from '../../../components/index'
-import * as Actions from '../../../actions/TutorAccountActionCreator'
-import {closeEmailConfirmationModal} from "../../../actions/TutorAccountActionCreator";
+import { 
+  AccountActions,
+  StudentAccountActions
+} from '../../../actions/index'
 import {RequireEmailConfirmationModal, TutorEducationDetailComponent} from '../../../components/index'
 
 class AccountProfileContainer extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      editProfileMode: false,
+      showEmailConfirmationModal: false
+    }
+  }
+
   componentWillMount(){
-    this.props.dispatch(Actions.fetchUser())
+    this.props.dispatch(StudentAccountActions.fetchUser())
   }
 
   showProfileEditForm(){
-    this.props.dispatch(Actions.showProfileEditForm())
-  }
-
-  showEducationEditForm(){
-    this.props.dispatch(Actions.showEducationEditForm())
+    this.setState({ editProfileMode: true })
   }
 
   hideProfileEditForm(){
-    this.props.dispatch(Actions.hideProfileEditForm())
-  }
-
-  hideEducationEditForm(){
-    this.props.dispatch(Actions.hideEducationEditForm())
+    this.setState({ editProfileMode: false })
   }
 
   closeEmailConfirmationModal(){
-    this.props.dispatch(closeEmailConfirmationModal())
+    this.setState({ showEmailConfirmationModal: false })
   }
 
   render() {
+    const { user, tutor } = this.props;
     const {
-      editProfileMode, 
-      editEducationMode, 
-      editPasswordMode, 
-      user, 
-      tutor
-    } = this.props;
+      editProfileMode,
+      showEmailConfirmationModal
+    } = this.state;
     return (
       <div className="row">
         <div className="col-md-12 col-xs-12 col-sm-12 dashboard-content-section ">
@@ -64,12 +64,8 @@ class AccountProfileContainer extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  editProfileMode: state.StudentAccountReducer.editProfileMode,
-  editEducationMode: state.StudentAccountReducer.editEducationMode,
-  editPasswordMode: state.StudentAccountReducer.editPasswordMode,
-  showEmailConfirmationModal: state.StudentAccountReducer.showEmailConfirmationModal,
-  user: state.StudentAccountReducer.user,
-  tutor: state.StudentAccountReducer.tutor
+  user: state.AccountReducer.user,
+  student: state.StudentAccountReducer.student
 })
 
 export default connect(

@@ -75,7 +75,7 @@ class CourseItemInListMode extends Component {
                 </tbody>
               </table>
             </div>
-            {!this.props.item.onlyTutor ? (
+            {!this.props.item.onlyTutor && this.props.item.user ? (
             <div className="col-xs-6 course-tutor-info">
               <div className={styles.courseTutorAvatar}>
                 <LinkContainer to={'/tutor/' + this.props.item.user.id }>
