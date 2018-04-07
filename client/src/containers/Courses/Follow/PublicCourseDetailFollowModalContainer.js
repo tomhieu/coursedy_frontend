@@ -67,9 +67,9 @@ class PublicCourseDetailFollowModalContainer extends Component {
           { submitAlert }
           <div className="">
             <div className="public-course-follow-email">
-              <CoreComponent.FormField formGroupId={'emailId'} formLabel={this.context.t('account.person.info.email')}
+              <CoreComponent.FormField fieldId='emailId' fieldLabel={this.context.t('account.person.info.email')}
                                        placeholder={this.context.t('account.person.info.email')} isMandatoryField={true}
-                                       formControlName={'email'} typeField={'custom_input'}></CoreComponent.FormField>
+                                       formControlName='email' typeField='custom_input'></CoreComponent.FormField>
             </div>
           </div>
         </SimpleDialogComponent>

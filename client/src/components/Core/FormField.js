@@ -24,18 +24,18 @@ class FormField extends Component {
 
   render() {
     const {
-      formControlName, formLabel, showLabel = true, placeholder, isMandatoryField = false,
-      typeField, type, zoneHeight = "200px", internalPreview = false, previewUrl, onUpload, rows, options,
+      formControlName, fieldLabel, showLabel = true, placeholder, isMandatoryField = false,
+      typeField, type, zoneHeight = "auto", internalPreview = false, previewUrl, onUpload, rows, options,
       selectedValues, customClassName = "form-control", checked, chosenValue, onCheck, toggled, onToggle
     } = this.props;
 
     let fieldComponent = this.buildFieldRender(formControlName, placeholder, typeField, type,
       zoneHeight, internalPreview, previewUrl, onUpload, rows, options, selectedValues, customClassName, checked, chosenValue, checked, onCheck, toggled, onToggle);
     return (
-      <FormGroup controlId="formGroupId">
+      <FormGroup controlId={this.props.fieldId}>
         {
           showLabel ? (
-            <ControlLabel> {formLabel} {isMandatoryField && <span className="red">*</span>} </ControlLabel>) : ''
+            <ControlLabel> {fieldLabel} {isMandatoryField && <span className="red">*</span>} </ControlLabel>) : ''
         }
         <div className="dark-picker dark-picker-bright">
           {fieldComponent}
@@ -90,14 +90,14 @@ class FormField extends Component {
       }
 
       case "checkbox": {
-        fieldComponent = <Field name={formControlName} label={this.props.formLabel}
+        fieldComponent = <Field name={formControlName} label={this.props.fieldLabel}
                                 iconStyle={this.props.iconStyle} disabled={this.props.disabled}
                                 component={renderCheckbox} className={customClassName}/>
         break;
       }
       case "radiobox": {
         fieldComponent = <Field name={formControlName} placeholder={placeholder}
-                                rows={rows} label={this.props.formLabel}
+                                rows={rows} label={this.props.fieldLabel}
                                 disabled={this.props.disabled} component={RadioButtonGroup}
                                 className={customClassName}/>
         break;
@@ -109,7 +109,7 @@ class FormField extends Component {
         break;
       }
       case "timePicker": {
-        fieldComponent = <Field name={formControlName} label={this.props.formLabel}
+        fieldComponent = <Field name={formControlName} label={this.props.fieldLabel}
                                 component={CustomTimePicker} format={null}
                                 disabled={this.props.disabled} hintText={placeholder}/>
         break;
@@ -126,7 +126,13 @@ class FormField extends Component {
 
 FormField.propTypes = {
   formControlName: React.PropTypes.string.isRequired,
-  typeField: React.PropTypes.string.isRequired
+  typeField: React.PropTypes.string.isRequired,
+  fieldId: React.PropTypes.string.isRequired,
+  zoneHeight: React.PropTypes.string,
+  fieldLabel: React.PropTypes.string,
+  disabled: React.PropTypes.bool,
+  onChange: React.PropTypes.func,
+  isMandatoryField: React.PropTypes.bool,
 };
 
 export default cssModules(FormField, styles);

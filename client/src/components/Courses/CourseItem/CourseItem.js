@@ -1,11 +1,8 @@
-import React, { Component} from 'react';
+import React, {Component} from 'react';
 import cssModules from 'react-css-modules';
-import styles from './Course.module.scss';
-import { LinkContainer } from 'react-router-bootstrap'
-import {SERVER_NAME} from "utils/CommonConstant";
-import {Checkbox} from 'material-ui'
-import CourseItemInListMode from './CourseItem/CourseItemInListMode'
-import CourseItemInGridMode from './CourseItem/CourseItemInGridMode'
+import styles from './../Course.module.scss';
+import CourseItemInGridMode from "./CourseItemInGridMode";
+import CourseItemInListMode from "./CourseItemInListMode";
 
 /**
   * @Course group item template 2

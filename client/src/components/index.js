@@ -10,7 +10,7 @@ import CourseGroup from './Course/CourseGroup/CourseGroup';
 import CourseGroupList from './Course/CourseGroupList/CourseGroupList';
 import CourseDetail from './Courses/CourseDetail';
 import CourseFilter from './Courses/CourseFilter';
-import CourseItem from './Courses/CourseItem';
+import CourseItem from './Courses/CourseItem/CourseItem';
 import CourseList from './Courses/CourseList';
 import TutorSearchForm from './Tutor/TutorSearchForm/TutorSearchForm';
 import TutorItem from './Tutor/TutorItem/TutorItem';
@@ -24,7 +24,7 @@ import RoleAuthorization from './RoleAuthorization';
 import LoadingMask from './LoadingMask/LoadingMask'
 import TutorDashboardMenu from './Dashboard/TutorDashboard/TutorDashboardMenu'
 import TutorDashboardIndex from './Dashboard/TutorDashboard/TutorDashboardIndex'
-import CourseForm from './Courses/CourseForm'
+import CourseForm from './Courses/CourseForm/CourseForm'
 import UserInfo from './Account/UserInfo'
 import RequireEmailConfirmationModal from './Account/RequireEmailConfirmationModal'
 import TutorEducationDetailComponent from './Account/Tutor/TutorEducationDetailComponent'

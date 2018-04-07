@@ -431,7 +431,7 @@ Main Navigation bar  - Navbar-default
   background: $primary-color !important;
   position: fixed;
   width: 100%;
-  z-index: 999;
+  z-index: 9999;
   padding: 0;
 }
 
@@ -2907,7 +2907,7 @@ ul.no-margin,
 }
 
 .course-item-wrapper {
-  height: 350px;
+  min-height: 350px;
   width: 275px;
   margin: 20px;
 }
@@ -2946,18 +2946,22 @@ ul.no-margin,
 
 .lesson-section-seperator {
   color: $primary-color;
-  border-top: 1px solid $border-color;
   border-bottom: 1px solid $border-color;
   padding: 15px;
 }
 
 .section-title {
   text-align: center;
-  font-size: 18pt;
-  width: 80%;
-  font-family: 'Roboto Condensed', sans-serif;
-  margin: 0;
+  border-radius: 2px;
+  background-color: $md-color-pink;
+  border: 2px solid $md-color-pink;
+  padding: 10px 24px;
+  color: $white-color;
+  font-size: 14px;
+  font-weight: 400;
+  margin: 0 10px;
   color: $primary-color;
+  cursor: pointer;
 }
 
 .inline-form {
@@ -3236,7 +3240,7 @@ input[type="url"]:focus, input[type="text"]:focus, textarea:focus, .form-control
  */
 
 .Checkout {
-  margin: 0 auto;
+  margin: 0 15px;
   max-width: 800px;
   box-sizing: border-box;
   padding: 0 5px;
@@ -3329,8 +3333,9 @@ button:hover {
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 9999;
+  z-index: 9090;
   background-color: #f1f1f1;
+  opacity: 0.5;
 }
 
 .show-loading .loading-spin-wrapper .loading-spin {
@@ -3532,4 +3537,18 @@ button {
   i.fa{
     color: $dark-text-color;
   }
+}
+
+.course-details-form {
+  .control-label, .pre-wrap {
+    white-space: nowrap;
+  }
+}
+
+.card-header {
+  background-color: $gray-background;
+}
+
+.modal {
+  z-index: 9999;
 }

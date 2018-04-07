@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import CourseDetailGeneral from './CourseDetail/CourseDetailGeneral';
 import CourseDetailLessons from './CourseDetail/CourseDetailLessons';
 import CourseDetailComments from './CourseDetail/CourseDetailComments';
@@ -6,10 +6,9 @@ import cssModules from 'react-css-modules';
 import styles from './Course.module.scss';
 
 import {CommentFormContainer} from '../../containers/index';
-import {Button} from 'react-bootstrap';
 
-import { CoreComponent } from '../index';
-import { PUBLIC_COURSE_MAX_NUMBER_COMMENTS_PER_LOAD } from '../../constants/Courses'; 
+import {CoreComponent} from '../index';
+import {PUBLIC_COURSE_MAX_NUMBER_COMMENTS_PER_LOAD} from '../../constants/Courses';
 
 /**
   * @Course group template 2

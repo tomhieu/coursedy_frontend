@@ -1,4 +1,6 @@
 import moment from "moment";
+import {HOURS_IN_DAY} from "actions/CourseFormActionCreator";
+import {TT} from "utils/locale";
 
 class DateUtils {
     static formatDate(dateValue, locale = 'vn') {
@@ -13,6 +15,36 @@ class DateUtils {
 
     static getHourFromDate(dateValue) {
         return !dateValue ? null : moment(dateValue).format('HH:mm:ss')
+    }
+
+    static retrieveStartTimeOfDay = (courseDays, day) => {
+        if (!Array.isArray(courseDays) || courseDays.length === 0) {
+            return "";
+        }
+        if (day == null) {
+            return courseDays[0].start_time;
+        }
+        const [selectedDay] = courseDays.filter((d) => d.day === day);
+        return selectedDay ? selectedDay.start_time : "";
+    }
+
+    static retrieveEndTimeOfDay = (courseDays, day) => {
+        if (!Array.isArray(courseDays) || courseDays.length === 0) {
+            return "";
+        }
+
+        if (day == null) {
+            return courseDays[0].end_time;
+        }
+        const [selectedDay] = courseDays.filter((d) => d.day === day);
+        return selectedDay ? selectedDay.end_time : "";
+    }
+
+    static getDayInWeekOfCourse(week_day_schedules) {
+        const days = week_day_schedules.map((day) => {
+            return TT.t(day.day)
+        });
+        return days ? days.join(', ') : '';
     }
 }
 

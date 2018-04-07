@@ -24,6 +24,46 @@ export const DAYS_IN_WEEK = [
   {id: 0, text: TT.t('sunday'), name: 'sunday'}
 ]
 
+export const HOURS_IN_DAY = [
+    {id: '06:00:00', text: '6:00'},
+    {id: '06:30:00', text: '6:30'},
+    {id: '07:00:00', text: '7:00'},
+    {id: '07:30:00', text: '7:30'},
+    {id: '08:00:00', text: '8:00'},
+    {id: '08:30:00', text: '8:30'},
+    {id: '09:00:00', text: '9:00'},
+    {id: '09:30:00', text: '9:30'},
+    {id: '10:00:00', text: '10:00'},
+    {id: '10:30:00', text: '10:30'},
+    {id: '11:00:00', text: '11:00'},
+    {id: '11:30:00', text: '11:30'},
+    {id: '12:00:00', text: '12:00'},
+    {id: '12:30:00', text: '12:30'},
+    {id: '13:00:00', text: '13:00'},
+    {id: '13:30:00', text: '13:30'},
+    {id: '14:00:00', text: '14:00'},
+    {id: '14:30:00', text: '14:30'},
+    {id: '15:00:00', text: '15:00'},
+    {id: '15:30:00', text: '15:30'},
+    {id: '16:00:00', text: '16:00'},
+    {id: '16:30:00', text: '16:30'},
+    {id: '17:00:00', text: '17:00'},
+    {id: '17:30:00', text: '17:30'},
+    {id: '18:00:00', text: '18:00'},
+    {id: '18:30:00', text: '18:30'},
+    {id: '19:00:00', text: '19:00'},
+    {id: '19:30:00', text: '19:30'},
+    {id: '20:00:00', text: '20:00'},
+    {id: '20:30:00', text: '20:30'},
+    {id: '21:00:00', text: '21:00'},
+    {id: '21:30:00', text: '21:30'},
+    {id: '22:00:00', text: '22:00'},
+    {id: '22:30:00', text: '22:30'},
+    {id: '23:00:00', text: '23:00'},
+    {id: '23:30:00', text: '23:30'},
+    {id: '24:00:00', text: '24:00'},
+]
+
 /**
  *
  * @param title
@@ -95,10 +135,10 @@ export const createNewCourse = () => {
   }
 }
 
-export const activatedEditField = (fieldId) => {
+export const activatedEditField = (fieldIds) => {
   return {
     type: TRIGGER_ACTIVATE_FIELD,
-    data: fieldId
+    data: fieldIds
   }
 }
 
@@ -154,6 +194,6 @@ export const saveOrUpdateSection = (id, title) => {
 export const deleteSection = (id) => {
   return {
     type: DELETE_SECTION,
-    payload: Network().delete('course_sections', id)
+    payload: Network().delete('course_sections/' + id)
   }
 }

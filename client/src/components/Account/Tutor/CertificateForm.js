@@ -24,7 +24,7 @@ export class CertificateForm extends Component {
         {/*form for uploading certificates*/}
         <div className='row mt-30'>
           <div className={'col-sm-12'}>
-            <FormField formGroupId="degreesId" formLabel={this.context.t("account.tutot.edu.degree.field_label")}
+            <FormField fieldId="degreesId" fieldLabel={this.context.t("account.tutot.edu.degree.field_label")}
                        onUpload={this.props.upload} isMandatoryField={false} formControlName="degrees"
                        internalPreview={false} typeField="upload_file"/>
           </div>

@@ -14,7 +14,7 @@ export class TutorEducationForm extends Component {
         return (
             <form onSubmit={e => onSubmit(e.target.value)}>
                 <div className="col-md-12 col-sm-12">
-                    <FormField formGroupId="levelId" formLabel={this.context.t("account.tutot.edu.level.title")} options={listLevel} isMandatoryField={true} formControlName="level" typeField="custom_select" />
+                    <FormField fieldId="levelId" fieldLabel={this.context.t("account.tutot.edu.level.title")} options={listLevel} isMandatoryField={true} formControlName="level" typeField="custom_select" />
                 </div>
                 <div className="col-md-12 col-sm-12">
                     <FormGroup className='row'>

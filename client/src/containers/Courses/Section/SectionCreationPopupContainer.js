@@ -19,8 +19,8 @@ class SectionCreationPopupContainer extends Component {
               multiple={true}>
           <div className="row">
             <div className="col-md-12 col-sm-12">
-              <FormField formGroupId="sectionTitleId"
-                         formLabel={this.context.t("section_title")}
+              <FormField fieldId="sectionTitleId"
+                         fieldLabel={this.context.t("section_title")}
                          placeholder={this.context.t("section_title")}
                          isMandatoryField={true}
                          formControlName="title"
