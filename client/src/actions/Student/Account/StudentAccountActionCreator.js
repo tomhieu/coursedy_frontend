@@ -8,13 +8,13 @@ export const fetchUser = () => {
   return dispatch => {
     Network().get('current_user')
       .then((data) => {
-        dispatch({
-          type: AccountTypes.SET_ACCOUNT_USER,
-          payload: data
-        })
-        //FIXME:
-        dispatch(fetchStudent(data.id))
+      dispatch({
+        type: AccountTypes.SET_ACCOUNT_USER,
+        payload: data
       })
+      //FIXME:
+      dispatch(fetchStudent(data.id))
+    })
   }
 }
 

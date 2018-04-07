@@ -11,30 +11,36 @@ import {
 import {RequireEmailConfirmationModal, TutorEducationDetailComponent} from '../../../components/index'
 
 class AccountProfileContainer extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      editProfileMode: false,
+      showEmailConfirmationModal: false
+    }
+  }
+
   componentWillMount(){
     this.props.dispatch(StudentAccountActions.fetchUser())
   }
 
   showProfileEditForm(){
-    this.props.dispatch(AccountActions.showProfileEditForm())
+    this.setState({ editProfileMode: true })
   }
 
   hideProfileEditForm(){
-    this.props.dispatch(AccountActions.hideProfileEditForm())
+    this.setState({ editProfileMode: false })
   }
 
   closeEmailConfirmationModal(){
-    this.props.dispatch(AccountActions.closeEmailConfirmationModal())
+    this.setState({ showEmailConfirmationModal: false })
   }
 
   render() {
+    const { user, tutor } = this.props;
     const {
-      editProfileMode, 
-      editEducationMode, 
-      editPasswordMode, 
-      user, 
-      tutor
-    } = this.props;
+      editProfileMode,
+      showEmailConfirmationModal
+    } = this.state;
     return (
       <div className="row">
         <div className="col-md-12 col-xs-12 col-sm-12 dashboard-content-section ">
@@ -58,10 +64,6 @@ class AccountProfileContainer extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  editProfileMode: state.AccountReducer.editProfileMode,
-  editEducationMode: state.AccountReducer.editEducationMode,
-  editPasswordMode: state.AccountReducer.editPasswordMode,
-  showEmailConfirmationModal: state.AccountReducer.showEmailConfirmationModal,
   user: state.AccountReducer.user,
   student: state.StudentAccountReducer.student
 })

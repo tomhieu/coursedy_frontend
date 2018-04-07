@@ -16,25 +16,34 @@ import {
 } from '../../../components/index'
 
 class TutorAccount extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      editProfileMode: false,
+      editEducationMode: false,
+      showEmailConfirmationModal: false
+    }
+  }
+
   componentWillMount(){
     this.props.dispatch(TutorAccountActions.fetchUser())
     this.props.dispatch(TutorAccountActions.loadListSkillData())
   }
 
   showProfileEditForm(){
-    this.props.dispatch(AccountActions.showProfileEditForm())
+    this.setState({ editProfileMode: true })
   }
 
   showEducationEditForm(){
-    this.props.dispatch(TutorAccountActions.showEducationEditForm())
+    this.setState({ editEducationMode: true })
   }
 
   hideProfileEditForm(){
-    this.props.dispatch(AccountActions.hideProfileEditForm())
+    this.setState({ editProfileMode: false })
   }
 
   hideEducationEditForm(){
-    this.props.dispatch(TutorAccountActions.hideEducationEditForm())
+    this.setState({ editEducationMode: false })
   }
 
   closeEmailConfirmationModal(){
@@ -42,7 +51,8 @@ class TutorAccount extends Component {
   }
 
   render() {
-    const {editProfileMode, editEducationMode, editPasswordMode, user, tutor} = this.props;
+    const {editPasswordMode, user, tutor} = this.props
+    const {editProfileMode, editEducationMode} = this.state
     return (
       <div className="row">
         <div className="col-md-12 col-xs-12 col-sm-12 dashboard-content-section ">
@@ -58,7 +68,7 @@ class TutorAccount extends Component {
         <div className="col-md-12 col-xs-12 col-sm-12 dashboard-content-section ">
           <div className="">
             {
-              editProfileMode ? 
+              editEducationMode ? 
                 <TutorEducation tutor={tutor} cancel={this.hideEducationEditForm.bind(this)}/> :
                 <TutorEducationDetailComponent tutor={tutor} showEditForm={this.showEducationEditForm.bind(this)}/>
             }
@@ -87,8 +97,6 @@ TutorAccount.contextTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  editProfileMode: state.AccountReducer.editProfileMode,
-  editEducationMode: state.AccountReducer.editEducationMode,
   editPasswordMode: state.AccountReducer.editPasswordMode,
   showEmailConfirmationModal: state.AccountReducer.showEmailConfirmationModal,
   user: state.AccountReducer.user,
