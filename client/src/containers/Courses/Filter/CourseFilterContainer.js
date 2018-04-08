@@ -66,23 +66,30 @@ class CourseFilterContainer extends AbstractFilter {
 
   doSelectFilter(filter, category) {
     let {selectedMinFee, selectedMaxFee, order_by, display_mode} = this.props.formfieldValues;
-    let nextFilters = this.props.filters;
+    const currentFilters = JSON.parse(JSON.stringify(this.props.filters));
+    let nextFilters = currentFilters;
 
     if (category === MIN_FEE) {
       selectedMinFee = filter;
     } else if (category === MAX_FEE) {
       selectedMaxFee = filter;
     } else {
-      nextFilters = this.addFilterCriteria(this.props.filters, filter, category);
+      nextFilters = this.addFilterCriteria(currentFilters, filter, category);
     }
 
     this.props.dispatch(CourseFilterActions.updateFilter(nextFilters))
     this.searchCourse(nextFilters, selectedMinFee, selectedMaxFee, order_by, display_mode);
   }
 
+  reloadCourseList() {
+    let {selectedMinFee, selectedMaxFee, order_by, display_mode} = this.props.formfieldValues;
+    this.searchCourse(this.props.filters, selectedMinFee, selectedMaxFee, order_by, display_mode);
+  }
+
   doRemoveFilter(filterId, typeFilter) {
     const {selectedMinFee, selectedMaxFee, order_by, display_mode} = this.props.formfieldValues;
-    const removedFilters = this.removeFilterCriteria(this.props.filters, filterId, typeFilter);
+    const currentFilters = JSON.parse(JSON.stringify(this.props.filters));
+    const removedFilters = this.removeFilterCriteria(currentFilters, filterId, typeFilter);
     this.props.dispatch(CourseFilterActions.updateFilter(removedFilters))
     this.searchCourse(removedFilters, selectedMinFee, selectedMaxFee, order_by, display_mode)
   }
@@ -96,6 +103,7 @@ class CourseFilterContainer extends AbstractFilter {
     return (
       <CourseFilter {...this.props}
                     onSubmit={this.searchCourse.bind(this)}
+                    reloadCourseList={this.reloadCourseList.bind(this)}
                     changeDisplayModeHdl={this.changeDisplayMode}
                     changeCurrentPageHdl={this.changeCurrentPage}
                     selectAllCoursesHdl={this.selectAllCourses}

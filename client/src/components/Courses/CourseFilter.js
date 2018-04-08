@@ -36,7 +36,8 @@ class CourseFilter extends Component {
       showSuggestion,
       loadingSuggestion,
       formfieldValues,
-      listSpecializes
+      listSpecializes,
+      reloadCourseList,
     } = this.props
 
     const {selectedWeekDays, selectedCategories, selectedLocations, selectedSpecializes} = filters
@@ -45,10 +46,7 @@ class CourseFilter extends Component {
       id: 2,
       text: this.context.t("order_by_view")
     }, {id: 3, text: this.context.t("order_by_register")}];
-    const displayModes = [{id: 1, text: this.context.t("display_mode_full")}, {
-      id: 2,
-      text: this.context.t("display_mode_compress")
-    }];
+
     const internalStyles = {
       checkbox: {
         marginRight: 0,
@@ -217,6 +215,7 @@ class CourseFilter extends Component {
                   <div className={styles.orderBtn}>
                     <FormField fieldId="order_by_id" showLabel={false} fieldLabel={this.context.t("order_list")}
                                options={orderList} formControlName="order_by"
+                               onChange={reloadCourseList}
                                typeField="custom_select">
                     </FormField>
                   </div>
@@ -253,7 +252,8 @@ CourseFilter.propTypes = {
   onRemoveFilter: React.PropTypes.func.isRequired,
   filters: React.PropTypes.object.isRequired,
   onSelectSuggestion: React.PropTypes.func.isRequired,
-  showSuggestion: React.PropTypes.bool.isRequired
+  showSuggestion: React.PropTypes.bool.isRequired,
+  reloadCourseList: React.PropTypes.func,
 };
 
 export default cssModules(CourseFilter, styles);

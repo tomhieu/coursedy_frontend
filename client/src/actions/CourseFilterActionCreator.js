@@ -39,11 +39,9 @@ export const loadSuggestions = (query) => {
 }
 
 export const updateFilter = (filters) => {
-  return dispatch => {
-    dispatch({
-      type: asyncActs.UPDATE_FILTER_CRITERIA,
-      data: filters
-    })
+  return {
+    type: asyncActs.UPDATE_FILTER_CRITERIA,
+    data: filters
   }
 }
 
