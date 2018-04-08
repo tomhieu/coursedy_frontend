@@ -10,7 +10,7 @@ class Header extends Component {
     let dashboardUrl = this.props.session.currentUser ? 
       dashboardUrls[this.props.session.currentUser.roles[0]] : ''
     return (
-      <nav className="navbar navbar-expand-lg navbar-light navbar-default bg-light">
+      <nav className="navbar navbar-expand-lg navbar-light navbar-default bg-light navbar-sticky fixed-top">
         <div className="container">
           <a className="navbar-brand" href="#"><img src="/logo2.png" className="logo" alt="logo"/></a>
           <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -37,7 +37,7 @@ class Header extends Component {
                 </LinkContainer>
               </li>
               <li className="nav-item">
-                <LinkContainer className="nav-link disabled" to="/" role="button">
+                <LinkContainer className="nav-link" to="/forum" role="button">
                   <span>{this.context.t('forum')}</span>
                 </LinkContainer>
               </li>

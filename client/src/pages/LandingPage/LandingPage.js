@@ -13,7 +13,7 @@ import 'containers/HomePage/Hompage.scss'
 
 
 const LandingPage = (props) => (
-  <div className="d-flex flex-auto flex-vertical">
+  <div>
     <SearchFormContainer/>
     <Introduces/>
     <PopularCourseList/>

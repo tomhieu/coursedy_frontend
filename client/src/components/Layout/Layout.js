@@ -24,9 +24,9 @@ class Layout extends Component {
       <I18n translations={translations} initialLang={TT.locale}>
         <div className="main-content">
           <Header session={session} signOut={this.signOut.bind(this)}/>
-          <div className='custom-container'>
+          <main className='custom-container'>
             {this.props.children}
-          </div>
+          </main>
           {
             footer.show ? <Footer/> : null
           }
