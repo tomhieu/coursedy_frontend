@@ -8,10 +8,9 @@ const SelectFilterTeachers = (
     listSpecializes, doSelectFilter,
   }, context) => {
   return (
-    <div className="col-md-3 col-sm-3 full-height st-border-left">
+    <div className="col-md-3 col-sm-3">
       <div
-        className="d-flex flex-horizontal align-items-center flex-nowrap ml-15 mt-20">
-        <div className={styles.filterOptionContainer}>
+        className="d-flex flex-horizontal align-items-center flex-nowrap full-height">
           <FilterOption
             label={context.t('course_category_title')}
             options={categories.map((x) => {
@@ -22,8 +21,6 @@ const SelectFilterTeachers = (
             type="multi-select"
             name="selectedCategories">
           </FilterOption>
-        </div>
-        <div className={styles.filterOptionContainer}>
           <FilterOption label={context.t('level')}
                         onSelectFilter={doSelectFilter}
                         options={listSpecializes}
@@ -32,7 +29,6 @@ const SelectFilterTeachers = (
                         type="group-select"
                         name="selectedSpecializes">
           </FilterOption>
-        </div>
       </div>
     </div>
   )

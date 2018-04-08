@@ -291,6 +291,8 @@ export const translations = {
     "introduction_save_cost_title": "<span class='introduction-text-decoration'>Tiết K</span>iệm Chi Phí",
     "introduction_save_cost_description": "We have rated teachers for safety and convenience as we know how important this is for you",
     "introduction_save_time_title": "<span class='introduction-text-decoration'>Tiết K</span>iệm Thời Gian",
+    "user_action_save": "Lưu",
+    "user_action_follow": "Theo dõi",
     "introduction_save_time_description": "No more emails, Calls or messaging friends for recommendations - Get acces to real reviews in seconds",
     "search_empty_result": "Thật tiếc chúng tôi không tìm thấy {type} nào",
     "search_course": "Khoá Học",

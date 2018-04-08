@@ -11,7 +11,7 @@ const SuggestionBox = (
     doRemoveFilter, handleAddCriteria, loadSuggestionsTeacher, renderSuggestion,
   }, context) => {
   return (
-    <div className="col-md-9 col-sm-9 full-height">
+    <div className="col-md-9 col-sm-9">
       <div className={styles.filterInputBox + ' d-flex flex-vertical justify-content-center full-height'}>
         <div className="d-flex flex-horizontal">
           {
