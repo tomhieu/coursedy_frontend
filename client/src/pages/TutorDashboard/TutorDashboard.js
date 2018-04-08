@@ -22,8 +22,7 @@ class TutorDashboard extends RoleAuthorization {
 
     return (
       <div className="dashboard-section">
-        <div className="container">
-          <div className="row offcanvas offcanvas-right row-margin">
+        <div className="row">
             <div className="col-xs-12 col-sm-4 left-panel" id="sidebar">
               <div className="panel-group dashboard-menu" id="accordion">
                 <TutorProfile/>
@@ -41,7 +40,6 @@ class TutorDashboard extends RoleAuthorization {
                 <Route exact path="/dashboard/profile" component={TutorProfileDetailsContainer}/>
               </switch>
             </div>
-          </div>
         </div>
       </div>
     )

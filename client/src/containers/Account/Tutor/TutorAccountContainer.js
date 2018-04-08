@@ -55,8 +55,8 @@ class TutorAccount extends Component {
     const {editProfileMode, editEducationMode} = this.state
     return (
       <div className="row">
-        <div className="col-md-12 col-xs-12 col-sm-12 dashboard-content-section ">
-          <div className="">
+        <div className="col-md-12 col-xs-12 col-sm-12 ">
+          <div className="dashboard-content-section">
             {
               editProfileMode ? 
                 <PersonInfoContainer cancel={this.hideProfileEditForm.bind(this)} /> :
@@ -65,8 +65,8 @@ class TutorAccount extends Component {
           </div>
         </div>
 
-        <div className="col-md-12 col-xs-12 col-sm-12 dashboard-content-section ">
-          <div className="">
+        <div className="col-md-12 col-xs-12 col-sm-12">
+          <div className="dashboard-content-section">
             {
               editEducationMode ? 
                 <TutorEducation tutor={tutor} cancel={this.hideEducationEditForm.bind(this)}/> :
@@ -75,14 +75,14 @@ class TutorAccount extends Component {
           </div>
         </div>
 
-        <div className="col-md-12 col-xs-12 col-sm-12 dashboard-content-section ">
-          <div className="">
+        <div className="col-md-12 col-xs-12 col-sm-12">
+          <div className="dashboard-content-section">
             <Certificate/>
           </div>
         </div>
 
-        <div className="col-md-12 col-xs-12 col-sm-12 dashboard-content-section ">
-          <div className="t">
+        <div className="col-md-12 col-xs-12 col-sm-12">
+          <div className="dashboard-content-section">
             <ChangePasswordContainer/>
           </div>
         </div>
