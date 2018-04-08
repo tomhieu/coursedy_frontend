@@ -17,10 +17,6 @@ class SearchFormContainer extends Component {
             <div className="col-sm-12">
               <SearchForm/>
             </div>
-            <div className="col-sm-12">
-              <img src="http://dev.mindsworthy.com/tutorsci/demo/assets/front/images/headericons.png" alt=""
-                   className="img-responsive"/>
-            </div>
           </div>
         </div>
       </section>

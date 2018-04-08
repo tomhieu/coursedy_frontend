@@ -107,7 +107,16 @@ body.application {
   ---------------------------------- */
 
   .header-homepage {
+    color: $dark-text-color;
     background-color: $primary-color;
+    background: url("../images/header-cover.jpg") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    background-position: center;
+    margin-top: -50px;
+    padding-top: 70px;
   }
 
   .header-margin {
@@ -115,7 +124,7 @@ body.application {
   }
 
   .hero-title {
-    color: $white-color;
+    color: $md-color-pink;
     font-size: 60px;
     font-weight: 300;
     text-align: center;
@@ -164,7 +173,6 @@ body.application {
     font-size: 13px;
     text-transform: uppercase;
     width: 100%;
-    max-width: 260px;
     font-weight: 700;
     margin-left: -1px;
     -webkit-transition: all .3s ease-in-out;
@@ -423,5 +431,10 @@ body.application {
     .dashboard-menu {
       margin-right: -15px;
     }
+  }
+
+  .full-width-in-container {
+    margin-left: calc(-50vw + 50%);
+    margin-right: calc(-50vw + 50%);
   }
 }

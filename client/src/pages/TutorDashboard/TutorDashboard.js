@@ -23,23 +23,23 @@ class TutorDashboard extends RoleAuthorization {
     return (
       <div className="dashboard-section">
         <div className="row">
-            <div className="col-xs-12 col-sm-4 left-panel" id="sidebar">
-              <div className="panel-group dashboard-menu" id="accordion">
-                <TutorProfile/>
-                <TutorDashboardMenu/>
-              </div>
+          <div className="col-xs-12 col-sm-4 left-panel" id="sidebar">
+            <div className="panel-group dashboard-menu" id="accordion">
+              <TutorProfile/>
+              <TutorDashboardMenu/>
             </div>
-            <div className="col-xs-12 col-sm-8 d-flex">
-              <switch>
-                <Route exact path="/dashboard" component={TutorDashboardIndex}/>
-                <Route exact path="/dashboard/account" component={TutorAccount}/>
-                <Route exact path="/dashboard/courses/list" component={ListTutorCourseContainer}/>
-                <Route exact path="/dashboard/courses/list-lesson" component={ListLessonContainer}/>
-                <Route exact path="/dashboard/courses/new" component={CourseFormContainer}/>
-                <Route exact path="/dashboard/courses/detail/:id" component={CourseFormContainer}/>
-                <Route exact path="/dashboard/profile" component={TutorProfileDetailsContainer}/>
-              </switch>
-            </div>
+          </div>
+          <div className="col-xs-12 col-sm-8 d-flex">
+            <switch>
+              <Route exact path="/dashboard" component={TutorDashboardIndex}/>
+              <Route exact path="/dashboard/account" component={TutorAccount}/>
+              <Route exact path="/dashboard/courses/list" component={ListTutorCourseContainer}/>
+              <Route exact path="/dashboard/courses/list-lesson" component={ListLessonContainer}/>
+              <Route exact path="/dashboard/courses/new" component={CourseFormContainer}/>
+              <Route exact path="/dashboard/courses/detail/:id" component={CourseFormContainer}/>
+              <Route exact path="/dashboard/profile" component={TutorProfileDetailsContainer}/>
+            </switch>
+          </div>
         </div>
       </div>
     )
