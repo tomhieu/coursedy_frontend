@@ -1,5 +1,5 @@
 import {Component} from "react";
-import {submit} from 'redux-form';
+import {reduxForm, submit} from 'redux-form';
 import * as React from "react";
 import {connect} from "react-redux";
 import Modal from "react-bootstrap4-modal";
@@ -9,8 +9,17 @@ class FormDialogContainer extends Component {
     super(props);
   }
 
+  onSubmitPopup() {
+    this.props.dispatch(submit(this.props.formName));
+  }
+
+  cancelPopup() {
+    this.props.cancelCallback();
+    this.props.reset();
+  }
+
   render() {
-    const { formName, show, title, cancelCallback,
+    const { show, title, cancelCallback,
             cancelLabel = this.context.t('close'),
             okLabel = this.context.t('ok')
       } = this.props;
@@ -24,10 +33,10 @@ class FormDialogContainer extends Component {
           {this.props.children}
         </div>
         <div className="modal-footer">
-          <button type="button" className="btn btn-secondary" onClick={cancelCallback}>
+          <button type="button" className="btn btn-primary" onClick={this.onSubmitPopup.bind(this)}>
             {okLabel}
           </button>
-          <button type="button" className="btn btn-primary" onClick={() => this.props.dispatch(submit(formName))}>
+          <button type="button" className="btn btn-secondary" onClick={this.cancelPopup.bind(this)}>
             {cancelLabel}
           </button>
         </div>

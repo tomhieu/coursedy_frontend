@@ -2774,6 +2774,7 @@ ul.no-margin,
 .modal-header {
   background-color: $primary-color;
   color: #ffffff;
+  border-radius: 0;
 }
 
 .close {
@@ -3514,14 +3515,6 @@ switch {
   min-height: 250px;
 }
 
-.dialog-body-container {
-  display: block;
-  position: relative;
-  border-top: 1px solid #e5e5e5;
-  border-bottom: 1px solid #e5e5e5;
-  padding: 15px;
-}
-
 button {
   box-shadow: none !important;
   &:hover {
@@ -3551,4 +3544,16 @@ button {
 
 .modal {
   z-index: 9999;
+}
+
+.modal-content {
+  border: none;
+}
+
+.dark-picker.dark-picker-bright {
+  padding-top: 10px;
+}
+
+.course-title input {
+  font-size: 30px;
 }

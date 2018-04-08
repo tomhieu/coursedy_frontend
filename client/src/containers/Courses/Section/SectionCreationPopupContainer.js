@@ -15,7 +15,7 @@ class SectionCreationPopupContainer extends Component {
                            formName="sectionCreationForm"
                            cancelCallback={() => this.props.dispatch(CourseActions.closePopupSection())}
                            {...this.props}>
-        <form onSubmit={handleSubmit(this.props.onSubmit)} className='inline-form dialog-body-container'
+        <form onSubmit={handleSubmit(this.props.onSubmit)} className='inline-form'
               multiple={true}>
           <div className="row">
             <div className="col-md-12 col-sm-12">
@@ -43,7 +43,8 @@ const mapStateToProps = (state) => {
   const {showSectionPopup} = courseDetails;
 
   return {
-    showSectionPopup
+    showSectionPopup,
+    initialValues: {}
   };
 };
 

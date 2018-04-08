@@ -62,6 +62,7 @@ export const translations = {
     "tuition_fee": "Học phí",
     "tuition_fee_mandatory": "Vui lòng nhập học phí",
     "course_free": "Khoá học miễn phí",
+    "course_not_free": "Khoá học có phí",
     "period_per_lesson": "Thời gian một buổi học",
     "period_per_lesson_mandatory": "Vui lòng thời gian một buổi học",
     "tuition_currency": "Tiền tệ",

@@ -68,7 +68,7 @@ class SelectionTeachingDayEditMode extends Component {
                                             </div>
                                         </div>
                                     </div>
-                                ) :
+                                ) : selectedDays.length > 0 ?
                                 <div className={styles.timePickerBox + " d-flex"}>
                                     <div className="d-flex flex-vertical">
                                         <div>
@@ -95,7 +95,7 @@ class SelectionTeachingDayEditMode extends Component {
                                             </FormField>
                                         </div>
                                     </div>
-                                </div>
+                                </div> : null
                         }
                     </div>
                 </div>

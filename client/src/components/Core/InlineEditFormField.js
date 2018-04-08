@@ -37,7 +37,7 @@ class InlineEditFormField extends FormField {
         return (
           <div className={displayStyle + " d-flex flex-vertical"}>
             {super.render()}
-            <FormGroup className="ml-15 mr-15 mt-10 d-flex justify-content-right">
+            <FormGroup className="d-flex justify-content-right">
               <button type="submit" className="btn btn-primary mr-10" disabled={pristine || submitting}>
                 {this.context.t("save")}
               </button>

@@ -37,7 +37,7 @@ class CourseForm extends Component {
           </div>
           <div className="row">
             <div className="col-md-12 col-sm-12">
-              <div className={editMode ? styles.courseTitle + ' d-flex align-items-center justify-content-center' : 'creation-course-title'}>
+              <div className={editMode ? styles.courseLargeTitle + ' d-flex align-items-center justify-content-center course-title' : 'creation-course-title'}>
                 <CourseFormItem editMode={editMode} fieldId="titleId" showLabel={false}
                                 fieldLabel={editMode ? "" : this.context.t("course_title")}
                                 placeholder={this.context.t("sample_course_title")}
@@ -60,8 +60,8 @@ class CourseForm extends Component {
                               typeField="custom_select"
                               content={editMode && courseData.category ? courseData.category.name : ""}
                               options={categories.map((category) => {
-                                          return {id: category.id, text: category.name}
-                                      })}
+                                return {id: category.id, text: category.name}
+                              })}
                               styleCustomField="inline-form-control"
                               {...this.props}>
               </CourseFormItem>
@@ -76,7 +76,7 @@ class CourseForm extends Component {
                                   typeField="custom_select"
                                   content={editMode && courseData.course_specialize ? courseData.course_specialize.name : ""}
                                   options={courseSpecializes.map((spec) => {
-                                      return {id: spec.id, text: spec.name}
+                                    return {id: spec.id, text: spec.name}
                                   })}
                                   styleCustomField="inline-form-control" {...this.props}>
                   </CourseFormItem>
@@ -117,14 +117,16 @@ class CourseForm extends Component {
 
           <div className="row">
             <div className="col-sm-6 col-md-6">
-              <CourseFormItem editMode={editMode} fieldId="number_of_students_Id"
-                              fieldLabel={this.context.t("number_of_students")}
-                              isMandatory={true}
-                              fieldName="number_of_students"
-                              typeField="custom_input"
-                              content={editMode ? courseData.number_of_students.toString() : ""}
-                              {...this.props}>
-              </CourseFormItem>
+              <div className="d-flex">
+                <CourseFormItem editMode={editMode} fieldId="number_of_students_Id"
+                                fieldLabel={this.context.t("number_of_students")}
+                                isMandatory={true}
+                                fieldName="number_of_students"
+                                typeField="custom_input"
+                                content={editMode ? courseData.number_of_students.toString() : ""}
+                                {...this.props}>
+                </CourseFormItem>
+              </div>
             </div>
           </div>
 
@@ -132,39 +134,40 @@ class CourseForm extends Component {
             <div className='col-md-12 col-sm-12'>
               <div className="d-flex flex-horizontal">
                 <div className="d-flex flex-col-1">
-                  <div className="d-flex flex-col-3">
-                    <CourseFormItem editMode={editMode} fieldId="tuition_fee_Id"
-                                    fieldLabel={this.context.t("tuition_fee")}
-                                    isMandatory={true}
-                                    fieldName="tuition_fee"
-                                    typeField="custom_input"
-                                    content={editMode ? ObjectUtils.currencyFormat(courseData.tuition_fee, "VND") : ""}
+                  <CourseFormItem editMode={editMode} fieldId="tuition_fee_Id"
+                                  fieldLabel={this.context.t("tuition_fee")}
+                                  isMandatory={true}
+                                  fieldName="tuition_fee"
+                                  typeField="custom_input"
+                                  content={editMode ? ObjectUtils.currencyFormat(courseData.tuition_fee, "VND") : ""}
+                                  disabled={isFree}
+                                  {...this.props}>
+                  </CourseFormItem>
+                  <div className="ml-10 d-flex currency-field">
+                    <CourseFormItem editMode={editMode} fieldId="currency_Id"
+                                    fieldLabel={this.context.t("tuition_currency")}
+                                    isMandatory={false}
+                                    fieldName="currency"
+                                    typeField="custom_select"
+                                    content={editMode ? courseData.currency : ""}
                                     disabled={isFree}
+                                    options={concurrency}
                                     {...this.props}>
                     </CourseFormItem>
-                    <div className="ml-10 d-flex flex-col-1 currency-field">
-                      <CourseFormItem editMode={editMode} fieldId="currency_Id"
-                                      fieldLabel={this.context.t("tuition_currency")}
-                                      isMandatory={false}
-                                      fieldName="currency"
-                                      typeField="custom_select"
-                                      content=""
-                                      disabled={isFree}
-                                      options={concurrency}
-                                      {...this.props}>
-                      </CourseFormItem>
-                    </div>
                   </div>
-                  <div className="ml-20 d-flex flex-col-1 course-free">
-                    <FormField fieldId="is_free_id"
-                               formLabel={this.context.t("course_free")}
-                               formControlName={"is_free"}
-                               typeField="checkbox">
-                    </FormField>
+                  <div className="ml-20 d-flex flex-auto course-free">
+                    <CourseFormItem editMode={editMode} fieldId="is_free_id"
+                                    fieldLabel={this.context.t("course_free")}
+                                    isMandatory={false} showLabel={false}
+                                    fieldName="is_free"
+                                    typeField="checkbox"
+                                    content={editMode ? courseData.is_free ? this.context.t("course_free") : this.context.t("course_not_free") : ""}
+                                    {...this.props}>
+                    </CourseFormItem>
                   </div>
+                </div>
               </div>
             </div>
-          </div>
           </div>
           <div className="row">
             <div className="col-md-12 col-sm-12">
