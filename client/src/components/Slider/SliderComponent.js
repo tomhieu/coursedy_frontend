@@ -1,5 +1,4 @@
 import React from 'react'
-import SliderSlick from 'react-slick'
 import { defaultSettings } from '../../configs/slider'
 import PropTypes from 'prop-types'
 
@@ -7,11 +6,11 @@ import PropTypes from 'prop-types'
 export const Slider = (props) => {
   const settings = {...defaultSettings, ...(props.settings || {})}
   return (
-    <SliderSlick {...settings}>
+    <div className='row'>
       {props.items.map((item, index) => {
-        return <div key={index}>{item}</div>
+        return <div className='col-sm-4 col-xs-12' key={index}>{item}</div>
       })}
-    </SliderSlick>
+    </div>
   )
 }
 

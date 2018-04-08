@@ -1,0 +1,220 @@
+body.application {
+  font-size: 14px;
+  line-height: 23px;
+  color: $dark-text-color;
+  background-color: $white-background;
+
+  .navbar-collapse {
+    max-height: 340px;
+  }
+
+  .navbar-light .navbar-nav .nav-link {
+    color: $dark-text-color;
+    &.nav-btn {
+      color: $white-color;
+      &:hover {
+        color: $md-color-pink;
+        background: $primary-color;
+        -webkit-transition: all .3s ease;
+        transition: all .3s ease;
+        -webkit-transition: 0.3s;
+        -moz-transition: 0.3s;
+        -ms-transition: 0.3s;
+        -o-transition: 0.3s;
+      }
+    }
+  }
+
+  .nav-btn {
+    border-radius: 2px;
+    background-color: $md-color-pink;
+    border: 1px solid $md-color-pink;
+    color: $white-color;
+    font-size: 14px;
+    font-weight: 400;
+    margin: 0 10px;
+    -webkit-transition: all .3s ease;
+    transition: all .3s ease;
+    -webkit-transition: 0.3s;
+    -moz-transition: 0.3s;
+    -ms-transition: 0.3s;
+    -o-transition: 0.3s;
+  }
+
+  .navbar {
+    border: 0;
+    border-radius: 0;
+    margin-bottom: 0;
+  }
+
+  .navbar-light .navbar-nav .active > .nav-link,
+  .navbar-light .navbar-nav .nav-link:focus, .navbar-light .navbar-nav .nav-link:hover {
+    color: $md-color-pink;
+    cursor: pointer;
+  }
+
+  .navbar-default.bg-light {
+    background: $primary-color !important;
+    width: 100%;
+    z-index: 999;
+    padding: 0;
+  }
+
+  .navbar-default .navbar-nav > li > a {
+    color: $white-color;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 37px;
+  }
+
+  .container > .navbar-header {
+    margin-left: 0px;
+  }
+
+  .navbar-default .navbar-toggle .icon-bar {
+    background-color: $md-color-pink;
+  }
+
+  .navbar-default .navbar-toggle {
+    border: 0;
+  }
+
+  .logo {
+    height: 100%;
+    max-height: 50px;
+    width: initial;
+    margin-top: 10px;
+  }
+
+  .btn-link {
+    color: $primary-color;
+    font-size: 16px;
+    font-weight: 400;
+    margin-top: 50px;
+    padding: 14px 28px;
+    border: 1px solid $primary-color;
+    border-radius: 5px;
+    text-align: center;
+  }
+
+  .navbar-sticky {
+    border-color: #e6e6e6;
+    box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.12);
+  }
+
+  .custom-container {
+    margin-top: 71px;
+  }
+
+  /* ----------------------------------
+  Homepage >> Header #Search
+  ---------------------------------- */
+
+  .header-homepage {
+    background-color: $primary-color;
+  }
+
+  .header-margin {
+    margin-top: 18px;
+  }
+
+  .hero-title {
+    color: $white-color;
+    font-size: 60px;
+    font-weight: 300;
+    text-align: center;
+    line-height: 50px;
+    margin-bottom: 10px;
+  }
+
+  .hero-tag {
+    color: $white-color;
+    font-size: 17px;
+    font-weight: 400;
+    text-align: center;
+    text-transform: capitalize;
+    margin-bottom: 40px;
+  }
+
+  .home-search {
+    text-align: center;
+    margin-bottom: 96px;
+    li ._button-search {
+      margin-top: 0;
+    }
+    .select2-selection__rendered {
+      height: 100%;
+      padding-top: 6px;
+    }
+  }
+
+  .home-search li:last-child {
+    text-align: left;
+  }
+
+  .home-search li {
+    display: inline-block;
+    min-width: 300px;
+    vertical-align: top;
+  }
+
+  .btn-search {
+    border-radius: 0;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    background-color: $white-color;
+    height: 58px;
+    color: $md-color-pink;
+    font-size: 13px;
+    text-transform: uppercase;
+    width: 100%;
+    max-width: 260px;
+    font-weight: 700;
+    margin-left: -1px;
+    -webkit-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
+  }
+
+  .btn-search:hover {
+    background: $md-color-pink;
+    color: $white-color;
+    -webkit-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
+  }
+
+  .btn-search .fa {
+    margin: 0 4px;
+  }
+
+  .home-search li:first-child .select2-container--default .select2-selection--single {
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+  }
+
+
+  @media only screen and (max-width: 992px) {
+    .navbar-default.bg-light {
+      //padding: 0.5rem 1rem;
+    }
+
+    .navbar-default.navbar-light {
+      padding: 0.5rem 1rem;
+      &.fixed-top {
+        position: relative;
+      }
+      .navbar-nav {
+        .nav-link.nav-btn {
+          color: inherit;
+          background-color: transparent;
+          border: none;
+          margin: 0;
+        }
+      }
+    }
+  }
+
+  .navbar-toggler-icon {
+    width: 1em;
+    height: 1em;
+  }
+}
