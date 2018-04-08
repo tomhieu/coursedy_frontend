@@ -12,17 +12,20 @@ const Teachers = (state = {
   suggestions: [],
   filters: {selectedCategories: [], selectedSpecializes: [], term: ''},
   showSuggestion: false,
-  loadingSuggestion: false
+  loadingSuggestion: false,
+  headers: null
 }, action) => {
   switch (action.type) {
     case types.FETCH_TEACHERS + asyncActs.PENDING:
       return {...state, loading: true, error: null}
     case types.FETCH_TEACHERS + asyncActs.FULFILLED:
       return {...state, data: action.payload, loading: false, error: null}
+    case types.FETCH_TEACHERS + asyncActs.HEADERS:
+      return {...state, headers: action.payload, loading: true, error: null}
     case types.FETCH_TEACHERS + asyncActs.REJECTED:
       return {...state, loading: false, error: action.error, data:[], total: 0}
     /**
-     * handle action to load suggestion to filter Course
+     * Handle action to load suggestion to filter Course
      */
     case asyncActs.LOAD_SUGGESTION_TEACHERS + asyncActs.FULFILLED:
       return {...state, suggestions: action.payload, showSuggestion: true, loadingSuggestion: false}
