@@ -3,8 +3,8 @@ import Header from './Header'
 import Footer from './Footer'
 import I18n from "redux-i18n"
 import {translations} from "../../translations"
-import {LoginRegisterPage} from "../../containers/index";
 import {TT} from '../../utils/locale'
+import styles from './Layout.module.scss'
 import * as Actions from '../../actions/SessionActionCreator'
 
 class Layout extends Component {
@@ -19,21 +19,26 @@ class Layout extends Component {
 
 
   render() {
-    const {footer, session} = this.props;
+    const {main, session} = this.props;
     return (
       <I18n translations={translations} initialLang={TT.locale}>
         <div className="main-content">
           <Header session={session} signOut={this.signOut.bind(this)}/>
-          <main className='container'>
+          <main className={!main.stetchAuto ? styles.stretchFull : 'container'}>
             {this.props.children}
           </main>
           {
-            footer.show ? <Footer/> : null
+            main.showFooter ? <Footer/> : null
           }
         </div>
       </I18n>
     )
   }
 }
+
+Layout.propTypes = {
+  main: React.PropTypes.object,
+  session: React.PropTypes.object
+};
 
 export default Layout;

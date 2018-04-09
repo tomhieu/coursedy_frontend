@@ -16,16 +16,13 @@ class CourseList extends Component {
     super(props);
   }
   render() {
-    const {courses, isFetching, fullHeight = false} = this.props;
+    const {courses, isFetching, fullHeight = false, isPublic} = this.props;
     return (
-        <div className={
-          (fullHeight ? 
-            styles.courseListContainerFullHeight :
-            styles.courseListContainer) + " row"}>
+        <div className={(fullHeight ? styles.courseListContainerFullHeight : isPublic ? styles.courseListContainer : "") + " row"}>
           {
             isFetching ? <div></div> : courses.length === 0
               ? (
-                <EmptyResultWarning />
+                <EmptyResultWarning isPublic={isPublic} />
               ) : this.props.displayMode === 'grid' ?
                 <CourseListInGridMode {...this.props} /> :
                 <CourseListInListMode {...this.props} />
@@ -35,9 +32,9 @@ class CourseList extends Component {
   }
 }
 
-const EmptyResultWarning = () => {
+const EmptyResultWarning = (props) => {
   return (
-    <div className={styles.courseListContainer + " row justify-content-center"}>
+    <div className={props.isPublic ? styles.courseListContainer : " row justify-content-center"}>
       <div className="d-flex flex-auto align-items-center">
         <div className="d-flex flex-vertical flex-auto align-items-center">
           <img src="/search-not-found.svg" width={100} height={100} alt="search-not-found"/>
@@ -55,7 +52,11 @@ CourseList.contextTypes = {
 CourseList.propTypes = {
   displayMode: React.PropTypes.string.isRequired,
   // the public course list have some additional features like following course...
-  isPublic: React.PropTypes.bool.isRequired
+  isPublic: React.PropTypes.bool.isRequired,
+  courses: React.PropTypes.array,
+  isFetching: React.PropTypes.bool,
+  fullHeight: React.PropTypes.bool,
+  hasFilter: React.PropTypes.bool
 };
 
 export default cssModules(CourseList, styles);

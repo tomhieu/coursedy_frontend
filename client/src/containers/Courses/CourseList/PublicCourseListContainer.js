@@ -29,11 +29,17 @@ class PublicCourseListContainer extends Component {
     this.props.dispatch({
       type: WebConstants.HIDE_FOOTER
     });
+    this.props.dispatch({
+      type: WebConstants.STETCH_FULL
+    });
   }
 
   componentWillUnmount() {
     this.props.dispatch({
       type: WebConstants.SHOW_FOOTER
+    });
+    this.props.dispatch({
+      type: WebConstants.STETCH_AUTO
     });
   }
 
@@ -74,6 +80,7 @@ class PublicCourseListContainer extends Component {
             selectCourseHdl={this.selectCourseHdl.bind(this)}
             isPublic={true}
             itemPerRowInGridMode={4}
+            hasFilter={true}
           />
           {
             !isFetching && courses.length > 0 ? (

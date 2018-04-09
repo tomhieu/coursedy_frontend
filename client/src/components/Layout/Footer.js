@@ -35,11 +35,4 @@ class Footer extends Component {
 }
 
 
-Footer.propTypes = {
-  // content: PropTypes.string.isRequired,
-  // onRemove: PropTypes.func.isRequired,
-  // id: PropTypes.number.isRequired
-};
-
-
 export default cssModules(Footer, styles);
