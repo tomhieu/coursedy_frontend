@@ -425,6 +425,14 @@ body.application {
       padding-right: 0;
       padding-left: 0;
     }
+
+    .main-content > .container {
+      padding: 0;
+      .full-width-in-container {
+        margin-left: 0;
+        margin-right: 0;
+      }
+    }
   }
 
   @media (min-width: 576px) {
