@@ -286,7 +286,7 @@ export const translations = {
     "course_num_pre": "Và",
     "course_num_post": "Khoá Học Đang Được Dạy",
     "you_are_teacher": "Bạn Là Giáo Viên?",
-    "introduction_interactive_title": "Tương Tác <span class='introduction-text-decoration'>Trực T</span>iếp Với Giáo Viên",
+    "introduction_interactive_title": "<span class='introduction-text-decoration'> Tương</span> Tác Trực Tiếp Với Giáo Viên",
     "introduction_interactive_description": "Listen to our teachers spexeches and see our video testimonials before you take any decisions",
     "introduction_save_cost_title": "<span class='introduction-text-decoration'>Tiết K</span>iệm Chi Phí",
     "introduction_save_cost_description": "We have rated teachers for safety and convenience as we know how important this is for you",
