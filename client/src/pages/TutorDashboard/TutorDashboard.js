@@ -2,7 +2,10 @@ import React from 'react';
 import cssModules from 'react-css-modules';
 import styles from './TutorDashboard.module.scss';
 import {Route} from 'react-router-dom'
-import {RoleAuthorization, TutorDashboardIndex, TutorDashboardMenu, TutorProfile} from '../../components/index';
+import {RoleAuthorization, TutorDashboardIndex, TutorDashboardMenu} from '../../components/index';
+import {
+  TutorContainers
+} from '../../containers/'
 import CourseFormContainer from '../../containers/Courses/CourseForm/CourseFormContainer';
 import TutorProfileDetailsContainer from '../../containers/Tutor/Profile/TutorProfileDetailsContainer';
 import {connect} from 'react-redux';
@@ -25,7 +28,7 @@ class TutorDashboard extends RoleAuthorization {
         <div className="row">
           <div className="col-xs-12 col-sm-4 left-panel" id="sidebar">
             <div className="panel-group dashboard-menu" id="accordion">
-              <TutorProfile/>
+              <TutorContainers.DashboardProfileContainer/>
               <TutorDashboardMenu/>
             </div>
           </div>
