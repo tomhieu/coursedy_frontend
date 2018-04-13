@@ -216,6 +216,7 @@ export const translations = {
     /*
         Public course detail
     */
+    "course_list": "Danh sách khóa học",
     "course_info": "Thông tin khóa học",
     "course_detail": "Chi tiết khóa học",
     "tutor_info": "Thông tin giáo viên",
@@ -297,6 +298,7 @@ export const translations = {
 
     "my_account": "Tài khoản",
     "my_profile": "Thông tin người dùng",
+    "my_education": "Chuyên môn",
     "my_balance": "Số dư tài khoản",
 
     "my_courses": "Khóa học",
