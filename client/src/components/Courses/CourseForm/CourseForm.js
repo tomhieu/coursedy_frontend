@@ -6,6 +6,7 @@ import styles from "./../Course.module.scss";
 import {SERVER_NAME} from "../../../utils/CommonConstant";
 import CourseFormItem from "./CourseFormItem";
 import SelectionTeachingDay from "./SelectionTeachingDay";
+import CourseCategory from "./CourseCategory";
 
 class CourseForm extends Component {
 
@@ -50,40 +51,13 @@ class CourseForm extends Component {
               </div>
             </div>
           </div>
-          <div className='row'>
-            <div className='col-sm col-md medium-text'>
-              <CourseFormItem editMode={editMode} fieldId="categoryId"
-                              fieldLabel={this.context.t("course_category")}
-                              placeholder={this.context.t("course_category")}
-                              isMandatory={true}
-                              fieldName="category_id"
-                              typeField="custom_select"
-                              content={editMode && courseData.category ? courseData.category.name : ""}
-                              options={categories.map((category) => {
-                                return {id: category.id, text: category.name}
-                              })}
-                              styleCustomField="inline-form-control"
-                              {...this.props}>
-              </CourseFormItem>
-            </div>
-            {
-              courseSpecializes.length > 0 ?
-                <div className='col-sm col-md'>
-                  <CourseFormItem editMode={editMode} fieldId="course_specialize_id"
-                                  fieldLabel={this.context.t("course_specialize")}
-                                  isMandatory={true}
-                                  fieldName="course_specialize_id"
-                                  typeField="custom_select"
-                                  content={editMode && courseData.course_specialize ? courseData.course_specialize.name : ""}
-                                  options={courseSpecializes.map((spec) => {
-                                    return {id: spec.id, text: spec.name}
-                                  })}
-                                  styleCustomField="inline-form-control" {...this.props}>
-                  </CourseFormItem>
-                </div>
-                : null
-            }
-          </div>
+          <CourseCategory editMode={editMode}
+                          category={courseData.category}
+                          course_specialize={courseData.course_specialize}
+                          courseSpecializes={courseSpecializes}
+                          categories={categories}
+                          {...this.props}>
+          </CourseCategory>
           {/* Course category and course level */}
 
           <div className='row'>

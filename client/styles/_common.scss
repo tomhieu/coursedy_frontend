@@ -3071,6 +3071,13 @@ div[data-reactroot] {
 .course-filter-container {
   height: 164px;
   position: relative;
+  margin-top: 70px;
+}
+
+@media only screen and (max-width: 992px) {
+  .course-filter-container {
+    margin-top: 0px;
+  }
 }
 
 @media only screen and (max-width: 480px) {

@@ -2713,7 +2713,8 @@ div[data-reactroot] {
 
 .course-filter-container {
   height: 142px;
-  position: relative; }
+  position: relative;
+}
 
 .course-thumb {
   height: 200px; }
