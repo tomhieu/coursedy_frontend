@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import TeacherItem from './TeacherItem';
 import { searchTeachers } from '../../actions/TeacherCreators';
 import Pagination from 'react-js-pagination';
+import LoadingMask from '../../components/LoadingMask/LoadingMask';
+import { FETCH_TEACHERS } from '../../constants/Teachers';
 
 
 class PublicTeacherListContainer extends Component {
@@ -16,24 +18,26 @@ class PublicTeacherListContainer extends Component {
 
   render() {
     return (
-      <div>
-        <TeacherList data={this.props.teachers.data}/>
-        {
-          !this.props.teachers.loading && this.props.teachers.data.length ?
-            <div className="row">
-              <div className="col-sm-12">
-                <Pagination
-                  activePage={this.props.headers.currentPage}
-                  itemsCountPerPage={this.props.headers.perPage}
-                  totalItemsCount={this.props.headers.total}
-                  pageRangeDisplayed={5}
-                  onChange={this.handlePageChange.bind(this)}
-                />
+      <LoadingMask belongingActions={[FETCH_TEACHERS]}>
+        <div>
+          <TeacherList data={this.props.teachers.data}/>
+          {
+            !this.props.teachers.loading && this.props.teachers.data.length ?
+              <div className="row">
+                <div className="col-sm-12">
+                  <Pagination
+                    activePage={this.props.headers.currentPage}
+                    itemsCountPerPage={this.props.headers.perPage}
+                    totalItemsCount={this.props.headers.total}
+                    pageRangeDisplayed={5}
+                    onChange={this.handlePageChange.bind(this)}
+                  />
+                </div>
               </div>
-            </div>
-            :null
-        }
-      </div>
+              :null
+          }
+        </div>
+      </LoadingMask>
     );
   };
 }

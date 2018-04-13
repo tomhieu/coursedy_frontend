@@ -97,10 +97,10 @@ export class FilterOption extends Component {
     const {label, type} = this.props
     return (
       <div className={styles.filterOptionContainer + " d-flex flex-vertical"} onMouseEnter={() => this.onMouseEnterHandler()} onMouseLeave={() => this.onMouseLeaveHandler()}>
-        <div className={"d-flex flex-horizontal"}>
-          <span className="mt-5">{label}</span>
+        <div className={styles.filterHeader + " d-flex flex-horizontal"}>
+          <span>{label}</span>
           {
-            this.state.show ? <NavigationExpandLess className="ml-10 mt-5" /> : <NavigationExpandMore className="ml-10 mt-5" />
+            this.state.show ? <NavigationExpandLess className="ml-10" /> : <NavigationExpandMore className="ml-10" />
           }
         </div>
         {
