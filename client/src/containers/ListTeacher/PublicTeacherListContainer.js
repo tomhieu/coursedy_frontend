@@ -21,9 +21,13 @@ class PublicTeacherListContainer extends Component {
     return (
       <LoadingMask belongingActions={[FETCH_TEACHERS]}>
         <div className="teacher-list">
+          { !this.props.teachers.isFetching  && this.props.teachers.data.length ?
+            <SearchingNotification numMatchs={this.props.teachers.data.length} /> : null
+          }
+
           { this.props.teachers.isFetching ? null :
             this.props.teachers.data.length ?
-            <TeacherList data={this.props.teachers.data}/>:
+              <TeacherList data={this.props.teachers.data}/>:
             <EmptyResultWarning styles={"teacher-list_not-found"} searchType="search_teacher"/>
           }
 
@@ -46,6 +50,16 @@ class PublicTeacherListContainer extends Component {
       </LoadingMask>
     );
   };
+}
+
+const SearchingNotification = (props) => {
+  return (
+    <div className="row">
+      <div className="col-12 col-sm-6 col-md-4 col-lg-3">
+        We found {props.numMatchs} teachers.
+      </div>
+    </div>
+  )
 }
 
 const TeacherList = ({data}) => {
