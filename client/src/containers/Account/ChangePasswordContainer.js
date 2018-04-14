@@ -16,31 +16,33 @@ class ChangePasswordContainer extends Component {
   render() {
     const {handleSubmit} = this.props;
     return (
-      <div className="col-md-12 col-sm-12">
-        <div className="block-title">
-          <span className="text-uppercase bold">{this.context.t("account_tutor_password_title")}</span>
+      <div className='row'>
+        <div className="col-md-12 col-sm-12">
+          <div className="block-title">
+            <span className="text-uppercase bold">{this.context.t("account_tutor_password_title")}</span>
+          </div>
+          <form onSubmit={handleSubmit(this.updatePassword.bind(this))}>
+            <div>
+              <FormField fieldId="currentPasswordId"
+                         fieldLabel={this.context.t("account_tutor_current_password_title")}
+                         formControlName="currentPassword" type="password" typeField="custom_input" {...this.props}/>
+            </div>
+
+            <div>
+              <FormField fieldId="newPasswordId" fieldLabel={this.context.t("account_tutor_new_password_title")}
+                         formControlName="newPassword" type="password" typeField="custom_input"/>
+            </div>
+
+            <div>
+              <FormField fieldId="newPassword2Id" fieldLabel={this.context.t("account_tutor_new_password_again_title")}
+                         formControlName="newPassword2" type="password" typeField="custom_input"/>
+            </div>
+
+            <div className='form-group'>
+              <button type="submit" className="mt-15 btn-link-dark">{this.context.t("account_tutor_new_password_btn")}</button>
+            </div>
+          </form>
         </div>
-        <form onSubmit={handleSubmit(this.updatePassword.bind(this))}>
-          <div>
-            <FormField fieldId="currentPasswordId"
-                       fieldLabel={this.context.t("account_tutor_current_password_title")}
-                       formControlName="currentPassword" type="password" typeField="custom_input" {...this.props}/>
-          </div>
-
-          <div>
-            <FormField fieldId="newPasswordId" fieldLabel={this.context.t("account_tutor_new_password_title")}
-                       formControlName="newPassword" type="password" typeField="custom_input"/>
-          </div>
-
-          <div>
-            <FormField fieldId="newPassword2Id" fieldLabel={this.context.t("account_tutor_new_password_again_title")}
-                       formControlName="newPassword2" type="password" typeField="custom_input"/>
-          </div>
-
-          <div className='form-group'>
-            <button type="submit" className="mt-15 btn-link-dark">{this.context.t("account_tutor_new_password_btn")}</button>
-          </div>
-        </form>
       </div>
     )
   }

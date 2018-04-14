@@ -1201,25 +1201,6 @@ select[multiple]::-webkit-scrollbar-thumb {
   .hidden-navbtn {
     display: none;
   }
-  .dashboard-links {
-    padding-left: 15px;
-  }
-  .dashboard-links li {
-    border-bottom: 1px solid #f2f2f2;
-    position: relative;
-  }
-  .dashboard-links li:before {
-    display: none;
-  }
-  .dashboard-profile h4 {
-    font-size: 14px;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    overflow: hidden;
-  }
-  .dashboard-profile p {
-    font-size: 10px;
-  }
 }
 
 /* Small Devices, Tablets */
@@ -2702,10 +2683,6 @@ button {
   -webkit-transition: all 150ms ease;
   transition: all 150ms ease;
   margin-top: 10px;
-}
-
-form {
-  margin-bottom: 40px;
 }
 
 button:hover {

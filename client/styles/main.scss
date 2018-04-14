@@ -427,10 +427,9 @@ body.application {
     }
 
     .main-content > .container {
-      padding: 0;
       .full-width-in-container {
-        margin-left: 0;
-        margin-right: 0;
+        margin-left: -15px;
+        margin-right: -15px;
       }
     }
   }
@@ -644,4 +643,23 @@ body.application {
     color: $dark-text-color;
   }
   // end select2 styles
+
+  .dashboard-links {
+    padding-left: 15px;
+  }
+  .dashboard-links li {
+    border-bottom: 1px solid #f2f2f2;
+    position: relative;
+  }
+  .dashboard-links li:before {
+    display: none;
+  }
+  .dashboard-profile h4 {
+    font-size: 14px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+  .dashboard-profile p {
+    font-size: 10px;
+  }
 }
