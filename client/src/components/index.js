@@ -30,6 +30,7 @@ import RequireEmailConfirmationModal from './Account/RequireEmailConfirmationMod
 import TutorEducationDetailComponent from './Account/Tutor/TutorEducationDetailComponent'
 
 import * as PaymentComponents from './Payment'
+import StatisticCard from './Dashboard/StatisticCard.js'
 
 export {
   Header,
@@ -57,6 +58,8 @@ export {
 
   StudentComponents,
   PaymentComponents,
+  StatisticCard,
+
 
   CourseForm,
   TutorProfileDetails,
