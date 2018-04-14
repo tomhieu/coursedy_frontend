@@ -12,12 +12,18 @@ import {
   StudentContainers
 } from '../../../containers'
 import {connect} from 'react-redux';
+import * as sessionActions from '../../../actions/SessionActionCreator'
 
 class StudentDashboardPage extends RoleAuthorization {
   constructor(props) {
     super(props)
     this.authorizedRoles = ['student']
     this.unauthorizedPath = '/'
+  }
+
+  signOut(e) {
+    e.preventDefault()
+    this.props.dispatch(sessionActions.signOutUser())
   }
 
   render() {
@@ -32,7 +38,7 @@ class StudentDashboardPage extends RoleAuthorization {
                 {
                   this.props.currentUser !== null ? <StudentContainers.DashboardProfileContainer/> : null
                 }
-                <StudentComponents.StudentDashboardMenu {...this.props}/>
+                <StudentComponents.StudentDashboardMenu signOut={this.signOut.bind(this)}/>
               </div>
             </div>
             <div className="col-xs-12 col-sm-8 d-flex">
