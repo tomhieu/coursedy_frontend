@@ -25,17 +25,17 @@ class ChangePasswordContainer extends Component {
             <div>
               <FormField fieldId="currentPasswordId"
                          fieldLabel={this.context.t("account_tutor_current_password_title")}
-                         formControlName="currentPassword" type="password" typeField="custom_input" {...this.props}/>
+                         formControlName="current_password" type="password" typeField="custom_input" {...this.props}/>
             </div>
 
             <div>
               <FormField fieldId="newPasswordId" fieldLabel={this.context.t("account_tutor_new_password_title")}
-                         formControlName="newPassword" type="password" typeField="custom_input"/>
+                         formControlName="password" type="password" typeField="custom_input"/>
             </div>
 
             <div>
               <FormField fieldId="newPassword2Id" fieldLabel={this.context.t("account_tutor_new_password_again_title")}
-                         formControlName="newPassword2" type="password" typeField="custom_input"/>
+                         formControlName="password_confirmation" type="password" typeField="custom_input"/>
             </div>
 
             <div className='form-group'>
