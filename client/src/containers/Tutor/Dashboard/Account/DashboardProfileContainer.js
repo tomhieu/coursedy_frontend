@@ -14,9 +14,9 @@ class DashboardProfileContainer extends Component {
     const { currentUser, userBalance } = this.props
     return (
       currentUser ? 
-      <div className="dashboard-profile">
-        <div className="media media-team">
-          <div className="media-left">
+      <div className="dashboard-profile text-center">
+        <div className="row">
+          <div className="col-sm-12">
             <figure className="imghvr-zoom-in">
               <img className="media-object img-circle" 
                 src="http://placehold.it/100x100" 
@@ -25,10 +25,10 @@ class DashboardProfileContainer extends Component {
               <figcaption></figcaption>
             </figure>
           </div>
-          <div className="media-body">
+          <div className="col-sm-12">
             <h4>{ currentUser.name }</h4>
-            <p>{this.context.t('my_balance')}: <strong>{ ObjectUtils.currencyFormat(userBalance) }</strong></p>
           </div>
+          <div className='col-sm-12'><p>{this.context.t('my_balance')}: <strong>{ ObjectUtils.currencyFormat(userBalance) }</strong></p></div>
         </div>
       </div> : null
     )

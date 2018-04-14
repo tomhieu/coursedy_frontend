@@ -49,15 +49,6 @@ class TutorDashboardMenu extends Component {
             </div>
           </div>
         </div>
-
-        <div className="panel panel-default">
-          <div className="dashboard-link">
-            <Link onClick={signOut} to={'#'}>
-              <i className="fa fa-sign-out"></i>{this.context.t('signout')}
-            </Link>
-          </div>
-        </div>
-
       </div>
     )
   }
