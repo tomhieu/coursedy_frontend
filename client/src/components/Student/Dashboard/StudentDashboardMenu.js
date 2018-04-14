@@ -4,11 +4,6 @@ class StudentDashboardMenu extends Component {
   render(){
     return (
       <div className="dashboard-menu-panel">
-        <div className="dashboard-link">
-          <Link to={'/student/dashboard'} className="active">
-            <i className="fa fa-tachometer"></i>{this.context.t('dashboard')}
-          </Link>
-        </div>
 
         <div className="panel panel-default">
           <div className="panel-heading">
