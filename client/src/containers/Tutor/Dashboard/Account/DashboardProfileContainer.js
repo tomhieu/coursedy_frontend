@@ -16,7 +16,7 @@ class DashboardProfileContainer extends Component {
       currentUser ? 
       <div className="dashboard-profile text-center">
         <div className="row">
-          <div className="col-sm-12">
+          <div className="col-sm-12 mb-15">
             <figure className="imghvr-zoom-in">
               <img className="media-object img-circle" 
                 src="http://placehold.it/100x100" 
