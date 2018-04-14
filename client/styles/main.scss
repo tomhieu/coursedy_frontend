@@ -459,4 +459,35 @@ body.application {
     padding-bottom: 90px;
   }
 
+  .btn-link:hover {
+    color: $md-color-pink;
+    border-color: $md-color-pink;
+    text-decoration: none;
+  }
+
+  .btn-link-dark {
+    padding: 8px;
+    color: $white-color;
+    font-size: 16px;
+    font-weight: 400;
+    margin-top: 50px;
+    border: 1px solid $md-color-pink;
+    border-radius: 2px;
+    text-align: center;
+    background: $md-color-pink;
+    -webkit-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
+  }
+
+  .btn-link-dark:hover {
+    background: transparent !important;
+    color: $md-color-pink !important;
+    -webkit-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
+  }
+
+  .btn-link-dark:focus,
+  .btn-link-dark:active {
+    outline: none !important;
+  }
 }
