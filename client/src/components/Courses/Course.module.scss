@@ -66,15 +66,11 @@
   padding: 9px 35px;
 }
 
-.advancedFilter {
-  flex: 2;
-}
-
 .filterResultBlock {
-  background-color: $white-background;
-  padding: 10px 10px;
-  border-top: 1px solid rgba(48, 51, 57, 0.15);
-  border-bottom: 1px solid rgba(48, 51, 57, 0.15);
+  background-color: $color-bg-filter;
+  padding: 13px 0;
+  border-top: 1px solid $color-border;
+  border-bottom: 1px solid $color-border;
   select {
     padding: 3px;
     margin-left: 5px;
@@ -144,7 +140,7 @@
   left: 15px;
   height: calc(100% - 60px);
   width: 100%;
-  background-color: $gray-background;
+  background-color: $white-background;
   padding: 20px 30px;
   overflow-y: auto;
 }
@@ -178,4 +174,5 @@
 
 .filterTextContainer {
   flex: 3;
+  padding: 15px 0;
 }

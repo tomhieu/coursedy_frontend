@@ -42,14 +42,16 @@ class AutoComplete extends Component {
   }
 
   render() {
-    const {show, isLoading, handleRequestDeleteChip, placeholder, fieldName, dataSource, handleAddCriteria, loadSuggestions, filters} = this.props;
+    const {show, isLoading, handleRequestDeleteChip, placeholder, fieldName, dataSource, handleAddCriteria, loadSuggestions} = this.props;
     return (
       <div className={styles.filterBox + " d-flex flex-vertical"}>
         <div className="d-flex flex-horizontal">
-          <SvgIcon>
-            <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
-            <path d="M0 0h24v24H0z" fill="none"/>
-          </SvgIcon>
+          <div className="search-icon">
+            <svg class="uc-searchBarOmnibox-searchIcon" viewBox="0 0 25 25">
+              <path d="M17.8724934,19.3481945 C17.4662,18.9419012 17.4643401,18.2850294 17.8746847,17.8746847 L17.8746847,17.8746847 C18.2821883,17.4671811 18.9468084,17.4711073 19.3481945,17.8724934 L23.7796805,22.3039794 C24.1859739,22.7102728 24.1878338,23.3671445 23.7774892,23.7774892 L23.7774892,23.7774892 C23.3699856,24.1849928 22.7053655,24.1810666 22.3039794,23.7796805 L17.8724934,19.3481945 L17.8724934,19.3481945 Z"></path>
+              <path d="M19.7391304,9.86956522 C19.7391304,4.41875486 15.3203756,0 9.86956522,0 C4.41875486,0 0,4.41875486 0,9.86956522 C0,15.3203756 4.41875486,19.7391304 9.86956522,19.7391304 C15.3203756,19.7391304 19.7391304,15.3203756 19.7391304,9.86956522 Z M2,9.86956522 C2,5.52332436 5.52332436,2 9.86956522,2 C14.2158061,2 17.7391304,5.52332436 17.7391304,9.86956522 C17.7391304,14.2158061 14.2158061,17.7391304 9.86956522,17.7391304 C5.52332436,17.7391304 2,14.2158061 2,9.86956522 Z"></path>
+            </svg>
+          </div>
           <div className="input-without-border">
             <Field name={fieldName} placeholder={placeholder}
                    onBlur={this.onBlur.bind(this)}

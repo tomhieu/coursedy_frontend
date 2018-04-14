@@ -97,10 +97,16 @@ export class FilterOption extends Component {
     const {label, type} = this.props
     return (
       <div className={styles.filterOptionContainer + " d-flex flex-vertical"} onMouseEnter={() => this.onMouseEnterHandler()} onMouseLeave={() => this.onMouseLeaveHandler()}>
-        <div className={styles.filterHeader + " d-flex flex-horizontal"}>
-          <span className="mt-5">{label}</span>
+        <div className={styles.filterHeader + " d-flex flex-horizontal justify-content-center align-items-center"}>
+          <span>{label}</span>
           {
-            this.state.show ? <NavigationExpandLess className="ml-10 mt-5" /> : <NavigationExpandMore className="ml-10 mt-5" />
+            this.state.show ?
+              <svg class="ml-10 mt-5" viewBox="0 0 24 24" className="expand-icon ml-5 mt-5">
+                <path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"></path>
+              </svg>:
+              <svg class="ml-10 mt-5" viewBox="0 0 24 24" className="expand-icon ml-5 mt-5">
+                <path d="M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z"></path>
+              </svg>
           }
         </div>
         {

@@ -14,7 +14,7 @@
 }
 
 .filterHeader {
-  height: 50px;
+  padding: 14px;
 }
 
 .filterInput {
@@ -27,4 +27,5 @@
 
 .filterOptionContainer {
   position: relative;
+  white-space: nowrap;
 }
