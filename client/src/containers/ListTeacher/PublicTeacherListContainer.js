@@ -5,6 +5,7 @@ import { searchTeachers } from '../../actions/TeacherCreators';
 import Pagination from 'react-js-pagination';
 import LoadingMask from '../../components/LoadingMask/LoadingMask';
 import { FETCH_TEACHERS } from '../../constants/Teachers';
+import EmptyResultWarning from '../../components/Core/EmptyResultWarning';
 
 
 class PublicTeacherListContainer extends Component {
@@ -19,10 +20,15 @@ class PublicTeacherListContainer extends Component {
   render() {
     return (
       <LoadingMask belongingActions={[FETCH_TEACHERS]}>
-        <div>
-          <TeacherList data={this.props.teachers.data}/>
+        <div className="teacher-list">
+          { this.props.teachers.isFetching ? null :
+            this.props.teachers.data.length ?
+            <TeacherList data={this.props.teachers.data}/>:
+            <EmptyResultWarning styles={"teacher-list_not-found"} searchType="search_teacher"/>
+          }
+
           {
-            !this.props.teachers.loading && this.props.teachers.data.length ?
+            !this.props.teachers.isFetching && this.props.teachers.data.length ?
               <div className="row">
                 <div className="col-sm-12">
                   <Pagination

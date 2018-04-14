@@ -294,8 +294,9 @@ export const translations = {
     "user_action_save": "Lưu",
     "user_action_follow": "Theo dõi",
     "introduction_save_time_description": "No more emails, Calls or messaging friends for recommendations - Get acces to real reviews in seconds",
-    "search_empty_result": "Thật tiếc chúng tôi không tìm thấy {type} nào",
+    "search_empty_result": "Thật tiếc chúng tôi không tìm thấy {type} nào. Thử tìm kiếm bằng từ khoá khác.",
     "search_course": "Khoá Học",
+    "search_teacher": "Giáo Viên",
 
     "my_account": "Tài khoản",
     "my_profile": "Thông tin người dùng",

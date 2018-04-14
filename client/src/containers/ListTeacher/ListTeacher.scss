@@ -7,6 +7,13 @@
 }
 
 .teacher-list-container {
+  .teacher-list {
+    width: 100%;
+    &_not-found {
+      margin: 100px 0;
+    }
+  }
+
   .teacher-item {
 
     .teacher-item__info {
