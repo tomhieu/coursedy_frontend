@@ -29,7 +29,7 @@ const StudentCourseListReducer = (state = {
               ...state, 
               enrolledCourses: enrolledCourses, 
               enrollingCourses: enrollingCourses, 
-              isFetching: false 
+              isFetchingEnrollCourse: false 
             }
         case asyncActs.FETCH_STUDENT_ENROLL_COURSES + asyncActs.REJECTED:
           const enrollErrorMessages = (action.payload && Array.isArray(action.payload) && action.payload.length > 0) ?
