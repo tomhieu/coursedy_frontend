@@ -87,7 +87,7 @@ class PublicCourseListContainer extends Component {
               <div className="pagination-course_list ">
                 <Pagination
                   activePage={this.props.currentPage}
-                  itemsCountPerPage={CommonConstants.MAX_ITEM_PER_PAGE}
+                  itemsCountPerPage={this.props.perPage}
                   totalItemsCount={this.props.totalResult}
                   pageRangeDisplayed={5}
                   onChange={this.handlePageChange.bind(this)}
@@ -106,7 +106,8 @@ PublicCourseListContainer.contextTypes = {
 }
 
 PublicCourseListContainer.propTypes = {
-
+  courses: React.PropTypes.array.isRequired,
+  isFetching: React.PropTypes.bool.isRequired
 };
 
 const mapStateToProps = (state) => ({
@@ -121,6 +122,7 @@ const mapStateToProps = (state) => ({
   courses: state.CourseFilter.courses,
   isFetching: state.CourseFilter.isFetching,
   currentPage: state.CourseFilter.currentPage,
+  perPage: state.CourseFilter.perPage,
   totalResult: state.CourseFilter.totalResult,
   displayMode: state.CourseFilter.displayMode,
   selectedCourses: state.CourseFilter.selectedCourses,

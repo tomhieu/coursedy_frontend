@@ -9,6 +9,8 @@ export const UNSTARTED_COURSE = "not_started";
 export const STARTED_COURSE = "started";
 export const TERMINATED_COURSE = "finished";
 
+//Public course list
+export const PUBLIC_COURSE_LIST_MAX_ITEM_PER_PAGE = 10;
 
 
 //Payment
