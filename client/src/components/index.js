@@ -16,14 +16,12 @@ import TutorSearchForm from './Tutor/TutorSearchForm/TutorSearchForm';
 import TutorItem from './Tutor/TutorItem/TutorItem';
 import TutorList from './Tutor/TutorList/TutorList';
 import TutorProfileDetails from './Tutor/Profile/TutorProfileDetails';
-import TutorProfile from './Dashboard/TutorDashboard/TutorProfile';
 
 import * as StudentComponents from './Student'
 
 import RoleAuthorization from './RoleAuthorization';
 import LoadingMask from './LoadingMask/LoadingMask'
 import TutorDashboardMenu from './Dashboard/TutorDashboard/TutorDashboardMenu'
-import TutorDashboardIndex from './Dashboard/TutorDashboard/TutorDashboardIndex'
 import CourseForm from './Courses/CourseForm/CourseForm'
 import UserInfo from './Account/UserInfo'
 import RequireEmailConfirmationModal from './Account/RequireEmailConfirmationModal'
@@ -50,11 +48,9 @@ export {
   TutorSearchForm,
   TutorItem,
   TutorList,
-  TutorProfile,
   RoleAuthorization,
   LoadingMask,
   TutorDashboardMenu,
-  TutorDashboardIndex,
 
   StudentComponents,
   PaymentComponents,
