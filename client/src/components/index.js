@@ -22,7 +22,6 @@ import * as StudentComponents from './Student'
 import RoleAuthorization from './RoleAuthorization';
 import LoadingMask from './LoadingMask/LoadingMask'
 import TutorDashboardMenu from './Dashboard/TutorDashboard/TutorDashboardMenu'
-import TutorDashboardIndex from './Dashboard/TutorDashboard/TutorDashboardIndex'
 import CourseForm from './Courses/CourseForm/CourseForm'
 import UserInfo from './Account/UserInfo'
 import RequireEmailConfirmationModal from './Account/RequireEmailConfirmationModal'
@@ -51,7 +50,6 @@ export {
   RoleAuthorization,
   LoadingMask,
   TutorDashboardMenu,
-  TutorDashboardIndex,
 
   StudentComponents,
   PaymentComponents,

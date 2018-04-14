@@ -2,7 +2,7 @@ import React from 'react';
 import cssModules from 'react-css-modules';
 import styles from './TutorDashboard.module.scss';
 import {Route} from 'react-router-dom'
-import {RoleAuthorization, TutorDashboardIndex, TutorDashboardMenu} from '../../components/index';
+import {RoleAuthorization, TutorDashboardMenu} from '../../components/index';
 import {
   TutorContainers
 } from '../../containers/'
@@ -29,12 +29,11 @@ class TutorDashboard extends RoleAuthorization {
           <div className="col-xs-12 col-sm-4 left-panel" id="sidebar">
             <div className="panel-group dashboard-menu" id="accordion">
               <TutorContainers.DashboardProfileContainer/>
-              <TutorDashboardMenu/>
+              <TutorDashboardMenu {...this.props}/>
             </div>
           </div>
           <div className="col-xs-12 col-sm-8 d-flex">
             <switch>
-              <Route exact path="/dashboard" component={TutorDashboardIndex}/>
               <Route exact path="/dashboard/account" component={TutorAccount}/>
               <Route exact path="/dashboard/courses/list" component={ListTutorCourseContainer}/>
               <Route exact path="/dashboard/courses/list-lesson" component={ListLessonContainer}/>
