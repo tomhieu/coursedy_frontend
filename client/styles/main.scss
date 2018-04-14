@@ -247,7 +247,7 @@ body.application {
     flex-grow: 1;
   }
 
-  .dashboard-section .row-margin {
+  .dashboard-section .row-padding {
     margin-top: 50px;
     margin-bottom: 50px;
   }
@@ -445,4 +445,18 @@ body.application {
     margin-left: calc(-50vw + 50%);
     margin-right: calc(-50vw + 50%);
   }
+
+  .heading {
+    font-size: 30px;
+    font-weight: 400;
+    color: $dark-text-color;
+    text-align: center;
+    margin-bottom: 65px;
+  }
+
+  .row-padding {
+    padding-top: 90px;
+    padding-bottom: 90px;
+  }
+
 }

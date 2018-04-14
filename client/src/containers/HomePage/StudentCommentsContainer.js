@@ -43,7 +43,7 @@ class StudentComments extends Component {
     return (
       <section className="course__student-comment">
         <div className="container course__student-comment__content-wrap">
-          <div className="row">
+          <div className="row row-padding">
             <div className='col-sm-12'>
               <h2 className="heading"
                   dangerouslySetInnerHTML={{__html: this.context.t('student_top_comments')}}/>

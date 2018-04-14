@@ -7,7 +7,7 @@ import { RegisterFormContainer } from '../../containers/index';
 const LoginRegisterForm = (props) => (
   <div className='login-register d-flex flex-auto'>
     <div className='container'>
-      <div className='row row-margin'>
+      <div className='row row-padding'>
         <div className="col-lg-6 col-md-6 col-sm-6 col-xs-12">
           <LoginFormContainer {...props} />
         </div>

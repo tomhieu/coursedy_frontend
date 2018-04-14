@@ -1,10 +1,6 @@
 @import "../../../styles/global_style";
 
 .course {
-  &__popular {
-    background-color: $body-color;
-  }
-
   &__new-courses {
     &__header {
       color: #534051;
@@ -16,7 +12,7 @@
     }
   }
 
-  &__how-to-learn {
+  &__how-to-learn, &__popular, &__teacher-guide {
     background-color: $body-color;
   }
 

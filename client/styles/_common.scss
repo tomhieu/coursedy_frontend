@@ -107,11 +107,6 @@ body {
   content: "\e916";
 }
 
-.row-margin {
-  margin-top: 90px;
-  margin-bottom: 100px;
-}
-
 .margin-btm {
   margin-bottom: 25px;
 }
@@ -219,14 +214,6 @@ label.error, span.required, div.error, p.error {
 .btn-link-dark:focus,
 .btn-link-dark:active {
   outline: none !important;
-}
-
-.heading {
-  font-size: 30px;
-  font-weight: 400;
-  color: $primary-color;
-  text-align: center;
-  margin-bottom: 65px;
 }
 
 .heading span {
@@ -486,7 +473,7 @@ Footer
   position: relative;
 }
 
-.footer .row-margin {
+.footer .row-padding {
   margin-top: 30px;
   margin-bottom: 40px;
 }
@@ -700,7 +687,7 @@ Homepage >> Featured-on
 Homepage >> Lession-cards
 ---------------------------------- */
 
-section.lession-cards .row-margin {
+section.lession-cards .row-padding {
   margin-bottom: 80px;
 }
 .lession-card figure {
@@ -1317,11 +1304,11 @@ select[multiple]::-webkit-scrollbar-thumb {
     font-size: 22px;
     line-height: 24px;
   }
-  .row-margin {
+  .row-padding {
     margin-top: 50px;
     margin-bottom: 50px;
   }
-  .dashboard-section .row-margin {
+  .dashboard-section .row-padding {
     margin-top: 20px;
   }
 

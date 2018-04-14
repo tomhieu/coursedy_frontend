@@ -20,7 +20,7 @@ class CourseGroupList extends Component {
     return (
       <section className="our-popular">
         <div className="container">
-          <div className="row-margin">
+          <div className="row-padding">
             <div className="row ">
               <div className="col-sm-12 ">
                 <h2 className="heading">{this.context.t('popular_courses')}</h2>

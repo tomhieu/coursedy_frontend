@@ -52,7 +52,7 @@ class TopTeachers extends Component {
     return (
       <section className="course__top-teacher">
         <div className="course__top-teacher__content-wrap">
-          <div className="row-margin">
+          <div className="row-padding">
             <div className="course__top-teacher__heading">
               <div className="container">
                 <h2>

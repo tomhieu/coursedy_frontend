@@ -33,7 +33,7 @@ class NewCourseList extends Component {
     return (
       <section className="course__new-courses">
         <div className="container course__new-courses__content-wrap">
-          <div className="row-margin">
+          <div className="row-padding">
             <div className="course__new-courses__heading">
               <h2 className="heading">{this.context.t('new_courses')}</h2>
             </div>

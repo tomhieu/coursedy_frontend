@@ -34,7 +34,7 @@ class PopularCourseList extends Component {
     return (
       <section className="course__popular">
         <div className="container course__popular__content-wrap">
-          <div className="row-margin">
+          <div className="row-padding">
             <CourseGroupHeading title={this.context.t('popular_courses')}/>
 
             {<Slider items={this.props.courses.map((course, index) => {

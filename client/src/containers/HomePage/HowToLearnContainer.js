@@ -67,7 +67,7 @@ export default class HowToLearn extends Component {
     return (
       <section className="course__how-to-learn">
         <div className="container course__how-to-learn__content-wrap">
-          <div className="row-margin">
+          <div className="row-padding">
             <div className="course__how-to-learn__heading">
               <h2 className="heading" dangerouslySetInnerHTML={{__html: this.context.t('how_study')}} />
             </div>
