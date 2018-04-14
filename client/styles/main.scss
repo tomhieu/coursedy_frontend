@@ -631,5 +631,17 @@ body.application {
     margin-top: -5px;
     margin-right: -10px;
   }
+
+  .forgot-pass {
+    color: #9b9b9b;
+    font-size: 14px;
+    font-weight: 400;
+    float: right;
+  }
+
+  .forgot-pass:hover {
+    text-decoration: none;
+    color: $dark-text-color;
+  }
   // end select2 styles
 }
