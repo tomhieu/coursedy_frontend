@@ -26,7 +26,9 @@ class CourseFilterContainer extends AbstractFilter {
       week_day: filters.selectedWeekDays.map(week => week.id),
       min_fee: selectedMinFee,
       max_fee: selectedMaxFee,
-      order_by, display_mode
+      order_by, display_mode,
+      per_page: this.props.perPage,
+      page: this.props.currentPage
     };
     this.props.dispatch(CourseFilterActions.searchCourse(query))
   }
@@ -142,7 +144,7 @@ const mapStateToProps = (state) => {
   const locations = referenceData.locations || []
 
   const {courses = [], selectedCourses = [],
-         totalResult = 0, sugestions, filters, showSuggestion, loadingSuggestion} = CourseFilter;
+         totalResult = 0, currentPage, perPage, sugestions, filters, showSuggestion, loadingSuggestion} = CourseFilter;
   const {courseFilterForm = {}} = form;
   const filterSuggestions = [];
   sugestions.map(sug =>
@@ -159,7 +161,7 @@ const mapStateToProps = (state) => {
 
   return {
     categories, courses, selectedCourses, locations,
-    totalResult, filters, showSuggestion, suggestions: filterSuggestions, loadingSuggestion,
+    totalResult, currentPage, perPage, filters, showSuggestion, suggestions: filterSuggestions, loadingSuggestion,
     formfieldValues: courseFilterForm.values ? courseFilterForm.values : {},
     listSpecializes: getSelectedSpecializesFromCategory(categories, filters.selectedCategories),
     initialValues: initializeFields

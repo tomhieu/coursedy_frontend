@@ -26,9 +26,8 @@ const CourseFilter = (state = {
     case courseActionTypes.FETCH_COURSES + asyncActs.HEADERS:
       return {
         ...state, 
-        totalResult: action.payload.xTotal, 
-        perPage: action.payload.xPerPage,
-        currentPage: action.payload.xPage
+        totalResult: parseInt(action.payload.xTotal),
+        currentPage: parseInt(action.payload.xPage)
       }
     case asyncActs.CHANGE_DISPLAY_MODE:
       return {...state, displayMode: action.payload}

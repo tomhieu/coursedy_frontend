@@ -22,6 +22,7 @@ class PublicCourseListContainer extends Component {
     query['fees'] = this.props.selectedFees
     query['start_time'] = this.props.startTime
     query['end_time'] = this.props.endTime
+    query['per_page'] = this.props.perPage
     query['page'] = this.props.currentPage
     query['sort_by'] = this.props.sortBy
     query['sort_order'] = this.props.sortOrder
@@ -45,8 +46,6 @@ class PublicCourseListContainer extends Component {
 
 
   handlePageChange(currentPage) {
-    console.log('DEBUG')
-    console.log(currentPage)
     let query = {}
     query['q'] = this.props.keyWord
     query['categories'] = this.props.selectedCategoryIds
@@ -56,6 +55,7 @@ class PublicCourseListContainer extends Component {
     query['fees'] = this.props.selectedFees
     query['start_time'] = this.props.startTime
     query['end_time'] = this.props.endTime
+    query['per_page'] = this.props.perPage
     query['page'] = currentPage
     query['sort_by'] = this.props.sortBy
     query['sort_order'] = this.props.sortOrder
@@ -90,6 +90,7 @@ class PublicCourseListContainer extends Component {
                   itemsCountPerPage={this.props.perPage}
                   totalItemsCount={this.props.totalResult}
                   pageRangeDisplayed={5}
+                  activeClass={'active'}
                   onChange={this.handlePageChange.bind(this)}
                 />
               </div>
