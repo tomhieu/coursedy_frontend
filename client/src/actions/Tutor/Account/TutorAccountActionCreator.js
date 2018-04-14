@@ -1,5 +1,5 @@
 import Network from "utils/network";
-import { TutorAccountTypes } from '../../../constants/'
+import { TutorAccountTypes } from '../../../constants/index'
 import { CERTIFICATE } from '../../../actions/AsyncActionCreator';
 
 export const RECEIVE_PERSON_DATA = 'RECEIVE_PERSON_DATA';
@@ -58,20 +58,6 @@ export const updateTutorEducation = (id, data) => {
       })
       dispatch(hideEducationEditForm())
     });
-  }
-}
-
-export const fetchUser = () => {
-  return dispatch => {
-    Network().get('current_user')
-      .then((data) => {
-        dispatch({
-          type: AccountTypes.SET_ACCOUNT_USER,
-          payload: data
-        })
-
-        dispatch(fetchTutor(data.id))
-      })
   }
 }
 

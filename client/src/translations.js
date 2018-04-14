@@ -154,7 +154,7 @@ export const translations = {
     "account_tutor_current_password_title": "Mật khẩu hiện tại",
     "account_tutor_new_password_title": "Mật khẩu mới",
     "account_tutor_new_password_again_title": "Nhập lại mật khẩu mới",
-    "account_tutor_new_password_btn": "Đổi mật khẩu",
+    "account_tutor_new_password_btn": "Đổi Mật Khẩu",
     "drag_and_drop": "Kéo thả tập tin vào đây",
     "speciality": "Chuyên môn",
     "save": "Lưu",

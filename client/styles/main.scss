@@ -469,7 +469,6 @@ body.application {
     color: $white-color;
     font-size: 16px;
     font-weight: 400;
-    margin-top: 50px;
     border: 1px solid $md-color-pink;
     border-radius: 2px;
     text-align: center;
@@ -661,5 +660,28 @@ body.application {
   }
   .dashboard-profile p {
     font-size: 10px;
+  }
+
+  .modal-header {
+    background-color: $md-color-pink;
+    border-top-right-radius: 2px;
+    border-top-left-radius: 2px;
+    & .modal-title {
+      margin-bottom: 0;
+    }
+
+    & button.close span{
+      display: inline-block;
+      margin-top: -10px;
+      vertical-align: top;
+    }
+  }
+
+  .modal-content {
+    border-radius: 2px;
+  }
+
+  button:hover {
+    cursor: pointer;
   }
 }

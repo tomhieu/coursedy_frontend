@@ -1,19 +1,19 @@
 import React, { Component } from 'react';
-import {Modal, Button} from 'react-bootstrap';
+import {Modal, ModalHeader, Button, ModalBody, ModalFooter} from 'reactstrap';
 
 class RequireEmailConfirmationModal extends Component {
   render(){
     return (
-      <Modal show={this.props.show} onHide={this.props.close}>
-        <Modal.Header>
-          <Modal.Title>{this.context.t('change_email_success')}</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
+      <Modal isOpen={this.props.show} onClosed={this.props.close} backdrop={true}>
+        <ModalHeader toggle={this.props.close}>
+          {this.context.t('change_email_success')}
+        </ModalHeader>
+        <ModalBody>
           <p> {this.context.t('update_email_successfully')} </p>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button onClick={this.props.close}>{this.context.t('close')}</Button>
-        </Modal.Footer>
+        </ModalBody>
+        <ModalFooter>
+          <Button className='btn-link-dark' onClick={this.props.close}>{this.context.t('close')}</Button>
+        </ModalFooter>
       </Modal>
     )
   }

@@ -11,28 +11,24 @@ import {
 import {RequireEmailConfirmationModal, TutorEducationDetailComponent} from '../../../components/index'
 
 class AccountProfileContainer extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      editProfileMode: false,
-      showEmailConfirmationModal: false
-    }
-  }
-
   componentWillMount(){
-    this.props.dispatch(StudentAccountActions.fetchUser())
+    this.props.dispatch(AccountActions.fetchUser())
   }
 
   showProfileEditForm(){
-    this.setState({ editProfileMode: true })
+    this.props.dispatch(AccountActions.showAccountEditForm())
   }
 
   hideProfileEditForm(){
-    this.setState({ editProfileMode: false })
+    this.props.dispatch(AccountActions.hideAccountEditForm())
   }
 
   closeEmailConfirmationModal(){
-    this.setState({ showEmailConfirmationModal: false })
+    this.props.dispatch(AccountActions.hideEmailChangedPopup())
+  }
+
+  showEmailConfirmationModal(){
+    this.props.dispatch(AccountActions.showEmailChangedPopup())
   }
 
   render() {
@@ -40,7 +36,8 @@ class AccountProfileContainer extends Component {
     const {
       editProfileMode,
       showEmailConfirmationModal
-    } = this.state;
+    } = this.props;
+
     return (
       <div className="row">
         <div className="col-md-12 col-xs-12 col-sm-12 dashboard-content-section ">
