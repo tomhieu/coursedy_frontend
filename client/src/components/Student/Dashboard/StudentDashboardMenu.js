@@ -1,6 +1,14 @@
 import React, {Component} from 'react'
 import { Link } from 'react-router-dom'
+import * as Actions from '../../../actions/SessionActionCreator'
+
 class StudentDashboardMenu extends Component {
+
+  signOut(e) {
+    e.preventDefault()
+    this.props.dispatch(Actions.signOutUser())
+  }
+
   render(){
     return (
       <div className="dashboard-menu-panel">
@@ -52,7 +60,7 @@ class StudentDashboardMenu extends Component {
 
         <div className="panel panel-default">
           <div className="dashboard-link">
-            <Link to={'#'}>
+            <Link onClick={this.signOut.bind(this)} to={'#'}>
               <i className="fa fa-sign-out"></i>{this.context.t('signout')}
             </Link>
           </div>

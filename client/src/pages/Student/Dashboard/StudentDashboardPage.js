@@ -32,7 +32,7 @@ class StudentDashboardPage extends RoleAuthorization {
                 {
                   this.props.currentUser !== null ? <StudentContainers.DashboardProfileContainer/> : null
                 }
-                <StudentComponents.StudentDashboardMenu/>
+                <StudentComponents.StudentDashboardMenu {...this.props}/>
               </div>
             </div>
             <div className="col-xs-12 col-sm-8 d-flex">
