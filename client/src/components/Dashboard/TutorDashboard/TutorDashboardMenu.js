@@ -1,15 +1,10 @@
 import React, {Component} from 'react';
 import { Link } from 'react-router-dom';
-import * as Actions from '../../../actions/SessionActionCreator'
 
 class TutorDashboardMenu extends Component {
 
-  signOut(e) {
-    e.preventDefault()
-    this.props.dispatch(Actions.signOutUser())
-  }
-
   render(){
+    const {signOut} = this.props
     return (
       <div className="dashboard-menu-panel">
 
@@ -38,7 +33,7 @@ class TutorDashboardMenu extends Component {
           <div className="panel-heading">
             <h4 className="panel-title">
               <a className="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseSellCourses">
-                <i className="fa fa-book"></i>Khóa học</a>
+                <i className="fa fa-book"></i>{this.context.t('my_courses')}</a>
             </h4>
           </div>
           <div id="collapseSellCourses" className="panel-collapse collapse">
@@ -57,7 +52,7 @@ class TutorDashboardMenu extends Component {
 
         <div className="panel panel-default">
           <div className="dashboard-link">
-            <Link onClick={this.signOut.bind(this)} to={'#'}>
+            <Link onClick={signOut} to={'#'}>
               <i className="fa fa-sign-out"></i>{this.context.t('signout')}
             </Link>
           </div>
@@ -74,6 +69,7 @@ TutorDashboardMenu.contextTypes = {
 }
 
 TutorDashboardMenu.propTypes = {
+  signOut: React.PropTypes.func.isRequired
 }
 
 

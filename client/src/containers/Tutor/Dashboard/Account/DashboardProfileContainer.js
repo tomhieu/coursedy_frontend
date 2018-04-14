@@ -45,6 +45,7 @@ DashboardProfileContainer.contextTypes = {
 }
 
 DashboardProfileContainer.propTypes = {
+  currentUser: React.PropTypes.object.isRequired
 }
 
 export default connect(

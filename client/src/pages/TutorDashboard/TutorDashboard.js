@@ -12,12 +12,18 @@ import {connect} from 'react-redux';
 import ListLessonContainer from "../../containers/Courses/Lesson/ListLessonContainer";
 import ListTutorCourseContainer from "../../containers/Courses/CourseList/ListTutorCourseContainer";
 import TutorAccount from "../../containers/Account/Tutor/TutorAccountContainer";
+import * as sessionActions from '../../actions/SessionActionCreator'
 
 class TutorDashboard extends RoleAuthorization {
   constructor(props) {
     super(props)
     this.authorizedRoles = ['teacher']
     this.unauthorizedPath = '/'
+  }
+
+  signOut(e) {
+    e.preventDefault()
+    this.props.dispatch(sessionActions.signOutUser())
   }
 
   render() {
@@ -29,7 +35,8 @@ class TutorDashboard extends RoleAuthorization {
           <div className="col-xs-12 col-sm-4 left-panel" id="sidebar">
             <div className="panel-group dashboard-menu" id="accordion">
               <TutorContainers.DashboardProfileContainer/>
-              <TutorDashboardMenu {...this.props}/>
+              <TutorDashboardMenu 
+                signOut={this.signOut.bind(this)}/>
             </div>
           </div>
           <div className="col-xs-12 col-sm-8 d-flex">
