@@ -24,6 +24,7 @@ export class UserAvatarForm extends Component {
                    previewUrl={user.avatar ? (SERVER_NAME + user.avatar) : defaultAvatar}
                    showLabel={false}
                    onUpload={this.setFileContent.bind(this)}
+                   fieldLabel=''
         />
 
         <div className='form-group row'>
