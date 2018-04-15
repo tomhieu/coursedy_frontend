@@ -6,7 +6,8 @@ const AccountReducer = (state = {
   user: {},
   editProfileMode: false,
   editAvatarMode: false,
-  avatarSelected: false
+  avatarSelected: false,
+  passwordUpdated: false
 }, action) => {
   switch (action.type) {
     case AccountTypes.SET_ACCOUNT_USER:
@@ -29,6 +30,10 @@ const AccountReducer = (state = {
       return {...state, avatarSelected: true}
     case AccountTypes.AVATAR_DESELECTED:
       return {...state, avatarSelected: false}
+    case AccountTypes.UPDATE_PASSWORD_SUCCESSFULLY:
+      return {...state, passwordUpdated: true}
+    case AccountTypes.RESET_UPDATE_PASSWORD_FORM:
+      return {...state, passwordUpdated: false}
     default:
       return state
   }

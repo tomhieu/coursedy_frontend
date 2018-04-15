@@ -167,6 +167,8 @@ export const translations = {
     'gender.F': 'Nữ',
     "search_course": "Từ khoá tìm kiếm",
     "view_details_lesson": "Xem bài học",
+    'update_password': "Thay đổi mật khẩu",
+    'update_password_success': "Mật khẩu đã được cập nhật thành công.",
 
     /*
      * Section Page

@@ -5,16 +5,24 @@ import {connect} from "react-redux";
 import {reduxForm} from "redux-form";
 import styles from './ChangePasswordContainer.module.scss';
 import cssModules from 'react-css-modules';
-import {updatePassword} from "../../actions/AccountActionCreator";
+import * as AccountActions from "../../actions/AccountActionCreator";
 import {validate} from '../../validations/ChangePasswordFormValidator'
+import Notice from "components/PopupMessage/Notice";
+import {reset} from 'redux-form';
 
 class ChangePasswordContainer extends Component {
   updatePassword({current_password, password, password_confirmation}) {
-    this.props.dispatch(updatePassword({current_password, password, password_confirmation}));
+    this.props.dispatch(AccountActions.updatePassword({current_password, password, password_confirmation}));
+    this.props.dispatch(AccountActions.updatePasswordSuccessfully())
+    this.props.dispatch(reset('changePasswordForm'))
+  }
+
+  resetForm(){
+    this.props.dispatch(AccountActions.resetUpdatePasswordForm())
   }
 
   render() {
-    const {handleSubmit} = this.props;
+    const {handleSubmit, passwordUpdated} = this.props;
     return (
       <div className='row'>
         <div className="col-md-12 col-sm-12">
@@ -42,6 +50,10 @@ class ChangePasswordContainer extends Component {
               <button type="submit" className="mt-15 btn-link-dark">{this.context.t("account_tutor_new_password_btn")}</button>
             </div>
           </form>
+          <Notice title={this.context.t("update_password")}
+                  message={this.context.t("update_password_success")}
+                  show={passwordUpdated}
+                  closePopup={this.resetForm.bind(this)}/>
         </div>
       </div>
     )
@@ -52,9 +64,9 @@ ChangePasswordContainer.contextTypes = {
   t: React.PropTypes.func.isRequired
 }
 
-const mapStateToProps = state => {
-  return {}
-};
+const mapStateToProps = (state) => ({
+  passwordUpdated: state.AccountReducer.passwordUpdated
+});
 
 export default connect(mapStateToProps)(reduxForm({
   form: 'changePasswordForm',

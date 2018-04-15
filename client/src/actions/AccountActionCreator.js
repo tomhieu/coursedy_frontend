@@ -95,3 +95,15 @@ export const avatarDeselected = () => {
     type: AccountTypes.AVATAR_DESELECTED
   }
 }
+
+export const updatePasswordSuccessfully = () => {
+  return {
+    type: AccountTypes.UPDATE_PASSWORD_SUCCESSFULLY
+  }
+}
+
+export const resetUpdatePasswordForm = () => {
+  return {
+    type: AccountTypes.RESET_UPDATE_PASSWORD_FORM
+  }
+}
