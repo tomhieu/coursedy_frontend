@@ -1,43 +1,86 @@
 import React, {Component} from 'react'
-import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
+import {connect} from 'react-redux'
+import {Link} from 'react-router-dom'
 import {
   PaymentActions
 } from '../../../../actions/index'
 import ObjectUtils from '../../../../utils/ObjectUtils'
+import {UserAvatarForm} from "components/Account/UserAvatarForm";
+import * as AccountActionCreator from 'actions/AccountActionCreator'
+import {reduxForm} from "redux-form";
+import {validate} from "../../../../validations/ChangePasswordFormValidator";
+import defaultAvatar from '../../../../../images/default_avatar.png'
+import {SERVER_NAME} from "utils/CommonConstant";
 
 class DashboardProfileContainer extends Component {
   componentWillMount() {
+    this.props.dispatch(AccountActionCreator.fetchUser())
     this.props.dispatch(PaymentActions.fetchUserBalance())
   }
+
+  showEditAvatarForm() {
+    this.props.dispatch(AccountActionCreator.showAvatarEditForm())
+  }
+
+  hideEditAvatarForm() {
+    this.props.dispatch(AccountActionCreator.hideAvatarEditForm())
+  }
+
+  uploadAvatar(avatar) {
+    this.props.dispatch(AccountActionCreator.updateAvatar(avatar))
+    this.props.dispatch(AccountActionCreator.hideAvatarEditForm())
+  }
+
   render() {
-    const { currentUser, userBalance } = this.props
+    const {user, userBalance, editAvatarMode} = this.props
     return (
-      currentUser ? 
-      <div className="dashboard-profile text-center">
-        <div className="row">
-          <div className="col-sm-12 mb-15">
-            <figure className="imghvr-zoom-in">
-              <img className="media-object img-circle" 
-                src="http://placehold.it/100x100" 
-                alt={currentUser.name}
-              />
-              <figcaption></figcaption>
-            </figure>
+      user ?
+        <div className="dashboard-profile text-center">
+          <div className="row">
+            {this.renderAvatar(user, editAvatarMode)}
+            <div className="col-sm-12">
+              <h4>{user.name}</h4>
+            </div>
+            <div className='col-sm-12'>
+              <p>{this.context.t('my_balance')}: <strong>{ObjectUtils.currencyFormat(userBalance)}</strong></p></div>
           </div>
-          <div className="col-sm-12">
-            <h4>{ currentUser.name }</h4>
-          </div>
-          <div className='col-sm-12'><p>{this.context.t('my_balance')}: <strong>{ ObjectUtils.currencyFormat(userBalance) }</strong></p></div>
+        </div> : null
+    )
+  }
+
+  renderAvatar(currentUser, editAvatarMode) {
+    if (editAvatarMode) {
+      return (
+        <div className="col-sm-12">
+          <UserAvatarForm onSubmit={this.uploadAvatar.bind(this)}
+                          cancel={this.hideEditAvatarForm.bind(this)} {...this.props}/>
         </div>
-      </div> : null
+      )
+    }
+
+    return (
+      <div className="col-sm-12 mb-15 avatar-container">
+        <figure className="imghvr-zoom-in">
+          <img className="media-object img-circle full-width"
+               src={currentUser.avatar ? (SERVER_NAME + currentUser.avatar) : defaultAvatar}
+               alt={currentUser.name}
+          />
+        </figure>
+        <span className='edit-avatar-btn' onClick={this.showEditAvatarForm.bind(this)}>
+          <span className='base-line-btn'>
+            <i className='fa fa-camera'/>
+            <span className='ml-10'>{this.context.t('update_avatar')}</span>
+          </span>
+        </span>
+      </div>
     )
   }
 }
 
 const mapStateToProps = (state) => ({
-  currentUser: state.session.currentUser,
-  userBalance: state.session.userBalance
+  userBalance: state.session.userBalance,
+  user: state.AccountReducer.user,
+  editAvatarMode: state.AccountReducer.editAvatarMode
 })
 
 DashboardProfileContainer.contextTypes = {
@@ -45,9 +88,12 @@ DashboardProfileContainer.contextTypes = {
 }
 
 DashboardProfileContainer.propTypes = {
-  currentUser: React.PropTypes.object.isRequired
+  user: React.PropTypes.object.isRequired
 }
 
 export default connect(
   mapStateToProps
-)(DashboardProfileContainer)
+)(reduxForm({
+  form: 'updateAvatarForm',
+  fields: ['avatar']
+})(DashboardProfileContainer))

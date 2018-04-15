@@ -657,9 +657,6 @@ body.application {
   .dashboard-links li:before {
     display: none;
   }
-  .dashboard-profile h4 {
-    font-size: 14px;
-  }
 
   .modal-header {
     background-color: $md-color-pink;
@@ -682,5 +679,70 @@ body.application {
 
   button:hover {
     cursor: pointer;
+  }
+
+  .edit-avatar-btn {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    display: none;
+    padding-right: 30px;
+    margin-bottom: 6px;
+    min-height: 50px;
+    max-height: 100%;
+    .base-line-btn {
+      background-color: $default-color;
+      color: $primary-color;
+      display: table-cell;
+      vertical-align: middle;
+    }
+  }
+
+  .avatar-container:hover .edit-avatar-btn, .edit-avatar-btn:hover {
+    display: table;
+    cursor: pointer;
+  }
+
+  .block-center-align {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .padd-10 {
+    padding: 10px;
+  }
+
+  .full-width-input-wrapper, .full-width {
+    width: 100%;
+  }
+
+  .full-height {
+    height: 100%;
+  }
+
+  .btn-primary {
+    background-color: $md-color-pink;
+    border-color: $md-color-pink;
+  }
+
+  .btn-primary:hover {
+    background: $primary-color;
+    color: $md-color-pink;
+    border-color: $md-color-pink;
+  }
+
+  .cancel-button {
+    background-color: $cancel-btn-color;
+    border: solid 1px $cancel-btn-color;
+    color: $primary-color;
+    &:hover {
+      background-color: transparent;
+      color: $md-color-pink;
+      border-color: $border-focus-color;
+    }
+  }
+
+  .btn {
+    border-radius: 2px;
   }
 }

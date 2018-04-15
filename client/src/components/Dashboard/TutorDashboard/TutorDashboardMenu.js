@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 class TutorDashboardMenu extends Component {
 
   render(){
-    const {signOut} = this.props
     return (
       <div className="dashboard-menu-panel">
 
@@ -60,7 +59,6 @@ TutorDashboardMenu.contextTypes = {
 }
 
 TutorDashboardMenu.propTypes = {
-  signOut: React.PropTypes.func.isRequired
 }
 
 

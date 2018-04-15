@@ -158,24 +158,26 @@ class renderFileInput extends Component {
     let self = this
     let fileReader = new FileReader
     fileReader.onload = () => {
-      self.setState({previewUrl: files[0].preview});
-      self.handleUpload({
-        uid: ObjectUtils.generateUUID(),
-        fileName: files[0].name,
-        previewUrl: files[0].preview,
-        content: fileReader.result
-      });
+      self.setState({previewUrl: files[0].preview, content: fileReader.result});
+      if (self.handleUpload){
+        self.handleUpload({
+          uid: ObjectUtils.generateUUID(),
+          fileName: files[0].name,
+          previewUrl: files[0].preview,
+          content: fileReader.result
+        });
+      }
     }
     fileReader.readAsDataURL(files[0])
   }
 
   render() {
     let {input: {value, ...input}, label, meta: {touched, error}, zoneHeight, internalPreview, ...custom} = this.props
-    let borderWidth = internalPreview && this.state.previewUrl != null ? '0' : '2px'
+    let borderWidth = internalPreview && this.state.previewUrl != null ? '0' : '1px'
     let previewImageStyle = internalPreview ? {
-      borderStyle: 'dashed',
-      borderRadius: '5px',
-      borderColor: 'rgb(102, 102, 102)'
+      border: 'solid 1px rgb(102, 102, 102)',
+      width: '100%',
+      borderStyle: 'dashed'
     } : {}
     return (
       <div className="d-flex">
@@ -194,7 +196,7 @@ class renderFileInput extends Component {
           }}
           accept="image/*">
           <div className="d-flex flex-auto justify-content-center align-items-center">
-            <div className={internalPreview ? 'd-none' : 'd-flex flex-horizontal align-self-center'}>
+            <div className={internalPreview ? 'd-none' : 'd-flex flex-horizontal align-self-center padd-10'}>
               <a className="icon-upload"></a>
               <a className="ml-10">{TT.t('drag_and_drop')}</a>
             </div>
@@ -202,7 +204,7 @@ class renderFileInput extends Component {
 
           <img className={internalPreview && this.state.previewUrl != null ? '' : 'd-none'}
                src={this.state.previewUrl} height={zoneHeight} style={previewImageStyle}></img>
-          <input className='d-none' {...input}/>
+          {/*<input className='d-none' {...input} value={this.state.content}/>*/}
         </Dropzone>
       </div>
     )

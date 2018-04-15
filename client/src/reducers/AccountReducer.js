@@ -1,9 +1,11 @@
 import { AccountTypes } from '../constants/index'
+import * as AsyncActions from '../actions/AsyncActionCreator'
 
 const AccountReducer = (state = {
   showEmailConfirmationModal: false,
   user: {},
-  editProfileMode: false
+  editProfileMode: false,
+  editAvatarMode: false
 }, action) => {
   switch (action.type) {
     case AccountTypes.SET_ACCOUNT_USER:
@@ -16,6 +18,12 @@ const AccountReducer = (state = {
       return {...state, editProfileMode: true}
     case AccountTypes.DISABLE_EDIT_PROFILE_MODE:
       return {...state, editProfileMode: false}
+    case AccountTypes.ENABLE_EDIT_AVATAR:
+      return {...state, editAvatarMode: true}
+    case AccountTypes.DISABLE_EDIT_AVATAR:
+      return {...state, editAvatarMode: false}
+    case AccountTypes.UPLOAD_AVATAR + AsyncActions.FULFILLED:
+      return {...state, user: action.payload}
     default:
       return state
   }

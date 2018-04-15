@@ -59,6 +59,7 @@
     "file-loader": "^0.11.2",
     "history": "^4.7.2",
     "html-webpack-plugin": "^2.30.1",
+    "images": "^3.0.1",
     "immutable": "^3.8.2",
     "isomorphic-fetch": "^2.2.1",
     "j-toker": "0.0.10-beta3",

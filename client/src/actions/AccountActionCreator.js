@@ -64,3 +64,22 @@ export const hideEmailChangedPopup = () => {
     type: AccountTypes.HIDE_REQUIRED_EMAIL_CONFIRMATION_MODAL
   }
 }
+
+export const showAvatarEditForm = () => {
+  return {
+    type: AccountTypes.ENABLE_EDIT_AVATAR
+  }
+}
+
+export const hideAvatarEditForm = () => {
+  return {
+    type: AccountTypes.DISABLE_EDIT_AVATAR
+  }
+}
+
+export const updateAvatar = (avatar) => {
+  return {
+    type: AccountTypes.UPLOAD_AVATAR,
+    payload: Network().update('auth', {avatar: avatar})
+  }
+}

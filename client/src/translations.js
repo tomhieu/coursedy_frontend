@@ -125,6 +125,7 @@ export const translations = {
     /*
      * Tutor Account Page
      */
+    'update_avatar': 'Thay Đổi Ảnh Đại Diện',
     "account.person.info.title": "Thông tin cá nhân",
     "account.person.info.first.name": "Tên",
     "account.person.info.full_name": "Họ và tên",
