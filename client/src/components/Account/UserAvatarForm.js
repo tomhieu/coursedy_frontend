@@ -7,14 +7,16 @@ import {SERVER_NAME} from "utils/CommonConstant";
 export class UserAvatarForm extends Component {
   setFileContent(file) {
     this.fileContent = file.content
+    this.props.selectAvatar()
   }
 
   submit(){
     this.props.onSubmit(this.fileContent)
+    this.props.deselectAvatar()
   }
 
   render() {
-    const {handleSubmit, user} = this.props;
+    const {handleSubmit, user, avatarSelected} = this.props;
 
     return (
       <form className='block-center-align' onSubmit={handleSubmit(this.submit.bind(this))}>
@@ -29,7 +31,7 @@ export class UserAvatarForm extends Component {
 
         <div className='form-group row'>
           <div className='col-sm-12 mb-5'>
-            <button type="submit" className="btn btn-primary full-width">{this.context.t("save")}</button>
+            <button type="submit" className="btn btn-primary full-width" disabled={!avatarSelected}>{this.context.t("save")}</button>
           </div>
           <div className='col-sm-12'>
             <button type="button" className="btn btn-small cancel-button full-width" onClick={this.props.cancel}>
@@ -48,5 +50,8 @@ UserAvatarForm.contextTypes = {
 
 UserAvatarForm.propTypes = {
   onSubmit: React.PropTypes.func.isRequired,
-  cancel: React.PropTypes.func.isRequired
+  cancel: React.PropTypes.func.isRequired,
+  selectAvatar: React.PropTypes.func.isRequired,
+  deselectAvatar: React.PropTypes.func.isRequired,
+  avatarSelected: React.PropTypes.bool.isRequired
 }

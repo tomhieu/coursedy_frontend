@@ -24,6 +24,7 @@ class DashboardProfileContainer extends Component {
 
   hideEditAvatarForm() {
     this.props.dispatch(AccountActionCreator.hideAvatarEditForm())
+    this.props.dispatch(AccountActionCreator.avatarDeselected())
   }
 
   uploadAvatar(avatar) {
@@ -31,13 +32,21 @@ class DashboardProfileContainer extends Component {
     this.props.dispatch(AccountActionCreator.hideAvatarEditForm())
   }
 
+  avatarSelected() {
+    this.props.dispatch(AccountActionCreator.avatarSelected())
+  }
+
+  avatarDeselected() {
+    this.props.dispatch(AccountActionCreator.avatarDeselected())
+  }
+
   render() {
-    const {user, userBalance, editAvatarMode} = this.props
+    const {user, userBalance, editAvatarMode, avatarSelected} = this.props
     return (
       user ?
         <div className="dashboard-profile text-center">
           <div className="row">
-            {this.renderAvatar(user, editAvatarMode)}
+            {this.renderAvatar(user, editAvatarMode, avatarSelected)}
             <div className="col-sm-12">
               <h4>{user.name}</h4>
             </div>
@@ -48,12 +57,16 @@ class DashboardProfileContainer extends Component {
     )
   }
 
-  renderAvatar(currentUser, editAvatarMode) {
+  renderAvatar(currentUser, editAvatarMode, avatarSelected) {
     if (editAvatarMode) {
       return (
         <div className="col-sm-12">
           <UserAvatarForm onSubmit={this.uploadAvatar.bind(this)}
-                          cancel={this.hideEditAvatarForm.bind(this)} {...this.props}/>
+                          cancel={this.hideEditAvatarForm.bind(this)} {...this.props}
+                          avatarSelected={avatarSelected}
+                          selectAvatar={this.avatarSelected.bind(this)}
+                          deselectAvatar={this.avatarDeselected.bind(this)}
+          />
         </div>
       )
     }
@@ -80,7 +93,8 @@ class DashboardProfileContainer extends Component {
 const mapStateToProps = (state) => ({
   userBalance: state.session.userBalance,
   user: state.AccountReducer.user,
-  editAvatarMode: state.AccountReducer.editAvatarMode
+  editAvatarMode: state.AccountReducer.editAvatarMode,
+  avatarSelected: state.AccountReducer.avatarSelected
 })
 
 DashboardProfileContainer.contextTypes = {

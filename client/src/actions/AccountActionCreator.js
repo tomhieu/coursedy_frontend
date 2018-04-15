@@ -83,3 +83,15 @@ export const updateAvatar = (avatar) => {
     payload: Network().update('auth', {avatar: avatar})
   }
 }
+
+export const avatarSelected = () => {
+  return {
+    type: AccountTypes.AVATAR_SELECTED
+  }
+}
+
+export const avatarDeselected = () => {
+  return {
+    type: AccountTypes.AVATAR_DESELECTED
+  }
+}

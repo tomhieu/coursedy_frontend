@@ -5,7 +5,8 @@ const AccountReducer = (state = {
   showEmailConfirmationModal: false,
   user: {},
   editProfileMode: false,
-  editAvatarMode: false
+  editAvatarMode: false,
+  avatarSelected: false
 }, action) => {
   switch (action.type) {
     case AccountTypes.SET_ACCOUNT_USER:
@@ -24,6 +25,10 @@ const AccountReducer = (state = {
       return {...state, editAvatarMode: false}
     case AccountTypes.UPLOAD_AVATAR + AsyncActions.FULFILLED:
       return {...state, user: action.payload}
+    case AccountTypes.AVATAR_SELECTED:
+      return {...state, avatarSelected: true}
+    case AccountTypes.AVATAR_DESELECTED:
+      return {...state, avatarSelected: false}
     default:
       return state
   }
