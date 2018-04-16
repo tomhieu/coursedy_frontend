@@ -136,7 +136,7 @@ export const translations = {
     "account.person.info.gender": "Giới tính",
     "account.person.info.address": "Địa chỉ",
     "account.person.info.save.btn": "Lưu",
-    "account_tutor_edu_title": "giáo dục",
+    "account_tutor_edu_title": "Chuyên môn",
     "account.tutot.edu.level.title": "Trinh độ học vấn",
     "account.tutot.edu.ocupation": "Nghề nghiệp hiện tại",
     "account.tutor.edu.description": "Giới thiệu",
