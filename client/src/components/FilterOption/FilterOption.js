@@ -1,7 +1,6 @@
 import * as React from "react";
 import {Component} from "react";
 import styles from "./FilterOption.module.scss"
-import {NavigationExpandLess, NavigationExpandMore} from "material-ui/svg-icons/index";
 
 export class FilterOption extends Component {
   constructor() {
@@ -94,7 +93,7 @@ export class FilterOption extends Component {
   }
 
   render() {
-    const {label, type} = this.props
+    const {label, isFirst = false, type} = this.props
     return (
       <div className={styles.filterOptionContainer + " d-flex flex-vertical"} onMouseEnter={() => this.onMouseEnterHandler()} onMouseLeave={() => this.onMouseLeaveHandler()}>
         <div className={styles.filterHeader + " d-flex flex-horizontal justify-content-center align-items-center"}>
@@ -111,7 +110,7 @@ export class FilterOption extends Component {
         </div>
         {
           this.state.show ?
-            <div className={styles.filterContainer} >
+            <div className={isFirst ? styles.firstFilterContainer : styles.filterContainer} >
               <div className="d-flex flex-vertical">
                 {
                   type !== undefined ?
@@ -137,6 +136,7 @@ FilterOption.contextTypes = {
 }
 
 FilterOption.propTypes = {
+  isFirst: React.PropTypes.bool,
   label: React.PropTypes.string.isRequired,
   onSelectFilter: React.PropTypes.func.isRequired
 };

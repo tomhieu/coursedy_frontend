@@ -2974,7 +2974,10 @@ button {
 
 .search-icon {
   width: 25px;
+  min-width: 25px;
   height: 25px;
+  min-height: 25px;
+  margin: 0 15px;
 }
 
 .seperate-filter-line {
@@ -2992,7 +2995,7 @@ button {
 }
 
 .optimize-filters {
-  display: none;
+  display: none ;
 }
 
 @media only screen and (max-width: 768px) {
@@ -3012,6 +3015,7 @@ button {
 
   .optimize-filters {
     display: flex;
+    border-top: 1px solid $color-border;
   }
 
   .seperate-filter-line {
@@ -3030,5 +3034,33 @@ button {
 }
 
 #advanceFilterCollapse {
-  border-top: 1px solid $color-border;
+  padding: 15px 0;
+}
+
+.chip-container.is-active {
+  border: 0 solid $color-bg-chip-active;
+  background-color: $color-bg-chip-active;
+}
+
+.is-active > .delete-icon-chip {
+  background-color: $color-bg-icon-delete-chip;
+}
+
+.basic-filter-container.is-collapsed {
+  overflow: hidden;
+  flex-wrap: wrap;
+  min-height: 36px;
+  max-height: 36px;
+}
+
+.basic-filter-container.is-focused {
+  flex-wrap: wrap;
+}
+
+.filter-selection {
+  white-space: nowrap;
+}
+
+.chip-container {
+  margin: 1px 5px;
 }

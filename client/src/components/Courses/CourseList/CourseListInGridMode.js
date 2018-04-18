@@ -28,7 +28,7 @@ class CourseListInGridMode extends Component {
       '1': 'col-xs-12 col-sm-12 col-md-12'
     }
     return (
-      <div className="d-flex flex-horizontal flex-wrap">
+      <div className="d-flex flex-horizontal flex-wrap justify-content-center">
       {
         this.props.courses.map((item, index) => (
           <div className="d-flex course-item-wrapper" key={'course-' +index}>

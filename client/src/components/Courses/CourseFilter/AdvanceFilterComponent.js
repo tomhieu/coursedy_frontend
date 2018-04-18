@@ -19,6 +19,7 @@ class AdvanceFilterComponent extends Component {
                         })}
                         selectedOptions={selectedWeekDays}
                         onSelectFilter={onSelectFilter}
+                        isFirst={true}
                         type="single-select"
                         name="selectedWeekDays">
           </FilterOption>

@@ -623,7 +623,7 @@ body.application {
   }
 
   .hidden {
-    display: none;
+    display: none !important;
   }
 
   .close {

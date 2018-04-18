@@ -94,7 +94,7 @@ class CourseFilter extends Component {
             </div>
           </div>
 
-          <div className="d-flex flex-auto align-items-center optimize-filters">
+          <div className="optimize-filters flex-auto align-items-center">
             <div className="collapse navbar-collapse justify-content-right" id="advanceFilterCollapse">
               <AdvanceFilterComponent categories={categories}
                                       selectedWeekDays={selectedWeekDays}
