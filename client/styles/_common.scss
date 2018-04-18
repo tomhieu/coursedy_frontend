@@ -1170,16 +1170,6 @@ select[multiple]::-webkit-scrollbar-thumb {
   border-radius: 5px;
 }
 
-.btn-primary {
-  background-color: $md-color-pink;
-  border-color: $md-color-pink;
-}
-
-.btn-primary:hover {
-  background: $primary-color;
-  border-color: $primary-color;
-}
-
 .form-control {
   border-color: $border-color;
   box-shadow: none;
@@ -2405,11 +2395,6 @@ ul.no-margin,
   margin-left: 10px;
 }
 
-.cancel-button {
-  background-color: #C0C0C0;
-  border: none;
-}
-
 .tutor-title {
   margin-top: 5px;
   margin-bottom: 15px;
@@ -2628,14 +2613,6 @@ input[type="url"], input[type="text"], textarea, .form-control {
   color: #000000;
 }
 
-.full-width-input-wrapper, .full-width {
-  width: 100%;
-}
-
-.full-height {
-  height: 100%;
-}
-
 .md-number-field {
   width: 150px;
 }
@@ -2661,36 +2638,6 @@ input[type="url"], input[type="text"], textarea, .form-control {
     letter-spacing: 0.025em;
     display: block;
   }
-}
-
-button {
-  white-space: nowrap;
-  border: 0;
-  outline: 0;
-  display: inline-block;
-  height: 40px;
-  line-height: 40px;
-  padding: 0 14px;
-  box-shadow: 0 4px 6px rgba(50, 50, 93, .11), 0 1px 3px rgba(0, 0, 0, .08);
-  color: #fff;
-  border-radius: 4px;
-  font-size: 15px;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.025em;
-  background-color: #6772e5;
-  text-decoration: none;
-  -webkit-transition: all 150ms ease;
-  transition: all 150ms ease;
-  margin-top: 10px;
-}
-
-button:hover {
-  color: #fff;
-  cursor: pointer;
-  background-color: #7795f8;
-  transform: translateY(-1px);
-  box-shadow: 0 7px 14px rgba(50, 50, 93, .10), 0 3px 6px rgba(0, 0, 0, .08);
 }
 
 .StripeElement {
@@ -2962,10 +2909,6 @@ button {
 
 .modal-content {
   border: none;
-}
-
-.dark-picker.dark-picker-bright {
-  padding-top: 10px;
 }
 
 .course-title input {

@@ -6,6 +6,7 @@ import {connect} from "react-redux";
 import PersonInfoContainer from "../PersonInfoContainer";
 import Certificate from "./Certificate";
 import {UserInfo} from 'components/index'
+
 import { 
   AccountActions,
   TutorAccountActions
@@ -16,49 +17,44 @@ import {
 } from '../../../components/index'
 
 class TutorAccount extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      editProfileMode: false,
-      editEducationMode: false,
-      showEmailConfirmationModal: false
-    }
-  }
-
   componentWillMount(){
-    this.props.dispatch(TutorAccountActions.fetchUser())
+    this.props.dispatch(AccountActions.fetchUser())
     this.props.dispatch(TutorAccountActions.loadListSkillData())
   }
 
   showProfileEditForm(){
-    this.setState({ editProfileMode: true })
+    this.props.dispatch(AccountActions.showAccountEditForm())
   }
 
   showEducationEditForm(){
-    this.setState({ editEducationMode: true })
+    this.props.dispatch(TutorAccountActions.showEducationEditForm())
   }
 
   hideProfileEditForm(){
-    this.setState({ editProfileMode: false })
+    this.props.dispatch(AccountActions.hideAccountEditForm())
   }
 
   hideEducationEditForm(){
-    this.setState({ editEducationMode: false })
+    this.props.dispatch(TutorAccountActions.hideEducationEditForm())
   }
 
   closeEmailConfirmationModal(){
-    this.props.dispatch(AccountActions.closeEmailConfirmationModal())
+    this.props.dispatch(AccountActions.hideEmailChangedPopup())
+  }
+
+  showEmailConfirmationModal() {
+    this.props.dispatch(AccountActions.showEmailChangedPopup())
   }
 
   render() {
     const {editPasswordMode, user, tutor} = this.props
-    const {editProfileMode, editEducationMode} = this.state
+    const {editProfileMode, editEducationMode} = this.props
     return (
       <div className="row">
         <div className="col-md-12 col-xs-12 col-sm-12 ">
           <div className="dashboard-content-section">
             {
-              editProfileMode ? 
+              editProfileMode ?
                 <PersonInfoContainer cancel={this.hideProfileEditForm.bind(this)} /> :
                 <UserInfo user={user} showEditForm={this.showProfileEditForm.bind(this)}/>
             }
@@ -68,7 +64,7 @@ class TutorAccount extends Component {
         <div className="col-md-12 col-xs-12 col-sm-12">
           <div className="dashboard-content-section">
             {
-              editEducationMode ? 
+              editEducationMode ?
                 <TutorEducation tutor={tutor} cancel={this.hideEducationEditForm.bind(this)}/> :
                 <TutorEducationDetailComponent tutor={tutor} showEditForm={this.showEducationEditForm.bind(this)}/>
             }
@@ -86,7 +82,9 @@ class TutorAccount extends Component {
             <ChangePasswordContainer/>
           </div>
         </div>
-        <RequireEmailConfirmationModal close={this.closeEmailConfirmationModal.bind(this)} show={this.props.showEmailConfirmationModal}/>
+        <div className="col-md-12 col-xs-12 col-sm-12">
+          <RequireEmailConfirmationModal close={this.closeEmailConfirmationModal.bind(this)} show={this.props.showEmailConfirmationModal}/>
+        </div>
       </div>
     )
   }
@@ -98,9 +96,11 @@ TutorAccount.contextTypes = {
 
 const mapStateToProps = (state) => ({
   editPasswordMode: state.AccountReducer.editPasswordMode,
-  showEmailConfirmationModal: state.AccountReducer.showEmailConfirmationModal,
   user: state.AccountReducer.user,
-  tutor: state.TutorAccountReducer.tutor
+  tutor: state.TutorAccountReducer.tutor,
+  editProfileMode: state.AccountReducer.editProfileMode,
+  editEducationMode: state.TutorAccountReducer.editEducationMode,
+  showEmailConfirmationModal: state.AccountReducer.showEmailConfirmationModal
 });
 
 export default connect(

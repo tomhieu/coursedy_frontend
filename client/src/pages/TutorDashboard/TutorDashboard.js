@@ -15,31 +15,19 @@ import TutorAccount from "../../containers/Account/Tutor/TutorAccountContainer";
 import * as sessionActions from '../../actions/SessionActionCreator'
 
 class TutorDashboard extends RoleAuthorization {
-  constructor(props) {
-    super(props)
-    this.authorizedRoles = ['teacher']
-    this.unauthorizedPath = '/'
-  }
-
-  signOut(e) {
-    e.preventDefault()
-    this.props.dispatch(sessionActions.signOutUser())
-  }
-
   render() {
     if (this.props.fetchingUser) return null
 
     return (
       <div className="dashboard-section">
         <div className="row">
-          <div className="col-xs-12 col-sm-4 left-panel" id="sidebar">
+          <div className="col-xs-12 col-sm-3 left-panel" id="sidebar">
             <div className="panel-group dashboard-menu" id="accordion">
               <TutorContainers.DashboardProfileContainer/>
-              <TutorDashboardMenu 
-                signOut={this.signOut.bind(this)}/>
+              <TutorDashboardMenu />
             </div>
           </div>
-          <div className="col-xs-12 col-sm-8 d-flex">
+          <div className="col-xs-12 col-sm-9 d-flex">
             <switch>
               <Route exact path="/dashboard/account" component={TutorAccount}/>
               <Route exact path="/dashboard/courses/list" component={ListTutorCourseContainer}/>

@@ -39,20 +39,6 @@ class TutorEducation extends Component {
                          isMandatoryField={true} formControlName="description" typeField="custom_textarea"/>
             </div>
 
-            {/*<div>*/}
-              {/*<ListUploadedDegrees degrees={degrees} download={(fileId) => this.doDownload(fileId)}*/}
-                                   {/*delete={(fileId) => this.doDeleteUploadedFile(fileId)}/>*/}
-            {/*</div>*/}
-            {/*<div>*/}
-              {/*<div className={styles.dropzoneEduContainer}>*/}
-                {/*<FormField formGroupId="degreesId" formLabel={this.context.t("account.tutot.edu.degree.title")}*/}
-                           {/*onUpload={this.doUploadFile.bind(this)} isMandatoryField={false} formControlName="degrees"*/}
-                           {/*typeField="upload_file"/>*/}
-                {/*<div className="d-flex flex-vertical ml-15 mr-15">*/}
-                  {/*{uploadFiles.map(file => renderPreviewFile(file, this.doDeleteNewUploadFile.bind(this)))}*/}
-                {/*</div>*/}
-              {/*</div>*/}
-            {/*</div>*/}
             <div>
               <FormField fieldId="skillsId" fieldLabel={this.context.t("account_tutor_skill_title")}
                          options={skillSet} formControlName="categories" typeField="multi_select"/>
@@ -109,7 +95,7 @@ const mapStateToProps = state => {
   const {EducationData, addNewDocumentFile} = state;
   const {degrees, skillSet} = EducationData;
   const {uploadFiles} = addNewDocumentFile;
-  const tutor = state.TutorAccount.tutor
+  const tutor = state.TutorAccountReducer.tutor
   const skills = tutor.categories.map((t) => {
     return t.id
   })

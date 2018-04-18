@@ -125,6 +125,7 @@ export const translations = {
     /*
      * Tutor Account Page
      */
+    'update_avatar': 'Thay Đổi Ảnh Đại Diện',
     "account.person.info.title": "Thông tin cá nhân",
     "account.person.info.first.name": "Tên",
     "account.person.info.full_name": "Họ và tên",
@@ -135,7 +136,7 @@ export const translations = {
     "account.person.info.gender": "Giới tính",
     "account.person.info.address": "Địa chỉ",
     "account.person.info.save.btn": "Lưu",
-    "account_tutor_edu_title": "giáo dục",
+    "account_tutor_edu_title": "Chuyên môn",
     "account.tutot.edu.level.title": "Trinh độ học vấn",
     "account.tutot.edu.ocupation": "Nghề nghiệp hiện tại",
     "account.tutor.edu.description": "Giới thiệu",
@@ -154,7 +155,7 @@ export const translations = {
     "account_tutor_current_password_title": "Mật khẩu hiện tại",
     "account_tutor_new_password_title": "Mật khẩu mới",
     "account_tutor_new_password_again_title": "Nhập lại mật khẩu mới",
-    "account_tutor_new_password_btn": "Đổi mật khẩu",
+    "account_tutor_new_password_btn": "Đổi Mật Khẩu",
     "drag_and_drop": "Kéo thả tập tin vào đây",
     "speciality": "Chuyên môn",
     "save": "Lưu",
@@ -166,6 +167,8 @@ export const translations = {
     'gender.F': 'Nữ',
     "search_course": "Từ khoá tìm kiếm",
     "view_details_lesson": "Xem bài học",
+    'update_password': "Thay đổi mật khẩu",
+    'update_password_success': "Mật khẩu đã được cập nhật thành công.",
 
     /*
      * Section Page

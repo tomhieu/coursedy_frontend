@@ -1,7 +1,7 @@
 import { TutorAccountTypes } from '../../constants/index';
 
 const TutorAccountReducer = (state = {
-  tutor: {degrees: [], categories: [], districts: []}
+  tutor: {degrees: [], categories: [], districts: [], editEducationMode: false}
 }, action) => {
   switch (action.type) {
     case TutorAccountTypes.UPDATE_TUTOR_EDU:
