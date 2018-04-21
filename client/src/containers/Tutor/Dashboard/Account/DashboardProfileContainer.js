@@ -11,6 +11,7 @@ import {reduxForm} from "redux-form";
 import {validate} from "../../../../validations/ChangePasswordFormValidator";
 import defaultAvatar from '../../../../../images/default_avatar.png'
 import {SERVER_NAME} from "utils/CommonConstant";
+import {Modal, ModalHeader, Button, ModalBody, ModalFooter} from 'reactstrap';
 
 class DashboardProfileContainer extends Component {
   componentWillMount() {
@@ -58,19 +59,6 @@ class DashboardProfileContainer extends Component {
   }
 
   renderAvatar(currentUser, editAvatarMode, avatarSelected) {
-    if (editAvatarMode) {
-      return (
-        <div className="col-sm-12">
-          <UserAvatarForm onSubmit={this.uploadAvatar.bind(this)}
-                          cancel={this.hideEditAvatarForm.bind(this)} {...this.props}
-                          avatarSelected={avatarSelected}
-                          selectAvatar={this.avatarSelected.bind(this)}
-                          deselectAvatar={this.avatarDeselected.bind(this)}
-          />
-        </div>
-      )
-    }
-
     return (
       <div className="col-sm-12 mb-15 avatar-container">
         <figure className="imghvr-zoom-in">
@@ -85,6 +73,16 @@ class DashboardProfileContainer extends Component {
             <span className='ml-10'>{this.context.t('update_avatar')}</span>
           </span>
         </span>
+        <Modal isOpen={editAvatarMode} onClosed={this.hideEditAvatarForm.bind(this)}>
+          <ModalBody>
+            <UserAvatarForm onSubmit={this.uploadAvatar.bind(this)}
+                            cancel={this.hideEditAvatarForm.bind(this)} {...this.props}
+                            avatarSelected={avatarSelected}
+                            selectAvatar={this.avatarSelected.bind(this)}
+                            deselectAvatar={this.avatarDeselected.bind(this)}
+            />
+          </ModalBody>
+        </Modal>
       </div>
     )
   }

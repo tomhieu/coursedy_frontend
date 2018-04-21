@@ -289,7 +289,12 @@ class avatarInput extends Component {
       crop={this._crop.bind(this)}
       checkCrossOrigin={false}
       movable={true}
+      zoomable={true}
       center={true}
+      responsive={true}
+      scalable={true}
+      zoomable={true}
+      responsive={true}
     />
 
     return (
