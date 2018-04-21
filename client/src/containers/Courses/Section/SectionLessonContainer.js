@@ -3,8 +3,7 @@ import {Component} from "react";
 import * as LessonActions from "../../../actions/LessonActionCreator";
 import * as CourseActions from "../../../actions/CourseFormActionCreator";
 import {connect} from "react-redux";
-import {Card, CardHeader, CardText} from "material-ui/Card";
-import {CardActions, CardContent, FlatButton} from "material-ui";
+import {CardContent, FlatButton} from "material-ui";
 import cssModules from "react-css-modules";
 import styles from "./SectionDetail.module.scss";
 import LessonDetailFormContainer from "../Lesson/LessonDetailFormContainer";
@@ -13,16 +12,19 @@ import EditLessonFormContainer from "../Lesson/EditLessonFormContainer";
 import {ActionDelete, ContentAddCircle} from "material-ui/svg-icons/index";
 import {mStyles} from "../../../utils/CustomStylesUtil";
 import LoadingMask from "../../../components/LoadingMask/LoadingMask";
-import * as asyncActs from "actions/AsyncActionCreator";
 import {
-  CREATE_UPDATE_SECTION, DELETE_SECTION, FETCH_LIST_SECTION,
+  CREATE_UPDATE_SECTION,
+  DELETE_SECTION,
+  FETCH_LIST_SECTION,
   SAVE_LESSON
 } from "../../../actions/AsyncActionCreator";
 import Network from "utils/network";
 import * as WebConstants from "../../../constants/WebConstants";
 
 class SectionLessonContainer extends Component {
-
+  componentWillReceiveProps(nextProps) {
+    console.log(nextProps.section);
+  }
   addLesson(sectionId) {
     this.props.addLesson(sectionId);
   }
@@ -103,10 +105,13 @@ class SectionLessonContainer extends Component {
                           icon={<ActionDelete color="#000000" />}/>
             </div>
           </div>
-          <EditLessonFormContainer show={showPopupEdit}
-                                   hidePopup={this.hideLessonPopup.bind(this)}
-                                   onSubmit={this.saveLesson.bind(this)}
-                                   {...this.props}/>
+          {
+            showPopupEdit ? <EditLessonFormContainer show={showPopupEdit}
+                                                     hidePopup={this.hideLessonPopup.bind(this)}
+                                                     onSubmit={this.saveLesson.bind(this)}
+                                                     {...this.props}/> : null
+          }
+
         </div>
       </LoadingMask>
     )

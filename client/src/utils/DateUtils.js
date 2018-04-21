@@ -1,5 +1,4 @@
 import moment from "moment";
-import {HOURS_IN_DAY} from "actions/CourseFormActionCreator";
 import {TT} from "utils/locale";
 
 class DateUtils {

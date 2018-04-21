@@ -8,18 +8,22 @@ import {connect} from "react-redux";
 import {validate} from '../../../validations/LessonFormValidator';
 import * as React from "react";
 import * as CourseActions from "actions/CourseFormActionCreator";
-import {DELETE_LESSON} from "../../../actions/AsyncActionCreator";
+import {
+  ADD_DOCUMENT,
+  ADD_DOCUMENT_FOR_LESSON, DELETE_DOCUMENT, DELETE_DOCUMENT_FOR_LESSON,
+  DELETE_LESSON
+} from "../../../actions/AsyncActionCreator";
 import Network from "utils/network";
 
 class LessonDetailFormContainer extends Component {
   addDocumentForLesson(document) {
     const {lesson} = this.props;
-    this.props.dispatch(LessonActions.addDocumentForLesson(lesson.course_section_id, lesson.id, document))
+    this.props.addDocument(lesson.course_section_id, lesson.id, document);
   }
 
   onDeleteDocumentLesson(documentId) {
     const {lesson} = this.props;
-    this.props.dispatch(LessonActions.deleteDocumentForLesson(lesson.course_section_id, lesson.id, documentId))
+    this.props.deleteDocument(lesson.course_section_id, lesson.id, documentId);
   }
 
   onDeleteLesson(lessonId) {
@@ -116,6 +120,24 @@ const mapDispatchToProps = (dispatch) => ({
   deleteLesson: (lessonId, sectionId) => dispatch({
     type: DELETE_LESSON,
     payload: Network().delete('lessons/' + lessonId),
+    meta: 'sectionLessonPlaceholder' + sectionId
+  }),
+  addDocument: (sectionId, lessonId, document) => dispatch({
+    type: ADD_DOCUMENT,
+    payload: Network().post('documents', {lesson_id: lessonId, item: document.content, name: document.fileName})
+      .then((res) => dispatch({
+        type: ADD_DOCUMENT_FOR_LESSON,
+        data: {sectionId: sectionId, lessonId: lessonId, document: res}
+      })),
+    meta: 'sectionLessonPlaceholder' + sectionId
+  }),
+  deleteDocument: (sectionId, lessonId, documentId) => dispatch({
+    type: DELETE_DOCUMENT,
+    payload: Network().delete('documents/' + documentId).then((res) =>
+      dispatch({
+      type: DELETE_DOCUMENT_FOR_LESSON,
+      data: {sectionId: sectionId, lessonId: lessonId, documentId: res.id}
+    })),
     meta: 'sectionLessonPlaceholder' + sectionId
   })
 });

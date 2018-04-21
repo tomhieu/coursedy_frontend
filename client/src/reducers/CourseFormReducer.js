@@ -142,7 +142,7 @@ const courseDetails = (state = {
       return Object.assign({}, state, {listSection: currentSectionList});
     case asyncActions.DELETE_LESSON + asyncActions.FULFILLED:
       let [impactedSection] = currentSectionList.filter(section => {
-        return section.lessons.filter((lesson) => lesson.id === action.payload.id)
+        return section.lessons.filter((lesson) => lesson.id === action.payload.id).length > 0
       });
       impactedSection = Object.assign({}, impactedSection, {lessons: impactedSection.lessons.filter(lesson => lesson.id != action.payload.id)});
       const impactSectionIndex = currentSectionList.findIndex((section) => section.id === impactedSection.id);
@@ -152,7 +152,7 @@ const courseDetails = (state = {
     case asyncActions.DELETE_DOCUMENT_FOR_LESSON:
       let [modifySection] = currentSectionList.filter(session => session.id === action.data.sectionId);
       let [modifyLesson] = modifySection.lessons.filter(lesson => lesson.id === action.data.lessonId);
-      if (action.type === asyncActions.ADD_DOCUMENT_FOR_LESSON) {
+      if (action.type.indexOf(asyncActions.ADD_DOCUMENT_FOR_LESSON) >= 0) {
         modifyLesson.documents.push(action.data.document);
       } else {
         modifyLesson.documents.splice(modifyLesson.documents.findIndex(doc => doc.id === action.data.documentId), 1);
