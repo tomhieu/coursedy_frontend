@@ -105,6 +105,8 @@ export const translations = {
     'course_periode_type': 'buổi học',
     'course_comments': 'Bình luận',
     'course_comment_content': 'Nội dung bình luận',
+    'number_of_comment': '{numOfComment} bình luận',
+    'no_comment': 'Không bình luận',
     /*
      * Lesson Page
      */

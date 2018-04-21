@@ -21,7 +21,7 @@ class CourseListInListMode extends Component {
       followedCourses
     } = this.props;
     return (
-        <div className={styles.courseListContainer + " row"}>
+        <div className="course-list-item-wrapper row alt">
         {
           this.props.courses.map((item, index) => (
             <div className="col-xs-12 col-sm-12 col-md-12" key={'course-' +index}>

@@ -76,7 +76,7 @@ export const DELETE_DOCUMENT = 'DELETE_DOCUMENT';
  * @type {string}
  */
 export const FETCH_TUTOR_COURSES = 'FETCH_TUTOR_COURSES';
-export const FETCH_TUTOR_COURSES_FAIL = 'FETCH_TUTOR_COURSES_FAIL';
+export const DELETE_COURSE = 'DELETE_COURSE';
 
 /**
  * Define actions of Tutor
@@ -123,3 +123,10 @@ export const TOP_TEACHERS = "TOP_TEACHERS";
  */
 export const FETCH_USER_BALANCE = "FETCH_USER_BALANCE"
 export const FETCH_PAYMENT_HISTORY = "FETCH_PAYMENT_HISTORY"
+
+
+/**
+ * Define actions of login/register
+ */
+export const LOGIN = "LOGIN"
+export const REGISTER = "REGISTER"

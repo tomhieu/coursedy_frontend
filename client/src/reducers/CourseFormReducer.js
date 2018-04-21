@@ -104,8 +104,13 @@ const courseDetails = (state = {
       let deletedSectionList = currentSectionList.filter((section) => section.id != action.payload.id);
       return Object.assign({}, state, {listSection: deletedSectionList});
     case asyncActions.CREATE_UPDATE_SECTION + asyncActions.FULFILLED:
-      currentSectionList.push(action.payload);
-      return Object.assign({}, state, {listSection: currentSectionList, showSectionPopup: false});
+      const updatedSectionIndex = currentSectionList.findIndex((section) => section.id === action.payload.id);
+      if (updatedSectionIndex >= 0) {
+        currentSectionList.splice(updatedSectionIndex, 1, action.payload);
+      } else {
+        currentSectionList.push(action.payload);
+      }
+      return Object.assign({}, state, {listSection: currentSectionList, showSectionPopup: false, activatedField: []});
     /**
      * handle ansync actions of Lesson
      */

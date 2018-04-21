@@ -8,6 +8,8 @@ import {connect} from "react-redux";
 import {validate} from '../../../validations/LessonFormValidator';
 import * as React from "react";
 import * as CourseActions from "actions/CourseFormActionCreator";
+import {DELETE_LESSON} from "../../../actions/AsyncActionCreator";
+import Network from "utils/network";
 
 class LessonDetailFormContainer extends Component {
   addDocumentForLesson(document) {
@@ -21,7 +23,7 @@ class LessonDetailFormContainer extends Component {
   }
 
   onDeleteLesson(lessonId) {
-    this.props.dispatch(LessonActions.deleteLesson(lessonId));
+    this.props.deleteLesson(lessonId, this.props.lesson.course_section_id);
   }
 
   onClosedField(fieldIds) {
@@ -110,8 +112,16 @@ const mapStateToProps = (state, props) => {
   return {initialValues: initialValues};
 };
 
+const mapDispatchToProps = (dispatch) => ({
+  deleteLesson: (lessonId, sectionId) => dispatch({
+    type: DELETE_LESSON,
+    payload: Network().delete('lessons/' + lessonId),
+    meta: 'sectionLessonPlaceholder' + sectionId
+  })
+});
+
 export default connect(
-  mapStateToProps
+  mapStateToProps, mapDispatchToProps
 )(reduxForm({
   form: 'lessonEditForm',
   fields: ['title', 'period', 'description'],

@@ -8,7 +8,7 @@ class RoleAuthorization extends Component {
         // const authorized = this.authorizedRoles.map((role) => this.props.currentUser.roles.indexOf(role) >= 0).reduce((x, y) => x || y);
         // if (!authorized) globalHistory.replace(this.unauthorizedPath);
     } else {
-        this.props.dispatch(Actions.checkRole(this.authorizedRoles, this.unauthorizedPath));
+        //this.props.dispatch(Actions.checkRole(this.authorizedRoles, this.unauthorizedPath));
     }
   }
 }

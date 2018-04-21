@@ -111,14 +111,6 @@ export const updateCourse = (id, title, description, start_date, period,
   }
 }
 
-export const deleteCourse = (course_id) => {
-  return dispatch => {
-    Network().delete('courses/' + course_id).then(() => {
-      dispatch(fetchListTutorCourse());
-    })
-  }
-}
-
 export const loadCourseDetail = (courseId) => {
   return dispatch => {
     dispatch({
@@ -181,13 +173,6 @@ export const addNewSection = () => {
 export const closePopupSection = () => {
   return {
     type: CLOSE_POPUP_ADD_SECTION
-  }
-}
-
-export const saveOrUpdateSection = (id, title) => {
-  return {
-    type: CREATE_UPDATE_SECTION,
-    payload: Network().post('course_sections', {course_id: id, title})
   }
 }
 

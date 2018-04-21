@@ -85,10 +85,10 @@ class CourseFilter extends Component {
                 </div>
               </div>
               <div className="st-border-left advanced-filter-btn">
-                <a class="navbar-toggler" data-toggle="collapse"
+                <a className="navbar-toggler" data-toggle="collapse"
                    data-target="#advanceFilterCollapse" aria-controls="advanceFilterCollapse"
                    aria-expanded="false" aria-label="Toggle navigation">
-                  <span class="navbar-toggler-icon">{this.context.t('filter_more')}</span>
+                  <span className="navbar-toggler-icon">{this.context.t('filter_more')}</span>
                 </a>
               </div>
             </div>
@@ -118,7 +118,7 @@ class CourseFilter extends Component {
                 <div className={styles.orderBtn}>
                   <FormField fieldId="order_by_id" showLabel={false} fieldLabel={this.context.t("order_list")}
                              options={orderList} formControlName="order_by"
-                             onChange={reloadCourseList}
+                             onChange={() => reloadCourseList()}
                              typeField="custom_select">
                   </FormField>
                 </div>

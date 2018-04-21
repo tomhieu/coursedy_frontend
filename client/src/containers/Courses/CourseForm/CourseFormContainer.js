@@ -11,6 +11,10 @@ import SimpleDialogComponent from "../../../components/Core/SimpleDialogComponen
 import SectionCreationPopupContainer from "../Section/SectionCreationPopupContainer";
 import SectionLessonContainer from "../Section/SectionLessonContainer";
 import LoadingMask from "../../../components/LoadingMask/LoadingMask";
+import {FETCH_DETAIL_COURSE} from "../../../actions/AsyncActionCreator";
+import {FETCH_LIST_SECTION} from "../../../actions/AsyncActionCreator";
+import Network from "utils/network";
+import {CREATE_UPDATE_SECTION} from "../../../actions/AsyncActionCreator";
 
 class CourseFormContainer extends Component {
   constructor(props) {
@@ -18,40 +22,38 @@ class CourseFormContainer extends Component {
     this.courseId = this.props.match.params.id;
   }
 
-
   componentWillMount() {
     if (this.courseId) {
-      this.props.dispatch(CourseActions.loadCourseDetail(this.courseId));
+      this.props.loadCourseDetails(this.courseId);
+      this.props.loadSectionDetails(this.courseId);
     } else {
-      this.props.dispatch(CourseActions.createNewCourse());
+      this.props.createNewCourse();
     }
-    this.props.dispatch(ReferenceActions.fetchCourseCategories())
+    this.props.fetchCourseCategories();
   }
 
   addNewSection() {
-    this.props.dispatch(CourseActions.addNewSection());
+    this.props.addNewSection();
   }
 
   validateBeforePublishCourse() {
-    this.props.dispatch(CourseActions.validateBeforePublishCCourse());
+    this.props.validateBeforePublishCCourse();
   }
 
   publishCourse() {
-    this.props.dispatch(CourseActions.publishCourse(this.courseId));
+    this.props.doPublishCourse(this.courseId);
   }
 
-  canclePublishCourse() {
-    this.props.dispatch({
-      type: AsynActions.CANCEL_PUBLISH_COURSE
-    });
+  cancelPublishCourse() {
+    this.props.cancelPublishCourse();
   }
 
   saveSection({title}) {
-    this.props.dispatch(CourseActions.saveOrUpdateSection(this.courseId, title, name));
+    this.props.saveOrUpdateSection(this.courseId, title, name);
   }
 
   cancelPopup() {
-    this.props.dispatch({type: AsynActions.CLOSE_COURSE_POPUP});
+    this.props.cancelCoursePopup();
     this.context.router.history.push('/dashboard/courses/list/');
   }
 
@@ -59,9 +61,12 @@ class CourseFormContainer extends Component {
     const {editMode, listSection, courseTitle, createCourseSucess, publishCourse, isFetching} = this.props;
 
     return (
-      <div className="row dashboard-panel">
+      <div className="row dashboard-panel course-details-container">
         <div className="col-sm-12 col-md-12">
-          <LoadingMask belongingActions={[AsynActions.CREATE_NEW_COURSE, AsynActions.UPDATE_COURSE, AsynActions.FETCH_DETAIL_COURSE, AsynActions.FETCH_CATEGORIES]}>
+          <LoadingMask placeholderId="courseDetailPlaceholder"
+                       normalPlaceholder={false}
+                       facebookPlaceholder={true}
+                       loaderType="COURSE_DETAILS_PLACEHOLDER">
             {
               !isFetching ? (
                 <div className="container">
@@ -102,16 +107,27 @@ class CourseFormContainer extends Component {
                     </div>
                   </div>
                 </div>
-                <div className="col-sm-12 col-md-12">
-                  {
-                    listSection.map((section) =>
-                      <SectionLessonContainer
-                        section={section}
-                        key={'__section__' + section.id}
-                        showPopupEdit={section.showLessonPopup}
-                        {...this.props}>
-                      </SectionLessonContainer>)
-                  }
+                <div className="col-md-12 col-sm-12">
+                  <LoadingMask placeholderId="listLessonDetailPlaceholder"
+                               normalPlaceholder={false}
+                               facebookPlaceholder={true}
+                               loaderType="LESSON_DETAILS_PLACEHOLDER"
+                               repeatTime={2}>
+                    <div className="row flex-g1">
+                      {
+                        listSection.map((section) =>
+                          <div className="col-sm-12 col-md-12 mb-3">
+                            <SectionLessonContainer
+                              section={section}
+                              key={'__section__' + section.id}
+                              showPopupEdit={section.showLessonPopup}
+                              {...this.props}>
+                            </SectionLessonContainer>
+                          </div>
+                        )
+                      }
+                    </div>
+                  </LoadingMask>
                 </div>
                 <SectionCreationPopupContainer courseId={this.courseId} onSubmit={this.saveSection.bind(this)}>
                 </SectionCreationPopupContainer>
@@ -119,7 +135,7 @@ class CourseFormContainer extends Component {
               <SimpleDialogComponent title={this.context.t('popup_warning_publish_course_title')}
                                      show={publishCourse}
                                      acceptBtn={this.context.t("course_publish")}
-                                     cancelCallback={this.canclePublishCourse.bind(this)}
+                                     cancelCallback={this.cancelPublishCourse.bind(this)}
                                      acceptCallback={this.publishCourse.bind(this)}>
                 <div className="d-flex flex-vertical">
                   <span>{this.context.t('popup_warning_publish_course_message_1', {course_title: courseTitle})}</span>
@@ -157,6 +173,31 @@ const mapStateToProps = (state) => {
   };
 };
 
+const mapDispatchToProps = (dispatch) => ({
+  loadCourseDetails: (courseId) => dispatch({
+    type: FETCH_DETAIL_COURSE,
+    payload: Network().get(/courses/ + courseId),
+    meta: 'courseDetailPlaceholder'
+  }),
+  loadSectionDetails: (courseId) => dispatch({
+    type: FETCH_LIST_SECTION,
+    payload: Network().get('/course_sections?course_id=' + courseId),
+    meta: 'listLessonDetailPlaceholder'
+  }),
+  saveOrUpdateSection: (courseId, title, name) => dispatch({
+    type: CREATE_UPDATE_SECTION,
+    payload: Network().post('course_sections', {course_id: courseId, title}),
+    meta: 'lessonDetailPlaceholder'
+  }),
+  fetchCourseCategories: () => dispatch(ReferenceActions.fetchCourseCategories()),
+  createNewCourse: () => dispatch(CourseActions.createNewCourse()),
+  addNewSection: () => dispatch(CourseActions.addNewSection()),
+  validateBeforePublishCCourse: () => dispatch(CourseActions.validateBeforePublishCCourse()),
+  doPublishCourse: (courseId) => dispatch(CourseActions.publishCourse(courseId)),
+  cancelPublishCourse: () => dispatch({type: AsynActions.CANCEL_PUBLISH_COURSE}),
+  cancelCoursePopup: () => dispatch({type: AsynActions.CLOSE_COURSE_POPUP})
+});
+
 export default connect(
-  mapStateToProps
+  mapStateToProps, mapDispatchToProps
 )(CourseFormContainer);

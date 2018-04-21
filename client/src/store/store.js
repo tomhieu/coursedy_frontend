@@ -7,6 +7,10 @@ import rootReducer from '../reducers/index';
 import initialState from './initialState';
 import {createLogger} from 'redux-logger'
 import * as asyncActions from "actions/AsyncActionCreator";
+import {globalHistory} from '../utils/globalHistory'
+import {TT} from "utils/locale";
+import {LOGIN_FAILED} from "../constants/LoginComponent";
+import {setCurrentUser} from "../actions/SessionActionCreator";
 
 /* Commonly used middlewares and enhancers */
 /* See: http://redux.js.org/docs/advanced/Middleware.html*/
@@ -50,22 +54,39 @@ const loadingHandler = store => next => action => {
   if (pendingIndex >= 0) {
     store.dispatch({
       type: asyncActions.ADD_ASYNC_ACTION,
-      action: action.type.substr(0, pendingIndex)
+      action: action.meta
     });
   } else if (fulfillIndex >= 0 || rejectIndex >= 0) {
     setTimeout(() => {
       store.dispatch({
         type: asyncActions.REMOVE_ASYNC_ACTION,
-        action: action.type.substr(0, pendingIndex)
+        action: action.meta
       })
-    }, 1000);
+    }, 200);
 
   }
   return next(action);
 }
 
+const authorizeHandler = store => next => action => {
+  if (action.type === asyncActions.LOGIN + asyncActions.FULFILLED) {
+    store.dispatch(setCurrentUser(() => {
+      globalHistory.push('home');
+    }))
+  } else if (action.type === asyncActions.LOGIN + asyncActions.REJECTED) {
+    const error_messages = (errors && errors.constructor == Array && errors.length > 0) ?
+      errors : [TT.t('email_or_password_incorrect')]
+
+    store.dispatch({
+      type: LOGIN_FAILED,
+      payload: { errors: error_messages }
+    })
+  }
+  return next(action);
+}
+
 const composedEnhancers = compose(
-  applyMiddleware(...middlewares, createLogger(), drivingResponseHandler, loadingHandler),
+  applyMiddleware(...middlewares, createLogger(), drivingResponseHandler, loadingHandler, authorizeHandler),
   ...enhancers
 );
 

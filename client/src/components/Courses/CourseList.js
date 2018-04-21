@@ -5,6 +5,7 @@ import { CourseItem } from '../index';
 import CourseListInListMode from './CourseList/CourseListInListMode'
 import CourseListInGridMode from './CourseList/CourseListInGridMode'
 import {TT} from "utils/locale";
+import LoadingMask from "../LoadingMask/LoadingMask";
 
 
 /**

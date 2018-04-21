@@ -14,42 +14,48 @@ import {ActionDelete, ContentAddCircle} from "material-ui/svg-icons/index";
 import {mStyles} from "../../../utils/CustomStylesUtil";
 import LoadingMask from "../../../components/LoadingMask/LoadingMask";
 import * as asyncActs from "actions/AsyncActionCreator";
+import {
+  CREATE_UPDATE_SECTION, DELETE_SECTION, FETCH_LIST_SECTION,
+  SAVE_LESSON
+} from "../../../actions/AsyncActionCreator";
+import Network from "utils/network";
+import * as WebConstants from "../../../constants/WebConstants";
 
 class SectionLessonContainer extends Component {
 
   addLesson(sectionId) {
-    this.props.dispatch(LessonActions.addLesson(sectionId));
+    this.props.addLesson(sectionId);
   }
 
   saveLesson(lesson) {
     lesson.course_id = this.props.section.course_id;
     lesson.course_section_id = this.props.section.id;
-    this.props.dispatch(LessonActions.saveOrUpdateLesson(lesson));
+    this.props.saveOrUpdateLesson(lesson);
   }
 
   hideLessonPopup() {
-    this.props.dispatch(LessonActions.hideLessonDetailPopup(this.props.section.id))
+    this.props.hideLessonDetailPopup(this.props.section.id);
   }
 
   saveSection({title}) {
-    this.props.dispatch(CourseActions.saveOrUpdateSection(this.props.section.id, title));
+    this.props.saveOrUpdateSection(this.props.section.id, title);
   }
 
   deleteSection(id) {
-    this.props.dispatch(CourseActions.deleteSection(id));
+    this.props.deleteSection(id);
   }
 
   onActivatedField(fieldIds) {
-    this.props.dispatch(CourseActions.activatedEditField(fieldIds));
+    this.props.activatedEditField(fieldIds);
   }
 
   render() {
     const {section, showPopupEdit = false, activatedField} = this.props;
     return (
-      <LoadingMask key={'__section__' + section.id}
-                   belongingActions={[asyncActs.ADD_DOCUMENT, asyncActs.ADD_MORE_LESSON_FOR_SECTION,
-                     asyncActs.DELETE_DOCUMENT, asyncActs.DELETE_LESSON, asyncActs.SAVE_LESSON,
-                     asyncActs.DELETE_SECTION, asyncActs.CREATE_UPDATE_SECTION]}>
+      <LoadingMask placeholderId={"sectionLessonPlaceholder" + section.id}
+                   normalPlaceholder={false}
+                   facebookPlaceholder={true}
+                   loaderType={WebConstants.LESSON_DETAILS_PLACEHOLDER}>
         <div className="d-flex flex-auto lesson-container">
           <div className="card flex-auto">
             <div className="card-header" id="headingOne">
@@ -64,7 +70,7 @@ class SectionLessonContainer extends Component {
                   section.lessons.length > 0 ?
                     (
                       <div className="d-flex flex-auto justify-content-right align-items-center">
-                        <span className="section-title" data-toggle="collapse" data-target="#collapseLesson" aria-expanded="true" aria-controls="collapseLesson">
+                        <span className="section-title" data-toggle="collapse" data-target={"#collapseLesson" + section.id} aria-expanded="true" aria-controls="collapseLesson">
                           {this.context.t('view_details_lesson')}
                         </span>
                       </div>
@@ -72,7 +78,7 @@ class SectionLessonContainer extends Component {
                 }
               </div>
             </div>
-            <div id="collapseLesson" className="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+            <div id={"collapseLesson" + section.id} className="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
               <div className="row">
                 <div className="col-md-12 col-sm-12">
                   {
@@ -119,6 +125,33 @@ const mapStateToProps = (state) => {
   return {activatedField: state.courseDetails.activatedField};
 };
 
+const mapDispatchToProps = (dispatch) => ({
+  saveOrUpdateLesson: (lesson) => dispatch({
+    type: SAVE_LESSON,
+    payload: lesson.id !== undefined ? Network().update('lessons/' + lesson.id, lesson)
+      : Network().post('lessons', lesson),
+    meta: 'sectionLessonPlaceholder' + lesson.course_section_id
+  }),
+  loadSectionDetails: (courseId) => dispatch({
+    type: FETCH_LIST_SECTION,
+    payload: Network().get('/course_sections?course_id=' + courseId),
+    meta: 'listLessonDetailPlaceholder'
+  }),
+  addLesson: (sectionId) => dispatch(LessonActions.addLesson(sectionId)),
+  hideLessonDetailPopup: (sectionId) => dispatch(LessonActions.hideLessonDetailPopup(sectionId)),
+  saveOrUpdateSection: (id, title) => dispatch({
+    type: CREATE_UPDATE_SECTION,
+    payload: Network().update('course_sections/' + id, {title}),
+    meta: 'sectionLessonPlaceholder' + id
+  }),
+  deleteSection: (id) => dispatch({
+    type: DELETE_SECTION,
+    payload: Network().delete('course_sections/' + id),
+    meta: 'sectionLessonPlaceholder' + id
+  }),
+  activatedEditField: (fieldIds) => dispatch(CourseActions.activatedEditField(fieldIds))
+});
+
 export default connect(
-  mapStateToProps
+  mapStateToProps, mapDispatchToProps
 )(cssModules(SectionLessonContainer, styles));

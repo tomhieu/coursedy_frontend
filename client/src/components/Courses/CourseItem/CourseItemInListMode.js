@@ -1,9 +1,9 @@
-import React, { Component} from 'react';
+import React, {Component} from 'react';
 import cssModules from 'react-css-modules';
 import styles from '../Course.module.scss';
-import { LinkContainer } from 'react-router-bootstrap'
+import {LinkContainer} from 'react-router-bootstrap'
 import {SERVER_NAME} from "utils/CommonConstant";
-import {Checkbox} from 'material-ui'
+import {TT} from "utils/locale";
 
 
 /**
@@ -22,80 +22,98 @@ class CourseItemInListMode extends Component {
       displayMode, 
       selectedCourses, 
       isPublic,
-      isFollowed
+      isFollowed,
+      item,
     } = this.props;
+    const {id, onlyTutor, cover_image: coverImage, noComments, category, period, schedule, title, description, user} = item;
+    const {id: userId, name, avatar} = user;
+    const noAvatarImage = 'http://placehold.it/75x75';
     return (
-      <div className="col-xs-12 no-ml no-mr">
-        <div className="row pt-15 pb-15 course-container">
-          <div className="col-xs-2">
-            <div className="course-thumb">
-              <LinkContainer to={ !this.props.item.onlyTutor ? '/course/' + this.props.item.id : '/dashboard/courses/detail/' + this.props.item.id } className={styles.fullWidth + ' img-responsive'}>
-                <img src={!this.props.item.cover_image ? 'http://placehold.it/200x100' : SERVER_NAME + this.props.item.cover_image } alt="" />
-              </LinkContainer>
-              {
-                // isPublic ? <Checkbox
-                //   style={{position: 'absolute', top: '5px', right: '-20px'}}
-                //   checked={selectedCourses.indexOf(this.props.item.id) >= 0}
-                //   onCheck={selectCourseHdl.bind(this, this.props.item.id)}
-                // /> : null
-                isPublic ? (
-                  isFollowed ? <Checkbox
-                    style={{position: 'absolute', top: '5px', right: '-20px'}}
-                    checked={true}
-                  /> : <Checkbox
-                    style={{position: 'absolute', top: '5px', right: '-20px'}}
-                    checked={false}
-                  />
-                ) : null
-              }
-            </div>
-          </div>{/* End course thumb */}
+      <div className="course-list-item">
+        <div className="row gap-25">
+          <div className="col-xss-12 col-xs-3 col-lg-3 col-sm-4 col-md-4">
+            <LinkContainer to={ !onlyTutor ? '/course/' + id : '/dashboard/courses/detail/' + id } className='image img-responsive'>
+              <img className={styles.courseImageList} src={!coverImage ? 'http://placehold.it/200x100' : SERVER_NAME + coverImage } alt="" />
+            </LinkContainer>
+          </div>
+          <div className="col-xss-12 col-xs-12 col-lg-9 col-sm-8 col-md-8">
+            <div className="content">
+              <h4><a href="#">{title}</a></h4>
+              <div className="content-inner">
+                <div className="row gap-20">
+                  <div className="col-xss-7 col-xs-8 col-lg-8 col-sm-8 col-sm-8">
+                    <div className="course-instructor">
+                      <LinkContainer className="image" to={'/tutor/' + userId }>
+                        <img src={avatar ? SERVER_NAME + avatar : 'http://placehold.it/75x75'} alt="" className={styles.courseTutorAvatar + ' img-responsive img-circle'} />
+                      </LinkContainer>
+                      <span>{name}</span>
+                    </div>
+                  </div>
+                  <div className="col-xss-5 col-xs-12 col-lg-2 col-sm-2 col-md-2">
+                    <div className="rating-wrapper">
+                      <div className="rating-item">
+                        <span>
+                          <div className="rating-symbol">
+                            <div className="rating-symbol-background fa fa-star-o" ></div>
+                            <div className="rating-symbol-foreground">
+                              <span className="fa fa-star"></span>
+                            </div>
+                          </div>
+                          <div className="rating-symbol">
+                            <div className="rating-symbol-background fa fa-star-o" ></div>
+                            <div className="rating-symbol-foreground">
+                              <span className="fa fa-star"></span>
+                            </div>
+                          </div>
+                          <div className="rating-symbol">
+                            <div className="rating-symbol-background fa fa-star-o" ></div>
+                            <div className="rating-symbol-foreground">
+                              <span className="fa fa-star"></span>
+                            </div>
+                          </div>
+                          <div className="rating-symbol" >
+                            <div className="rating-symbol-background fa fa-star-o" ></div>
+                            <div className="rating-symbol-foreground">
+                              <span className="fa fa-star"></span>
+                            </div>
+                          </div>
+                          <div className="rating-symbol">
+                            <div className="rating-symbol-background fa fa-star-o" ></div>
+                            <div className="rating-symbol-foreground">
+                              <span></span>
+                            </div>
+                          </div>
+                        </span>
+                        <input type="hidden" className="rating" data-filled="fa fa-star" data-empty="fa fa-star-o" data-fractions="2" data-readonly="" value="3.5"/>
+                      </div>
+                      <span>{noComments > 0 ? TT.t('number_of_comment', {numOfComment: noComments}) : TT.t('no_comment')}</span>
+                    </div>
+                  </div>
 
-          <div className="col-xs-10">
-            <div className={"col-xs-8 course-info"}>
-              <h3 className={styles.courseTitle}>
-                <LinkContainer to={ !this.props.item.onlyTutor ? '/course/' + this.props.item.id : '/dashboard/courses/detail/' + this.props.item.id }><span>{this.props.item.title}</span></LinkContainer>
-              </h3>
-            </div>
-
-            <div className="clearfix"></div>
-            <div className="col-xs-6">
-              <table className="table">
-                <tbody>
-                  <tr>
-                    <td><div className="" data-score="4"></div></td>
-                    <td>{this.props.item.no_comments ? this.props.item.no_comments : 0} nhận xét</td>
-                  </tr>
-                  <tr>
-                    <td>{this.context.t('course_item_duration', {duration: this.props.item.period ? this.props.item.period : 0})}</td>
-                    <td>{this.context.t('course_item_lesson_duration', {time: this.props.item.schedule ? this.props.item.schedule : 0})}</td>
-                  </tr>
-                  <tr>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-            {!this.props.item.onlyTutor && this.props.item.user ? (
-            <div className="col-xs-6 course-tutor-info">
-              <div className={styles.courseTutorAvatar}>
-                <LinkContainer to={'/tutor/' + this.props.item.user.id }>
-                  <img src={this.props.item.user.avatar ? SERVER_NAME + this.props.item.user.avatar : 'http://placehold.it/75x75'} alt="" className={styles.courseTutorAvatar + ' img-responsive img-circle'} />
-                </LinkContainer>
+                  <div className="col-xss-12 col-xs-12 col-lg-2 col-sm-2 col-md-2">
+                    <div className="price">
+                      $19,65
+                    </div>
+                  </div>
+                </div>
               </div>
-              <br/>
-              <p className={styles.courseTutorName}>
-                <LinkContainer to={'/tutor/' + this.props.item.user.id }>
-                  <span>
-                  { 
-                    this.props.item.user.first_name && this.props.item.user.last_name ? 
-                      this.props.item.user.first_name + ' ' + this.props.item.user.last_name :
-                      this.context.t('updating')
-                  }
-                  </span>
-                </LinkContainer>
-              </p>
+              <p>{description}</p>
+              <ul className="meta-list clearfix">
+                <li>
+                  <i className="fa fa-folder-open-o"></i>
+                  <span className="block">{category.name}</span>
+                </li>
+                <li><i className="fa fa-pencil-square-o"></i><span className="block">
+                  {this.context.t('course_item_lesson_duration', {time: schedule ? schedule : 0})}
+                </span></li>
+                <li><i className="fa fa-calendar-check-o"></i><span className="block">
+                  {this.context.t('course_item_duration', {duration: period ? period : 0})}
+                </span></li>
+                <li className="btn-box"><a href="#" className="btn btn-primary btn-form btn-inverse">
+                  {this.context.t('course_detail')}
+                </a></li>
+              </ul>
             </div>
-            ) : (<div></div>)}
           </div>
         </div>
       </div>

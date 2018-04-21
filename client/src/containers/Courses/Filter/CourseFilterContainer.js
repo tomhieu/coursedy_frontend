@@ -9,47 +9,43 @@ import {MAX_FEE, MIN_FEE} from "utils/CommonConstant";
 import {TT} from "utils/locale";
 import {dispatch} from "redux";
 import AbstractFilter from '../../../components/Core/AbstractFilterComponent';
+import Network from "utils/network";
+import {FETCH_COURSES} from "../../../constants/Courses";
+import {LOAD_SUGGESTION} from "../../../actions/AsyncActionCreator";
+import {FETCH_CATEGORIES} from "../../../actions/AsyncActionCreator";
+import {FETCH_LOCATIONS} from "../../../actions/AsyncActionCreator";
 
 class CourseFilterContainer extends AbstractFilter {
 
   componentWillMount() {
-    this.props.dispatch(RefrenceActions.fetchCourseCategories());
-    this.props.dispatch(RefrenceActions.fetchLocations());
-  }
-
-  searchCourse(filters, selectedMinFee, selectedMaxFee, order_by, display_mode) {
-    const query = {
-      q: filters.term,
-      categories: filters.selectedCategories.map(category => category.id),
-      locations: filters.selectedLocations.map(loc => loc.id),
-      specializes: filters.selectedSpecializes.map(spec => spec.id),
-      week_day: filters.selectedWeekDays.map(week => week.id),
-      min_fee: selectedMinFee,
-      max_fee: selectedMaxFee,
-      order_by, display_mode
-    };
-    this.props.dispatch(CourseFilterActions.searchCourse(query))
+    this.props.fetchCategories();
+    this.props.fetchLocations();
   }
 
   changeDisplayMode(mode) {
-    this.props.dispatch(CourseFilterActions.changeDisplayMode(mode))
+    this.props.changeDisplayMode(mode);
   }
 
   changeCurrentPage(page) {
-    this.props.dispatch(CourseFilterActions.changeCurrentPage(page))
+    this.props.changeCurrentPage(page);
   }
 
   selectAllCourses(isTrue) {
     if (isTrue) {
-      this.props.dispatch(CourseFilterActions.removeAllCourses())
+      this.props.removeAllCourses();
     } else {
-      this.props.dispatch(CourseFilterActions.selectAllCourses())
+      this.props.selectAllCourses();
     }
   }
 
+  searchCourse(filters, selectedMinFee, selectedMaxFee, order_by, display_mode) {
+    this.props.search(this.buildQuery(filters, selectedMinFee, selectedMaxFee, order_by, display_mode));
+  }
+
+
   loadSuggestions(event) {
     if (event.target.value === '') {
-      this.props.dispatch({type: asyncActions.CLEAR_SUGGESTION});
+      this.props.clearSuggestion();
       return;
     }
 
@@ -61,7 +57,7 @@ class CourseFilterContainer extends AbstractFilter {
       specializes: filters.selectedSpecializes.map(spec => spec.id),
       week_day: filters.selectedWeekDays.map(week => week.id),
     };
-    this.props.dispatch(CourseFilterActions.loadSuggestions(query))
+    this.props.loadSuggestions(query);
   }
 
   doSelectFilter(filter, category) {
@@ -77,25 +73,39 @@ class CourseFilterContainer extends AbstractFilter {
       nextFilters = this.addFilterCriteria(currentFilters, filter, category);
     }
 
-    this.props.dispatch(CourseFilterActions.updateFilter(nextFilters))
-    this.searchCourse(nextFilters, selectedMinFee, selectedMaxFee, order_by, display_mode);
+    this.props.updateFilter(nextFilters);
+
+    this.props.search(this.buildQuery(nextFilters, selectedMinFee, selectedMaxFee, order_by, display_mode));
   }
 
   reloadCourseList() {
     let {selectedMinFee, selectedMaxFee, order_by, display_mode} = this.props.formfieldValues;
-    this.searchCourse(this.props.filters, selectedMinFee, selectedMaxFee, order_by, display_mode);
+    this.props.search(this.buildQuery(this.props.filters, selectedMinFee, selectedMaxFee, order_by, display_mode));
+  }
+
+  buildQuery(filters, selectedMinFee, selectedMaxFee, order_by, display_mode) {
+    return {
+      q: filters.term,
+      categories: filters.selectedCategories.map(category => category.id),
+      locations: filters.selectedLocations.map(loc => loc.id),
+      specializes: filters.selectedSpecializes.map(spec => spec.id),
+      week_day: filters.selectedWeekDays.map(week => week.id),
+      min_fee: selectedMinFee,
+      max_fee: selectedMaxFee,
+      order_by, display_mode
+    };
   }
 
   doRemoveFilter(filterId, typeFilter) {
     const {selectedMinFee, selectedMaxFee, order_by, display_mode} = this.props.formfieldValues;
     const currentFilters = JSON.parse(JSON.stringify(this.props.filters));
     const removedFilters = this.removeFilterCriteria(currentFilters, filterId, typeFilter);
-    this.props.dispatch(CourseFilterActions.updateFilter(removedFilters))
-    this.searchCourse(removedFilters, selectedMinFee, selectedMaxFee, order_by, display_mode)
+    this.props.updateFilter(removedFilters);
+    this.props.search(this.buildQuery(removedFilters, selectedMinFee, selectedMaxFee, order_by, display_mode));
   }
 
   autoCompleteSearchCourse(id) {
-    this.props.dispatch({type: asyncActions.CLEAR_SUGGESTION});
+    this.props.clearSuggestion();
     this.context.router.history.push('/course/' + id);
   }
 
@@ -141,13 +151,17 @@ const mapStateToProps = (state) => {
   const categories = referenceData.courseCategories || []
   const locations = referenceData.locations || []
 
-  const {courses = [], selectedCourses = [],
-         totalResult = 0, sugestions, filters, showSuggestion, loadingSuggestion} = CourseFilter;
+  const {
+    courses = [], selectedCourses = [],
+    totalResult = 0, sugestions, filters, showSuggestion, loadingSuggestion
+  } = CourseFilter;
   const {courseFilterForm = {}} = form;
   const filterSuggestions = [];
   sugestions.map(sug =>
-    filterSuggestions.push({id: sug.id, avatar: sug.cover_image, title: sug.title,
-                      sub_title: TT.t('teacher_info_suggestion', {teacher: sug.user.name})}));
+    filterSuggestions.push({
+      id: sug.id, avatar: sug.cover_image, title: sug.title,
+      sub_title: TT.t('teacher_info_suggestion', {teacher: sug.user.name})
+    }));
 
   let initializeFields = courseFilterForm.values ? Object.assign({}, courseFilterForm.values) : {}
 
@@ -166,9 +180,38 @@ const mapStateToProps = (state) => {
   };
 };
 
+const mapDispatchToProps = (dispatch) => ({
+  search: (query) => dispatch({
+    type: FETCH_COURSES,
+    payload: Network().get('courses/search', query),
+    meta: 'publicCourseListPlaceholder'
+  }),
+  changeDisplayMode: (mode) => dispatch(CourseFilterActions.changeDisplayMode(mode)),
+  changeCurrentPage: (page) => dispatch(CourseFilterActions.changeCurrentPage(page)),
+  removeAllCourses: () => dispatch(CourseFilterActions.removeAllCourses()),
+  selectAllCourses: () => dispatch(CourseFilterActions.selectAllCourses()),
+  clearSuggestion: () => dispatch({type: asyncActions.CLEAR_SUGGESTION}),
+  loadSuggestions: (query) => dispatch({
+    type: LOAD_SUGGESTION,
+    payload: Network().get('courses/search', query),
+    meta: 'courseSuggestionPlaceholder'
+  }),
+  updateFilter: (filters) => dispatch(CourseFilterActions.updateFilter(filters)),
+  fetchCategories: () => dispatch({
+    type: FETCH_CATEGORIES,
+    payload: Network().get('categories'),
+    meta: 'publicCourseListPlaceholder'
+  }),
+  fetchLocations: () => dispatch({
+    type: FETCH_LOCATIONS,
+    payload: Network().get('locations'),
+    meta: 'publicCourseListPlaceholder'
+  })
+});
+
 
 export default connect(
-  mapStateToProps
+  mapStateToProps, mapDispatchToProps
 )(reduxForm({
   form: 'courseFilterForm',
   enableReinitialize: true,
