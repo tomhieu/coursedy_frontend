@@ -16,6 +16,7 @@ import styles from "./FormField.module.scss";
 import cssModules from "react-css-modules";
 import {Checkbox, RadioButtonGroup, TimePicker} from 'redux-form-material-ui'
 import {mStyles} from "utils/CustomStylesUtil";
+import {cropImageInput} from "components/Core/CustomComponents";
 
 class FormField extends Component {
   constructor(props) {
@@ -73,6 +74,12 @@ class FormField extends Component {
         fieldComponent = <Field name={formControlName} placeholder={placeholder} zoneHeight={zoneHeight}
                                 internalPreview={internalPreview} disabled={this.props.disabled}
                                 previewUrl={previewUrl} onUpload={onUpload} component={renderSingleFileInput}/>
+        break;
+      }
+      case "upload_avatar": {
+        fieldComponent = <Field name={formControlName} placeholder={placeholder} zoneHeight={zoneHeight}
+                                internalPreview={internalPreview} disabled={this.props.disabled}
+                                previewUrl={previewUrl} onUpload={onUpload} component={cropImageInput}/>
         break;
       }
       case "multi_select": {

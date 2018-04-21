@@ -22,7 +22,7 @@ export class UserAvatarForm extends Component {
       <form className='block-center-align' onSubmit={handleSubmit(this.submit.bind(this))}>
         <FormField fieldId="avatar"
                    isMandatoryField={false} formControlName="avatar"
-                   internalPreview={true} typeField="upload_file"
+                   internalPreview={true} typeField="upload_avatar"
                    previewUrl={user.avatar ? (SERVER_NAME + user.avatar) : defaultAvatar}
                    showLabel={false}
                    onUpload={this.setFileContent.bind(this)}
