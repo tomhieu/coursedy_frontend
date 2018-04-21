@@ -141,7 +141,7 @@ export const translations = {
     "account.tutot.edu.ocupation": "Nghề nghiệp hiện tại",
     "account.tutor.edu.description": "Giới thiệu",
     "account.tutor.edu.specialty": "Kĩnh vực giảng dạy",
-    "account.tutot.edu.degree.title": "Bằng cấp",
+    "account.tutot.edu.degree.title": "Chứng chỉ/Bằng cấp",
     "account.tutot.edu.degree.field_label": "Upload chứng chỉ/bằng Cấp",
     "account.tutot.edu.degree.no_degrees": "Không có bằng cấp / giấy chứng nhận",
     "account_tutor_skill_title": "Kỹ Năng",
