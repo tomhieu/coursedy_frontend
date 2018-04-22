@@ -19,7 +19,7 @@ export default class RatingItem extends Component {
           })}
         </div>
         { numReviews ?
-          <span> {`(${numReviews} ${numReviews > 1 ? 'reviews' : 'review'})`}</span> : null
+          <span> {this.context.t('total_review', {reviews: numReviews})} </span> : null
         }
       </div>
     )
@@ -29,6 +29,10 @@ export default class RatingItem extends Component {
 RatingItem.defaultProps = {
   num_stars: 0,
   num_reviews: 0
+}
+
+RatingItem.contextTypes = {
+  t: React.PropTypes.func.isRequired
 }
 
 RatingItem.propTypes = {
