@@ -1,9 +1,12 @@
 import React, {Component} from 'react';
+import CourseDetailHeader from './CourseDetail/CourseDetailHeader';
+import CourseDetailMain from './CourseDetail/CourseDetailMain';
+
 import CourseDetailGeneral from './CourseDetail/CourseDetailGeneral';
 import CourseDetailLessons from './CourseDetail/CourseDetailLessons';
 import CourseDetailComments from './CourseDetail/CourseDetailComments';
 import cssModules from 'react-css-modules';
-import styles from './Course.module.scss';
+import styles from './CourseDetail.module.scss';
 
 import {CommentFormContainer} from '../../containers/index';
 
@@ -21,6 +24,10 @@ class CourseDetail extends Component {
   render() {
     return (
       <div className="course-detail">
+        <CourseDetailHeader {...this.props}/>
+
+        <CourseDetailMain {...this.props}/>
+
         {
           this.props.course && this.props.categories.length > 0 ?
             <CourseDetailGeneral 

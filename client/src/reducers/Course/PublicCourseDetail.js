@@ -6,6 +6,7 @@ const PublicCourseDetail = (state = {
     course_sections: [],
     course_comments: [],
     course_comments_page: 1,
+    relatedCourses: [],
     course_tutor: null,
     show_follow_modal: false,
     submit_follow_success: false,

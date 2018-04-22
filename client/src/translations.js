@@ -311,7 +311,10 @@ export const translations = {
     "payment_content": " ",
     "payment_invoice": " ",
     "payment_status": " ",
-    "payment_value": "Giá trị"
+    "payment_value": "Giá trị",
+
+
+    "unknown": "Chưa rõ"
   },
   "en": {
     "home_page": "Home",

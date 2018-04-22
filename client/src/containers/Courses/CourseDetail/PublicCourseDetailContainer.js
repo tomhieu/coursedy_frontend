@@ -17,11 +17,17 @@ class PublicCourseDetailContainer extends Component {
       this.props.dispatch(PublicCourseActions.fetchPublicCourse(this.props.courseId));
 
       //Fetch comments
-
       this.props.dispatch(PublicCourseActions.fetchCourseComments(
         this.props.courseId, 
         this.props.course_comments_page
       ));
+
+      //Fetch related courses
+      // this.props.dispatch(PublicCourseActions.fetchRelatedCourses(
+      //   this.props.courseId, {
+      //     per_page: 4
+      //   }
+      // ))
     }
   }
 
@@ -37,6 +43,7 @@ class PublicCourseDetailContainer extends Component {
       <CourseDetail
         categories={this.props.categories} 
         course={this.props.course}
+        relatedCourses={this.props.relatedCourses}
         course_category={this.props.course_category}
         course_level={this.props.course_level}
         course_tutor={this.props.course_tutor} 
@@ -77,9 +84,9 @@ const getCourseLevel = (categories, course) => {
 
 const mapStateToProps = (state) => {
   const categories = state.referenceData.courseCategories
-  const course = state.PublicCourseDetail.course
+  const { course, relatedCourses } = state.PublicCourseDetail
   return {
-    categories, course,
+    categories, course, relatedCourses,
     course_category: getCourseCategory(categories, course),
     course_level: getCourseLevel(categories, course),
     course_tutor: state.PublicCourseDetail.course_tutor,
