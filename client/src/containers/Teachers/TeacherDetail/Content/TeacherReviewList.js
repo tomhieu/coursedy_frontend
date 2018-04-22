@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Pagination from 'react-js-pagination'
 import ReviewTeacherForm from './ReviewTeacherForm'
-import ReviewContent from './ReviewContent'
+import ReviewContent from '../../../../components/Review/ReviewContentComponent'
 
 
 class TeacherReviewList extends Component {

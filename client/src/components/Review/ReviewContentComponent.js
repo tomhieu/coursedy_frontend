@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-
+import './ReviewContent.scss'
 
 class ReviewContent extends Component {
 

@@ -225,44 +225,6 @@ ul.review-list > li:last-child {
 }
 
 .review-content-list {
-  .review-info {
-    position: relative;
-    border-bottom: 1px solid #E5E5E5;
-    padding-bottom: 25px;
-    margin-bottom: 25px;
-
-    .image {
-      width: 50px;
-      height: 50px;
-      position: absolute;
-      top: 0;
-      left: 0;
-      border: 2px solid #FFF;
-      -webkit-box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.43);
-      -moz-box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.43);
-      box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.43);
-      border-radius: 50%;
-    }
-
-    img {
-      width: 100%;
-      max-width: 100%;
-      height: auto;
-      display: block;
-    }
-
-    .content {
-      padding-left: 70px;
-
-      .review-date {
-        text-align: right;
-        line-height: 1;
-        margin: 0 0 10px;
-        font-size: 13px;
-        color: #999;
-      }
-    }
-  }
   > .review-info:last-child {
     border-bottom: 0;
     padding-bottom: 0;
