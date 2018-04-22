@@ -62,8 +62,8 @@ class DashboardProfileContainer extends Component {
     return (
       <div className="col-sm-12 mb-15 avatar-container">
         <figure className="imghvr-zoom-in">
-          <img className="media-object img-circle full-width"
-               src={currentUser.avatar ? (SERVER_NAME + currentUser.avatar) : defaultAvatar}
+          <img className="media-object full-width"
+               src={currentUser.avatar ? currentUser.avatar : defaultAvatar}
                alt={currentUser.name}
           />
         </figure>

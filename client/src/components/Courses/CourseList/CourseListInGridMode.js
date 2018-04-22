@@ -13,13 +13,7 @@ class CourseListInGridMode extends Component {
   }
   render() {
     const {
-      deleteCourse, 
-      selectCourseHdl, 
-      displayMode, 
-      selectedCourses, 
-      isPublic,
-      followedCourses,
-      itemPerRowInGridMode
+      displayMode,
     } = this.props;
     const columnClasses = {
       '6': 'col-xs-12 col-sm-3 col-md-2',
@@ -33,12 +27,7 @@ class CourseListInGridMode extends Component {
         this.props.courses.map((item, index) => (
           <div className="d-flex course-item-wrapper" key={'course-' +index}>
             <CourseItem item={item}
-                        deleteCourse={deleteCourse}
-                        selectCourseHdl={selectCourseHdl}
                         displayMode={displayMode}
-                        selectedCourses={selectedCourses}
-                        isPublic={isPublic}
-                        isFollowed={isPublic ? (followedCourses.indexOf(item.id) >= 0) : false}
             />
           </div>
         ))

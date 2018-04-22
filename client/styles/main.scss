@@ -745,4 +745,119 @@ body.application {
   .btn {
     border-radius: 2px;
   }
+
+  .full-width-img {
+    width: 100%;
+    height: auto;
+  }
+
+  .img-circle {
+    border-radius: 50%;
+  }
+
+  .course-item {
+    position: relative;
+    &:hover {
+      -webkit-box-shadow: 0px 0px 12px -1px rgba(0, 0, 0, 0.29);
+      -moz-box-shadow: 0px 0px 12px -1px rgba(0, 0, 0, 0.29);
+      box-shadow: 0px 0px 12px -1px rgba(0, 0, 0, 0.29);
+    }
+
+    p {
+      color: $dark-text-color;
+    }
+    .course-detail-lnk:hover {
+      cursor: pointer;
+    }
+    background: $gray-background;
+    .course-item-top {
+      position: relative;
+      padding-left: 15px;
+      padding-top: 7px;
+      .course-item-instructor {
+        .image {
+          width: 44px;
+          height: 44px;
+          border: 2px solid #FFF;
+          float: left;
+          margin-top: -27px;
+          border-radius: 50%;
+          margin-right: 5px;
+          -webkit-box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.43);
+          -moz-box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.43);
+          box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.43);
+        }
+      }
+      .course-item-price {
+        background-color: $md-color-pink;
+        color: $white-color;
+        position: absolute;
+        top: 10px;
+        right: -5px;
+        line-height: 1;
+        font-weight: 700;
+        font-size: 14px;
+        padding: 4px 10px 3px;
+
+        &:before {
+          content: "";
+          position: absolute;
+          top: -5px;
+          right: 0;
+          width: 0;
+          height: 0;
+          border-style: solid;
+          border-width: 5px 0 0 5px;
+          border-color: transparent transparent transparent $md-color-pink;
+        }
+      }
+    }
+    .course-item-content {
+      padding: 25px 15px;
+      padding-left: 20px;
+      p {
+        margin-top: 20px;
+        font-size: 14px;
+      }
+      h3 {
+        font-size: 23px;
+        color: $md-color-pink;
+      }
+      .rating-wrapper {
+        margin: 0 0 5px;
+        & > div {
+          display: inline-block;
+        }
+        .rating-item {
+          .fa {
+            font-size: 12px;
+            color: $rating-item-color;
+          }
+          .rating-symbol {
+            margin-right: 3px;
+          }
+        }
+      }
+    }
+    .course-item-bottom {
+      width: 100%;
+      font-size: 11px;
+      text-align: center;
+      line-height: 1.4;
+      padding: 0 5px;
+      border-top: 1px solid $border-color;
+      display: table;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      & > div {
+        display: table-cell;
+        padding: 20px 10px;
+      }
+
+      & > div:last-child {
+        border-left: 1px solid $border-color;
+      }
+    }
+  }
 }
