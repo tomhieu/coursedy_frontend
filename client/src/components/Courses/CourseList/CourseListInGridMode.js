@@ -15,23 +15,27 @@ class CourseListInGridMode extends Component {
     const {
       displayMode,
     } = this.props;
-    const columnClasses = {
-      '6': 'col-xs-12 col-sm-3 col-md-2',
-      '4': 'col-xs-12 col-sm-6 col-md-3',
-      '2': 'col-xs-12 col-sm-12 col-md-6',
-      '1': 'col-xs-12 col-sm-12 col-md-12'
-    }
+
     return (
-      <div className="d-flex flex-horizontal flex-wrap justify-content-center">
+      <div className="row">
       {
         this.props.courses.map((item, index) => (
-          <div className="course-item-wrapper" key={'course-' +index}>
+          <div className="col-xs-12 col-sm-6 col-md-4" key={'course-' +index}>
             <CourseItem item={item}
                         displayMode={displayMode}
             />
           </div>
         ))
       }
+        {
+          this.props.courses.map((item, index) => (
+            <div className="col-xs-12 col-sm-6 col-md-4" key={'course-' +index}>
+              <CourseItem item={item}
+                          displayMode={displayMode}
+              />
+            </div>
+          ))
+        }
       </div>
     )
   }
