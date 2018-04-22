@@ -110,8 +110,7 @@ class CourseItemInGridMode extends Component {
               <span> {this.context.t('total_review', {reviews: item.rating_count})} </span>
             </div>
             <h3>{item.title}</h3>
-            <p>Create Code That Screams with C++! Hours of Video Lecture, Lab Exercises and Dozens of Code Samples for
-              You To Use! Dave Pither-Patterson</p>
+            <p>{item.description}</p>
           </div>
         </LinkContainer>
         <div className="course-item-bottom clearfix">
