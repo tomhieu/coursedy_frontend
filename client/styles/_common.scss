@@ -2506,8 +2506,8 @@ ul.no-margin,
   padding: 5px;
 }
 
-.align-items-center .form-group {
-  margin: 0;
+.default-field .form-group {
+  margin-bottom: 10px;
 }
 
 .select-course-fee {
@@ -2660,8 +2660,14 @@ input[type="url"], input[type="text"], textarea, .form-control {
   padding: 0;
 }
 
+.course-edit-free .form-group {
+  width: 100%;
+  margin-top: 10px;
+}
+
 .course-free .form-group {
   width: 100%;
+  margin-top: 36px;
 }
 
 .suggestion-line {
@@ -2939,6 +2945,11 @@ button {
 
 .optimize-filters {
   display: none ;
+}
+
+.course-large-title .default-field {
+  justify-content: center;
+  flex: 1 1 100%;
 }
 
 @media only screen and (max-width: 768px) {
@@ -3361,4 +3372,28 @@ Course Item (List Mode) Style Sheet
 .rating-item .fa {
   font-size: 12px;
   color: #F2D43D;
+}
+
+
+.sm-field {
+  max-width: 80px;
+}
+
+.md-field {
+  max-width: 120px;
+}
+
+.lg-field {
+  max-width: 180px;
+}
+
+.xl-field {
+  max-width: 250px;
+}
+
+.currency-field.sm-field {
+  width: 80px;
+}
+.daskboard-container {
+  margin: 0 20px;
 }

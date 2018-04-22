@@ -34,7 +34,7 @@ class FormField extends Component {
     return (
       <FormGroup controlId={this.props.fieldId}>
         {
-          showLabel ? (
+          showLabel && fieldLabel !== undefined && fieldLabel !== '' ? (
             <ControlLabel> {fieldLabel} {isMandatoryField && <span className="red">*</span>} </ControlLabel>) : ''
         }
         <div className="dark-picker dark-picker-bright">

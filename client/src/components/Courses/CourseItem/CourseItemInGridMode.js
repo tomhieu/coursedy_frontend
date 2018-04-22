@@ -68,7 +68,7 @@ const CourseThumb = (props) => {
     <div className="col-md-12 col-sm-12">
       <div className="course-thumb">
         <LinkContainer to={ !onlyTutor ? '/course/' + id : '/dashboard/courses/detail/' + id } className={styles.courseAvatar + ' img-responsive'}>
-          <img src={!cover_image ? 'http://placehold.it/200x100' : SERVER_NAME + cover_image } alt="" />
+          <img src={!cover_image ? 'http://placehold.it/200x100' : cover_image } alt="" />
         </LinkContainer>
         {
           isPublic ? <Checkbox

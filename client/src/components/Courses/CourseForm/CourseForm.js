@@ -28,6 +28,7 @@ class CourseForm extends Component {
                              isMandatoryField={false}
                              previewUrl={cover_image != null ? SERVER_NAME + cover_image : null}
                              internalPreview={true}
+                             zoneHeight="300px"
                              formControlName="cover_image"
                              typeField="upload_file"
                              onUpload={onDropCoverImage}>
@@ -38,8 +39,8 @@ class CourseForm extends Component {
           </div>
           <div className="row">
             <div className="col-md-12 col-sm-12">
-              <div className={editMode ? styles.courseLargeTitle + ' d-flex align-items-center justify-content-center course-title' : 'creation-course-title'}>
-                <CourseFormItem editMode={editMode} fieldId="titleId" showLabel={false}
+              <div className={editMode ? styles.courseLargeTitle + ' course-large-title d-flex align-items-center justify-content-center course-title' : 'creation-course-title'}>
+                <CourseFormItem editMode={editMode} fieldId="titleId"
                                 fieldLabel={editMode ? "" : this.context.t("course_title")}
                                 placeholder={this.context.t("sample_course_title")}
                                 isMandatory={true}
@@ -52,8 +53,8 @@ class CourseForm extends Component {
             </div>
           </div>
           <CourseCategory editMode={editMode}
-                          category={courseData.category}
-                          course_specialize={courseData.course_specialize}
+                          category={courseData != null ? courseData.category : null}
+                          course_specialize={courseData != null ? courseData.course_specialize : null}
                           courseSpecializes={courseSpecializes}
                           categories={categories}
                           {...this.props}>
@@ -61,8 +62,8 @@ class CourseForm extends Component {
           {/* Course category and course level */}
 
           <div className='row'>
-            <div className='col-sm col-md'>
-              <div className={!editMode ? "datepicker-box" : "long-text"}>
+            <div className='col-sm-12 col-md-6'>
+              <div className="lg-field">
                 <CourseFormItem editMode={editMode} fieldId="start_date_Id"
                                 fieldLabel={this.context.t("start_date")}
                                 isMandatory={true}
@@ -73,25 +74,23 @@ class CourseForm extends Component {
                 </CourseFormItem>
               </div>
             </div>
-            <div className='col-md col-sm'>
-              <div className="d-flex flex-horizontal">
-                <div>
-                  <CourseFormItem editMode={editMode} fieldId="period_Id"
-                                  fieldLabel={this.context.t("period")}
-                                  isMandatory={true}
-                                  fieldName="period"
-                                  typeField="custom_input"
-                                  content={editMode ? courseData.period + " " + this.context.t("course_periode_type") : ""}
-                                  {...this.props}>
-                  </CourseFormItem>
-                </div>
+            <div className='col-md-6 col-sm-12'>
+              <div className="lg-field">
+                <CourseFormItem editMode={editMode} fieldId="period_Id"
+                                fieldLabel={this.context.t("period")}
+                                isMandatory={true}
+                                fieldName="period"
+                                typeField="custom_input"
+                                content={editMode ? courseData.period + " " + this.context.t("course_periode_type") : ""}
+                                {...this.props}>
+                </CourseFormItem>
               </div>
             </div>
           </div>
 
           <div className="row">
             <div className="col-sm-6 col-md-6">
-              <div className="d-flex">
+              <div className="lg-field">
                 <CourseFormItem editMode={editMode} fieldId="number_of_students_Id"
                                 fieldLabel={this.context.t("number_of_students")}
                                 isMandatory={true}
@@ -108,16 +107,18 @@ class CourseForm extends Component {
             <div className='col-md-12 col-sm-12'>
               <div className="d-flex flex-horizontal">
                 <div className="d-flex flex-col-1">
-                  <CourseFormItem editMode={editMode} fieldId="tuition_fee_Id"
-                                  fieldLabel={this.context.t("tuition_fee")}
-                                  isMandatory={true}
-                                  fieldName="tuition_fee"
-                                  typeField="custom_input"
-                                  content={editMode ? ObjectUtils.currencyFormat(courseData.tuition_fee, "VND") : ""}
-                                  disabled={isFree}
-                                  {...this.props}>
-                  </CourseFormItem>
-                  <div className="ml-10 d-flex currency-field">
+                  <div className="lg-field">
+                    <CourseFormItem editMode={editMode} fieldId="tuition_fee_Id"
+                                    fieldLabel={this.context.t("tuition_fee")}
+                                    isMandatory={true}
+                                    fieldName="tuition_fee"
+                                    typeField="custom_input"
+                                    content={editMode ? ObjectUtils.currencyFormat(courseData.tuition_fee, "VND") : ""}
+                                    disabled={isFree}
+                                    {...this.props}>
+                    </CourseFormItem>
+                  </div>
+                  <div className="ml-10 currency-field sm-field">
                     <CourseFormItem editMode={editMode} fieldId="currency_Id"
                                     fieldLabel={this.context.t("tuition_currency")}
                                     isMandatory={false}
@@ -129,7 +130,7 @@ class CourseForm extends Component {
                                     {...this.props}>
                     </CourseFormItem>
                   </div>
-                  <div className="ml-20 d-flex flex-auto course-free">
+                  <div className={editMode ? "ml-20 d-flex flex-auto course-edit-free" : "ml-20 d-flex flex-auto course-free"}>
                     <CourseFormItem editMode={editMode} fieldId="is_free_id"
                                     fieldLabel={this.context.t("course_free")}
                                     isMandatory={false} showLabel={false}
@@ -154,12 +155,12 @@ class CourseForm extends Component {
 
           {
             !editMode ? (
-              <div className="avatar-image">
+              <div>
                 <FormField fieldId="cover_image_Id"
                            fieldLabel={this.context.t("cover_image")}
                            isMandatoryField={true}
                            previewUrl={cover_image != null ? cover_image.previewUrl : null}
-                           zoneHeight="200px"
+                           zoneHeight="300px"
                            internalPreview={true}
                            formControlName="cover_image"
                            typeField="upload_file"

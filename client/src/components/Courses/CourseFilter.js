@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
 import styles from './Course.module.scss';
-import FormField from "../Core/FormField";
 import {EFlatButton} from "../Core/CustomComponents";
 import {ActionViewList, ActionViewModule} from "material-ui/svg-icons/index";
 import cssModules from 'react-css-modules';
 import AdvanceFilterComponent from "./CourseFilter/AdvanceFilterComponent";
 import BasicFilterComponent from "./CourseFilter/BasicFilterComponent";
+import Select2 from "react-select2-wrapper";
 
 
 class CourseFilter extends Component {
@@ -116,11 +116,7 @@ class CourseFilter extends Component {
                     </span>
                 </div>
                 <div className={styles.orderBtn}>
-                  <FormField fieldId="order_by_id" showLabel={false} fieldLabel={this.context.t("order_list")}
-                             options={orderList} formControlName="order_by"
-                             onChange={() => reloadCourseList()}
-                             typeField="custom_select">
-                  </FormField>
+                  <Select2 onSelect={(e) => reloadCourseList(e)} data={orderList}></Select2>
                 </div>
                 <div className={styles.displayModeBtn}>
                   <div className="d-flex flex-horizontal">

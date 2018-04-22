@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import cssModules from 'react-css-modules';
 import styles from '../Course.module.scss';
 import {LinkContainer} from 'react-router-bootstrap'
-import {SERVER_NAME} from "utils/CommonConstant";
 import {TT} from "utils/locale";
 
 
@@ -33,7 +32,7 @@ class CourseItemInListMode extends Component {
         <div className="row gap-25">
           <div className="col-xss-12 col-xs-3 col-lg-3 col-sm-4 col-md-4">
             <LinkContainer to={ !onlyTutor ? '/course/' + id : '/dashboard/courses/detail/' + id } className='image img-responsive'>
-              <img className={styles.courseImageList} src={!coverImage ? 'http://placehold.it/200x100' : SERVER_NAME + coverImage } alt="" />
+              <img className={styles.courseImageList} src={!coverImage ? 'http://placehold.it/200x100' : coverImage } alt="" />
             </LinkContainer>
           </div>
           <div className="col-xss-12 col-xs-12 col-lg-9 col-sm-8 col-md-8">
@@ -44,7 +43,7 @@ class CourseItemInListMode extends Component {
                   <div className="col-xss-7 col-xs-8 col-lg-8 col-sm-8 col-sm-8">
                     <div className="course-instructor">
                       <LinkContainer className="image" to={'/tutor/' + userId }>
-                        <img src={avatar ? SERVER_NAME + avatar : 'http://placehold.it/75x75'} alt="" className={styles.courseTutorAvatar + ' img-responsive img-circle'} />
+                        <img src={avatar ? avatar : 'http://placehold.it/75x75'} alt="" className={styles.courseTutorAvatar + ' img-responsive img-circle'} />
                       </LinkContainer>
                       <span>{name}</span>
                     </div>

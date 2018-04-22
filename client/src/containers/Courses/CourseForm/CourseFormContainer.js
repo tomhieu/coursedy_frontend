@@ -88,49 +88,51 @@ class CourseFormContainer extends Component {
         {
           editMode ? (
             <div className="col-sm-12 col-md-12">
-              <div className="row">
-                <div className="col-sm-12 col-md-12">
-                  <div className="row">
-                    <div className="col-md-6 col-sm-6">
-                      <FlatButton label={this.context.t('lesson_link_edit')}
-                                  style={mStyles.defaultFlatBtn}
-                                  secondary={true}
-                                  onClick={this.addNewSection.bind(this)}
-                                  icon={<ContentAddCircle color="#e27d7f"/>}/>
-                    </div>
-                    <div className="col-md-6 col-sm-6">
-                      <FlatButton label={this.context.t('course_publish')}
-                                  style={mStyles.defaultFlatBtn}
-                                  secondary={true}
-                                  onClick={this.validateBeforePublishCourse.bind(this)}
-                                  icon={<EditorPublish color="#e27d7f"/>}/>
+              <div className="container">
+                <div className="row">
+                  <div className="col-sm-12 col-md-12">
+                    <div className="row">
+                      <div className="col-md-6 col-sm-6">
+                        <FlatButton label={this.context.t('lesson_link_edit')}
+                                    style={mStyles.defaultFlatBtn}
+                                    secondary={true}
+                                    onClick={this.addNewSection.bind(this)}
+                                    icon={<ContentAddCircle color="#e27d7f"/>}/>
+                      </div>
+                      <div className="col-md-6 col-sm-6">
+                        <FlatButton label={this.context.t('course_publish')}
+                                    style={mStyles.defaultFlatBtn}
+                                    secondary={true}
+                                    onClick={this.validateBeforePublishCourse.bind(this)}
+                                    icon={<EditorPublish color="#e27d7f"/>}/>
+                      </div>
                     </div>
                   </div>
+                  <div className="col-md-12 col-sm-12">
+                    <LoadingMask placeholderId="listLessonDetailPlaceholder"
+                                 normalPlaceholder={false}
+                                 facebookPlaceholder={true}
+                                 loaderType="LESSON_DETAILS_PLACEHOLDER"
+                                 repeatTime={2}>
+                      <div className="row flex-g1">
+                        {
+                          listSection.map((section) =>
+                            <div className="col-sm-12 col-md-12 mb-3">
+                              <SectionLessonContainer
+                                section={section}
+                                key={'__section__' + section.id}
+                                showPopupEdit={section.showLessonPopup}
+                                {...this.props}>
+                              </SectionLessonContainer>
+                            </div>
+                          )
+                        }
+                      </div>
+                    </LoadingMask>
+                  </div>
+                  <SectionCreationPopupContainer courseId={this.courseId} onSubmit={this.saveSection.bind(this)}>
+                  </SectionCreationPopupContainer>
                 </div>
-                <div className="col-md-12 col-sm-12">
-                  <LoadingMask placeholderId="listLessonDetailPlaceholder"
-                               normalPlaceholder={false}
-                               facebookPlaceholder={true}
-                               loaderType="LESSON_DETAILS_PLACEHOLDER"
-                               repeatTime={2}>
-                    <div className="row flex-g1">
-                      {
-                        listSection.map((section) =>
-                          <div className="col-sm-12 col-md-12 mb-3">
-                            <SectionLessonContainer
-                              section={section}
-                              key={'__section__' + section.id}
-                              showPopupEdit={section.showLessonPopup}
-                              {...this.props}>
-                            </SectionLessonContainer>
-                          </div>
-                        )
-                      }
-                    </div>
-                  </LoadingMask>
-                </div>
-                <SectionCreationPopupContainer courseId={this.courseId} onSubmit={this.saveSection.bind(this)}>
-                </SectionCreationPopupContainer>
               </div>
               <SimpleDialogComponent title={this.context.t('popup_warning_publish_course_title')}
                                      show={publishCourse}
