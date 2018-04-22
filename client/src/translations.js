@@ -220,7 +220,7 @@ export const translations = {
     "course_info": "Thông tin khóa học",
     "course_detail": "Chi tiết khóa học",
     "tutor_info": "Thông tin giáo viên",
-    "course_subscribe": "Đăng ký",
+    "course_enroll": "Đăng ký",
 
     "course_follow": "Theo dõi khóa học",
     "course_follow_status": "Kết quả theo dõi khóa học",
@@ -272,7 +272,7 @@ export const translations = {
     "footer_link_courses": "Courses",
     "footer_link_privacy_policy": "Privacy Policy",
     "footer_link_terms_of_use": "Terms of Use",
-    "footer_contact_us": "Contact",
+    "footer_contact_us": "Liên hệ",
     "popular_courses": "Khoá học phổ biến",
     "search_your_teacher": "Tìm giáo viên",
     "all_courses": "Tất cả khoá",
@@ -314,7 +314,13 @@ export const translations = {
     "payment_value": "Giá trị",
 
 
-    "unknown": "Chưa rõ"
+    "course_menu": "Menu",
+    "course_intro": "Giới thiệu",
+    "course_lessons": "Bài học",
+    "course_teacher": "Về giáo viên",
+    "course_related": "Khóa học liên quan",
+    "unknown": "Chưa rõ",
+
   },
   "en": {
     "home_page": "Home",

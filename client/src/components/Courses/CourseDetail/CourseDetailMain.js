@@ -19,4 +19,11 @@ class CourseDetailMain extends Component {
   }
 }
 
+CourseDetailMain.contextTypes = {
+  t: React.PropTypes.func.isRequired
+}
+
+CourseDetailMain.propTypes = {
+};
+
 export default CourseDetailMain
