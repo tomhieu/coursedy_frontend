@@ -51,12 +51,11 @@ CourseList.contextTypes = {
 
 CourseList.propTypes = {
   displayMode: React.PropTypes.string.isRequired,
+  itemClass: React.PropTypes.string.isRequired,
   // the public course list have some additional features like following course...
   isPublic: React.PropTypes.bool.isRequired,
   courses: React.PropTypes.array,
   isFetching: React.PropTypes.bool,
-  fullHeight: React.PropTypes.bool,
-  hasFilter: React.PropTypes.bool
 };
 
 export default cssModules(CourseList, styles);

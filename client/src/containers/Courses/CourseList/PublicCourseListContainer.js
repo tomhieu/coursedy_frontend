@@ -77,10 +77,9 @@ class PublicCourseListContainer extends Component {
         <div className="public-course-list">
           <CourseList
             {...this.props}
+            itemClass='col-xs-12 col-sm-4 col-md-3'
             selectCourseHdl={this.selectCourseHdl.bind(this)}
             isPublic={true}
-            itemPerRowInGridMode={4}
-            hasFilter={true}
           />
           {
             !isFetching && courses.length > 0 ? (

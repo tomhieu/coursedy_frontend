@@ -14,13 +14,14 @@ class CourseListInGridMode extends Component {
   render() {
     const {
       displayMode,
+      itemClass
     } = this.props;
 
     return (
       <div className="row">
       {
         this.props.courses.map((item, index) => (
-          <div className="col-xs-12 col-sm-6 col-md-4" key={'course-' +index}>
+          <div className={itemClass} key={'course-' +index}>
             <CourseItem item={item}
                         displayMode={displayMode}
             />
