@@ -118,21 +118,21 @@ export const closePublicCourseFollowStatusModal = (page = 'detail') => {
     
   }
 }
-export const showPublicRequireLoginModal = (message) => {
-  return dispatch => {
-    dispatch({
-      type: types.PUBLIC_COURSE_SHOW_REQUIRE_LOGIN_MODAL,
-      payload: message
-    })
-  }
-}
-export const closePublicRequireLoginModal = () => {
-  return dispatch => {
-    dispatch({
-      type: types.PUBLIC_COURSE_CLOSE_REQUIRE_LOGIN_MODAL,
-    })
-  }
-}
+// export const showPublicRequireLoginModal = (message) => {
+//   return dispatch => {
+//     dispatch({
+//       type: types.PUBLIC_COURSE_SHOW_REQUIRE_LOGIN_MODAL,
+//       payload: message
+//     })
+//   }
+// }
+// export const closePublicRequireLoginModal = () => {
+//   return dispatch => {
+//     dispatch({
+//       type: types.PUBLIC_COURSE_CLOSE_REQUIRE_LOGIN_MODAL,
+//     })
+//   }
+// }
 
 export const showPublicEnrollStatusModal = () => {
   return dispatch => {

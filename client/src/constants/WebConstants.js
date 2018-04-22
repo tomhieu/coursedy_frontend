@@ -14,3 +14,6 @@ export const TERMINATED_COURSE = "finished";
 //Payment
 export const PAYMENT_HISTORY_PAGINATION_MAX_ITEM_PER_PAGE = 10;       //Default: 20
 export const PAYMENT_HISTORY_PAGINATION_MAX_NUMBER_DISPLAY_PAGE = 5;  //Default: 5
+
+//
+export const PUBLIC_COURSE_MAX_NUMBER_COMMENTS_PER_LOAD = 10
