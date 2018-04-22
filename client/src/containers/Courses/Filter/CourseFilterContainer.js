@@ -14,6 +14,7 @@ import {FETCH_COURSES} from "../../../constants/Courses";
 import {LOAD_SUGGESTION} from "../../../actions/AsyncActionCreator";
 import {FETCH_CATEGORIES} from "../../../actions/AsyncActionCreator";
 import {FETCH_LOCATIONS} from "../../../actions/AsyncActionCreator";
+import {CLOSE_COURSE_FILTER_SUGGESTION} from "../../../actions/AsyncActionCreator";
 
 class CourseFilterContainer extends AbstractFilter {
 
@@ -120,7 +121,8 @@ class CourseFilterContainer extends AbstractFilter {
                     loadSuggestions={this.loadSuggestions.bind(this)}
                     onSelectFilter={this.doSelectFilter.bind(this)}
                     onRemoveFilter={this.doRemoveFilter.bind(this)}
-                    onSelectSuggestion={this.autoCompleteSearchCourse.bind(this)}
+                    onSelectSuggestion={this.autoCompleteSearchCourse.bind(this) }
+                    closeSuggestion={this.props.closeSuggestion}
       />
     )
   }
@@ -206,7 +208,8 @@ const mapDispatchToProps = (dispatch) => ({
     type: FETCH_LOCATIONS,
     payload: Network().get('locations'),
     meta: 'publicCourseListPlaceholder'
-  })
+  }),
+  closeSuggestion: () => dispatch({type: CLOSE_COURSE_FILTER_SUGGESTION})
 });
 
 

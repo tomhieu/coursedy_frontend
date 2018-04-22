@@ -2595,6 +2595,10 @@ input[type="url"], input[type="text"], textarea, .form-control {
 .option-item {
   cursor: pointer;
   padding: 5px 20px;
+  a {
+    width: 100%;
+    display: block;
+  }
 }
 
 .option-item:hover {

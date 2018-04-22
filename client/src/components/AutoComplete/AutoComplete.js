@@ -9,8 +9,22 @@ import {SERVER_NAME} from "utils/CommonConstant";
 
 class AutoComplete extends Component {
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
+  }
+
+  componentDidMount () {
+    window.addEventListener('click', this.handleClickOutside.bind(this))
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('click', this.handleClickOutside);
+  }
+
+  handleClickOutside(event) {
+    if (this.autoCompleteWrapper && !this.autoCompleteWrapper.contains(event.target)) {
+      this.props.closeSuggestion();
+    }
   }
 
   renderSuggestion(suggestion, handleAddCriteria) {
@@ -38,7 +52,7 @@ class AutoComplete extends Component {
   render() {
     const {show, isLoading, onBlur, onFocus, placeholder, fieldName, dataSource, handleAddCriteria, loadSuggestions} = this.props;
     return (
-      <div className={styles.filterBox + " d-flex flex-vertical"}>
+      <div className={styles.filterBox + " d-flex flex-vertical"} ref={(el) => { this.autoCompleteWrapper = el } }>
         <div className="d-flex flex-horizontal">
           <div className="input-without-border">
             <Field name={fieldName} placeholder={placeholder}
@@ -89,6 +103,7 @@ AutoComplete.propTypes = {
   loadSuggestions: React.PropTypes.func.isRequired,
   onBlur: React.PropTypes.func,
   onFocus: React.PropTypes.func,
+  closeSuggestion: React.PropTypes.func
 };
 
 export default cssModules(AutoComplete, styles);

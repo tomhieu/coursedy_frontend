@@ -33,6 +33,7 @@ class CourseFilter extends Component {
       listSpecializes,
       reloadCourseList,
       onSelectFilter,
+      closeSuggestion
     } = this.props;
 
     const {selectedWeekDays, selectedCategories, selectedLocations, selectedSpecializes} = filters;
@@ -69,7 +70,8 @@ class CourseFilter extends Component {
                                       formfieldValues={formfieldValues}
                                       onRemoveFilter={onRemoveFilter}
                                       onSelectSuggestion={onSelectSuggestion}
-                                      suggestions={suggestions}>
+                                      suggestions={suggestions}
+                                      closeSuggestion={closeSuggestion}>
                 </BasicFilterComponent>
               </div>
               <div className="seperate-filter-line"></div>
@@ -152,6 +154,7 @@ CourseFilter.propTypes = {
   onSelectSuggestion: React.PropTypes.func.isRequired,
   showSuggestion: React.PropTypes.bool.isRequired,
   reloadCourseList: React.PropTypes.func,
+  closeSuggestion: React.PropTypes.func
 };
 
 export default cssModules(CourseFilter, styles);
