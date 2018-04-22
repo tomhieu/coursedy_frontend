@@ -24,4 +24,11 @@ class CourseDetailRightSide extends Component {
   }
 }
 
+CourseDetailRightSide.contextTypes = {
+  t: React.PropTypes.func.isRequired
+}
+
+CourseDetailRightSide.propTypes = {
+};
+
 export default CourseDetailRightSide

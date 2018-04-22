@@ -316,6 +316,9 @@ export const translations = {
 
     "course_menu": "Menu",
     "course_intro": "Giới thiệu",
+    "course_highlight": "Sơ lược",
+    "course_requirements": "Yêu cầu",
+    "course_about": "Về khóa học",
     "course_lessons": "Bài học",
     "course_teacher": "Về giáo viên",
     "course_related": "Khóa học liên quan",
