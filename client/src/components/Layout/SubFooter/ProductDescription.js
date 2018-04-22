@@ -8,7 +8,7 @@ class ProductDescription extends Component{
   render() {
     return (
       <div className={this.props.classNames}>
-        <div className="footer-logo"><Link to="/"><img src="http://dev.mindsworthy.com/tutorsci/demo/assets/uploads/settings/setting_35.png" alt=""/></Link></div>
+        <div className="footer-logo"><Link to="/"><img src="#" alt=""/></Link></div>
         <div className="footer-text">
           <p>{this.context.t('product_description')}</p>
           <div className="read-more">

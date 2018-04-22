@@ -11,12 +11,8 @@ import {
 import {
   StudentContainers
 } from '../../../containers'
-// import CourseFormContainer from '../../containers/Courses/CourseForm/CourseFormContainer';
-// import TutorProfileDetailsContainer from '../../containers/Tutor/Profile/TutorProfileDetailsContainer';
 import {connect} from 'react-redux';
-// import ListLessonContainer from "../../containers/Courses/Lesson/ListLessonContainer";
-// import ListTutorCourseContainer from "../../containers/Courses/CourseList/ListTutorCourseContainer";
-// import TutorAccount from "../../containers/Account/Tutor/TutorAccountContainer";
+import * as sessionActions from '../../../actions/SessionActionCreator'
 
 class StudentDashboardPage extends RoleAuthorization {
   constructor(props) {
@@ -25,27 +21,28 @@ class StudentDashboardPage extends RoleAuthorization {
     this.unauthorizedPath = '/'
   }
 
+  signOut(e) {
+    e.preventDefault()
+    this.props.dispatch(sessionActions.signOutUser())
+  }
+
   render() {
     if (this.props.fetchingUser) return null
 
     return (
       <div className="dashboard-section">
         <div className="container">
-          <div className="row offcanvas offcanvas-right row-margin">
+          <div className="row offcanvas offcanvas-right row-padding">
             <div className="col-xs-12 col-sm-4 left-panel" id="sidebar">
               <div className="panel-group dashboard-menu" id="accordion">
                 {
                   this.props.currentUser !== null ? <StudentContainers.DashboardProfileContainer/> : null
                 }
-                <StudentComponents.StudentDashboardMenu/>
+                <StudentComponents.StudentDashboardMenu signOut={this.signOut.bind(this)}/>
               </div>
             </div>
             <div className="col-xs-12 col-sm-8 d-flex">
               <switch>
-                <Route exact 
-                  path="/student/dashboard" 
-                  component={StudentComponents.StudentDashboardIndex}
-                />
                 <Route exact 
                   path="/student/dashboard/account/profile" 
                   component={StudentContainers.AccountProfileContainer}

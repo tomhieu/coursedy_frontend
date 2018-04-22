@@ -1,14 +1,12 @@
 import React, {Component} from 'react'
 import { Link } from 'react-router-dom'
+
 class StudentDashboardMenu extends Component {
+
   render(){
+    const {signOut} = this.props
     return (
       <div className="dashboard-menu-panel">
-        <div className="dashboard-link">
-          <Link to={'/student/dashboard'} className="active">
-            <i className="fa fa-tachometer"></i>{this.context.t('dashboard')}
-          </Link>
-        </div>
 
         <div className="panel panel-default">
           <div className="panel-heading">
@@ -57,7 +55,7 @@ class StudentDashboardMenu extends Component {
 
         <div className="panel panel-default">
           <div className="dashboard-link">
-            <Link to={'#'}>
+            <Link onClick={signOut} to={'#'}>
               <i className="fa fa-sign-out"></i>{this.context.t('signout')}
             </Link>
           </div>
@@ -73,6 +71,7 @@ StudentDashboardMenu.contextTypes = {
 }
 
 StudentDashboardMenu.propTypes = {
+  signOut: React.PropTypes.func.isRequired
 }
 
 export default StudentDashboardMenu

@@ -15,7 +15,7 @@ class CourseItem extends Component {
 
   render() {
     return (
-      this.props.displayMode === 'grid' ? 
+      this.props.displayMode === 'grid' ?
         <CourseItemInGridMode {...this.props} /> :
         <CourseItemInListMode {...this.props} />
     )
@@ -25,10 +25,5 @@ class CourseItem extends Component {
 CourseItem.contextTypes = {
   t: React.PropTypes.func.isRequired
 }
-
-CourseItem.propTypes = {
-  // the public course will have some additional feature like following
-  isPublic: React.PropTypes.bool.isRequired
-};
 
 export default cssModules(CourseItem, styles);

@@ -31,7 +31,8 @@
 }
 
 .filterBox {
-  width: 100%;
+  min-width: 100px;
+  flex: 1 1 auto;
   input {
     border: none;
   }

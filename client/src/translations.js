@@ -91,6 +91,9 @@ export const translations = {
     "course_delete_btn": "Xoá Khoá Học",
     "course_item_duration": "Thời lượng: {duration} buổi",
     "course_item_lesson_duration": "Thời gian: {time} phút",
+    "course_item_price_tag": "{currency} {price}",
+    "lesson_count": "{lessons} buổi học",
+    "total_review": "{reviews} đánh giá",
     "hour": "Giờ",
     "day": "Ngày",
     "week": "Tuần",
@@ -125,6 +128,7 @@ export const translations = {
     /*
      * Tutor Account Page
      */
+    'update_avatar': 'Thay Đổi Ảnh Đại Diện',
     "account.person.info.title": "Thông tin cá nhân",
     "account.person.info.first.name": "Tên",
     "account.person.info.full_name": "Họ và tên",
@@ -135,12 +139,12 @@ export const translations = {
     "account.person.info.gender": "Giới tính",
     "account.person.info.address": "Địa chỉ",
     "account.person.info.save.btn": "Lưu",
-    "account_tutor_edu_title": "giáo dục",
+    "account_tutor_edu_title": "Chuyên môn",
     "account.tutot.edu.level.title": "Trinh độ học vấn",
     "account.tutot.edu.ocupation": "Nghề nghiệp hiện tại",
     "account.tutor.edu.description": "Giới thiệu",
     "account.tutor.edu.specialty": "Kĩnh vực giảng dạy",
-    "account.tutot.edu.degree.title": "Bằng cấp",
+    "account.tutot.edu.degree.title": "Chứng chỉ/Bằng cấp",
     "account.tutot.edu.degree.field_label": "Upload chứng chỉ/bằng Cấp",
     "account.tutot.edu.degree.no_degrees": "Không có bằng cấp / giấy chứng nhận",
     "account_tutor_skill_title": "Kỹ Năng",
@@ -154,7 +158,7 @@ export const translations = {
     "account_tutor_current_password_title": "Mật khẩu hiện tại",
     "account_tutor_new_password_title": "Mật khẩu mới",
     "account_tutor_new_password_again_title": "Nhập lại mật khẩu mới",
-    "account_tutor_new_password_btn": "Đổi mật khẩu",
+    "account_tutor_new_password_btn": "Đổi Mật Khẩu",
     "drag_and_drop": "Kéo thả tập tin vào đây",
     "speciality": "Chuyên môn",
     "save": "Lưu",
@@ -166,6 +170,8 @@ export const translations = {
     'gender.F': 'Nữ',
     "search_course": "Từ khoá tìm kiếm",
     "view_details_lesson": "Xem bài học",
+    'update_password': "Thay đổi mật khẩu",
+    'update_password_success': "Mật khẩu đã được cập nhật thành công.",
 
     /*
      * Section Page
@@ -216,6 +222,7 @@ export const translations = {
     /*
         Public course detail
     */
+    "course_list": "Danh sách khóa học",
     "course_info": "Thông tin khóa học",
     "course_detail": "Chi tiết khóa học",
     "tutor_info": "Thông tin giáo viên",
@@ -278,15 +285,15 @@ export const translations = {
     "watch_all_courses": "Xem Tất Cả Khoá Học",
     "more_course": "Xem Thêm",
     "new_courses": "Khoá Học Mới Mở",
-    "how_study": "Học N<span class='introduction-text-decoration'>hư Th</span>ế Nào?",
-    "student_top_comments": "Nhận <span class='introduction-text-decoration'>Xét Họ</span>c Sinh",
+    "how_study": "Học Như Thế Nào?",
+    "student_top_comments": "Nhận Xét Học Sinh",
     "top_teacher_month": "<span class='title-highlight'>TOP</span> GIÁO VIÊN <span class='title-highlight'>NỔI TIẾNG</span>",
     "top_teacher_pre": "Với Hơn",
     "top_teacher_post": "Giáo Viên Giỏi",
     "course_num_pre": "Và",
     "course_num_post": "Khoá Học Đang Được Dạy",
     "you_are_teacher": "Bạn Là Giáo Viên?",
-    "introduction_interactive_title": "Tương Tác <span class='introduction-text-decoration'>Trực T</span>iếp Với Giáo Viên",
+    "introduction_interactive_title": "<span class='introduction-text-decoration'> Tương</span> Tác Trực Tiếp Với Giáo Viên",
     "introduction_interactive_description": "Listen to our teachers spexeches and see our video testimonials before you take any decisions",
     "introduction_save_cost_title": "<span class='introduction-text-decoration'>Tiết K</span>iệm Chi Phí",
     "introduction_save_cost_description": "We have rated teachers for safety and convenience as we know how important this is for you",
@@ -316,6 +323,7 @@ export const translations = {
 
     "my_account": "Tài khoản",
     "my_profile": "Thông tin người dùng",
+    "my_education": "Chuyên môn",
     "my_balance": "Số dư tài khoản",
 
     "my_courses": "Khóa học",

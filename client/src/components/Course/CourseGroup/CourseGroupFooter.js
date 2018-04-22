@@ -14,7 +14,7 @@ export default class CourseGroupFooter extends Component {
       <div className="row">
         <div className="col-sm-12 course__footer">
           <Link to={ this.props.redirectUrl }
-             className="btn-link">{this.props.btnName}</Link>
+             className="btn-link-dark">{this.props.btnName}</Link>
         </div>
       </div>
     )

@@ -49,7 +49,7 @@ class LoginForm extends Component {
         </FormGroup>
 
         <div className="check">
-          <a href="http://dev.mindsworthy.com/tutorsci/demo/auth/forgot_password"
+          <a href="#"
              className="forgot-pass"> {this.context.t("forgot_password")}</a>
         </div>
 

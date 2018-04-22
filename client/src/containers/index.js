@@ -16,6 +16,7 @@ import RoleAuthorization from '../components/RoleAuthorization';
 import CommentFormContainer from './Courses/CourseDetail/CommentFormContainer';
 import * as AccountContainers from './Account'
 import * as StudentContainers from './Student'
+import * as TutorContainers from './Tutor'
 
 export {
   LoginFormContainer,
@@ -36,4 +37,5 @@ export {
   
   AccountContainers,
   StudentContainers,
+  TutorContainers
 }

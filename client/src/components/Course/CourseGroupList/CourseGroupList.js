@@ -20,7 +20,7 @@ class CourseGroupList extends Component {
     return (
       <section className="our-popular">
         <div className="container">
-          <div className="row-margin">
+          <div className="row-padding">
             <div className="row ">
               <div className="col-sm-12 ">
                 <h2 className="heading">{this.context.t('popular_courses')}</h2>
@@ -36,7 +36,7 @@ class CourseGroupList extends Component {
             <div className="row">
               <div className="col-sm-12 text-center">
                 <div className="mtop4">
-                  <a href="http://dev.mindsworthy.com/tutorsci/demo/courses" className="btn-link">{this.context.t('all_courses')}</a>
+                  <a href="#" className="btn-link">{this.context.t('all_courses')}</a>
                 </div>
               </div>
             </div>

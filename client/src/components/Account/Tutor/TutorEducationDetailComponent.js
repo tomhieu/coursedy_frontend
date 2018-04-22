@@ -45,17 +45,6 @@ class TutorEducationDetailComponent extends Component {
               }
             </div>
           </div>
-          <hr/>
-
-          {/*<div className='row'>*/}
-            {/*<div className='col-sm-4'>*/}
-              {/*<label className='control-label'>{this.context.t("tutor_rate")}</label>*/}
-            {/*</div>*/}
-            {/*<div className='col-sm-8'>*/}
-              {/*<span>{tutor.hour_rate}</span> &nbsp;*/}
-              {/*<span>{tutor.currency}</span>*/}
-            {/*</div>*/}
-          {/*</div>*/}
         </div>
       </div>
     )

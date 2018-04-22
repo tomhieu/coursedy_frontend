@@ -3,7 +3,7 @@ import React from 'react';
 import {CourseFilterContainer, PublicCourseListContainer} from '../../containers/index';
 
 const PublicCourseListPage = (props) => (
-  <div className="d-flex flex-g1 flex-vertical">
+  <div className="d-flex flex-auto flex-vertical">
       <div className="d-flex flex-auto course-filter-container">
           <CourseFilterContainer />
       </div>

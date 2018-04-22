@@ -200,6 +200,8 @@ body.application {
       margin-top: 15px;
     }
 
+
+
     .navbar-default.bg-light {
       //padding: 0.5rem 1rem;
     }
@@ -247,7 +249,7 @@ body.application {
     flex-grow: 1;
   }
 
-  .dashboard-section .row-margin {
+  .dashboard-section .row-padding {
     margin-top: 50px;
     margin-bottom: 50px;
   }
@@ -265,8 +267,10 @@ body.application {
   }
 
   .dashboard-menu .panel-title {
-    color: $primary-color;
-    font-size: 18px;
+    & a {
+      color: $dark-text-color;
+    }
+    font-size: 16px;
     font-weight: 400;
   }
 
@@ -390,8 +394,8 @@ body.application {
   }
 
   .dashboard-links li a {
-    color: $primary-color;
-    font-size: 16px;
+    color: $dark-text-color;
+    font-size: 14px;
     font-weight: 400;
     line-height: 48px;
     display: inline-block;
@@ -427,10 +431,9 @@ body.application {
     }
 
     .main-content > .container {
-      padding: 0;
       .full-width-in-container {
-        margin-left: 0;
-        margin-right: 0;
+        margin-left: -15px;
+        margin-right: -15px;
       }
     }
   }
@@ -448,5 +451,417 @@ body.application {
 
   .img-circle {
     border-radius: 50%;
+  }
+
+  .heading {
+    font-size: 30px;
+    font-weight: 400;
+    color: $dark-text-color;
+    text-align: center;
+    margin-bottom: 65px;
+  }
+
+  .row-padding {
+    padding-top: 90px;
+    padding-bottom: 90px;
+  }
+
+  .btn-link:hover {
+    color: $md-color-pink;
+    border-color: $md-color-pink;
+    text-decoration: none;
+  }
+
+  .btn-link-dark {
+    padding: 8px;
+    color: $white-color;
+    font-size: 16px;
+    font-weight: 400;
+    border: 1px solid $md-color-pink;
+    border-radius: 2px;
+    text-align: center;
+    background: $md-color-pink;
+    -webkit-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
+  }
+
+  .btn-link-dark:hover {
+    background: transparent !important;
+    color: $md-color-pink !important;
+    -webkit-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
+  }
+
+  .btn-link-dark:focus,
+  .btn-link-dark:active {
+    outline: none !important;
+  }
+
+  // select2 styles
+  .select2-container--default .select2-results__option--highlighted[aria-selected] {
+    background-color: $md-color-pink;
+  }
+
+  .home-search .select2-container--default .select2-selection--single {
+    background-color: $white-color;
+    border: 1px solid $white-color;
+    border-right: 1px solid $border-color;
+    color: $dark-text-color;
+    font-size: 16px;
+    border-radius: 0;
+    font-size: 14px;
+    padding: 15px 16px;
+    margin-bottom: 0px;
+    text-align: left;
+    height: 58px;
+  }
+
+  .select2-dropdown {
+    border: 1px solid #f2f2f2;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .26), 0 2px 10px 0 rgba(0, 0, 0, .16);
+  }
+
+  .select2-container--default .select2-selection--single .select2-selection__arrow b {
+    display: none;
+  }
+
+  .select2-container--default .select2-selection--single .select2-selection__arrow {
+    height: 26px;
+    position: absolute;
+    top: 10px;
+    right: 3px;
+    width: 33px;
+    border-radius: 5px;
+    height: 35px;
+  }
+
+  .select2-container--default .select2-selection--single {
+    border: 1px solid $border-color;
+    border-radius: 2px;
+    height: 32px;
+  }
+
+  .header-homepage .select2-container--default .select2-selection--single .select2-selection__arrow {
+    background: $white-color url("../images/arrow.png") no-repeat center !important;
+  }
+
+  input:disabled, textarea:disabled, .form-control:disabled,
+  .dark-picker-bright .select2-container--default.select2-container--disabled .select2-selection--single{
+    background-color: #F0F0EF;
+    cursor: not-allowed;
+  }
+
+  input:not([type]):focus, input[type="email"]:focus, input[type="number"]:focus, input[type="password"]:focus, input[type="tel"]:focus,
+  input[type="url"]:focus, input[type="text"]:focus, textarea:focus, .form-control:focus {
+    border-color: $border-focus-color;
+    outline: 0;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+  }
+
+  .dark-picker-bright .select2-container--default .select2-selection--single {
+    background-color: #ffffff;
+    border: 1px solid rgba(48, 51, 57, .15);
+    border-radius: 2px;
+  }
+
+  .select2-container--default.select2-container--open.select2-container--below .select2-selection--single,
+  .select2-container--default.select2-container--open.select2-container--below .select2-selection--multiple {
+    border-color: $border-focus-color;
+  }
+
+  .select2-container--default.select2-container--open.select2-container--below .select2-selection__arrow {
+    color: $primary-color;
+    transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
+  }
+
+  .select2-container--default.select2-container--open.select2-container--below .select2-selection__arrow:before {
+    content: "\f106";
+  }
+
+  .select2-container--default .select2-selection--single .select2-selection__rendered {
+    line-height: 16px;
+    padding: 7px 10px;
+  }
+
+  .select2-search__field {
+    -webkit-transition: all .3s ease;
+    transition: all .3s ease;
+  }
+
+  /* select2 scrollbar styling */
+
+  .select2-results__options::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    background-color: #F5F5F5;
+  }
+
+  .select2-results__options::-webkit-scrollbar {
+    width: 6px;
+    background-color: #F5F5F5;
+  }
+
+  .select2-results__options::-webkit-scrollbar-thumb {
+    background-color: #534051;
+  }
+
+  .select2-container--default .select2-search--dropdown .select2-search__field {
+    border-color: #534051;
+    outline-color: #534051;
+    border-radius: 2px;
+  }
+
+  .select2-container--default select2-container--open {
+    top: 453px !important;
+  }
+
+  .currency-field, .type-field {
+    width: 100px;
+  }
+
+  .select2-container .select2-selection--multiple {
+    height: 32px;
+    min-height: 32px;
+  }
+
+  .select2-container .select2-search--inline {
+    margin-left: 3px;
+    margin-top: 3px;
+  }
+
+  .hidden {
+    display: none !important;
+  }
+
+  .close {
+    margin-top: -5px;
+    margin-right: -10px;
+  }
+
+  .forgot-pass {
+    color: #9b9b9b;
+    font-size: 14px;
+    font-weight: 400;
+    float: right;
+  }
+
+  .forgot-pass:hover {
+    text-decoration: none;
+    color: $dark-text-color;
+  }
+  // end select2 styles
+
+  .dashboard-links {
+    padding-left: 15px;
+  }
+  .dashboard-links li {
+    border-bottom: 1px solid #f2f2f2;
+    position: relative;
+  }
+  .dashboard-links li:before {
+    display: none;
+  }
+
+  .modal-header {
+    background-color: $md-color-pink;
+    border-top-right-radius: 2px;
+    border-top-left-radius: 2px;
+    & .modal-title {
+      margin-bottom: 0;
+    }
+
+    & button.close span{
+      display: inline-block;
+      margin-top: -10px;
+      vertical-align: top;
+    }
+  }
+
+  .modal-content {
+    border-radius: 2px;
+  }
+
+  button:hover {
+    cursor: pointer;
+  }
+
+  .edit-avatar-btn {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    display: none;
+    padding-right: 30px;
+    margin-bottom: 6px;
+    min-height: 50px;
+    max-height: 100%;
+    .base-line-btn {
+      background-color: $default-color;
+      color: $primary-color;
+      display: table-cell;
+      vertical-align: middle;
+    }
+  }
+
+  .avatar-container:hover .edit-avatar-btn, .edit-avatar-btn:hover {
+    display: table;
+    cursor: pointer;
+  }
+
+  .block-center-align {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .padd-10 {
+    padding: 10px;
+  }
+
+  .full-width-input-wrapper, .full-width {
+    width: 100%;
+  }
+
+  .full-height {
+    height: 100%;
+  }
+
+  .btn-primary {
+    background-color: $md-color-pink;
+    border-color: $md-color-pink;
+  }
+
+  .btn-primary:hover {
+    background: $primary-color;
+    color: $md-color-pink;
+    border-color: $md-color-pink;
+  }
+
+  .cancel-button {
+    background-color: $cancel-btn-color;
+    border: solid 1px $cancel-btn-color;
+    color: $primary-color;
+    &:hover {
+      background-color: transparent;
+      color: $md-color-pink;
+      border-color: $border-focus-color;
+    }
+  }
+
+  .btn {
+    border-radius: 2px;
+  }
+
+  .full-width-img {
+    width: 100%;
+    height: auto;
+  }
+
+  .img-circle {
+    border-radius: 50%;
+  }
+
+  .course-item {
+    position: relative;
+    &:hover {
+      -webkit-box-shadow: 0px 0px 12px -1px rgba(0, 0, 0, 0.29);
+      -moz-box-shadow: 0px 0px 12px -1px rgba(0, 0, 0, 0.29);
+      box-shadow: 0px 0px 12px -1px rgba(0, 0, 0, 0.29);
+    }
+
+    p {
+      color: $dark-text-color;
+    }
+    .course-detail-lnk:hover {
+      cursor: pointer;
+    }
+    background: $gray-background;
+    .course-item-top {
+      position: relative;
+      padding-left: 15px;
+      padding-top: 7px;
+      .course-item-instructor {
+        .image {
+          width: 44px;
+          height: 44px;
+          border: 2px solid #FFF;
+          float: left;
+          margin-top: -27px;
+          border-radius: 50%;
+          margin-right: 5px;
+          -webkit-box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.43);
+          -moz-box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.43);
+          box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.43);
+        }
+      }
+      .course-item-price {
+        background-color: $md-color-pink;
+        color: $white-color;
+        position: absolute;
+        top: 10px;
+        right: -5px;
+        line-height: 1;
+        font-weight: 700;
+        font-size: 14px;
+        padding: 4px 10px 3px;
+
+        &:before {
+          content: "";
+          position: absolute;
+          top: -5px;
+          right: 0;
+          width: 0;
+          height: 0;
+          border-style: solid;
+          border-width: 5px 0 0 5px;
+          border-color: transparent transparent transparent $md-color-pink;
+        }
+      }
+    }
+    .course-item-content {
+      padding: 25px 15px;
+      padding-left: 20px;
+      p {
+        margin-top: 20px;
+        font-size: 14px;
+      }
+      h3 {
+        font-size: 23px;
+        color: $md-color-pink;
+      }
+      .rating-wrapper {
+        margin: 0 0 5px;
+        & > div {
+          display: inline-block;
+        }
+        .rating-item {
+          .fa {
+            font-size: 12px;
+            color: $rating-item-color;
+          }
+          .rating-symbol {
+            margin-right: 3px;
+          }
+        }
+      }
+    }
+    .course-item-bottom {
+      width: 100%;
+      font-size: 11px;
+      text-align: center;
+      line-height: 1.4;
+      padding: 0 5px;
+      border-top: 1px solid $border-color;
+      display: table;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      & > div {
+        display: table-cell;
+        padding: 20px 10px;
+      }
+
+      & > div:last-child {
+        border-left: 1px solid $border-color;
+      }
+    }
   }
 }
