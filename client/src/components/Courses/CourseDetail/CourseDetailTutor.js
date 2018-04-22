@@ -1,19 +1,23 @@
 import React, { Component } from 'react'
 import './CourseDetailTutor.scss'
+import { Link } from 'react-router-dom'
 
 class CourseDetailTutor extends Component {
   render() {
+    const { course, course_tutor } = this.props
     return (
       <div id="course-detail-section-2" className="course-detail-section">
         <div className="section-title text-left mb-20">
-          <h3>About Teacher</h3>
+          <h3>{this.context.t('course_teacher')}</h3>
         </div>
         <div className="teacher-item-list-02-wrapper">
           <div className="teacher-item-list-02 clearfix">
             <div className="row gap-20">
               <div className="col-xs-12 col-sm-3 col-md-2">
                 <div className="image">
-                  <img src="http://placehold.it/100x100" alt="Image" />
+                  <Link to={course.user ? `/teachers/${course.user.id}` : '#'}>
+                    <img src={ course.user && course.user.avatar ? course.user.avatar : "http://placehold.it/100x100"} alt="Image" />
+                  </Link>
                 </div>
                 <div className="clear"></div>
                 
@@ -28,11 +32,24 @@ class CourseDetailTutor extends Component {
               
               <div className="col-xs-12 col-sm-9 col-md-10">
                 <div className="content">
-                  <span className="font700 block text-uppercase mb-5 spacing-10 font11">Primary Teacher</span>
-                  <h3><a href="#">Alexey Barnashov</a></h3>
-                  <p className="labeling">Computer Teacher</p>
-                  <p className="short-info">Sportsman do offending supported extremity breakfast by listening. Decisively advantages nor expression unpleasing she led met.</p>
-                  <a href="#" className="btn btn-primary btn-inverse btn-sm">More about him</a>
+                  <h3>
+                    <Link to={course.user ? `/teachers/${course.user.id}` : '#'}>
+                      {course.user ? course.user.name : this.context.t('unknown')}
+                    </Link>
+                  </h3>
+                  <p className="labeling">
+                    {course_tutor ? course_tutor.title : this.context.t('unknown')}
+                    {course_tutor && course_tutor.categories.length > 0 ? course_tutor.categories[0].name : ''}
+                  </p>
+                  <p className="short-info">
+                    {
+                      course_tutor && course_tutor.description 
+                        ? course_tutor.description : this.context.t('unknown')
+                    }
+                  </p>
+                  <Link to={course.user ? `/teachers/${course.user.id}` : '#'} className="btn btn-primary btn-inverse btn-sm">
+                    {this.context.t('read_more')}
+                  </Link>
                 </div>
               </div>
             </div>
@@ -44,6 +61,12 @@ class CourseDetailTutor extends Component {
   }
 }
 
+CourseDetailTutor.contextTypes = {
+  t: React.PropTypes.func.isRequired
+}
+
+CourseDetailTutor.propTypes = {
+};
 
 export default CourseDetailTutor
 

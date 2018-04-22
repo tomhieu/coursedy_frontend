@@ -19,7 +19,7 @@ class CourseDetailLessons extends Component {
         <div className="course-lession-wrapper-2">
           {
             course_sections.map((course_section, index) => (
-              <a href="#" className="course-lession-item-2">
+              <a href="#" className="course-lession-item-2" key={"sections-"+course_section.title+index}>
                 <div className="content-top">
                   <div className="row">
                     <div className="col-xs-12 col-sm-6 mb-15">
@@ -30,15 +30,15 @@ class CourseDetailLessons extends Component {
                 <div className="content">
                   {
                     course_section.lessons.map((lesson, index) => (
-                      <tr key={"lessons-" + lesson.title + index}>
+                      <div key={"lessons-" + lesson.title + index}>
                         <h5>{lesson.title}</h5>
                         <p>{lesson.description}</p>
-                        <p>
+                        <ul>
                           {lesson.documents.map((doc, index) => (
-                            <a href={doc.url} key={"document-"+doc.name+index}>{doc.name}</a>, 
+                            <li><a href={doc.url} key={"document-"+doc.name+index}>{doc.name}</a></li>
                           ))}
-                        </p>
-                      </tr>
+                        </ul>
+                      </div>
                     ))
                   }
                 </div>

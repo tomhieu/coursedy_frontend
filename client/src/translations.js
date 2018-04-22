@@ -323,7 +323,7 @@ export const translations = {
     "course_teacher": "Về giáo viên",
     "course_related": "Khóa học liên quan",
     "unknown": "Chưa rõ",
-
+    "read_more": "Chi tiết"
   },
   "en": {
     "home_page": "Home",
