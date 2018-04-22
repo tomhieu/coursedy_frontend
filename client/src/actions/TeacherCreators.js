@@ -1,11 +1,11 @@
-import * as ActionTypes from '../constants/Teachers';
 import Network from '../utils/network';
 import * as asyncActs from 'actions/AsyncActionCreator';
+import { dummyTeacherDetail } from '../constants/Teachers';
 
 
 export const searchTeachers = (query) => {
   return {
-    type: ActionTypes.FETCH_TEACHERS,
+    type: asyncActs.FETCH_TEACHERS,
     payload: Network().get('tutors/search', query)
   };
 };
@@ -22,3 +22,11 @@ export const updateFilterTeacher = (filters) => {
     type: asyncActs.UPDATE_FILTER_CRITERIA_TEACHERS, data: filters
   };
 };
+
+export const fetchTeacherDetail = (query) => {
+  // TODO change payload to Network().get('tutors/search', query) when teacher detail api complete
+  return {
+    type: asyncActs.FETCH_TEACHER_DETAIL + asyncActs.FULFILLED,
+    payload: dummyTeacherDetail(query),
+  }
+}

@@ -32,6 +32,7 @@ import AccountReducer from './AccountReducer'
 import StudentAccountReducer from './Student/StudentAccountReducer'
 import StudentCourseListReducer from './Student/StudentCourseListReducer'
 import TutorAccountReducer from './Tutor/TutorAccountReducer'
+import TeacherDetail from './TeacherDetailPageReducer';
 
 const rootReducer = combineReducers({
   // Apply all of the reducers here.
@@ -65,6 +66,7 @@ const rootReducer = combineReducers({
   CourseFilter,
   referenceData,
   Teachers,
+  TeacherDetail,
   Payment,
   HomePage,
   Certificate

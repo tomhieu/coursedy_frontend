@@ -1,16 +1,16 @@
 import React  from 'react';
 import { reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
-import * as TeacherActions from '../../actions/TeacherCreators';
+import * as TeacherActions from 'actions/TeacherCreators';
 import {
   fetchCourseCategories
 } from 'actions/ReferenceActions/ReferenceDataActionCreator';
 import cssModules from 'react-css-modules';
-import styles from '../../../styles/components/CommonFilterObjects.module.scss';
-import { getSelectedSpecializesFromCategory } from '../Courses/Filter/CourseFilterContainer';
+import styles from '../../../../styles/components/CommonFilterObjects.module.scss';
+import { getSelectedSpecializesFromCategory } from '../../Courses/Filter/CourseFilterContainer';
 import SuggestionBox from './SuggestionBox';
 import SelectFilterTeachers from './SelectFilterTeachers';
-import AbstractFilter from '../../components/Core/AbstractFilterComponent';
+import AbstractFilter from 'components/Core/AbstractFilterComponent';
 import * as asyncActions from 'actions/AsyncActionCreator';
 
 

@@ -298,6 +298,22 @@ export const translations = {
     "search_course": "Khoá Học",
     "search_teacher": "Giáo Viên",
 
+    // teacher detail
+    "teacher_background": "Lý lịch",
+    "teacher_short_introduce": " Giới thiệu",
+    "teacher_education": "Giáo dục",
+    "teacher_degree": "Bằng cấp",
+    "teacher_experience": "Kinh nghiệm làm việc",
+    "teacher_awards": "Giải thưởng",
+    "teacher_interest": "Sở thích",
+    "teacher_taught_courses": "Khoá học của giáo viên",
+    "teacher_review": "Nhận xét khoá học",
+    "leave_your_review_teacher": "Nhận xét giáo viên",
+    "write_review_teacher": "Viết nhận xét",
+    "review_submit_button": "Gửi nhận xét",
+    "enter_review": "Nhập nhận xét",
+    "review_cancel_button": "Huỷ",
+
     "my_account": "Tài khoản",
     "my_profile": "Thông tin người dùng",
     "my_balance": "Số dư tài khoản",

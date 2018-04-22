@@ -52,6 +52,11 @@ CourseListInGridMode.contextTypes = {
   t: React.PropTypes.func.isRequired
 }
 
+CourseListInGridMode.defaultProps = {
+  displayMode: 'grid',
+  isPublic: false
+}
+
 CourseListInGridMode.propTypes = {
   displayMode: React.PropTypes.string.isRequired,
   // the public course list have some additional features like following course...

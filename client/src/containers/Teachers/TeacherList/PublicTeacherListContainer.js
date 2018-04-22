@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import TeacherItem from './TeacherItem';
-import { searchTeachers } from '../../actions/TeacherCreators';
+import { searchTeachers } from 'actions/TeacherCreators';
 import Pagination from 'react-js-pagination';
-import LoadingMask from '../../components/LoadingMask/LoadingMask';
-import { FETCH_TEACHERS } from '../../constants/Teachers';
-import EmptyResultWarning from '../../components/Core/EmptyResultWarning';
+import LoadingMask from 'components/LoadingMask/LoadingMask';
+import EmptyResultWarning from 'components/Core/EmptyResultWarning';
+import { FETCH_TEACHERS } from 'actions/AsyncActionCreator';
 
 
 class PublicTeacherListContainer extends Component {

@@ -1,4 +1,3 @@
-import * as types from '../constants/Teachers';
 import * as asyncActs from 'actions/AsyncActionCreator';
 
 
@@ -16,13 +15,13 @@ const Teachers = (state = {
   headers: null
 }, action) => {
   switch (action.type) {
-    case types.FETCH_TEACHERS + asyncActs.PENDING:
+    case asyncActs.FETCH_TEACHERS + asyncActs.PENDING:
       return {...state, isFetching: true, error: null}
-    case types.FETCH_TEACHERS + asyncActs.FULFILLED:
+    case asyncActs.FETCH_TEACHERS + asyncActs.FULFILLED:
       return {...state, data: action.payload, isFetching: false, error: null}
-    case types.FETCH_TEACHERS + asyncActs.HEADERS:
+    case asyncActs.FETCH_TEACHERS + asyncActs.HEADERS:
       return {...state, headers: action.payload, isFetching: true, error: null}
-    case types.FETCH_TEACHERS + asyncActs.REJECTED:
+    case asyncActs.FETCH_TEACHERS + asyncActs.REJECTED:
       return {...state, isFetching: false, error: action.error, data:[], total: 0}
     /**
      * Handle action to load suggestion to filter Course
