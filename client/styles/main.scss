@@ -449,6 +449,10 @@ body.application {
     margin-right: calc(-50vw + 50%);
   }
 
+  .img-circle {
+    border-radius: 50%;
+  }
+
   .heading {
     font-size: 30px;
     font-weight: 400;
@@ -860,9 +864,5 @@ body.application {
         border-left: 1px solid $border-color;
       }
     }
-  }
-
-  .dashboard-content switch {
-    //background-color: $gray-background;
   }
 }

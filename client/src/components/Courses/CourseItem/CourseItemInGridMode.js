@@ -6,6 +6,7 @@ import {SERVER_NAME} from "utils/CommonConstant";
 import {Checkbox} from 'material-ui'
 import {TT} from "utils/locale";
 import Image from 'react-graceful-image';
+import RatingItem from '../../Rating/index'
 
 
 /**
@@ -47,68 +48,7 @@ class CourseItemInGridMode extends Component {
         </div>
         <LinkContainer to={'/course/' + item.id} className='course-detail-lnk'>
           <div className="course-item-content">
-            <div className="rating-wrapper">
-              <div className="rating-item">
-                    <span style={{cursor: 'default'}}><div className="rating-symbol"
-                                                           style={{display: 'inline-block', position: 'relative'}}><div
-                      className="rating-symbol-background fa fa-star-o" style={{visibility: 'hidden'}}/><div
-                      className="rating-symbol-foreground" style={{
-                      display: 'inline-block',
-                      position: 'absolute',
-                      overflow: 'hidden',
-                      left: 0,
-                      right: 0,
-                      width: 'auto'
-                    }}><span className="fa fa-star"/></div></div><div className="rating-symbol" style={{
-                      display: 'inline-block',
-                      position: 'relative'
-                    }}><div className="rating-symbol-background fa fa-star-o" style={{visibility: 'hidden'}}/><div
-                      className="rating-symbol-foreground" style={{
-                      display: 'inline-block',
-                      position: 'absolute',
-                      overflow: 'hidden',
-                      left: 0,
-                      right: 0,
-                      width: 'auto'
-                    }}><span className="fa fa-star"/></div></div><div className="rating-symbol" style={{
-                      display: 'inline-block',
-                      position: 'relative'
-                    }}><div className="rating-symbol-background fa fa-star-o" style={{visibility: 'hidden'}}/><div
-                      className="rating-symbol-foreground" style={{
-                      display: 'inline-block',
-                      position: 'absolute',
-                      overflow: 'hidden',
-                      left: 0,
-                      right: 0,
-                      width: 'auto'
-                    }}><span className="fa fa-star"/></div></div><div className="rating-symbol" style={{
-                      display: 'inline-block',
-                      position: 'relative'
-                    }}><div className="rating-symbol-background fa fa-star-o" style={{visibility: 'visible'}}/><div
-                      className="rating-symbol-foreground" style={{
-                      display: 'inline-block',
-                      position: 'absolute',
-                      overflow: 'hidden',
-                      left: 0,
-                      right: 0,
-                      width: '50%'
-                    }}><span className="fa fa-star"/></div></div><div className="rating-symbol" style={{
-                      display: 'inline-block',
-                      position: 'relative'
-                    }}><div className="rating-symbol-background fa fa-star-o" style={{visibility: 'visible'}}/><div
-                      className="rating-symbol-foreground" style={{
-                      display: 'inline-block',
-                      position: 'absolute',
-                      overflow: 'hidden',
-                      left: 0,
-                      right: 0,
-                      width: 0
-                    }}><span/></div></div></span><input type="hidden" className="rating" data-filled="fa fa-star"
-                                                        data-empty="fa fa-star-o" data-fractions={2} data-readonly
-                                                        defaultValue="3.5"/>
-              </div>
-              <span> {this.context.t('total_review', {reviews: item.rating_count})} </span>
-            </div>
+            <RatingItem num_stars={item.rating_points} num_reviews={item.rating_count}/>
             <h3>{item.title}</h3>
             <p>{item.description}</p>
           </div>
