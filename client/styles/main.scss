@@ -865,4 +865,9 @@ body.application {
       }
     }
   }
+
+  .imghvr-zoom-in {
+    border: solid 1px $border-focus-color;
+    background-color: transparent;
+  }
 }
