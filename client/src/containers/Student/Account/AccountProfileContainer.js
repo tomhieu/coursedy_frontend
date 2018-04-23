@@ -8,7 +8,7 @@ import {
   AccountActions,
   StudentAccountActions
 } from '../../../actions/index'
-import {RequireEmailConfirmationModal, TutorEducationDetailComponent} from '../../../components/index'
+import {RequireEmailConfirmationModal} from '../../../components/index'
 
 class AccountProfileContainer extends Component {
   componentWillMount(){

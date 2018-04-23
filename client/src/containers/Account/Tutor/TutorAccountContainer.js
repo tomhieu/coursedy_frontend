@@ -12,9 +12,9 @@ import {
   TutorAccountActions
 } from '../../../actions/index'
 import {
-  RequireEmailConfirmationModal, 
-  TutorEducationDetailComponent
+  RequireEmailConfirmationModal
 } from '../../../components/index'
+import TutorDetail from "components/Dashboard/Tutors/TutorDetail";
 
 class TutorAccount extends Component {
   componentWillMount(){
@@ -66,7 +66,7 @@ class TutorAccount extends Component {
             {
               editEducationMode ?
                 <TutorEducation tutor={tutor} cancel={this.hideEducationEditForm.bind(this)}/> :
-                <TutorEducationDetailComponent tutor={tutor} showEditForm={this.showEducationEditForm.bind(this)}/>
+                <TutorDetail tutor={tutor} showEditForm={this.showEducationEditForm.bind(this)}/>
             }
           </div>
         </div>

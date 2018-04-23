@@ -140,7 +140,7 @@ export const translations = {
     "account.person.info.address": "Địa chỉ",
     "account.person.info.save.btn": "Lưu",
     "account_tutor_edu_title": "Chuyên môn",
-    "account.tutot.edu.level.title": "Trinh độ học vấn",
+    "account.tutot.edu.level.title": "Giáo dục",
     "account.tutot.edu.ocupation": "Nghề nghiệp hiện tại",
     "account.tutor.edu.description": "Giới thiệu",
     "account.tutor.edu.specialty": "Kĩnh vực giảng dạy",
