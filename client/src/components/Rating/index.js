@@ -2,9 +2,8 @@ import React, { Component } from 'react'
 
 export default class RatingItem extends Component {
   render() {
-    const { num_stars } = this.props
-    let numFullStars = parseInt(this.props.num_stars)
-    let numReviews = parseInt(this.props.num_reviews)
+    let numFullStars = this.props.num_stars
+    let numReviews = this.props.num_reviews
 
     return (
       <div className="rating-wrapper">
@@ -13,7 +12,7 @@ export default class RatingItem extends Component {
             return (
               <div className="rating-symbol" key={v}>
                 <div className="rating-symbol-background fa fa-star-o" style={{'visibility': `${v <= numFullStars ? 'hidden' : 'visible'}`}}></div>
-                <div className="rating-symbol-foreground" style={{ 'display': 'inline-block', 'position': 'absolute', 'overflow': 'hidden', 'left': 0, 'right': 0, 'width': `${v <= numFullStars ? 'auto' : (numFullStars++ < num_stars ? '50%' : '0')}` }}><span className="fa fa-star"></span></div>
+                <div className="rating-symbol-foreground" style={{ 'display': 'inline-block', 'position': 'absolute', 'overflow': 'hidden', 'left': 0, 'right': 0, 'width': `${v <= numFullStars ? 'auto' : ((numFullStars + 1 - v) > 0 ? (numFullStars + 1 - v) : 0 )*100}%` }}><span className="fa fa-star"></span></div>
               </div>
             )
           })}
@@ -36,12 +35,6 @@ RatingItem.contextTypes = {
 }
 
 RatingItem.propTypes = {
-  num_stars: React.PropTypes.oneOfType([
-    React.PropTypes.string,
-    React.PropTypes.number,
-  ]),
-  num_reviews: React.PropTypes.oneOfType([
-    React.PropTypes.string,
-    React.PropTypes.number,
-  ])
+  num_stars: React.PropTypes.number.isRequired,
+  num_reviews: React.PropTypes.number.isRequired
 }
