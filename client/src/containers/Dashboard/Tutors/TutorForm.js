@@ -1,7 +1,7 @@
 import * as React from "react";
 import {Component} from "react";
 import FormField from "../../../components/Core/FormField";
-import styles from "./TutorEducation.module.scss";
+import styles from "./TutorForm.module.scss";
 import {reduxForm} from "redux-form";
 import {connect} from "react-redux";
 import cssModules from "react-css-modules";
@@ -10,7 +10,7 @@ import {
 } from '../../../actions/index'
 import {renderPreviewFile} from "../../../components/Core/CustomComponents";
 
-class TutorEducation extends Component {
+class TutorForm extends Component {
   constructor(props) {
     super(props);
     this.updateEducation.bind(this);
@@ -59,35 +59,7 @@ class TutorEducation extends Component {
 
 }
 
-function ListUploadedDegrees(props) {
-  if (Array.isArray(props.degrees)) {
-    return (
-      <div className="uploaded-degrees-container col-md-12 col-sm-12">
-        {props.degrees.map((degree) => <div key={degree.id}>{renderUploadedDegree(degree, props)}</div>)}
-      </div>
-    )
-  } else {
-    return <div></div>
-  }
-}
-
-
-function renderUploadedDegree(degree, props) {
-  let previewImage = "pdf-image-preview";
-  if (degree.extension === "docx") {
-    previewImage = "doc-image-preview";
-  }
-  return (
-    <div className="d-flex flex-horizontal mt-10">
-      <div className={previewImage}></div>
-      <span className="degree-filename ml-10">{degree.name}</span>
-      <a className="icon-download ml-10" onClick={() => props.download(degree.id)} title={degree.name}></a>
-      <a className="icon-delete ml-10" onClick={() => props.delete(degree.id)} title={degree.name}></a>
-    </div>
-  )
-}
-
-TutorEducation.contextTypes = {
+TutorForm.contextTypes = {
   t: React.PropTypes.func.isRequired
 }
 
@@ -114,5 +86,5 @@ export default connect(mapStateToProps)(reduxForm({
   fields: ['title', 'description', 'categories'],
   enableReinitialize: true,
   onSubmit: TutorAccountActions.updateTutorEducation(),
-})(cssModules(TutorEducation, styles)));
+})(cssModules(TutorForm, styles)));
 

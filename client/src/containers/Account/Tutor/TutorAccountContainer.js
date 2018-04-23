@@ -1,11 +1,11 @@
 import React, {Component} from "react";
 import ChangePasswordContainer from "../ChangePasswordContainer";
-import TutorEducation from "./TutorEducation";
 import cssModules from 'react-css-modules';
 import {connect} from "react-redux";
 import PersonInfoContainer from "../PersonInfoContainer";
 import Certificate from "./Certificate";
 import {UserInfo} from 'components/index'
+import TutorForm from '../../Dashboard/Tutors/TutorForm'
 
 import { 
   AccountActions,
@@ -65,7 +65,7 @@ class TutorAccount extends Component {
           <div className="dashboard-content-section">
             {
               editEducationMode ?
-                <TutorEducation tutor={tutor} cancel={this.hideEducationEditForm.bind(this)}/> :
+                <TutorForm tutor={tutor} cancel={this.hideEducationEditForm.bind(this)}/> :
                 <TutorDetail tutor={tutor} showEditForm={this.showEducationEditForm.bind(this)}/>
             }
           </div>
