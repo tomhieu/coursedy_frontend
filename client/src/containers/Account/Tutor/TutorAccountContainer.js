@@ -16,6 +16,7 @@ import {
 } from '../../../components/index'
 import TutorDetail from "components/Dashboard/Tutors/TutorDetail";
 import TutorEducationList from "components/Dashboard/Tutors/Educations/TutorEducationList";
+import TutorEducationListContainer from "containers/Dashboard/Tutors/Educations/TutorEducationListContainer";
 
 class TutorAccount extends Component {
   componentWillMount(){
@@ -74,7 +75,7 @@ class TutorAccount extends Component {
 
         <div className="col-md-12 col-xs-12 col-sm-12">
           <div className="dashboard-content-section">
-            <TutorEducationList/>
+            <TutorEducationListContainer/>
           </div>
         </div>
 
