@@ -870,4 +870,8 @@ body.application {
     border: solid 1px $border-focus-color;
     background-color: transparent;
   }
+
+  .yellow-color {
+    color: $rating-item-color;
+  }
 }

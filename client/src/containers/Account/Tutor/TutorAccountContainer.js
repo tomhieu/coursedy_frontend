@@ -15,6 +15,7 @@ import {
   RequireEmailConfirmationModal
 } from '../../../components/index'
 import TutorDetail from "components/Dashboard/Tutors/TutorDetail";
+import TutorEducationList from "components/Dashboard/Tutors/Educations/TutorEducationList";
 
 class TutorAccount extends Component {
   componentWillMount(){
@@ -68,6 +69,12 @@ class TutorAccount extends Component {
                 <TutorForm tutor={tutor} cancel={this.hideEducationEditForm.bind(this)}/> :
                 <TutorDetail tutor={tutor} showEditForm={this.showEducationEditForm.bind(this)}/>
             }
+          </div>
+        </div>
+
+        <div className="col-md-12 col-xs-12 col-sm-12">
+          <div className="dashboard-content-section">
+            <TutorEducationList/>
           </div>
         </div>
 

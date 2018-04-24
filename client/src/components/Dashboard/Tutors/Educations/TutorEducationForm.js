@@ -11,6 +11,7 @@ export class TutorEducationForm extends Component {
     return (
       <form onSubmit={handleSubmit(onSubmit)}>
         <FormField formControlName="title" typeField='custom_input'/>
+        <FormField formControlName="graduated_from" typeField='custom_input'/>
         <FormField formControlName="start_date" typeField='datepicker'/>
         <FormField formControlName="end_date" typeField='datepicker'/>
         <FormField formControlName="description" typeField='custom_textarea'/>
