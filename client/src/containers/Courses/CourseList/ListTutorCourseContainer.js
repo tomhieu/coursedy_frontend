@@ -27,7 +27,7 @@ class ListTutorCourseContainer extends Component {
                 <div className="d-flex flex-auto">
                     <LoadingMask belongingActions={[FETCH_TUTOR_COURSES]}>
                         <CourseList
-                            itemClass='col-xs-12 col-sm-6 col-md-4'
+                            itemClass='col-xs-12 col-sm-6 col-md-4 mb-15'
                             deleteCourse={this.deleteCourse.bind(this)} 
                             {...this.props} 
                             displayMode="grid" 

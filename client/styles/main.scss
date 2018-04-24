@@ -780,7 +780,6 @@ body.application {
   }
 
   .course-item {
-    margin-bottom: 15px;
     position: relative;
     &:hover {
       -webkit-box-shadow: 0px 0px 12px -1px rgba(0, 0, 0, 0.29);
@@ -865,6 +864,7 @@ body.application {
       }
     }
     .course-item-bottom {
+      position: absolute;
       width: 100%;
       font-size: 11px;
       text-align: center;
