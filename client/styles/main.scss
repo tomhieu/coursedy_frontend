@@ -480,15 +480,27 @@ body.application {
 
   .btn-link-dark {
     padding: 8px;
-    color: $md-color-pink;
+    color: $white-color;
     font-size: 16px;
     font-weight: 400;
     border: 1px solid $md-color-pink;
     border-radius: 2px;
     text-align: center;
-    background: transparent;
+    background: $md-color-pink;
     -webkit-transition: all .2s ease-in-out;
     transition: all .2s ease-in-out;
+  }
+
+  .btn-link-dark:hover {
+    background: transparent !important;
+    color: $md-color-pink !important;
+    -webkit-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
+  }
+
+  .btn-link-dark:focus,
+  .btn-link-dark:active {
+    outline: none !important;
   }
 
   .btn-link-light {
@@ -506,18 +518,6 @@ body.application {
       color: $white-color;
       background: $md-color-pink;
     }
-  }
-
-  .btn-link-dark:hover {
-    background: $md-color-pink !important;
-    color: $white-color !important;
-    -webkit-transition: all .2s ease-in-out;
-    transition: all .2s ease-in-out;
-  }
-
-  .btn-link-dark:focus,
-  .btn-link-dark:active {
-    outline: none !important;
   }
 
   // select2 styles
@@ -748,14 +748,14 @@ body.application {
   }
 
   .btn-primary {
-    background: $primary-color;
-    color: $md-color-pink;
+    background-color: $md-color-pink;
     border-color: $md-color-pink;
+    font-size: 14px;
   }
 
-  .btn-primary:hover, .accept-btn {
-    color: $white-color;
-    background-color: $md-color-pink;
+  .btn-primary:hover {
+    background: $primary-color;
+    color: $md-color-pink;
     border-color: $md-color-pink;
   }
 
