@@ -1,9 +1,6 @@
 import React, {Component} from 'react'
-import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
-import {
-  PaymentActions
-} from '../../../../actions/index'
+import {connect} from 'react-redux'
+import {PaymentActions} from '../../../../actions/index'
 import ObjectUtils from '../../../../utils/ObjectUtils'
 
 class StudentProfileContainer extends Component {

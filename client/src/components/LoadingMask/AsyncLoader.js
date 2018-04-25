@@ -35,6 +35,12 @@ class AsyncLoader extends Component {
           return <CourseItemsPlaceholder repeatTime={repeatTime}></CourseItemsPlaceholder>;
         case WebContants.USER_DETAILS_PLACEHOLDER:
           return <UserDetailsPlaceholder></UserDetailsPlaceholder>;
+        case WebContants.USER_ACCOUNT_PLACEHOLDER:
+          return <UserAccountPlaceholder numOfline={5}></UserAccountPlaceholder>;
+        case WebContants.USER_EDUCATION_PLACEHOLDER:
+          return <UserAccountPlaceholder numOfline={3}></UserAccountPlaceholder>;
+        case WebContants.USER_CERTIFICATE_PLACEHOLDER:
+          return <UserAccountPlaceholder numOfline={3}></UserAccountPlaceholder>;
       }
     } else {
       return null;
@@ -201,7 +207,7 @@ const CourseItemsPlaceholder = (props) => {
   const {repeatTime} = props;
   const placeholders = [];
   for (let i = 0; i < repeatTime; i++) {
-    placeholders.push(<CourseItemPlaceholder/>);
+    placeholders.push(<CourseItemPlaceholder  key={"courseItemLine" + i}/>);
   }
   return (
     <div className="timeline-item">
@@ -210,30 +216,62 @@ const CourseItemsPlaceholder = (props) => {
   )
 }
 
-
-
-
 const UserDetailsPlaceholder = () => {
   return (
     <div className="timeline-item">
       <div className="animated-background">
-        <div className="background-masker header-top"></div>
-        <div className="background-masker header-left"></div>
-        <div className="background-masker header-right"></div>
-        <div className="background-masker header-bottom"></div>
-        <div className="background-masker subheader-left"></div>
-        <div className="background-masker subheader-right"></div>
-        <div className="background-masker subheader-bottom"></div>
-        <div className="background-masker content-top"></div>
-        <div className="background-masker content-first-end"></div>
-        <div className="background-masker content-second-line"></div>
-        <div className="background-masker content-second-end"></div>
-        <div className="background-masker content-third-line"></div>
-        <div className="background-masker content-third-end"></div>
+        <div className="dashboard-profile-placeholder text-center">
+          <div className="row">
+            <div className="col-md-12">
+              <div className="background-masker image-placeholder avatar-user"></div>
+            </div>
+            <div className="col-md-12 d-flex justify-content-center">
+              <div className="background-masker sm-text-placeholder" style={{width: '50%'}}></div>
+            </div>
+            <div className="col-md-12 d-flex justify-content-center">
+              <div className="background-masker sm-text-placeholder" style={{width: '50%'}}></div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   )
 }
+
+const UserAccountPlaceholder = (props) => {
+  const placeholders = [];
+  for (let i = 0; i < props.numOfline; i++) {
+    placeholders.push(<UserAccountLine key={"userAccountLine" + i}/>);
+  }
+  return (
+    <div className="timeline-item">
+      <div className="animated-background">
+        <div className="row">
+          <div className="col-md-6">
+            <div className="background-masker lg-text-placeholder"></div>
+          </div>
+          {placeholders}
+        </div>
+      </div>
+    </div>
+  )
+};
+
+const UserAccountLine = () => {
+  return (
+    <div className="col-md-12 col-sm-12">
+      <div className="row">
+        <div className="col-md-4">
+          <div className="background-masker sm-text-placeholder"></div>
+        </div>
+        <div className="col-md-8">
+          <div className="background-masker sm-text-placeholder"></div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
 
 AsyncLoader.propTypes = {
   isFullLoading: React.PropTypes.bool,

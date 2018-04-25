@@ -38,7 +38,7 @@ class InlineEditFormField extends FormField {
           <div className={displayStyle + " d-flex flex-vertical"}>
             {super.render()}
             <FormGroup className="d-flex justify-content-right">
-              <button type="submit" className="btn btn-primary mr-10" disabled={pristine || submitting}>
+              <button type="submit" className="btn accept-btn mr-10" disabled={pristine || submitting}>
                 {this.context.t("save")}
               </button>
               <button type='button' onClick={() => this.closeEditForm(activatedFieldIds)}

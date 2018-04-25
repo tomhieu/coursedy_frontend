@@ -6,6 +6,7 @@ import {translations} from "../../translations"
 import {TT} from '../../utils/locale'
 import styles from './Layout.module.scss'
 import * as Actions from '../../actions/SessionActionCreator'
+import LoadingMask from "../LoadingMask/LoadingMask";
 
 class Layout extends Component {
   componentDidMount(){
@@ -30,6 +31,9 @@ class Layout extends Component {
           {
             main.showFooter ? <Footer/> : null
           }
+          <div className="general-placeholder">
+            <LoadingMask placeholderId="ezylearningFullLoader" isFullLoading={true}></LoadingMask>
+          </div>
         </div>
       </I18n>
     )

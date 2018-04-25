@@ -271,15 +271,7 @@ figcaption {
   width: 24px;
   height: 24px;
 }
-
-.icon-delete {
-  background: #f8f8f8 url("../images/icon_delete_black.png") no-repeat;
-  width: 24px;
-  height: 24px;
-}
-
 .icon-upload {
-  background: #f8f8f8 url("../images/upload-icon.png") no-repeat;
   width: 30px;
   height: 30px;
 }
@@ -1734,7 +1726,7 @@ textarea, .form-control {
 }
 
 .file-name-wrapper {
-  max-width: 150px;
+  max-width: 75%;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
@@ -3085,9 +3077,21 @@ Placeholder Style Sheet
   position: relative;
 }
 
+.dashboard-profile-placeholder {
+  padding: 15px;
+}
+
 .image-placeholder.course-cover-image-placeholder {
   height: 500px;
   max-width: 100%;
+}
+
+.image-placeholder.avatar-user {
+  height: auto;
+  width: auto;
+  max-width: 100%;
+  max-height: 100%;
+  min-height: 75px;
 }
 
 .background-masker.lg-text-placeholder {
@@ -3223,22 +3227,6 @@ Placeholder Style Sheet
 /* ----------------------------------
 Course Item (List Mode) Style Sheet
 ---------------------------------- */
-.course-list-item-wrapper.alt-pure, .course-list-item-wrapper.alt {
-  background: $white-color;
-  padding: 20px;
-}
-
-.course-list-item-wrapper.alt .course-list-item {
-  border-bottom: 0;
-  background: #F7F7F7;
-  padding: 20px;
-}
-
-.course-list-item {
-  border-bottom: 1px solid #E5E5E5;
-  margin-bottom: 20px;
-}
-
 .row.gap-25 {
   margin-right: -13px;
   margin-left: -12px;
@@ -3248,136 +3236,6 @@ Course Item (List Mode) Style Sheet
   margin-right: -10px;
   margin-left: -10px;
 }
-
-.course-list-item .content .content-inner {
-  background: #FCFCFC;
-  padding: 5px 10px;
-  padding-right: 0;
-  -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.13);
-  -moz-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.13);
-  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.13);
-  margin-right: -20px;
-}
-
-.course-list-item .course-instructor .image {
-  width: 44px;
-  height: 44px;
-  border: 2px solid #FFF;
-  border-radius: 50%;
-  margin-right: 5px;
-  -webkit-box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.43);
-  -moz-box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.43);
-  box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.43);
-  display: inline-block;
-  vertical-align: middle;
-}
-
-.course-list-item .rating-wrapper {
-  margin-top: 10px;
-}
-
-.rating-wrapper {
-  font-size: 12px;
-  letter-spacing: 1px;
-  line-height: 1.2;
-}
-
-.rating-wrapper .rating-item {
-  line-height: 1.2;
-}
-
-.course-list-item .price {
-  background: #DF2938;
-  color: #FFF;
-  float: right;
-  margin-top: 10px;
-  margin-right: -5px;
-  padding: 5px 10px;
-  line-height: 1;
-  font-size: 15px;
-  letter-spacing: 1px;
-  font-weight: 700;
-  position: relative;
-}
-
-.course-list-item .price:before {
-  content: "";
-  position: absolute;
-  top: -5px;
-  right: 0;
-  width: 0;
-  height: 0;
-  border-style: solid;
-  border-width: 5px 0 0 5px;
-  border-color: transparent transparent transparent #991C26;
-}
-
-.course-list-item ul.meta-list li i {
-  font-size: 18px;
-}
-
-.course-list-item ul.meta-list li span {
-  margin-top: 5px;
-}
-
-.course-list-item ul.meta-list li:last-child {
-  border-right: 0;
-  padding-right: 0;
-  margin-right: 0;
-}
-
-.course-list-item ul.meta-list li.btn-box {
-  float: right;
-}
-
-.rating-symbol {
-  display: inline-block;
-  position: relative;
-  .rating-symbol-foreground {
-    display: inline-block;
-    position: absolute;
-    overflow: hidden;
-    left: 0px;
-    right: 0px;
-    width: auto;
-  }
-}
-
-.clearfix::after, .clearfix::before {
-  display: table;
-  content: " ";
-}
-
-.course-list-item ul.meta-list li {
-  float: left;
-  border-right: 1px solid #E5E5E5;
-  font-size: 12px;
-  letter-spacing: 1.5px;
-  line-height: 1.2;
-  padding-right: 20px;
-  margin-right: 20px;
-}
-
-@media only screen and (max-width: 1199px) {
-  .course-list-item ul.meta-list li {
-    letter-spacing: 0.5px;
-    padding-right: 10px;
-    margin-right: 10px;
-    font-size: 11px;
-  }
-}
-
-@media only screen and (max-width: 991px) {
-  .course-list-item ul.meta-list li {
-    margin-bottom: 15px;
-  }
-}
-
-.rating-item .fa {
-  font-size: 12px;
-  color: #F2D43D;
-}
-
 
 .sm-field {
   max-width: 80px;
@@ -3400,4 +3258,35 @@ Course Item (List Mode) Style Sheet
 }
 .daskboard-container {
   margin: 0 20px;
+}
+
+.material-icon {
+  display: inline-block;
+  color: rgba(0, 0, 0, 0.87);
+  user-select: none;
+  transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
+  vertical-align: middle;
+  margin-left: 12px;
+  margin-right: 0px;
+}
+
+.material-icon.primary {
+  fill: $md-color-pink
+}
+
+.material-icon.secondary {
+  fill: $black-color
+}
+
+.rating-item .fa {
+  font-size: 12px;
+  color: $rating-color;
+}
+
+a {
+  color: $default-color;
+}
+
+.general-placeholder .loading-mask-container {
+  position: absolute !important;
 }

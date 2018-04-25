@@ -3,14 +3,11 @@ import {Component} from "react";
 import * as LessonActions from "../../../actions/LessonActionCreator";
 import * as CourseActions from "../../../actions/CourseFormActionCreator";
 import {connect} from "react-redux";
-import {CardContent, FlatButton} from "material-ui";
 import cssModules from "react-css-modules";
 import styles from "./SectionDetail.module.scss";
 import LessonDetailFormContainer from "../Lesson/LessonDetailFormContainer";
 import SectionDetailContainer from "./SectionDetailContainer";
 import EditLessonFormContainer from "../Lesson/EditLessonFormContainer";
-import {ActionDelete, ContentAddCircle} from "material-ui/svg-icons/index";
-import {mStyles} from "../../../utils/CustomStylesUtil";
 import LoadingMask from "../../../components/LoadingMask/LoadingMask";
 import {
   CREATE_UPDATE_SECTION,
@@ -20,6 +17,7 @@ import {
 } from "../../../actions/AsyncActionCreator";
 import Network from "utils/network";
 import * as WebConstants from "../../../constants/WebConstants";
+import FlatButton from "../../../components/Core/FlatButton/FlatButton";
 
 class SectionLessonContainer extends Component {
   componentWillReceiveProps(nextProps) {
@@ -97,12 +95,16 @@ class SectionLessonContainer extends Component {
               </div>
             </div>
             <div className="card-actions">
-              <FlatButton label="Add More" onClick={() => this.addLesson(section.id)}
-                          secondary={true}
-                          style={mStyles.defaultFlatBtn}
-                          icon={<ContentAddCircle color="#e27d7f"/>}/>
-              <FlatButton label="Delete" onClick={() => this.deleteSection(section.id)}
-                          icon={<ActionDelete color="#000000" />}/>
+              <FlatButton label="Add More" onClick={() => this.addLesson(section.id)}>
+                <svg viewBox="0 0 24 24" className="material-icon primary" height="24" width="24">
+                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5 11h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"></path>
+                </svg>
+              </FlatButton>
+              <FlatButton label="Delete" onClick={() => this.deleteSection(section.id)} secondary={true}>
+                <svg viewBox="0 0 24 24" className="material-icon secondary" height="24" width="24">
+                  <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"></path>
+                </svg>
+              </FlatButton>
             </div>
           </div>
           {

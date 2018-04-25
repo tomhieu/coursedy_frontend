@@ -4,7 +4,6 @@ import cssModules from 'react-css-modules';
 import styles from './AutoComplete.module.scss';
 import {renderField} from "../Core/CustomComponents";
 import Field from "redux-form/es/Field";
-import {SvgIcon} from "material-ui";
 import {SERVER_NAME} from "utils/CommonConstant";
 
 class AutoComplete extends Component {

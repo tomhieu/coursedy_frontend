@@ -11,6 +11,9 @@ import {globalHistory} from '../utils/globalHistory'
 import {TT} from "utils/locale";
 import {LOGIN_FAILED} from "../constants/LoginComponent";
 import {setCurrentUser} from "../actions/SessionActionCreator";
+import * as WebConstant from "../constants/WebConstants";
+import {UserRole} from "../constants/UserRole";
+import {REMOVE_CURRENT_USER} from "../constants/Session";
 
 /* Commonly used middlewares and enhancers */
 /* See: http://redux.js.org/docs/advanced/Middleware.html*/
@@ -70,9 +73,18 @@ const loadingHandler = store => next => action => {
 
 const authorizeHandler = store => next => action => {
   if (action.type === asyncActions.LOGIN + asyncActions.FULFILLED) {
-    store.dispatch(setCurrentUser(() => {
-      globalHistory.push('home');
-    }))
+    store.dispatch(setCurrentUser());
+    switch (action.payload.data.role) {
+      case UserRole.TEACHER:
+      case UserRole.STUDENT:
+        globalHistory.push('/dashboard/account');
+        break;
+      case UserRole.ADMIN:
+        globalHistory.push('/dashboard/admin');
+        break;
+      default:
+        throw new Error('Unsupported role ' + action.payload.role + ' in current application');
+    }
   } else if (action.type === asyncActions.LOGIN + asyncActions.REJECTED) {
     const error_messages = (errors && errors.constructor == Array && errors.length > 0) ?
       errors : [TT.t('email_or_password_incorrect')]
@@ -81,6 +93,12 @@ const authorizeHandler = store => next => action => {
       type: LOGIN_FAILED,
       payload: { errors: error_messages }
     })
+  } else if (action.type === asyncActions.SIGN_OUT + asyncActions.FULFILLED) {
+    store.dispatch({type: REMOVE_CURRENT_USER})
+    localStorage.removeItem('ezyLearningToken')
+    localStorage.removeItem('ezyLearningClient')
+    localStorage.removeItem('ezyLearningUid')
+    globalHistory.replace('/')
   }
   return next(action);
 }

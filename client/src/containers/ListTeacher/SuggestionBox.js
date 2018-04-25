@@ -1,8 +1,8 @@
 import React from 'react';
 import AutoComplete from '../../components/AutoComplete/AutoComplete';
-import { Chip } from 'material-ui';
 import { mStyles } from 'utils/CustomStylesUtil';
 import styles from '../../../styles/components/CommonFilterObjects.module.scss';
+import Chip from "../../components/Core/Chip/Chip";
 
 const SuggestionBox = (
   {

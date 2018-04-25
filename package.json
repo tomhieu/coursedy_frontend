@@ -108,7 +108,6 @@
     "style-loader": "^0.18.2",
     "style.css": "^1.0.0-beta-1",
     "superagent": "^3.8.2",
-    "svg-react-loader": "^0.4.5",
     "url-loader": "^0.5.9",
     "webpack": "^3.10.0"
   },
@@ -118,13 +117,11 @@
     "chai": "^3.4.1",
     "chai-immutable": "^1.6.0",
     "jsdom": "^11.8.0",
-    "material-design-icons": "^3.0.1",
-    "material-ui": "^0.19.4",
     "mocha": "^3.5.3",
     "npm-install-webpack-plugin": "^4.0.5",
     "react-hot-loader": "^1.3.1",
     "redux-devtools": "^3.4.1",
-    "redux-form-material-ui": "^4.3.4",
+    "svg-react-loader": "^0.4.5",
     "webpack-dev-server": "^2.11.2"
   }
 }

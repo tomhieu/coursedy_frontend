@@ -1,8 +1,7 @@
 import Network from "utils/network";
-import {AccountTypes}  from '../constants/index'
+import {AccountTypes} from '../constants/index'
 import {ACCOUNT} from '../actions/AsyncActionCreator'
 import {fetchTutor} from "actions/Tutor/Account/TutorAccountActionCreator";
-import {TutorAccountTypes} from "constants";
 
 export const updatePassword = (data) => {
   return {

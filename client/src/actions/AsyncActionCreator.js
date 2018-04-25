@@ -114,6 +114,7 @@ export const CLOSE_COURSE_FILTER_SUGGESTION = "CLOSE_COURSE_FILTER_SUGGESTION"
  */
 export const LOAD_SUGGESTION_TEACHERS = 'LOAD_SUGGESTION_TEACHERS'
 export const UPDATE_FILTER_CRITERIA_TEACHERS = "UPDATE_FILTER_CRITERIA_TEACHERS"
+export const FETCH_TEACHER_SKILL_SET = 'FETCH_TEACHER_SKILL_SET'
 /**
  * Define actions of Homepage
  */
@@ -130,4 +131,5 @@ export const FETCH_PAYMENT_HISTORY = "FETCH_PAYMENT_HISTORY"
  * Define actions of login/register
  */
 export const LOGIN = "LOGIN"
+export const SIGN_OUT = "SIGN_OUT"
 export const REGISTER = "REGISTER"

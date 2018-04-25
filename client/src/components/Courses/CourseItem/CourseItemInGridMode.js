@@ -1,9 +1,8 @@
-import React, { Component} from 'react';
+import React, {Component} from 'react';
 import cssModules from 'react-css-modules';
 import styles from '../Course.module.scss';
-import { LinkContainer } from 'react-router-bootstrap'
+import {LinkContainer} from 'react-router-bootstrap'
 import {SERVER_NAME} from "utils/CommonConstant";
-import {Checkbox} from 'material-ui'
 import {TT} from "utils/locale";
 
 
@@ -70,13 +69,6 @@ const CourseThumb = (props) => {
         <LinkContainer to={ !onlyTutor ? '/course/' + id : '/dashboard/courses/detail/' + id } className={styles.courseAvatar + ' img-responsive'}>
           <img src={!cover_image ? 'http://placehold.it/200x100' : cover_image } alt="" />
         </LinkContainer>
-        {
-          isPublic ? <Checkbox
-            style={{position: 'absolute', top: '5px', right: '-20px'}}
-            checked={selectedCourses.indexOf(id) >= 0}
-            onCheck={selectCourseHdl.bind(this, id)}
-          /> : null
-        }
       </div>
     </div>
   )

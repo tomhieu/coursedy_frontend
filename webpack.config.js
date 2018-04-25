@@ -24,7 +24,8 @@ module.exports = {
       },
       {
         test: /\.svg$/,
-        loader: 'babel-loader!svg-react-loader'
+        exclude: /node_modules/,
+        loader: 'svg-react-loader'
       },
       {
         test: /\.json$/,
@@ -53,7 +54,7 @@ module.exports = {
         loader: "url-loader?mimetype=application/font-woff"
       },
       {
-        test: /\.(ttf|eot|svg)(\?v=[0-9].[0-9].[0-9])?$/,
+        test: /\.(ttf|eot)(\?v=[0-9].[0-9].[0-9])?$/,
         loader: "file-loader?name=[name].[ext]"
       },
       {

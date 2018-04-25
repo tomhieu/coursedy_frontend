@@ -43,7 +43,6 @@ class CourseDetailContainer extends Component {
       is_free: course.is_free,
       week_day_schedules_attributes,
       is_same_period: course.is_same_period,
-      cover_image: this.coverImage,
       category_id: course.course_specialize_id
     };
 
@@ -51,6 +50,7 @@ class CourseDetailContainer extends Component {
       updatedCourse.id = courseId;
       this.props.updateCourse(courseId, updatedCourse);
     } else {
+      updatedCourse.cover_image = this.coverImage;
       this.props.createCourse(updatedCourse);
     }
   }
@@ -84,6 +84,9 @@ class CourseDetailContainer extends Component {
 
   onDropCoverImage(data) {
     this.coverImage = data.content;
+    if (this.props.courseId && this.props.courseId > 0) {
+      this.props.updateCourse(this.props.courseId, {cover_image: this.coverImage});
+    }
   }
 
   onEditTechingDay() {
@@ -185,7 +188,7 @@ const mapStateToProps = (state) => {
     courseData = courseFormValues;
   }
 
-  const selectedDays = courseFormValues != null ?
+  const selectedDays = courseFormValues != null && courseFormValues.course_days ?
     DAYS_IN_WEEK.filter((day) => courseFormValues.course_days.indexOf(day.name + "_" + day.id) >= 0) : []
   const isSamePeriod = courseFormValues != null ? ObjectUtils.isTrue(courseFormValues.is_same_period) : true
   const isFree = courseFormValues != null ? ObjectUtils.isTrue(courseFormValues.is_free) : false

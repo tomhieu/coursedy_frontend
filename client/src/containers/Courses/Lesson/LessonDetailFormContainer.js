@@ -91,7 +91,10 @@ class LessonDetailFormContainer extends Component {
               </div>
             </div>
             <div className="col-md-12 col-sm-12">
-              <button type="button" onClick={() => this.onDeleteLesson(lesson.id)}>{this.context.t('lesson_delete_btn')}</button>
+              <button type="button" className="btn btn-primary"
+                      onClick={() => this.onDeleteLesson(lesson.id)}>
+                {this.context.t('lesson_delete_btn')}
+              </button>
             </div>
           </div>
         </div>

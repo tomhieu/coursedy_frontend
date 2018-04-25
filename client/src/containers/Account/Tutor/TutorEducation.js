@@ -45,7 +45,7 @@ class TutorEducation extends Component {
             </div>
 
             <div className='form-group'>
-              <button type="submit" className="btn btn-primary mr-10">{this.context.t("save")}</button>
+              <button type="submit" className="btn accept-btn mr-10">{this.context.t("save")}</button>
               <button type="button" className="btn btn-default btn-small margin-left-10 cancel-button"
                       onClick={this.props.cancel}>
                 {this.context.t("cancel")}

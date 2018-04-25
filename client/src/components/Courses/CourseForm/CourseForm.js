@@ -26,7 +26,7 @@ class CourseForm extends Component {
                   <FormField fieldId="cover_image_Id"
                              showLabel={false}
                              isMandatoryField={false}
-                             previewUrl={cover_image != null ? SERVER_NAME + cover_image : null}
+                             previewUrl={cover_image != null ? cover_image : null}
                              internalPreview={true}
                              zoneHeight="300px"
                              formControlName="cover_image"
@@ -184,7 +184,7 @@ class CourseForm extends Component {
             !editMode ? (
               <div className="row">
                 <div className="col-md-12 col-sm-12">
-                  <button type="submit" className="btn btn-primary btn-link-dark signin-btn mr-10 ml-15"
+                  <button type="submit" className="btn btn-primary btn-link-dark signin-btn mr-10"
                           disabled={((pristine || submitting) && courseData) || !valid}>
                     {this.context.t("save_course")}
                   </button>

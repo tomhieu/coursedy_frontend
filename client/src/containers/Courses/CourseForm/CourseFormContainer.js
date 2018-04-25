@@ -1,20 +1,16 @@
 import React, {Component} from "react";
 import * as CourseActions from "../../../actions/CourseFormActionCreator";
 import * as AsynActions from "../../../actions/AsyncActionCreator";
+import {CREATE_UPDATE_SECTION, FETCH_DETAIL_COURSE, FETCH_LIST_SECTION} from "../../../actions/AsyncActionCreator";
 import * as ReferenceActions from "../../../actions/ReferenceActions/ReferenceDataActionCreator";
 import {connect} from "react-redux";
-import {mStyles} from "../../../utils/CustomStylesUtil";
-import {FlatButton} from "material-ui";
-import {ContentAddCircle, EditorPublish} from "material-ui/svg-icons/index";
 import CourseDetailContainer from "./CourseDetailContainer";
 import SimpleDialogComponent from "../../../components/Core/SimpleDialogComponent";
 import SectionCreationPopupContainer from "../Section/SectionCreationPopupContainer";
 import SectionLessonContainer from "../Section/SectionLessonContainer";
 import LoadingMask from "../../../components/LoadingMask/LoadingMask";
-import {FETCH_DETAIL_COURSE} from "../../../actions/AsyncActionCreator";
-import {FETCH_LIST_SECTION} from "../../../actions/AsyncActionCreator";
 import Network from "utils/network";
-import {CREATE_UPDATE_SECTION} from "../../../actions/AsyncActionCreator";
+import FlatButton from "../../../components/Core/FlatButton/FlatButton";
 
 class CourseFormContainer extends Component {
   constructor(props) {
@@ -94,17 +90,21 @@ class CourseFormContainer extends Component {
                     <div className="row">
                       <div className="col-md-6 col-sm-6">
                         <FlatButton label={this.context.t('lesson_link_edit')}
-                                    style={mStyles.defaultFlatBtn}
-                                    secondary={true}
-                                    onClick={this.addNewSection.bind(this)}
-                                    icon={<ContentAddCircle color="#e27d7f"/>}/>
+                                    secondary={false}
+                                    onClick={this.addNewSection.bind(this)}>
+                          <svg viewBox="0 0 24 24" className="material-icon primary" height="24" width="24">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5 11h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"></path>
+                          </svg>
+                        </FlatButton>
                       </div>
                       <div className="col-md-6 col-sm-6">
                         <FlatButton label={this.context.t('course_publish')}
-                                    style={mStyles.defaultFlatBtn}
                                     secondary={true}
-                                    onClick={this.validateBeforePublishCourse.bind(this)}
-                                    icon={<EditorPublish color="#e27d7f"/>}/>
+                                    onClick={this.validateBeforePublishCourse.bind(this)}>
+                          <svg viewBox="0 0 24 24" className="material-icon secondary" height="24" width="24">
+                            <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"></path>
+                          </svg>
+                        </FlatButton>
                       </div>
                     </div>
                   </div>

@@ -16,11 +16,10 @@ import * as sessionActions from '../../actions/SessionActionCreator'
 
 class TutorDashboard extends RoleAuthorization {
   render() {
-    if (this.props.fetchingUser) return null
 
     return (
       <div className="dashboard-section">
-        <div className="row">
+        <div className="row flex-auto">
           <div className="col-xs-12 col-sm-3 left-panel" id="sidebar">
             <div className="panel-group dashboard-menu" id="accordion">
               <TutorContainers.DashboardProfileContainer/>
