@@ -7,7 +7,7 @@ import Certificate from "./Certificate";
 import {UserInfo} from 'components/index'
 import TutorForm from '../../Dashboard/Tutors/TutorForm'
 
-import { 
+import {
   AccountActions,
   TutorAccountActions
 } from '../../../actions/index'
@@ -21,6 +21,8 @@ import Network from "utils/network";
 import TutorDetail from "components/Dashboard/Tutors/TutorDetail";
 import TutorEducationList from "components/Dashboard/Tutors/Educations/TutorEducationList";
 import TutorEducationListContainer from "containers/Dashboard/Tutors/Educations/TutorEducationListContainer";
+import session from "reducers/Session";
+import * as AccountTypes from "constants/AccountTypes";
 
 class TutorAccount extends Component {
   componentWillMount(){
@@ -132,15 +134,19 @@ const mapStateToProps = (state) => ({
 });
 
 const mapStateToDispatch = (dispatch) => ({
-  fetchUser: () => dispatch({
-    type: FETCH_CURRENT_USER,
-    payload: Network().get('current_user').then((res) => dispatch({
-      type: FETCH_TUTOR_DATA,
-      payload: Network().get('tutors/tutor_by_user', {user_id: res.id}),
-      meta: 'userAccountPlaceholder'
-    })),
-    meta: 'userAccountPlaceholder'
-  }),
+  fetchUser: () => {
+    let response = dispatch({
+        type: AccountTypes.FETCH_USER_ACCOUNT,
+        payload: Network().get('current_user'),
+        meta: 'userAccountPlaceholder'
+    })
+
+    response.then((res) => dispatch({
+        type: FETCH_TUTOR_DATA,
+        payload: Network().get('tutors/tutor_by_user', {user_id: res.id}),
+        meta: 'userAccountPlaceholder'
+    }))
+  },
   loadListSkillData: () => dispatch({
     type: FETCH_TEACHER_SKILL_SET,
     payload: Network().get('categories'),
