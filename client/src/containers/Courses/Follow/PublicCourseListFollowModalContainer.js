@@ -1,14 +1,11 @@
-import React, { Component} from 'react';
-import cssModules from 'react-css-modules';
+import React, {Component} from 'react';
 import {connect} from "react-redux";
 import {reduxForm} from "redux-form";
-import {Modal, Button} from 'react-bootstrap';
+import {Button, Modal} from 'react-bootstrap';
 import * as PublicCourseActions from '../../../actions/PublicCourseActionCreator';
 import FormField from "../../../components/Core/FormField";
 import {validate} from "../../../validations/PublicCourseListFollowModalValidator"
-import {EFlatButton} from "../../../components/Core/CustomComponents";
-import {ActionFavorite} from "material-ui/svg-icons/index";
-import {red900} from "material-ui/styles/colors";
+
 /**
   * @Course group template 2
   * @Use for CoursePage
@@ -58,9 +55,6 @@ class PublicCourseListFollowModalContainer extends Component {
 
     return (
       <div className="text-center">
-        <EFlatButton label={this.context.t("save_favorite")} 
-                      icon={<ActionFavorite color={red900}/>}
-                      onClick={this.showPublicCourseFollowModal.bind(this)}/>
         <Modal show={this.props.show_follow_modal} onHide={this.hidePublicCourseFollowModal.bind(this)}>
           <form onSubmit={handleSubmit(this.saveCourseFollowHandleSumit.bind(this))} className='inline-form'>  
             <Modal.Header>

@@ -17,12 +17,18 @@ class SimpleDialogComponent extends Component {
             {this.props.children}
           </div>
           <div className="modal-footer">
-            <button type="button" className="btn btn-primary" onClick={acceptCallback}>
-              {acceptLabel}
-            </button>
-            <button type="button" className="btn btn-secondary" onClick={cancelCallback}>
-              {cancelLabel}
-            </button>
+            {
+              acceptCallback !== undefined ?
+                <button type="button" className="btn accept-btn" onClick={acceptCallback}>
+                  {acceptLabel}
+                </button> : null
+            }
+            {
+              cancelCallback !== undefined ?
+                <button type="button" className="btn btn-secondary" onClick={cancelCallback}>
+                  {cancelLabel}
+                </button> : null
+            }
           </div>
         </Modal>
       )

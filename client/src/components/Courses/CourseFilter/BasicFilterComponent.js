@@ -59,7 +59,8 @@ class BasicFilterComponent extends Component {
 
   render() {
     const {selectedWeekDays, selectedCategories, onRemoveFilter, selectedLocations, formfieldValues, selectedSpecializes,
-      suggestions, onSelectSuggestion, loadSuggestions, showSuggestion, loadingSuggestion} = this.props;
+      suggestions, onSelectSuggestion, loadSuggestions,
+      showSuggestion, loadingSuggestion, closeSuggestion} = this.props;
     const isOverFlow = this.hiddenFilters.length > 0;
     this.filters = [];
     let filterListClassNames = "d-flex flex-horizontal basic-filter-container ";
@@ -157,6 +158,7 @@ class BasicFilterComponent extends Component {
                             loadSuggestions={loadSuggestions}
                             show={showSuggestion}
                             isLoading={loadingSuggestion}
+                            closeSuggestion={closeSuggestion}
               /> : null
           }
         </div>
@@ -182,6 +184,7 @@ BasicFilterComponent.propTypes = {
   loadSuggestions: React.PropTypes.func,
   showSuggestion: React.PropTypes.bool,
   loadingSuggestion: React.PropTypes.bool,
+  closeSuggestion: React.PropTypes.func
 };
 
 export default cssModules(BasicFilterComponent, styles);

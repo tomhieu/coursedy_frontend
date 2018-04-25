@@ -1,15 +1,16 @@
-import React, { Component } from 'react';
-import { LoginForm } from '../../components/index';
+import React, {Component} from 'react';
+import {LoginForm} from '../../components/index';
 import styles from './LoginFormContainer.module.scss';
 import cssModules from 'react-css-modules';
-import * as Action from '../../actions/LoginActionCreator';
-import { connect } from 'react-redux';
+import * as asyncAction from '../../actions/AsyncActionCreator';
+import {connect} from 'react-redux';
 import {reduxForm} from 'redux-form';
+import Network from "utils/network";
 
 
 class LoginFormContainer extends Component {
   loginUser({email, password}) {
-    this.props.dispatch(Action.loginUser(email, password, this.props.redirectPage));
+    this.props.login(email, password);
   }
 
   render() {
@@ -36,10 +37,18 @@ const mapStateToProps = (state) => ({
   redirectPage: state.session.redirectPage
 });
 
+const mapDispatchToProps = (dispatch) => ({
+  login: (email, password) => dispatch({
+    type: asyncAction.LOGIN,
+    payload: Network().post('auth/sign_in', {email, password}),
+    meta: 'loginPlaceholder'
+  })
+})
+
 const StyledComponent = cssModules(LoginFormContainer, styles);
 
 export default connect(
-  mapStateToProps
+  mapStateToProps, mapDispatchToProps
 )( reduxForm({
   form: 'login',
   fields: ['email', 'password']

@@ -104,8 +104,13 @@ const courseDetails = (state = {
       let deletedSectionList = currentSectionList.filter((section) => section.id != action.payload.id);
       return Object.assign({}, state, {listSection: deletedSectionList});
     case asyncActions.CREATE_UPDATE_SECTION + asyncActions.FULFILLED:
-      currentSectionList.push(action.payload);
-      return Object.assign({}, state, {listSection: currentSectionList, showSectionPopup: false});
+      const updatedSectionIndex = currentSectionList.findIndex((section) => section.id === action.payload.id);
+      if (updatedSectionIndex >= 0) {
+        currentSectionList.splice(updatedSectionIndex, 1, action.payload);
+      } else {
+        currentSectionList.push(action.payload);
+      }
+      return Object.assign({}, state, {listSection: currentSectionList, showSectionPopup: false, activatedField: []});
     /**
      * handle ansync actions of Lesson
      */
@@ -137,7 +142,7 @@ const courseDetails = (state = {
       return Object.assign({}, state, {listSection: currentSectionList});
     case asyncActions.DELETE_LESSON + asyncActions.FULFILLED:
       let [impactedSection] = currentSectionList.filter(section => {
-        return section.lessons.filter((lesson) => lesson.id === action.payload.id)
+        return section.lessons.filter((lesson) => lesson.id === action.payload.id).length > 0
       });
       impactedSection = Object.assign({}, impactedSection, {lessons: impactedSection.lessons.filter(lesson => lesson.id != action.payload.id)});
       const impactSectionIndex = currentSectionList.findIndex((section) => section.id === impactedSection.id);
@@ -147,7 +152,7 @@ const courseDetails = (state = {
     case asyncActions.DELETE_DOCUMENT_FOR_LESSON:
       let [modifySection] = currentSectionList.filter(session => session.id === action.data.sectionId);
       let [modifyLesson] = modifySection.lessons.filter(lesson => lesson.id === action.data.lessonId);
-      if (action.type === asyncActions.ADD_DOCUMENT_FOR_LESSON) {
+      if (action.type.indexOf(asyncActions.ADD_DOCUMENT_FOR_LESSON) >= 0) {
         modifyLesson.documents.push(action.data.document);
       } else {
         modifyLesson.documents.splice(modifyLesson.documents.findIndex(doc => doc.id === action.data.documentId), 1);

@@ -2,20 +2,12 @@ import React, {Component} from "react";
 import {ControlLabel, FormGroup} from "react-bootstrap";
 import {Field} from "redux-form";
 import {
-  CustomTimePicker,
-  renderCheckbox,
-  renderDatePicker,
-  renderField,
-  renderMultiSelect,
-  renderSelect,
-  renderSingleFileInput,
+  renderCheckBoxField,
+  renderDatePicker, renderField, renderMultiSelect, renderSelect, renderSingleFileInput,
   renderTextAreaField,
-  renderToggle
 } from "./CustomComponents";
 import styles from "./FormField.module.scss";
 import cssModules from "react-css-modules";
-import {Checkbox, RadioButtonGroup, TimePicker} from 'redux-form-material-ui'
-import {mStyles} from "utils/CustomStylesUtil";
 import {cropImageInput} from "components/Core/CustomComponents";
 
 class FormField extends Component {
@@ -35,7 +27,7 @@ class FormField extends Component {
     return (
       <FormGroup controlId={this.props.fieldId}>
         {
-          showLabel ? (
+          showLabel && fieldLabel !== undefined && fieldLabel !== '' ? (
             <ControlLabel> {fieldLabel} {isMandatoryField && <span className="red">*</span>} </ControlLabel>) : ''
         }
         <div className="dark-picker dark-picker-bright">
@@ -57,6 +49,14 @@ class FormField extends Component {
         fieldComponent = <Field name={formControlName} placeholder={placeholder}
                                 type={type} disabled={this.props.disabled}
                                 component={renderField} onChange={this.props.onChange}
+                                customClassName={customClassName}/>;
+        break;
+      }
+      case "checkbox": {
+        fieldComponent = <Field name={formControlName} placeholder={placeholder}
+                                type="checkbox" disabled={this.props.disabled}
+                                label={this.props.fieldLabel}
+                                component={renderCheckBoxField} onChange={this.props.onChange}
                                 customClassName={customClassName}/>;
         break;
       }
@@ -93,32 +93,6 @@ class FormField extends Component {
         fieldComponent = <Field name={formControlName} placeholder={placeholder}
                                 rows={rows} disabled={this.props.disabled}
                                 component={renderTextAreaField} className={customClassName}/>
-        break;
-      }
-
-      case "checkbox": {
-        fieldComponent = <Field name={formControlName} label={this.props.fieldLabel}
-                                iconStyle={this.props.iconStyle} disabled={this.props.disabled}
-                                component={renderCheckbox} className={customClassName}/>
-        break;
-      }
-      case "radiobox": {
-        fieldComponent = <Field name={formControlName} placeholder={placeholder}
-                                rows={rows} label={this.props.fieldLabel}
-                                disabled={this.props.disabled} component={RadioButtonGroup}
-                                className={customClassName}/>
-        break;
-      }
-      case "toggle": {
-        fieldComponent = <Field name={formControlName} placeholder={placeholder}
-                                rows={rows} disabled={this.props.disabled}
-                                component={renderToggle(toggled, onToggle)} className={customClassName}/>
-        break;
-      }
-      case "timePicker": {
-        fieldComponent = <Field name={formControlName} label={this.props.fieldLabel}
-                                component={CustomTimePicker} format={null}
-                                disabled={this.props.disabled} hintText={placeholder}/>
         break;
       }
       default: {

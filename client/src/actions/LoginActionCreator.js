@@ -2,7 +2,6 @@ import * as types from '../constants/LoginComponent';
 import * as Actions from '../actions/SessionActionCreator'
 import Network from '../utils/network'
 import {globalHistory} from '../utils/globalHistory'
-import {TT} from '../utils/locale'
 
 export const loginUser = (email, password, redirectPage = '/') => {
   return dispatch => {
@@ -13,14 +12,7 @@ export const loginUser = (email, password, redirectPage = '/') => {
         globalHistory.push(redirectPage);
       }))
     }, (errors) => {
-      const error_messages = (errors && errors.constructor == Array && errors.length > 0)?
-        errors :
-        [TT.t('email_or_password_incorrect')]
 
-      dispatch({
-        type: types.LOGIN_FAILED,
-        payload: {errors: error_messages}
-      })
     })
   }
 }

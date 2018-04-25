@@ -61,7 +61,7 @@ export const HOURS_IN_DAY = [
     {id: '22:30:00', text: '22:30'},
     {id: '23:00:00', text: '23:00'},
     {id: '23:30:00', text: '23:30'},
-    {id: '24:00:00', text: '24:00'},
+    {id: '00:00:00', text: '00:00'},
 ]
 
 /**
@@ -108,14 +108,6 @@ export const updateCourse = (id, title, description, start_date, period,
       type: asyncActs.UPDATE_COURSE,
       payload: Network().update('courses/' + id, body)
     });
-  }
-}
-
-export const deleteCourse = (course_id) => {
-  return dispatch => {
-    Network().delete('courses/' + course_id).then(() => {
-      dispatch(fetchListTutorCourse());
-    })
   }
 }
 
@@ -181,13 +173,6 @@ export const addNewSection = () => {
 export const closePopupSection = () => {
   return {
     type: CLOSE_POPUP_ADD_SECTION
-  }
-}
-
-export const saveOrUpdateSection = (id, title) => {
-  return {
-    type: CREATE_UPDATE_SECTION,
-    payload: Network().post('course_sections', {course_id: id, title})
   }
 }
 

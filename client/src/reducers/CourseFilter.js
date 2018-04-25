@@ -51,6 +51,7 @@ const CourseFilter = (state = {
     case asyncActs.LOAD_SUGGESTION + asyncActs.PENDING:
       return {...state, sugestions: [], showSuggestion: true, loadingSuggestion: true}
     case asyncActs.LOAD_SUGGESTION + asyncActs.REJECTED:
+    case asyncActs.CLOSE_COURSE_FILTER_SUGGESTION:
       return {...state, sugestions: [], showSuggestion: false, loadingSuggestion: false}
     case asyncActs.CLEAR_SUGGESTION:
       return {...state, filters: {...state.filters, term: ''}, sugestions: [], showSuggestion: false, loadingSuggestion: false}

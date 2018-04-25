@@ -8,7 +8,7 @@ class CourseCateogryEditMode extends Component {
     const {courseSpecializes, categories} = this.props;
     return (
       <div className="row">
-        <div className='col-sm col-md medium-text'>
+        <div className='col-sm-12 col-md-6 col-lg-6 medium-text'>
           <FormField fieldId="categoryId"
                      fieldLabel={this.context.t("course_category")}
                      placeholder={this.context.t("course_category")}
@@ -24,7 +24,7 @@ class CourseCateogryEditMode extends Component {
         </div>
         {
           courseSpecializes.length > 0 ?
-            <div className='col-sm col-md'>
+            <div className='col-sm-12 col-md-6 col-lg-6'>
               <FormField fieldId="course_specialize_id"
                          fieldLabel={this.context.t("course_specialize")}
                          isMandatory={true}

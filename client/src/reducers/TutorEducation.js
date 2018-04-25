@@ -1,6 +1,7 @@
 import {
   TutorAccountTypes
 } from '../constants/index';
+import {FETCH_TEACHER_SKILL_SET, FULFILLED} from "../actions/AsyncActionCreator";
 
 const EducationData = (state = {}, action) => {
   switch (action.type) {
@@ -16,8 +17,11 @@ const EducationData = (state = {}, action) => {
       return Object.assign({}, state, {degrees: state['degrees'].filter(doc => doc.id !== action.data)});
     case TutorAccountTypes.RECEIVE_DRGREES_DATA:
       return Object.assign({}, state, {listLevel: action.data})
-    case TutorAccountTypes.RECEIVE_SKILLS_DATA:
-      return Object.assign({}, state, {skillSet: action.data})
+    case FETCH_TEACHER_SKILL_SET + FULFILLED:
+      const skillSet = action.payload.map((category) => {
+        return {id: category.id,  text: category.name}
+      });
+      return Object.assign({}, state, {skillSet: skillSet})
     case TutorAccountTypes.RECEIVE_CERTIFICATES_DATA:
       return Object.assign({}, state, {certificateSet: action.data})
     default:

@@ -77,7 +77,7 @@ export const DELETE_DOCUMENT = 'DELETE_DOCUMENT';
  * @type {string}
  */
 export const FETCH_TUTOR_COURSES = 'FETCH_TUTOR_COURSES';
-export const FETCH_TUTOR_COURSES_FAIL = 'FETCH_TUTOR_COURSES_FAIL';
+export const DELETE_COURSE = 'DELETE_COURSE';
 
 /**
  * Define actions of Tutor
@@ -108,12 +108,14 @@ export const REMOVE_ALL_COURSES = "REMOVE_ALL_COURSES"
 export const LOAD_SUGGESTION = "LOAD_SUGGESTION"
 export const UPDATE_FILTER_CRITERIA = "UPDATE_FILTER_CRITERIA"
 export const CLEAR_SUGGESTION = "CLEAR_SUGGESTION"
+export const CLOSE_COURSE_FILTER_SUGGESTION = "CLOSE_COURSE_FILTER_SUGGESTION"
 
 /**
  * Define actions of Teachers page
  */
 export const LOAD_SUGGESTION_TEACHERS = 'LOAD_SUGGESTION_TEACHERS'
 export const UPDATE_FILTER_CRITERIA_TEACHERS = "UPDATE_FILTER_CRITERIA_TEACHERS"
+export const FETCH_TEACHER_SKILL_SET = 'FETCH_TEACHER_SKILL_SET'
 /**
  * Define actions of Homepage
  */
@@ -125,6 +127,13 @@ export const TOP_TEACHERS = "TOP_TEACHERS";
 export const FETCH_USER_BALANCE = "FETCH_USER_BALANCE"
 export const FETCH_PAYMENT_HISTORY = "FETCH_PAYMENT_HISTORY"
 
+
+/**
+ * Define actions of login/register
+ */
+export const LOGIN = "LOGIN"
+export const SIGN_OUT = "SIGN_OUT"
+export const REGISTER = "REGISTER"
 export const FETCH_TEACHERS = 'FETCH_TEACHERS'
 
 export const FETCH_TEACHER_DETAIL = 'FETCH_TEACHER_DETAIL'

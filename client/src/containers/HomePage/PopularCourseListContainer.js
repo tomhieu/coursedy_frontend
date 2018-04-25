@@ -7,6 +7,7 @@ import CourseGroup from 'components/Course/CourseGroup/CourseGroup';
 import CourseGroupHeading from '../../components/Course/CourseGroup/CourseGroupHeading';
 import CourseGroupFooter from '../../components/Course/CourseGroup/CourseGroupFooter';
 import { Slider } from '../../components/Slider/SliderComponent';
+import LoadingMask from "../../components/LoadingMask/LoadingMask";
 
 
 class PopularCourseList extends Component {
@@ -33,19 +34,21 @@ class PopularCourseList extends Component {
 
     return (
       <section className="course__popular">
-        <div className="container course__popular__content-wrap">
-          <div className="row-padding">
-            <CourseGroupHeading title={this.context.t('popular_courses')}/>
+        <LoadingMask placeholderId="popularCourseListPlaceholder">
+          <div className="container course__popular__content-wrap">
+            <div className="row-padding">
+              <CourseGroupHeading title={this.context.t('popular_courses')}/>
 
-            {<Slider items={this.props.courses.map((course, index) => {
-              return <CourseGroup course={course} key={index}/>;
-            })}/>}
+              {<Slider items={this.props.courses.map((course, index) => {
+                return <CourseGroup course={course} key={index}/>;
+              })}/>}
 
-            <CourseGroupFooter
-              redirectUrl="/courses"
-              btnName={this.context.t('watch_all_courses')}/>
+              <CourseGroupFooter
+                redirectUrl="/courses"
+                btnName={this.context.t('watch_all_courses')}/>
+            </div>
           </div>
-        </div>
+        </LoadingMask>
       </section>
     );
   }

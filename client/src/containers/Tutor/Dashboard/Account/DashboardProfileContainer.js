@@ -1,60 +1,65 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {Link} from 'react-router-dom'
-import {
-  PaymentActions
-} from '../../../../actions/index'
+import {PaymentActions} from '../../../../actions/index'
 import ObjectUtils from '../../../../utils/ObjectUtils'
 import {UserAvatarForm} from "components/Account/UserAvatarForm";
 import * as AccountActionCreator from 'actions/AccountActionCreator'
 import {reduxForm} from "redux-form";
-import {validate} from "../../../../validations/ChangePasswordFormValidator";
 import defaultAvatar from '../../../../../images/default_avatar.png'
 import {SERVER_NAME} from "utils/CommonConstant";
+import LoadingMask from "../../../../components/LoadingMask/LoadingMask";
+import {FETCH_CURRENT_USER, FETCH_TUTOR_DATA} from "../../../../constants/Session";
+import Network from "utils/network";
+import {FETCH_USER_BALANCE} from "../../../../actions/AsyncActionCreator";
 import {Modal, ModalHeader, Button, ModalBody, ModalFooter} from 'reactstrap';
 
 class DashboardProfileContainer extends Component {
   componentWillMount() {
-    this.props.dispatch(AccountActionCreator.fetchUser())
-    this.props.dispatch(PaymentActions.fetchUserBalance())
+    this.props.fetchUser();
+    this.props.fetchUserBalance();
   }
 
   showEditAvatarForm() {
-    this.props.dispatch(AccountActionCreator.showAvatarEditForm())
+    this.props.showAvatarEditForm();
   }
 
   hideEditAvatarForm() {
-    this.props.dispatch(AccountActionCreator.hideAvatarEditForm())
-    this.props.dispatch(AccountActionCreator.avatarDeselected())
+    this.props.hideAvatarEditForm();
+    this.props.avatarDeselected();
   }
 
   uploadAvatar(avatar) {
-    this.props.dispatch(AccountActionCreator.updateAvatar(avatar))
-    this.props.dispatch(AccountActionCreator.hideAvatarEditForm())
+    this.props.updateAvatar(avatar);
+    this.props.hideAvatarEditForm();
   }
 
   avatarSelected() {
-    this.props.dispatch(AccountActionCreator.avatarSelected())
+    this.props.onSelectAvatar();
   }
 
   avatarDeselected() {
-    this.props.dispatch(AccountActionCreator.avatarDeselected())
+    this.props.onDeselectAvatar();
   }
 
   render() {
     const {user, userBalance, editAvatarMode, avatarSelected} = this.props
     return (
       user ?
-        <div className="dashboard-profile text-center">
-          <div className="row">
-            {this.renderAvatar(user, editAvatarMode, avatarSelected)}
-            <div className="col-sm-12">
-              <h4>{user.name}</h4>
+        <LoadingMask placeholderId="userDetailsPlaceholder"
+                     normalPlaceholder={false}
+                     facebookPlaceholder={true}
+                     loaderType="USER_DETAILS_PLACEHOLDER">
+          <div className="dashboard-profile text-center">
+            <div className="row">
+              {this.renderAvatar(user, editAvatarMode, avatarSelected)}
+              <div className="col-sm-12">
+                <h4>{user.name}</h4>
+              </div>
+              <div className='col-sm-12'>
+                <p>{this.context.t('my_balance')}: <strong>{ObjectUtils.currencyFormat(userBalance)}</strong></p></div>
             </div>
-            <div className='col-sm-12'>
-              <p>{this.context.t('my_balance')}: <strong>{ObjectUtils.currencyFormat(userBalance)}</strong></p></div>
           </div>
-        </div> : null
+        </LoadingMask>: null
     )
   }
 
@@ -95,6 +100,29 @@ const mapStateToProps = (state) => ({
   avatarSelected: state.AccountReducer.avatarSelected
 })
 
+const mapStateToDispatch = (dispatch) => ({
+  fetchUser: () => dispatch({
+    type: FETCH_CURRENT_USER,
+    payload: Network().get('current_user').then((res) => dispatch({
+      type: FETCH_TUTOR_DATA,
+      payload: Network().get('tutors/tutor_by_user', {user_id: res.id}),
+      meta: 'userDetailsPlaceholder'
+    })),
+    meta: 'userDetailsPlaceholder'
+  }),
+  fetchUserBalance: () => dispatch({
+    type: FETCH_USER_BALANCE,
+    payload: 0,
+    meta: 'userDetailsPlaceholder'
+  }),
+  updateAvatar: (avatar) => dispatch(AccountActionCreator.updateAvatar(avatar)),
+  showAvatarEditForm: () => dispatch(AccountActionCreator.showAvatarEditForm()),
+  hideAvatarEditForm: () => dispatch(AccountActionCreator.hideAvatarEditForm()),
+  avatarDeselected: () => dispatch(AccountActionCreator.avatarDeselected()),
+  onSelectAvatar: () => dispatch(AccountActionCreator.avatarSelected()),
+  onDeselectAvatar: () => dispatch(AccountActionCreator.avatarDeselected())
+})
+
 DashboardProfileContainer.contextTypes = {
   t: React.PropTypes.func.isRequired
 }
@@ -104,7 +132,7 @@ DashboardProfileContainer.propTypes = {
 }
 
 export default connect(
-  mapStateToProps
+  mapStateToProps, mapStateToDispatch
 )(reduxForm({
   form: 'updateAvatarForm',
   fields: ['avatar']

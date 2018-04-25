@@ -31,14 +31,14 @@ class InlineEditFormField extends FormField {
   render() {
     const { submitting, pristine, showLabel = true, displayStyle = "default-field",
           activatedFieldIds = [this.props.fieldId],
-          onlyShowWhenEdit = false } = this.props;
+          onlyShowWhenEdit = false, fieldLabel } = this.props;
     {
       if (this.state.editMode) {
         return (
           <div className={displayStyle + " d-flex flex-vertical"}>
             {super.render()}
             <FormGroup className="d-flex justify-content-right">
-              <button type="submit" className="btn btn-primary mr-10" disabled={pristine || submitting}>
+              <button type="submit" className="btn accept-btn mr-10" disabled={pristine || submitting}>
                 {this.context.t("save")}
               </button>
               <button type='button' onClick={() => this.closeEditForm(activatedFieldIds)}
@@ -51,7 +51,7 @@ class InlineEditFormField extends FormField {
       } else {
         return (
           <div className={displayStyle + ' inline-field d-flex flex-horizontal'}>
-            {showLabel ? (<label className="control-label">{this.props.fieldLabel}: </label>) : ''}
+            {showLabel && fieldLabel !== undefined && fieldLabel !== '' ? (<label className="control-label">{fieldLabel}: </label>) : ''}
             <span className='pre-wrap'>{this.props.content}</span>
             <span className='inline-edit' onClick={() => this.showEditForm(activatedFieldIds)}>
               <i className="fa fa-pencil"></i>

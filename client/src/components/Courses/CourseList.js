@@ -6,6 +6,7 @@ import CourseListInListMode from './CourseList/CourseListInListMode'
 import CourseListInGridMode from './CourseList/CourseListInGridMode'
 import {TT} from "utils/locale";
 import EmptyResultWarning from '../Core/EmptyResultWarning';
+import LoadingMask from "../LoadingMask/LoadingMask";
 
 
 /**

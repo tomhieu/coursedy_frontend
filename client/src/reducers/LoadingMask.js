@@ -1,16 +1,16 @@
 import {REMOVE_ASYNC_ACTION, ADD_ASYNC_ACTION} from "../actions/AsyncActionCreator";
 const LoadingMask = (state = {
-    processingActions: []
+    activatingPlaceholders: []
 }, action) => {
-  const clonedProcessingActions = JSON.parse(JSON.stringify(state.processingActions));
+  const currentActivatingHolders = JSON.parse(JSON.stringify(state.activatingPlaceholders));
     switch (action.type) {
         case ADD_ASYNC_ACTION:
-            clonedProcessingActions.push(action.action);
-            return Object.assign({}, state, {processingActions: clonedProcessingActions});
+            currentActivatingHolders.push(action.action);
+            return Object.assign({}, state, {activatingPlaceholders: currentActivatingHolders});
         case REMOVE_ASYNC_ACTION:
-            const actionIndex = clonedProcessingActions.findIndex((act) => act === action.action);
-            clonedProcessingActions.splice(actionIndex, 1);
-            return Object.assign({}, state, {processingActions: clonedProcessingActions});
+            const actionIndex = currentActivatingHolders.findIndex((act) => act === action.action);
+            currentActivatingHolders.splice(actionIndex, 1);
+            return Object.assign({}, state, {activatingPlaceholders: currentActivatingHolders});
         default:
             return state;
     }

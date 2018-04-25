@@ -8,6 +8,9 @@ import {connect} from "react-redux";
 import {reduxForm} from "redux-form";
 import {validate} from "../../../validations/CourseFormValidation"
 import ObjectUtils from "utils/ObjectUtils";
+import {CREATE_NEW_COURSE} from "../../../actions/AsyncActionCreator";
+import Network from "utils/network";
+import {UPDATE_COURSE} from "../../../actions/AsyncActionCreator";
 
 class CourseDetailContainer extends Component {
   constructor(props) {
@@ -29,14 +32,26 @@ class CourseDetailContainer extends Component {
       })
     })
 
-    if (!courseId) {
-      this.props.dispatch(CourseActions.createCourse(course.title, course.description, course.start_date, course.period,
-        course.number_of_students, course.tuition_fee, course.currency, course.is_free, week_day_schedules_attributes, course.is_same_period,
-        course.course_specialize_id, this.coverImage));
+    const updatedCourse = {
+      title: course.title,
+      description: course.description,
+      start_date: course.start_date,
+      period: course.period,
+      number_of_students: course.number_of_students,
+      tuition_fee: course.tuition_fee,
+      currency: course.currency,
+      is_free: course.is_free,
+      week_day_schedules_attributes,
+      is_same_period: course.is_same_period,
+      category_id: course.course_specialize_id
+    };
+
+    if (courseId) {
+      updatedCourse.id = courseId;
+      this.props.updateCourse(courseId, updatedCourse);
     } else {
-      this.props.dispatch(CourseActions.updateCourse(courseId, course.title, course.description, course.start_date, course.period,
-        course.number_of_students, course.tuition_fee, course.currency, course.is_free, week_day_schedules_attributes, course.is_same_period,
-        course.course_specialize_id, this.coverImage));
+      updatedCourse.cover_image = this.coverImage;
+      this.props.createCourse(updatedCourse);
     }
   }
 
@@ -46,7 +61,8 @@ class CourseDetailContainer extends Component {
 
     if (start_time === undefined) {
       // in case update course, load course time from week_day_schedules
-      return course.week_day_schedules.filter(d => d.day === name_day)[0].start_time;
+      const [startDay] = course.week_day_schedules.filter(d => d.day === name_day);
+      return startDay !== undefined ? startDay.start_time : null;
     } else {
       // in case create new course
       return start_time.value;
@@ -68,25 +84,28 @@ class CourseDetailContainer extends Component {
 
   onDropCoverImage(data) {
     this.coverImage = data.content;
+    if (this.props.courseId && this.props.courseId > 0) {
+      this.props.updateCourse(this.props.courseId, {cover_image: this.coverImage});
+    }
   }
 
   onEditTechingDay() {
     this.props.reset();
-    this.props.dispatch({type: AsyncAction.EDIT_TEACHING_DAY});
+    this.props.doEditTechingDay();
   }
 
   onEditCategory() {
     this.props.reset();
-    this.props.dispatch({type: AsyncAction.EDIT_COURSE_CATEGORY});
+    this.props.doEditCourseCategory();
   }
 
   onActivatedField(fieldIds) {
-    this.props.dispatch(CourseActions.activatedEditField(fieldIds));
+    this.props.activatedEditField(fieldIds);
   }
 
   onClosedField(fieldIds) {
     this.props.reset();
-    this.props.dispatch(CourseActions.closedEditField(fieldIds));
+    this.props.closedEditField(fieldIds);
   }
 
   render() {
@@ -169,7 +188,7 @@ const mapStateToProps = (state) => {
     courseData = courseFormValues;
   }
 
-  const selectedDays = courseFormValues != null ?
+  const selectedDays = courseFormValues != null && courseFormValues.course_days ?
     DAYS_IN_WEEK.filter((day) => courseFormValues.course_days.indexOf(day.name + "_" + day.id) >= 0) : []
   const isSamePeriod = courseFormValues != null ? ObjectUtils.isTrue(courseFormValues.is_same_period) : true
   const isFree = courseFormValues != null ? ObjectUtils.isTrue(courseFormValues.is_free) : false
@@ -214,8 +233,25 @@ const mapStateToProps = (state) => {
   }
 }
 
+const mapDispatchToProps = (dispatch) => ({
+  createCourse: (course) => dispatch({
+    type: CREATE_NEW_COURSE,
+    payload: Network().post('courses', course),
+    meta: 'courseDetailPlaceholder'
+  }),
+  updateCourse: (courseId, course) => dispatch({
+    type: UPDATE_COURSE,
+    payload: Network().update('courses/' + courseId, course),
+    meta: 'courseDetailPlaceholder'
+  }),
+  doEditTechingDay: () => dispatch({type: AsyncAction.EDIT_TEACHING_DAY}),
+  doEditCourseCategory: () => dispatch({type: AsyncAction.EDIT_COURSE_CATEGORY}),
+  activatedEditField: (fieldIds) => dispatch(CourseActions.activatedEditField(fieldIds)),
+  closedEditField: (fieldIds) => dispatch(CourseActions.closedEditField(fieldIds)),
+});
+
 export default connect(
-  mapStateToProps
+  mapStateToProps, mapDispatchToProps
 )(reduxForm({
   form: 'courseCreationForm',
   fields: ['title', 'description', 'start_date', 'period',

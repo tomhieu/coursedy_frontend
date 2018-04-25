@@ -1,14 +1,9 @@
 import React, {Component} from "react";
 import ChangePasswordContainer from "../../Account/ChangePasswordContainer";
-import cssModules from 'react-css-modules';
-import { connect } from "react-redux";
-import { AccountContainers } from "../../index";
-import { UserInfo } from '../../../components/index'
-import { 
-  AccountActions,
-  StudentAccountActions
-} from '../../../actions/index'
-import {RequireEmailConfirmationModal} from '../../../components/index'
+import {connect} from "react-redux";
+import {AccountContainers} from "../../index";
+import {RequireEmailConfirmationModal, UserInfo} from '../../../components/index'
+import {AccountActions} from '../../../actions/index'
 
 class AccountProfileContainer extends Component {
   componentWillMount(){

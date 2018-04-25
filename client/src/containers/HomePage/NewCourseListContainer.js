@@ -6,6 +6,7 @@ import * as HomePageActions from 'actions/HomePageActionCreator'
 import { bindActionCreators } from 'redux'
 import { Slider } from '../../components/Slider/SliderComponent'
 import CourseGroupFooter from '../../components/Course/CourseGroup/CourseGroupFooter'
+import LoadingMask from "../../components/LoadingMask/LoadingMask";
 
 
 class NewCourseList extends Component {
@@ -32,23 +33,25 @@ class NewCourseList extends Component {
 
     return (
       <section className="course__new-courses">
-        <div className="container course__new-courses__content-wrap">
-          <div className="row-padding">
-            <div className="course__new-courses__heading">
-              <h2 className="heading">{this.context.t('new_courses')}</h2>
-            </div>
+        <LoadingMask placeholderId="newCourseListPlaceholder">
+          <div className="container course__new-courses__content-wrap">
+            <div className="row-padding">
+              <div className="course__new-courses__heading">
+                <h2 className="heading">{this.context.t('new_courses')}</h2>
+              </div>
 
-            <div className="course__new-courses__content">
-              {<Slider items={this.props.courses.map((course, index) => {
-                return <NewCourse course={course} key={index}/>
-              })}/>}
-            </div>
+              <div className="course__new-courses__content">
+                {<Slider items={this.props.courses.map((course, index) => {
+                  return <NewCourse course={course} key={index}/>
+                })}/>}
+              </div>
 
-            <CourseGroupFooter
-              redirectUrl="/courses"
-              btnName={this.context.t('watch_all_courses')}/>
+              <CourseGroupFooter
+                redirectUrl="/courses"
+                btnName={this.context.t('watch_all_courses')}/>
+            </div>
           </div>
-        </div>
+        </LoadingMask>
       </section>
     )
   }

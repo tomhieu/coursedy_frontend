@@ -1,6 +1,6 @@
 import React, { Component} from 'react';
 import cssModules from 'react-css-modules';
-import styles from '../Course.module.scss';
+import styles from '../CourseItem/CourseItem.module.scss';
 import { CourseItem } from '../../index';
 
 /**
@@ -21,7 +21,7 @@ class CourseListInListMode extends Component {
       followedCourses
     } = this.props;
     return (
-        <div className={styles.courseListContainer + " row"}>
+        <div className={styles.courseListItemWrapper + " row "  + " " + styles.alt}>
         {
           this.props.courses.map((item, index) => (
             <div className="col-xs-12 col-sm-12 col-md-12" key={'course-' +index}>
