@@ -9,7 +9,6 @@ import {reduxForm} from 'redux-form';
 
 class LoginFormContainer extends Component {
   loginUser({email, password}) {
-
     this.props.dispatch(Action.loginUser(email, password, this.props.redirectPage));
   }
 

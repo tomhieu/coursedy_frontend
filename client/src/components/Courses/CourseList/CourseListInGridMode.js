@@ -13,32 +13,17 @@ class CourseListInGridMode extends Component {
   }
   render() {
     const {
-      deleteCourse, 
-      selectCourseHdl, 
-      displayMode, 
-      selectedCourses, 
-      isPublic,
-      followedCourses,
-      itemPerRowInGridMode
+      displayMode,
+      itemClass
     } = this.props;
-    const columnClasses = {
-      '6': 'col-xs-12 col-sm-3 col-md-2',
-      '4': 'col-xs-12 col-sm-6 col-md-3',
-      '2': 'col-xs-12 col-sm-12 col-md-6',
-      '1': 'col-xs-12 col-sm-12 col-md-12'
-    }
+
     return (
-      <div className="d-flex flex-horizontal flex-wrap">
+      <div className="row">
       {
         this.props.courses.map((item, index) => (
-          <div className="d-flex course-item-wrapper" key={'course-' +index}>
+          <div className={itemClass} key={'course-' +index}>
             <CourseItem item={item}
-                        deleteCourse={deleteCourse}
-                        selectCourseHdl={selectCourseHdl}
                         displayMode={displayMode}
-                        selectedCourses={selectedCourses}
-                        isPublic={isPublic}
-                        isFollowed={isPublic ? (followedCourses.indexOf(item.id) >= 0) : false}
             />
           </div>
         ))
@@ -50,6 +35,11 @@ class CourseListInGridMode extends Component {
 
 CourseListInGridMode.contextTypes = {
   t: React.PropTypes.func.isRequired
+}
+
+CourseListInGridMode.defaultProps = {
+  displayMode: 'grid',
+  isPublic: false
 }
 
 CourseListInGridMode.propTypes = {

@@ -1,5 +1,14 @@
 @import '/../../../styles/global_style.scss';
 
+.firstFilterContainer {
+  position: absolute;
+  top: 45px;
+  left: 10px;
+  border: 1px solid rgba(48, 51, 57, 0.15);
+  z-index: 9999;
+  background-color: $white-background;
+}
+
 .filterContainer {
   position: absolute;
   top: 45px;
@@ -14,7 +23,7 @@
 }
 
 .filterHeader {
-  height: 50px;
+  padding: 14px;
 }
 
 .filterInput {
@@ -22,9 +31,10 @@
 }
 
 .optionContainer {
-  padding: 10px 0px;
+  padding: 10px 0;
 }
 
 .filterOptionContainer {
   position: relative;
+  white-space: nowrap;
 }

@@ -282,20 +282,20 @@ export const submitCourseComment = (comment, courseId, userId) => {
   }
 }
 
-export const showPublicSubmitCommentStatusModal = () => {
-  return dispatch => {
-    dispatch({
-      type: types.PUBLIC_COURSE_DETAIL_SUBMIT_COMMENT_SHOW_STATUS_MODAL,
-    })
-  }
-}
-export const closePublicSubmitCommentStatusModal = () => {
-  return dispatch => {
-    dispatch({
-      type: types.PUBLIC_COURSE_DETAIL_SUBMIT_COMMENT_CLOSE_STATUS_MODAL,
-    })
-  }
-}
+// export const showPublicSubmitCommentStatusModal = () => {
+//   return dispatch => {
+//     dispatch({
+//       type: types.PUBLIC_COURSE_DETAIL_SUBMIT_COMMENT_SHOW_STATUS_MODAL,
+//     })
+//   }
+// }
+// export const closePublicSubmitCommentStatusModal = () => {
+//   return dispatch => {
+//     dispatch({
+//       type: types.PUBLIC_COURSE_DETAIL_SUBMIT_COMMENT_CLOSE_STATUS_MODAL,
+//     })
+//   }
+// }
 
 export const submitViewCourse = (courseId, token) => {
   return dispatch => {
@@ -304,4 +304,13 @@ export const submitViewCourse = (courseId, token) => {
       payload: Network().post(`courses/${courseId}/view`, {token: token})
     })
   }
+}
+
+export const fetchRelatedCourses = (params) => {
+ return dispatch => {
+    dispatch({
+      type: types.PUBLIC_COURSE_DETAIL_RELATED_COURSES,
+      payload: Network().post(`courses/related_courses`, params)
+    })
+  } 
 }

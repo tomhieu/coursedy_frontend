@@ -16,7 +16,8 @@ class CommentFormContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      show_require_login_modal: false
+      show_require_login_modal: false,
+      show_comment_status_modal: false
     }
   }
 
@@ -54,39 +55,41 @@ class CommentFormContainer extends Component {
   }
 
   hideSubmitCommentStatusModal() {
-    this.props.dispatch(Actions.closePublicSubmitCommentStatusModal())
+    this.setState({
+      show_comment_status_modal: false
+    })
+    // this.props.dispatch(Actions.closePublicSubmitCommentStatusModal())
   }
   showSubmitCommentStatusModal() {
-    this.props.dispatch(Actions.showPublicSubmitCommentStatusModal())
+    this.setState({
+      show_comment_status_modal: true
+    })
+    // this.props.dispatch(Actions.showPublicSubmitCommentStatusModal())
   }
 
   render() {
     const {handleSubmit, valid} = this.props;
     let submitCommentMessage = null;
-    let requireLoginMessage = '';
-    const {show_require_login_modal} = this.state
+    const {show_require_login_modal, show_comment_status_modal} = this.state
     if (this.props.submit_comment_success) {
-      submitCommentMessage = <div className="alert alert-success">
+      submitCommentMessage = <div>
         {this.context.t('course_submit_comment_success')}  
       </div>
     } else if (this.props.submit_comment_fail) {
-      submitCommentMessage = <div className="alert alert-danger">
+      submitCommentMessage = <div>
         {this.context.t('course_submit_comment_fail')}  
       </div>
     }
     return (
-      <div className="course-detail-comment-form" id="comment-section">
-        <div className="col-md-12">
-          <form onSubmit={handleSubmit(this.submitComment.bind(this))} className='inline-form'>
-            <FormField formGroupId={'content'} formLabel={this.context.t('course_comment_content')}
-                     placeholder={this.context.t('course_comment_content')} isMandatoryField={true}
-                     formControlName={'content'} typeField={'custom_textarea'}></FormField>
-            <Button type="submit" disabled={!valid} className="btn-primary">
-              {this.context.t('save')}
-            </Button>
-          </form>
-        </div>
-
+      <div className="course-detail-comment-form" id="comment-form-section">
+        <form onSubmit={handleSubmit(this.submitComment.bind(this))} className='inline-form ml-0 mr-0'>
+          <FormField fieldId={'course_comment_content'} formGroupId={'content'} formLabel={this.context.t('course_comment_content')}
+                   placeholder={this.context.t('course_comment_content')} isMandatoryField={true}
+                   formControlName={'content'} typeField={'custom_textarea'}></FormField>
+          <Button type="submit" disabled={!valid} className="btn-primary">
+            {this.context.t('save')}
+          </Button>
+        </form>
 
         {/* Require login modal */}
         <SimpleDialogComponent 
@@ -97,44 +100,18 @@ class CommentFormContainer extends Component {
           cancelCallback={this.hideRequireLoginModal.bind(this)}
           acceptCallback={this.redirectToLogin.bind(this)}
         >
-          Yêu cầu đăng nhập
+          {this.context.t('course_submit_comment_require_login_message')}
         </SimpleDialogComponent>
-
-      {/*  <Modal show={show_require_login_modal} onHide={this.hideRequireLoginModal.bind(this)}>
-          <Modal.Header>
-            <Modal.Title>{this.context.t('course_enroll_require_login')}</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            
-          </Modal.Body>
-          <Modal.Footer>
-            <Button onClick={this.redirectToLogin.bind(this)}>{this.context.t('ok')}</Button>
-            <Button onClick={this.hideRequireLoginModal.bind(this)}>{this.context.t('close')}</Button>
-          </Modal.Footer>
-        </Modal>*/}
 
         {/* Submit enroll course message */}
         <SimpleDialogComponent 
           title={this.context.t('course_submit_comment_status')}
-          show={this.props.show_comment_status_modal}
-          acceptLabel={this.context.t('ok')}
+          show={show_comment_status_modal}
           cancelLabel={this.context.t('close')}
           cancelCallback={this.hideSubmitCommentStatusModal.bind(this)}
-          acceptCallback={this.hideSubmitCommentStatusModal.bind(this)}
         >
           {submitCommentMessage}
         </SimpleDialogComponent>
-    {/*    <Modal show={this.props.show_comment_status_modal} onHide={this.hideSubmitCommentStatusModal.bind(this)}>
-          <Modal.Header>
-            <Modal.Title>{this.context.t('course_submit_comment_status')}</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            {submitCommentMessage}
-          </Modal.Body>
-          <Modal.Footer>
-            <Button onClick={this.hideSubmitCommentStatusModal.bind(this)}>{this.context.t('close')}</Button>
-          </Modal.Footer>
-        </Modal>*/}
 
       </div>
     )
@@ -153,7 +130,7 @@ const mapStateToProps = (state) => {
     user: state.session.currentUser,
     course: state.PublicCourseDetail.course,
     // show_require_login_modal: state.PublicCourseDetail.show_require_login_modal,
-    show_comment_status_modal: state.PublicCourseDetail.show_comment_status_modal,
+    // show_comment_status_modal: state.PublicCourseDetail.show_comment_status_modal,
     submit_comment_success: state.PublicCourseDetail.submit_comment_success,
     submit_comment_fail: state.PublicCourseDetail.submit_comment_fail,
     require_login_message: state.PublicCourseDetail.require_login_message

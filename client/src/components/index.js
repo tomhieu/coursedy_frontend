@@ -25,7 +25,7 @@ import TutorDashboardMenu from './Dashboard/TutorDashboard/TutorDashboardMenu'
 import CourseForm from './Courses/CourseForm/CourseForm'
 import UserInfo from './Account/UserInfo'
 import RequireEmailConfirmationModal from './Account/RequireEmailConfirmationModal'
-import TutorEducationDetailComponent from './Account/Tutor/TutorEducationDetailComponent'
+import TutorDetail from './Dashboard/Tutors/TutorDetail'
 
 import * as PaymentComponents from './Payment'
 import StatisticCard from './Dashboard/StatisticCard.js'
@@ -51,6 +51,7 @@ export {
   RoleAuthorization,
   LoadingMask,
   TutorDashboardMenu,
+  TutorDetail,
 
   StudentComponents,
   PaymentComponents,
@@ -60,6 +61,5 @@ export {
   CourseForm,
   TutorProfileDetails,
   UserInfo,
-  RequireEmailConfirmationModal,
-  TutorEducationDetailComponent
+  RequireEmailConfirmationModal
 };

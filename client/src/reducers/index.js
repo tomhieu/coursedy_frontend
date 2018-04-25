@@ -32,8 +32,11 @@ import AccountReducer from './AccountReducer'
 import StudentAccountReducer from './Student/StudentAccountReducer'
 import StudentCourseListReducer from './Student/StudentCourseListReducer'
 import TutorAccountReducer from './Tutor/TutorAccountReducer'
+import TeacherDetail from './TeacherDetailPageReducer';
+import DashboardTutorEducationList from './Dashboard/Tutors/Educations/DashboardTutorEducationList';
 
 const rootReducer = combineReducers({
+  DashboardTutorEducationList,
   // Apply all of the reducers here.
   LoadingMask,
   i18nState,
@@ -65,6 +68,7 @@ const rootReducer = combineReducers({
   CourseFilter,
   referenceData,
   Teachers,
+  TeacherDetail,
   Payment,
   HomePage,
   Certificate

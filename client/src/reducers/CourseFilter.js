@@ -1,12 +1,14 @@
 import * as asyncActs from '../actions/AsyncActionCreator';
 import * as courseActionTypes from '../constants/Courses';
+import { PUBLIC_COURSE_LIST_MAX_ITEM_PER_PAGE } from '../constants/WebConstants'
 
 const CourseFilter = (state = {
   isFetching: true,
   courses: [],
   totalResult: 0,
-  displayMode: 'grid',
+  perPage: PUBLIC_COURSE_LIST_MAX_ITEM_PER_PAGE,
   currentPage: 1,
+  displayMode: 'grid',
   selectedCourses: [],
   sortBy: '',
   sortOrder: 'desc',
@@ -20,9 +22,13 @@ const CourseFilter = (state = {
     case courseActionTypes.FETCH_COURSES + asyncActs.PENDING:
       return {...state, isFetching: true}
     case courseActionTypes.FETCH_COURSES + asyncActs.FULFILLED:
-      return {...state, courses: action.payload, totalResult: action.payload.length, isFetching: false}
+      return {...state, courses: action.payload, isFetching: false}
     case courseActionTypes.FETCH_COURSES + asyncActs.HEADERS:
-      return state
+      return {
+        ...state, 
+        totalResult: parseInt(action.payload.xTotal),
+        currentPage: parseInt(action.payload.xPage)
+      }
     case asyncActs.CHANGE_DISPLAY_MODE:
       return {...state, displayMode: action.payload}
     case asyncActs.CHANGE_CURRENT_PAGE:

@@ -20,17 +20,17 @@ class Introduces extends Component {
   render() {
     const mediaCards = [
       {
-        imgUrl: 'http://dev.mindsworthy.com/tutorsci/demo/assets/front/images/icn-video.png',
+        imgUrl: '#',
         title: this.context.t('introduction_interactive_title'),
         description: this.context.t('introduction_interactive_description')
       },
       {
-        imgUrl: 'http://dev.mindsworthy.com/tutorsci/demo/assets/front/images/icn-score.png',
+        imgUrl: '#',
         title: this.context.t('introduction_save_cost_title'),
         description: this.context.t('introduction_save_cost_description')
       },
       {
-        imgUrl: 'http://dev.mindsworthy.com/tutorsci/demo/assets/front/images/icn-calendar.png',
+        imgUrl: '#',
         title: this.context.t('introduction_save_time_title'),
         description: this.context.t('introduction_save_time_description')
       }

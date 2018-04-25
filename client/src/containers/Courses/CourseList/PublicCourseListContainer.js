@@ -22,6 +22,7 @@ class PublicCourseListContainer extends Component {
     query['fees'] = this.props.selectedFees
     query['start_time'] = this.props.startTime
     query['end_time'] = this.props.endTime
+    query['per_page'] = this.props.perPage
     query['page'] = this.props.currentPage
     query['sort_by'] = this.props.sortBy
     query['sort_order'] = this.props.sortOrder
@@ -45,8 +46,6 @@ class PublicCourseListContainer extends Component {
 
 
   handlePageChange(currentPage) {
-    console.log('DEBUG')
-    console.log(currentPage)
     let query = {}
     query['q'] = this.props.keyWord
     query['categories'] = this.props.selectedCategoryIds
@@ -56,6 +55,7 @@ class PublicCourseListContainer extends Component {
     query['fees'] = this.props.selectedFees
     query['start_time'] = this.props.startTime
     query['end_time'] = this.props.endTime
+    query['per_page'] = this.props.perPage
     query['page'] = currentPage
     query['sort_by'] = this.props.sortBy
     query['sort_order'] = this.props.sortOrder
@@ -77,19 +77,19 @@ class PublicCourseListContainer extends Component {
         <div className="public-course-list">
           <CourseList
             {...this.props}
+            itemClass='col-xs-12 col-sm-4 col-md-3 mb-15'
             selectCourseHdl={this.selectCourseHdl.bind(this)}
             isPublic={true}
-            itemPerRowInGridMode={4}
-            hasFilter={true}
           />
           {
             !isFetching && courses.length > 0 ? (
               <div className="pagination-course_list ">
                 <Pagination
                   activePage={this.props.currentPage}
-                  itemsCountPerPage={CommonConstants.MAX_ITEM_PER_PAGE}
+                  itemsCountPerPage={this.props.perPage}
                   totalItemsCount={this.props.totalResult}
                   pageRangeDisplayed={5}
+                  activeClass={'active'}
                   onChange={this.handlePageChange.bind(this)}
                 />
               </div>
@@ -106,7 +106,8 @@ PublicCourseListContainer.contextTypes = {
 }
 
 PublicCourseListContainer.propTypes = {
-
+  courses: React.PropTypes.array.isRequired,
+  isFetching: React.PropTypes.bool.isRequired
 };
 
 const mapStateToProps = (state) => ({
@@ -121,6 +122,7 @@ const mapStateToProps = (state) => ({
   courses: state.CourseFilter.courses,
   isFetching: state.CourseFilter.isFetching,
   currentPage: state.CourseFilter.currentPage,
+  perPage: state.CourseFilter.perPage,
   totalResult: state.CourseFilter.totalResult,
   displayMode: state.CourseFilter.displayMode,
   selectedCourses: state.CourseFilter.selectedCourses,

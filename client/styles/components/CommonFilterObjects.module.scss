@@ -1,15 +1,27 @@
 @import '../global_style.scss';
 
 .filterInputBox {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
+  z-index: 998;
+  background-color: $white-background;
 }
 
 .filterActionBlock {
-  padding: 0 5px;
+  padding: 0 30px;
   font-size: 14px;
   height: auto;
 }
 
+@media only screen and (max-width: 768px) {
+  .filterActionBlock {
+    padding: 15px 30px;
+  }
+}
+
 .filterOptionContainer {
   width: 30%;
+  white-space: nowrap;
 }

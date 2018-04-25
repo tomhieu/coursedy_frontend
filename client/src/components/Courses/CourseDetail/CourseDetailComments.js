@@ -40,7 +40,7 @@ class CourseDetailComments extends Component {
             <ul className="review-list">
             {
               course_comments.map((item, index) => (
-                <li className="clearfix">
+                <li className="clearfix" key={'course-detail-comments-' + index}>
                   <div className="image img-circle">
                     <img 
                       className="rounded-circle" 
@@ -66,7 +66,7 @@ class CourseDetailComments extends Component {
                     </div>
                     <div className="review-other">
                       <div className="row gap-20 mb-0">
-                        <div className="col-xs-12 col-sm-6">
+                        {/*<div className="col-xs-12 col-sm-6">
                           <ul className="social-share-sm">
                             <li><span><i className="fa fa-share-square"></i> share</span></li>
                             <li className="the-label"><a href="#">Facebook</a></li>
@@ -80,7 +80,7 @@ class CourseDetailComments extends Component {
                             <li className="the-label"><a href="#"><i className="fa fa-thumbs-up"></i></a> 2</li>
                             <li className="the-label"><a href="#"><i className="fa fa-thumbs-down"></i></a> 1</li>
                           </ul>
-                        </div>
+                        </div>*/}
                       </div>
                     </div>
                   </div>
@@ -93,14 +93,17 @@ class CourseDetailComments extends Component {
 
         <div className="mt-30 mb-10 text-right">
           {
-            course_comments.length > 0 && 
-              course_comments.length % PUBLIC_COURSE_MAX_NUMBER_COMMENTS_PER_LOAD == 0 ?
-              <a 
-                className="btn btn-primary btn-sm"
-                onClickCallback={loadMoreCommentsHdl}
-              >{this.context.t('course_comments_load_more')}</a> : null
+            // course_comments.length > 0 && 
+            //   course_comments.length % PUBLIC_COURSE_MAX_NUMBER_COMMENTS_PER_LOAD == 0 ?
+            //   <button type="button"
+            //     className="btn btn-primary btn-md"
+            //     onClick={loadMoreCommentsHdl}
+            //   >{this.context.t('course_comments_load_more')}</button> : null
           }
-          <a className="btn btn-danger btn-sm anchor">{this.context.t('course_comments_add')}</a>
+          &nbsp;&nbsp;
+{/*          <button type="button" className="btn btn-primary btn-md">
+            {this.context.t('course_comments_add')}
+          </button>*/}
         </div>
         
         <CommentFormContainer></CommentFormContainer>

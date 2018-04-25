@@ -24,17 +24,14 @@ class ListTutorCourseContainer extends Component {
     render() {
         return (
             <div className="d-flex flex-vertical flex-auto">
-                <div className="d-flex justify-content-left mb-10">
-                    <button className="btn btn-primary" onClick={this.addNewCourses.bind(this)}>{this.context.t('course_add_btn')}</button>
-                </div>
                 <div className="d-flex flex-auto">
                     <LoadingMask belongingActions={[FETCH_TUTOR_COURSES]}>
-                        <CourseList 
+                        <CourseList
+                            itemClass='col-xs-12 col-sm-6 col-md-4 mb-15'
                             deleteCourse={this.deleteCourse.bind(this)} 
                             {...this.props} 
                             displayMode="grid" 
-                            itemPerRowInGridMode={2}
-                            isPublic={false} 
+                            isPublic={false}
                         />
                     </LoadingMask>
                 </div>

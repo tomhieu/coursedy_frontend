@@ -23,11 +23,11 @@ class PublicCourseDetailContainer extends Component {
       ));
 
       //Fetch related courses
-      // this.props.dispatch(PublicCourseActions.fetchRelatedCourses(
-      //   this.props.courseId, {
-      //     per_page: 4
-      //   }
-      // ))
+      this.props.dispatch(PublicCourseActions.fetchRelatedCourses({
+        course_id: this.props.courseId,
+        page: 1,
+        per_page: 4
+      }))
     }
   }
 
@@ -84,15 +84,20 @@ const getCourseLevel = (categories, course) => {
 
 const mapStateToProps = (state) => {
   const categories = state.referenceData.courseCategories
-  const { course, relatedCourses } = state.PublicCourseDetail
+  const { 
+    course, 
+    relatedCourses, 
+    course_tutor, 
+    course_sections,
+    course_comments,
+    course_comments_page
+  } = state.PublicCourseDetail
   return {
-    categories, course, relatedCourses,
     course_category: getCourseCategory(categories, course),
     course_level: getCourseLevel(categories, course),
-    course_tutor: state.PublicCourseDetail.course_tutor,
-    course_sections: state.PublicCourseDetail.course_sections,
-    course_comments: state.PublicCourseDetail.course_comments,
-    course_comments_page: state.PublicCourseDetail.course_comments_page
+    categories, course, relatedCourses,
+    course_tutor, course_sections,
+    course_comments, course_comments_page
   }
 }
 

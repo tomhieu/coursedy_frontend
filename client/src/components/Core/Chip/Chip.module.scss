@@ -1,0 +1,38 @@
+@import '/../../../../styles/global_style.scss';
+
+.chipContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border-radius: 2em;
+  border: 0 solid $color-border;
+  padding: .465em .9em;
+  font-size: 14px;
+  background-color: $color-border;
+}
+
+.chipContainer:focus, .chipContainer:active {
+  border: 0 solid $primary-color;
+  background-color: $primary-color;
+}
+
+.chipText {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.deleteChipIcon {
+  display: block;
+  position: relative;
+  margin-left: 2px;
+  border: 0 solid #d3d7dc;
+  border-radius: 2em;
+  padding: 3px;
+  line-height: 9px;
+  font-size: 14px;
+  background-color: #d3d7dc;
+  color: #a9afb6;
+  width: 16px;
+  height: 16px;
+}
