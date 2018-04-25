@@ -2,17 +2,19 @@ import React, { Component } from 'react'
 import './CourseDetailIntro.scss'
 import DateUtils from "../../../utils/DateUtils"
 import {SERVER_NAME} from "../../../utils/CommonConstant";
+import { PUBLIC_COURSE_DETAIL_MENU_INTRO } from "../../../constants/WebConstants.js"
 
 class CourseDetailIntro extends Component {
   render() {
-    const {course, course_sections} = this.props
+    const {course, course_sections, activeMenu} = this.props
+    const active = activeMenu === PUBLIC_COURSE_DETAIL_MENU_INTRO
     return (
-      <div id="course-detail-intro" className="course-detail-section">
+      <div id="course-detail-intro" className={active ? "course-detail-section" : "d-none"}>
         <div className="section-title text-left mb-20">
           <h3>{this.context.t('course_intro')}</h3>
         </div>
         <div className="mb-20 text-center">
-          <img src={course.cover_image ? course.cover_image : "http://placehold.it/1366x768"} alt="" className="img-fluid"/>
+          <img className="img-fluid full-width" src={course.cover_image ? course.cover_image : "http://placehold.it/1366x768"} alt="" />
         </div>
         <div className="course-intro">
           <div className="listing-box clearfix">

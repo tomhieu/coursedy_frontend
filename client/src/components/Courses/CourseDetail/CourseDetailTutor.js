@@ -1,12 +1,14 @@
 import React, { Component } from 'react'
 import './CourseDetailTutor.scss'
 import { Link } from 'react-router-dom'
+import { PUBLIC_COURSE_DETAIL_MENU_TEACHER } from "../../../constants/WebConstants.js"
 
 class CourseDetailTutor extends Component {
   render() {
-    const { course, course_tutor } = this.props
+    const { course, course_tutor, activeMenu } = this.props
+    const active = activeMenu === PUBLIC_COURSE_DETAIL_MENU_TEACHER
     return (
-      <div id="course-detail-section-2" className="course-detail-section">
+      <div id="course-detail-section-2" className={active ? "course-detail-section" : "d-none"}>
         <div className="section-title text-left mb-20">
           <h3>{this.context.t('course_teacher')}</h3>
         </div>

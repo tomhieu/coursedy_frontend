@@ -28,7 +28,7 @@ const PublicCourseDetail = (state = {
     submit_comment_success: false,
     submit_comment_fail: false,
     submit_comment_errors: [],
-
+    activeMenu: 'course_intro'
   }, action) => {
   switch (action.type) {
     case courseTypes.FETCH_PUBLIC_COURSE_SUCCESSFULLY:
@@ -133,7 +133,8 @@ const PublicCourseDetail = (state = {
       return state;
     case courseTypes.PUBIC_COURSE_DETAIL_SUBMIT_VIEW + asyncActs.REJECTED:
       return state;
-
+    case courseTypes.PUBLIC_COURSE_DETAIL_UPDATE_ACTIVE_MENU:
+      return {...state, activeMenu: action.payload}
     default:
       return state;
   }

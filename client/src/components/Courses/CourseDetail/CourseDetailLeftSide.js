@@ -1,8 +1,16 @@
 import React, { Component } from 'react'
 import './CourseDetailLeftSide.scss'
+import {
+  PUBLIC_COURSE_DETAIL_MENU_INTRO,
+  PUBLIC_COURSE_DETAIL_MENU_LESSONS,
+  PUBLIC_COURSE_DETAIL_MENU_TEACHER,
+  PUBLIC_COURSE_DETAIL_MENU_COMMENTS,
+  PUBLIC_COURSE_DETAIL_MENU_RELATED
+} from "../../../constants/WebConstants.js"
 
 class CourseDetailLeftSide extends Component {
   render() {
+    const { activeMenu, updateActiveMenu } = this.props
     return (
       <div className="col-xs-12 col-sm-4 col-md-3 hidden-xs">
         <aside className="sidebar-wrapper">
@@ -11,11 +19,36 @@ class CourseDetailLeftSide extends Component {
               <li className="sidebar-heading"><h5>{this.context.t('course_menu')}</h5></li>
               <li className="">
                 <ul className="course-detail-left-nav">
-                  <li className=""><a href="#course-detail-section-0" className="anchor">{this.context.t('course_intro')}</a></li>
-                  <li className=""><a href="#course-detail-section-1" className="anchor">{this.context.t('course_lessons')}</a></li>
-                  <li className=""><a href="#course-detail-section-2" className="anchor">{this.context.t('course_teacher')}</a></li>
-                  <li className=""><a href="#course-detail-section-3" className="anchor">{this.context.t('course_comments')}</a></li>
-                  <li className=""><a href="#course-detail-section-4" className="anchor">{this.context.t('course_related')}</a></li>
+                  <li 
+                    className={activeMenu == PUBLIC_COURSE_DETAIL_MENU_INTRO ? "active" : ""} 
+                    onClick={() => updateActiveMenu(PUBLIC_COURSE_DETAIL_MENU_INTRO)}
+                  >
+                    <a className="anchor">{this.context.t('course_intro')}</a>
+                  </li>
+                  <li 
+                    className={activeMenu == PUBLIC_COURSE_DETAIL_MENU_LESSONS ? "active" : ""} 
+                    onClick={() => updateActiveMenu(PUBLIC_COURSE_DETAIL_MENU_LESSONS)}
+                  >
+                    <a className="anchor">{this.context.t('course_lessons')}</a>
+                  </li>
+                  <li 
+                    className={activeMenu == PUBLIC_COURSE_DETAIL_MENU_TEACHER ? "active" : ""}  
+                    onClick={() => updateActiveMenu(PUBLIC_COURSE_DETAIL_MENU_TEACHER)}
+                  >
+                    <a className="anchor">{this.context.t('course_teacher')}</a>
+                  </li>
+                  <li
+                    className={activeMenu == PUBLIC_COURSE_DETAIL_MENU_COMMENTS ? "active" : ""}  
+                    onClick={() => updateActiveMenu(PUBLIC_COURSE_DETAIL_MENU_COMMENTS)}
+                  >
+                    <a className="anchor">{this.context.t('course_comments')}</a>
+                  </li>
+                  <li 
+                    className={activeMenu == PUBLIC_COURSE_DETAIL_MENU_RELATED ? "active" : ""}  
+                    onClick={() => updateActiveMenu(PUBLIC_COURSE_DETAIL_MENU_RELATED)}
+                  >
+                    <a className="anchor">{this.context.t('course_related')}</a>
+                  </li>
                 </ul>
               </li>
             </ul>

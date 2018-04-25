@@ -1,6 +1,6 @@
 import React, { Component} from 'react';
 import './CourseDetailLessons.scss';
-
+import { PUBLIC_COURSE_DETAIL_MENU_LESSONS } from "../../../constants/WebConstants.js"
 /**
   * @Course group template 2
   * @Use for CoursePage
@@ -10,9 +10,10 @@ class CourseDetailLessons extends Component {
     super(props);
   }
   render() {
-    const { course_sections } = this.props
+    const { course_sections, activeMenu } = this.props
+    const active = activeMenu === PUBLIC_COURSE_DETAIL_MENU_LESSONS
     return (
-      <div id="course-detail-lessons" className="course-detail-section">
+      <div id="course-detail-lessons" className={active ? "course-detail-section" : "d-none"}>
         <div className="section-title text-left mb-20">
           <h3>{this.context.t('course_lessons')}</h3>
         </div>
