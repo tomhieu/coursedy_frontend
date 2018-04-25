@@ -16,7 +16,7 @@ class CourseDetailRightSide extends Component {
             <CourseDetailLessons {...this.props}/>
             <CourseDetailTutor {...this.props}/>
             <CourseDetailComments {...this.props}/>
-            {/*<CourseDetailRelated {...this.props}/>*/}
+            <CourseDetailRelated {...this.props}/>
           </div>
         </div>
       </div>

@@ -22,11 +22,10 @@ class CourseList extends Component {
         <div className={(fullHeight ? styles.courseListContainerFullHeight : isPublic ? styles.courseListContainer : '')}>
           {
             isFetching ? <div></div> : courses.length === 0
-              ? (
-                <EmptyResultWarning styles={styles.courseListContainer} typeSearch="search_course"/>
-              ) : this.props.displayMode === 'grid' ?
-                <CourseListInGridMode {...this.props} /> :
-                <CourseListInListMode {...this.props} />
+              ? <EmptyResultWarning styles={styles.courseListContainer} searchType="search_course"/>
+              : this.props.displayMode === 'grid' 
+                ? <CourseListInGridMode {...this.props} /> 
+                : <CourseListInListMode {...this.props} />
           }
         </div>
     )

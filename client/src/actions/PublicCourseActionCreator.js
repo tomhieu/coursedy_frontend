@@ -310,7 +310,7 @@ export const fetchRelatedCourses = (params) => {
  return dispatch => {
     dispatch({
       type: types.PUBLIC_COURSE_DETAIL_RELATED_COURSES,
-      payload: Network().post(`courses/related_courses`, params)
+      payload: Network().get(`courses/related_courses`, params)
     })
   } 
 }
