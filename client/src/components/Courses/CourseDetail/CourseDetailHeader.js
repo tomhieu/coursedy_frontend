@@ -12,7 +12,7 @@ class CourseDetailHeader extends Component {
         <div className="container">
           <div className="info clearfix">
             <div className="image">
-              <img src={course.cover_image ? SERVER_NAME + course.cover_image : 'http://placehold.it/155/103'} alt="Image" className="img-fluid" />
+              <img src={course.cover_image ? course.cover_image : 'http://placehold.it/155/103'} alt="Image" className="img-fluid" />
             </div>
             <div className="content">
               <h2>{ course.title }</h2>
@@ -58,10 +58,14 @@ class CourseDetailHeader extends Component {
               
               <li>
                 <div className="meta-rating">
-                  <span className="text-muted mt-3 block">{this.context.t('course_comments')}</span>
+                  <div className="content">
+                    <span className="text-muted mt-3 block">{this.context.t('course_comments')}</span>
+                    <h6>{course_comments.length} {this.context.t('course_comments')}</h6>
+                  </div>
+     {/*             <span className="text-muted mt-3 block"></span>
                   <div className="rating-wrapper">
                     <span>{course_comments.length} {this.context.t('course_comments')}</span>
-                  </div>
+                  </div>*/}
                 </div>
               </li>
               <li className="meta-price">

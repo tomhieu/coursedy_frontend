@@ -12,7 +12,7 @@ class CourseDetailIntro extends Component {
           <h3>{this.context.t('course_intro')}</h3>
         </div>
         <div className="mb-20 text-center">
-          <img src={course.cover_image ? SERVER_NAME + course.cover_image : "http://placehold.it/1366x768"} alt="" className="img-fluid"/>
+          <img src={course.cover_image ? course.cover_image : "http://placehold.it/1366x768"} alt="" className="img-fluid"/>
         </div>
         <div className="course-intro">
           <div className="listing-box clearfix">

@@ -19,7 +19,7 @@ class CourseList extends Component {
   render() {
     const {courses, displayMode, isFetching, fullHeight = false, isPublic} = this.props;
     return (
-        <div className={(fullHeight ? styles.courseListContainerFullHeight : isPublic ? styles.courseListContainer : '')}>
+        <div>
           {
             isFetching ? <div></div> : courses.length === 0
               ? <EmptyResultWarning styles={styles.courseListContainer} searchType="search_course"/>

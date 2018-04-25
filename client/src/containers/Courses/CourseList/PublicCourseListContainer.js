@@ -8,7 +8,7 @@ import * as CommonConstants from "utils/CommonConstant";
 import {FETCH_COURSES} from "constants/Courses";
 import { withRouter } from 'react-router'
 import * as WebConstants from "constants/WebConstants";
-
+import './PublicCourseList.scss'
 
 class PublicCourseListContainer extends Component {
 
@@ -75,12 +75,14 @@ class PublicCourseListContainer extends Component {
     return (
       <LoadingMask belongingActions={[FETCH_COURSES]}>
         <div className="public-course-list">
-          <CourseList
-            {...this.props}
-            itemClass='col-xs-12 col-sm-4 col-md-3 mb-15'
-            selectCourseHdl={this.selectCourseHdl.bind(this)}
-            isPublic={true}
-          />
+          <div className="course-list-container">
+            <CourseList
+              {...this.props}
+              itemClass='col-xs-12 col-sm-4 col-md-3 mb-15'
+              selectCourseHdl={this.selectCourseHdl.bind(this)}
+              isPublic={true}
+            />
+          </div>
           {
             !isFetching && courses.length > 0 ? (
               <div className="pagination-course_list ">
