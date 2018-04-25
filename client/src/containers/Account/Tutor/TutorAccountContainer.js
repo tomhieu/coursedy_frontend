@@ -14,63 +14,78 @@ import {
 import {
   RequireEmailConfirmationModal
 } from '../../../components/index'
+import LoadingMask from "../../../components/LoadingMask/LoadingMask";
+import {FETCH_CURRENT_USER, FETCH_TUTOR_DATA} from "../../../constants/Session";
+import {CERTIFICATE, FETCH_TEACHER_SKILL_SET} from "../../../actions/AsyncActionCreator";
+import Network from "utils/network";
 import TutorDetail from "components/Dashboard/Tutors/TutorDetail";
 import TutorEducationList from "components/Dashboard/Tutors/Educations/TutorEducationList";
 import TutorEducationListContainer from "containers/Dashboard/Tutors/Educations/TutorEducationListContainer";
 
 class TutorAccount extends Component {
   componentWillMount(){
-    this.props.dispatch(AccountActions.fetchUser())
-    this.props.dispatch(TutorAccountActions.loadListSkillData())
+    this.props.fetchUser();
+    this.props.loadListSkillData();
+    this.props.loadDegrees();
   }
 
   showProfileEditForm(){
-    this.props.dispatch(AccountActions.showAccountEditForm())
+    this.props.showAccountEditForm();
   }
 
   showEducationEditForm(){
-    this.props.dispatch(TutorAccountActions.showEducationEditForm())
+    this.props.showEducationEditForm();
   }
 
   hideProfileEditForm(){
-    this.props.dispatch(AccountActions.hideAccountEditForm())
+    this.props.hideAccountEditForm();
   }
 
   hideEducationEditForm(){
-    this.props.dispatch(TutorAccountActions.hideEducationEditForm())
+    this.props.hideEducationEditForm();
   }
 
   closeEmailConfirmationModal(){
-    this.props.dispatch(AccountActions.hideEmailChangedPopup())
+    this.props.hideEmailChangedPopup();
   }
 
   showEmailConfirmationModal() {
-    this.props.dispatch(AccountActions.showEmailChangedPopup())
+    this.props.showEmailChangedPopup();
   }
 
   render() {
-    const {editPasswordMode, user, tutor} = this.props
+    const {user, tutor} = this.props
     const {editProfileMode, editEducationMode} = this.props
     return (
       <div className="row">
         <div className="col-md-12 col-xs-12 col-sm-12 ">
-          <div className="dashboard-content-section">
-            {
-              editProfileMode ?
-                <PersonInfoContainer cancel={this.hideProfileEditForm.bind(this)} /> :
-                <UserInfo user={user} showEditForm={this.showProfileEditForm.bind(this)}/>
-            }
-          </div>
+          <LoadingMask placeholderId="userAccountPlaceholder"
+                       normalPlaceholder={false}
+                       facebookPlaceholder={true}
+                       loaderType="USER_ACCOUNT_PLACEHOLDER">
+            <div className="dashboard-content-section">
+                {
+                  editProfileMode ?
+                    <PersonInfoContainer cancel={this.hideProfileEditForm.bind(this)} /> :
+                    <UserInfo user={user} showEditForm={this.showProfileEditForm.bind(this)}/>
+                }
+            </div>
+          </LoadingMask>
         </div>
 
         <div className="col-md-12 col-xs-12 col-sm-12">
-          <div className="dashboard-content-section">
-            {
-              editEducationMode ?
-                <TutorForm tutor={tutor} cancel={this.hideEducationEditForm.bind(this)}/> :
-                <TutorDetail tutor={tutor} showEditForm={this.showEducationEditForm.bind(this)}/>
-            }
-          </div>
+          <LoadingMask placeholderId="userEducationPlaceholder"
+                       normalPlaceholder={false}
+                       facebookPlaceholder={true}
+                       loaderType="USER_EDUCATION_PLACEHOLDER">
+            <div className="dashboard-content-section">
+              {
+                editEducationMode ?
+                  <TutorForm tutor={tutor} cancel={this.hideEducationEditForm.bind(this)}/> :
+                  <TutorDetail tutor={tutor} showEditForm={this.showEducationEditForm.bind(this)}/>
+              }
+            </div>
+          </LoadingMask>
         </div>
 
         <div className="col-md-12 col-xs-12 col-sm-12">
@@ -80,9 +95,14 @@ class TutorAccount extends Component {
         </div>
 
         <div className="col-md-12 col-xs-12 col-sm-12">
-          <div className="dashboard-content-section">
-            <Certificate/>
-          </div>
+          <LoadingMask placeholderId="userCertificatePlaceholder"
+                       normalPlaceholder={false}
+                       facebookPlaceholder={true}
+                       loaderType="USER_CERTIFICATE_PLACEHOLDER">
+            <div className="dashboard-content-section">
+              <Certificate/>
+            </div>
+          </LoadingMask>
         </div>
 
         <div className="col-md-12 col-xs-12 col-sm-12">
@@ -111,6 +131,35 @@ const mapStateToProps = (state) => ({
   showEmailConfirmationModal: state.AccountReducer.showEmailConfirmationModal
 });
 
+const mapStateToDispatch = (dispatch) => ({
+  fetchUser: () => dispatch({
+    type: FETCH_CURRENT_USER,
+    payload: Network().get('current_user').then((res) => dispatch({
+      type: FETCH_TUTOR_DATA,
+      payload: Network().get('tutors/tutor_by_user', {user_id: res.id}),
+      meta: 'userAccountPlaceholder'
+    })),
+    meta: 'userAccountPlaceholder'
+  }),
+  loadListSkillData: () => dispatch({
+    type: FETCH_TEACHER_SKILL_SET,
+    payload: Network().get('categories'),
+    meta: 'userEducationPlaceholder'
+  }),
+  loadDegrees: () => dispatch({
+    type: CERTIFICATE.load_tutor_certificate_list,
+    payload: Network().get('degrees'),
+    meta: 'userCertificatePlaceholder'
+  }),
+  showAccountEditForm: () => dispatch(AccountActions.showAccountEditForm()),
+  showEducationEditForm: () => dispatch(TutorAccountActions.showEducationEditForm()),
+  hideAccountEditForm: () => dispatch(AccountActions.hideAccountEditForm()),
+  hideEducationEditForm: () => dispatch(TutorAccountActions.hideEducationEditForm()),
+  showEducationEditForm: () => dispatch(TutorAccountActions.showEducationEditForm()),
+  hideEmailChangedPopup: () => dispatch(AccountActions.hideEmailChangedPopup()),
+  showEmailChangedPopup: () => dispatch(AccountActions.showEmailChangedPopup())
+})
+
 export default connect(
-  mapStateToProps
+  mapStateToProps, mapStateToDispatch
 )(TutorAccount);

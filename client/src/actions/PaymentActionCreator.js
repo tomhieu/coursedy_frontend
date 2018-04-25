@@ -29,16 +29,10 @@ export const loadDomesticBankList = () => {
 
 export const fetchUserBalance = () => {
   return dispatch => {
-    // dispatch({
-    //   type: FETCH_USER_BALANCE,
-    //   payload: Network().get('users/balance')
-    // })
-    dispatch({
-      type: 'FETCH_USER_BALANCE_FULFILLED',
-      payload: {
-        value: '1000000'
-      }
-    })
+     dispatch({
+       type: FETCH_USER_BALANCE,
+       payload: Network().get('users/balance')
+     })
   }
 }
 

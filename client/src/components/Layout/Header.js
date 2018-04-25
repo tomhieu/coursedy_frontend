@@ -36,11 +36,6 @@ class Header extends Component {
                   <span>{this.context.t('find_courses')}</span>
                 </LinkContainer>
               </li>
-              <li className="nav-item">
-                <LinkContainer className="nav-link" to="/forum" role="button">
-                  <span>{this.context.t('forum')}</span>
-                </LinkContainer>
-              </li>
               {
                 this.props.session.currentUser ? (
                   <li className="nav-item">

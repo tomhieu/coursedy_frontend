@@ -296,13 +296,7 @@ figcaption {
   width: 24px;
   height: 24px; }
 
-.icon-delete {
-  background: #f8f8f8 url("../images/icon_delete_black.png") no-repeat;
-  width: 24px;
-  height: 24px; }
-
 .icon-upload {
-  background: #f8f8f8 url("../images/upload-icon.png") no-repeat;
   width: 30px;
   height: 30px; }
 
@@ -2507,7 +2501,8 @@ input[type="url"]:focus, input[type="text"]:focus, textarea:focus, .form-control
 
 .option-item {
   cursor: pointer;
-  padding: 5px 20px; }
+  padding: 5px 20px;
+}
 
 .option-item:hover {
   background-color: #e7e7e7; }

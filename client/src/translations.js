@@ -110,6 +110,8 @@ export const translations = {
     'course_comments': 'Bình luận',
     'course_comment_content': 'Nội dung bình luận',
     'course_comments_load_more': 'Tải thêm bình luận',
+    'number_of_comment': '{numOfComment} bình luận',
+    'no_comment': 'Không bình luận',
     /*
      * Lesson Page
      */

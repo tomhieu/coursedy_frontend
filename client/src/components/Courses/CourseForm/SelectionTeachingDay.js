@@ -32,7 +32,7 @@ class SelectionTeachingDay extends Component {
                     </SelectionTeachingDayEditMode>
                     <div className="col-md-12 col-sm-12">
                         <FormGroup className="ml-15 mr-15 mt-10 d-flex justify-content-right">
-                            <button type="submit" className="btn btn-primary mr-10" disabled={pristine || submitting}>
+                            <button type="submit" className="btn accept-btn mr-10" disabled={pristine || submitting}>
                                 {this.context.t("save")}
                             </button>
                             <button type='button' onClick={() => onEditTechingDay()}

@@ -2,9 +2,7 @@ import Network from "utils/network";
 import { TutorAccountTypes } from '../../../constants/index'
 import { CERTIFICATE } from '../../../actions/AsyncActionCreator';
 
-export const RECEIVE_PERSON_DATA = 'RECEIVE_PERSON_DATA';
 export const RECEIVE_EDUCATION_DATA = 'RECEIVE_EDUCATION_DATA';
-export const RECEIVE_DRGREES_DATA = 'RECEIVE_DEGREES_DATA';
 export const RECEIVE_SKILLS_DATA = 'RECEIVE_SKILLS_DATA';
 export const RECEIVE_CERTIFICATES_DATA = 'RECEIVE_CERTIFICATES_DATA';
 export const ADD_NEW_DOCUMENT_FILE = 'ADD_NEW_DOCUMENT_FILE';
@@ -13,25 +11,10 @@ export const REMOVE_UPLOADED_DOCUMENT = 'REMOVE_UPLOADED_DOCUMENT';
 export const DOWNLOAD_UPLOADED_DOCUMENT = 'DOWNLOAD_UPLOADED_DOCUMENT';
 export const SAVE_PERSON_DATA = 'SAVE_PERSON_DATA';
 
-
-
 export const loadDegrees = () => {
   return {
     type: CERTIFICATE.load_tutor_certificate_list,
     payload: Network().get('degrees')
-  }
-}
-
-export const loadListSkillData = () => {
-  return dispatch => {
-    Network().get('categories').then((response) => {
-      dispatch({
-        type: TutorAccountTypes.RECEIVE_SKILLS_DATA,
-        data: response.map((category) => {
-          return {id: category.id,  text: category.name}
-        })
-      })
-    });
   }
 }
 

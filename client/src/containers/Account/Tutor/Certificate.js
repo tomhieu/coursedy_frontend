@@ -12,18 +12,17 @@ import {
 
 import * as asyncActs from '../../../actions/AsyncActionCreator';
 import * as courseActionTypes from '../../../constants/Courses';
+import {CERTIFICATE} from "../../../actions/AsyncActionCreator";
+import Network from "utils/network";
 
 class CertificateContainer extends Component {
-  componentWillMount(){
-    this.props.dispatch(loadDegrees());
-  }
 
   delete(id) {
-    this.props.dispatch(removeUploadedDocument(id));
+    this.props.removeUploadedDocument(id);
   }
 
   upload(file){
-    this.props.dispatch(addNewDocument(file));
+    this.props.addNewDocument(file);
   }
 
   download(id) {
@@ -54,9 +53,22 @@ CertificateContainer.contextTypes = {
   t: React.PropTypes.func.isRequired
 }
 
+const mapStateToDispatch = (dispatch) => ({
+  removeUploadedDocument: (documentId) => dispatch({
+    type: CERTIFICATE.remove_uploaded_certificate,
+    payload: Network().delete(`degrees/${documentId}`),
+    meta: 'userCertificatePlaceholder'
+  }),
+  addNewDocument: (file) => dispatch({
+    type: CERTIFICATE.upload_new_document,
+    payload: Network().post('degrees', {degree: {item: file.content, name: file.fileName}}),
+    meta: 'userCertificatePlaceholder'
+  })
+})
+
 export default connect(state => ({
   certificates: state.Certificate.certificates
-}))(reduxForm({
+}), mapStateToDispatch)(reduxForm({
   form: 'certificate',
   // fields: ['name', 'email', 'address', 'date_of_birth'],
 })(CertificateContainer));

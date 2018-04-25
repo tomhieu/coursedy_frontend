@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import * as TeacherActions from 'actions/HomePageActionCreator';
 import { bindActionCreators } from 'redux';
 import { Slider } from '../../components/Slider/SliderComponent';
+import LoadingMask from "../../components/LoadingMask/LoadingMask";
 
 
 const Item = ({ item }) => {
@@ -51,34 +52,36 @@ class TopTeachers extends Component {
 
     return (
       <section className="course__top-teacher">
-        <div className="course__top-teacher__content-wrap">
-          <div className="row-padding">
-            <div className="course__top-teacher__heading">
-              <div className="container">
-                <h2>
-                  {this.context.t('top_teacher_pre')} {this.props.totalTeachers} {this.context.t('top_teacher_post')} {this.context.t('course_num_pre')} {this.props.totalCourses} {this.context.t('course_num_post')}
-                </h2>
+        <LoadingMask placeholderId="topTeacherPlaceholder">
+          <div className="course__top-teacher__content-wrap">
+            <div className="row-padding">
+              <div className="course__top-teacher__heading">
+                <div className="container">
+                  <h2>
+                    {this.context.t('top_teacher_pre')} {this.props.totalTeachers} {this.context.t('top_teacher_post')} {this.context.t('course_num_pre')} {this.props.totalCourses} {this.context.t('course_num_post')}
+                  </h2>
+                </div>
               </div>
-            </div>
-            <div className="course__top-teacher__body">
-              <div className="container">
-                <div className="row">
-                  <div className="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                    <h3 className="course__top-teacher__body__heading"
-                        dangerouslySetInnerHTML={{ __html: this.context.t('top_teacher_month') }}/>
-                  </div>
-                  <div className="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                    {<Slider settings={{ slidesToShow: 3, slidesToScroll: 3 }}
-                             items={this.props.topTeachers.map((item, index) => {
-                               return <Item item={item} key={index}/>;
-                             })}
-                    />}
+              <div className="course__top-teacher__body">
+                <div className="container">
+                  <div className="row">
+                    <div className="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                      <h3 className="course__top-teacher__body__heading"
+                          dangerouslySetInnerHTML={{ __html: this.context.t('top_teacher_month') }}/>
+                    </div>
+                    <div className="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                      {<Slider settings={{ slidesToShow: 3, slidesToScroll: 3 }}
+                               items={this.props.topTeachers.map((item, index) => {
+                                 return <Item item={item} key={index}/>;
+                               })}
+                      />}
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
+        </LoadingMask>
       </section>
     );
   }

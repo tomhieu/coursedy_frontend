@@ -1,11 +1,10 @@
 import React, {Component} from 'react';
 import styles from './Course.module.scss';
-import FormField from "../Core/FormField";
-import {EFlatButton} from "../Core/CustomComponents";
-import {ActionViewList, ActionViewModule} from "material-ui/svg-icons/index";
 import cssModules from 'react-css-modules';
 import AdvanceFilterComponent from "./CourseFilter/AdvanceFilterComponent";
 import BasicFilterComponent from "./CourseFilter/BasicFilterComponent";
+import Select2 from "react-select2-wrapper";
+import FlatButton from "../Core/FlatButton/FlatButton";
 
 
 class CourseFilter extends Component {
@@ -33,6 +32,7 @@ class CourseFilter extends Component {
       listSpecializes,
       reloadCourseList,
       onSelectFilter,
+      closeSuggestion
     } = this.props;
 
     const {selectedWeekDays, selectedCategories, selectedLocations, selectedSpecializes} = filters;
@@ -69,7 +69,8 @@ class CourseFilter extends Component {
                                       formfieldValues={formfieldValues}
                                       onRemoveFilter={onRemoveFilter}
                                       onSelectSuggestion={onSelectSuggestion}
-                                      suggestions={suggestions}>
+                                      suggestions={suggestions}
+                                      closeSuggestion={closeSuggestion}>
                 </BasicFilterComponent>
               </div>
               <div className="seperate-filter-line"></div>
@@ -116,20 +117,23 @@ class CourseFilter extends Component {
                     </span>
                 </div>
                 <div className={styles.orderBtn}>
-                  <FormField fieldId="order_by_id" showLabel={false} fieldLabel={this.context.t("order_list")}
-                             options={orderList} formControlName="order_by"
-                             onChange={reloadCourseList}
-                             typeField="custom_select">
-                  </FormField>
+                  <Select2 onSelect={(e) => reloadCourseList(e)} data={orderList}></Select2>
                 </div>
                 <div className={styles.displayModeBtn}>
                   <div className="d-flex flex-horizontal">
-                    <EFlatButton secondary={true}
-                                 onClick={changeDisplayModeHdl.bind(this, "grid")}
-                                 icon={<ActionViewModule style={internalStyles.defaultColorStyle}/>}/>
-                    <EFlatButton secondary={true}
-                                 onClick={changeDisplayModeHdl.bind(this, "list")}
-                                 icon={<ActionViewList style={internalStyles.defaultColorStyle}/>}/>
+                    <FlatButton secondary={true}
+                                 onClick={changeDisplayModeHdl.bind(this, "grid")} >
+                      <svg viewBox="0 0 24 24" className="material-icon primary" width={24} height={24}>
+                        <path d="M4 11h5V5H4v6zm0 7h5v-6H4v6zm6 0h5v-6h-5v6zm6 0h5v-6h-5v6zm-6-7h5V5h-5v6zm6-6v6h5V5h-5z"></path>
+                      </svg>
+                    </FlatButton>
+
+                    <FlatButton secondary={true}
+                                 onClick={changeDisplayModeHdl.bind(this, "list")}>
+                      <svg viewBox="0 0 24 24" className="material-icon primary" width={24} height={24}>
+                        <path d="M4 14h4v-4H4v4zm0 5h4v-4H4v4zM4 9h4V5H4v4zm5 5h12v-4H9v4zm0 5h12v-4H9v4zM9 5v4h12V5H9z"></path>
+                      </svg>
+                    </FlatButton>
                   </div>
                 </div>
               </div>
@@ -156,6 +160,7 @@ CourseFilter.propTypes = {
   onSelectSuggestion: React.PropTypes.func.isRequired,
   showSuggestion: React.PropTypes.bool.isRequired,
   reloadCourseList: React.PropTypes.func,
+  closeSuggestion: React.PropTypes.func
 };
 
 export default cssModules(CourseFilter, styles);

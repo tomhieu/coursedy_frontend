@@ -1,35 +1,15 @@
-import { push } from 'react-router-redux';
 import * as types from '../constants/Session'
 import {globalHistory} from '../utils/globalHistory'
 import queryString from 'query-string'
 import Network from '../utils/network'
+import {SIGN_OUT} from "./AsyncActionCreator";
 
-const fetchCurrentUser = (dispatch, callback, error = () => {
-    console.warn("Load user fails");
-}) => {
-  dispatch({
-    type: types.START_FETCHING_CURRENT_USER
-  })
-  Network().get('current_user')
-    .then((data) => {
-      dispatch({
-        type: types.SET_CURRENT_USER,
-        payload: data
-      })
-      if (callback) callback(data)
-      dispatch({
-        type: types.FINISHED_FETCHING_CURRENT_USER
-      })
-    }, (errors) => {
-      dispatch({
-        type: types.REMOVE_CURRENT_USER
-      })
-      dispatch({
-        type: types.FINISHED_FETCHING_CURRENT_USER
-      })
-      error();
-    })
-}
+const fetchCurrentUser = () => {
+  return {
+    type: types.FETCH_CURRENT_USER,
+    payload: Network().get('current_user')
+  }
+};
 
 export const checkRole = (authorizedRoles, unauthorizedPath) => {
   return dispatch => {
@@ -40,7 +20,7 @@ export const checkRole = (authorizedRoles, unauthorizedPath) => {
   }
 }
 
-export const setCurrentUser = (callback) => {
+export const setCurrentUser = () => {
   return dispatch => {
     const confirmation  = queryString.parse(globalHistory.location.search)
 
@@ -49,9 +29,9 @@ export const setCurrentUser = (callback) => {
       localStorage.setItem('ezyLearningToken', confirmation.token)
       localStorage.setItem('ezyLearningClient', confirmation.client_id)
       localStorage.setItem('ezyLearningUid', confirmation.uid)
-      fetchCurrentUser(dispatch, callback);
+      dispatch(fetchCurrentUser());
     } else if (localStorage.getItem('ezyLearningToken')) {
-      fetchCurrentUser(dispatch, callback);
+      dispatch(fetchCurrentUser());
     } else {
       dispatch({
         type: types.REMOVE_CURRENT_USER
@@ -61,17 +41,9 @@ export const setCurrentUser = (callback) => {
 }
 
 export const signOutUser = () => {
-  return dispatch => {
-    Network().delete('auth/sign_out').then((data) => {
-      localStorage.removeItem('ezyLearningToken')
-      localStorage.removeItem('ezyLearningClient')
-      localStorage.removeItem('ezyLearningUid')
-
-      dispatch({
-        type: types.REMOVE_CURRENT_USER
-      })
-
-      globalHistory.replace('/')
-    })
+  return {
+    type: SIGN_OUT,
+    payload: Network().delete('auth/sign_out'),
+    meta: 'ezylearningFullLoader'
   }
 }

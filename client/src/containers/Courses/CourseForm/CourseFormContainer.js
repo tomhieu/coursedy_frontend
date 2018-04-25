@@ -1,16 +1,16 @@
 import React, {Component} from "react";
 import * as CourseActions from "../../../actions/CourseFormActionCreator";
 import * as AsynActions from "../../../actions/AsyncActionCreator";
+import {CREATE_UPDATE_SECTION, FETCH_DETAIL_COURSE, FETCH_LIST_SECTION} from "../../../actions/AsyncActionCreator";
 import * as ReferenceActions from "../../../actions/ReferenceActions/ReferenceDataActionCreator";
 import {connect} from "react-redux";
-import {mStyles} from "../../../utils/CustomStylesUtil";
-import {FlatButton} from "material-ui";
-import {ContentAddCircle, EditorPublish} from "material-ui/svg-icons/index";
 import CourseDetailContainer from "./CourseDetailContainer";
 import SimpleDialogComponent from "../../../components/Core/SimpleDialogComponent";
 import SectionCreationPopupContainer from "../Section/SectionCreationPopupContainer";
 import SectionLessonContainer from "../Section/SectionLessonContainer";
 import LoadingMask from "../../../components/LoadingMask/LoadingMask";
+import Network from "utils/network";
+import FlatButton from "../../../components/Core/FlatButton/FlatButton";
 
 class CourseFormContainer extends Component {
   constructor(props) {
@@ -18,40 +18,38 @@ class CourseFormContainer extends Component {
     this.courseId = this.props.match.params.id;
   }
 
-
   componentWillMount() {
     if (this.courseId) {
-      this.props.dispatch(CourseActions.loadCourseDetail(this.courseId));
+      this.props.loadCourseDetails(this.courseId);
+      this.props.loadSectionDetails(this.courseId);
     } else {
-      this.props.dispatch(CourseActions.createNewCourse());
+      this.props.createNewCourse();
     }
-    this.props.dispatch(ReferenceActions.fetchCourseCategories())
+    this.props.fetchCourseCategories();
   }
 
   addNewSection() {
-    this.props.dispatch(CourseActions.addNewSection());
+    this.props.addNewSection();
   }
 
   validateBeforePublishCourse() {
-    this.props.dispatch(CourseActions.validateBeforePublishCCourse());
+    this.props.validateBeforePublishCCourse();
   }
 
   publishCourse() {
-    this.props.dispatch(CourseActions.publishCourse(this.courseId));
+    this.props.doPublishCourse(this.courseId);
   }
 
-  canclePublishCourse() {
-    this.props.dispatch({
-      type: AsynActions.CANCEL_PUBLISH_COURSE
-    });
+  cancelPublishCourse() {
+    this.props.cancelPublishCourse();
   }
 
   saveSection({title}) {
-    this.props.dispatch(CourseActions.saveOrUpdateSection(this.courseId, title, name));
+    this.props.saveOrUpdateSection(this.courseId, title, name);
   }
 
   cancelPopup() {
-    this.props.dispatch({type: AsynActions.CLOSE_COURSE_POPUP});
+    this.props.cancelCoursePopup();
     this.context.router.history.push('/dashboard/courses/list/');
   }
 
@@ -59,9 +57,12 @@ class CourseFormContainer extends Component {
     const {editMode, listSection, courseTitle, createCourseSucess, publishCourse, isFetching} = this.props;
 
     return (
-      <div className="row dashboard-panel">
+      <div className="row dashboard-panel course-details-container">
         <div className="col-sm-12 col-md-12">
-          <LoadingMask belongingActions={[AsynActions.CREATE_NEW_COURSE, AsynActions.UPDATE_COURSE, AsynActions.FETCH_DETAIL_COURSE, AsynActions.FETCH_CATEGORIES]}>
+          <LoadingMask placeholderId="courseDetailPlaceholder"
+                       normalPlaceholder={false}
+                       facebookPlaceholder={true}
+                       loaderType="COURSE_DETAILS_PLACEHOLDER">
             {
               !isFetching ? (
                 <div className="container">
@@ -83,43 +84,60 @@ class CourseFormContainer extends Component {
         {
           editMode ? (
             <div className="col-sm-12 col-md-12">
-              <div className="row">
-                <div className="col-sm-12 col-md-12">
-                  <div className="row">
-                    <div className="col-md-6 col-sm-6">
-                      <FlatButton label={this.context.t('lesson_link_edit')}
-                                  style={mStyles.defaultFlatBtn}
-                                  secondary={true}
-                                  onClick={this.addNewSection.bind(this)}
-                                  icon={<ContentAddCircle color="#e27d7f"/>}/>
-                    </div>
-                    <div className="col-md-6 col-sm-6">
-                      <FlatButton label={this.context.t('course_publish')}
-                                  style={mStyles.defaultFlatBtn}
-                                  secondary={true}
-                                  onClick={this.validateBeforePublishCourse.bind(this)}
-                                  icon={<EditorPublish color="#e27d7f"/>}/>
+              <div className="container">
+                <div className="row">
+                  <div className="col-sm-12 col-md-12">
+                    <div className="row">
+                      <div className="col-md-6 col-sm-6">
+                        <FlatButton label={this.context.t('lesson_link_edit')}
+                                    secondary={false}
+                                    onClick={this.addNewSection.bind(this)}>
+                          <svg viewBox="0 0 24 24" className="material-icon primary" height="24" width="24">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5 11h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"></path>
+                          </svg>
+                        </FlatButton>
+                      </div>
+                      <div className="col-md-6 col-sm-6">
+                        <FlatButton label={this.context.t('course_publish')}
+                                    secondary={true}
+                                    onClick={this.validateBeforePublishCourse.bind(this)}>
+                          <svg viewBox="0 0 24 24" className="material-icon secondary" height="24" width="24">
+                            <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"></path>
+                          </svg>
+                        </FlatButton>
+                      </div>
                     </div>
                   </div>
+                  <div className="col-md-12 col-sm-12">
+                    <LoadingMask placeholderId="listLessonDetailPlaceholder"
+                                 normalPlaceholder={false}
+                                 facebookPlaceholder={true}
+                                 loaderType="LESSON_DETAILS_PLACEHOLDER"
+                                 repeatTime={2}>
+                      <div className="row flex-g1">
+                        {
+                          listSection.map((section) =>
+                            <div className="col-sm-12 col-md-12 mb-3">
+                              <SectionLessonContainer
+                                section={section}
+                                key={'__section__' + section.id}
+                                showPopupEdit={section.showLessonPopup}
+                                {...this.props}>
+                              </SectionLessonContainer>
+                            </div>
+                          )
+                        }
+                      </div>
+                    </LoadingMask>
+                  </div>
+                  <SectionCreationPopupContainer courseId={this.courseId} onSubmit={this.saveSection.bind(this)}>
+                  </SectionCreationPopupContainer>
                 </div>
-                <div className="col-sm-12 col-md-12">
-                  {
-                    listSection.map((section) =>
-                      <SectionLessonContainer
-                        section={section}
-                        key={'__section__' + section.id}
-                        showPopupEdit={section.showLessonPopup}
-                        {...this.props}>
-                      </SectionLessonContainer>)
-                  }
-                </div>
-                <SectionCreationPopupContainer courseId={this.courseId} onSubmit={this.saveSection.bind(this)}>
-                </SectionCreationPopupContainer>
               </div>
               <SimpleDialogComponent title={this.context.t('popup_warning_publish_course_title')}
                                      show={publishCourse}
                                      acceptBtn={this.context.t("course_publish")}
-                                     cancelCallback={this.canclePublishCourse.bind(this)}
+                                     cancelCallback={this.cancelPublishCourse.bind(this)}
                                      acceptCallback={this.publishCourse.bind(this)}>
                 <div className="d-flex flex-vertical">
                   <span>{this.context.t('popup_warning_publish_course_message_1', {course_title: courseTitle})}</span>
@@ -157,6 +175,31 @@ const mapStateToProps = (state) => {
   };
 };
 
+const mapDispatchToProps = (dispatch) => ({
+  loadCourseDetails: (courseId) => dispatch({
+    type: FETCH_DETAIL_COURSE,
+    payload: Network().get(/courses/ + courseId),
+    meta: 'courseDetailPlaceholder'
+  }),
+  loadSectionDetails: (courseId) => dispatch({
+    type: FETCH_LIST_SECTION,
+    payload: Network().get('/course_sections?course_id=' + courseId),
+    meta: 'listLessonDetailPlaceholder'
+  }),
+  saveOrUpdateSection: (courseId, title, name) => dispatch({
+    type: CREATE_UPDATE_SECTION,
+    payload: Network().post('course_sections', {course_id: courseId, title}),
+    meta: 'lessonDetailPlaceholder'
+  }),
+  fetchCourseCategories: () => dispatch(ReferenceActions.fetchCourseCategories()),
+  createNewCourse: () => dispatch(CourseActions.createNewCourse()),
+  addNewSection: () => dispatch(CourseActions.addNewSection()),
+  validateBeforePublishCCourse: () => dispatch(CourseActions.validateBeforePublishCCourse()),
+  doPublishCourse: (courseId) => dispatch(CourseActions.publishCourse(courseId)),
+  cancelPublishCourse: () => dispatch({type: AsynActions.CANCEL_PUBLISH_COURSE}),
+  cancelCoursePopup: () => dispatch({type: AsynActions.CLOSE_COURSE_POPUP})
+});
+
 export default connect(
-  mapStateToProps
+  mapStateToProps, mapDispatchToProps
 )(CourseFormContainer);

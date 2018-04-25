@@ -8,20 +8,26 @@ import {connect} from "react-redux";
 import {validate} from '../../../validations/LessonFormValidator';
 import * as React from "react";
 import * as CourseActions from "actions/CourseFormActionCreator";
+import {
+  ADD_DOCUMENT,
+  ADD_DOCUMENT_FOR_LESSON, DELETE_DOCUMENT, DELETE_DOCUMENT_FOR_LESSON,
+  DELETE_LESSON
+} from "../../../actions/AsyncActionCreator";
+import Network from "utils/network";
 
 class LessonDetailFormContainer extends Component {
   addDocumentForLesson(document) {
     const {lesson} = this.props;
-    this.props.dispatch(LessonActions.addDocumentForLesson(lesson.course_section_id, lesson.id, document))
+    this.props.addDocument(lesson.course_section_id, lesson.id, document);
   }
 
   onDeleteDocumentLesson(documentId) {
     const {lesson} = this.props;
-    this.props.dispatch(LessonActions.deleteDocumentForLesson(lesson.course_section_id, lesson.id, documentId))
+    this.props.deleteDocument(lesson.course_section_id, lesson.id, documentId);
   }
 
   onDeleteLesson(lessonId) {
-    this.props.dispatch(LessonActions.deleteLesson(lessonId));
+    this.props.deleteLesson(lessonId, this.props.lesson.course_section_id);
   }
 
   onClosedField(fieldIds) {
@@ -85,7 +91,10 @@ class LessonDetailFormContainer extends Component {
               </div>
             </div>
             <div className="col-md-12 col-sm-12">
-              <button type="button" onClick={() => this.onDeleteLesson(lesson.id)}>{this.context.t('lesson_delete_btn')}</button>
+              <button type="button" className="btn btn-primary"
+                      onClick={() => this.onDeleteLesson(lesson.id)}>
+                {this.context.t('lesson_delete_btn')}
+              </button>
             </div>
           </div>
         </div>
@@ -110,8 +119,34 @@ const mapStateToProps = (state, props) => {
   return {initialValues: initialValues};
 };
 
+const mapDispatchToProps = (dispatch) => ({
+  deleteLesson: (lessonId, sectionId) => dispatch({
+    type: DELETE_LESSON,
+    payload: Network().delete('lessons/' + lessonId),
+    meta: 'sectionLessonPlaceholder' + sectionId
+  }),
+  addDocument: (sectionId, lessonId, document) => dispatch({
+    type: ADD_DOCUMENT,
+    payload: Network().post('documents', {lesson_id: lessonId, item: document.content, name: document.fileName})
+      .then((res) => dispatch({
+        type: ADD_DOCUMENT_FOR_LESSON,
+        data: {sectionId: sectionId, lessonId: lessonId, document: res}
+      })),
+    meta: 'sectionLessonPlaceholder' + sectionId
+  }),
+  deleteDocument: (sectionId, lessonId, documentId) => dispatch({
+    type: DELETE_DOCUMENT,
+    payload: Network().delete('documents/' + documentId).then((res) =>
+      dispatch({
+      type: DELETE_DOCUMENT_FOR_LESSON,
+      data: {sectionId: sectionId, lessonId: lessonId, documentId: res.id}
+    })),
+    meta: 'sectionLessonPlaceholder' + sectionId
+  })
+});
+
 export default connect(
-  mapStateToProps
+  mapStateToProps, mapDispatchToProps
 )(reduxForm({
   form: 'lessonEditForm',
   fields: ['title', 'period', 'description'],

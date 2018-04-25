@@ -7,7 +7,7 @@ const PublicCourseListPage = (props) => (
       <div className="d-flex flex-auto course-filter-container">
           <CourseFilterContainer />
       </div>
-      <div className="d-flex flex-stretch">
+      <div className="public-course-list-container d-flex flex-stretch">
           <PublicCourseListContainer />
       </div>
   </div>

@@ -6,10 +6,6 @@ import moment from "moment";
 import Dropzone from "react-dropzone";
 import {TT} from "../../utils/locale";
 import ObjectUtils from "../../utils/ObjectUtils";
-import {Checkbox, FlatButton, RaisedButton, TimePicker} from "material-ui";
-import {mStyles} from "utils/CustomStylesUtil";
-import {ActionSearch} from "material-ui/svg-icons/index";
-import {fullWhite} from "material-ui/styles/colors";
 import Cropper from 'react-cropper'
 import 'cropperjs/dist/cropper.css';
 
@@ -17,6 +13,21 @@ export const renderField = ({input, label, placeholder, type = 'text', disabled 
   <div className='full-width-input-wrapper'>
     <input {...input} placeholder={placeholder ? placeholder : ''} type={type} disabled={disabled}
            className={customClassName}/>
+    {
+      type === 'checkbox' ? <span class="custom-control-description">{label}</span> : null
+    }
+    {touched && ((error && <span className='input-errors'>{error}</span>) || (warning && <span>{warning}</span>))}
+  </div>
+)
+
+export const renderCheckBoxField = ({input, label, placeholder, type = 'text', disabled = false, customClassName, meta: {touched, error, warning}}) => (
+  <div className='full-width-input-wrapper'>
+    <label className="custom-control custom-checkbox">
+      <input {...input} placeholder={placeholder ? placeholder : ''} type='checkbox' disabled={disabled}
+             className={customClassName + ' custom-control-input'}/>
+      <span className="custom-control-indicator"></span>
+      <span className="custom-control-description">{label}</span>
+    </label>
     {touched && ((error && <span className='input-errors'>{error}</span>) || (warning && <span>{warning}</span>))}
   </div>
 )
@@ -64,82 +75,30 @@ export const renderMultiSelect = (selectOptions) => {
   )
 }
 
-/**
- * A wrapper of Checkbox Material UI
- * @param input
- * @param label
- * @param iconStyle
- */
-export const renderCheckbox = ({input, label, disabled = false, iconStyle}) =>
-  <Checkbox
-    label={label}
-    disabled={disabled}
-    checked={input.value ? true : false}
-    onCheck={input.onChange}
-    style={mStyles.checkbox}
-    iconStyle={iconStyle}
-  />
-
-/**
- * A wrapper of RaiseButton of material UI
- * @param props
- * @constructor
- */
-export const RaiseButton = (props) =>
-  <RaisedButton
-    backgroundColor="#e27d7f"
-    labelColor={fullWhite}
-    label={props.label}
-    disabled={props.disabled ? props.disabled : false}
-    type="submit"
-    style={mStyles.raiseBtn}
-    icon={<ActionSearch color={fullWhite}/>}
-  />
-
-/**
- * A wrapper of FlatButton of material UI
- * @param props
- * @constructor
- */
-export const EFlatButton = (props) =>
-  <FlatButton
-    label={props.label}
-    type="button"
-    secondary={props.secondary}
-    onClick={props.onClick}
-    disabled={props.disabled ? props.disabled : false}
-    style={mStyles.flatBtn}
-    icon={props.icon}
-  />
-
-export const CustomTimePicker = ({input: {onChange, value}, label, disabled = false, hintText, meta: {touched, error, warning}}) =>
-  <div className="d-flex flex-vertical">
-    <TimePicker
-      textFieldStyle={mStyles.timePicker}
-      hintText={hintText}
-      cancelLabel={TT.t('cancel')}
-      okLabel={TT.t('select')}
-      disabled={disabled}
-      onChange={(oldValue, newValue) => onChange(newValue)}
-    />
-    {((error && <span className='input-errors'>{error}</span>) || (warning && <span>{warning}</span>))}
-  </div>
-
 export const renderPreviewFile = (file, doDeleteNewUploadFile, saveDocument) => {
   let previewClass = "pdf-image-preview";
   if (file.extension === "docx") {
     previewClass = "doc-image-preview";
   }
   return (
-    <div className="d-flex flex-horizontal mt-10" key={file.uid}>
+    <div className="d-flex flex-horizontal mt-10 mb-10" key={file.uid}>
       <div className={previewClass}></div>
       <div className="file-name-wrapper">
         <span className="degree-filename ml-10" title={file.fileName}>{file.fileName}</span>
       </div>
-      <a className="icon-delete ml-10" onClick={() => doDeleteNewUploadFile(file.uid)} title={file.fileName}></a>
+      <a className="icon-delete ml-10" onClick={() => doDeleteNewUploadFile(file.uid)} title={file.fileName}>
+        <svg viewBox="0 0 24 24" className="material-icon secondary" height="24" width="24">
+          <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"></path>
+        </svg>
+      </a>
       {
         saveDocument !== undefined ?
-          <a className="icon-upload ml-10" onClick={() => saveDocument(file)} title={file.fileName}></a>
+          <a className="icon-upload ml-10" onClick={() => saveDocument(file)} title={file.fileName}>
+            <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
+              <path d="M0 0h24v24H0z" fill="none"/>
+            </svg>
+          </a>
           : null
       }
     </div>
@@ -199,14 +158,18 @@ class renderFileInput extends Component {
           accept="image/*">
           <div className="d-flex flex-auto justify-content-center align-items-center">
             <div className={internalPreview ? 'd-none' : 'd-flex flex-horizontal align-self-center padd-10'}>
-              <a className="icon-upload"></a>
+              <a className="icon-upload">
+                <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M0 0h24v24H0z" fill="none"/>
+                  <path d="M9 16h6v-6h4l-7-7-7 7h4zm-4 2h14v2H5z"/>
+                </svg>
+              </a>
               <a className="ml-10">{TT.t('drag_and_drop')}</a>
             </div>
           </div>
 
           <img className={internalPreview && this.state.previewUrl != null ? '' : 'd-none'}
                src={this.state.previewUrl} height={zoneHeight} style={previewImageStyle}></img>
-          {/*<input className='d-none' {...input} value={this.state.content}/>*/}
         </Dropzone>
       </div>
     )

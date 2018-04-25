@@ -33,7 +33,7 @@ class FormDialogContainer extends Component {
           {this.props.children}
         </div>
         <div className="modal-footer">
-          <button type="button" className="btn btn-primary" onClick={this.onSubmitPopup.bind(this)}>
+          <button type="button" className="btn accept-btn" onClick={this.onSubmitPopup.bind(this)}>
             {okLabel}
           </button>
           <button type="button" className="btn btn-secondary" onClick={this.cancelPopup.bind(this)}>

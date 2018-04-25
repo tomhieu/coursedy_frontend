@@ -15,15 +15,13 @@ class StudentCoursesEnrollingContainer extends Component {
     return (
       <div className="d-flex flex-vertical flex-auto">
         <div className="d-flex flex-auto">
-          <LoadingMask belongingActions={[FETCH_STUDENT_ENROLL_COURSES]}>
-            <CourseList 
-              {...this.props} 
-              displayMode="grid" 
-              itemPerRowInGridMode={2}
-              isPublic={false}
-              fullHeight={true}
-            />
-          </LoadingMask>
+          <CourseList
+            {...this.props}
+            displayMode="grid"
+            itemPerRowInGridMode={2}
+            isPublic={false}
+            fullHeight={true}
+          />
         </div>
       </div>
     )

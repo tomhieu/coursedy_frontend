@@ -16,11 +16,10 @@ import * as sessionActions from '../../actions/SessionActionCreator'
 
 class TutorDashboard extends RoleAuthorization {
   render() {
-    if (this.props.fetchingUser) return null
 
     return (
       <div className="dashboard-section">
-        <div className="row">
+        <div className="row flex-auto">
           <div className="col-xs-12 col-sm-3 left-panel" id="sidebar">
             <div className="panel-group dashboard-menu" id="accordion">
               <TutorContainers.DashboardProfileContainer/>
@@ -28,14 +27,16 @@ class TutorDashboard extends RoleAuthorization {
             </div>
           </div>
           <div className="col-xs-12 col-sm-9 d-flex dashboard-content">
-            <switch>
-              <Route exact path="/dashboard/account" component={TutorAccount}/>
-              <Route exact path="/dashboard/courses/list" component={ListTutorCourseContainer}/>
-              <Route exact path="/dashboard/courses/list-lesson" component={ListLessonContainer}/>
-              <Route exact path="/dashboard/courses/new" component={CourseFormContainer}/>
-              <Route exact path="/dashboard/courses/detail/:id" component={CourseFormContainer}/>
-              <Route exact path="/dashboard/profile" component={TutorProfileDetailsContainer}/>
-            </switch>
+            <div className="d-flex daskboard-container">
+              <switch>
+                <Route exact path="/dashboard/account" component={TutorAccount}/>
+                <Route exact path="/dashboard/courses/list" component={ListTutorCourseContainer}/>
+                <Route exact path="/dashboard/courses/list-lesson" component={ListLessonContainer}/>
+                <Route exact path="/dashboard/courses/new" component={CourseFormContainer}/>
+                <Route exact path="/dashboard/courses/detail/:id" component={CourseFormContainer}/>
+                <Route exact path="/dashboard/profile" component={TutorProfileDetailsContainer}/>
+              </switch>
+            </div>
           </div>
         </div>
       </div>

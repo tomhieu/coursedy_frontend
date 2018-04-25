@@ -3,7 +3,6 @@ import cssModules from 'react-css-modules';
 import styles from '../Course.module.scss';
 import {LinkContainer} from 'react-router-bootstrap'
 import {SERVER_NAME} from "utils/CommonConstant";
-import {Checkbox} from 'material-ui'
 import {TT} from "utils/locale";
 import Image from 'react-graceful-image';
 import RatingItem from '../../Rating/index'
@@ -21,11 +20,12 @@ class CourseItemInGridMode extends Component {
   render() {
     const {
       item,
+      isPublic
     } = this.props;
 
     return (
       <div className="course-item">
-        <LinkContainer to={'/course/' + item.id} className='course-detail-lnk'>
+        <LinkContainer to={isPublic ? '/course/' + item.id : '/dashboard/courses/detail/' + item.id} className='course-detail-lnk'>
           <div className="course-item-image">
             <Image src={item.cover_image} width={200} height={150} alt={'comming soon'} className="full-width-img"
                    noLazyLoad={true}/>
@@ -35,7 +35,7 @@ class CourseItemInGridMode extends Component {
           <LinkContainer to={'/teachers/' + item.user_id} className='course-detail-lnk'>
             <div className="course-item-instructor">
               <div className="image">
-                <Image src={item.user.avatar} alt="no image" className="img-circle"
+                <Image src={item.user.avatar} alt="no image"
                        className="full-width-img img-circle"
                        noLazyLoad={true}/>
               </div>
@@ -46,7 +46,7 @@ class CourseItemInGridMode extends Component {
             {this.context.t('course_item_price_tag', {price: item.price || 0, currency: item.currency || 'VND'})}
           </div>
         </div>
-        <LinkContainer to={'/course/' + item.id} className='course-detail-lnk'>
+        <LinkContainer to={isPublic ? '/course/' + item.id : '/dashboard/courses/detail/' + item.id} className='course-detail-lnk'>
           <div className="course-item-content">
             <RatingItem num_stars={item.rating_count == 0 ? 0 : parseFloat(item.rating_points)/item.rating_count} num_reviews={item.rating_count}/>
             <h3>{item.title}</h3>

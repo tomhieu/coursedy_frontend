@@ -1,3 +1,5 @@
+@import "global_style";
+
 body.application {
   font-size: 14px;
   line-height: 23px;
@@ -11,10 +13,10 @@ body.application {
   .navbar-light .navbar-nav .nav-link {
     color: $dark-text-color;
     &.nav-btn {
-      color: $white-color;
+      color: $md-color-pink;
       &:hover {
-        color: $md-color-pink;
-        background: $primary-color;
+        color: $primary-color;
+        background: $md-color-pink;
         -webkit-transition: all .3s ease;
         transition: all .3s ease;
         -webkit-transition: 0.3s;
@@ -27,9 +29,9 @@ body.application {
 
   .nav-btn {
     border-radius: 2px;
-    background-color: $md-color-pink;
+    background-color: $primary-color;
     border: 1px solid $md-color-pink;
-    color: $white-color;
+    color: $md-color-pink;
     font-size: 14px;
     font-weight: 400;
     margin: 0 10px;
@@ -242,6 +244,7 @@ body.application {
     border: 1px solid $border-color;
     padding: 20px 15px;
     margin-bottom: 15px;
+    width: 100%;
     .block-title {
       color: $md-color-pink;
     }
@@ -477,13 +480,13 @@ body.application {
 
   .btn-link-dark {
     padding: 8px;
-    color: $white-color;
+    color: $md-color-pink;
     font-size: 16px;
     font-weight: 400;
     border: 1px solid $md-color-pink;
     border-radius: 2px;
     text-align: center;
-    background: $md-color-pink;
+    background: transparent;
     -webkit-transition: all .2s ease-in-out;
     transition: all .2s ease-in-out;
   }
@@ -506,8 +509,8 @@ body.application {
   }
 
   .btn-link-dark:hover {
-    background: transparent !important;
-    color: $md-color-pink !important;
+    background: $md-color-pink !important;
+    color: $white-color !important;
     -webkit-transition: all .2s ease-in-out;
     transition: all .2s ease-in-out;
   }
@@ -745,13 +748,14 @@ body.application {
   }
 
   .btn-primary {
-    background-color: $md-color-pink;
+    background: $primary-color;
+    color: $md-color-pink;
     border-color: $md-color-pink;
   }
 
-  .btn-primary:hover {
-    background: $primary-color;
-    color: $md-color-pink;
+  .btn-primary:hover, .accept-btn {
+    color: $white-color;
+    background-color: $md-color-pink;
     border-color: $md-color-pink;
   }
 
@@ -768,6 +772,45 @@ body.application {
 
   .btn {
     border-radius: 2px;
+  }
+
+  .custom-control.custom-checkbox {
+    display: inline-flex;
+    min-height: 1.5rem;
+    padding-left: 1.5rem;
+    margin-right: 1rem;
+    cursor: pointer;
+  }
+
+  .custom-checkbox .custom-control-input:checked~.custom-control-indicator {
+    background-color: $md-color-pink;
+    background-image: url('../images/ic_done_white.png');
+    background-size: 15px 15px;
+    background-position-x: 1px;
+    background-position-y: 0;
+  }
+
+  .custom-checkbox .custom-control-indicator {
+    border-radius: 2px;
+  }
+
+  .custom-control-indicator {
+    position: absolute;
+    top: .25rem;
+    left: 0;
+    display: block;
+    width: 1rem;
+    height: 1rem;
+    pointer-events: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-color: #ddd;
+    background-repeat: no-repeat;
+    background-position: center center;
+    -webkit-background-size: 50% 50%;
+    background-size: 50% 50%;
   }
 
   .full-width-img {
