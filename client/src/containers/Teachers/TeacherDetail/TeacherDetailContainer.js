@@ -61,16 +61,22 @@ class TeacherDetail extends Component {
               </h3>
             </div>
             <CourseListInGridMode {...{
-              courses: teacher.courses.data
+              courses: teacher.courses.data,
+              itemClass: 'col-12 col-sm-12 col-md-6 col-lg-4 mb-15 mt-15'
             }}/>
 
-            {teacher.courses.data.length ? <Pagination
-              activePage={headers.currentPage}
-              itemsCountPerPage={headers.perPage}
-              totalItemsCount={headers.total}
-              pageRangeDisplayed={5}
-              onChange={this.handlePageChange.bind(this)}
-            /> : null}
+            {
+              teacher.courses.data.length ?
+                <div className="pager-wrappper">
+                    <Pagination
+                      activePage={headers.currentPage}
+                      itemsCountPerPage={headers.perPage}
+                      totalItemsCount={headers.total}
+                      pageRangeDisplayed={5}
+                      onChange={this.handlePageChange.bind(this)} />
+                </div>
+                :null
+            }
           </div>
         </div>
       </div>

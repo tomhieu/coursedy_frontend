@@ -989,4 +989,23 @@ body.application {
     border-left: none;
     border-radius: 0;
   }
+
+  .pager-wrappper {
+    border-top: 1px solid #E5E5E5;
+    border-bottom: 1px solid #E5E5E5;
+
+    .pager-right {
+      float: right;
+    }
+
+    .pager-left {
+      float: left;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .pull-left-xs {
+      float: left!important;
+    }
+  }
 }

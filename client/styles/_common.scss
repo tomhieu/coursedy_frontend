@@ -2789,50 +2789,57 @@ div[data-reactroot] {
 .pagination {
   display: inline-block;
   padding-left: 0;
-  margin: 10px 5px;
   border-radius: 4px;
+  margin: 9px 0 2px;
 }
 
 .pagination>li {
   display: inline;
 }
 
-.pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover, .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover {
-  z-index: 3;
-  color: #fff;
-  cursor: default;
-  pointer-events: none;
-  background-color: #337ab7;
-  border-color: #337ab7;
-}
 .pagination>li>a, .pagination>li>span {
   position: relative;
   float: left;
-  padding: 6px 12px;
-  margin-left: -1px;
-  line-height: 1.42857143;
-  color: #337ab7;
   text-decoration: none;
-  background-color: #fff;
-  border: 1px solid #ddd;
+  margin: 0 3px;
+  border: 0;
+  display: block;
+  height: 24px;
+  width: 24px;
+  line-height: 24px;
+  text-align: center;
+  color: $md-color-pink;
+}
+
+.pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover, .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover {
+  z-index: 3;
+  cursor: default;
+  pointer-events: none;
+  background-color: $md-color-pink;
+  color: #fff;
+  font-weight: 700;
+}
+
+.pagination > li > a:hover, .pagination > li > span:hover, .pagination > li > a:focus, .pagination > li > span:focus {
+  color: #f5b078;
+  background-color: #FFF;
 }
 
 .pagination>.disabled>a, .pagination>.disabled>a:focus, .pagination>.disabled>a:hover, .pagination>.disabled>span, .pagination>.disabled>span:focus, .pagination>.disabled>span:hover {
-  color: #777;
+  color: #e27d7f;
   cursor: not-allowed;
   background-color: #fff;
   border-color: #ddd;
 }
-.pagination>li>a, .pagination>li>span {
-  position: relative;
-  float: left;
-  padding: 6px 12px;
-  margin-left: -1px;
-  line-height: 1.42857143;
-  color: #337ab7;
-  text-decoration: none;
-  background-color: #fff;
-  border: 1px solid #ddd;
+
+.pagination>li:first-child>a, .pagination>li:first-child>span {
+  margin-left: 0;
+  width: auto;
+}
+
+.pagination>li:last-child>a, .pagination>li:last-child>span {
+  margin-right: 0;
+  width: auto;
 }
 
 .course-filter-form.inline-form {
@@ -2911,11 +2918,12 @@ button {
       position: relative;
       .fa {
         font-size: 12px;
-        color: #F2D43D;
+        color: $rating-item-color;
       }
     }
   }
 }
+
 .search-icon {
   width: 25px;
   min-width: 25px;

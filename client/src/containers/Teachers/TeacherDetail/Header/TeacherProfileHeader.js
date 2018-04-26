@@ -16,7 +16,7 @@ const TeacherProfileHeader = (props) => {
         <img src={teacher.user.avatar} />
       </div>
       <div className="profile-summary">
-        <RatingItem num_stars={teacher.star_average || 0} num_reviews={teacher.reviews && teacher.reviews.headers.xTotal || 0}/>
+        <RatingItem num_stars={(teacher.user.rating_points/teacher.user.rating_count) || 0} num_reviews={teacher.user.rating_counts || 0}/>
         <h3><Link to="#">{teacher.user.name}</Link></h3>
         <p>{teacher.title}</p>
 

@@ -362,8 +362,8 @@ export const translations = {
     "teacher_taught_courses": "Khoá học của giáo viên",
     "teacher_review": "Nhận xét khoá học",
     "leave_your_review_teacher": "Nhận xét giáo viên",
-    "write_review_teacher": "Viết nhận xét",
-    "review_submit_button": "Gửi nhận xét",
+    "write_review_teacher": "Viết Nhận Xét",
+    "review_submit_button": "Gửi Nhận Xét",
     "enter_review": "Nhập nhận xét",
     "review_cancel_button": "Huỷ",
 
