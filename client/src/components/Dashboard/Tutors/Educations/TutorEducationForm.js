@@ -6,7 +6,7 @@ import FormField from "../../../Core/FormField";
 
 export class TutorEducationForm extends Component {
   render() {
-    const {onSubmit, listLevel, degrees, handleSubmit} = this.props;
+    const {onSubmit, handleSubmit} = this.props;
     return (
       <form onSubmit={handleSubmit(onSubmit)}>
         <FormField formControlName="title" typeField='custom_input' fieldLabel={this.context.t('account.tutot.edu.form.title')}/>

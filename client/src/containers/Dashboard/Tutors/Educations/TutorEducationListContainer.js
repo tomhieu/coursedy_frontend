@@ -6,8 +6,13 @@ import {reduxForm} from "redux-form";
 import {connect} from "react-redux";
 import DashboardTutorEducationList from "reducers/Dashboard/Tutors/Educations/DashboardTutorEducationList";
 import * as actions from "actions/DashboarTutorEducationListActionCreator";
+import Network from "utils/network";
 
 class TutorEducationListContainer extends Component {
+  componentWillMount() {
+    this.props.loadEducationList()
+  }
+
   showNewEducationForm() {
     this.props.dispatch(actions.showDashboardTutorNewEducationForm())
   }
@@ -16,24 +21,12 @@ class TutorEducationListContainer extends Component {
     this.props.dispatch(actions.hideDashboardTutorNewEducationForm())
   }
 
+  createEducation(params){
+    this.props.dispatch(actions.createEducation(this.props.tutor.id, params))
+  }
+
   render() {
-    let educations = [{
-      id: 1,
-      title: 'computer science',
-      graduated_from: 'Dai hoc Bach Khoa HCM',
-      start_date: '10/2010',
-      end_date: '11/2015',
-      description: 'tot nghiep dai hoc loai gioi, hoc lop ky su tai nang .....'
-    },
-      {
-        id: 2,
-        title: 'computer science',
-        graduated_from: 'Dai hoc Bach Khoa HCM',
-        start_date: '10/2010',
-        end_date: '11/2015',
-        description: 'tot nghiep dai hoc loai gioi, hoc lop ky su tai nang .....'
-      }
-    ]
+    let {educations} = this.props
 
     let {showNewTutorEducationForm} = this.props
 
@@ -49,7 +42,7 @@ class TutorEducationListContainer extends Component {
             showNewTutorEducationForm ?
               (<div>
                 <hr/>
-                <TutorEducationForm onSubmit={this.showNewEducationForm.bind(this)} {...this.props} cancel={this.hideNewEducationForm.bind(this)}/>
+                <TutorEducationForm onSubmit={this.createEducation.bind(this)} {...this.props} cancel={this.hideNewEducationForm.bind(this)}/>
               </div>) : (<div></div>)
           }
           {
@@ -67,11 +60,17 @@ TutorEducationListContainer.contextTypes = {
   t: React.PropTypes.func.isRequired
 }
 
+const mapDispatchToProps = (dispatch) => ({
+  loadEducationList: () => dispatch(actions.loadEducationList())
+})
+
 const mapStateToProps = (state) => ({
+  educations: state.DashboardTutorEducationList.educations,
+  tutor: state.TutorAccountReducer.tutor,
   showNewTutorEducationForm: state.DashboardTutorEducationList.showNewTutorEducationForm
 });
 
-export default connect(mapStateToProps)(reduxForm({
+export default connect(mapStateToProps, mapDispatchToProps)(reduxForm({
   form: 'newTutorEducationForm',
   fields: ['title', 'graduated_from', 'start_date', 'end_date', 'description']
 })(TutorEducationListContainer));
