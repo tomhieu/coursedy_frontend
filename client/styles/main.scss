@@ -940,4 +940,11 @@ body.application {
   .yellow-color {
     color: $rating-item-color;
   }
+
+  .react-datepicker__day-name, .react-datepicker__day, .react-datepicker__time-name {
+    width: 30px;
+    height: auto;
+    padding-top: 0;
+    font-size: 14px;
+  }
 }
