@@ -103,11 +103,7 @@ const mapStateToProps = (state) => ({
 const mapStateToDispatch = (dispatch) => ({
   fetchUser: () => dispatch({
     type: FETCH_CURRENT_USER,
-    payload: Network().get('current_user').then((res) => dispatch({
-      type: FETCH_TUTOR_DATA,
-      payload: Network().get('tutors/tutor_by_user', {user_id: res.id}),
-      meta: 'userDetailsPlaceholder'
-    })),
+    payload: Network().get('current_user'),
     meta: 'userDetailsPlaceholder'
   }),
   fetchUserBalance: () => dispatch({

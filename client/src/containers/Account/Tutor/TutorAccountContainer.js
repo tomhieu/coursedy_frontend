@@ -133,19 +133,19 @@ const mapStateToProps = (state) => ({
   showEmailConfirmationModal: state.AccountReducer.showEmailConfirmationModal
 });
 
-const mapStateToDispatch = (dispatch) => ({
+const mapDispatchToProps = (dispatch) => ({
   fetchUser: () => {
-    let response = dispatch({
+    dispatch({
         type: AccountTypes.FETCH_USER_ACCOUNT,
         payload: Network().get('current_user'),
         meta: 'userAccountPlaceholder'
     })
 
-    response.then((res) => dispatch({
-        type: FETCH_TUTOR_DATA,
-        payload: Network().get('tutors/tutor_by_user', {user_id: res.id}),
-        meta: 'userAccountPlaceholder'
-    }))
+    dispatch({
+      type: FETCH_TUTOR_DATA,
+      payload: Network().get('tutors/current_tutor'),
+      meta: 'userAccountPlaceholder'
+    })
   },
   loadListSkillData: () => dispatch({
     type: FETCH_TEACHER_SKILL_SET,
@@ -167,5 +167,5 @@ const mapStateToDispatch = (dispatch) => ({
 })
 
 export default connect(
-  mapStateToProps, mapStateToDispatch
+  mapStateToProps, mapDispatchToProps
 )(TutorAccount);
