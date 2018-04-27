@@ -46,3 +46,12 @@ export const loadEducationList = () => {
     })
   }
 }
+
+export const deleteEducation = (tutorId, id) => {
+  return dispatch => {
+    dispatch({
+      type: actionTypes.DELETE_EDUCATION_ITEM,
+      payload: Network().delete(`tutors/${tutorId}/tutor_educations/${id}`)
+    })
+  }
+}

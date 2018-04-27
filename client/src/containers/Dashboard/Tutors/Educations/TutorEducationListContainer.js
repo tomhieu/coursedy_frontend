@@ -25,6 +25,10 @@ class TutorEducationListContainer extends Component {
     this.props.dispatch(actions.createEducation(this.props.tutor.id, params))
   }
 
+  deleteItem(tutorId, id){
+    this.props.dispatch(actions.deleteEducation(tutorId, id))
+  }
+
   render() {
     let {educations} = this.props
 
@@ -37,7 +41,7 @@ class TutorEducationListContainer extends Component {
             <span className="text-uppercase bold">{this.context.t("account.tutot.edu.level.title")}</span>
             <div className='clearfix'></div>
           </div>
-          <TutorEducationList educations={educations}/>
+          <TutorEducationList educations={educations} deleteItem={this.deleteItem.bind(this)}/>
           {
             showNewTutorEducationForm ?
               (<div>

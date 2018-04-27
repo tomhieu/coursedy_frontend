@@ -16,6 +16,9 @@ const DashboardTutorEducationList = (state = {
       return {...state, educations: educations}
     case actionTypes.FETCH_EDUCATION_LIST + AsynPostfix.FULFILLED:
       return {...state, educations: action.payload}
+    case actionTypes.DELETE_EDUCATION_ITEM + AsynPostfix.FULFILLED:
+      educations = state.educations.filter((e) => {return e.id != action.payload.id})
+      return {...state, educations: educations}
     default:
       return state
   }

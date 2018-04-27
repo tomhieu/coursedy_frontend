@@ -43,6 +43,9 @@ export const translations = {
     "congrat_sign_up_success": "Chúc mừng bạn đã đăng ký thành viên của EzyLearning thành công. Chúng tôi đã gửi email xác nhận đến địa chỉ email của bạn. Vui lòng kiểm tra hộp thư đến để kích hoạt tài khoản",
     "ok": "Đồng ý",
     "close": "Đóng",
+    "confirm_delete": "Xoá",
+    "delete_education_confirmation_message": "Bạn có muốn xoá lịch sử học tập này không?",
+    "confirm_delete_header": "Chú ý",
     'change_email_success': 'Yêu cầu đổi email đã được gửi',
     'update_email_successfully': 'Bạn vừa yêu cầu thay đổi email. Hệ thống đã gửi 1 email đến địa chỉ email mới của bạn. Vui lòng kiểm tra email và xác nhận địa chỉ email mới',
     /*

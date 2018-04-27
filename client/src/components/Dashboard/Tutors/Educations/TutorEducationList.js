@@ -11,7 +11,7 @@ class TutorEducationList extends Component {
         {
           educations.map(e => (
             <div key={e.id} className='mb-20'>
-              <TutorEducationItem education={e}/>
+              <TutorEducationItem education={e} delete={this.props.deleteItem}/>
             </div>
           ))
         }
@@ -25,7 +25,8 @@ TutorEducationList.contextTypes = {
 }
 
 TutorEducationList.propTypes = {
-  educations: React.PropTypes.array.isRequired
+  educations: React.PropTypes.array.isRequired,
+  deleteItem: React.PropTypes.func.isRequired
 }
 
 export default TutorEducationList
