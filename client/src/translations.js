@@ -109,8 +109,10 @@ export const translations = {
     'popup_warning_publish_course_message_2': 'Một khí khoá học đăng lên, tất cả mọi người đều có thể xem thông tin và nội dung khoá học',
     'popup_warning_publish_course_message_3': 'Khoá học {course_title} chưa có buổi học nào. Để giúp người học có thể năm được nội dung chi tiết khoá học, bạn nên thêm nội dung các buổi học trước khi đăng khoá học lên. ',
     'course_periode_type': 'buổi học',
+    'course_comments_add': 'Thêm bình luận', 
     'course_comments': 'Bình luận',
     'course_comment_content': 'Nội dung bình luận',
+    'course_comments_load_more': 'Tải thêm bình luận',
     'number_of_comment': '{numOfComment} bình luận',
     'no_comment': 'Không bình luận',
     /*
@@ -237,7 +239,7 @@ export const translations = {
     "course_info": "Thông tin khóa học",
     "course_detail": "Chi tiết khóa học",
     "tutor_info": "Thông tin giáo viên",
-    "course_subscribe": "Đăng ký",
+    "course_enroll": "Đăng ký",
 
     "course_follow": "Theo dõi khóa học",
     "course_follow_status": "Kết quả theo dõi khóa học",
@@ -289,7 +291,7 @@ export const translations = {
     "footer_link_courses": "Courses",
     "footer_link_privacy_policy": "Privacy Policy",
     "footer_link_terms_of_use": "Terms of Use",
-    "footer_contact_us": "Contact",
+    "footer_contact_us": "Liên hệ",
     "popular_courses": "Khoá học phổ biến",
     "search_your_teacher": "Tìm giáo viên",
     "all_courses": "Tất cả khoá",
@@ -347,7 +349,20 @@ export const translations = {
     "payment_content": " ",
     "payment_invoice": " ",
     "payment_status": " ",
-    "payment_value": "Giá trị"
+    "payment_value": "Giá trị",
+
+
+    "course_menu": "Menu",
+    "course_intro": "Giới thiệu",
+    "course_highlight": "Sơ lược",
+    "course_requirements": "Yêu cầu",
+    "course_about": "Về khóa học",
+    "course_lessons": "Bài học",
+    "course_teacher": "Về giáo viên",
+    "course_rating": "Đánh giá",
+    "course_related": "Khóa học liên quan",
+    "unknown": "Chưa rõ",
+    "read_more": "Chi tiết"
   },
   "en": {
     "home_page": "Home",

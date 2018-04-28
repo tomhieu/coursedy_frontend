@@ -1,0 +1,108 @@
+.course-detail-header {
+  border-bottom: 1px solid #E5E5E5;
+  padding-top: 30px;
+  padding-bottom: 30px;
+
+  .info {
+    > .image {
+      width: 155px;
+      float: left;
+    }
+
+    > .content {
+      margin-left: 175px;
+      
+      h2 {
+        line-height: 1.2;
+        margin: -5px 0 13px;
+      }
+    }
+  }
+
+  .course-detail-section:not(:last-child) {
+    margin-bottom: 30px;
+    border-bottom: 1px solid #E5E5E5;
+    padding-bottom: 30px;
+  }
+
+  .course-detail-section ul.list-with-icon li {
+    word-wrap: break-word;
+  }
+
+  ul.meta-list {
+    margin: 0;
+    margin-left: 175px;
+  }
+
+  ul.meta-list li {
+    display: inline-block;
+    border-right: 1px solid #E5E5E5;
+    margin-right: 20px;
+    padding-right: 20px;
+    line-height: 1.2;
+  }
+
+  ul.meta-list li:nth-last-child(2),
+  ul.meta-list li:last-child {
+    margin-right: 0;
+    padding-right: 0;
+    border-right: 0;
+  }
+
+  ul.meta-list li h6 {
+    line-height: 1;
+    margin: 7px 0 0;
+    font-size: 14px;
+    font-weight: 400;
+    text-transform: uppercase;
+  }
+
+  ul.meta-list li .meta-teacher > .image {
+    width: 44px;
+    height: 44px;
+    border: 2px solid #FFF;
+    float: left;
+    border-radius: 50%;
+    margin-right: 5px;
+    -webkit-box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.43);
+    -moz-box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.43);
+    box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.43);
+    float: left;
+  }
+
+  ul.meta-list li .meta-teacher > .image img {
+      border-radius: 50%;
+  }
+
+  ul.meta-list li .meta-teacher > .content {
+      margin-left: 60px;
+  }
+
+  ul.meta-list li .meta-rating .rating-wrapper {
+      margin: 6px 0 0;
+  }
+
+  ul.meta-list li .meta-rating .rating-wrapper > div {
+      display: inline-block;
+  }
+
+  ul.meta-list li.meta-price {
+    float: right;
+    .bg-danger {
+      background: #DF2938;
+      color: #FFF;
+    }
+  }
+
+  ul.meta-list li.meta-price .price {
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    line-height: 1;
+    padding: 7px 15px;
+    margin-top: 5px;
+  }
+
+}
+
+  

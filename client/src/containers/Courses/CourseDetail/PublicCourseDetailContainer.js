@@ -17,11 +17,17 @@ class PublicCourseDetailContainer extends Component {
       this.props.dispatch(PublicCourseActions.fetchPublicCourse(this.props.courseId));
 
       //Fetch comments
-
       this.props.dispatch(PublicCourseActions.fetchCourseComments(
         this.props.courseId, 
         this.props.course_comments_page
       ));
+
+      //Fetch related courses
+      this.props.dispatch(PublicCourseActions.fetchRelatedCourses({
+        course_id: this.props.courseId,
+        page: 1,
+        per_page: 4
+      }))
     }
   }
 
@@ -32,17 +38,16 @@ class PublicCourseDetailContainer extends Component {
     ))
   }
 
+  updateActiveMenu(activeMenu) {
+    this.props.dispatch(PublicCourseActions.updateActiveMenu(activeMenu))
+  }
+
   render() {
     return (
       <CourseDetail
-        categories={this.props.categories} 
-        course={this.props.course}
-        course_category={this.props.course_category}
-        course_level={this.props.course_level}
-        course_tutor={this.props.course_tutor} 
-        course_sections={this.props.course_sections}
-        course_comments={this.props.course_comments}
+        {...this.props}
         loadMoreCommentsHdl={this.loadMoreComments.bind(this)}
+        updateActiveMenu={this.updateActiveMenu.bind(this)}
         />
     )
   }
@@ -77,15 +82,22 @@ const getCourseLevel = (categories, course) => {
 
 const mapStateToProps = (state) => {
   const categories = state.referenceData.courseCategories
-  const course = state.PublicCourseDetail.course
+  const { 
+    course, 
+    relatedCourses, 
+    course_tutor, 
+    course_sections,
+    course_comments,
+    course_comments_page,
+    activeMenu
+  } = state.PublicCourseDetail
   return {
-    categories, course,
     course_category: getCourseCategory(categories, course),
     course_level: getCourseLevel(categories, course),
-    course_tutor: state.PublicCourseDetail.course_tutor,
-    course_sections: state.PublicCourseDetail.course_sections,
-    course_comments: state.PublicCourseDetail.course_comments,
-    course_comments_page: state.PublicCourseDetail.course_comments_page
+    categories, course, relatedCourses,
+    course_tutor, course_sections,
+    course_comments, course_comments_page,
+    activeMenu
   }
 }
 

@@ -118,21 +118,21 @@ export const closePublicCourseFollowStatusModal = (page = 'detail') => {
     
   }
 }
-export const showPublicRequireLoginModal = (message) => {
-  return dispatch => {
-    dispatch({
-      type: types.PUBLIC_COURSE_SHOW_REQUIRE_LOGIN_MODAL,
-      payload: message
-    })
-  }
-}
-export const closePublicRequireLoginModal = () => {
-  return dispatch => {
-    dispatch({
-      type: types.PUBLIC_COURSE_CLOSE_REQUIRE_LOGIN_MODAL,
-    })
-  }
-}
+// export const showPublicRequireLoginModal = (message) => {
+//   return dispatch => {
+//     dispatch({
+//       type: types.PUBLIC_COURSE_SHOW_REQUIRE_LOGIN_MODAL,
+//       payload: message
+//     })
+//   }
+// }
+// export const closePublicRequireLoginModal = () => {
+//   return dispatch => {
+//     dispatch({
+//       type: types.PUBLIC_COURSE_CLOSE_REQUIRE_LOGIN_MODAL,
+//     })
+//   }
+// }
 
 export const showPublicEnrollStatusModal = () => {
   return dispatch => {
@@ -282,26 +282,44 @@ export const submitCourseComment = (comment, courseId, userId) => {
   }
 }
 
-export const showPublicSubmitCommentStatusModal = () => {
-  return dispatch => {
-    dispatch({
-      type: types.PUBLIC_COURSE_DETAIL_SUBMIT_COMMENT_SHOW_STATUS_MODAL,
-    })
-  }
-}
-export const closePublicSubmitCommentStatusModal = () => {
-  return dispatch => {
-    dispatch({
-      type: types.PUBLIC_COURSE_DETAIL_SUBMIT_COMMENT_CLOSE_STATUS_MODAL,
-    })
-  }
-}
+// export const showPublicSubmitCommentStatusModal = () => {
+//   return dispatch => {
+//     dispatch({
+//       type: types.PUBLIC_COURSE_DETAIL_SUBMIT_COMMENT_SHOW_STATUS_MODAL,
+//     })
+//   }
+// }
+// export const closePublicSubmitCommentStatusModal = () => {
+//   return dispatch => {
+//     dispatch({
+//       type: types.PUBLIC_COURSE_DETAIL_SUBMIT_COMMENT_CLOSE_STATUS_MODAL,
+//     })
+//   }
+// }
 
 export const submitViewCourse = (courseId, token) => {
   return dispatch => {
     dispatch({
       type: types.PUBLIC_COURSE_DETAIL_SUBMIT_VIEW,
       payload: Network().post(`courses/${courseId}/view`, {token: token})
+    })
+  }
+}
+
+export const fetchRelatedCourses = (params) => {
+ return dispatch => {
+    dispatch({
+      type: types.PUBLIC_COURSE_DETAIL_RELATED_COURSES,
+      payload: Network().get(`courses/related_courses`, params)
+    })
+  } 
+}
+
+export const updateActiveMenu = (activeMenu) => {
+  return dispatch => {
+    dispatch({
+      type: types.PUBLIC_COURSE_DETAIL_UPDATE_ACTIVE_MENU,
+      payload: activeMenu
     })
   }
 }

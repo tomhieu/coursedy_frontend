@@ -18,16 +18,16 @@ class SimpleDialogComponent extends Component {
           </div>
           <div className="modal-footer">
             {
-              acceptCallback !== undefined ?
+              acceptCallback && acceptLabel ?
                 <button type="button" className="btn btn-primary" onClick={acceptCallback}>
                   {acceptLabel}
                 </button> : null
             }
             {
-              cancelCallback !== undefined ?
-                <button type="button" className="btn btn-secondary" onClick={cancelCallback}>
-                  {cancelLabel}
-                </button> : null
+              cancelCallback && cancelLabel ?
+              <button type="button" className="btn btn-secondary" onClick={cancelCallback}>
+                {cancelLabel}
+              </button> : null
             }
           </div>
         </Modal>

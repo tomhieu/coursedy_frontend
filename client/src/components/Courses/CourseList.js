@@ -18,16 +18,15 @@ class CourseList extends Component {
     super(props);
   }
   render() {
-    const {courses, isFetching, fullHeight = false, isPublic} = this.props;
+    const {courses, displayMode, isFetching, fullHeight = false, isPublic} = this.props;
     return (
-        <div className={(fullHeight ? styles.courseListContainerFullHeight : isPublic ? styles.courseListContainer : '')}>
+        <div>
           {
             isFetching ? <div></div> : courses.length === 0
-              ? (
-                <EmptyResultWarning styles={styles.courseListContainer} typeSearch="search_course"/>
-              ) : this.props.displayMode === 'grid' ?
-                <CourseListInGridMode {...this.props} /> :
-                <CourseListInListMode {...this.props} />
+              ? <EmptyResultWarning styles={styles.courseListContainer} searchType="search_course"/>
+              : this.props.displayMode === 'grid' 
+                ? <CourseListInGridMode {...this.props} /> 
+                : <CourseListInListMode {...this.props} />
           }
         </div>
     )

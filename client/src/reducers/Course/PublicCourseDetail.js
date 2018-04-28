@@ -6,6 +6,10 @@ const PublicCourseDetail = (state = {
     course_sections: [],
     course_comments: [],
     course_comments_page: 1,
+
+    isFetching: true,
+    relatedCourses: [],
+
     course_tutor: null,
     show_follow_modal: false,
     submit_follow_success: false,
@@ -14,17 +18,17 @@ const PublicCourseDetail = (state = {
     submit_enroll_fail: false,
     submit_enroll_errors: [],
 
-    show_require_login_modal: false,
-    require_login_message: '',
+    // show_require_login_modal: false,
+    // require_login_message: '',
     show_enroll_status_modal: false,
     show_follow_status_modal: false,
 
 
-    show_comment_status_modal: false,
+    // show_comment_status_modal: false,
     submit_comment_success: false,
     submit_comment_fail: false,
     submit_comment_errors: [],
-
+    activeMenu: 'course_intro'
   }, action) => {
   switch (action.type) {
     case courseTypes.FETCH_PUBLIC_COURSE_SUCCESSFULLY:
@@ -62,14 +66,14 @@ const PublicCourseDetail = (state = {
     case courseTypes.PUBLIC_COURSE_DETAIL_SUBMIT_ENROLL_FAILL:
       return {...state, submit_enroll_fail: true, submit_enroll_errors: action.payload.errors}
       
-    case courseTypes.PUBLIC_COURSE_SHOW_REQUIRE_LOGIN_MODAL:
-      return {
-        ...state, 
-        show_require_login_modal: true, 
-        require_login_message: action.payload
-      }
-    case courseTypes.PUBLIC_COURSE_CLOSE_REQUIRE_LOGIN_MODAL:
-      return {...state, show_require_login_modal: false}
+    // case courseTypes.PUBLIC_COURSE_SHOW_REQUIRE_LOGIN_MODAL:
+    //   return {
+    //     ...state, 
+    //     show_require_login_modal: true, 
+    //     require_login_message: action.payload
+    //   }
+    // case courseTypes.PUBLIC_COURSE_CLOSE_REQUIRE_LOGIN_MODAL:
+    //   return {...state, show_require_login_modal: false}
     
     case courseTypes.PUBLIC_COURSE_SHOW_ENROLL_STATUS_MODAL:
       return {...state, show_enroll_status_modal: true}
@@ -106,15 +110,31 @@ const PublicCourseDetail = (state = {
         submit_comment_fail: true, 
         show_comment_status_modal: true
       }
-    case courseTypes.PUBLIC_COURSE_DETAIL_SUBMIT_COMMENT_SHOW_STATUS_MODAL:
-      return {...state, show_comment_status_modal: true}
-    case courseTypes.PUBLIC_COURSE_DETAIL_SUBMIT_COMMENT_CLOSE_STATUS_MODAL:
-      return {...state, show_comment_status_modal: false}
-    //
+    //Reducer for related courses
+    case courseTypes.PUBLIC_COURSE_DETAIL_RELATED_COURSES + asyncActs.PENDING:
+      return {...state, isFetching: true}
+    case courseTypes.PUBLIC_COURSE_DETAIL_RELATED_COURSES + asyncActs.FULFILLED:
+      return {
+        ...state, 
+        relatedCourses: action.payload,
+        isFetching: false
+      };
+    case courseTypes.PUBLIC_COURSE_DETAIL_RELATED_COURSES + asyncActs.REJECTED:
+      return state;
+
+
+    // case courseTypes.PUBLIC_COURSE_DETAIL_SUBMIT_COMMENT_SHOW_STATUS_MODAL:
+    //   return {...state, show_comment_status_modal: true}
+    // case courseTypes.PUBLIC_COURSE_DETAIL_SUBMIT_COMMENT_CLOSE_STATUS_MODAL:
+    //   return {...state, show_comment_status_modal: false}
+
+    //Reducer for course view
     case courseTypes.PUBIC_COURSE_DETAIL_SUBMIT_VIEW + asyncActs.FULFILLED:
       return state;
     case courseTypes.PUBIC_COURSE_DETAIL_SUBMIT_VIEW + asyncActs.REJECTED:
       return state;
+    case courseTypes.PUBLIC_COURSE_DETAIL_UPDATE_ACTIVE_MENU:
+      return {...state, activeMenu: action.payload}
     default:
       return state;
   }

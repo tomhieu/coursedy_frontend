@@ -1,0 +1,235 @@
+.sidebar-wrapper {
+  padding-top: 40px;
+  padding-bottom: 40px;
+  background: #FFF;
+  padding-left: 0;
+  padding-right: 30px;
+  position: relative;
+  border-right: 1px solid #E5E5E5;
+  width: 100%;
+}
+
+
+.scrollspy-sidebar {
+  margin-bottom: 20px;
+  padding-top: 5px;
+  padding-bottom: 0;
+  border: 1px solid #F2F2F2;
+  background-color: #F2F2F2;
+
+  &.affix {
+    position: static;
+    margin-bottom: 30px
+  }
+  .course-detail-left-nav {
+    padding-left: 0;
+    margin-bottom: 0;
+    list-style: none;
+    > li {
+      margin-top: -2px;
+      position: relative;
+      display: block;
+      > a {
+        display: block;
+        color: #636363;
+        padding: 14px 20px;
+        transition: all .3s ease;
+        -webkit-transition: all .3s ease;
+        -moz-transition: all .3s ease;
+        line-height: 1;
+        border-right: 1px solid #F2F2F2;
+        border-left: 1px solid #F2F2F2;
+        border-bottom: 1px solid #E8E8E8;
+        margin-right: -1px;
+        margin-left: -1px;
+        margin-bottom: 1px;
+        font-size: 12px
+      }
+      > a:hover {
+        background: none;
+        color: #0D7CC9;
+        border-right: 1px solid #0D7CC9;
+      }
+      > a:focus {
+        background: none;
+        color: #636363;
+        border-color: #EEE;
+        border-bottom: 1px solid #E8E8E8;
+      }
+      > h4 {
+        text-transform: uppercase;
+        line-height: 1;
+        border-bottom: 1px solid #E8E8E8;
+        margin: 0;
+        margin-left: -1px;
+        padding: 14px 20px;
+      }
+      > ul {
+        border-bottom: 1px solid #E8E8E8;
+        margin-top: 15px;
+        padding-bottom: 15px;
+        > li > a {
+          border: 0;
+          padding: 0;
+          padding-top: 7px;
+          padding-bottom: 7px;
+          padding-left: 25px;
+          font-size: 90%;
+          border-bottom: 0 !important;
+        }
+      }
+    }
+
+    > .active, .active:hover .active:focus {
+      a {
+        font-weight: 600;
+        color: #0D7CC9;
+        background: none;
+        border-right: 1px solid #0D7CC9;
+        border-bottom: 1px solid #E8E8E8
+      }
+    }
+
+    > li:last-child > a {
+      border-bottom: 0;
+    }
+
+    .nav {
+      display: none;
+      margin-bottom: 8px;
+    }
+  }
+
+  li {
+    &.always-active {
+      .sidebar-menu-child {
+        display: block!important
+      }
+
+      > a {
+        color: #0D7CC9;
+        padding-left: 20px!important
+      }
+
+      > a:after {
+        left: 0;
+        color: #0D7CC9
+      }
+    }
+    &.sidebar-heading {
+      > h5 {
+        line-height: 1;
+        border-bottom: 1px solid #E8E8E8;
+        margin: 0;
+        font-weight: 700;
+        padding: 14px 20px;
+        text-transform: uppercase;
+      }
+    }
+    > li.active {
+      .sidebar-menu-child {
+        display: block
+      }
+    }
+  }
+
+}
+
+
+@media (min-width: 992px) {
+  .scrollspy-sidebar {
+     .nav > .active > ul {
+        display: block
+    }
+    .affix,
+    .affix-bottom {
+        width: 213px
+    }
+    .affix {
+        position: fixed;
+        top: 80px
+    }
+    .affix-bottom {
+        position: absolute
+    }
+    .affix-bottom .scrollspy-sidenav,
+    .affix .scrollspy-sidenav {
+        margin-bottom: 40px
+    }
+    .affix-bottom .scrollspy-sidenav,
+    .affix .scrollspy-sidenav {
+        margin-bottom: 20px
+    }
+  }
+   
+}
+
+@media (min-width: 1200px) {
+    .scrollspy-sidebar.affix-bottom,
+    .scrollspy-sidebar.affix {
+        width: 254px
+    }
+}
+
+
+
+.call-featiured {
+  margin-top: 25px;
+  position: relative;
+  padding-left: 50px;
+  line-height: 1.45;
+
+  .icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    text-align: center;
+    color: #FFF;
+    background: #DB0B23;
+    font-size: 17px;
+    line-height: 36px;
+    position: absolute;
+    top: 3px;
+    left: 0;
+  }
+
+  h5 {
+    line-height: 1.2;
+    margin: 0 0 5px;
+  }
+
+  p {
+    margin: 0 0 5px;
+  }
+
+  .phone-number {
+    font-style: normal;
+    color: #DB0B23;
+    display: block;
+    font-size: 19px;
+    font-weight: 700;
+    letter-spacing: 0;
+  }
+}
+
+
+
+.favor-link-wrapper {
+  border-top: 1px solid #EBEBEB;
+  padding-top: 20px;
+  margin-top: 20px;
+
+  a {
+    display: block;
+    color: #777;
+    margin-bottom: 3px;
+
+    i {
+      color: #0D7CC9;
+      margin-right: 5px;
+    }
+  }
+  a:hover {
+    color: #329BE6;
+  }
+}
