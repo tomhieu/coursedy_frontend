@@ -21,6 +21,7 @@ import Network from "utils/network";
 import TutorDetail from "components/Dashboard/Tutors/TutorDetail";
 import TutorEducationList from "components/Dashboard/Tutors/Educations/TutorEducationList";
 import TutorEducationListContainer from "containers/Dashboard/Tutors/Educations/TutorEducationListContainer";
+import TutorWorkExperienceListContainer from "containers/Dashboard/Tutors/WorkExperiences/TutorWorkExperienceListContainer";
 import session from "reducers/Session";
 import * as AccountTypes from "constants/AccountTypes";
 
@@ -93,6 +94,12 @@ class TutorAccount extends Component {
         <div className="col-md-12 col-xs-12 col-sm-12">
           <div className="dashboard-content-section">
             <TutorEducationListContainer/>
+          </div>
+        </div>
+
+        <div className="col-md-12 col-xs-12 col-sm-12">
+          <div className="dashboard-content-section">
+            <TutorWorkExperienceListContainer/>
           </div>
         </div>
 

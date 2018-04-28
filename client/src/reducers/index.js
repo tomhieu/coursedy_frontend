@@ -34,9 +34,11 @@ import StudentCourseListReducer from './Student/StudentCourseListReducer'
 import TutorAccountReducer from './Tutor/TutorAccountReducer'
 import TeacherDetail from './TeacherDetailPageReducer';
 import DashboardTutorEducationList from './Dashboard/Tutors/Educations/DashboardTutorEducationList';
+import DashboardTutorWorkExperienceList from './Dashboard/Tutors/Educations/DashboardTutorWorkExperienceList';
 
 const rootReducer = combineReducers({
   DashboardTutorEducationList,
+  DashboardTutorWorkExperienceList,
   // Apply all of the reducers here.
   LoadingMask,
   i18nState,
