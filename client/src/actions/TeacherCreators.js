@@ -23,10 +23,24 @@ export const updateFilterTeacher = (filters) => {
   };
 };
 
-export const fetchTeacherDetail = (query) => {
+export const fetchTeacherDetail = ({teacherId}) => {
   // TODO change payload to Network().get('tutors/search', query) when teacher detail api complete
   return {
     type: asyncActs.FETCH_TEACHER_DETAIL + asyncActs.FULFILLED,
     payload: dummyTeacherDetail(query),
   }
+}
+
+export const fetchTeacherEducations = ({teacherId}) => {
+  return {
+    type: asyncActs.FETCH_TEACHER_EDUCATIONS,
+    payload: Network().get(`tutors/${teacherId}/tutor_educations`)
+  };
+}
+
+export const fetchTeacherWorkExperiences = ({teacherId}) => {
+  return {
+    type: asyncActs.FETCH_TEACHER_WORK_EXPERIENCES,
+    payload: Network().get(`tutors/${teacherId}/tutor_work_experiences`)
+  };
 }

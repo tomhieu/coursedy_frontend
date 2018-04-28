@@ -13,7 +13,7 @@ class TeacherReviewList extends Component {
     return (
       <div className="pull-right pull-left-xs">
         <button
-          className="btn btn-primary btn-block btn-toggle btn-hidden btn-small collapsed btn-review"
+          className="btn btn-primary btn-block btn-toggle btn-hidden btn-small collapsed mt-2 mb-2"
           data-toggle="collapse"
           data-target="#change-search"
           aria-expanded="false">{this.context.t('write_review_teacher')}</button>

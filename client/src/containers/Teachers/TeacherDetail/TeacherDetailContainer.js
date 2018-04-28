@@ -1,23 +1,27 @@
 import React, { Component } from 'react'
 import './TeacherDetail.scss'
 import { connect } from 'react-redux'
-import { fetchTeacherDetail } from 'actions/TeacherCreators'
 import CourseListInGridMode from 'components/Courses/CourseList/CourseListInGridMode'
 import Pagination from 'react-js-pagination'
 import TeacherBackground from './Content/TeacherBackground'
 import TeacherReviewList from './Content/TeacherReviewList'
 import TeacherProfileHeader from './Header/TeacherProfileHeader'
+import {
+  fetchTeacherDetail, fetchTeacherEducations, fetchTeacherWorkExperiences
+} from 'actions/TeacherCreators'
 
 
 class TeacherDetail extends Component {
   componentDidMount() {
-    this.props.fetchTeacherDetail({ id: parseInt(this.props.match.params.id) })
+    this.props.fetchTeacherDetail({ teacherId: parseInt(this.props.match.params.id) })
+    this.props.fetchTeacherEducations({ teacherId: parseInt(this.props.match.params.id) })
+    this.props.fetchTeacherWorkExperiences({ teacherId: parseInt(this.props.match.params.id) })
   }
 
   teacherBackgroundSection() {
     return (
       <div className="row">
-        <div className="col-sm-12">
+        <div className="col-sm-9">
           <TeacherBackground teacher={this.props.teacher}/>
         </div>
       </div>
@@ -118,4 +122,8 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, { fetchTeacherDetail })(TeacherDetail)
+export default connect(mapStateToProps, {
+  fetchTeacherDetail,
+  fetchTeacherEducations,
+  fetchTeacherWorkExperiences
+})(TeacherDetail)
