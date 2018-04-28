@@ -689,6 +689,7 @@ body.application {
     border-top-left-radius: 2px;
     & .modal-title {
       margin-bottom: 0;
+      padding-top: 5px;
     }
 
     & button.close span{
@@ -952,5 +953,12 @@ body.application {
   .bordered-box {
     border: solid 1px $border-color;
     padding: 15px;
+  }
+
+  .modal-footer, .modal-header {
+    padding: 10px 1rem;
+    h5 {
+      font-size: 17px;
+    }
   }
 }
