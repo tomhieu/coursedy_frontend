@@ -4,9 +4,8 @@ import TutorEducationList from "components/Dashboard/Tutors/Educations/TutorEduc
 import {TutorEducationForm} from "components/Dashboard/Tutors/Educations/TutorEducationForm";
 import {reduxForm} from "redux-form";
 import {connect} from "react-redux";
-import DashboardTutorEducationList from "reducers/Dashboard/Tutors/Educations/DashboardTutorEducationList";
 import * as actions from "actions/DashboarTutorEducationListActionCreator";
-import Network from "utils/network";
+import NewEducationFormContainer from './NewEducationFormContainer'
 
 class TutorEducationListContainer extends Component {
   componentWillMount() {
@@ -14,19 +13,11 @@ class TutorEducationListContainer extends Component {
   }
 
   showNewEducationForm() {
-    this.props.dispatch(actions.showDashboardTutorNewEducationForm())
-  }
-
-  hideNewEducationForm() {
-    this.props.dispatch(actions.hideDashboardTutorNewEducationForm())
-  }
-
-  createEducation(params){
-    this.props.dispatch(actions.createEducation(this.props.tutor.id, params))
+    this.props.showNewEducationForm()
   }
 
   deleteItem(tutorId, id){
-    this.props.dispatch(actions.deleteEducation(tutorId, id))
+    this.props.deleteItem(tutorId, id)
   }
 
   render() {
@@ -46,7 +37,7 @@ class TutorEducationListContainer extends Component {
             showNewTutorEducationForm ?
               (<div>
                 <hr/>
-                <TutorEducationForm onSubmit={this.createEducation.bind(this)} {...this.props} cancel={this.hideNewEducationForm.bind(this)}/>
+                <NewEducationFormContainer/>
               </div>) : (<div></div>)
           }
           {
@@ -65,16 +56,14 @@ TutorEducationListContainer.contextTypes = {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  loadEducationList: () => dispatch(actions.loadEducationList())
+  loadEducationList: () => dispatch(actions.loadEducationList()),
+  showNewEducationForm: () => dispatch(actions.showDashboardTutorNewEducationForm()),
+  deleteItem: (tutorId, id) => dispatch(actions.deleteEducation(tutorId, id))
 })
 
 const mapStateToProps = (state) => ({
   educations: state.DashboardTutorEducationList.educations,
-  tutor: state.TutorAccountReducer.tutor,
   showNewTutorEducationForm: state.DashboardTutorEducationList.showNewTutorEducationForm
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(reduxForm({
-  form: 'newTutorEducationForm',
-  fields: ['title', 'graduated_from', 'start_date', 'end_date', 'description']
-})(TutorEducationListContainer));
+export default connect(mapStateToProps, mapDispatchToProps)(TutorEducationListContainer);
