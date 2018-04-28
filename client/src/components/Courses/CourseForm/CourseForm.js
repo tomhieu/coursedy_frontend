@@ -19,7 +19,7 @@ class CourseForm extends Component {
     return (
       <div>
         <form onSubmit={handleSubmit(this.props.onSubmit)} multiple={true}>
-          <div className={editMode ? "d-flex flex-horizontal flex-auto justify-content-center mt-30 mb-30" : "d-flex flex-horizontal"}>
+          <div className={editMode ? "d-flex flex-horizontal flex-auto justify-content-center mb-30" : "d-flex flex-horizontal"}>
             {
               editMode ? (
                 <div className={styles.avatarImage}>
