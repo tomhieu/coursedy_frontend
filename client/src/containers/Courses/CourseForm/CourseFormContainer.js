@@ -57,34 +57,36 @@ class CourseFormContainer extends Component {
     const {editMode, listSection, courseTitle, createCourseSucess, publishCourse, isFetching} = this.props;
 
     return (
-      <div className="row dashboard-panel course-details-container">
+      <div className="row mb-15">
         <div className="col-sm-12 col-md-12">
-          <LoadingMask placeholderId="courseDetailPlaceholder"
-                       normalPlaceholder={false}
-                       facebookPlaceholder={true}
-                       loaderType="COURSE_DETAILS_PLACEHOLDER">
-            {
-              !isFetching ? (
-                <div className="container">
-                  <CourseDetailContainer courseId={this.courseId}
-                                         {...this.props}>
-                  </CourseDetailContainer>
-                  <SimpleDialogComponent title={this.context.t('create_course_sucessfully')}
-                                         show={createCourseSucess}
-                                         cancelCallback={this.cancelPopup.bind(this)}>
-                    <div className="d-flex flex-vertical">
-                      <span>{this.context.t('create_course_sucessfully_message', {title: 'Testing Dialog'})}</span>
-                    </div>
-                  </SimpleDialogComponent>
-                </div>
-              ) : <div className="d-flex flex-g1 waiting-container"></div>
-            }
-          </LoadingMask>
+          <div className="bordered-box">
+            <LoadingMask placeholderId="courseDetailPlaceholder"
+                         normalPlaceholder={false}
+                         facebookPlaceholder={true}
+                         loaderType="COURSE_DETAILS_PLACEHOLDER">
+              {
+                !isFetching ? (
+                  <div className="full-width">
+                    <CourseDetailContainer courseId={this.courseId}
+                                           {...this.props}>
+                    </CourseDetailContainer>
+                    <SimpleDialogComponent title={this.context.t('create_course_sucessfully')}
+                                           show={createCourseSucess}
+                                           cancelCallback={this.cancelPopup.bind(this)}>
+                      <div className="d-flex flex-vertical">
+                        <span>{this.context.t('create_course_sucessfully_message', {title: 'Testing Dialog'})}</span>
+                      </div>
+                    </SimpleDialogComponent>
+                  </div>
+                ) : <div className="d-flex flex-g1 waiting-container"></div>
+              }
+            </LoadingMask>
+          </div>
         </div>
         {
           editMode ? (
             <div className="col-sm-12 col-md-12">
-              <div className="container">
+              <div className="full-width">
                 <div className="row">
                   <div className="col-sm-12 col-md-12">
                     <div className="row">
@@ -93,7 +95,8 @@ class CourseFormContainer extends Component {
                                     secondary={false}
                                     onClick={this.addNewSection.bind(this)}>
                           <svg viewBox="0 0 24 24" className="material-icon primary" height="24" width="24">
-                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5 11h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"></path>
+                            <path
+                              d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5 11h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"></path>
                           </svg>
                         </FlatButton>
                       </div>
@@ -102,7 +105,8 @@ class CourseFormContainer extends Component {
                                     secondary={true}
                                     onClick={this.validateBeforePublishCourse.bind(this)}>
                           <svg viewBox="0 0 24 24" className="material-icon secondary" height="24" width="24">
-                            <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"></path>
+                            <path
+                              d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"></path>
                           </svg>
                         </FlatButton>
                       </div>
@@ -171,7 +175,14 @@ const mapStateToProps = (state) => {
   const {listSection, editMode, activatedField, createCourseSucess, courseData = {}, publishCourse, isFetching} = courseDetails;
   const {cover_image, title} = courseData;
   return {
-    listSection, editMode, activatedField, createCourseSucess, cover_image, publishCourse, courseTitle: title, isFetching
+    listSection,
+    editMode,
+    activatedField,
+    createCourseSucess,
+    cover_image,
+    publishCourse,
+    courseTitle: title,
+    isFetching
   };
 };
 

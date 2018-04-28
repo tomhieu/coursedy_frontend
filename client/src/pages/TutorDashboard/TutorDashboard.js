@@ -27,7 +27,7 @@ class TutorDashboard extends RoleAuthorization {
             </div>
           </div>
           <div className="col-xs-12 col-sm-9 d-flex dashboard-content">
-            <div className="d-flex daskboard-container">
+            <div className="full-width daskboard-container">
               <switch>
                 <Route exact path="/dashboard/account" component={TutorAccount}/>
                 <Route exact path="/dashboard/courses/list" component={ListTutorCourseContainer}/>
