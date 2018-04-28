@@ -16,8 +16,12 @@ class TutorEducationListContainer extends Component {
     this.props.showNewEducationForm()
   }
 
-  deleteItem(tutorId, id){
+  deleteItem(tutorId, id) {
     this.props.deleteItem(tutorId, id)
+  }
+
+  showEditEducationForm(educationId) {
+    this.props.showEditEducationForm(educationId)
   }
 
   render() {
@@ -32,7 +36,9 @@ class TutorEducationListContainer extends Component {
             <span className="text-uppercase bold">{this.context.t("account.tutot.edu.level.title")}</span>
             <div className='clearfix'></div>
           </div>
-          <TutorEducationList educations={educations} deleteItem={this.deleteItem.bind(this)}/>
+          <TutorEducationList educations={educations} deleteItem={this.deleteItem.bind(this)}
+                              currentEducation={this.props.currentEducation}
+                              showEditEducationForm={this.showEditEducationForm.bind(this)}/>
           {
             showNewTutorEducationForm ?
               (<div>
@@ -58,11 +64,13 @@ TutorEducationListContainer.contextTypes = {
 const mapDispatchToProps = (dispatch) => ({
   loadEducationList: () => dispatch(actions.loadEducationList()),
   showNewEducationForm: () => dispatch(actions.showDashboardTutorNewEducationForm()),
-  deleteItem: (tutorId, id) => dispatch(actions.deleteEducation(tutorId, id))
+  deleteItem: (tutorId, id) => dispatch(actions.deleteEducation(tutorId, id)),
+  showEditEducationForm: (educationId) => dispatch(actions.showEditEducationForm(educationId))
 })
 
 const mapStateToProps = (state) => ({
   educations: state.DashboardTutorEducationList.educations,
+  currentEducation: state.DashboardTutorEducationList.currentEducation,
   showNewTutorEducationForm: state.DashboardTutorEducationList.showNewTutorEducationForm
 });
 

@@ -3,7 +3,8 @@ import * as AsynPostfix from "constants/AsynPostfix";
 
 const DashboardTutorEducationList = (state = {
   showNewTutorEducationForm: false,
-  educations: []
+  educations: [],
+  currentEducation: null
 }, action) => {
   switch (action.type) {
     case actionTypes.SHOW_DASHBOARD_TUTOR_NEW_EDUCATION_FORM:
@@ -19,6 +20,14 @@ const DashboardTutorEducationList = (state = {
     case actionTypes.DELETE_EDUCATION_ITEM + AsynPostfix.FULFILLED:
       educations = state.educations.filter((e) => {return e.id != action.payload.id})
       return {...state, educations: educations}
+    case actionTypes.SHOW_EDIT_EDUCATION_FORM:
+      let currentEducation = state.educations.filter((e) => e.id == action.payload)[0]
+      return {...state, currentEducation: currentEducation}
+    case actionTypes.HIDE_EDIT_EDUCATION_FORM:
+      return {...state, currentEducation: null}
+    case actionTypes.UPDATE_TUTOR_EDUCATION_ITEM + AsynPostfix.FULFILLED:
+      let newEducationList = state.educations.map((e) => e.id == action.payload.id ? action.payload : e)
+      return {...state, educations: newEducationList, currentEducation: null}
     default:
       return state
   }

@@ -948,4 +948,9 @@ body.application {
   .delete-icon:hover {
     cursor: pointer;
   }
+
+  .bordered-box {
+    border: solid 1px $border-color;
+    padding: 15px;
+  }
 }

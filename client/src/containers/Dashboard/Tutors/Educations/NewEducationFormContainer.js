@@ -16,7 +16,9 @@ class NewEducationFormContainer extends Component {
 
   render() {
     return (
-      <TutorEducationForm onSubmit={this.createEducation.bind(this)} {...this.props} cancel={this.hideNewEducationForm.bind(this)}/>
+      <div className='bordered-box'>
+        <TutorEducationForm onSubmit={this.createEducation.bind(this)} {...this.props} cancel={this.hideNewEducationForm.bind(this)}/>
+      </div>
     )
   }
 }

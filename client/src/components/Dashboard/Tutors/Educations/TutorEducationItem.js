@@ -20,6 +20,7 @@ class TutorEducationItem extends Component {
           <div>{education.description}</div>
         </div>
         <div className='col-sm-2 text-right'>
+          <span className='mr-10 inline-edit' onClick={(e) => {this.props.showEditEducationForm(education.id)}}><i className='fa fa-pencil'></i></span>
           <DeleteIcon action={this.delete.bind(this)}
                       comfirmationMessage={this.context.t('delete_education_confirmation_message')}
                       comfirmationTitle={this.context.t('confirm_delete_header')}/>
@@ -35,6 +36,7 @@ TutorEducationItem.contextTypes = {
 
 TutorEducationItem.propTypes = {
   education: React.PropTypes.object.isRequired,
+  showEditEducationForm: React.PropTypes.object.isRequired,
   delete: React.PropTypes.func.required
 }
 

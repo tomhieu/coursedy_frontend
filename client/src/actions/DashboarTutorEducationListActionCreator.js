@@ -55,3 +55,29 @@ export const deleteEducation = (tutorId, id) => {
     })
   }
 }
+
+export const showEditEducationForm = (educationId) => {
+  return dispatch => {
+    dispatch({
+      type: actionTypes.SHOW_EDIT_EDUCATION_FORM,
+      payload: educationId
+    })
+  }
+}
+
+export const hideEditEducationForm = () => {
+  return dispatch => {
+    dispatch({
+      type: actionTypes.HIDE_EDIT_EDUCATION_FORM
+    })
+  }
+}
+
+export const updateEducation = (tutorId, educationId, params) => {
+  return dispatch => {
+    dispatch({
+      type: actionTypes.UPDATE_TUTOR_EDUCATION_ITEM,
+      payload: Network().update(`tutors/${tutorId}/tutor_educations/${educationId}`, params)
+    })
+  }
+}
