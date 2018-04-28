@@ -8,10 +8,10 @@ import {reduxForm} from "redux-form";
 import defaultAvatar from '../../../../../images/default_avatar.png'
 import {SERVER_NAME} from "utils/CommonConstant";
 import LoadingMask from "../../../../components/LoadingMask/LoadingMask";
-import {FETCH_CURRENT_USER, FETCH_TUTOR_DATA} from "../../../../constants/Session";
 import Network from "utils/network";
 import {FETCH_USER_BALANCE} from "../../../../actions/AsyncActionCreator";
 import {Modal, ModalHeader, Button, ModalBody, ModalFooter} from 'reactstrap';
+import {FETCH_USER_ACCOUNT} from "constants/AccountTypes";
 
 class DashboardProfileContainer extends Component {
   componentWillMount() {
@@ -102,7 +102,7 @@ const mapStateToProps = (state) => ({
 
 const mapStateToDispatch = (dispatch) => ({
   fetchUser: () => dispatch({
-    type: FETCH_CURRENT_USER,
+    type: FETCH_USER_ACCOUNT,
     payload: Network().get('current_user'),
     meta: 'userDetailsPlaceholder'
   }),
