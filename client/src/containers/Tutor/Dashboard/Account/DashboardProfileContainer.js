@@ -66,7 +66,7 @@ class DashboardProfileContainer extends Component {
   renderAvatar(currentUser, editAvatarMode, avatarSelected) {
     return (
       <div className="col-sm-12 mb-15 avatar-container">
-        <figure className="imghvr-zoom-in">
+        <figure className="imghvr-zoom-in full-width">
           <img className="media-object full-width"
                src={currentUser.avatar ? currentUser.avatar : defaultAvatar}
                alt={currentUser.name}
