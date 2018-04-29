@@ -44,7 +44,7 @@ class PublicCourseListContainer extends Component {
                    normalPlaceholder={displayMode === 'grid'}
                    facebookPlaceholder={displayMode !== 'grid'}
                    loaderType="COURSE_ITEM_PLACEHOLDER"
-                   repeatTime={4}>
+                   repeatTime={8}>
         <div className="public-course-list">
           <div className="course-list-container">
             <CourseList
