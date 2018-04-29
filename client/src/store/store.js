@@ -43,7 +43,7 @@ const drivingResponseHandler = store => next => action => {
           payload: response
         })
       })
-      return next(action)
+      return false
     }
   }
   return next(action)
