@@ -103,7 +103,7 @@ class CourseForm extends Component {
                                     {...this.props}>
                     </CourseFormItem>
                   </div>
-                  <div className="ml-10 currency-field sm-field">
+                  <div className="ml-10 currency-field">
                     <CourseFormItem editMode={editMode} fieldId="currency_Id"
                                     fieldLabel={this.context.t("tuition_currency")}
                                     isMandatory={false}
