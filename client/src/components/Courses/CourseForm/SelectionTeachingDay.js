@@ -30,16 +30,18 @@ class SelectionTeachingDay extends Component {
                 <div onBlur={this.onBlur.bind(this)}>
                     <SelectionTeachingDayEditMode {...this.props}>
                     </SelectionTeachingDayEditMode>
-                    <div className="col-md-12 col-sm-12">
-                        <FormGroup className="ml-15 mr-15 mt-10 d-flex justify-content-right">
-                            <button type="submit" className="btn btn-primary mr-10" disabled={pristine || submitting}>
-                                {this.context.t("save")}
-                            </button>
-                            <button type='button' onClick={() => onEditTechingDay()}
-                                    className="btn btn-default btn-small margin-left-10 cancel-button">
-                                {this.context.t("cancel")}
-                            </button>
+                    <div className='row'>
+                      <div className="col-md-12 col-sm-12">
+                        <FormGroup className="mt-10 d-flex justify-content-right">
+                          <button type="submit" className="btn btn-primary mr-10" disabled={pristine || submitting}>
+                            {this.context.t("save")}
+                          </button>
+                          <button type='button' onClick={() => onEditTechingDay()}
+                                  className="btn btn-default btn-small margin-left-10 cancel-button">
+                            {this.context.t("cancel")}
+                          </button>
                         </FormGroup>
+                      </div>
                     </div>
                 </div>
             )
