@@ -2307,11 +2307,6 @@ ul.no-margin,
   padding: 6px 12px;
 }
 
-.pre-wrap {
-  white-space: pre-wrap;
-  padding: 10px 5px;
-}
-
 .full-width-input-wrapper input {
   width: 100%;
 }
@@ -2352,13 +2347,7 @@ ul.no-margin,
   width: 100% !important;
 }
 
-.inline-form .control-label {
-  padding-top: 10px;
-  height: 18px;
-}
-
 .inline-form .fa-pencil {
-  padding-top: 13px;
   opacity: 0;
 }
 
@@ -2367,7 +2356,6 @@ ul.no-margin,
 }
 
 .inline-field:hover .fa-pencil {
-  padding-top: 13px;
   opacity: 1;
 }
 
@@ -2478,7 +2466,6 @@ ul.no-margin,
 .inline-form {
   display: flex;
   flex-direction: column;
-  font-size: 16px;
   margin-bottom: 20px;
 }
 
