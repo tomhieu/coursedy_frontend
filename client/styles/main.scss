@@ -965,4 +965,8 @@ body.application {
   .pre-wrap {
     white-space: pre-wrap;
   }
+
+  .control-label + .pre-wrap {
+    margin-left: 5px;
+  }
 }
