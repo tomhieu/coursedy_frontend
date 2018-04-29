@@ -27,7 +27,7 @@ class CourseCategoryViewMode extends Component {
         {
           courseSpecializes.length > 0 ?
             <div className='col-sm-12 col-md-6 col-lg-6'>
-              <div className="lg-field">
+              <div>
                 <CourseFormItem editMode={editMode} fieldId="course_specialize_id"
                                 fieldLabel={this.context.t("course_specialize")}
                                 isMandatory={true}
