@@ -18,7 +18,7 @@ class CourseForm extends Component {
     });
     return (
       <div>
-        <form onSubmit={handleSubmit(this.props.onSubmit)} multiple={true}>
+        <form onSubmit={handleSubmit(this.props.onSubmit)} multiple={true} className="inline-form">
           <div className={editMode ? "d-flex flex-horizontal flex-auto justify-content-center mb-30" : "d-flex flex-horizontal"}>
             {
               editMode ? (
