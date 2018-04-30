@@ -834,7 +834,12 @@ body.application {
 
     p {
       color: $dark-text-color;
+      &.course-item-description {
+        max-height: 95px;
+        overflow: hidden;
+      }
     }
+
     .course-detail-lnk:hover {
       cursor: pointer;
     }

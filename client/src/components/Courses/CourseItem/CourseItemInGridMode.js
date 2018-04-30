@@ -50,7 +50,7 @@ class CourseItemInGridMode extends Component {
           <div className="course-item-content">
             <RatingItem num_stars={item.rating_count == 0 ? 0 : parseFloat(item.rating_points)/item.rating_count} num_reviews={item.rating_count}/>
             <h3>{item.title}</h3>
-            <p>{item.description}</p>
+            <p className='course-item-description'>{item.description}</p>
           </div>
         </LinkContainer>
         <div className="course-item-bottom clearfix">
