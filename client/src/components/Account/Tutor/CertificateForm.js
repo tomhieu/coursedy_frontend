@@ -1,6 +1,8 @@
 import {Component} from "react";
 import FormField from "../../Core/FormField";
 import * as React from "react";
+import DeleteIcon from "components/Common/DeleteIcon";
+import {TT} from "utils/locale";
 
 // import {savePersonData} from "actions/TutorAccountActionCreator";
 
@@ -53,7 +55,9 @@ function renderUploadedDegree(degree, props) {
       </div>
       <div className='col-sm-3 text-right'>
         <a className="ml-10" href={degree.url} target="_blank"><i className="fa fa-arrow-down"></i></a>
-        <a className="ml-10" onClick={() => props.delete(degree.id)} title={degree.name}><i className='fa fa-trash'></i></a>
+        <span className='ml-10'>
+          <DeleteIcon comfirmationTitle={TT.t('confirm_delete_header')} comfirmationMessage={TT.t('confirm_delete_degree_message')} action={() => props.delete(degree.id)}/>
+        </span>
       </div>
     </div>
   )

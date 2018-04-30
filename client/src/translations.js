@@ -47,6 +47,7 @@ export const translations = {
     "delete_education_confirmation_message": "Bạn có muốn xoá lịch sử học tập này không?",
     "delete_work_experience_confirmation_message": "Bạn có muốn xoá lịch sử làm việc này không?",
     "confirm_delete_header": "Chú ý",
+    "confirm_delete_degree_message": "Bạn có muốn xoá chứng chỉ này không?",
     'change_email_success': 'Yêu cầu đổi email đã được gửi',
     'update_email_successfully': 'Bạn vừa yêu cầu thay đổi email. Hệ thống đã gửi 1 email đến địa chỉ email mới của bạn. Vui lòng kiểm tra email và xác nhận địa chỉ email mới',
     /*
