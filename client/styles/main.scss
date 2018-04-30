@@ -974,4 +974,11 @@ body.application {
   .control-label + .pre-wrap {
     margin-left: 5px;
   }
+
+  .card {
+    border-radius: 0;
+    & .card-header:first-child {
+      border-radius: 0;
+    }
+  }
 }
