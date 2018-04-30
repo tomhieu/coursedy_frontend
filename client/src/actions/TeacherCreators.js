@@ -27,7 +27,7 @@ export const fetchTeacherDetail = ({teacherId}) => {
   // TODO change payload to Network().get('tutors/search', query) when teacher detail api complete
   return {
     type: asyncActs.FETCH_TEACHER_DETAIL + asyncActs.FULFILLED,
-    payload: dummyTeacherDetail(query),
+    payload: dummyTeacherDetail({id: teacherId}),
   }
 }
 

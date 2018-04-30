@@ -360,7 +360,7 @@ export const translations = {
     "teacher_awards": "Giải thưởng",
     "teacher_interest": "Sở thích",
     "teacher_taught_courses": "Khoá học của giáo viên",
-    "teacher_review": "Nhận xét khoá học",
+    "teacher_review": "Nhận xét giáo viên",
     "leave_your_review_teacher": "Nhận xét giáo viên",
     "write_review_teacher": "Viết Nhận Xét",
     "review_submit_button": "Gửi Nhận Xét",

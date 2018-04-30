@@ -33,7 +33,7 @@ class TeacherDetail extends Component {
       <div className="row">
         <div className="col-sm-12">
           <div className="teacher-detail__content__review">
-            <div className="teacher-detail__content__review__header">
+            <div className="teacher-detail__content__review__header mb-30">
               <h3>{this.context.t('teacher_review')}</h3>
             </div>
             <TeacherReviewList teacher={this.props.teacher}/>
@@ -58,7 +58,7 @@ class TeacherDetail extends Component {
     return (
       <div className="row">
         <div className="col-sm-12">
-          <div className="teacher-detail__content__courses">
+          <div className="teacher-detail__content__courses mt-50 mb-20">
             <div className="teacher-detail__content__courses__header">
               <h3>
                 {this.context.t('teacher_taught_courses')}

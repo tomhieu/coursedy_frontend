@@ -17,8 +17,8 @@ const TeacherProfileHeader = (props) => {
       </div>
       <div className="profile-summary">
         <RatingItem num_stars={(teacher.user.rating_points/teacher.user.rating_count) || 0} num_reviews={teacher.user.rating_counts || 0}/>
-        <h3><Link to="#">{teacher.user.name}</Link></h3>
-        <p>{teacher.title}</p>
+        <h3>{teacher.user.name}</h3>
+        <div className="mb-5">{teacher.title}</div>
 
         <TeacherCategories categories={teacher.categories}/>
         {teacher.twitter || teacher.linkedIn ? <div className="social">
@@ -38,7 +38,7 @@ const TeacherProfileHeader = (props) => {
 // define category link
 const TeacherCategories = ({categories}) => {
   return (
-    <div className="categories mb-20">
+    <div className="categories mb-10">
       {
         categories.map((category) => {
           return (
