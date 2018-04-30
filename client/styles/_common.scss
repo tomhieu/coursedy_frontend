@@ -2449,24 +2449,23 @@ ul.no-margin,
   padding: 15px;
 }
 
-.section-title {
-  text-align: center;
-  border-radius: 2px;
-  background-color: $md-color-pink;
-  border: 2px solid $md-color-pink;
-  padding: 10px 24px;
-  color: $white-color;
-  font-size: 14px;
-  font-weight: 400;
-  margin: 0 10px;
-  color: $primary-color;
+.section-title.collapsed:after{
+  content: '\F105';
+  color: #b9b9b9;
+}
+
+.section-title:after {
+  content: '\F107';
+  color: $md-color-pink;
+  font: normal normal normal 14px/1 FontAwesome;
+  font-size: 20px;
+  margin-top: 6px;
   cursor: pointer;
 }
 
 .inline-form {
   display: flex;
   flex-direction: column;
-  margin-bottom: 20px;
 }
 
 .creation-course-title {

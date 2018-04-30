@@ -71,7 +71,7 @@ class SectionLessonContainer extends Component {
                     (
                       <div className="d-flex flex-auto justify-content-right align-items-center">
                         <span className="section-title" data-toggle="collapse" data-target={"#collapseLesson" + section.id} aria-expanded="true" aria-controls="collapseLesson">
-                          {this.context.t('view_details_lesson')}
+                          {/*{this.context.t('view_details_lesson')}*/}
                         </span>
                       </div>
                     ) : null
