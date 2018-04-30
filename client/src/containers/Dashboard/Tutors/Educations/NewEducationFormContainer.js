@@ -4,6 +4,7 @@ import {TutorEducationForm} from "components/Dashboard/Tutors/Educations/TutorEd
 import {reduxForm} from "redux-form";
 import {connect} from "react-redux";
 import * as actions from "actions/DashboarTutorEducationListActionCreator";
+import {validate} from '../../../../validations/TutorEducationFormValidation'
 
 class NewEducationFormContainer extends Component {
   hideNewEducationForm() {
@@ -33,5 +34,6 @@ const mapStateToProps = (state) => ({
 
 export default connect(mapStateToProps)(reduxForm({
   form: 'newTutorEducationForm',
-  fields: ['title', 'graduated_from', 'start_date', 'end_date', 'description']
+  fields: ['title', 'graduated_from', 'start_date', 'end_date', 'description'],
+  validate
 })(NewEducationFormContainer));

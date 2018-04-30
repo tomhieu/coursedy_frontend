@@ -135,6 +135,24 @@ export const translations = {
     "lesson_desc_required": "Vui lòng nhập mô tả buổi học",
     "save_course": "Tạo khoá học",
     /*
+    * Tutor education form
+    */
+    'tutor_education_title_required': 'Vui lòng nhập ngành học',
+    'tutor_education_graduated_from_required': 'Vui lòng trường học',
+    'tutor_education_start_date_required': 'Vui lòng nhập ngày bắt đầu',
+    'tutor_education_end_date_required': 'Vui lòng nhập ngày kết thúc',
+    'tutor_education_start_and_end_date': 'Ngày bắt đầu phải nhỏ hơn ngày kết thúc',
+
+    /*
+    * Tutor work experience form
+    */
+    'tutor_experience_title_required': 'Vui lòng nhập vị trí công tác',
+    'tutor_experience_company_required': 'Vui lòng cơ quan công tác',
+    'tutor_experience_start_date_required': 'Vui lòng nhập ngày bắt đầu',
+    'tutor_experience_end_date_required': 'Vui lòng nhập ngày kết thúc',
+    'tutor_experience_start_and_end_date': 'Ngày bắt đầu phải nhỏ hơn ngày kết thúc',
+
+    /*
      * Tutor Account Page
      */
     'update_avatar': 'Thay Đổi Ảnh Đại Diện',
@@ -191,6 +209,8 @@ export const translations = {
     "view_details_lesson": "Xem bài học",
     'update_password': "Thay đổi mật khẩu",
     'update_password_success': "Mật khẩu đã được cập nhật thành công.",
+    'tutor_title_required': "Vui lòng nhập nghề nghiệp hiện tại",
+    'tutor_descriotion_required': "Vui lòng nhập giới thiệu",
 
     /*
      * Section Page

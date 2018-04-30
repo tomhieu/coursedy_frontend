@@ -4,6 +4,7 @@ import {TutorWorkExperienceForm} from "components/Dashboard/Tutors/WorkExperienc
 import {reduxForm} from "redux-form";
 import {connect} from "react-redux";
 import * as actions from "actions/DashboarTutorWorkExperienceListActionCreator";
+import {validate} from "../../../../validations/TutorWorkExperienceFormValidation";
 
 class NewWorkExperienceFormContainer extends Component {
   hideNewWorkExperienceForm() {
@@ -33,5 +34,6 @@ const mapStateToProps = (state) => ({
 
 export default connect(mapStateToProps)(reduxForm({
   form: 'newTutorWorkExperienceForm',
-  fields: ['title', 'company', 'start_date', 'end_date', 'description']
+  fields: ['title', 'company', 'start_date', 'end_date', 'description'],
+  validate
 })(NewWorkExperienceFormContainer));
