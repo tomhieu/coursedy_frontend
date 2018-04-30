@@ -18,7 +18,7 @@ class CourseList extends Component {
     super(props);
   }
   render() {
-    const {courses, displayMode, isFetching, fullHeight = false, isPublic} = this.props;
+    const {courses, isFetching} = this.props;
     return (
         <div>
           {
