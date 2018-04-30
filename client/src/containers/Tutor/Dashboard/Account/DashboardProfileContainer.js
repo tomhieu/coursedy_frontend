@@ -1,6 +1,5 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {PaymentActions} from '../../../../actions/index'
 import ObjectUtils from '../../../../utils/ObjectUtils'
 import {UserAvatarForm} from "components/Account/UserAvatarForm";
 import * as AccountActionCreator from 'actions/AccountActionCreator'

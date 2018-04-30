@@ -5,10 +5,7 @@ import styles from "./TutorEducation.module.scss";
 import {reduxForm} from "redux-form";
 import {connect} from "react-redux";
 import cssModules from "react-css-modules";
-import {
-  TutorAccountActions
-} from '../../../actions/index'
-import {renderPreviewFile} from "../../../components/Core/CustomComponents";
+import {TutorAccountActions} from '../../../actions/index'
 
 class TutorEducation extends Component {
   constructor(props) {

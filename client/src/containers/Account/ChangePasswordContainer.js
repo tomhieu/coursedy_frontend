@@ -1,14 +1,13 @@
+import * as React from "react";
 import {Component} from "react";
 import FormField from "../../components/Core/FormField";
-import * as React from "react";
 import {connect} from "react-redux";
-import {reduxForm} from "redux-form";
+import {reduxForm, reset} from "redux-form";
 import styles from './ChangePasswordContainer.module.scss';
 import cssModules from 'react-css-modules';
 import * as AccountActions from "../../actions/AccountActionCreator";
 import {validate} from '../../validations/ChangePasswordFormValidator'
 import Notice from "components/PopupMessage/Notice";
-import {reset} from 'redux-form';
 
 class ChangePasswordContainer extends Component {
   updatePassword({current_password, password, password_confirmation}) {

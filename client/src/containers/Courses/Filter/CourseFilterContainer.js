@@ -1,8 +1,13 @@
 import React from 'react';
 import {CourseFilter} from '../../../components/index';
-import * as RefrenceActions from '../../../actions/ReferenceActions/ReferenceDataActionCreator'
 import * as CourseFilterActions from '../../../actions/CourseFilterActionCreator'
 import * as asyncActions from '../../../actions/AsyncActionCreator'
+import {
+  CLOSE_COURSE_FILTER_SUGGESTION,
+  FETCH_CATEGORIES,
+  FETCH_LOCATIONS,
+  LOAD_SUGGESTION
+} from '../../../actions/AsyncActionCreator'
 import {connect} from 'react-redux';
 import {reduxForm} from "redux-form";
 import {MAX_FEE, MIN_FEE} from "utils/CommonConstant";
@@ -11,10 +16,6 @@ import {dispatch} from "redux";
 import AbstractFilter from '../../../components/Core/AbstractFilterComponent';
 import Network from "utils/network";
 import {FETCH_COURSES} from "../../../constants/Courses";
-import {LOAD_SUGGESTION} from "../../../actions/AsyncActionCreator";
-import {FETCH_CATEGORIES} from "../../../actions/AsyncActionCreator";
-import {FETCH_LOCATIONS} from "../../../actions/AsyncActionCreator";
-import {CLOSE_COURSE_FILTER_SUGGESTION} from "../../../actions/AsyncActionCreator";
 
 class CourseFilterContainer extends AbstractFilter {
 

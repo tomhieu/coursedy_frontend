@@ -1,7 +1,6 @@
-import React, { Component } from 'react';
-import { TutorProfileDetails } from '../../../components/index';
-import { connect } from 'react-redux';
-import {reduxForm} from 'redux-form';
+import React, {Component} from 'react';
+import {TutorProfileDetails} from '../../../components/index';
+import {connect} from 'react-redux';
 import * as Actions from "actions/TutorProfileActionCreator"
 
 class TutorProfileDetailsContainer extends Component {

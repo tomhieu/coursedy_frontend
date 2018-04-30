@@ -1,16 +1,17 @@
 import InlineEditFormField from "../../../components/Core/InlineEditFormField";
 import FormField from "../../../components/Core/FormField";
+import * as React from "react";
 import {Component} from "react";
 import {renderPreviewFile} from "../../../components/Core/CustomComponents";
-import * as LessonActions from "../../../actions/LessonActionCreator";
 import {reduxForm} from "redux-form";
 import {connect} from "react-redux";
 import {validate} from '../../../validations/LessonFormValidator';
-import * as React from "react";
 import * as CourseActions from "actions/CourseFormActionCreator";
 import {
   ADD_DOCUMENT,
-  ADD_DOCUMENT_FOR_LESSON, DELETE_DOCUMENT, DELETE_DOCUMENT_FOR_LESSON,
+  ADD_DOCUMENT_FOR_LESSON,
+  DELETE_DOCUMENT,
+  DELETE_DOCUMENT_FOR_LESSON,
   DELETE_LESSON
 } from "../../../actions/AsyncActionCreator";
 import Network from "utils/network";

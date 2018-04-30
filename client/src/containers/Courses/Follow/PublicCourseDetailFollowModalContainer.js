@@ -2,9 +2,9 @@ import React, {Component} from 'react';
 // import styles from '../Course.module.scss';
 import {connect} from "react-redux";
 import {reduxForm} from "redux-form";
-import {Modal, Button} from 'react-bootstrap';
+import {Button} from 'react-bootstrap';
 import * as PublicCourseActions from '../../../actions/PublicCourseActionCreator';
-import { CoreComponent } from "../../../components/index"
+import {CoreComponent} from "../../../components/index"
 import {validate} from "../../../validations/PublicCourseDetailFollowModalValidator"
 import SimpleDialogComponent from "../../../components/Core/SimpleDialogComponent";
 

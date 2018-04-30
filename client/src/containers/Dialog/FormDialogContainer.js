@@ -1,6 +1,6 @@
-import {Component} from "react";
-import {reduxForm, submit} from 'redux-form';
 import * as React from "react";
+import {Component} from "react";
+import {submit} from 'redux-form';
 import {connect} from "react-redux";
 import Modal from "react-bootstrap4-modal";
 

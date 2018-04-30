@@ -1,5 +1,5 @@
-import {Component} from "react";
 import * as React from "react";
+import {Component} from "react";
 import InlineEditFormField from "../../../components/Core/InlineEditFormField";
 import {connect} from "react-redux";
 import {reduxForm} from "redux-form";
