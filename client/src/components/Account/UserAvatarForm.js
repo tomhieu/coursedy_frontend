@@ -23,7 +23,7 @@ export class UserAvatarForm extends Component {
         <FormField fieldId="avatar"
                    isMandatoryField={false} formControlName="avatar"
                    internalPreview={true} typeField="upload_avatar"
-                   previewUrl={user.avatar ? (SERVER_NAME + user.avatar) : defaultAvatar}
+                   previewUrl={user.avatar ? user.avatar : defaultAvatar}
                    showLabel={false}
                    onUpload={this.setFileContent.bind(this)}
                    fieldLabel=''

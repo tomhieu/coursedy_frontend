@@ -79,7 +79,8 @@ export const hideAvatarEditForm = () => {
 export const updateAvatar = (avatar) => {
   return {
     type: AccountTypes.UPLOAD_AVATAR,
-    payload: Network().update('auth', {avatar: avatar})
+    payload: Network().update('auth', {avatar: avatar}),
+    meta: 'ezylearningFullLoader'
   }
 }
 
