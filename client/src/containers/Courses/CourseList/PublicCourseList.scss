@@ -1,0 +1,12 @@
+@import "../../../../styles/global_style.scss";
+
+.course-list-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: calc(100% - 60px);
+  width: 100%;
+  background-color: $white-background;
+  padding: 20px 30px;
+  overflow-y: auto;
+}

@@ -18,8 +18,8 @@ class CourseForm extends Component {
     });
     return (
       <div>
-        <form onSubmit={handleSubmit(this.props.onSubmit)} className='inline-form course-details-form' multiple={true}>
-          <div className={editMode ? "d-flex flex-horizontal flex-auto justify-content-center mt-30 mb-30" : "d-flex flex-horizontal"}>
+        <form onSubmit={handleSubmit(this.props.onSubmit)} multiple={true} className="inline-form">
+          <div className={editMode ? "d-flex flex-horizontal flex-auto justify-content-center mb-30" : "d-flex flex-horizontal"}>
             {
               editMode ? (
                 <div className={styles.avatarImage}>
@@ -63,7 +63,7 @@ class CourseForm extends Component {
 
           <div className='row'>
             <div className='col-sm-12 col-md-6'>
-              <div className="lg-field">
+              <div >
                 <CourseFormItem editMode={editMode} fieldId="start_date_Id"
                                 fieldLabel={this.context.t("start_date")}
                                 isMandatory={true}
@@ -75,28 +75,13 @@ class CourseForm extends Component {
               </div>
             </div>
             <div className='col-md-6 col-sm-12'>
-              <div className="lg-field">
+              <div >
                 <CourseFormItem editMode={editMode} fieldId="period_Id"
                                 fieldLabel={this.context.t("period")}
                                 isMandatory={true}
                                 fieldName="period"
                                 typeField="custom_input"
                                 content={editMode ? courseData.period + " " + this.context.t("course_periode_type") : ""}
-                                {...this.props}>
-                </CourseFormItem>
-              </div>
-            </div>
-          </div>
-
-          <div className="row">
-            <div className="col-sm-6 col-md-6">
-              <div className="lg-field">
-                <CourseFormItem editMode={editMode} fieldId="number_of_students_Id"
-                                fieldLabel={this.context.t("number_of_students")}
-                                isMandatory={true}
-                                fieldName="number_of_students"
-                                typeField="custom_input"
-                                content={editMode ? courseData.number_of_students.toString() : ""}
                                 {...this.props}>
                 </CourseFormItem>
               </div>
@@ -118,7 +103,7 @@ class CourseForm extends Component {
                                     {...this.props}>
                     </CourseFormItem>
                   </div>
-                  <div className="ml-10 currency-field sm-field">
+                  <div className="ml-10 currency-field">
                     <CourseFormItem editMode={editMode} fieldId="currency_Id"
                                     fieldLabel={this.context.t("tuition_currency")}
                                     isMandatory={false}

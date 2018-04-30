@@ -27,7 +27,7 @@ class ListTutorCourseContainer extends Component {
     return (
       <div className="d-flex flex-vertical flex-auto">
         <div className="d-flex justify-content-left mb-10">
-          <button className="btn btn-primary"
+          <button className="btn btn-link-light"
                   onClick={this.addNewCourses.bind(this)}>{this.context.t('course_add_btn')}</button>
         </div>
         <div className="d-flex flex-auto">
@@ -36,7 +36,7 @@ class ListTutorCourseContainer extends Component {
               deleteCourse={this.deleteCourse.bind(this)}
               {...this.props}
               displayMode="grid"
-              itemPerRowInGridMode={2}
+              itemClass='col-xs-12 col-sm-6 col-md-4 mb-15'
               isPublic={false}
             />
           </LoadingMask>

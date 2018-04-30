@@ -6,7 +6,8 @@ import * as Pages from '../pages/';
 import ReduxToastr from 'react-redux-toastr';
 import {Route, Router, Switch} from 'react-router-dom'
 import {globalHistory} from "utils/globalHistory";
-import ListTeacherContainer from '../containers/ListTeacher/ListTeacherContainer';
+import ListTeacherContainer from 'containers/Teachers/TeacherList/ListTeacherContainer';
+import TeacherDetailContainer from 'containers/Teachers/TeacherDetail/TeacherDetailContainer';
 
 const router = (
   <Provider store={store}>
@@ -23,6 +24,7 @@ const router = (
             <Route path="/login" component={Pages.LoginRegisterPage} />
             <Route path="/courses" component={Pages.PublicCourseListPage} />
             <Route path="/course/:id" component={Pages.PublicCourseDetailPage}/>
+            <Route path="/teachers/:id" component={TeacherDetailContainer} />
             <Route path="/teachers" component={ListTeacherContainer} />
 
             <Route path="/dashboard" component={Pages.TutorDashboard} />

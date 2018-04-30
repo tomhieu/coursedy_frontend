@@ -2,7 +2,6 @@ import LoginFormContainer from './Auth/LoginFormContainer';
 import RegisterFormContainer from './Auth/RegisterFormContainer';
 import SearchFormContainer from './SearchForm/SearchFormContainer';
 import PersonInfoContainer from './Account/PersonInfoContainer';
-import TutorEducation from './Account/Tutor/TutorEducation';
 
 import PublicCourseListContainer from './Courses/CourseList/PublicCourseListContainer';
 import PublicCourseListFollowModalContainer from './Courses/Follow/PublicCourseListFollowModalContainer';
@@ -23,7 +22,6 @@ export {
   RegisterFormContainer,
   SearchFormContainer,
   PersonInfoContainer,
-  TutorEducation,
   //Front-end
   PublicCourseListContainer,
   PublicCourseListFollowModalContainer,

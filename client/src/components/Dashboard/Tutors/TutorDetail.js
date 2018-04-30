@@ -1,7 +1,7 @@
 import * as React from "react";
 import {Component} from "react";
 
-class TutorEducationDetailComponent extends Component {
+class TutorDetail extends Component {
   render() {
     let {tutor} = this.props;
 
@@ -51,13 +51,13 @@ class TutorEducationDetailComponent extends Component {
   }
 }
 
-TutorEducationDetailComponent.contextTypes = {
+TutorDetail.contextTypes = {
   t: React.PropTypes.func.isRequired
 }
 
-TutorEducationDetailComponent.propTypes = {
+TutorDetail.propTypes = {
   tutor: React.PropTypes.object.isRequired,
   showEditForm: React.PropTypes.func.isRequired
 }
 
-export default TutorEducationDetailComponent
+export default TutorDetail

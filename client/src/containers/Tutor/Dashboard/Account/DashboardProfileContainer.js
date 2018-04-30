@@ -7,9 +7,10 @@ import {reduxForm} from "redux-form";
 import defaultAvatar from '../../../../../images/default_avatar.png'
 import {SERVER_NAME} from "utils/CommonConstant";
 import LoadingMask from "../../../../components/LoadingMask/LoadingMask";
-import {FETCH_CURRENT_USER, FETCH_TUTOR_DATA} from "../../../../constants/Session";
 import Network from "utils/network";
 import {FETCH_USER_BALANCE} from "../../../../actions/AsyncActionCreator";
+import {Modal, ModalHeader, Button, ModalBody, ModalFooter} from 'reactstrap';
+import {FETCH_USER_ACCOUNT} from "constants/AccountTypes";
 
 class DashboardProfileContainer extends Component {
   componentWillMount() {
@@ -32,11 +33,11 @@ class DashboardProfileContainer extends Component {
   }
 
   avatarSelected() {
-    this.props.avatarSelected();
+    this.props.onSelectAvatar();
   }
 
   avatarDeselected() {
-    this.props.avatarDeselected();
+    this.props.onDeselectAvatar();
   }
 
   render() {
@@ -62,24 +63,11 @@ class DashboardProfileContainer extends Component {
   }
 
   renderAvatar(currentUser, editAvatarMode, avatarSelected) {
-    if (editAvatarMode) {
-      return (
-        <div className="col-sm-12">
-          <UserAvatarForm onSubmit={this.uploadAvatar.bind(this)}
-                          cancel={this.hideEditAvatarForm.bind(this)} {...this.props}
-                          avatarSelected={avatarSelected}
-                          selectAvatar={this.avatarSelected.bind(this)}
-                          deselectAvatar={this.avatarDeselected.bind(this)}
-          />
-        </div>
-      )
-    }
-
     return (
       <div className="col-sm-12 mb-15 avatar-container">
-        <figure className="imghvr-zoom-in">
-          <img className="media-object img-circle full-width"
-               src={currentUser.avatar ? (SERVER_NAME + currentUser.avatar) : defaultAvatar}
+        <figure className="imghvr-zoom-in full-width">
+          <img className="media-object full-width"
+               src={currentUser.avatar ? currentUser.avatar : defaultAvatar}
                alt={currentUser.name}
           />
         </figure>
@@ -89,6 +77,16 @@ class DashboardProfileContainer extends Component {
             <span className='ml-10'>{this.context.t('update_avatar')}</span>
           </span>
         </span>
+        <Modal isOpen={editAvatarMode} onClosed={this.hideEditAvatarForm.bind(this)}>
+          <ModalBody>
+            <UserAvatarForm onSubmit={this.uploadAvatar.bind(this)}
+                            cancel={this.hideEditAvatarForm.bind(this)} {...this.props}
+                            avatarSelected={avatarSelected}
+                            selectAvatar={this.avatarSelected.bind(this)}
+                            deselectAvatar={this.avatarDeselected.bind(this)}
+            />
+          </ModalBody>
+        </Modal>
       </div>
     )
   }
@@ -103,12 +101,8 @@ const mapStateToProps = (state) => ({
 
 const mapStateToDispatch = (dispatch) => ({
   fetchUser: () => dispatch({
-    type: FETCH_CURRENT_USER,
-    payload: Network().get('current_user').then((res) => dispatch({
-      type: FETCH_TUTOR_DATA,
-      payload: Network().get('tutors/tutor_by_user', {user_id: res.id}),
-      meta: 'userDetailsPlaceholder'
-    })),
+    type: FETCH_USER_ACCOUNT,
+    payload: Network().get('current_user'),
     meta: 'userDetailsPlaceholder'
   }),
   fetchUserBalance: () => dispatch({
@@ -120,8 +114,8 @@ const mapStateToDispatch = (dispatch) => ({
   showAvatarEditForm: () => dispatch(AccountActionCreator.showAvatarEditForm()),
   hideAvatarEditForm: () => dispatch(AccountActionCreator.hideAvatarEditForm()),
   avatarDeselected: () => dispatch(AccountActionCreator.avatarDeselected()),
-  avatarSelected: () => dispatch(AccountActionCreator.avatarSelected()),
-  avatarDeselected: () => dispatch(AccountActionCreator.avatarDeselected())
+  onSelectAvatar: () => dispatch(AccountActionCreator.avatarSelected()),
+  onDeselectAvatar: () => dispatch(AccountActionCreator.avatarDeselected())
 })
 
 DashboardProfileContainer.contextTypes = {

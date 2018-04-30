@@ -6,6 +6,8 @@ import moment from "moment";
 import Dropzone from "react-dropzone";
 import {TT} from "../../utils/locale";
 import ObjectUtils from "../../utils/ObjectUtils";
+import Cropper from 'react-cropper'
+import 'cropperjs/dist/cropper.css';
 
 export const renderField = ({input, label, placeholder, type = 'text', disabled = false, customClassName, meta: {touched, error, warning}}) => (
   <div className='full-width-input-wrapper'>
@@ -155,7 +157,7 @@ class renderFileInput extends Component {
           }}
           accept="image/*">
           <div className="d-flex flex-auto justify-content-center align-items-center">
-            <div className={internalPreview ? 'd-none' : 'd-flex flex-horizontal align-self-center padd-10'}>
+            <div className={this.state.previewUrl ? 'd-none' : 'd-flex flex-horizontal align-self-center padd-10'}>
               <a className="icon-upload">
                 <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
                   <path d="M0 0h24v24H0z" fill="none"/>
@@ -175,3 +177,97 @@ class renderFileInput extends Component {
 }
 
 export const renderSingleFileInput = renderFileInput
+
+
+class avatarInput extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      previewUrl: null
+    };
+    this.handleUpload = this.props.onUpload;
+  }
+
+
+  onChange(files) {
+    let self = this
+    let fileReader = new FileReader
+    fileReader.onload = () => {
+      self.setState({previewUrl: files[0].preview, content: fileReader.result});
+      if (self.handleUpload){
+        self.handleUpload({
+          uid: ObjectUtils.generateUUID(),
+          fileName: files[0].name,
+          previewUrl: files[0].preview,
+          content: fileReader.result
+        });
+      }
+    }
+    fileReader.readAsDataURL(files[0])
+  }
+
+  _crop(){
+    let self = this
+    if (self.handleUpload){
+      self.handleUpload({content: this.refs.cropper.getCroppedCanvas().toDataURL()})
+    }
+  }
+
+  render() {
+    let {input: {value, ...input}, label, meta: {touched, error}, zoneHeight, internalPreview, ...custom} = this.props
+    let borderWidth = internalPreview && this.state.previewUrl != null ? '0' : '1px'
+    let previewImageStyle = internalPreview ? {
+      border: 'solid 1px rgb(102, 102, 102)',
+      width: '100%',
+      borderStyle: 'dashed'
+    } : {}
+
+    let zone = <Dropzone
+      name={'_' + input.name}
+      onDrop={this.onChange.bind(this)}
+      multiple={false}
+      className="d-flex flex-vertical"
+      style={{
+        width: '100%',
+        height: '150px',
+        borderWidth: borderWidth,
+        borderStyle: 'dashed',
+        borderColor: 'rgb(102, 102, 102)',
+        borderRadius: '5px',
+      }}
+      accept="image/*">
+      <div className="d-flex flex-auto justify-content-center align-items-center">
+        <div className={'d-flex flex-horizontal align-self-center padd-10'}>
+          <a className="icon-upload"></a>
+          <a className="ml-10">{TT.t('drag_and_drop')}</a>
+        </div>
+      </div>
+    </Dropzone>
+
+    let cropper = <Cropper
+      src={this.state.previewUrl || ''}
+      ref='cropper'
+      style={{height: '200px', width: '100%'}}
+      aspectRatio={1 / 1}
+      crop={this._crop.bind(this)}
+      checkCrossOrigin={false}
+      movable={true}
+      zoomable={true}
+      center={true}
+      responsive={true}
+      scalable={true}
+      zoomable={true}
+      responsive={true}
+    />
+
+    return (
+      <div className="">
+        {
+          this.state.previewUrl ? cropper : zone
+        }
+      </div>
+    )
+  }
+}
+
+export const cropImageInput = avatarInput

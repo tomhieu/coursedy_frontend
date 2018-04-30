@@ -26,7 +26,7 @@ class CourseCategory extends Component {
           <div className="row">
             <div className="col-md-12 col-sm-12">
               <FormGroup className="d-flex justify-content-right">
-                <button type="submit" className="btn accept-btn mr-10" disabled={pristine || submitting}>
+                <button type="submit" className="btn btn-primary mr-10" disabled={pristine || submitting}>
                   {this.context.t("save")}
                 </button>
                 <button type='button' onClick={onEditCourseCategory}

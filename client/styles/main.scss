@@ -240,11 +240,13 @@ body.application {
   }
 
   .dashboard-content-section {
-    border-radius: 5px;
     border: 1px solid $border-color;
     padding: 20px 15px;
     margin-bottom: 15px;
     width: 100%;
+    .block-title {
+      color: $md-color-pink;
+    }
   }
 
   .dashboard-section {
@@ -260,7 +262,6 @@ body.application {
   .dashboard-menu {
     border: 1px solid $border-color;
     background: #fdfdfd;
-    border-radius: 5px;
     margin-bottom: 15px;
   }
 
@@ -452,6 +453,10 @@ body.application {
     margin-right: calc(-50vw + 50%);
   }
 
+  .img-circle {
+    border-radius: 50%;
+  }
+
   .heading {
     font-size: 30px;
     font-weight: 400;
@@ -473,20 +478,20 @@ body.application {
 
   .btn-link-dark {
     padding: 8px;
-    color: $md-color-pink;
-    font-size: 16px;
+    color: $white-color;
+    font-size: 14px;
     font-weight: 400;
     border: 1px solid $md-color-pink;
     border-radius: 2px;
     text-align: center;
-    background: transparent;
+    background: $md-color-pink;
     -webkit-transition: all .2s ease-in-out;
     transition: all .2s ease-in-out;
   }
 
   .btn-link-dark:hover {
-    background: $md-color-pink !important;
-    color: $white-color !important;
+    background: transparent !important;
+    color: $md-color-pink !important;
     -webkit-transition: all .2s ease-in-out;
     transition: all .2s ease-in-out;
   }
@@ -494,6 +499,23 @@ body.application {
   .btn-link-dark:focus,
   .btn-link-dark:active {
     outline: none !important;
+  }
+
+  .btn-link-light {
+    padding: 8px;
+    background: transparent;
+    color: $md-color-pink;
+    font-size: 14px;
+    font-weight: 400;
+    border: 1px solid $md-color-pink;
+    border-radius: 2px;
+    text-align: center;
+    -webkit-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
+    &:hover {
+      color: $white-color;
+      background: $md-color-pink;
+    }
   }
 
   // select2 styles
@@ -667,6 +689,7 @@ body.application {
     border-top-left-radius: 2px;
     & .modal-title {
       margin-bottom: 0;
+      padding-top: 5px;
     }
 
     & button.close span{
@@ -724,18 +747,19 @@ body.application {
   }
 
   .btn-primary {
+    background-color: $md-color-pink;
+    border-color: $md-color-pink;
+    font-size: 14px;
+  }
+
+  .btn-primary:hover {
     background: $primary-color;
     color: $md-color-pink;
     border-color: $md-color-pink;
   }
 
-  .btn-primary:hover, .accept-btn {
-    color: $white-color;
-    background-color: $md-color-pink;
-    border-color: $md-color-pink;
-  }
-
   .cancel-button {
+    font-size: 14px;
     background-color: $cancel-btn-color;
     border: solid 1px $cancel-btn-color;
     color: $primary-color;
@@ -787,5 +811,174 @@ body.application {
     background-position: center center;
     -webkit-background-size: 50% 50%;
     background-size: 50% 50%;
+  }
+
+  .full-width-img {
+    width: 100%;
+    height: auto;
+  }
+
+  .img-circle {
+    border-radius: 50%;
+  }
+
+  .course-item {
+    position: relative;
+    height: 100%;
+    padding-bottom: 60px;
+    &:hover {
+      -webkit-box-shadow: 0px 0px 12px -1px rgba(0, 0, 0, 0.29);
+      -moz-box-shadow: 0px 0px 12px -1px rgba(0, 0, 0, 0.29);
+      box-shadow: 0px 0px 12px -1px rgba(0, 0, 0, 0.29);
+    }
+
+    p {
+      color: $dark-text-color;
+      &.course-item-description {
+        max-height: 95px;
+        overflow: hidden;
+      }
+    }
+
+    .course-detail-lnk:hover {
+      cursor: pointer;
+    }
+    background: $gray-background;
+    .course-item-top {
+      position: relative;
+      padding-left: 15px;
+      padding-top: 7px;
+      .course-item-instructor {
+        .image {
+          width: 44px;
+          height: 44px;
+          border: 2px solid #FFF;
+          float: left;
+          margin-top: -27px;
+          border-radius: 50%;
+          margin-right: 5px;
+          -webkit-box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.43);
+          -moz-box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.43);
+          box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.43);
+        }
+      }
+      .course-item-price {
+        background-color: $md-color-pink;
+        color: $white-color;
+        position: absolute;
+        top: 10px;
+        right: -5px;
+        line-height: 1;
+        font-weight: 700;
+        font-size: 14px;
+        padding: 4px 10px 3px;
+
+        &:before {
+          content: "";
+          position: absolute;
+          top: -5px;
+          right: 0;
+          width: 0;
+          height: 0;
+          border-style: solid;
+          border-width: 5px 0 0 5px;
+          border-color: transparent transparent transparent $md-color-pink;
+        }
+      }
+    }
+    .course-item-content {
+      padding: 25px 15px;
+      padding-left: 20px;
+      p {
+        margin-top: 20px;
+        font-size: 14px;
+      }
+      h3 {
+        font-size: 23px;
+        color: $md-color-pink;
+      }
+      .rating-wrapper {
+        margin: 0 0 5px;
+        & > div {
+          display: inline-block;
+        }
+        .rating-item {
+          .fa {
+            font-size: 12px;
+            color: $rating-item-color;
+          }
+          .rating-symbol {
+            margin-right: 3px;
+          }
+        }
+      }
+    }
+    .course-item-bottom {
+      position: absolute;
+      width: 100%;
+      font-size: 11px;
+      text-align: center;
+      line-height: 1.4;
+      padding: 0 5px;
+      border-top: 1px solid $border-color;
+      display: table;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      & > div {
+        display: table-cell;
+        padding: 20px 10px;
+      }
+
+      & > div:last-child {
+        border-left: 1px solid $border-color;
+      }
+    }
+  }
+
+  .imghvr-zoom-in {
+    border: solid 1px $border-focus-color;
+    background-color: transparent;
+  }
+
+  .yellow-color {
+    color: $rating-item-color;
+  }
+
+  .react-datepicker__day-name, .react-datepicker__day, .react-datepicker__time-name {
+    width: 30px;
+    height: auto;
+    padding-top: 0;
+    font-size: 14px;
+  }
+  .delete-icon:hover {
+    cursor: pointer;
+  }
+
+  .bordered-box {
+    border: solid 1px $border-color;
+    padding: 15px;
+  }
+
+  .modal-footer, .modal-header {
+    padding: 10px 1rem;
+    h5 {
+      font-size: 17px;
+    }
+  }
+
+  .pre-wrap {
+    white-space: pre-wrap;
+  }
+
+  .control-label + .pre-wrap {
+    margin-left: 5px;
+  }
+
+  .card {
+    border-radius: 0;
+    & .card-header:first-child {
+      border-radius: 0;
+    }
   }
 }

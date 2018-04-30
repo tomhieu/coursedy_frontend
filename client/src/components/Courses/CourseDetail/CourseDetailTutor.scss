@@ -1,0 +1,105 @@
+.teacher-item-list-02-wrapper {
+    margin-bottom: -20px;
+}
+.teacher-item-list-02 {
+  line-height: 1.4;
+  margin: 0 0 25px;
+
+  .image {
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    -webkit-box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.43);
+    -moz-box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.43);
+    box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.43);
+    border-radius: 50%;
+
+    img {
+      border-radius: 50%;
+    }
+  }
+
+  h3 {
+    font-size: 23px;
+    line-height: 25px;
+    margin: 0 0 5px;
+    color: #0D7CC9;
+    letter-spacing: 1.5px;
+  }
+
+  h4 {
+    font-size: 20px;
+    margin: 3px 0;
+    color: #0D7CC9;
+    letter-spacing: 1.5px;
+    line-height: 1.2;
+  }
+  .labeling {
+    font-size: 14px;
+    letter-spacing: 1.5px;
+    margin: 0 0 15px;
+  }
+
+  .short-info {
+    margin: 0 0 20px;
+  }
+
+  ul.user-action {
+    text-align: center;
+    margin: 15px 0 0;
+
+    li {
+      display: inline-block;
+      -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.13);
+      -moz-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.13);
+      box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.13);
+
+      + li {
+        margin-left: -4px;
+      }
+
+      a {
+        padding: 3px 6px;
+        font-size: 10px;
+        color: #A3A3A3;
+        display: block;
+        background: #FCFCFC;
+        position: relative;
+        z-index: 1;
+        border: 1px solid #E5E5E5;
+      }
+
+      a:hover {
+        color: #FFF;
+        background: #0D7CC9;
+        border-bottom: 1px solid #0D7CC9;
+      }
+
+    }
+
+  }
+
+  .rating-wrapper {
+    margin: 0 0 10px;
+    letter-spacing: 1px;
+
+    .rating-item {
+      display: inline-block;
+      vertical-align: top;
+    }
+
+  }
+
+}
+
+
+@media only screen and (max-width: 767px) {
+  .teacher-item-list-02 {
+    .image {
+      width: 150px;
+      margin-bottom: 15px
+    }
+    ul.user-action {
+      text-align: left;
+      margin-bottom: 15px
+    }
+  }
+}

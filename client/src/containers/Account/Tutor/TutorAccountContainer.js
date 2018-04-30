@@ -1,24 +1,29 @@
 import React, {Component} from "react";
 import ChangePasswordContainer from "../ChangePasswordContainer";
-import TutorEducation from "./TutorEducation";
 import cssModules from 'react-css-modules';
 import {connect} from "react-redux";
 import PersonInfoContainer from "../PersonInfoContainer";
 import Certificate from "./Certificate";
 import {UserInfo} from 'components/index'
+import TutorForm from '../../Dashboard/Tutors/TutorForm'
 
-import { 
+import {
   AccountActions,
   TutorAccountActions
 } from '../../../actions/index'
 import {
-  RequireEmailConfirmationModal, 
-  TutorEducationDetailComponent
+  RequireEmailConfirmationModal
 } from '../../../components/index'
 import LoadingMask from "../../../components/LoadingMask/LoadingMask";
 import {FETCH_CURRENT_USER, FETCH_TUTOR_DATA} from "../../../constants/Session";
 import {CERTIFICATE, FETCH_TEACHER_SKILL_SET} from "../../../actions/AsyncActionCreator";
 import Network from "utils/network";
+import TutorDetail from "components/Dashboard/Tutors/TutorDetail";
+import TutorEducationList from "components/Dashboard/Tutors/Educations/TutorEducationList";
+import TutorEducationListContainer from "containers/Dashboard/Tutors/Educations/TutorEducationListContainer";
+import TutorWorkExperienceListContainer from "containers/Dashboard/Tutors/WorkExperiences/TutorWorkExperienceListContainer";
+import session from "reducers/Session";
+import * as AccountTypes from "constants/AccountTypes";
 
 class TutorAccount extends Component {
   componentWillMount(){
@@ -79,11 +84,23 @@ class TutorAccount extends Component {
             <div className="dashboard-content-section">
               {
                 editEducationMode ?
-                  <TutorEducation tutor={tutor} cancel={this.hideEducationEditForm.bind(this)}/> :
-                  <TutorEducationDetailComponent tutor={tutor} showEditForm={this.showEducationEditForm.bind(this)}/>
+                  <TutorForm tutor={tutor} cancel={this.hideEducationEditForm.bind(this)}/> :
+                  <TutorDetail tutor={tutor} showEditForm={this.showEducationEditForm.bind(this)}/>
               }
             </div>
           </LoadingMask>
+        </div>
+
+        <div className="col-md-12 col-xs-12 col-sm-12">
+          <div className="dashboard-content-section">
+            <TutorEducationListContainer/>
+          </div>
+        </div>
+
+        <div className="col-md-12 col-xs-12 col-sm-12">
+          <div className="dashboard-content-section">
+            <TutorWorkExperienceListContainer/>
+          </div>
         </div>
 
         <div className="col-md-12 col-xs-12 col-sm-12">
@@ -123,16 +140,20 @@ const mapStateToProps = (state) => ({
   showEmailConfirmationModal: state.AccountReducer.showEmailConfirmationModal
 });
 
-const mapStateToDispatch = (dispatch) => ({
-  fetchUser: () => dispatch({
-    type: FETCH_CURRENT_USER,
-    payload: Network().get('current_user').then((res) => dispatch({
+const mapDispatchToProps = (dispatch) => ({
+  fetchUser: () => {
+    dispatch({
+        type: AccountTypes.FETCH_USER_ACCOUNT,
+        payload: Network().get('current_user'),
+        meta: 'userAccountPlaceholder'
+    })
+
+    dispatch({
       type: FETCH_TUTOR_DATA,
-      payload: Network().get('tutors/tutor_by_user', {user_id: res.id}),
+      payload: Network().get('tutors/current_tutor'),
       meta: 'userAccountPlaceholder'
-    })),
-    meta: 'userAccountPlaceholder'
-  }),
+    })
+  },
   loadListSkillData: () => dispatch({
     type: FETCH_TEACHER_SKILL_SET,
     payload: Network().get('categories'),
@@ -153,5 +174,5 @@ const mapStateToDispatch = (dispatch) => ({
 })
 
 export default connect(
-  mapStateToProps, mapStateToDispatch
+  mapStateToProps, mapDispatchToProps
 )(TutorAccount);

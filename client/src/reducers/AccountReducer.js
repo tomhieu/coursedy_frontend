@@ -1,5 +1,5 @@
 import { AccountTypes } from '../constants/index'
-import * as AsyncActions from '../actions/AsyncActionCreator'
+import * as AsynPostfix from '../constants/AsynPostfix'
 
 const AccountReducer = (state = {
   showEmailConfirmationModal: false,
@@ -10,7 +10,7 @@ const AccountReducer = (state = {
   passwordUpdated: false
 }, action) => {
   switch (action.type) {
-    case AccountTypes.SET_ACCOUNT_USER:
+    case AccountTypes.FETCH_USER_ACCOUNT + AsynPostfix.FULFILLED:
       return {...state, user: action.payload}
     case AccountTypes.SHOW_REQUIRED_EMAIL_CONFIRMATION_MODAL:
       return {...state, showEmailConfirmationModal: true}
@@ -24,7 +24,7 @@ const AccountReducer = (state = {
       return {...state, editAvatarMode: true}
     case AccountTypes.DISABLE_EDIT_AVATAR:
       return {...state, editAvatarMode: false}
-    case AccountTypes.UPLOAD_AVATAR + AsyncActions.FULFILLED:
+    case AccountTypes.UPLOAD_AVATAR + AsynPostfix.FULFILLED:
       return {...state, user: action.payload}
     case AccountTypes.AVATAR_SELECTED:
       return {...state, avatarSelected: true}

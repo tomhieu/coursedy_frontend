@@ -12,29 +12,29 @@ export const updatePassword = (data) => {
 
 export const fetchUser = () => {
   return dispatch => {
-    Network().get('current_user')
-      .then((data) => {
-        dispatch({
-          type: AccountTypes.SET_ACCOUNT_USER,
-          payload: data
+    dispatch({
+      type: AccountTypes.FETCH_USER_ACCOUNT,
+      payload: Network().get('current_user')
+        .then((data) => {
+          dispatch(fetchTutor(data.id))
         })
+    })
 
-        dispatch(fetchTutor(data.id))
-      })
   }
 }
 
 export const savePersonData = (name, email, date_of_birth, address, gender, emailChanged) => {
   let body = {name, email, date_of_birth, address, gender}
   return dispatch => {
-    Network().update('/auth', body).then((response) => {
+    let response = dispatch({
+      type: AccountTypes.FETCH_USER_ACCOUNT,
+      payload: Network().update('/auth', body)
+    })
+    
+    response.then((response) => {
       if (emailChanged){
         dispatch(showEmailChangedPopup())
       }
-      dispatch({
-        type: AccountTypes.SET_ACCOUNT_USER,
-        payload: response
-      })
       dispatch(hideAccountEditForm())
     })
   }

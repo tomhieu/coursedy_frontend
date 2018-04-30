@@ -31,7 +31,6 @@ class RequireLoginModal extends Component {
   render() {
     const {handleSubmit, valid} = this.props;
     return (
-      {/* Require login modal */}
       <Modal show={this.props.show_require_login_modal} onHide={this.hideRequireLoginModal.bind(this)}>
         <Modal.Header>
           <Modal.Title>{this.context.t('course_enroll_require_login')}</Modal.Title>

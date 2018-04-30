@@ -1,7 +1,6 @@
 import React, { Component} from 'react';
-import cssModules from 'react-css-modules';
-import styles from '../Course.module.scss';
-
+import './CourseDetailLessons.scss';
+import { PUBLIC_COURSE_DETAIL_MENU_LESSONS } from "../../../constants/WebConstants.js"
 /**
   * @Course group template 2
   * @Use for CoursePage
@@ -11,37 +10,43 @@ class CourseDetailLessons extends Component {
     super(props);
   }
   render() {
+    const { course_sections, activeMenu } = this.props
+    const active = activeMenu === PUBLIC_COURSE_DETAIL_MENU_LESSONS
     return (
-      <div className="course-detail-lessons">
-        <div className="col-md-12">
-          <h3 className="heading-line">{this.context.t('course_detail')}</h3>
-          <div className="course-content">
+      <div id="course-detail-lessons" className={active ? "course-detail-section" : "d-none"}>
+        <div className="section-title text-left mb-20">
+          <h3>{this.context.t('course_lessons')}</h3>
+        </div>
+        <div className="course-lession-wrapper-2">
           {
-            this.props.course_sections.map((course_section, index) => (
-            <table className="table table-responsive" key={course_section.title + index}>
-              <thead>
-                <tr className={styles.rowPrimary}>
-                  <th className="text-left" colSpan="2">{course_section.title}</th>
-                </tr>
-              </thead>
-              <tbody>
-              {
-                course_section.lessons.map((lesson, index) => (
-                <tr key={lesson.title + index}>
-                  <td className="text-left">{lesson.title}</td>
-                  <td className="text-right">{lesson.period} phút</td>
-                </tr>
-                ))
-              }
-              </tbody>
-            </table>
+            course_sections.map((course_section, index) => (
+              <a href="#" className="course-lession-item-2" key={"sections-"+course_section.title+index}>
+                <div className="content-top">
+                  <div className="row">
+                    <div className="col-xs-12 col-sm-6 mb-15">
+                      <span className="lebal-lesson">{course_section.title}</span> 
+                    </div>
+                  </div>
+                </div>
+                <div className="content">
+                  {
+                    course_section.lessons.map((lesson, index) => (
+                      <div key={"lessons-" + lesson.title + index}>
+                        <h5>{lesson.title}</h5>
+                        <p>{lesson.description}</p>
+                        <ul>
+                          {lesson.documents.map((doc, index) => (
+                            <li><a href={doc.url} key={"document-"+doc.name+index}>{doc.name}</a></li>
+                          ))}
+                        </ul>
+                      </div>
+                    ))
+                  }
+                </div>
+              </a>
             ))
           }
-          </div>
-          {/*<div className="text-center">
-            <button className="btn btn-primary"></button>
-          </div>*/}
-        </div>{/* Course content */}
+        </div>
       </div>
     )
   }
@@ -54,4 +59,4 @@ CourseDetailLessons.contextTypes = {
 CourseDetailLessons.propTypes = {
 };
 
-export default cssModules(CourseDetailLessons, styles);
+export default CourseDetailLessons;
