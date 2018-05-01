@@ -8,6 +8,7 @@ import {TT} from "../../utils/locale";
 import ObjectUtils from "../../utils/ObjectUtils";
 import Cropper from 'react-cropper'
 import 'cropperjs/dist/cropper.css';
+import FormField from "components/Core/FormField";
 
 export const renderField = ({input, label, placeholder, type = 'text', disabled = false, customClassName, meta: {touched, error, warning}}) => (
   <div className='full-width-input-wrapper'>
@@ -56,7 +57,7 @@ export const renderDatePicker = ({input, label, type, disabled = false, meta: {t
 export const renderSelect = (selectOptions) => {
   return ({input, label, type, disabled = false, meta: {touched, error, warning}}) => (
     <div>
-      <Select2 {...input} disabled={disabled} data={selectOptions} />
+      <Select2 {...input} disabled={disabled} data={selectOptions}/>
       {touched && ((error && <span className='input-errors'>{error}</span>) || (warning &&
         <span>{warning}</span>))}
     </div>
@@ -120,7 +121,7 @@ class renderFileInput extends Component {
     let fileReader = new FileReader
     fileReader.onload = () => {
       self.setState({previewUrl: files[0].preview, content: fileReader.result});
-      if (self.handleUpload){
+      if (self.handleUpload) {
         self.handleUpload({
           uid: ObjectUtils.generateUUID(),
           fileName: files[0].name,
@@ -189,49 +190,18 @@ class avatarInput extends Component {
   }
 
 
-  onChange(files) {
-    let self = this
-    let fileReader = new FileReader
-    fileReader.onload = () =>  {
-      self.setState({previewUrl: files[0].preview});
-    }
-    fileReader.readAsDataURL(files[0])
+  onChange(file) {
+    this.setState({previewUrl: file.previewUrl});
   }
 
-  _crop(){
-    if (this.handleUpload){
+  _crop() {
+    if (this.handleUpload) {
       this.handleUpload({content: this.refs.cropper.getCroppedCanvas().toDataURL()})
     }
   }
 
   render() {
-    let {input: {value, ...input}, label, meta: {touched, error}, zoneHeight, ...custom} = this.props
-    let zone = <Dropzone
-      name={'_' + input.name}
-      onDrop={this.onChange.bind(this)}
-      multiple={false}
-      className="d-flex flex-vertical"
-      style={{
-        width: '100%',
-        height: zoneHeight || '300px',
-        borderWidth: '1px',
-        borderStyle: 'dashed',
-        borderColor: 'rgb(102, 102, 102)',
-        borderRadius: '3px',
-      }}
-      accept="image/*">
-      <div className="d-flex flex-auto justify-content-center align-items-center">
-        <div className={'d-flex flex-horizontal align-self-center padd-10'}>
-          <a className="icon-upload">
-            <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
-              <path d="M0 0h24v24H0z" fill="none"/>
-              <path d="M9 16h6v-6h4l-7-7-7 7h4zm-4 2h14v2H5z"/>
-            </svg>
-          </a>
-          <a className="ml-10">{TT.t('drag_and_drop')}</a>
-        </div>
-      </div>
-    </Dropzone>
+    let {zoneHeight} = this.props
 
     let cropper = <Cropper
       src={this.state.previewUrl || ''}
@@ -250,9 +220,11 @@ class avatarInput extends Component {
     />
 
     return (
-      <div className="">
+      <div>
         {
-          this.state.previewUrl ? cropper : zone
+          this.state.previewUrl ? cropper :
+            <FormField  {...this.props} onUpload={this.onChange.bind(this)} typeField="upload_file"
+                        formControlName='avatar' fieldId='avatar'/>
         }
       </div>
     )
