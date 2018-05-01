@@ -192,36 +192,20 @@ class avatarInput extends Component {
   onChange(files) {
     let self = this
     let fileReader = new FileReader
-    fileReader.onload = () => {
-      self.setState({previewUrl: files[0].preview, content: fileReader.result});
-      if (self.handleUpload){
-        self.handleUpload({
-          uid: ObjectUtils.generateUUID(),
-          fileName: files[0].name,
-          previewUrl: files[0].preview,
-          content: fileReader.result
-        });
-      }
+    fileReader.onload = () =>  {
+      self.setState({previewUrl: files[0].preview});
     }
     fileReader.readAsDataURL(files[0])
   }
 
   _crop(){
-    let self = this
-    if (self.handleUpload){
-      self.handleUpload({content: this.refs.cropper.getCroppedCanvas().toDataURL()})
+    if (this.handleUpload){
+      this.handleUpload({content: this.refs.cropper.getCroppedCanvas().toDataURL()})
     }
   }
 
   render() {
-    let {input: {value, ...input}, label, meta: {touched, error}, zoneHeight, internalPreview, ...custom} = this.props
-    let borderWidth = internalPreview && this.state.previewUrl != null ? '0' : '1px'
-    let previewImageStyle = internalPreview ? {
-      border: 'solid 1px rgb(102, 102, 102)',
-      width: '100%',
-      borderStyle: 'dashed'
-    } : {}
-
+    let {input: {value, ...input}, label, meta: {touched, error}, zoneHeight, ...custom} = this.props
     let zone = <Dropzone
       name={'_' + input.name}
       onDrop={this.onChange.bind(this)}
@@ -229,16 +213,21 @@ class avatarInput extends Component {
       className="d-flex flex-vertical"
       style={{
         width: '100%',
-        height: '150px',
-        borderWidth: borderWidth,
+        height: zoneHeight || '300px',
+        borderWidth: '1px',
         borderStyle: 'dashed',
         borderColor: 'rgb(102, 102, 102)',
-        borderRadius: '5px',
+        borderRadius: '3px',
       }}
       accept="image/*">
       <div className="d-flex flex-auto justify-content-center align-items-center">
         <div className={'d-flex flex-horizontal align-self-center padd-10'}>
-          <a className="icon-upload"></a>
+          <a className="icon-upload">
+            <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M0 0h24v24H0z" fill="none"/>
+              <path d="M9 16h6v-6h4l-7-7-7 7h4zm-4 2h14v2H5z"/>
+            </svg>
+          </a>
           <a className="ml-10">{TT.t('drag_and_drop')}</a>
         </div>
       </div>
@@ -247,7 +236,7 @@ class avatarInput extends Component {
     let cropper = <Cropper
       src={this.state.previewUrl || ''}
       ref='cropper'
-      style={{height: '200px', width: '100%'}}
+      style={{height: zoneHeight || '300px', width: '100%'}}
       aspectRatio={1 / 1}
       crop={this._crop.bind(this)}
       checkCrossOrigin={false}
