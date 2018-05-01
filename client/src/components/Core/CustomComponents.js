@@ -180,7 +180,7 @@ class renderFileInput extends Component {
 export const renderSingleFileInput = renderFileInput
 
 
-class avatarInput extends Component {
+class avatarInput extends renderFileInput {
   constructor(props) {
     super(props);
     this.state = {
@@ -190,8 +190,13 @@ class avatarInput extends Component {
   }
 
 
-  onChange(file) {
-    this.setState({previewUrl: file.previewUrl});
+  onChange(files) {
+    let self = this
+    let fileReader = new FileReader
+    fileReader.onload = () => {
+      self.setState({previewUrl: files[0].preview});
+    }
+    fileReader.readAsDataURL(files[0])
   }
 
   _crop() {
@@ -222,9 +227,7 @@ class avatarInput extends Component {
     return (
       <div>
         {
-          this.state.previewUrl ? cropper :
-            <FormField  {...this.props} onUpload={this.onChange.bind(this)} typeField="upload_file"
-                        formControlName='avatar' fieldId='avatar'/>
+          this.state.previewUrl ? cropper : super.render()
         }
       </div>
     )
