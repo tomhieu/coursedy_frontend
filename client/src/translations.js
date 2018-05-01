@@ -217,7 +217,7 @@ export const translations = {
      */
     "section_title": "Mô tả",
     "section_name": "Tên",
-    "course_specialize": "Ngành Học",
+    "course_specialize": "Môn học",
     "level": "Cấp độ",
     /*
      * Filter Course Page
