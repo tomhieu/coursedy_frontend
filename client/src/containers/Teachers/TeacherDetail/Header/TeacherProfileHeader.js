@@ -38,7 +38,7 @@ const TeacherProfileHeader = (props) => {
 // define category link
 const TeacherCategories = ({categories}) => {
   return (
-    <div className="categories mb-10">
+    <div className="categories mb-5">
       {
         categories.map((category) => {
           return (

@@ -1,10 +1,9 @@
 @import "../../../../styles/global_style";
 
 .teacher-detail {
+  font-size: 15px;
   &__header {
     border: 1px solid #E6E6E6;
-    background: #F7F7F7;
-
     &._fixed {
       position: fixed;
       left: 0;
@@ -13,10 +12,22 @@
       z-index: 999;
       background-color: #fff;
     }
+
+    @media only screen and (max-width: 767.98px) {
+      &._fixed {
+        position: relative;
+        z-index: 999;
+        background-color: #fff;
+      }
+    }
   }
 
   &__content {
     margin-top: 50px;
+    @media only screen and (max-width: 767.98px) {
+      margin-top: 50px;
+    }
+
     &__background, &__courses {
       border: 1px solid #E6E6E6;
       border-radius: 5px;
@@ -29,7 +40,6 @@
       border-radius: 5px;
       padding: 30px 40px 40px;
     }
-
   }
 
   &__more-info {
@@ -38,15 +48,14 @@
   }
 
   h3 {
-    font-weight: 300;
-    margin: 0 0 15px;
     color: $md-color-pink;
+    font-size: 25px;
   }
 
   h4 {
-    font-weight: 300;
-    text-transform: uppercase;
+    font-size: 23px;
     margin: 0 0 15px;
+    text-transform: uppercase;
   }
 
   h6 {
@@ -127,12 +136,11 @@
       .category {
         color: $md-color-pink;
         border: 1px solid $md-color-pink;
-        font-size: 11px;
-        letter-spacing: 1.5px;
         line-height: 1;
         padding: 3px 8px;
         border-radius: 2px;
         margin: 0 5px 5px 0;
+        font-size: 12px;
 
         &:hover {
           background: $md-color-pink;
@@ -160,22 +168,33 @@
       a {
         display: block;
         line-height: 30px;
-        background: $color-bg-light-blue;
-        color: #FFF;
+        background: #fff;
         float: left;
         width: 30px;
         height: 30px;
         text-align: center;
-        margin-right: 1px;
+        margin-right: 5px;
         font-size: 17px;
         border-radius: 100%;
 
+        &.twitter {
+          border: #00aced 1px solid;
+          color: #00aced;
+        }
+
         &.twitter:hover {
           background: #00aced;
+          color: #fff;
+        }
+
+        &.linked {
+          border: #007bb5 1px solid;
+          color: #007bb5;
         }
 
         &.linked:hover {
-          background: #0077B5;
+          background: #007bb5;
+          color: #fff;
         }
       }
     }
@@ -188,7 +207,6 @@
 
     @media only screen and (max-width: 767.98px) {
       margin-top: 10px;
-      //font-size: 13px;
       h3 {
         font-size: 24px;
       }

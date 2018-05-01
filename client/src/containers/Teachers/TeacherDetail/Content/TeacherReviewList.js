@@ -49,6 +49,7 @@ class TeacherReviewList extends Component {
                   totalItemsCount={headers.total}
                   pageRangeDisplayed={5}
                   onChange={this.handlePageChange.bind(this)}
+                  innerClass="pagination mt-15"
                 />
               </div>
               <div className="col-xs-12 col-sm-4">
