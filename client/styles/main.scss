@@ -981,4 +981,12 @@ body.application {
       border-radius: 0;
     }
   }
+
+  .remove-upload-file {
+    position: absolute;
+    z-index: 999999;
+    color: $white-color;
+    border-left: none;
+    border-radius: 0;
+  }
 }

@@ -205,6 +205,10 @@ class avatarInput extends renderFileInput {
     }
   }
 
+  resetFormField() {
+    this.setState({previewUrl: null})
+  }
+
   render() {
     let {zoneHeight} = this.props
 
@@ -220,8 +224,6 @@ class avatarInput extends renderFileInput {
       center={true}
       responsive={true}
       scalable={true}
-      zoomable={true}
-      responsive={true}
     />
 
     return (
@@ -229,6 +231,14 @@ class avatarInput extends renderFileInput {
         {
           this.state.previewUrl ? cropper : super.render()
         }
+        {
+          this.state.previewUrl ?
+            (<a style={{top: `${parseInt(zoneHeight)/2}px`}} className='btn btn-primary remove-upload-file' onClick={this.resetFormField.bind(this)}>
+              <i className='fa fa-trash'></i>
+            </a>) :
+            (<span></span>)
+        }
+
       </div>
     )
   }
