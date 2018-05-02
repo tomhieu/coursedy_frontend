@@ -1,5 +1,4 @@
 import React, {Component} from "react";
-import {CURRENCIES} from "../../../constants/Courses";
 import FormField from "../../Core/FormField";
 import ObjectUtils from "../../../utils/ObjectUtils";
 import styles from "./../Course.module.scss";
@@ -7,15 +6,13 @@ import {SERVER_NAME} from "../../../utils/CommonConstant";
 import CourseFormItem from "./CourseFormItem";
 import SelectionTeachingDay from "./SelectionTeachingDay";
 import CourseCategory from "./CourseCategory";
+import CourseFeeComponent from "./CourseFeeComponent";
 
 class CourseForm extends Component {
 
   render() {
     const {handleSubmit, editMode, onDropCoverImage, cover_image, submitting, pristine,
       valid, courseData, categories, courseSpecializes, selectedDays, isSamePeriod, isFree} = this.props;
-    const concurrency = CURRENCIES.map((type) => {
-      return {text: type, id: type};
-    });
     return (
       <div>
         <form onSubmit={handleSubmit(this.props.onSubmit)} multiple={true} className="inline-form">
@@ -91,41 +88,11 @@ class CourseForm extends Component {
           <div className='row'>
             <div className='col-md-12 col-sm-12'>
               <div className="d-flex flex-horizontal">
-                <div className="d-flex flex-col-1">
-                  <div className="lg-field">
-                    <CourseFormItem editMode={editMode} fieldId="tuition_fee_Id"
-                                    fieldLabel={this.context.t("tuition_fee")}
-                                    isMandatory={true}
-                                    fieldName="tuition_fee"
-                                    typeField="custom_input"
-                                    content={editMode ? ObjectUtils.currencyFormat(courseData.tuition_fee, "VND") : ""}
-                                    disabled={isFree}
+                <CourseFeeComponent isFree={isFree}
+                                    editMode={editMode}
+                                    courseData={courseData}
                                     {...this.props}>
-                    </CourseFormItem>
-                  </div>
-                  <div className="ml-10 currency-field">
-                    <CourseFormItem editMode={editMode} fieldId="currency_Id"
-                                    fieldLabel={this.context.t("tuition_currency")}
-                                    isMandatory={false}
-                                    fieldName="currency"
-                                    typeField="custom_select"
-                                    content={editMode ? courseData.currency : ""}
-                                    disabled={isFree}
-                                    options={concurrency}
-                                    {...this.props}>
-                    </CourseFormItem>
-                  </div>
-                  <div className={editMode ? "ml-20 d-flex flex-auto course-edit-free" : "ml-20 d-flex flex-auto course-free"}>
-                    <CourseFormItem editMode={editMode} fieldId="is_free_id"
-                                    fieldLabel={this.context.t("course_free")}
-                                    isMandatory={false} showLabel={false}
-                                    fieldName="is_free"
-                                    typeField="checkbox"
-                                    content={editMode ? courseData.is_free ? this.context.t("course_free") : this.context.t("course_not_free") : ""}
-                                    {...this.props}>
-                    </CourseFormItem>
-                  </div>
-                </div>
+                </CourseFeeComponent>
               </div>
             </div>
           </div>
@@ -170,7 +137,7 @@ class CourseForm extends Component {
               <div className="row">
                 <div className="col-md-12 col-sm-12">
                   <button type="submit" className="btn btn-primary btn-link-dark signin-btn mr-10"
-                          disabled={((pristine || submitting) && courseData) || !valid}>
+                          disabled={(pristine || submitting) && courseData}>
                     {this.context.t("save_course")}
                   </button>
                 </div>

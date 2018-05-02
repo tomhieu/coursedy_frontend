@@ -15,6 +15,7 @@ import {
   DELETE_LESSON
 } from "../../../actions/AsyncActionCreator";
 import Network from "utils/network";
+import {TT} from "utils/locale";
 
 class LessonDetailFormContainer extends Component {
   addDocumentForLesson(document) {
@@ -58,10 +59,10 @@ class LessonDetailFormContainer extends Component {
             <div className="col-sm-4 col-md-4">
               <InlineEditFormField
                 activated={this.props.activatedField.indexOf("lessonPeriodId" + sectionUniqueKey) >= 0}
-                fieldId={"lessonPeriodId" + sectionUniqueKey} fieldLabel={this.context.t("lesson_period")}
+                fieldId={"lessonPeriodId" + sectionUniqueKey} fieldLabel={this.context.t("lesson_period_short")}
                 isMandatoryField={true} formControlName="period" typeField="custom_input"
                 onClosedField={this.onClosedField.bind(this)}
-                content={lesson.period + ' phut'} displayStyle="default-field" {...this.props}
+                content={lesson.period + ' ' + TT.t('lesson_period_unit')} displayStyle="default-field" {...this.props}
               ></InlineEditFormField>
             </div>
           </div>

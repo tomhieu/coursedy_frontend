@@ -4,6 +4,7 @@ import InlineEditFormField from "../../../components/Core/InlineEditFormField";
 import {connect} from "react-redux";
 import {reduxForm} from "redux-form";
 import * as CourseActions from "actions/CourseFormActionCreator";
+import {validate} from "../../../validations/SectionFormValidator";
 
 class SectionDetailContainer extends Component {
   onClosedField(fieldIds) {
@@ -48,7 +49,7 @@ const mapStateToProps = (state, props) => {
 export default connect(
     mapStateToProps
 )(reduxForm({
-    form: 'SectionDetailForm',
     fields: ['title'],
+    validate,
     enableReinitialize: true
 })(SectionDetailContainer));

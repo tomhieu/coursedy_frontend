@@ -52,7 +52,7 @@ class InlineEditFormField extends FormField {
         return (
           <div className={displayStyle + ' inline-field d-flex flex-horizontal'}>
             {showLabel && fieldLabel !== undefined && fieldLabel !== '' ? (<label className="control-label">{fieldLabel}: </label>) : ''}
-            <span className='pre-wrap'>{this.props.content}</span>
+            <label className='pre-wrap'>{this.props.content}</label>
             <span className='inline-edit' onClick={() => this.showEditForm(activatedFieldIds)}>
               <i className="fa fa-pencil"></i>
             </span>

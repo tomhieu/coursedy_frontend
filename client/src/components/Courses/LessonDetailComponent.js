@@ -9,19 +9,6 @@ export class LessonDetailComponent extends Component {
     this.state = {documents: []}
   }
 
-  onDropDocument(doc) {
-    let copyDocuments = this.state.documents.concat();
-    copyDocuments.push(doc);
-    this.setState({documents: copyDocuments});
-    this.props.addDocumentForLesson(doc);
-  }
-
-  onDeleteDocumentLesson(docUid) {
-    let copyDocuments = this.state.documents.filter(doc => doc.uid === docUid);
-    this.setState({documents: copyDocuments});
-    this.props.onDeleteDocumentLesson(docUid);
-  }
-
   render() {
     const {handleSubmit} = this.props;
     return (
@@ -36,7 +23,7 @@ export class LessonDetailComponent extends Component {
                        isMandatoryField={true} formControlName="period" typeField="custom_input"/>
           </div>
           <div>
-            <FormField fieldId="lessonDesciptionId" fieldLabel={this.context.t("lesson_name")}
+            <FormField fieldId="lessonDesciptionId" fieldLabel={this.context.t("lesson_desc")}
                        isMandatoryField={true} formControlName="description" typeField="custom_textarea"/>
           </div>
         </div>

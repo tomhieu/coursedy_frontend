@@ -54,6 +54,7 @@ export const translations = {
      */
     "course_title": "Tên khoá học",
     "course_title_required": "Vui lòng nhập tên khoá học",
+    "section_title_required": "Vui lòng nhập Tuần học",
     "sample_course_title": "Luyện thi TOEIC cấp tốc",
     "start_date": "Ngày bắt đầu dự kiến",
     "invalid_start_date": "Ngày nhập  phải theo định dạng dd/MM/yyyy",
@@ -86,7 +87,8 @@ export const translations = {
     "course_category": "Lớp học",
     "course_level": "Cấp độ",
     "category": "Lớp học",
-    "category_mandatory": "Vui lòng chọn lớp học",
+    "category_mandatory": "Vui lòng chọn loại khoá học",
+    "course_specialize_mandatory": "Vui lòng chọn loại ngành học",
     "course_level_mandatory": "Vui lòng chọn cấp độ",
     "course_modification": "Sửa Khoá Học",
     "cover_image": "Ảnh đại diện",
@@ -116,6 +118,8 @@ export const translations = {
     'course_comments_load_more': 'Tải thêm bình luận',
     'number_of_comment': '{numOfComment} bình luận',
     'no_comment': 'Không bình luận',
+    'add_more_lesson': 'Thêm bài học',
+    'delete_lesson': 'Xoá bài học',
     /*
      * Lesson Page
      */
@@ -123,15 +127,17 @@ export const translations = {
     "lesson_name": "Tên bài học",
     "lesson_desc": "Tóm tắt nội dung",
     "lesson_material": "Tài liệu",
-    "lesson_period": "Thời lượng",
-    "lesson_save_btn": "Tạo buổi học",
-    "lesson_delete_btn": "Xoá buổi học",
+    "lesson_period": "Thời lượng bài học (đơn vị: phút)",
+    "lesson_period_unit": "phút",
+    "lesson_period_short": "Thời lượng",
+    "lesson_save_btn": "Tạo bài học",
+    "lesson_delete_btn": "Xoá bài học",
     "lesson_link_edit": "Thêm chi tiết",
-    "lesson_list_next": "Thêm buổi học",
-    "lesson_popup_edit_title": "Chi tiết nội dung buổi học",
-    "lesson_required": "Vui lòng nhập tên buổi học",
-    "lesson_priode_required": "Vui lòng nhập thời lượng buổi học",
-    "lesson_desc_required": "Vui lòng nhập mô tả buổi học",
+    "lesson_list_next": "Thêm bài học",
+    "lesson_popup_edit_title": "Chi tiết nội dung bài học",
+    "lesson_required": "Vui lòng nhập tên bài học",
+    "lesson_priode_required": "Vui lòng nhập thời lượng bài học",
+    "lesson_desc_required": "Vui lòng nhập mô tả bài học",
     "save_course": "Tạo khoá học",
     /*
      * Tutor Account Page
