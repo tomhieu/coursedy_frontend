@@ -14,9 +14,9 @@ export class UserAvatarForm extends Component {
     this.props.onSubmit(this.fileContent)
     this.props.deselectAvatar()
   }
-
+  
   render() {
-    const {handleSubmit, user, avatarSelected} = this.props;
+    const {handleSubmit, user, avatarSelected, deselectAvatar} = this.props;
 
     return (
       <form className='block-center-align' onSubmit={handleSubmit(this.submit.bind(this))}>
@@ -26,6 +26,7 @@ export class UserAvatarForm extends Component {
                    showLabel={false} zoneHeight={'200px'}
                    onUpload={this.setFileContent.bind(this)}
                    fieldLabel=''
+                   onFileRemoved={this.props.deselectAvatar}
         />
 
         <div className='row'>
