@@ -355,7 +355,7 @@ export const translations = {
     "teacher_background": "Lý Lịch",
     "teacher_short_introduce": " Giới thiệu",
     "teacher_education": "Giáo dục",
-    "teacher_degree": "Bằng cấp",
+    "teacher_degrees": "Chứng Chỉ/Bằng cấp",
     "teacher_experience": "Kinh nghiệm làm việc",
     "teacher_awards": "Giải thưởng",
     "teacher_interest": "Sở thích",

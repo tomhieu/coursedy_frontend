@@ -7,8 +7,12 @@ import TeacherBackground from './Content/TeacherBackground'
 import TeacherReviewList from './Content/TeacherReviewList'
 import TeacherProfileHeader from './Header/TeacherProfileHeader'
 import {
-  fetchTeacherDetail, fetchTeacherEducations, fetchTeacherWorkExperiences
-} from 'actions/TeacherCreators'
+  fetchTeacherDetail,
+  fetchTeacherEducations,
+  fetchTeacherWorkExperiences,
+  fetchTeacherCourses,
+  fetchTeacherReviews
+} from '../../../actions/TeacherCreators'
 
 
 class TeacherDetail extends Component {
@@ -16,9 +20,11 @@ class TeacherDetail extends Component {
     this.props.fetchTeacherDetail({ teacherId: parseInt(this.props.match.params.id) })
     this.props.fetchTeacherEducations({ teacherId: parseInt(this.props.match.params.id) })
     this.props.fetchTeacherWorkExperiences({ teacherId: parseInt(this.props.match.params.id) })
+    this.props.fetchTeacherReviews({ teacherId: parseInt(this.props.match.params.id) })
+    this.props.fetchTeacherCourses({ teacherId: parseInt(this.props.match.params.id) })
   }
 
-  teacherBackgroundSection() {
+  renderTeacherBackground() {
     return (
       <div className="row">
         <div className="col-sm-9">
@@ -28,7 +34,8 @@ class TeacherDetail extends Component {
     )
   }
 
-  teacherReviewSection() {
+  renderTeacherReview() {
+    if (!this.props.teacher.reviews || !this.props.teacher.reviews.data.length) { return null }
     return (
       <div className="row">
         <div className="col-sm-12">
@@ -43,7 +50,7 @@ class TeacherDetail extends Component {
     )
   }
 
-  teacherTaughtCoursesSection() {
+  renderTeacherTaughtCourses() {
     const { teacher } = this.props
     if (!teacher.courses || !teacher.courses.data.length) {
       return null
@@ -102,9 +109,9 @@ class TeacherDetail extends Component {
 
         <section className="teacher-detail__content">
           <section className="container">
-            {this.teacherBackgroundSection()}
-            {this.teacherReviewSection()}
-            {this.teacherTaughtCoursesSection()}
+            {this.renderTeacherBackground()}
+            {this.renderTeacherReview()}
+            {this.renderTeacherTaughtCourses()}
           </section>
         </section>
       </section>
@@ -125,5 +132,7 @@ const mapStateToProps = (state) => {
 export default connect(mapStateToProps, {
   fetchTeacherDetail,
   fetchTeacherEducations,
-  fetchTeacherWorkExperiences
+  fetchTeacherWorkExperiences,
+  fetchTeacherReviews,
+  fetchTeacherCourses,
 })(TeacherDetail)

@@ -1,19 +1,15 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from 'react'
+import { Link } from 'react-router-dom'
 import RatingItem from 'components/Rating'
+import defaultAvatar from '../../../../../images/default_avatar.png'
 
-// todo:
-/*
-* default avatar
-*
-* */
 const TeacherProfileHeader = (props) => {
   const { teacher } = props
   if (!teacher.user) { return null }
   return (
     <div className="d-flex flex-column flex-sm-column flex-md-row flex-lg-row teacher-detail-profile-header">
       <div className="profile-picture">
-        <img src={teacher.user.avatar} />
+        <img src={teacher.user.avatar ? teacher.user.avatar : defaultAvatar} />
       </div>
       <div className="profile-summary">
         <RatingItem num_stars={(teacher.user.rating_points/teacher.user.rating_count) || 0} num_reviews={teacher.user.rating_counts || 0}/>
@@ -34,8 +30,6 @@ const TeacherProfileHeader = (props) => {
   )
 }
 
-// Todo
-// define category link
 const TeacherCategories = ({categories}) => {
   return (
     <div className="categories mb-5">

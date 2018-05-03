@@ -24,10 +24,9 @@ export const updateFilterTeacher = (filters) => {
 };
 
 export const fetchTeacherDetail = ({teacherId}) => {
-  // TODO change payload to Network().get('tutors/search', query) when teacher detail api complete
   return {
-    type: asyncActs.FETCH_TEACHER_DETAIL + asyncActs.FULFILLED,
-    payload: dummyTeacherDetail({id: teacherId}),
+    type: asyncActs.FETCH_TEACHER_DETAIL,
+    payload:  Network().get(`tutors/${teacherId}`),
   }
 }
 
@@ -42,5 +41,19 @@ export const fetchTeacherWorkExperiences = ({teacherId}) => {
   return {
     type: asyncActs.FETCH_TEACHER_WORK_EXPERIENCES,
     payload: Network().get(`tutors/${teacherId}/tutor_work_experiences`)
+  };
+}
+
+export const fetchTeacherReviews = ({teacherId}) => {
+  return {
+    type: asyncActs.FETCH_TEACHER_REVIEWS,
+    payload: Network().get(`tutors/${teacherId}/tutor_reviews`)
+  };
+}
+
+export const fetchTeacherCourses = ({teacherId}) => {
+  return {
+    type: asyncActs.FETCH_TEACHER_COURSES,
+    payload: Network().get(`users/${teacherId}/courses`)
   };
 }

@@ -5,15 +5,16 @@ class TeacherBackground extends Component {
   render() {
     return (
       <div className="teacher-detail__content__background">
-        { this.header() }
-        { this.shortIntroduce() }
-        { this.education() }
-        { this.workExperience() }
+        { this.renderHeader() }
+        { this.renderShortIntroduce() }
+        { this.renderEducation() }
+        { this.renderDegrees() }
+        { this.renderWorkExperience() }
       </div>
     )
   }
 
-  header() {
+  renderHeader() {
     return (
       <div className="mb-20">
         <h3>{this.context.t('teacher_background')}</h3>
@@ -21,7 +22,7 @@ class TeacherBackground extends Component {
     )
   }
 
-  shortIntroduce() {
+  renderShortIntroduce() {
     if (!this.props.teacher.description) { return null }
     return (
       <div className="profile-list-item">
@@ -34,8 +35,8 @@ class TeacherBackground extends Component {
     )
   }
 
-  education() {
-    if (!this.props.teacher.qualifications || !this.props.teacher.qualifications.length) { return null }
+  renderEducation() {
+    if (!this.props.teacher.educations || !this.props.teacher.educations.length) { return null }
     return (
       <div className="profile-list-item">
         <div className="icon">
@@ -43,12 +44,12 @@ class TeacherBackground extends Component {
         </div>
         <h4>{this.context.t('teacher_education')}</h4>
         <ul className="the-list">
-          { this.props.teacher.qualifications.map((qualification, index) => {
+          { this.props.teacher.educations.map((education, index) => {
             return (
               <li key={index}>
-                <h6>{qualification.degree_name}</h6>
-                <span className="block mb-10"><span className="text-primary">{qualification.school.name}</span> - <span className="font-italic">year {qualification.graduation_year}</span></span>
-                <p>{qualification.description}</p>
+                <h6>{education.title}</h6>
+                <span className="block mb-10"><span className="text-primary">{education.graduated_from}</span> - <span className="font-italic">year {education.end_date}</span></span>
+                <p>{education.description}</p>
               </li>
             )
           })}
@@ -57,17 +58,32 @@ class TeacherBackground extends Component {
     )
   }
 
-  certifications() {
+  renderDegrees() {
+    const { degrees } = this.props.teacher
+    if (!degrees || !degrees.length) { return null }
     return (
-      <div>
-
+      <div className="profile-list-item">
+        <div className="icon">
+          <span><i className="fa fa-briefcase"></i></span>
+        </div>
+        <h4>{this.context.t('teacher_degrees')}</h4>
+        {degrees.map((degree, index) => {
+            return (
+              <div className="row mb-10" key={index}>
+                <div className="col-sm-2">
+                  <img src={'http://66.175.219.194' + degree.url} width="auto" height="30"/>
+                </div>
+                <div className="col-sm-7">{degree.name}</div>
+              </div>
+            )
+        })}
       </div>
     )
   }
 
-  workExperience() {
-    const { experiences } = this.props.teacher
-    if (!experiences || !experiences.length) { return null }
+  renderWorkExperience() {
+    const { workExperiences } = this.props.teacher
+    if (!workExperiences || !workExperiences.length) { return null }
     return (
       <div className="profile-list-item">
         <div className="icon">
@@ -75,11 +91,11 @@ class TeacherBackground extends Component {
         </div>
         <h4>{this.context.t('teacher_experience')}</h4>
         <ul className="the-list">
-          {experiences.map((experience, index) => {
+          {workExperiences.map((experience, index) => {
             return (
               <li key={index}>
-                <h6>{experience.job_title}</h6>
-                <span className="block mb-10"><span className="text-primary">{experience.company.name}</span> - <span className="font-italic">year {experience.year_work}</span></span>
+                <h6>{experience.title}</h6>
+                <span className="block mb-10"><span className="text-primary">{experience.company}</span> - <span className="font-italic">year {experience.start_date} - {experience.end_date}</span></span>
                 <p>{experience.description}</p>
               </li>
             )
