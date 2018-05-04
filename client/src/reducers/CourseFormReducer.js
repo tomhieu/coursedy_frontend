@@ -66,7 +66,7 @@ const courseDetails = (state = {
       });
     case asyncActions.CREATE_NEW_COURSE + asyncActions.FULFILLED:
       return Object.assign({}, state, {
-        courseData: {cover_image: null}, editMode: false, isFetching: false,
+        courseData: action.payload, editMode: false, isFetching: false,
         listSection: [], showSectionPopup: false, activatedField: null, createCourseSucess: true
       });
     /**

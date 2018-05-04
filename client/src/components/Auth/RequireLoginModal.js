@@ -1,10 +1,7 @@
-import React, { Component} from 'react';
+import React, {Component} from 'react';
 import cssModules from 'react-css-modules';
 // import styles from '../Course.module.scss';
-import {connect} from "react-redux";
-import {reduxForm} from "redux-form";
-import {Modal, Button} from 'react-bootstrap';
-import FormField from "../../../components/Core/FormField";
+import {Button, Modal} from 'react-bootstrap';
 import {validate} from "../../../validations/CommonValidator";
 import * as Actions from "../../../actions/PublicCourseActionCreator";
 

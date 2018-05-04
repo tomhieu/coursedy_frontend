@@ -82,7 +82,7 @@ export const renderPreviewFile = (file, doDeleteNewUploadFile, saveDocument) => 
     previewClass = "doc-image-preview";
   }
   return (
-    <div className="d-flex flex-horizontal mt-10 mb-10" key={file.uid}>
+    <div className="d-flex flex-horizontal mt-10 mb-10" key={"document_" + file.id}>
       <div className={previewClass}></div>
       <div className="file-name-wrapper">
         <span className="degree-filename ml-10" title={file.fileName}>{file.fileName}</span>

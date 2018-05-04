@@ -4,14 +4,10 @@ import LessonLineComponent from "../../../components/Courses/LessonLineComponent
 import {connect} from "react-redux";
 import cssModules from "react-css-modules";
 import styles from "./ListLesson.module.scss";
-import {
-    addLesson,
-    createCourse,
-    deleteLesson,
-    editLessonDetail
-} from "../../../actions/CourseFormActionCreator";
+import {addLesson, createCourse, deleteLesson, editLessonDetail} from "../../../actions/CourseFormActionCreator";
 import {reduxForm} from "redux-form";
 import {Link} from "react-router-dom";
+
 class ListLessonContainer extends Component {
     constructor(props) {
         super(props);

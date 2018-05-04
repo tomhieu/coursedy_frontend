@@ -4,15 +4,8 @@ import {CertificateForm} from "../../../components/Account/Tutor/CertificateForm
 import {reduxForm} from "redux-form";
 import {connect} from "react-redux";
 import {dispatch} from "redux";
-import {
-  addNewDocument,
-  removeUploadedDocument,
-  loadDegrees
-} from "../../../actions/Tutor/Account/TutorAccountActionCreator";
 
-import * as asyncActs from '../../../actions/AsyncActionCreator';
-import * as courseActionTypes from '../../../constants/Courses';
-import {CERTIFICATE} from "../../../actions/AsyncActionCreator";
+import {CERTIFICATE} from '../../../actions/AsyncActionCreator';
 import Network from "utils/network";
 
 class CertificateContainer extends Component {

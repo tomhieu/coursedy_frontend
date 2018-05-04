@@ -5,6 +5,7 @@ import * as CourseActions from "../../../actions/CourseFormActionCreator";
 import FormField from "../../../components/Core/FormField";
 import FormDialogComponent from "../../Dialog/FormDialogContainer";
 import {connect} from "react-redux";
+import {validate} from "../../../validations/SectionFormValidator";
 
 class SectionCreationPopupContainer extends Component {
   render() {
@@ -51,5 +52,6 @@ const mapStateToProps = (state) => {
 export default connect(
   mapStateToProps
 )(reduxForm({
-  form: 'sectionCreationForm'
+  form: 'sectionCreationForm',
+  validate,
 })(SectionCreationPopupContainer));

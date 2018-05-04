@@ -5,11 +5,8 @@ import styles from "./TutorForm.module.scss";
 import {reduxForm} from "redux-form";
 import {connect} from "react-redux";
 import cssModules from "react-css-modules";
+import {TutorAccountActions} from '../../../actions/index'
 import {validate} from '../../../validations/TutorFormValidation'
-import {
-  TutorAccountActions
-} from '../../../actions/index'
-import {renderPreviewFile} from "../../../components/Core/CustomComponents";
 
 class TutorForm extends Component {
   constructor(props) {

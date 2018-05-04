@@ -1,6 +1,6 @@
-import {Component} from "react";
-import {reduxForm, submit} from 'redux-form';
 import * as React from "react";
+import {Component} from "react";
+import {submit} from 'redux-form';
 import {connect} from "react-redux";
 import Modal from "react-bootstrap4-modal";
 
@@ -15,7 +15,13 @@ class FormDialogContainer extends Component {
 
   cancelPopup() {
     this.props.cancelCallback();
-    this.props.reset();
+  }
+
+  componentWillReceiveProps(nextProps) {
+    // reset form before closing popup
+    if (!nextProps.show) {
+      this.props.reset();
+    }
   }
 
   render() {
@@ -36,7 +42,7 @@ class FormDialogContainer extends Component {
           <button type="button" className="btn btn-primary" onClick={this.onSubmitPopup.bind(this)}>
             {okLabel}
           </button>
-          <button type="button" className="btn btn-secondary" onClick={this.cancelPopup.bind(this)}>
+          <button type="button" className="btn cancel-button" onClick={this.cancelPopup.bind(this)}>
             {cancelLabel}
           </button>
         </div>

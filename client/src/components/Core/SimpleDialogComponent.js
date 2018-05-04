@@ -25,7 +25,7 @@ class SimpleDialogComponent extends Component {
             }
             {
               cancelCallback && cancelLabel ?
-              <button type="button" className="btn btn-secondary" onClick={cancelCallback}>
+              <button type="button" className="btn cancel-button" onClick={cancelCallback}>
                 {cancelLabel}
               </button> : null
             }

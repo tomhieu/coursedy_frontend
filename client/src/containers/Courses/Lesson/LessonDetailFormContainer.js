@@ -1,19 +1,21 @@
 import InlineEditFormField from "../../../components/Core/InlineEditFormField";
 import FormField from "../../../components/Core/FormField";
+import * as React from "react";
 import {Component} from "react";
 import {renderPreviewFile} from "../../../components/Core/CustomComponents";
-import * as LessonActions from "../../../actions/LessonActionCreator";
 import {reduxForm} from "redux-form";
 import {connect} from "react-redux";
 import {validate} from '../../../validations/LessonFormValidator';
-import * as React from "react";
 import * as CourseActions from "actions/CourseFormActionCreator";
 import {
   ADD_DOCUMENT,
-  ADD_DOCUMENT_FOR_LESSON, DELETE_DOCUMENT, DELETE_DOCUMENT_FOR_LESSON,
+  ADD_DOCUMENT_FOR_LESSON,
+  DELETE_DOCUMENT,
+  DELETE_DOCUMENT_FOR_LESSON,
   DELETE_LESSON
 } from "../../../actions/AsyncActionCreator";
 import Network from "utils/network";
+import {TT} from "utils/locale";
 
 class LessonDetailFormContainer extends Component {
   addDocumentForLesson(document) {
@@ -57,10 +59,10 @@ class LessonDetailFormContainer extends Component {
             <div className="col-sm-4 col-md-4">
               <InlineEditFormField
                 activated={this.props.activatedField.indexOf("lessonPeriodId" + sectionUniqueKey) >= 0}
-                fieldId={"lessonPeriodId" + sectionUniqueKey} fieldLabel={this.context.t("lesson_period")}
+                fieldId={"lessonPeriodId" + sectionUniqueKey} fieldLabel={this.context.t("lesson_period_short")}
                 isMandatoryField={true} formControlName="period" typeField="custom_input"
                 onClosedField={this.onClosedField.bind(this)}
-                content={lesson.period + ' phut'} displayStyle="default-field" {...this.props}
+                content={lesson.period + ' ' + TT.t('lesson_period_unit')} displayStyle="default-field" {...this.props}
               ></InlineEditFormField>
             </div>
           </div>
