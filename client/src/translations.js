@@ -275,12 +275,13 @@ export const translations = {
 
     "course_follow": "Theo dõi khóa học",
     "course_follow_status": "Kết quả theo dõi khóa học",
-    "course_follow_submit_success": "Gửi email theo dõi thành công",
-    "course_follow_submit_fail": "Gửi email theo dõi thất bại",
+    "course_follow_submit_success": "Theo dõi khoá học thành công",
+    "course_follow_submit_fail": "Theo dõi khoá học thất bại",
 
-    "course_enroll_require_login": "Yêu cầu đăng nhập",
+    "require_login": "Yêu cầu đăng nhập",
     "course_enroll_require_login_message": "Bạn cần đăng nhập để đăng ký khóa học",
     "course_submit_comment_require_login_message": "Bạn cần đăng nhập để đăng phản hồi",
+    "course_follow_require_login_message": "Bạn cần đăng nhập để theo dõi khoá học",
 
     "course_enroll_status": "Kết quả đăng ký",
     "course_enroll_success": "Đăng ký khóa học thành công",

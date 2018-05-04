@@ -19,11 +19,11 @@ class FormField extends Component {
     const {
       formControlName, fieldLabel, showLabel = true, placeholder, isMandatoryField = false,
       typeField, type, zoneHeight = "auto", internalPreview = false, previewUrl, onUpload, rows, options,
-      selectedValues, customClassName = "form-control", checked, chosenValue, onCheck, toggled, onToggle
+      selectedValues, customClassName = "form-control", checked, chosenValue, onCheck, toggled, onToggle, onFileRemoved
     } = this.props;
 
     let fieldComponent = this.buildFieldRender(formControlName, placeholder, typeField, type,
-      zoneHeight, internalPreview, previewUrl, onUpload, rows, options, selectedValues, customClassName, checked, chosenValue, checked, onCheck, toggled, onToggle);
+      zoneHeight, internalPreview, previewUrl, onUpload, rows, options, selectedValues, customClassName, checked, chosenValue, onCheck, toggled, onToggle, onFileRemoved);
     return (
       <FormGroup controlId={this.props.fieldId}>
         {
@@ -37,7 +37,7 @@ class FormField extends Component {
     )
   }
 
-  buildFieldRender(formControlName, placeholder, typeField, type, zoneHeight, internalPreview, previewUrl, onUpload, rows, options, selectedValues, customClassName, checked, chosenValue, onCheck, toggled, onToggle) {
+  buildFieldRender(formControlName, placeholder, typeField, type, zoneHeight, internalPreview, previewUrl, onUpload, rows, options, selectedValues, customClassName, checked, chosenValue, onCheck, toggled, onToggle, onFileRemoved) {
     let fieldComponent;
 
     switch (typeField) {
@@ -79,7 +79,7 @@ class FormField extends Component {
       case "upload_avatar": {
         fieldComponent = <Field name={formControlName} placeholder={placeholder} zoneHeight={zoneHeight}
                                 internalPreview={internalPreview} disabled={this.props.disabled}
-                                previewUrl={previewUrl} onUpload={onUpload} component={cropImageInput}/>
+                                previewUrl={previewUrl} onUpload={onUpload} component={cropImageInput} onFileRemoved={onFileRemoved}/>
         break;
       }
       case "multi_select": {
@@ -113,6 +113,7 @@ FormField.propTypes = {
   fieldLabel: React.PropTypes.string,
   disabled: React.PropTypes.bool,
   onChange: React.PropTypes.func,
+  onFileRemoved: React.PropTypes.func,
   isMandatoryField: React.PropTypes.bool,
 };
 

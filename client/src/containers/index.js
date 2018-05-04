@@ -4,11 +4,11 @@ import SearchFormContainer from './SearchForm/SearchFormContainer';
 import PersonInfoContainer from './Account/PersonInfoContainer';
 
 import PublicCourseListContainer from './Courses/CourseList/PublicCourseListContainer';
-import PublicCourseListFollowModalContainer from './Courses/Follow/PublicCourseListFollowModalContainer';
+// import PublicCourseListFollowModalContainer from './Courses/Follow/PublicCourseListFollowModalContainer';
 
 import PublicCourseDetailContainer from './Courses/CourseDetail/PublicCourseDetailContainer';
-import PublicCourseDetailFollowModalContainer from './Courses/Follow/PublicCourseDetailFollowModalContainer';
-import PublicCourseDetailEnrollContainer from './Courses/Enroll/PublicCourseDetailEnrollContainer';
+import CourseDetailFollowContainer from './Courses/Follow/CourseDetailFollowContainer';
+import CourseDetailEnrollContainer from './Courses/Enroll/CourseDetailEnrollContainer';
 import CourseFilterContainer from './Courses/Filter/CourseFilterContainer';
 import RoleAuthorization from '../components/RoleAuthorization';
 
@@ -24,11 +24,11 @@ export {
   PersonInfoContainer,
   //Front-end
   PublicCourseListContainer,
-  PublicCourseListFollowModalContainer,
+  // PublicCourseListFollowModalContainer,
   
   PublicCourseDetailContainer,
-  PublicCourseDetailFollowModalContainer,
-  PublicCourseDetailEnrollContainer,
+  CourseDetailFollowContainer,
+  CourseDetailEnrollContainer,
 
   CourseFilterContainer,
   CommentFormContainer,

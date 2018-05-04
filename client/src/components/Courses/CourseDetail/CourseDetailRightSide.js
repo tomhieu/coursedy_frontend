@@ -10,7 +10,7 @@ class CourseDetailRightSide extends Component {
   render() {
     const { activeMenu } = this.props
     return (
-      <div className="col-xs-12 col-sm-8 col-md-9">
+      <div className="col-xs-12 col-sm-12 col-md-9 offset-md-3 right-content">
         <div className="content-wrapper">
           <div className="detail-content-wrapper">
             <CourseDetailIntro {...this.props} />

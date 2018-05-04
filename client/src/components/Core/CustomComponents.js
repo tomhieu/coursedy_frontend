@@ -207,6 +207,7 @@ class avatarInput extends renderFileInput {
 
   resetFormField() {
     this.setState({previewUrl: null})
+    this.props.onFileRemoved()
   }
 
   render() {

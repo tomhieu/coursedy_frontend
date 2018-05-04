@@ -40,7 +40,6 @@ class CommentFormContainer extends Component {
     this.setState({
       show_require_login_modal: false
     })
-      // this.props.dispatch(Actions.closePublicRequireLoginModal())
   }
 
   showRequireLoginModal() {
@@ -58,13 +57,11 @@ class CommentFormContainer extends Component {
     this.setState({
       show_comment_status_modal: false
     })
-    // this.props.dispatch(Actions.closePublicSubmitCommentStatusModal())
   }
   showSubmitCommentStatusModal() {
     this.setState({
       show_comment_status_modal: true
     })
-    // this.props.dispatch(Actions.showPublicSubmitCommentStatusModal())
   }
 
   render() {
@@ -93,7 +90,7 @@ class CommentFormContainer extends Component {
 
         {/* Require login modal */}
         <SimpleDialogComponent 
-          title={this.context.t('course_enroll_require_login')}
+          title={this.context.t('require_login')}
           show={show_require_login_modal}
           acceptLabel={this.context.t('ok')}
           cancelLabel={this.context.t('close')}
