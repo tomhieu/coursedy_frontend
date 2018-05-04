@@ -8,7 +8,10 @@ import {
   PUBLIC_COURSE_DETAIL_MENU_RELATED
 } from "../../../constants/WebConstants.js"
 import AnchorLink from 'react-anchor-link-smooth-scroll'
-import { CourseDetailFollowContainer } from "../../../containers/index.js"
+import { 
+  CourseDetailFollowContainer,
+  CourseDetailEnrollContainer
+} from "../../../containers/index.js"
 
 class CourseDetailLeftSide extends Component {
   render() {
@@ -42,7 +45,7 @@ class CourseDetailLeftSide extends Component {
           </div>
 
           <div className="clearfix mb-20 mt-30">
-            <a href="#" className="btn btn-primary btn-block btn-md">{this.context.t('course_enroll')}</a>
+            <CourseDetailEnrollContainer />
           </div>
           
           <div className="call-featiured">

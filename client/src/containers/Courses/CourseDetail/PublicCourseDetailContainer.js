@@ -46,16 +46,11 @@ class PublicCourseDetailContainer extends Component {
     ))
   }
 
-  updateActiveMenu(activeMenu) {
-    this.props.dispatch(PublicCourseActions.updateActiveMenu(activeMenu))
-  }
-
   render() {
     return (
       <CourseDetail
         {...this.props}
         loadMoreCommentsHdl={this.loadMoreComments.bind(this)}
-        updateActiveMenu={this.updateActiveMenu.bind(this)}
         />
     )
   }

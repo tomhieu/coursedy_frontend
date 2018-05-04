@@ -75,37 +75,6 @@ export const submitFollowCourse = (courses = []) => {
       payload: Network().post('courses/follow', params)
     })
   }
-  // return dispatch => {
-  //   Network().post('courses/follow', params).then((response) => {
-  //     if (page == 'list') {
-  //       dispatch({
-  //         type: types.PUBLIC_COURSE_LIST_SUBMIT_FOLLOW_SUCCESSFULLY,
-  //         payload: response
-  //       })  
-  //     } else if (page == 'detail') {
-  //       dispatch({
-  //         type: types.PUBLIC_COURSE_DETAIL_SUBMIT_FOLLOW_SUCCESSFULLY,
-  //         payload: response
-  //       })
-  //     }
-  //   }, (errors) => {
-  //     const error_messages = (errors && errors.constructor == Array && errors.length > 0) ?
-  //       errors :
-  //       [TT.t('submit_follow_fail')]
-  //     if (page == 'list') {
-  //       dispatch({
-  //         type: types.PUBLIC_COURSE_LIST_SUBMIT_FOLLOW_FAILL,
-  //         payload: {errors: error_messages}
-  //       })  
-  //     } else if (page == 'detail') {
-  //       dispatch({
-  //         type: types.PUBLIC_COURSE_DETAIL_SUBMIT_FOLLOW_FAILL,
-  //         payload: {errors: error_messages}
-  //       })
-  //     }
-      
-  //   })
-  // }
 }
 
 export const submitEnrollCourse = (courseId) => {

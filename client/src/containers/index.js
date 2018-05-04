@@ -8,7 +8,7 @@ import PublicCourseListContainer from './Courses/CourseList/PublicCourseListCont
 
 import PublicCourseDetailContainer from './Courses/CourseDetail/PublicCourseDetailContainer';
 import CourseDetailFollowContainer from './Courses/Follow/CourseDetailFollowContainer';
-import PublicCourseDetailEnrollContainer from './Courses/Enroll/PublicCourseDetailEnrollContainer';
+import CourseDetailEnrollContainer from './Courses/Enroll/CourseDetailEnrollContainer';
 import CourseFilterContainer from './Courses/Filter/CourseFilterContainer';
 import RoleAuthorization from '../components/RoleAuthorization';
 
@@ -28,7 +28,7 @@ export {
   
   PublicCourseDetailContainer,
   CourseDetailFollowContainer,
-  PublicCourseDetailEnrollContainer,
+  CourseDetailEnrollContainer,
 
   CourseFilterContainer,
   CommentFormContainer,
