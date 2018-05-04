@@ -1,0 +1,10 @@
+@media (min-width: 768px) {
+  .white-mask {
+    position: sticky;
+    height: 180px;
+    top: 70px;
+    z-index: 500;
+    background-color: #fff;
+    width: 100%;
+  }
+}

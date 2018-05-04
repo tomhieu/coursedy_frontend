@@ -7,53 +7,37 @@ import {
   PUBLIC_COURSE_DETAIL_MENU_COMMENTS,
   PUBLIC_COURSE_DETAIL_MENU_RELATED
 } from "../../../constants/WebConstants.js"
+import AnchorLink from 'react-anchor-link-smooth-scroll'
 
 class CourseDetailLeftSide extends Component {
   render() {
     const { activeMenu, updateActiveMenu } = this.props
     return (
-      <div className="col-xs-12 col-sm-4 col-md-3 hidden-xs">
+      <div className="col-md-3 d-none d-md-block sidebar-fixed">
         <aside className="sidebar-wrapper">
           <div className="scrollspy-sidebar alt-style-01 affix-top">
             <ul className="scrollspy-sidenav">
               <li className="sidebar-heading"><h5>{this.context.t('course_menu')}</h5></li>
               <li className="">
                 <ul className="course-detail-left-nav">
-                  <li 
-                    className={activeMenu == PUBLIC_COURSE_DETAIL_MENU_INTRO ? "active" : ""} 
-                    onClick={() => updateActiveMenu(PUBLIC_COURSE_DETAIL_MENU_INTRO)}
-                  >
-                    <a className="anchor">{this.context.t('course_intro')}</a>
+                  <li>
+                    <AnchorLink href='#course-detail-intro' className="anchor">{this.context.t('course_intro')}</AnchorLink>
                   </li>
-                  <li 
-                    className={activeMenu == PUBLIC_COURSE_DETAIL_MENU_LESSONS ? "active" : ""} 
-                    onClick={() => updateActiveMenu(PUBLIC_COURSE_DETAIL_MENU_LESSONS)}
-                  >
-                    <a className="anchor">{this.context.t('course_lessons')}</a>
+                  <li>
+                    <AnchorLink href='#course-detail-lessons' className="anchor">{this.context.t('course_lessons')}</AnchorLink>
                   </li>
-                  <li 
-                    className={activeMenu == PUBLIC_COURSE_DETAIL_MENU_TEACHER ? "active" : ""}  
-                    onClick={() => updateActiveMenu(PUBLIC_COURSE_DETAIL_MENU_TEACHER)}
-                  >
-                    <a className="anchor">{this.context.t('course_teacher')}</a>
+                  <li>
+                    <AnchorLink href='#course-detail-tutor' className="anchor">{this.context.t('course_teacher')}</AnchorLink>
                   </li>
-                  <li
-                    className={activeMenu == PUBLIC_COURSE_DETAIL_MENU_COMMENTS ? "active" : ""}  
-                    onClick={() => updateActiveMenu(PUBLIC_COURSE_DETAIL_MENU_COMMENTS)}
-                  >
-                    <a className="anchor">{this.context.t('course_comments')}</a>
+                  <li>
+                    <AnchorLink href='#courses-detail-comments' className="anchor">{this.context.t('course_comments')}</AnchorLink>
                   </li>
-                  <li 
-                    className={activeMenu == PUBLIC_COURSE_DETAIL_MENU_RELATED ? "active" : ""}  
-                    onClick={() => updateActiveMenu(PUBLIC_COURSE_DETAIL_MENU_RELATED)}
-                  >
-                    <a className="anchor">{this.context.t('course_related')}</a>
+                  <li>
+                    <AnchorLink href='#course-detail-related' className="anchor">{this.context.t('course_related')}</AnchorLink>
                   </li>
                 </ul>
               </li>
             </ul>
-            
-           
           </div>
 
           <div className="clearfix mb-20 mt-30">

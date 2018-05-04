@@ -8,7 +8,7 @@ class CourseDetailTutor extends Component {
     const { course, course_tutor, activeMenu } = this.props
     const active = activeMenu === PUBLIC_COURSE_DETAIL_MENU_TEACHER
     return (
-      <div id="course-detail-section-2" className={active ? "course-detail-section" : "d-none"}>
+      <div id="course-detail-tutor" className="course-detail-section">
         <div className="section-title text-left mb-20">
           <h3>{this.context.t('course_teacher')}</h3>
         </div>
