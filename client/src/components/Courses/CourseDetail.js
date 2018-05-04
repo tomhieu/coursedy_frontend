@@ -6,7 +6,7 @@ import CourseDetailGeneral from './CourseDetail/CourseDetailGeneral';
 import CourseDetailLessons from './CourseDetail/CourseDetailLessons';
 import CourseDetailComments from './CourseDetail/CourseDetailComments';
 import cssModules from 'react-css-modules';
-import styles from './CourseDetail.module.scss';
+import './CourseDetail.scss';
 
 import {CoreComponent} from '../index';
 import {PUBLIC_COURSE_MAX_NUMBER_COMMENTS_PER_LOAD} from '../../constants/Courses';
@@ -21,7 +21,8 @@ class CourseDetail extends Component {
   }
   render() {
     return (
-      <div className="course-detail">
+      <div className="course-detail container-fluid">
+        <div className="white-mask"></div>
         <CourseDetailHeader {...this.props}/>
         <CourseDetailMain {...this.props}/>
       </div>
@@ -36,4 +37,4 @@ CourseDetail.contextTypes = {
 CourseDetail.propTypes = {
 };
 
-export default cssModules(CourseDetail, styles);
+export default CourseDetail;

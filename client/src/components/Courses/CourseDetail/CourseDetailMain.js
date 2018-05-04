@@ -12,12 +12,8 @@ class CourseDetailMain extends Component {
   render() {
     return (
       <div className="course-detail-main">
-        <div className="container">
-          <div className="row">
-            <CourseDetailLeftSide {...this.props}/>
-            <CourseDetailRightSide {...this.props}/>
-          </div>
-        </div>
+        <CourseDetailLeftSide {...this.props}/>
+        <CourseDetailRightSide {...this.props}/>
       </div>
     )
   }

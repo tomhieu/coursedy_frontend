@@ -16,7 +16,7 @@ class CourseDetailComments extends Component {
     const {course_comments, loadMoreCommentsHdl, activeMenu} = this.props
     const active = activeMenu === PUBLIC_COURSE_DETAIL_MENU_COMMENTS
     return (
-      <div id="courses-detail-comments" className={active ? "course-detail-section" : "d-none"}>
+      <div id="courses-detail-comments" className="course-detail-section">
         <div className="section-title text-left mb-20">
           <h3>{this.context.t('course_comments')}</h3>
         </div>

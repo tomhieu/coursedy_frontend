@@ -3,6 +3,7 @@ import { CourseDetail } from '../../../components/index';
 import * as PublicCourseActions from '../../../actions/PublicCourseActionCreator';
 import * as ReferActions from '../../../actions/ReferenceActions/ReferenceDataActionCreator';
 import { connect } from 'react-redux';
+import * as WebConstants from "constants/WebConstants";
 
 class PublicCourseDetailContainer extends Component {
 
@@ -11,6 +12,8 @@ class PublicCourseDetailContainer extends Component {
   }
 
   componentWillMount() {
+    this.props.hideFooter();
+    this.props.stretchFull();
     this.props.dispatch(ReferActions.fetchCourseCategories())
     if (this.props.courseId) {
       //Fetch course
@@ -31,6 +34,11 @@ class PublicCourseDetailContainer extends Component {
     }
   }
 
+  componentWillUnmount() {
+    this.props.showFooter();
+    this.props.stretchAuto();
+  }
+
   loadMoreComments() {
     this.props.dispatch(PublicCourseActions.fetchCourseComments(
       this.props.courseId, 
@@ -38,16 +46,11 @@ class PublicCourseDetailContainer extends Component {
     ))
   }
 
-  updateActiveMenu(activeMenu) {
-    this.props.dispatch(PublicCourseActions.updateActiveMenu(activeMenu))
-  }
-
   render() {
     return (
       <CourseDetail
         {...this.props}
         loadMoreCommentsHdl={this.loadMoreComments.bind(this)}
-        updateActiveMenu={this.updateActiveMenu.bind(this)}
         />
     )
   }
@@ -101,6 +104,14 @@ const mapStateToProps = (state) => {
   }
 }
 
+const mapDispatchToProps = (dispatch) => ({
+  showFooter: () => dispatch({ type: WebConstants.SHOW_FOOTER }),
+  hideFooter: () => dispatch({ type: WebConstants.HIDE_FOOTER }),
+  stretchFull: () => dispatch({ type: WebConstants.STETCH_FULL }),
+  stretchAuto: () => dispatch({ type: WebConstants.STETCH_AUTO }),
+  dispatch: dispatch
+});
+
 export default connect(
-  mapStateToProps
+  mapStateToProps, mapDispatchToProps
 )(PublicCourseDetailContainer);
