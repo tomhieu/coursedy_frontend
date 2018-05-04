@@ -36,7 +36,7 @@ class CourseDetailLessons extends Component {
                         <p>{lesson.description}</p>
                         <ul>
                           {lesson.documents.map((doc, index) => (
-                            <li><a href={doc.url} key={"document-"+doc.name+index}>{doc.name}</a></li>
+                            <li key={"documents-" + doc.name + index}><a href={doc.url} key={"document-"+doc.name+index}>{doc.name}</a></li>
                           ))}
                         </ul>
                       </div>

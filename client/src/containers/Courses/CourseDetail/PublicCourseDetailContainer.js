@@ -34,6 +34,11 @@ class PublicCourseDetailContainer extends Component {
     }
   }
 
+  componentWillUnmount() {
+    this.props.showFooter();
+    this.props.stretchAuto();
+  }
+
   loadMoreComments() {
     this.props.dispatch(PublicCourseActions.fetchCourseComments(
       this.props.courseId, 

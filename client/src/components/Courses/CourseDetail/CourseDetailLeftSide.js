@@ -8,6 +8,7 @@ import {
   PUBLIC_COURSE_DETAIL_MENU_RELATED
 } from "../../../constants/WebConstants.js"
 import AnchorLink from 'react-anchor-link-smooth-scroll'
+import { CourseDetailFollowContainer } from "../../../containers/index.js"
 
 class CourseDetailLeftSide extends Component {
   render() {
@@ -56,7 +57,7 @@ class CourseDetailLeftSide extends Component {
             </div>
           </div>
           <div className="favor-link-wrapper mb-30">
-            <a href="#" className="favor-link"><i className="fa fa-heart"></i> {this.context.t('course_follow')}</a>
+            <CourseDetailFollowContainer />
           </div>
         </aside>
       </div>

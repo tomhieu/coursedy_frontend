@@ -45,19 +45,13 @@ const PublicCourseDetail = (state = {
       return {...state, course_tutor: null}
 
 
-    //Handle follow actions
-    case courseTypes.PUBLIC_COURSE_DETAIL_SHOW_FOLLOW_MODAL:
-      return {...state, show_follow_modal: true}
-    case courseTypes.PUBLIC_COURSE_DETAIL_CLOSE_FOLLOW_MODAL:
-      return {...state, show_follow_modal: false}
-    case courseTypes.PUBLIC_COURSE_DETAIL_SUBMIT_FOLLOW_SUCCESSFULLY:
+    //Reducer for follow courses
+    case asyncActs.STORE_COURSE_FOLLOW + asyncActs.PENDING:
+      return state
+    case asyncActs.STORE_COURSE_FOLLOW + asyncActs.FULFILLED:
       return {...state, submit_follow_success: true, submit_follow_fail: false}
-    case courseTypes.PUBLIC_COURSE_DETAIL_SUBMIT_FOLLOW_FAILL:
+    case asyncActs.STORE_COURSE_FOLLOW + asyncActs.REJECTED:
       return {...state, submit_follow_fail: true, submit_follow_success: false}
-    case courseTypes.PUBLIC_COURSE_DETAIL_SHOW_FOLLOW_STATUS_MODAL:
-      return {...state, show_follow_status_modal: true, show_follow_modal: false}
-    case courseTypes.PUBLIC_COURSE_DETAIL_CLOSE_FOLLOW_STATUS_MODAL:
-      return {...state, show_follow_status_modal: false, show_follow_modal: false}
 
 
     //Handle enroll actions
@@ -66,22 +60,12 @@ const PublicCourseDetail = (state = {
     case courseTypes.PUBLIC_COURSE_DETAIL_SUBMIT_ENROLL_FAILL:
       return {...state, submit_enroll_fail: true, submit_enroll_errors: action.payload.errors}
       
-    // case courseTypes.PUBLIC_COURSE_SHOW_REQUIRE_LOGIN_MODAL:
-    //   return {
-    //     ...state, 
-    //     show_require_login_modal: true, 
-    //     require_login_message: action.payload
-    //   }
-    // case courseTypes.PUBLIC_COURSE_CLOSE_REQUIRE_LOGIN_MODAL:
-    //   return {...state, show_require_login_modal: false}
-    
     case courseTypes.PUBLIC_COURSE_SHOW_ENROLL_STATUS_MODAL:
       return {...state, show_enroll_status_modal: true}
     case courseTypes.PUBLIC_COURSE_CLOSE_ENROLL_STATUS_MODAL:
       return {...state, show_enroll_status_modal: false}
 
-
-    //Handle comments actions
+    //Reducer for related courses
     case courseTypes.PUBLIC_COURSE_DETAIL_FETCH_COMMENTS_SUCCESSFULLY:
       return {...state, 
         course_comments: [...new Set([...state.course_comments ,...action.payload.comments])].filter((obj, index, self) =>
@@ -110,6 +94,7 @@ const PublicCourseDetail = (state = {
         submit_comment_fail: true, 
         show_comment_status_modal: true
       }
+
     //Reducer for related courses
     case courseTypes.PUBLIC_COURSE_DETAIL_RELATED_COURSES + asyncActs.PENDING:
       return {...state, isFetching: true}
@@ -121,12 +106,6 @@ const PublicCourseDetail = (state = {
       };
     case courseTypes.PUBLIC_COURSE_DETAIL_RELATED_COURSES + asyncActs.REJECTED:
       return state;
-
-
-    // case courseTypes.PUBLIC_COURSE_DETAIL_SUBMIT_COMMENT_SHOW_STATUS_MODAL:
-    //   return {...state, show_comment_status_modal: true}
-    // case courseTypes.PUBLIC_COURSE_DETAIL_SUBMIT_COMMENT_CLOSE_STATUS_MODAL:
-    //   return {...state, show_comment_status_modal: false}
 
     //Reducer for course view
     case courseTypes.PUBIC_COURSE_DETAIL_SUBMIT_VIEW + asyncActs.FULFILLED:

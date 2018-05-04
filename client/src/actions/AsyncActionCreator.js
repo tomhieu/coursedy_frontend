@@ -138,3 +138,7 @@ export const FETCH_TEACHERS = 'FETCH_TEACHERS'
 
 export const FETCH_TEACHER_DETAIL = 'FETCH_TEACHER_DETAIL'
 
+/**
+ * Define actions course detail
+ */
+export const STORE_COURSE_FOLLOW = 'STORE_COURSE_FOLLOW'

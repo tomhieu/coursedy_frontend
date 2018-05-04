@@ -1,4 +1,5 @@
 import * as types from '../constants/Courses'
+import * as asyncActs from "./AsyncActionCreator.js"
 import * as sessionTypes from '../constants/Session'
 import Network from '../utils/network'
 import {globalHistory} from '../utils/globalHistory'
@@ -64,126 +65,47 @@ export const fetchPublicCourseTutor = (tutorId) => {
   }
 }
 
-export const showPublicCourseFollowModal = (page = 'detail') => {
-  return dispatch => {
-    if (page == 'list') {
-      dispatch({
-        type: types.PUBLIC_COURSE_LIST_SHOW_FOLLOW_MODAL,
-      })  
-    } else if (page == 'detail')
-      dispatch({
-        type: types.PUBLIC_COURSE_DETAIL_SHOW_FOLLOW_MODAL,
-      })  
-  }
-}
-export const closePublicCourseFollowModal = (page = 'detail') => {
-  return dispatch => {
-    if (page == 'list') {
-      dispatch({
-        type: types.PUBLIC_COURSE_LIST_CLOSE_FOLLOW_MODAL,
-      })  
-    } else if (page == 'detail') {
-      dispatch({
-        type: types.PUBLIC_COURSE_DETAIL_CLOSE_FOLLOW_MODAL,
-      })
-    }
-    
-  }
-}
-export const showPublicCourseFollowStatusModal = (page = 'detail') => {
-  return dispatch => {
-    if (page == 'list') {
-      dispatch({
-        type: types.PUBLIC_COURSE_LIST_SHOW_FOLLOW_STATUS_MODAL,
-      })  
-    } else if (page == 'detail') {
-      dispatch({
-        type: types.PUBLIC_COURSE_DETAIL_SHOW_FOLLOW_STATUS_MODAL,
-      })
-    }
-    
-  }
-}
-export const closePublicCourseFollowStatusModal = (page = 'detail') => {
-  return dispatch => {
-    if (page == 'list') {
-      dispatch({
-        type: types.PUBLIC_COURSE_LIST_CLOSE_FOLLOW_STATUS_MODAL,
-      })  
-    } else if (page == 'detail') {
-      dispatch({
-        type: types.PUBLIC_COURSE_DETAIL_CLOSE_FOLLOW_STATUS_MODAL,
-      })
-    }
-    
-  }
-}
-// export const showPublicRequireLoginModal = (message) => {
-//   return dispatch => {
-//     dispatch({
-//       type: types.PUBLIC_COURSE_SHOW_REQUIRE_LOGIN_MODAL,
-//       payload: message
-//     })
-//   }
-// }
-// export const closePublicRequireLoginModal = () => {
-//   return dispatch => {
-//     dispatch({
-//       type: types.PUBLIC_COURSE_CLOSE_REQUIRE_LOGIN_MODAL,
-//     })
-//   }
-// }
-
-export const showPublicEnrollStatusModal = () => {
-  return dispatch => {
-    dispatch({
-      type: types.PUBLIC_COURSE_SHOW_ENROLL_STATUS_MODAL,
-    })
-  }
-}
-export const closePublicEnrollStatusModal = () => {
-  return dispatch => {
-    dispatch({
-      type: types.PUBLIC_COURSE_CLOSE_ENROLL_STATUS_MODAL,
-    })
-  }
-}
-export const submitFollowEmail = (courses = [], email = '', page = 'detail') => {
+export const submitFollowCourse = (courses = []) => {
   const params = {
-    courses: courses,
-    email: email
+    courses: courses
   }
   return dispatch => {
-    Network().post('courses/follow', params).then((response) => {
-      if (page == 'list') {
-        dispatch({
-          type: types.PUBLIC_COURSE_LIST_SUBMIT_FOLLOW_SUCCESSFULLY,
-          payload: response
-        })  
-      } else if (page == 'detail') {
-        dispatch({
-          type: types.PUBLIC_COURSE_DETAIL_SUBMIT_FOLLOW_SUCCESSFULLY,
-          payload: response
-        })
-      }
-    }, (errors) => {
-      const error_messages = (errors && errors.constructor == Array && errors.length > 0) ?
-        errors :
-        [TT.t('submit_follow_fail')]
-      if (page == 'list') {
-        dispatch({
-          type: types.PUBLIC_COURSE_LIST_SUBMIT_FOLLOW_FAILL,
-          payload: {errors: error_messages}
-        })  
-      } else if (page == 'detail') {
-        dispatch({
-          type: types.PUBLIC_COURSE_DETAIL_SUBMIT_FOLLOW_FAILL,
-          payload: {errors: error_messages}
-        })
-      }
-      
+    dispatch({
+      type: asyncActs.STORE_COURSE_FOLLOW,
+      payload: Network().post('courses/follow', params)
     })
   }
+  // return dispatch => {
+  //   Network().post('courses/follow', params).then((response) => {
+  //     if (page == 'list') {
+  //       dispatch({
+  //         type: types.PUBLIC_COURSE_LIST_SUBMIT_FOLLOW_SUCCESSFULLY,
+  //         payload: response
+  //       })  
+  //     } else if (page == 'detail') {
+  //       dispatch({
+  //         type: types.PUBLIC_COURSE_DETAIL_SUBMIT_FOLLOW_SUCCESSFULLY,
+  //         payload: response
+  //       })
+  //     }
+  //   }, (errors) => {
+  //     const error_messages = (errors && errors.constructor == Array && errors.length > 0) ?
+  //       errors :
+  //       [TT.t('submit_follow_fail')]
+  //     if (page == 'list') {
+  //       dispatch({
+  //         type: types.PUBLIC_COURSE_LIST_SUBMIT_FOLLOW_FAILL,
+  //         payload: {errors: error_messages}
+  //       })  
+  //     } else if (page == 'detail') {
+  //       dispatch({
+  //         type: types.PUBLIC_COURSE_DETAIL_SUBMIT_FOLLOW_FAILL,
+  //         payload: {errors: error_messages}
+  //       })
+  //     }
+      
+  //   })
+  // }
 }
 
 export const submitEnrollCourse = (courseId) => {
@@ -282,20 +204,6 @@ export const submitCourseComment = (comment, courseId, userId) => {
   }
 }
 
-// export const showPublicSubmitCommentStatusModal = () => {
-//   return dispatch => {
-//     dispatch({
-//       type: types.PUBLIC_COURSE_DETAIL_SUBMIT_COMMENT_SHOW_STATUS_MODAL,
-//     })
-//   }
-// }
-// export const closePublicSubmitCommentStatusModal = () => {
-//   return dispatch => {
-//     dispatch({
-//       type: types.PUBLIC_COURSE_DETAIL_SUBMIT_COMMENT_CLOSE_STATUS_MODAL,
-//     })
-//   }
-// }
 
 export const submitViewCourse = (courseId, token) => {
   return dispatch => {
