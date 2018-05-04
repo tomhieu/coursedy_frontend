@@ -32,10 +32,6 @@
   }
 }
 
-.course-about-content{
-  min-height: 300px;
-}
-
 .spacing-10 {
   letter-spacing: 1px;
 }
@@ -50,6 +46,12 @@
 
 ul.list-with-icon {
   margin-bottom: 25px;
+}
+
+@media (min-width: 768px) {
+  .course-about-content{
+    min-height: 300px;
+  }
 }
 
 @media only screen and (max-width: 991px) {
