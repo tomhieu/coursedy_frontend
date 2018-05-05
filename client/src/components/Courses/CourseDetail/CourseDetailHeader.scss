@@ -1,17 +1,16 @@
 @media (min-width: 768px) {
   .course-detail-header {
-    position: fixed;
+    position: relative;
     top: 100px;
-    height: 180px;
-    z-index: 1000;
+    height: 100px;
     border-bottom: 1px solid #E5E5E5;
     background-color: #fff;
   }
 }
 
 .course-detail-header {
-  padding-top: 30px;
-  padding-bottom: 30px;
+  width: 100%;
+  padding-bottom: 15px;
 
   .info {
     > .image {
@@ -20,8 +19,6 @@
     }
 
     > .content {
-      margin-left: 175px;
-      
       h2 {
         line-height: 1.2;
         margin: -5px 0 13px;
@@ -41,7 +38,6 @@
 
   ul.meta-list {
     margin: 0;
-    margin-left: 175px;
   }
 
   ul.meta-list li {

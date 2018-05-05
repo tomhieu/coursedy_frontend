@@ -1,14 +1,13 @@
 .sidebar-fixed {
   position: fixed;
-  top: 280px;
-  z-index: 1000;
-  overflow-x: hidden;
-  overflow-y: auto;
+  top: 70px;
+  z-index: 500;
+  width: 20.5%;
 }
 
 .sidebar-wrapper {
-  padding-top: 40px;
-  padding-bottom: 40px;
+  padding-top: 25px;
+  padding-bottom: 25px;
   background: #FFF;
   padding-left: 0;
   padding-right: 30px;

@@ -1,7 +1,11 @@
+.course-detail {
+  width: 100%;
+}
+
 @media (min-width: 768px) {
   .white-mask {
-    position: sticky;
-    height: 180px;
+    position: fixed;
+    height: 130px;
     top: 70px;
     z-index: 500;
     background-color: #fff;

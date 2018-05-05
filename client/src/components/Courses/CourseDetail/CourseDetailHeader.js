@@ -8,12 +8,9 @@ class CourseDetailHeader extends Component {
   render() {
     const { styles, categories, course, course_tutor, course_sections, course_comments } = this.props
     return (
-      <div className='course-detail-header'>
-        <div className="info clearfix">
-          <div className="image">
-            <img src={course.cover_image ? course.cover_image : 'http://placehold.it/155/103'} alt="Image" className="img-fluid" />
-          </div>
-          <div className="content">
+      <div className="course-detail-header">
+        <div className="container">
+          <div className="content mb-15">
             <h2>{ course.title }</h2>
           </div>
           <ul className="meta-list">
