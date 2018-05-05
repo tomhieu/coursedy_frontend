@@ -13,8 +13,8 @@ class CourseDetailRightSide extends Component {
       <div 
         className={
           displayFixedSidebar ? 
-          "col-xs-12 col-sm-12 col-md-9 offset-md-3 right-content" :
-          "col-xs-12 col-sm-12 col-md-9"
+          "col-xs-12 col-sm-12 col-md-9 no-pad offset-md-3 right-content" :
+          "col-xs-12 col-sm-12 col-md-9 no-pad"
         }
       >
         <div className="content-wrapper">
