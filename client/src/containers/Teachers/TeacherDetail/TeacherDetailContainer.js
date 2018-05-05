@@ -25,7 +25,11 @@ class TeacherDetail extends Component {
     this.props.fetchTeacherCourses({ teacherId: parseInt(this.props.match.params.id), meta: 'teacherCoursesPlaceholder' })
   }
 
-  fetchTeacherCoursesWithPageNumber(pageNumber) {
+  fetchTeacherCoursesWithPageNumber(page, per_page) {
+    this.props.fetchTeacherCourses({
+      teacherId: parseInt(this.props.match.params.id),
+      query: {page, per_page}
+    });
   }
 
   render() {
@@ -125,7 +129,9 @@ const TeacherTaughtCoursesSection = (props) => {
                   itemsCountPerPage={headers.perPage}
                   totalItemsCount={headers.total}
                   pageRangeDisplayed={5}
-                  onChange={props.handlePageChange} />
+                  onChange={(pageNumber) => {
+                    props.handlePageChange(pageNumber, headers.perPage)
+                  }} />
               </div>
               :null
           }

@@ -47,18 +47,18 @@ export const fetchTeacherWorkExperiences = ({teacherId, meta}) => {
   };
 }
 
-export const fetchTeacherReviews = ({teacherId, meta}) => {
+export const fetchTeacherReviews = ({teacherId, meta, query}) => {
   return {
     type: asyncActs.FETCH_TEACHER_REVIEWS,
-    payload: Network().get(`tutors/${teacherId}/tutor_reviews`),
+    payload: Network().get(`tutors/${teacherId}/tutor_reviews`, query),
     meta,
   };
 }
 
-export const fetchTeacherCourses = ({teacherId, meta}) => {
+export const fetchTeacherCourses = ({teacherId, meta, query}) => {
   return {
     type: asyncActs.FETCH_TEACHER_COURSES,
-    payload: Network().get(`users/${teacherId}/courses`),
+    payload: Network().get(`users/${teacherId}/courses`, query),
     meta,
   };
 }
