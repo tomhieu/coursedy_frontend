@@ -23,37 +23,42 @@ export const updateFilterTeacher = (filters) => {
   };
 };
 
-export const fetchTeacherDetail = ({teacherId}) => {
+export const fetchTeacherDetail = ({teacherId, meta}) => {
   return {
     type: asyncActs.FETCH_TEACHER_DETAIL,
     payload:  Network().get(`tutors/${teacherId}`),
+    meta,
   }
 }
 
-export const fetchTeacherEducations = ({teacherId}) => {
+export const fetchTeacherEducations = ({teacherId, meta}) => {
   return {
     type: asyncActs.FETCH_TEACHER_EDUCATIONS,
-    payload: Network().get(`tutors/${teacherId}/tutor_educations`)
+    payload: Network().get(`tutors/${teacherId}/tutor_educations`),
+    meta,
   };
 }
 
-export const fetchTeacherWorkExperiences = ({teacherId}) => {
+export const fetchTeacherWorkExperiences = ({teacherId, meta}) => {
   return {
     type: asyncActs.FETCH_TEACHER_WORK_EXPERIENCES,
-    payload: Network().get(`tutors/${teacherId}/tutor_work_experiences`)
+    payload: Network().get(`tutors/${teacherId}/tutor_work_experiences`),
+    meta,
   };
 }
 
-export const fetchTeacherReviews = ({teacherId}) => {
+export const fetchTeacherReviews = ({teacherId, meta}) => {
   return {
     type: asyncActs.FETCH_TEACHER_REVIEWS,
-    payload: Network().get(`tutors/${teacherId}/tutor_reviews`)
+    payload: Network().get(`tutors/${teacherId}/tutor_reviews`),
+    meta,
   };
 }
 
-export const fetchTeacherCourses = ({teacherId}) => {
+export const fetchTeacherCourses = ({teacherId, meta}) => {
   return {
     type: asyncActs.FETCH_TEACHER_COURSES,
-    payload: Network().get(`users/${teacherId}/courses`)
+    payload: Network().get(`users/${teacherId}/courses`),
+    meta,
   };
 }
