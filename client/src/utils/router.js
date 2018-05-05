@@ -8,6 +8,7 @@ import {Route, Router, Switch} from 'react-router-dom'
 import {globalHistory} from "utils/globalHistory";
 import ListTeacherContainer from 'containers/Teachers/TeacherList/ListTeacherContainer';
 import TeacherDetailContainer from 'containers/Teachers/TeacherDetail/TeacherDetailContainer';
+import PrivateRoute from "containers/PrivateRoute/PrivateRoute";
 
 const router = (
   <Provider store={store}>
@@ -27,7 +28,7 @@ const router = (
             <Route path="/teachers/:id" component={TeacherDetailContainer} />
             <Route path="/teachers" component={ListTeacherContainer} />
 
-            <Route path="/dashboard" component={Pages.TutorDashboard} />
+            <PrivateRoute path="/dashboard" component={Pages.TutorDashboard} />
             <Route path="/student/dashboard" component={Pages.StudentDashboardPage} />
 
             <Route path="/payment" component={Pages.PaymentPage} />
