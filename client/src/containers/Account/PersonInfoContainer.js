@@ -34,7 +34,7 @@ PersonInfoContainer.contextTypes = {
 }
 
 export default connect(state => ({
-  initialValues: state.AccountReducer.user
+  initialValues: state.session.currentUser
 }))(reduxForm({
   form: 'personInfo',
   fields: ['name', 'email', 'address', 'date_of_birth'],

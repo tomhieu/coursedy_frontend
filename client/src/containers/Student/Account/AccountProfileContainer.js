@@ -7,7 +7,7 @@ import {AccountActions} from '../../../actions/index'
 
 class AccountProfileContainer extends Component {
   componentWillMount(){
-    this.props.dispatch(AccountActions.fetchUser())
+    this.props.dispatch(AccountActions.fetchTutorData())
   }
 
   showProfileEditForm(){
@@ -56,7 +56,7 @@ class AccountProfileContainer extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  user: state.AccountReducer.user,
+  user: state.session.currentUser,
   student: state.StudentAccountReducer.student
 })
 

@@ -11,9 +11,9 @@ import {globalHistory} from '../utils/globalHistory'
 import {TT} from "utils/locale";
 import {LOGIN_FAILED} from "../constants/LoginComponent";
 import {setCurrentUser} from "../actions/SessionActionCreator";
-import * as WebConstant from "../constants/WebConstants";
 import {UserRole} from "../constants/UserRole";
 import {REMOVE_CURRENT_USER} from "../constants/Session";
+import * as WebConstants from "constants/WebConstants";
 
 /* Commonly used middlewares and enhancers */
 /* See: http://redux.js.org/docs/advanced/Middleware.html*/
@@ -95,10 +95,11 @@ const authorizeHandler = store => next => action => {
     })
   } else if (action.type === asyncActions.SIGN_OUT + asyncActions.FULFILLED) {
     store.dispatch({type: REMOVE_CURRENT_USER})
-    localStorage.removeItem('ezyLearningToken')
-    localStorage.removeItem('ezyLearningClient')
-    localStorage.removeItem('ezyLearningUid')
-    globalHistory.replace('/')
+    localStorage.removeItem('ezyLearningToken');
+    localStorage.removeItem('ezyLearningClient');
+    localStorage.removeItem('ezyLearningUid');
+    localStorage.removeItem(WebConstants.AUTHENTICATED);
+    globalHistory.replace('/');
   }
   return next(action);
 }
