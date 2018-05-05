@@ -12,7 +12,7 @@ import {
   fetchTeacherWorkExperiences,
   fetchTeacherCourses,
   fetchTeacherReviews
-} from '../../../actions/TeacherCreators'
+} from '../../../actions/TeacherActionCreators'
 import LoadingMask from '../../../components/LoadingMask/LoadingMask'
 
 
@@ -32,6 +32,12 @@ class TeacherDetail extends Component {
     });
   }
 
+  fetchTeacherReviewsWithPageNumber(page, per_page) {
+    this.props.fetchTeacherReviews({
+      teacherId: parseInt(this.props.match.params.id),
+      query: {page, per_page}
+    });
+  }
   render() {
     return (
       <section className="full-width-in-container teacher-detail">
@@ -88,7 +94,7 @@ const TeacherReviewSection = (props) => {
           <div className="teacher-detail__content__review__header mb-30">
             <h3>{props.context.t('teacher_review')}</h3>
           </div>
-          <TeacherReviewList teacher={props.teacher}/>
+          <TeacherReviewList teacher={props.teacher} handlePageChange={this.fetchTeacherReviewsWithPageNumber.bind(this)}/>
         </div>
       </div>
     </div>
