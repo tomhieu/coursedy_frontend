@@ -31,3 +31,22 @@ $color-green: #008744;
 $color-blue: #0057e7;
 $color-yellow: #ffa700;
 $rating-color: #F2D43D;
+
+
+//Definitions for media queries
+$xs-query: "(max-width: 575.98px)";
+$sm-query: "(min-width: 576px) and (max-width: 767.98px)";
+$md-query: "(min-width: 768px) and (max-width: 991.98px)";
+$lg-query: "(min-width: 992px) and (max-width: 1199.98px)";
+$xl-query: "(min-width: 1200px)";
+
+$xs-lower: 0;
+$xs-upper: 575.98px;
+$sm-lower: 576px;
+$sm-upper: 767.98px;
+$md-lower: 768px;
+$md-upper: 991.98px;
+$lg-lower: 992px;
+$lg-upper: 1199.98px;
+$xl-lower: 1200px;
+$xl-upper: 9999px;

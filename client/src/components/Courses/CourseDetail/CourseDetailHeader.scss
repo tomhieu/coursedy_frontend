@@ -1,4 +1,6 @@
-@media (min-width: 768px) {
+@import "../../../../styles/global_style.scss";
+
+@media (min-width: $md-lower) {
   .course-detail-header {
     position: relative;
     top: 100px;
@@ -6,6 +8,10 @@
     border-bottom: 1px solid #E5E5E5;
     background-color: #fff;
   }
+}
+
+@media #{$sm-query} {
+  
 }
 
 .course-detail-header {
