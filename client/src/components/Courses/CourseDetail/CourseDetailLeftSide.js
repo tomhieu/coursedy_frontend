@@ -15,9 +15,14 @@ import {
 
 class CourseDetailLeftSide extends Component {
   render() {
-    const { activeMenu, updateActiveMenu } = this.props
+    const { activeMenu, updateActiveMenu, displayFixedSidebar } = this.props
     return (
-      <div className="col-md-3 d-none d-md-block sidebar-fixed">
+      <div 
+        className={ displayFixedSidebar ? 
+          "col-md-3 no-pad d-none d-md-block sidebar-fixed" :
+          "col-md-3 no-pad d-none d-md-block"
+        } 
+      >
         <aside className="sidebar-wrapper">
           <div className="scrollspy-sidebar alt-style-01 affix-top">
             <ul className="scrollspy-sidenav">

@@ -22,7 +22,7 @@ class CourseDetail extends Component {
   render() {
     return (
       <div className="course-detail">
-        <div className="white-mask"></div>
+        {/*<div className="white-mask"></div>*/}
         <CourseDetailHeader {...this.props}/>
         <CourseDetailMain {...this.props}/>
       </div>
