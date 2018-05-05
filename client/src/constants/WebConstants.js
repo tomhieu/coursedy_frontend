@@ -40,3 +40,6 @@ export const DEFAULT_PLACEHOLDER = "ezylearningFullLoader";
 export const TEACHER_ROLE = 'teacher';
 export const STUDENT_ROLE = 'student';
 export const ADMIN_ROLE = 'admin';
+
+// authentication
+export const AUTHENTICATED = 'isAuthenticated';

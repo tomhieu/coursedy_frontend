@@ -9,6 +9,7 @@ import {globalHistory} from "utils/globalHistory";
 import ListTeacherContainer from 'containers/Teachers/TeacherList/ListTeacherContainer';
 import TeacherDetailContainer from 'containers/Teachers/TeacherDetail/TeacherDetailContainer';
 import PrivateRoute from "containers/PrivateRoute/PrivateRoute";
+import {UserRole} from "../constants/UserRole";
 
 const router = (
   <Provider store={store}>
@@ -28,10 +29,11 @@ const router = (
             <Route path="/teachers/:id" component={TeacherDetailContainer} />
             <Route path="/teachers" component={ListTeacherContainer} />
 
-            <PrivateRoute path="/dashboard" component={Pages.TutorDashboard} />
-            <Route path="/student/dashboard" component={Pages.StudentDashboardPage} />
+            <PrivateRoute path="/dashboard" roles={[UserRole.TEACHER]} component={Pages.TutorDashboard} />
+            <PrivateRoute path="/student/dashboard" roles={[UserRole.STUDENT]} component={Pages.StudentDashboardPage} />
 
             <Route path="/payment" component={Pages.PaymentPage} />
+            <Route path="/404" component={Pages.NotFoundPage} />
             <Route path="*" component={Pages.NotFoundPage} />
           </Switch>
         </App>

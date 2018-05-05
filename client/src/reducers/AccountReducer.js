@@ -3,15 +3,12 @@ import * as AsynPostfix from '../constants/AsynPostfix'
 
 const AccountReducer = (state = {
   showEmailConfirmationModal: false,
-  user: {},
   editProfileMode: false,
   editAvatarMode: false,
   avatarSelected: false,
   passwordUpdated: false
 }, action) => {
   switch (action.type) {
-    case AccountTypes.FETCH_USER_ACCOUNT + AsynPostfix.FULFILLED:
-      return {...state, user: action.payload}
     case AccountTypes.SHOW_REQUIRED_EMAIL_CONFIRMATION_MODAL:
       return {...state, showEmailConfirmationModal: true}
     case AccountTypes.HIDE_REQUIRED_EMAIL_CONFIRMATION_MODAL:
