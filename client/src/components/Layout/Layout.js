@@ -25,7 +25,7 @@ class Layout extends Component {
       <I18n translations={translations} initialLang={TT.locale}>
         <div className="main-content">
           <Header session={session} signOut={this.signOut.bind(this)}/>
-          <main className='container'>
+          <main className={!main.stetchAuto ? styles.stretchFull : 'container'}>
             {this.props.children}
           </main>
           {
