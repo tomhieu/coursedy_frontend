@@ -14,6 +14,7 @@ import {
   fetchTeacherReviews
 } from '../../../actions/TeacherActionCreators'
 import LoadingMask from '../../../components/LoadingMask/LoadingMask'
+import * as WebConstants from '../../../constants/WebConstants'
 
 
 class TeacherDetail extends Component {
@@ -68,7 +69,7 @@ const TeacherProfileSection = (props) => {
         <LoadingMask placeholderId="teacherDetailProfilePlaceholder"
                      normalPlaceholder={false}
                      facebookPlaceholder={true}
-                     loaderType="TEACHER_DETAIL_PROFILE_PLACEHOLDER">
+                     loaderType={WebConstants.TEACHER_DETAIL_PROFILE_PLACEHOLDER}>
           <TeacherProfileHeader teacher={props.teacher}/>
         </LoadingMask>
       </div>

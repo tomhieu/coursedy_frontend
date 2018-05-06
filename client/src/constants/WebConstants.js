@@ -26,21 +26,20 @@ export const PUBLIC_COURSE_DETAIL_MENU_LESSONS = "course_lessons";
 export const PUBLIC_COURSE_DETAIL_MENU_TEACHER = "course_teacher";
 export const PUBLIC_COURSE_DETAIL_MENU_COMMENTS = "course_comments";
 export const PUBLIC_COURSE_DETAIL_MENU_RELATED = "course_related";
-// placeholder type
+/*
+* Define placeholder type and placeholderId
+ */
 export const COURSE_DETAILS_PLACEHOLDER = "COURSE_DETAILS_PLACEHOLDER";
 export const LESSON_DETAILS_PLACEHOLDER = "LESSON_DETAILS_PLACEHOLDER";
 export const USER_DETAILS_PLACEHOLDER = "USER_DETAILS_PLACEHOLDER";
 export const COURSE_ITEM_PLACEHOLDER = "COURSE_ITEM_PLACEHOLDER";
+//user account
 export const USER_ACCOUNT_PLACEHOLDER = "USER_ACCOUNT_PLACEHOLDER";
 export const USER_EDUCATION_PLACEHOLDER = "USER_EDUCATION_PLACEHOLDER";
 export const USER_CERTIFICATE_PLACEHOLDER = "USER_CERTIFICATE_PLACEHOLDER";
 export const DEFAULT_PLACEHOLDER = "ezylearningFullLoader";
+// Teacher detail
 export const TEACHER_DETAIL_PROFILE_PLACEHOLDER = "TEACHER_DETAIL_PROFILE_PLACEHOLDER";
-
-// user roles
-export const TEACHER_ROLE = 'teacher';
-export const STUDENT_ROLE = 'student';
-export const ADMIN_ROLE = 'admin';
 
 // authentication
 export const AUTHENTICATED = 'isAuthenticated';

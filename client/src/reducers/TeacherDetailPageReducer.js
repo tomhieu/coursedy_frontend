@@ -23,15 +23,15 @@ const TeacherDetail = (state = {
     case asyncActs.FETCH_TEACHER_WORK_EXPERIENCES + asyncActs.FULFILLED:
       return {...state, workExperiences: action.payload}
 
-      case asyncActs.FETCH_TEACHER_REVIEWS + asyncActs.FULFILLED:
-      return {...state, reviews: {data: action.payload, headers: state.reviews.headers}}
+    case asyncActs.FETCH_TEACHER_REVIEWS + asyncActs.FULFILLED:
+      return {...state, reviews: {...state.reviews, data: action.payload}}
     case asyncActs.FETCH_TEACHER_REVIEWS + asyncActs.HEADERS:
-      return {...state, reviews: {data: state.reviews.data, headers: action.payload}}
+      return {...state, reviews: {...state.reviews, headers: action.payload}}
 
-      case asyncActs.FETCH_TEACHER_COURSES + asyncActs.FULFILLED:
-      return {...state, courses: {data: action.payload, headers: state.courses.headers}}
+    case asyncActs.FETCH_TEACHER_COURSES + asyncActs.FULFILLED:
+      return {...state, courses: {...state.courses, data: action.payload}}
     case asyncActs.FETCH_TEACHER_COURSES + asyncActs.HEADERS:
-      return {...state, courses: {data: state.courses.data, headers: action.payload}}
+      return {...state, courses: {...state.courses, headers: action.payload}}
     default:
       return state
   }

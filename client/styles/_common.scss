@@ -2816,20 +2816,20 @@ div[data-reactroot] {
   cursor: default;
   pointer-events: none;
   background-color: $md-color-pink;
-  color: #fff;
+  color: $white-color;
   font-weight: 700;
 }
 
 .pagination > li > a:hover, .pagination > li > span:hover, .pagination > li > a:focus, .pagination > li > span:focus {
-  color: #f5b078;
-  background-color: #FFF;
+  color: $white-color;
+  background-color: $md-color-pink;
 }
 
 .pagination>.disabled>a, .pagination>.disabled>a:focus, .pagination>.disabled>a:hover, .pagination>.disabled>span, .pagination>.disabled>span:focus, .pagination>.disabled>span:hover {
-  color: #e27d7f;
+  color: $md-color-pink;
   cursor: not-allowed;
-  background-color: #fff;
-  border-color: #ddd;
+  background-color: $white-background;
+  border-color: $border-color;
 }
 
 .pagination>li:first-child>a, .pagination>li:first-child>span {

@@ -3,21 +3,21 @@
 .teacher-detail {
   font-size: 15px;
   &__header {
-    border: 1px solid #E6E6E6;
+    border: 1px solid $border-color;
     &._fixed {
       position: fixed;
       left: 0;
       top: 70px;
       width: 100%;
       z-index: 999;
-      background-color: #fff;
+      background-color: $white-color;
     }
 
     @media only screen and (max-width: 767.98px) {
       &._fixed {
         position: relative;
         z-index: 999;
-        background-color: #fff;
+        background-color: $white-color;
       }
     }
   }
@@ -29,21 +29,21 @@
     }
 
     &__background, &__courses {
-      border: 1px solid #E6E6E6;
+      border: 1px solid $border-color;
       border-radius: 5px;
       padding: 30px 40px 40px;
     }
 
     &__review {
       margin-top: 50px;
-      border: 1px solid #E6E6E6;
+      border: 1px solid $border-color;
       border-radius: 5px;
       padding: 30px 40px 40px;
     }
   }
 
   &__more-info {
-    border: 1px solid #E6E6E6;
+    border: 1px solid $border-color;
     border-radius: 5px;
   }
 
@@ -68,14 +68,14 @@
     border-radius: 50%;
     background: $color-bg-light-blue;
     text-align: center;
-    color: #FFF;
+    color: $white-color;
     padding: 2px;
     margin: 0 0 18px;
 
     span {
       border-radius: 50%;
       display: block;
-      border: 4px double #FFF;
+      border: 4px double $white-color;
       width: 100%;
       height: 100%;
       line-height: 36px;
@@ -100,8 +100,8 @@
   }
 
   .review-form-wrapper {
-    background: #F5F5F5;
-    border: 1px solid #E5E5E5;
+    background: $color-bg-gray-form;
+    border: 1px solid $border-color;
     padding: 20px;
   }
 
@@ -144,7 +144,7 @@
 
         &:hover {
           background: $md-color-pink;
-          color: #FFF;
+          color: $white-color;
         }
       }
     }
@@ -153,7 +153,7 @@
       width: 50%;
       position: relative;
       padding-left: 30px;
-      border-bottom: 1px dotted #DDD;
+      border-bottom: 1px dotted $border-color;
       padding-bottom: 7px;
       margin-bottom: 7px;
 
@@ -161,41 +161,6 @@
         position: absolute;
         top: 5px;
         left: 0;
-      }
-    }
-
-    .social {
-      a {
-        display: block;
-        line-height: 30px;
-        background: #fff;
-        float: left;
-        width: 30px;
-        height: 30px;
-        text-align: center;
-        margin-right: 5px;
-        font-size: 17px;
-        border-radius: 100%;
-
-        &.twitter {
-          border: #00aced 1px solid;
-          color: #00aced;
-        }
-
-        &.twitter:hover {
-          background: #00aced;
-          color: #fff;
-        }
-
-        &.linked {
-          border: #007bb5 1px solid;
-          color: #007bb5;
-        }
-
-        &.linked:hover {
-          background: #007bb5;
-          color: #fff;
-        }
       }
     }
 
@@ -232,7 +197,7 @@ ul.review-list > li:last-child {
   }
 
   .form-control:focus {
-    border-color: #e27d7f;
+    border-color: $md-color-pink;
     outline: 0;
     -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
@@ -241,8 +206,8 @@ ul.review-list > li:last-child {
 
 .pager-wrappper {
   margin-top: 30px;
-  border-top: 1px solid #E5E5E5;
-  border-bottom: 1px solid #E5E5E5;
+  border-top: 1px solid $border-color;
+  border-bottom: 1px solid $border-color;
 
   .btn.btn-hidden {
     display: none;
