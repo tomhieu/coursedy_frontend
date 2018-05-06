@@ -5,22 +5,6 @@ import ReviewContent from '../../../../components/Review/ReviewContentComponent'
 
 
 class TeacherReviewList extends Component {
-  handlePageChange(pageNumber) {
-
-  }
-
-  renderReviewButton() {
-    return (
-      <div className="pull-right pull-left-xs">
-        <button
-          className="btn btn-primary btn-block btn-toggle btn-hidden btn-sm collapsed"
-          data-toggle="collapse"
-          data-target="#change-search"
-          aria-expanded="false">{this.context.t('write_review_teacher')}</button>
-      </div>
-    )
-  }
-
   render() {
     const { teacher } = this.props
     if (!teacher.reviews || !teacher.reviews.data.length) { return null }
@@ -42,22 +26,21 @@ class TeacherReviewList extends Component {
         <div className="review-pager pager-wrappper">
           {teacher.reviews.data.length ?
             <div className="row">
-              <div className="col-xs-12 col-sm-8">
+              <div className="col-xs-12 col-sm-12">
                 <Pagination
                   activePage={headers.currentPage}
                   itemsCountPerPage={headers.perPage}
                   totalItemsCount={headers.total}
                   pageRangeDisplayed={5}
-                  onChange={this.handlePageChange.bind(this)}
+                  onChange={(pageNumber) => {
+                    this.props.handlePageChange(pageNumber, headers.perPage)
+                  }}
+                  innerClass="pagination mt-15"
                 />
               </div>
-              <div className="col-xs-12 col-sm-4">
-                {this.renderReviewButton()}
-              </div>
-            </div> : this.renderReviewButton()
+            </div> : null
           }
         </div>
-        <ReviewTeacherForm />
       </div>
     )
   }

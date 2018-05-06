@@ -989,4 +989,58 @@ body.application {
     border-left: none;
     border-radius: 0;
   }
+
+  .pager-wrappper {
+    border-top: 1px solid $border-color;
+    border-bottom: 1px solid $border-color;
+
+    .pager-right {
+      float: right;
+    }
+
+    .pager-left {
+      float: left;
+    }
+  }
+
+  .social {
+    a {
+      display: block;
+      line-height: 30px;
+      background: $white-color;
+      float: left;
+      width: 30px;
+      height: 30px;
+      text-align: center;
+      margin-right: 5px;
+      font-size: 17px;
+      border-radius: 100%;
+
+      &.twitter {
+        border: #00aced 1px solid;
+        color: #00aced;
+      }
+
+      &.twitter:hover {
+        background: #00aced;
+        color: $white-color;
+      }
+
+      &.linked {
+        border: #007bb5 1px solid;
+        color: #007bb5;
+      }
+
+      &.linked:hover {
+        background: #007bb5;
+        color: $white-color;
+      }
+    }
+  }
+
+  @media (max-width: 767px) {
+    .pull-left-xs {
+      float: left!important;
+    }
+  }
 }
