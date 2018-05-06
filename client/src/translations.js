@@ -395,7 +395,7 @@ export const translations = {
     "course_teacher": "Về giáo viên",
     "course_rating": "Đánh giá",
     "course_related": "Khóa học liên quan",
-    "unknown": "Chưa rõ",
+    "unknown": "Đang cập nhật",
     "read_more": "Chi tiết"
   },
   "en": {

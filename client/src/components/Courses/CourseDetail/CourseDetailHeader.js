@@ -61,7 +61,12 @@ class CourseDetailHeader extends Component {
               <div className="meta-category">
                 <div className="content">
                   <span className="text-muted mt-3 block">{this.context.t('period')}</span>
-                  <h6>{course_sections.length} {this.context.t('period')}</h6>
+                  <h6>
+                  {
+                    course_sections.length ?
+                      course_sections.length + ' ' + this.context.t('period') :
+                      this.context.t('unknown')
+                  }</h6>
                 </div>
               </div>
             </li>
@@ -100,7 +105,13 @@ class CourseDetailHeader extends Component {
             <div className="col-xs-12 col-md-3">
               <ul className="meta-list">
                 <li className="meta-price no-margin">
-                  <div className="price bg-danger">{ObjectUtils.currencyFormat(course.tuition_fee)}</div>
+                  <div className="price bg-danger">
+                  {
+                    course.is_free ?
+                      this.context.t('free') :
+                      ObjectUtils.currencyFormat(course.tuition_fee || 0, course.currency || 'VND')
+                  }
+                  </div>
                 </li>
               </ul>
             </div>

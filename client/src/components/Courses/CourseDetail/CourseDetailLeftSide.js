@@ -15,7 +15,10 @@ import {
 
 class CourseDetailLeftSide extends Component {
   render() {
-    const { activeMenu, updateActiveMenu, displayFixedSidebar } = this.props
+    const {
+      activeMenu, updateActiveMenu, displayFixedSidebar,
+      course_sections, relatedCourses
+    } = this.props
     return (
       <div 
         className={ displayFixedSidebar ? 
@@ -32,18 +35,25 @@ class CourseDetailLeftSide extends Component {
                   <li>
                     <AnchorLink href='#course-detail-intro' className="anchor">{this.context.t('course_intro')}</AnchorLink>
                   </li>
-                  <li>
-                    <AnchorLink href='#course-detail-lessons' className="anchor">{this.context.t('course_lessons')}</AnchorLink>
-                  </li>
+                  {
+                    course_sections.length ?
+                    <li>
+                      <AnchorLink href='#course-detail-lessons' className="anchor">{this.context.t('course_lessons')}</AnchorLink>
+                    </li> : null
+                  }
                   <li>
                     <AnchorLink href='#course-detail-tutor' className="anchor">{this.context.t('course_teacher')}</AnchorLink>
                   </li>
                   <li>
                     <AnchorLink href='#courses-detail-comments' className="anchor">{this.context.t('course_comments')}</AnchorLink>
                   </li>
-                  <li>
-                    <AnchorLink href='#course-detail-related' className="anchor">{this.context.t('course_related')}</AnchorLink>
-                  </li>
+                  {
+                    relatedCourses.length ?
+                    <li>
+                      <AnchorLink href='#course-detail-related' className="anchor">{this.context.t('course_related')}</AnchorLink>
+                    </li> : null
+                  }
+                  
                 </ul>
               </li>
             </ul>
