@@ -31,7 +31,9 @@ class CourseItemInListMode extends Component {
           </div>
           <div className="col-xss-12 col-xs-12 col-lg-9 col-sm-8 col-md-8">
             <div className={styles.content}>
-              <h4><a href="#">{title}</a></h4>
+              <LinkContainer to={ !onlyTutor ? '/course/' + id : '/dashboard/courses/detail/' + id }>
+                 <h4>{title}</h4>
+              </LinkContainer>
               <div className={styles.contentInner}>
                 <div className="row gap-20">
                   <div className="col-xss-7 col-xs-8 col-lg-8 col-sm-8 col-sm-8">
