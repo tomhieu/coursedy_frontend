@@ -224,7 +224,29 @@ body.application {
     }
   }
 
+  .fixed-top-search-bar {
+    position: static;
+  }
+
+  .moving-sort-bar {
+    margin-top: 0;
+  }
+
   @media only screen and (min-width: 993px) {
+    .fixed-top-search-bar {
+      width: 100%;
+      background-color: $white-color;
+      position: fixed;
+      top: 70px;
+      left: 0;
+      z-index: 10;
+      border-bottom: solid 1px $border-color;
+    }
+
+    .moving-sort-bar {
+      margin-top: 50px;
+    }
+
     .navbar-sticky.fixed-top+main.container {
       margin-top: 100px;
     }
@@ -1049,6 +1071,26 @@ body.application {
   @media (max-width: 767px) {
     .pull-left-xs {
       float: left!important;
+    }
+  }
+
+  .course-pagination {
+    position: relative;
+    &:after {
+      content: '';
+      border: solid 0.5px $border-color;
+      position: absolute;
+      width: 100%;
+      bottom: 0px;
+      left: 0;
+    }
+    &:before {
+      content: '';
+      border: solid 0.5px $border-color;
+      position: absolute;
+      width: 100%;
+      top: 0px;
+      left: 0;
     }
   }
 }

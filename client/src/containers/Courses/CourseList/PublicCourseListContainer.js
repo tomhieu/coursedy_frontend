@@ -56,7 +56,7 @@ class PublicCourseListContainer extends Component {
           </div>
           {
             !isFetching && courses.length > 0 ? (
-              <div className="pagination-course_list ">
+              <div className="container-fluid course-pagination mb-15">
                 <Pagination
                   activePage={this.props.currentPage}
                   itemsCountPerPage={this.props.perPage}

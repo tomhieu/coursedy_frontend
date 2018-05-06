@@ -6,6 +6,7 @@ import { LinkContainer } from 'react-router-bootstrap'
 import { dashboardUrls } from '../../actions/ReferenceActions/ReferenceData'
 import * as WebConstants from "constants/WebConstants";
 import {SecurityUtils} from "utils/SecurityUtils";
+import {TRIGGER_STICKY_HEADER_AT} from "constants/Layout";
 
 class Header extends Component {
   componentWillMount() {
@@ -26,7 +27,7 @@ class Header extends Component {
   }
 
   handleScroll(event) {
-    const triggerPosition = 50
+    const triggerPosition = TRIGGER_STICKY_HEADER_AT
     const top = window.pageYOffset || document.documentElement.scrollTop
     if (triggerPosition < top) {
       this.setState({
