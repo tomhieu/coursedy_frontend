@@ -75,7 +75,13 @@ class CourseDetailHeader extends Component {
               </div>
             </li>
             <li className="meta-price">
-              <div className="price bg-danger">{ObjectUtils.currencyFormat(course.tuition_fee)}</div>
+              <div className="price bg-danger">
+              {
+                course.is_free ?
+                  this.context.t('free') :
+                  ObjectUtils.currencyFormat(course.tuition_fee || 0, course.currency || 'VND')
+              }
+              </div>
             </li>
           </ul>
         </div>
