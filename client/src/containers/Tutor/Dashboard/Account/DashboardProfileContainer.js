@@ -14,7 +14,6 @@ import {FETCH_USER_ACCOUNT} from "constants/AccountTypes";
 
 class DashboardProfileContainer extends Component {
   componentWillMount() {
-    this.props.fetchUser();
     this.props.fetchUserBalance();
   }
 
@@ -93,17 +92,12 @@ class DashboardProfileContainer extends Component {
 
 const mapStateToProps = (state) => ({
   userBalance: state.session.userBalance,
-  user: state.AccountReducer.user,
+  user: state.session.currentUser,
   editAvatarMode: state.AccountReducer.editAvatarMode,
   avatarSelected: state.AccountReducer.avatarSelected
 })
 
 const mapStateToDispatch = (dispatch) => ({
-  fetchUser: () => dispatch({
-    type: FETCH_USER_ACCOUNT,
-    payload: Network().get('current_user'),
-    meta: 'userDetailsPlaceholder'
-  }),
   fetchUserBalance: () => dispatch({
     type: FETCH_USER_BALANCE,
     payload: 0,

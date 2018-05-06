@@ -36,8 +36,8 @@ TutorEducationItem.contextTypes = {
 
 TutorEducationItem.propTypes = {
   education: React.PropTypes.object.isRequired,
-  showEditEducationForm: React.PropTypes.object.isRequired,
-  delete: React.PropTypes.func.required
+  showEditEducationForm: React.PropTypes.func.isRequired,
+  delete: React.PropTypes.func.isRequired
 }
 
 export default TutorEducationItem

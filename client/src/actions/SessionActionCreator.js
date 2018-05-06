@@ -3,8 +3,9 @@ import {globalHistory} from '../utils/globalHistory'
 import queryString from 'query-string'
 import Network from '../utils/network'
 import {SIGN_OUT} from "./AsyncActionCreator";
+import * as WebConstants from "constants/WebConstants";
 
-const fetchCurrentUser = () => {
+export const fetchCurrentUser = () => {
   return {
     type: types.FETCH_CURRENT_USER,
     payload: Network().get('current_user')
@@ -23,6 +24,7 @@ export const checkRole = (authorizedRoles, unauthorizedPath) => {
 export const setCurrentUser = () => {
   return dispatch => {
     const confirmation  = queryString.parse(globalHistory.location.search)
+    localStorage.setItem(WebConstants.AUTHENTICATED, true);
 
     if (confirmation.account_confirmation_success == 'true' && confirmation.token) {
       // redirect from api devise's confirmation when activating account

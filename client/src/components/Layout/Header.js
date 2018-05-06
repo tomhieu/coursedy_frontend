@@ -4,11 +4,18 @@ import cssModules from 'react-css-modules';
 import styles from './Header.module.scss';
 import { LinkContainer } from 'react-router-bootstrap'
 import { dashboardUrls } from '../../actions/ReferenceActions/ReferenceData'
+import * as WebConstants from "constants/WebConstants";
+import {SecurityUtils} from "utils/SecurityUtils";
 
 class Header extends Component {
+  componentWillMount() {
+    if (SecurityUtils.isAuthenticated()) {
+      this.props.fetchUser();
+    }
+  }
   render() {
     let dashboardUrl = this.props.session.currentUser ? 
-      dashboardUrls[this.props.session.currentUser.roles[0]] : ''
+      dashboardUrls[this.props.session.currentUser.roles[0]] : '';
     return (
       <nav className="navbar navbar-expand-lg navbar-light navbar-default bg-light navbar-sticky fixed-top">
         <div className="container">
@@ -37,7 +44,7 @@ class Header extends Component {
                 </LinkContainer>
               </li>
               {
-                this.props.session.currentUser ? (
+                SecurityUtils.isAuthenticated() ? (
                   <li className="nav-item">
                     <LinkContainer className="nav-link" to={dashboardUrl}>
                       <span className="nav-btn"> <i className="fa fa-user"></i> &nbsp; {this.context.t('dashboard')}</span>
@@ -46,9 +53,9 @@ class Header extends Component {
                 ) : null
               }
               {
-                this.props.session.currentUser ? (
+                SecurityUtils.isAuthenticated() ? (
                   <li className="nav-item">
-                    <LinkContainer className="nav-link" onClick={this.props.signOut} to="#">
+                    <LinkContainer className="nav-link" onClick={() => this.props.signOut()} to="#">
                       <span className="nav-btn"> <i className="fa fa-sign-out"></i> &nbsp; {this.context.t('signout')}</span>
                     </LinkContainer>
                   </li>

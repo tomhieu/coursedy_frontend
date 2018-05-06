@@ -36,7 +36,7 @@ TutorWorkExperienceItem.contextTypes = {
 
 TutorWorkExperienceItem.propTypes = {
   workExperience: React.PropTypes.object.isRequired,
-  showEditWorkExperienceForm: React.PropTypes.object.isRequired,
+  showEditWorkExperienceForm: React.PropTypes.func.isRequired,
   delete: React.PropTypes.func.required
 }
 

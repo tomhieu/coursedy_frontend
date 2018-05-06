@@ -27,7 +27,7 @@ import * as AccountTypes from "constants/AccountTypes";
 
 class TutorAccount extends Component {
   componentWillMount(){
-    this.props.fetchUser();
+    this.props.fetchTutorData();
     this.props.loadListSkillData();
     this.props.loadDegrees();
   }
@@ -133,7 +133,7 @@ TutorAccount.contextTypes = {
 
 const mapStateToProps = (state) => ({
   editPasswordMode: state.AccountReducer.editPasswordMode,
-  user: state.AccountReducer.user,
+  user: state.session.currentUser,
   tutor: state.TutorAccountReducer.tutor,
   editProfileMode: state.AccountReducer.editProfileMode,
   editEducationMode: state.TutorAccountReducer.editEducationMode,
@@ -141,19 +141,11 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchUser: () => {
-    dispatch({
-        type: AccountTypes.FETCH_USER_ACCOUNT,
-        payload: Network().get('current_user'),
-        meta: 'userAccountPlaceholder'
-    })
-
-    dispatch({
-      type: FETCH_TUTOR_DATA,
-      payload: Network().get('tutors/current_tutor'),
-      meta: 'userAccountPlaceholder'
-    })
-  },
+  fetchTutorData: () => dispatch({
+    type: FETCH_TUTOR_DATA,
+    payload: Network().get('tutors/current_tutor'),
+    meta: 'userAccountPlaceholder'
+  }),
   loadListSkillData: () => dispatch({
     type: FETCH_TEACHER_SKILL_SET,
     payload: Network().get('categories'),
