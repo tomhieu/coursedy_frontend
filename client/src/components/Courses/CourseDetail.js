@@ -49,6 +49,13 @@ class CourseDetail extends Component {
     const { displayFixedSidebar } = this.state
     return (
       <div className="course-detail">
+        <div 
+          className={
+            displayFixedSidebar ?  
+              "d-none d-md-block white-mask-scrolled" : 
+              "d-none d-md-block white-mask-normal"
+          }
+        ></div>
         <CourseDetailHeader
           {...this.props}
           displayFixedSidebar={displayFixedSidebar}

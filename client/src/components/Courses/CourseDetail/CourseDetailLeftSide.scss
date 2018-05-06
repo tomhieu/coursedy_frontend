@@ -1,6 +1,12 @@
-.sidebar-fixed {
+.sidebar-fixed-normal {
   position: fixed;
-  top: 70px;
+  top: 200px;
+  z-index: 500;
+  width: 20.5%;
+}
+.sidebar-fixed-scrolled {
+  position: fixed;
+  top: 150px;
   z-index: 500;
   width: 20.5%;
 }

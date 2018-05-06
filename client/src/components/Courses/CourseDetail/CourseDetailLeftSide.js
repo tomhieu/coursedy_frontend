@@ -19,8 +19,8 @@ class CourseDetailLeftSide extends Component {
     return (
       <div 
         className={ displayFixedSidebar ? 
-          "col-md-3 no-pad d-none d-md-block sidebar-fixed" :
-          "col-md-3 no-pad d-none d-md-block"
+          "col-md-3 no-pad d-none d-md-block sidebar-fixed-scrolled" :
+          "col-md-3 no-pad d-none d-md-block sidebar-fixed-normal"
         } 
       >
         <aside className="sidebar-wrapper">

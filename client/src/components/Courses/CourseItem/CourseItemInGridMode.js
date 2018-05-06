@@ -43,6 +43,7 @@ class CourseItemInGridMode extends Component {
             </div>
           </LinkContainer>
           <div className="course-item-price">
+
             {this.context.t('course_item_price_tag', {price: item.price || 0, currency: item.currency || 'VND'})}
           </div>
         </div>

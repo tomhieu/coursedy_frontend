@@ -1,8 +1,12 @@
-.course-detail-main {
-  width: 100%;
-  position: relative;
-  top: 100px;
-  .container {
-    display: flex;
+@import "../../../../styles/global_style.scss";
+
+@media (min-width: $md-lower) {
+  .course-detail-main {
+    width: 100%;
+    position: relative;
+    top: 200px;
+    .container {
+      display: flex;
+    }
   }
 }

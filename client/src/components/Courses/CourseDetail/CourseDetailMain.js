@@ -3,7 +3,6 @@ import CourseDetailLeftSide from './CourseDetailLeftSide'
 import CourseDetailRightSide from './CourseDetailRightSide'
 import './CourseDetailMain.scss'
 
-
 class CourseDetailMain extends Component {
   render() {
     const { displayFixedSidebar } = this.props

@@ -1,3 +1,25 @@
+@import "../../../styles/global_style.scss";
+
 .course-detail {
   width: 100%;
 }
+
+@media (min-width: $md-lower) {
+  .white-mask-normal {
+    position: fixed;
+    height: 130px;
+    top: 70px;
+    z-index: 499;
+    background-color: #fff;
+    width: 100%;
+  }
+  .white-mask-scrolled {
+    position: fixed;
+    height: 80px;
+    top: 70px;
+    z-index: 499;
+    background-color: #fff;
+    width: 100%;
+  }
+}
+

@@ -2,16 +2,24 @@
 
 @media (min-width: $md-lower) {
   .course-detail-header {
-    position: relative;
+    position: fixed;
     top: 100px;
-    height: 100px;
+    z-index: 500;
     border-bottom: 1px solid #E5E5E5;
     background-color: #fff;
   }
+  .course-detail-header-normal {
+    height: 100px;
+  }
+  .course-detail-header-scrolled {
+    height: 50px;
+  }
 }
 
-@media #{$sm-query} {
-  
+@media (max-width: $sm-upper) {
+  .course-detail-header {
+    padding-top: 15px;
+  }
 }
 
 .course-detail-header {
