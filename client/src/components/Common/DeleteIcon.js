@@ -38,9 +38,9 @@ DeleteIcon.contextTypes = {
 }
 
 DeleteIcon.propTypes = {
-  action: React.PropTypes.func.required,
-  comfirmationMessage: React.PropTypes.string.required,
-  comfirmationTitle: React.PropTypes.string.required
+  action: React.PropTypes.func.isRequired,
+  comfirmationMessage: React.PropTypes.string.isRequired,
+  comfirmationTitle: React.PropTypes.string.isRequired
 }
 
 export default DeleteIcon;
