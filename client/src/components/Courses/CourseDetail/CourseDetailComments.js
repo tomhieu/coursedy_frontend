@@ -44,7 +44,7 @@ class CourseDetailComments extends Component {
                 <li className="clearfix" key={'course-detail-comments-' + index}>
                   <div className="image img-circle">
                     <img 
-                      className="rounded-circle" 
+                      className="rounded-circle full-width"
                       src={item.user.avatar ? item.user.avatar : "http://placehold.it/46x46"}
                       alt={this.context.t('course_comments')} 
                     />
