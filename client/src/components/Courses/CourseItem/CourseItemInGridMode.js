@@ -44,7 +44,9 @@ class CourseItemInGridMode extends Component {
           </LinkContainer>
           <div className="course-item-price">
             {
-              ObjectUtils.currencyFormat(item.tuition_fee || 0, item.currency || 'VND')
+              item.is_free ?
+                this.context.t('free') :
+                ObjectUtils.currencyFormat(item.tuition_fee || 0, item.currency || 'VND')
             }
           </div>
         </div>

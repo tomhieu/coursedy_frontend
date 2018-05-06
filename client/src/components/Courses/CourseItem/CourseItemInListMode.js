@@ -86,7 +86,9 @@ class CourseItemInListMode extends Component {
                   <div className="col-xss-12 col-xs-12 col-lg-2 col-sm-2 col-md-2">
                     <div className={styles.price}>
                       {
-                        ObjectUtils.currencyFormat(item.tuition_fee || 0, item.currency || 'VND')
+                        item.is_free ?
+                          this.context.t('free') :
+                          ObjectUtils.currencyFormat(item.tuition_fee || 0, item.currency || 'VND')
                       }
                     </div>
                   </div>
