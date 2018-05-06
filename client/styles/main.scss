@@ -225,8 +225,16 @@ body.application {
   }
 
   @media only screen and (min-width: 993px) {
-    main.container {
+    .navbar-sticky.fixed-top+main.container {
       margin-top: 100px;
+    }
+
+    .header-nav {
+      border-bottom: solid 1px $border-color;
+    }
+
+    .header-nav.navbar-sticky.fixed-top {
+      border-bottom: none;
     }
   }
 

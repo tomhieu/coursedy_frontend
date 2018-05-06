@@ -21,7 +21,7 @@ class CourseDetailMain extends Component {
   }
 
   handleScroll(event) {
-    const triggerPosition = 100
+    const triggerPosition = 150
     const top = window.pageYOffset || document.documentElement.scrollTop
     if (triggerPosition < top) {
       this.setState({

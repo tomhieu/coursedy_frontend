@@ -9,7 +9,7 @@ class CourseDetailHeader extends Component {
     const {styles, categories, course, course_tutor, course_sections, course_comments} = this.props
     return (
       <div>
-        <div className="content mb-15">
+        <div className="content mb-15 mt-15">
           <h2>{course.title}</h2>
         </div>
         <ul className="meta-list">

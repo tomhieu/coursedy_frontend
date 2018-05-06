@@ -46,7 +46,7 @@ class PublicCourseListContainer extends Component {
                    loaderType="COURSE_ITEM_PLACEHOLDER"
                    repeatTime={4}>
         <div className="public-course-list">
-          <div className="course-list-container">
+          <div className="container-fluid mt-15 mb-15">
             <CourseList
               {...this.props}
               itemClass='col-xs-12 col-sm-4 col-md-3 mb-15'

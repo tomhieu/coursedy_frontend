@@ -2760,7 +2760,6 @@ div[data-reactroot] {
 .course-filter-container {
   height: auto;
   position: relative;
-  margin-top: 70px;
 }
 
 @media only screen and (max-width: 992px) {
@@ -2780,10 +2779,6 @@ div[data-reactroot] {
 }
 
 .pagination-course_list {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  height: 60px;
 }
 
 .pagination {
