@@ -22,8 +22,11 @@ class CourseDetail extends Component {
   render() {
     return (
       <div className="course-detail">
-        {/*<div className="white-mask"></div>*/}
-        <CourseDetailHeader {...this.props}/>
+        <div className="course-detail-header full-width-in-container">
+          <div className="container">
+            <CourseDetailHeader {...this.props}/>
+          </div>
+        </div>
         <CourseDetailMain {...this.props}/>
       </div>
     )

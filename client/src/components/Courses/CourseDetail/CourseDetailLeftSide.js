@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import './CourseDetailLeftSide.scss'
 import {
   PUBLIC_COURSE_DETAIL_MENU_INTRO,
@@ -8,21 +8,16 @@ import {
   PUBLIC_COURSE_DETAIL_MENU_RELATED
 } from "../../../constants/WebConstants.js"
 import AnchorLink from 'react-anchor-link-smooth-scroll'
-import { 
+import {
   CourseDetailFollowContainer,
   CourseDetailEnrollContainer
 } from "../../../containers/index.js"
 
 class CourseDetailLeftSide extends Component {
   render() {
-    const { activeMenu, updateActiveMenu, displayFixedSidebar } = this.props
+    const {activeMenu, updateActiveMenu} = this.props
     return (
-      <div 
-        className={ displayFixedSidebar ? 
-          "col-md-3 no-pad d-none d-md-block sidebar-fixed" :
-          "col-md-3 no-pad d-none d-md-block"
-        } 
-      >
+      <div>
         <aside className="sidebar-wrapper">
           <div className="scrollspy-sidebar alt-style-01 affix-top">
             <ul className="scrollspy-sidenav">
@@ -30,19 +25,24 @@ class CourseDetailLeftSide extends Component {
               <li className="">
                 <ul className="course-detail-left-nav">
                   <li>
-                    <AnchorLink href='#course-detail-intro' className="anchor">{this.context.t('course_intro')}</AnchorLink>
+                    <AnchorLink href='#course-detail-intro'
+                                className="anchor">{this.context.t('course_intro')}</AnchorLink>
                   </li>
                   <li>
-                    <AnchorLink href='#course-detail-lessons' className="anchor">{this.context.t('course_lessons')}</AnchorLink>
+                    <AnchorLink href='#course-detail-lessons'
+                                className="anchor">{this.context.t('course_lessons')}</AnchorLink>
                   </li>
                   <li>
-                    <AnchorLink href='#course-detail-tutor' className="anchor">{this.context.t('course_teacher')}</AnchorLink>
+                    <AnchorLink href='#course-detail-tutor'
+                                className="anchor">{this.context.t('course_teacher')}</AnchorLink>
                   </li>
                   <li>
-                    <AnchorLink href='#courses-detail-comments' className="anchor">{this.context.t('course_comments')}</AnchorLink>
+                    <AnchorLink href='#courses-detail-comments'
+                                className="anchor">{this.context.t('course_comments')}</AnchorLink>
                   </li>
                   <li>
-                    <AnchorLink href='#course-detail-related' className="anchor">{this.context.t('course_related')}</AnchorLink>
+                    <AnchorLink href='#course-detail-related'
+                                className="anchor">{this.context.t('course_related')}</AnchorLink>
                   </li>
                 </ul>
               </li>
@@ -50,9 +50,9 @@ class CourseDetailLeftSide extends Component {
           </div>
 
           <div className="clearfix mb-20 mt-30">
-            <CourseDetailEnrollContainer />
+            <CourseDetailEnrollContainer/>
           </div>
-          
+
           <div className="call-featiured">
             <div className="icon">
               <i className="fa fa-phone"></i>
@@ -65,7 +65,7 @@ class CourseDetailLeftSide extends Component {
             </div>
           </div>
           <div className="favor-link-wrapper mb-30">
-            <CourseDetailFollowContainer />
+            <CourseDetailFollowContainer/>
           </div>
         </aside>
       </div>
@@ -77,7 +77,6 @@ CourseDetailLeftSide.contextTypes = {
   t: React.PropTypes.func.isRequired
 }
 
-CourseDetailLeftSide.propTypes = {
-};
+CourseDetailLeftSide.propTypes = {};
 
 export default CourseDetailLeftSide;

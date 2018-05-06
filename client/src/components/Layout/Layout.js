@@ -14,7 +14,7 @@ class Layout extends Component {
       <I18n translations={translations} initialLang={TT.locale}>
         <div className="main-content">
           <Header session={session} {...this.props} />
-          <main className={!main.stetchAuto ? styles.stretchFull : 'container'}>
+          <main className='container'>
             {this.props.children}
           </main>
           {
