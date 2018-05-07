@@ -236,19 +236,19 @@ body.application {
     .fixed-top-search-bar {
       width: 100%;
       background-color: $white-color;
-      position: fixed;
-      top: 70px;
-      left: 0;
-      z-index: 10;
       border-bottom: solid 1px $border-color;
-    }
-
-    .moving-sort-bar {
-      margin-top: 50px;
     }
 
     .navbar-sticky.fixed-top+main.container {
       margin-top: 100px;
+      .course-filter-container .fixed-top-search-bar {
+        position: fixed;
+        top: 70px;
+        left: 0;
+        z-index: 99999;
+        box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.12);
+        border-top: solid 1px $border-color;
+      }
     }
 
     .header-nav {
