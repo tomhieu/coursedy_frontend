@@ -229,7 +229,7 @@ export const translations = {
      * Filter Course Page
      */
     "filter": "Tìm kiếm",
-    "filter_more": "Thêm",
+    "filter_more": "Nâng cao",
     "location": "Khu vực",
     "course_category_title": "Khoá học",
     "tuition_fee_filter": "Học phí",

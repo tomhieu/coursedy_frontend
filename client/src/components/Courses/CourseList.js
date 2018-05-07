@@ -14,6 +14,7 @@ class CourseList extends Component {
   constructor(props) {
     super(props);
   }
+
   render() {
     const {courses, isFetching} = this.props;
     if (!isFetching && courses.length === 0) {
