@@ -6,6 +6,7 @@ import {SERVER_NAME} from "utils/CommonConstant";
 import {TT} from "utils/locale";
 import Image from 'react-graceful-image';
 import RatingItem from '../../Rating/index'
+import ObjectUtils from "utils/ObjectUtils";
 
 
 /**
@@ -43,7 +44,7 @@ class CourseItemInGridMode extends Component {
             </div>
           </LinkContainer>
           <div className="course-item-price">
-            {this.context.t('course_item_price_tag', {price: item.price || 0, currency: item.currency || 'VND'})}
+            {ObjectUtils.currencyFormat(item.tuition_fee, item.currency)}
           </div>
         </div>
         <LinkContainer to={isPublic ? '/course/' + item.id : '/dashboard/courses/detail/' + item.id} className='course-detail-lnk'>
@@ -55,7 +56,7 @@ class CourseItemInGridMode extends Component {
         </LinkContainer>
         <div className="course-item-bottom clearfix">
           <div><i className="fa fa-folder-open-o"/><span className="block"> {item.category.name} </span></div>
-          <div><i className="fa fa-pencil-square-o"/><span className="block"> {this.context.t('lesson_count', {lessons: item.lesson_count})}</span></div>
+          <div><i className="fa fa-pencil-square-o"/><span className="block"> {this.context.t('lesson_count', {lessons: item.period})}</span></div>
         </div>
       </div>
     )
