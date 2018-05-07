@@ -1,7 +1,7 @@
 import React  from 'react';
 import { reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
-import * as TeacherActions from 'actions/TeacherCreators';
+import * as TeacherActions from 'actions/TeacherActionCreators';
 import {
   fetchCourseCategories
 } from 'actions/ReferenceActions/ReferenceDataActionCreator';

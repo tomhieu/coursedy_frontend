@@ -6,18 +6,46 @@ import { LinkContainer } from 'react-router-bootstrap'
 import { dashboardUrls } from '../../actions/ReferenceActions/ReferenceData'
 import * as WebConstants from "constants/WebConstants";
 import {SecurityUtils} from "utils/SecurityUtils";
+import {TRIGGER_STICKY_HEADER_AT} from "constants/Layout";
 
 class Header extends Component {
   componentWillMount() {
     if (SecurityUtils.isAuthenticated()) {
       this.props.fetchUser();
     }
+    this.state = {
+      fixedTop: false
+    }
   }
+
+  componentDidMount() {
+    window.addEventListener('scroll', this.handleScroll.bind(this))
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.handleScroll.bind(this))
+  }
+
+  handleScroll(event) {
+    const triggerPosition = TRIGGER_STICKY_HEADER_AT
+    const top = window.pageYOffset || document.documentElement.scrollTop
+    if (triggerPosition < top) {
+      this.setState({
+        fixedTop: true
+      })
+    } else {
+      this.setState({
+        fixedTop: false
+      })
+    }
+  }
+
   render() {
     let dashboardUrl = this.props.session.currentUser ? 
       dashboardUrls[this.props.session.currentUser.roles[0]] : '';
+    let {fixedTop} = this.state;
     return (
-      <nav className="navbar navbar-expand-lg navbar-light navbar-default bg-light navbar-sticky fixed-top">
+      <nav className={`header-nav navbar navbar-expand-lg navbar-light navbar-default bg-light ${fixedTop ? 'navbar-sticky fixed-top' : ''}`}>
         <div className="container">
           <a className="navbar-brand" href="#"><img src="/logo2.png" className="logo" alt="logo"/></a>
           <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">

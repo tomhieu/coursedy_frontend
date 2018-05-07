@@ -5,6 +5,7 @@ import AdvanceFilterComponent from "./CourseFilter/AdvanceFilterComponent";
 import BasicFilterComponent from "./CourseFilter/BasicFilterComponent";
 import Select2 from "react-select2-wrapper";
 import FlatButton from "../Core/FlatButton/FlatButton";
+import {TRIGGER_STICKY_HEADER_AT} from "constants/Layout";
 
 
 class CourseFilter extends Component {
@@ -55,8 +56,8 @@ class CourseFilter extends Component {
     };
     return (
       <form onSubmit={handleSubmit(this.props.onSubmit)} className='course-filter-form inline-form' multiple={true}>
-        <div className="d-flex flex-vertical">
-          <div className={"d-flex flex-auto " + styles.filterActionBlock}>
+        <div className={"d-flex flex-vertical"}>
+          <div className={"d-flex flex-auto fixed-top-search-bar " + styles.filterActionBlock}>
             <div className="d-flex flex-wrap flex-auto">
               <div className={"d-flex flex-nowrap " + styles.filterTextContainer}>
                 <BasicFilterComponent selectedWeekDays={selectedWeekDays}
@@ -108,7 +109,7 @@ class CourseFilter extends Component {
           </div>
 
           {/* Result Block */}
-          <div className={"d-flex flex-auto " + styles.filterResultBlock}>
+          <div className={"d-flex flex-auto moving-sort-bar " + styles.filterResultBlock}>
             <div className="d-flex flex-horizontal justify-content-end">
               <div className={styles.orderDisplayResult + " d-flex flex-horizontal align-items-center justify-content-end"}>
                 <div className={styles.totalCoursesBox}>

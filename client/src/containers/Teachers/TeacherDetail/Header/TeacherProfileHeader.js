@@ -1,24 +1,20 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from 'react'
+import { Link } from 'react-router-dom'
 import RatingItem from 'components/Rating'
+import defaultAvatar from '../../../../../images/default_avatar.png'
 
-// todo:
-/*
-* default avatar
-*
-* */
 const TeacherProfileHeader = (props) => {
   const { teacher } = props
   if (!teacher.user) { return null }
   return (
     <div className="d-flex flex-column flex-sm-column flex-md-row flex-lg-row teacher-detail-profile-header">
       <div className="profile-picture">
-        <img src={teacher.user.avatar} />
+        <img src={teacher.user.avatar ? teacher.user.avatar : defaultAvatar} />
       </div>
       <div className="profile-summary">
-        <RatingItem num_stars={teacher.star_average || 0} num_reviews={teacher.reviews && teacher.reviews.headers.xTotal || 0}/>
-        <h3><Link to="#">{teacher.user.name}</Link></h3>
-        <p>{teacher.title}</p>
+        <RatingItem num_stars={(teacher.user.rating_points/teacher.user.rating_count) || 0} num_reviews={teacher.user.rating_counts || 0}/>
+        <h3>{teacher.user.name}</h3>
+        <div className="mb-5">{teacher.title}</div>
 
         <TeacherCategories categories={teacher.categories}/>
         {teacher.twitter || teacher.linkedIn ? <div className="social">
@@ -34,11 +30,9 @@ const TeacherProfileHeader = (props) => {
   )
 }
 
-// Todo
-// define category link
 const TeacherCategories = ({categories}) => {
   return (
-    <div className="categories mb-20">
+    <div className="categories mb-5">
       {
         categories.map((category) => {
           return (

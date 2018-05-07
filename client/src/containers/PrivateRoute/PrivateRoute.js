@@ -2,11 +2,11 @@ import React, {Component} from "react";
 import {Redirect, Route} from "react-router";
 import {connect} from "react-redux";
 import * as sessionActions from 'actions/SessionActionCreator'
+import {SecurityUtils} from "utils/SecurityUtils";
 
 class PrivateRoute extends Component {
   componentDidMount() {
-    const isAuthenticated = localStorage.getItem('isAuthenticated') != null;
-    if (isAuthenticated && this.props.user == null) {
+    if (SecurityUtils.isAuthenticated() && this.props.user == null) {
       this.props.fetchUserData();
     }
   }
@@ -19,7 +19,7 @@ class PrivateRoute extends Component {
 
   render() {
     const {user, component: Component, ...rest} = this.props;
-    const isAuthenticated = localStorage.getItem('isAuthenticated') != null;
+    const isAuthenticated = SecurityUtils.isAuthenticated();
     if (isAuthenticated && user == null) {
       return <div>LOADING</div>;
     } else {

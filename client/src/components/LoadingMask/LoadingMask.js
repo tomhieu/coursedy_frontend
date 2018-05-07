@@ -9,10 +9,10 @@ class LoadingMask extends Component {
   render() {
     const {placeholderId, activatingPlaceholders,
       isFullLoading = false, normalPlaceholder = true, facebookPlaceholder = false, sectionPlaceholder = false,
-      loaderType, repeatTime} = this.props;
+      loaderType, repeatTime, innerClass="loading-mask-container d-flex flex-stretch"} = this.props;
     const isProcessing = activatingPlaceholders.findIndex(holder => placeholderId === holder) >= 0;
     return (
-      <div className="loading-mask-container d-flex flex-stretch">
+      <div className={innerClass}>
         {
           isProcessing ? <AsyncLoader isFullLoading={isFullLoading}
                                       normalPlaceholder={normalPlaceholder}
@@ -36,7 +36,8 @@ LoadingMask.propTypes = {
   facebookPlaceholder: React.PropTypes.bool,
   sectionPlaceholder: React.PropTypes.bool,
   loaderType: React.PropTypes.string,
-  repeatTime: React.PropTypes.number
+  repeatTime: React.PropTypes.number,
+  innerClass: React.PropTypes.string,
 };
 
 const mapStateToProps = (state) => ({

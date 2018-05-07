@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import TeacherItem from './TeacherItem';
-import { searchTeachers } from 'actions/TeacherCreators';
+import { searchTeachers } from 'actions/TeacherActionCreators';
 import Pagination from 'react-js-pagination';
 import LoadingMask from 'components/LoadingMask/LoadingMask';
 import EmptyResultWarning from 'components/Core/EmptyResultWarning';

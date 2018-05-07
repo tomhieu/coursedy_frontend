@@ -41,6 +41,8 @@ class AsyncLoader extends Component {
           return <UserAccountPlaceholder numOfline={3}></UserAccountPlaceholder>;
         case WebContants.USER_CERTIFICATE_PLACEHOLDER:
           return <UserAccountPlaceholder numOfline={3}></UserAccountPlaceholder>;
+        case WebContants.TEACHER_DETAIL_PROFILE_PLACEHOLDER:
+          return <TeacherDetailProfilePlaceholder numOfline={4}></TeacherDetailProfilePlaceholder>
       }
     } else {
       return null;
@@ -268,6 +270,27 @@ const UserAccountLine = () => {
           <div className="background-masker sm-text-placeholder"></div>
         </div>
       </div>
+    </div>
+  )
+}
+
+const TeacherDetailProfilePlaceholder = (props) => {
+  const placeholders = [];
+  for (let i = 0; i < props.numOfline; i++) {
+    placeholders.push(
+      <div className="row" key={"TeacherDetailProfilePlaceholder" + i}>
+        <div className="col-md-12 col-sm-12">
+          <div className="background-masker sm-text-placeholder mb-10" style={{width: '70%'}}></div>
+        </div>
+      </div>
+    );
+  }
+  return (
+    <div className="d-flex flex-column flex-sm-column flex-md-row flex-lg-row animated-background" style={{width: '100%'}}>
+        <div className="background-masker image-placeholder avatar-teacher-detail" />
+        <div style={{width: '100%'}}>
+          {placeholders}
+        </div>
     </div>
   )
 }

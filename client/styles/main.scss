@@ -224,9 +224,39 @@ body.application {
     }
   }
 
+  .fixed-top-search-bar {
+    position: static;
+  }
+
+  .moving-sort-bar {
+    margin-top: 0;
+  }
+
   @media only screen and (min-width: 993px) {
-    main.container {
+    .fixed-top-search-bar {
+      width: 100%;
+      background-color: $white-color;
+      position: fixed;
+      top: 70px;
+      left: 0;
+      z-index: 10;
+      border-bottom: solid 1px $border-color;
+    }
+
+    .moving-sort-bar {
+      margin-top: 50px;
+    }
+
+    .navbar-sticky.fixed-top+main.container {
       margin-top: 100px;
+    }
+
+    .header-nav {
+      border-bottom: solid 1px $border-color;
+    }
+
+    .header-nav.navbar-sticky.fixed-top {
+      border-bottom: none;
     }
   }
 
@@ -988,5 +1018,79 @@ body.application {
     color: $white-color;
     border-left: none;
     border-radius: 0;
+  }
+
+  .pager-wrappper {
+    border-top: 1px solid $border-color;
+    border-bottom: 1px solid $border-color;
+
+    .pager-right {
+      float: right;
+    }
+
+    .pager-left {
+      float: left;
+    }
+  }
+
+  .social {
+    a {
+      display: block;
+      line-height: 30px;
+      background: $white-color;
+      float: left;
+      width: 30px;
+      height: 30px;
+      text-align: center;
+      margin-right: 5px;
+      font-size: 17px;
+      border-radius: 100%;
+
+      &.twitter {
+        border: #00aced 1px solid;
+        color: #00aced;
+      }
+
+      &.twitter:hover {
+        background: #00aced;
+        color: $white-color;
+      }
+
+      &.linked {
+        border: #007bb5 1px solid;
+        color: #007bb5;
+      }
+
+      &.linked:hover {
+        background: #007bb5;
+        color: $white-color;
+      }
+    }
+  }
+
+  @media (max-width: 767px) {
+    .pull-left-xs {
+      float: left!important;
+    }
+  }
+
+  .course-pagination {
+    position: relative;
+    &:after {
+      content: '';
+      border: solid 0.5px $border-color;
+      position: absolute;
+      width: 100%;
+      bottom: 0px;
+      left: 0;
+    }
+    &:before {
+      content: '';
+      border: solid 0.5px $border-color;
+      position: absolute;
+      width: 100%;
+      top: 0px;
+      left: 0;
+    }
   }
 }
