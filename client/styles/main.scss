@@ -232,6 +232,13 @@ body.application {
     margin-top: 0;
   }
 
+  .header-nav {
+    border-bottom: solid 1px $border-color;
+    &+main.container {
+      margin-top: 30px;
+    }
+  }
+
   @media only screen and (min-width: 993px) {
     .fixed-top-search-bar {
       width: 100%;
@@ -249,10 +256,6 @@ body.application {
         box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.12);
         border-top: solid 1px $border-color;
       }
-    }
-
-    .header-nav {
-      border-bottom: solid 1px $border-color;
     }
 
     .header-nav.navbar-sticky.fixed-top {
@@ -481,6 +484,7 @@ body.application {
   .full-width-in-container {
     margin-left: calc(-50vw + 50%);
     margin-right: calc(-50vw + 50%);
+    margin-top: -30px;
   }
 
   .img-circle {
@@ -1091,6 +1095,29 @@ body.application {
       width: 100%;
       top: 0px;
       left: 0;
+    }
+  }
+
+  .normal-text {
+    font-size: 14px;
+  }
+
+  .public-course-list {
+    width: 100%;
+  }
+
+  .navbar-toggler.collapsed{
+    .expand-search-bar:before {
+      content: '\f105';
+    }
+  }
+
+  .navbar-toggler{
+    .expand-search-bar{
+      font-size: 17px;
+      &:before {
+        content: '\f107';
+      }
     }
   }
 }

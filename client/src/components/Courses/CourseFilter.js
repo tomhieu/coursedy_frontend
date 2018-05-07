@@ -90,7 +90,7 @@ class CourseFilter extends Component {
                 <a className="navbar-toggler" data-toggle="collapse"
                    data-target="#advanceFilterCollapse" aria-controls="advanceFilterCollapse"
                    aria-expanded="false" aria-label="Toggle navigation">
-                  <span className="navbar-toggler-icon">{this.context.t('filter_more')}</span>
+                  <span className="navbar-toggler-icon normal-text"><i className='fa expand-search-bar'/></span>
                 </a>
               </div>
             </div>

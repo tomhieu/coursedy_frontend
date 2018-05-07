@@ -1,7 +1,7 @@
-import React, { Component} from 'react';
+import React, {Component} from 'react';
 import cssModules from 'react-css-modules';
 import styles from './Course.module.scss';
-import { CourseItem } from '../index';
+import {CourseItem} from '../index';
 import CourseListInListMode from './CourseList/CourseListInListMode'
 import CourseListInGridMode from './CourseList/CourseListInGridMode'
 import {TT} from "utils/locale";
@@ -10,26 +10,20 @@ import LoadingMask from "../LoadingMask/LoadingMask";
 
 
 /**
-  * @Course group template 2
-  * @Use for CoursePage
-  */
+ * @Course group template 2
+ * @Use for CoursePage
+ */
 class CourseList extends Component {
   constructor(props) {
     super(props);
   }
+
   render() {
     const {courses, isFetching} = this.props;
-    return (
-        <div>
-          {
-            isFetching ? <div></div> : courses.length === 0
-              ? <EmptyResultWarning styles={styles.courseListContainer} searchType="search_course"/>
-              : this.props.displayMode === 'grid' 
-                ? <CourseListInGridMode {...this.props} /> 
-                : <CourseListInListMode {...this.props} />
-          }
-        </div>
-    )
+    if(isFetching) return (<div></div>)
+    if (courses.length === 0) return (<EmptyResultWarning styles={styles.courseListContainer} searchType="search_course"/>)
+    if (this.props.displayMode === 'grid') return (<CourseListInGridMode {...this.props} />)
+    return (<CourseListInListMode {...this.props} />)
   }
 }
 
