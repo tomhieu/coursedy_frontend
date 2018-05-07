@@ -1,15 +1,15 @@
-import React, { Component } from 'react';
-import { CourseList } from '../../../components/index';
+import React, {Component} from 'react';
+import {CourseList} from '../../../components/index';
 import * as Actions from '../../../actions/CourseFilterActionCreator'
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
 import Pagination from 'react-js-pagination';
 import LoadingMask from "../../../components/LoadingMask/LoadingMask";
-import * as CommonConstants from "utils/CommonConstant";
-import {FETCH_COURSES} from "constants/Courses";
-import { withRouter } from 'react-router'
+import {FETCH_COURSES, RESET_COURSE_FILTER} from "constants/Courses";
+import {withRouter} from 'react-router'
 import * as WebConstants from "constants/WebConstants";
-import './PublicCourseList.scss'
+import styles from './PublicCourseList.module.scss'
 import Network from "utils/network";
+import cssModules from "react-css-modules";
 
 class PublicCourseListContainer extends Component {
 
@@ -45,7 +45,7 @@ class PublicCourseListContainer extends Component {
                    facebookPlaceholder={displayMode !== 'grid'}
                    loaderType="COURSE_ITEM_PLACEHOLDER"
                    repeatTime={4}>
-        <div className="public-course-list">
+        <div className={styles.publicCourseList}>
           <div className="container-fluid mt-15 mb-15">
             <CourseList
               {...this.props}
@@ -129,6 +129,7 @@ const mapDispatchToProps = (dispatch) => ({
     payload: Network().get('courses/search', buildQuery(props)),
     meta: 'publicCourseListPlaceholder'
   }),
+  resetFilter: () => dispatch({ type: RESET_COURSE_FILTER }),
   selectCourse: (courseId) => dispatch(Actions.selectCourse(courseId)),
   removeCourse: (courseId) => dispatch(Actions.removeCourse(courseId)),
   showFooter: () => dispatch({ type: WebConstants.SHOW_FOOTER }),
@@ -139,4 +140,4 @@ const mapDispatchToProps = (dispatch) => ({
 
 export default connect(
   mapStateToProps, mapDispatchToProps
-)(withRouter(PublicCourseListContainer));
+)(withRouter(cssModules(PublicCourseListContainer, styles)));

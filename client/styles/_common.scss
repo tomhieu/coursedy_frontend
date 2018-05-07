@@ -3291,3 +3291,23 @@ a {
 .general-placeholder .loading-mask-container {
   position: absolute !important;
 }
+
+.empty-result-message {
+  padding: 20px 0;
+  font-size: 24px;
+}
+
+.list-option {
+  padding: 20px;
+}
+
+.empty-result-option {
+  list-style-type: disc;
+  font-size: 16px;
+  text-align: left;
+  color: $color-light-black-text;
+}
+
+a.clear-filter {
+  color: $color-blue;
+}

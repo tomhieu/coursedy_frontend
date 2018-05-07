@@ -347,10 +347,11 @@ export const translations = {
     "user_action_save": "Lưu",
     "user_action_follow": "Theo dõi",
     "introduction_save_time_description": "No more emails, Calls or messaging friends for recommendations - Get acces to real reviews in seconds",
-    "search_empty_result": "Thật tiếc chúng tôi không tìm thấy {type} nào. Thử tìm kiếm bằng từ khoá khác.",
+    "search_empty_result_header": "Hãy thử tìm kiếm bằng từ khoá khác.",
+    "search_empty_result_reset": "Xoá và tìm kiếm lại.",
+    "search_empty_result": "Thật tiếc chúng tôi không tìm thấy {type} nào.",
     "search_course": "Khoá học",
     "search_teacher": "Giáo viên",
-
     // teacher detail
     "teacher_background": "Lý Lịch",
     "teacher_short_introduce": " Giới thiệu",
