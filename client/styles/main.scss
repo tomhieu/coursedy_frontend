@@ -256,6 +256,9 @@ body.application {
         box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.12);
         border-top: solid 1px $border-color;
       }
+      .moving-sort-bar {
+        margin-top: 50px;
+      }
     }
 
     .header-nav.navbar-sticky.fixed-top {
