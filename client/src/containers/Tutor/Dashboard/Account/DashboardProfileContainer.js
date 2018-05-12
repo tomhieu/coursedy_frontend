@@ -28,6 +28,7 @@ class DashboardProfileContainer extends Component {
 
   uploadAvatar(avatar) {
     this.props.updateAvatar(avatar);
+    this.props.hideAvatarEditForm();
   }
 
   avatarSelected() {
