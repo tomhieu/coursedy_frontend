@@ -2,11 +2,16 @@
 
 @media (min-width: $md-lower) {
   .course-detail-main {
-    width: 100%;
+    width: 100vw;
     position: relative;
-    top: 200px;
+    /* menu-height + gap + header-height + gap */
+    top: calc(70px + #{$box-gap} + 115px + #{$box-gap});
     .container {
       display: flex;
     }
   }
+}
+
+.course-detail-main {
+  background-color: $color-bg-gray-form;
 }

@@ -48,7 +48,7 @@ class CourseDetail extends Component {
   render() {
     const { displayFixedSidebar } = this.state
     return (
-      <div className="course-detail">
+      <div className="d-flex flex-auto flex-vertical full-width-in-container">
         <div 
           className={
             displayFixedSidebar ?  

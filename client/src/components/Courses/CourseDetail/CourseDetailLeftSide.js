@@ -63,12 +63,11 @@ class CourseDetailLeftSide extends Component {
             <CourseDetailEnrollContainer />
           </div>
           
-          <div className="call-featiured">
+          <div className="call-featured">
             <div className="icon">
               <i className="fa fa-phone"></i>
             </div>
             <div className="content">
-              <h5>{this.context.t('contact')}</h5>
               <p className="phone-number">
                 +66-85-658-8754
               </p>

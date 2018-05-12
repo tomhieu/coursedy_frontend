@@ -26,10 +26,6 @@ class ListTutorCourseContainer extends Component {
   render() {
     return (
       <div className="d-flex flex-vertical flex-auto">
-        <div className="d-flex justify-content-left mb-10">
-          <button className="btn btn-link-light"
-                  onClick={this.addNewCourses.bind(this)}>{this.context.t('course_add_btn')}</button>
-        </div>
         <div className="d-flex flex-auto">
           <LoadingMask placeholderId="tutorCourseListPlaceholder">
             <CourseList

@@ -25,7 +25,10 @@ class CourseDetailHeader extends Component {
           }
         >
           <div className="content mb-15">
-            <h2>{ course.title }</h2>
+            <h2>{
+              course && course.title ?
+                course.title : this.context.t('unknown')
+            }</h2>
           </div>
           <ul className="meta-list">
             <li className="d-none d-md-inline-block">
@@ -80,7 +83,7 @@ class CourseDetailHeader extends Component {
               </div>
             </li>
             <li className="meta-price">
-              <div className="price bg-danger">
+              <div className="price">
               {
                 course.is_free ?
                   this.context.t('free') :
@@ -99,13 +102,16 @@ class CourseDetailHeader extends Component {
           <div className="row">
             <div className="col-xs-12 col-md-9">
               <div className="content">
-                <h2>{ course.title }</h2>
+                <h2>{
+                  course && course.title ?
+                    course.title : this.context.t('unknown')
+                }</h2>
               </div>
             </div>
             <div className="col-xs-12 col-md-3">
               <ul className="meta-list">
                 <li className="meta-price no-margin">
-                  <div className="price bg-danger">
+                  <div className="price">
                   {
                     course.is_free ?
                       this.context.t('free') :

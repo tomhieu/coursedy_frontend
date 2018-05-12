@@ -1,76 +1,64 @@
 @import "../../../../styles/global_style";
 
 .teacher-detail {
-  color: $normal-text-color;
-
+  font-size: 15px;
   &__header {
-    border: 1px solid #E6E6E6;
-
+    border: 1px solid $border-color;
     &._fixed {
       position: fixed;
       left: 0;
       top: 70px;
       width: 100%;
       z-index: 999;
-      background-color: #fff;
+      background-color: $white-color;
+    }
+
+    @media only screen and (max-width: 767.98px) {
+      &._fixed {
+        position: relative;
+        z-index: 999;
+        background-color: $white-color;
+      }
     }
   }
 
   &__content {
     margin-top: 50px;
-    &__background, &__courses {
-      border: 1px solid #E6E6E6;
-      border-radius: 5px;
-      padding: 40px;
+    @media only screen and (max-width: 767.98px) {
+      margin-top: 50px;
     }
 
-    &__courses {
-      margin-top: 50px;
-      margin-bottom: 20px;
+    &__background, &__courses {
+      border: 1px solid $border-color;
+      border-radius: 5px;
+      padding: 30px 40px 40px;
     }
 
     &__review {
       margin-top: 50px;
-      border: 1px solid #E6E6E6;
+      border: 1px solid $border-color;
       border-radius: 5px;
-
-      &__header {
-        padding: 15px 0 0 40px;
-        border-bottom: 1px solid #E6E6E6;
-      }
-
-      &__content {
-        padding: 40px;
-      }
+      padding: 30px 40px 40px;
     }
-
   }
 
   &__more-info {
-    border: 1px solid #E6E6E6;
+    border: 1px solid $border-color;
     border-radius: 5px;
   }
 
-  p {
-    color: $normal-text-color;
-    font-size: 14px;
-  }
-
   h3 {
-    color: #333;
-    font-weight: 300;
-    margin: 0 0 15px;
+    color: $md-color-pink;
+    font-size: 25px;
   }
 
   h4 {
-    color: #333;
-    font-weight: 300;
-    text-transform: uppercase;
+    font-size: 23px;
     margin: 0 0 15px;
+    text-transform: uppercase;
   }
 
   h6 {
-    color: #333;
     font-weight: 700;
   }
 
@@ -78,16 +66,16 @@
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    background: #0D7CC9;
+    background: $color-bg-light-blue;
     text-align: center;
-    color: #FFF;
+    color: $white-color;
     padding: 2px;
     margin: 0 0 18px;
 
     span {
       border-radius: 50%;
       display: block;
-      border: 4px double #FFF;
+      border: 4px double $white-color;
       width: 100%;
       height: 100%;
       line-height: 36px;
@@ -111,24 +99,27 @@
     }
   }
 
+  .review-form-wrapper {
+    background: $color-bg-gray-form;
+    border: 1px solid $border-color;
+    padding: 20px;
+  }
+
   @media only screen and (min-width: 993px) {
     margin-top: -30px;
   }
 }
 
 .teacher-detail-profile-header {
-  padding: 40px 0 24px 0;
+  padding: 25px 0 25px 0;
 
   .profile-picture {
     img {
-      height: 145px;
-      width: 145px;
+      height: 130px;
+      width: 130px;
       cursor: pointer;
       transition: all 0.2s ease-in-out;
-      border: 2px solid #fff;
-      background: rgba(0, 0, 0, 0.3);
       border-radius: 3px;
-      box-shadow: 0 1px 1px rgba(0, 0, 0, 0.17);
       padding: 1px;
     }
   }
@@ -143,18 +134,17 @@
       display: flex;
       flex-wrap: wrap;
       .category {
-        color: #DF2938;
-        border: 1px solid #DF2938;
-        font-size: 11px;
-        letter-spacing: 1.5px;
+        color: $md-color-pink;
+        border: 1px solid $md-color-pink;
         line-height: 1;
         padding: 3px 8px;
         border-radius: 2px;
         margin: 0 5px 5px 0;
+        font-size: 12px;
 
         &:hover {
-          background: #DF2938;
-          color: #FFF;
+          background: $md-color-pink;
+          color: $white-color;
         }
       }
     }
@@ -163,7 +153,7 @@
       width: 50%;
       position: relative;
       padding-left: 30px;
-      border-bottom: 1px dotted #DDD;
+      border-bottom: 1px dotted $border-color;
       padding-bottom: 7px;
       margin-bottom: 7px;
 
@@ -171,30 +161,6 @@
         position: absolute;
         top: 5px;
         left: 0;
-      }
-    }
-
-    .social {
-      a {
-        display: block;
-        line-height: 30px;
-        background: #A9A9A9;
-        color: #FFF;
-        float: left;
-        width: 30px;
-        height: 30px;
-        text-align: center;
-        margin-right: 1px;
-        font-size: 17px;
-        border-radius: 100%;
-
-        &.twitter:hover {
-          background: #00aced;
-        }
-
-        &.linked:hover {
-          background: #0077B5;
-        }
       }
     }
 
@@ -206,7 +172,6 @@
 
     @media only screen and (max-width: 767.98px) {
       margin-top: 10px;
-      font-size: 13px;
       h3 {
         font-size: 24px;
       }
@@ -231,18 +196,8 @@ ul.review-list > li:last-child {
     margin-bottom: 0;
   }
 
-  .pagination {
-    display: inline-block;
-    padding-left: 0;
-    border-radius: 4px;
-    margin: 9px 0 2px;
-    a {
-      border: 0;
-    }
-  }
-
   .form-control:focus {
-    border-color: #e27d7f;
+    border-color: $md-color-pink;
     outline: 0;
     -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
@@ -251,8 +206,8 @@ ul.review-list > li:last-child {
 
 .pager-wrappper {
   margin-top: 30px;
-  border-top: 1px solid #E5E5E5;
-  border-bottom: 1px solid #E5E5E5;
+  border-top: 1px solid $border-color;
+  border-bottom: 1px solid $border-color;
 
   .btn.btn-hidden {
     display: none;

@@ -42,7 +42,9 @@ export const dummyTeacherDetail = ({id}) => ({
     address: "545, Marina Rd., Mohammed Bin Rashid Boulevard, Dubai 123234, UAE",
     date_of_birth: {month: 12, day: 12, year: 1988},
     gender: "M",
-    avatar: "http://crenoveative.com/envato/edutute/images/man/20.jpg"
+    avatar: "http://crenoveative.com/envato/edutute/images/man/20.jpg",
+    rating_count: 2,
+    rating_points: 4.5
   },
   linkedIn: "https://linkedin.com/pub/stephen-grider/20/a23/170",
   twitter: "https://twitter.com/ste_grider",

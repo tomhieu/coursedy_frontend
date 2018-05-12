@@ -8,7 +8,7 @@ class CourseDetailMain extends Component {
     const { displayFixedSidebar } = this.props
     return (
       <div className="course-detail-main">
-        <div className="container">
+        <div className="container no-pad">
           <CourseDetailLeftSide 
             {...this.props}
             displayFixedSidebar={displayFixedSidebar}

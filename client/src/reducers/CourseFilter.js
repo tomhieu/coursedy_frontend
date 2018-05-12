@@ -1,6 +1,7 @@
 import * as asyncActs from '../actions/AsyncActionCreator';
 import * as courseActionTypes from '../constants/Courses';
 import { PUBLIC_COURSE_LIST_MAX_ITEM_PER_PAGE } from '../constants/WebConstants'
+import {RESET_COURSE_FILTER} from "constants/Courses";
 
 const CourseFilter = (state = {
   isFetching: true,
@@ -57,6 +58,10 @@ const CourseFilter = (state = {
       return {...state, filters: {...state.filters, term: ''}, sugestions: [], showSuggestion: false, loadingSuggestion: false}
     case asyncActs.UPDATE_FILTER_CRITERIA:
       return Object.assign({}, state, {filters: JSON.parse(JSON.stringify(action.data))})
+    case RESET_COURSE_FILTER:
+      return Object.assign({}, state, {filters: {selectedWeekDays: [], selectedLocations: [],
+                selectedCategories: [], selectedSpecializes: [],
+                resetMinFee: false, resetMaxFee: false, term: ''}});
     default:
       return state;
   }

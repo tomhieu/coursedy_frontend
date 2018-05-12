@@ -2,23 +2,24 @@
 
 .course-detail {
   width: 100%;
+  background-color: #fff;
 }
 
 @media (min-width: $md-lower) {
   .white-mask-normal {
     position: fixed;
-    height: 130px;
+    height: calc(#{$box-gap} + 115px + #{$box-gap});
     top: 70px;
     z-index: 499;
-    background-color: #fff;
+    background-color: $color-bg-gray-form;
     width: 100%;
   }
   .white-mask-scrolled {
     position: fixed;
-    height: 80px;
+    height: calc(#{$box-gap} + 70px + #{$box-gap});
     top: 70px;
     z-index: 499;
-    background-color: #fff;
+    background-color: $color-bg-gray-form;
     width: 100%;
   }
 }
