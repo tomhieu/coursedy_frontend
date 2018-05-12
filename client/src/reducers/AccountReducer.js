@@ -21,8 +21,6 @@ const AccountReducer = (state = {
       return {...state, editAvatarMode: true}
     case AccountTypes.DISABLE_EDIT_AVATAR:
       return {...state, editAvatarMode: false}
-    case AccountTypes.UPLOAD_AVATAR + AsynPostfix.FULFILLED:
-      return {...state, user: action.payload, editAvatarMode: false}
     case AccountTypes.AVATAR_SELECTED:
       return {...state, avatarSelected: true}
     case AccountTypes.AVATAR_DESELECTED:

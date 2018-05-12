@@ -2,6 +2,7 @@ import Network from "utils/network";
 import {AccountTypes} from '../constants/index'
 import {ACCOUNT} from '../actions/AsyncActionCreator'
 import {fetchTutor} from "actions/Tutor/Account/TutorAccountActionCreator";
+import {UPDATE_CURRENT_USER} from "../constants/Session";
 
 export const updatePassword = (data) => {
   return {
@@ -78,7 +79,7 @@ export const hideAvatarEditForm = () => {
 
 export const updateAvatar = (avatar) => {
   return {
-    type: AccountTypes.UPLOAD_AVATAR,
+    type: UPDATE_CURRENT_USER,
     payload: Network().update('auth', {avatar: avatar}),
     meta: 'ezylearningFullLoader'
   }

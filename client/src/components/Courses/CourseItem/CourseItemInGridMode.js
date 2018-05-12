@@ -2,8 +2,6 @@ import React, {Component} from 'react';
 import cssModules from 'react-css-modules';
 import styles from '../Course.module.scss';
 import {LinkContainer} from 'react-router-bootstrap'
-import {SERVER_NAME} from "utils/CommonConstant";
-import {TT} from "utils/locale";
 import Image from 'react-graceful-image';
 import RatingItem from '../../Rating/index'
 import ObjectUtils from "../../../utils/ObjectUtils"
