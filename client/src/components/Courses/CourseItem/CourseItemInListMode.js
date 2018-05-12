@@ -42,7 +42,9 @@ class CourseItemInListMode extends Component {
           </div>
           <div className="col-xss-12 col-xs-12 col-lg-9 col-sm-8 col-md-8">
             <div className={styles.content}>
-              <h4 className={styles.courseListItemHeader}>{title}</h4>
+              <LinkContainer to={ !onlyTutor ? '/course/' + id : '/dashboard/courses/detail/' + id }>
+                <h4>{title}</h4>
+              </LinkContainer>
               <div className={styles.contentInner}>
                 <div className="row gap-20">
                   <div className="col-xss-12 col-xs-12 col-lg-8 col-md-7">
@@ -62,7 +64,11 @@ class CourseItemInListMode extends Component {
 
                   <div className="col-xss-12 col-xs-12 col-lg-2 col-sm-2 col-md-2">
                     <div className={styles.price}>
-                      {ObjectUtils.currencyFormat(item.tuition_fee, item.currency)}
+                      {
+                        item.is_free ?
+                          this.context.t('free') :
+                          ObjectUtils.currencyFormat(item.tuition_fee || 0, item.currency || 'VND')
+                      }
                     </div>
                   </div>
                 </div>

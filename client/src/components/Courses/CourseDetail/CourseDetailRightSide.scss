@@ -1,15 +1,30 @@
-@media (min-width: 768px) {
+@import "../../../../styles/global_style.scss";
+
+@media (min-width: $md-lower) {
   .right-content {
     position: relative;
-    top: 0;
-  }
-  .content-wrapper {
-    padding-left: 30px;
+    top: -70px;
+    z-index: 0;
+    margin-left: calc(0.205 * 100vw + #{$box-gap});
+    width: calc(100% - 0.205 * 100vw - #{$box-gap});
   }
 }
+
+@media (max-width: $sm-upper) {
+  .right-content {
+    width: 100%;
+  }
+}
+
+
 .content-wrapper {
-  padding-top: 25px;
-  padding-bottom: 40px;
+  background-color: #fff;
+  padding: $box-gap;
+  border: 1px solid $border-color;
+
+  .section-title:after {
+    content: '';
+  }
 }
 
 .detail-content-wrapper {
