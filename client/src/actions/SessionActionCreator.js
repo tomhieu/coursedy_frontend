@@ -38,6 +38,7 @@ export const setCurrentUser = () => {
       dispatch({
         type: types.REMOVE_CURRENT_USER
       })
+      localStorage.removeItem(WebConstants.AUTHENTICATED);
     }
   };
 }
