@@ -1,11 +1,12 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
-import {reduxForm} from "redux-form";
+import {reduxForm, reset} from "redux-form";
 import {Button} from 'react-bootstrap';
 import FormField from "../../../../components/Core/FormField";
 import {validate} from "../../../../validations/CommentFormValidation";
 import * as Actions from "../../../../actions/TeacherActionCreators";
 import SimpleDialogComponent from "../../../../components/Core/SimpleDialogComponent"
+import {globalHistory} from '../../../../utils/globalHistory'
 
 
 class ReviewTeacherForm extends Component {
@@ -43,10 +44,12 @@ class ReviewTeacherForm extends Component {
 
   redirectToLogin() {
     this.hideRequireLoginModal()
-
+    globalHistory.push(`/login?next=${encodeURIComponent(`/teachers/${this.props.teacher.user_id}`)}`)
   }
 
   hideSubmitCommentStatusModal() {
+    this.props.dispatch(reset('ReviewTeacherForm'))
+    
     this.setState({
       showCommentStatusModal: false
     })
@@ -59,7 +62,11 @@ class ReviewTeacherForm extends Component {
   }
 
   render() {
-    const { handleSubmit, submitting } = this.props
+    if (!this.props.user) {
+      return null
+    }
+
+    const { handleSubmit, pristine, submitting } = this.props
     let submitCommentMessage = null;
     const {showRequireLoginModal, showCommentStatusModal} = this.state
     if (this.props.submitCommentSuccess) {
@@ -83,8 +90,8 @@ class ReviewTeacherForm extends Component {
                      formControlName={'content'}
                      typeField={'custom_textarea'}>
           </FormField>
-          <Button type="submit" disabled={submitting} className="btn-primary">
-            {this.context.t('save')}
+          <Button type="submit" disabled={pristine || submitting} className="btn-primary">
+            {this.context.t('sent')}
           </Button>
         </form>
         {/* Require login modal */}

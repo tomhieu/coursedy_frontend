@@ -9,7 +9,7 @@ const TeacherDetail = (state = {
   workExperiences: [],
   reviews: {data: [],  headers: {}},
   submitCommentSuccess: false,
-  submitCommentFail: true,
+  submitCommentFail: false,
 }, action) => {
   switch (action.type) {
     case asyncActs.FETCH_TEACHER_DETAIL + asyncActs.PENDING:
@@ -36,7 +36,7 @@ const TeacherDetail = (state = {
       return {...state, courses: {...state.courses, headers: action.payload}}
     // comments for the teacher
     case asyncActs.TEACHER_DETAIL_SUBMIT_COMMENT + asyncActs.PENDING:
-      return state
+      return {...state, submitCommentSuccess: false, submitCommentFail: false}
     case asyncActs.TEACHER_DETAIL_SUBMIT_COMMENT + asyncActs.FULFILLED:
       return {
         ...state, reviews: {...state.reviews, data: state.reviews.data.concat(action.payload)},

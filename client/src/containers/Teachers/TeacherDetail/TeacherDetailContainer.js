@@ -107,8 +107,31 @@ const TeacherReviewSection = (props) => {
           <div className="teacher-detail__content__review__header mb-30">
             <h3>{props.context.t('teacher_review')}</h3>
           </div>
-          <TeacherReviewList teacher={props.teacher} handlePageChange={props.fetchTeacherReviewsWithPageNumber}/>
+          <ReviewHeader {...props}/>
+          <TeacherReviewList {...props} handlePageChange={props.fetchTeacherReviewsWithPageNumber}/>
           <ReviewTeacherForm />
+        </div>
+      </div>
+    </div>
+  )
+}
+
+const ReviewHeader = (props) => {
+  const { teacher } = props
+  if (!teacher.user) { return null }
+  return(
+    <div className="teacher-detail-review-header">
+      <div className="row">
+        <div className="col-xs-12 col-sm-4 col-md-3">
+          <div className="review-overall">
+            <h5>{props.context.t('teacher_rating')}</h5>
+            <p className="review-overall-point">
+              <span>{teacher.user && teacher.user.rating_count ? parseFloat(teacher.user.rating_points/teacher.user.rating_count).toFixed(1) : 0}</span> / {WebConstants.MAX_RATING_POINTS}
+            </p>
+            <div className="rating-wrapper">
+              <span>({props.teacher.reviews.data.length} {props.context.t('teacher_comments')})</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
