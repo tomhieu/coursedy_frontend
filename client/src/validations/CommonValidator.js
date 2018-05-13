@@ -29,3 +29,9 @@ export const validatePassword = (password, confirmedPass,field, errors) => {
         errors.password_confirmation = TT.t('password_confirmation_not_match')
     }
 }
+
+export const validateCommentContent = (content, errors) => {
+  if (!content) {
+    errors.content = TT.t('comment_content_required')
+  }
+}

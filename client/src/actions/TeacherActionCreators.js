@@ -63,3 +63,15 @@ export const fetchTeacherCourses = ({teacherId, meta, query}) => {
     meta,
   };
 }
+
+export const submitTeacherComment = ({content, teacherId, user_id}) => {
+  const params = {
+    content,
+    user_id
+  }
+
+  return {
+    type: asyncActs.TEACHER_DETAIL_SUBMIT_COMMENT,
+    payload: Network().post(`tutors/${teacherId}/tutor_reviews`, params)
+  }
+}

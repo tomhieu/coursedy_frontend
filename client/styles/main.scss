@@ -256,6 +256,37 @@ body.application {
         box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.12);
         border-top: solid 1px $border-color;
       }
+      .teacher-detail .fixed-top-profile-teacher {
+        position: fixed;
+        top: 70px;
+        left: 0;
+        z-index: 999;
+        box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.12);
+        border-top: solid 1px $border-color;
+        background-color: #fff;
+        width: 100%;
+        .teacher-detail-profile-header {
+          padding: 10px 0 10px 0;
+          .profile-picture img {
+            height: 80px;
+            width: 80px;
+            cursor: pointer;
+            transition: all 0.8s;
+            -webkit-transition: all 0.8s;
+            border-radius: 3px;
+            padding: 1px;
+          }
+
+          .profile-summary {
+            .categories, .rating-wrapper {
+              visibility: hidden;
+              opacity: 0;
+              transition: visibility 0.5s, height 0.5s linear;
+              height: 0;
+            }
+          }
+        }
+      }
       .moving-sort-bar {
         margin-top: 50px;
       }
