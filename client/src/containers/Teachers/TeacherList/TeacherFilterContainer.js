@@ -1,38 +1,21 @@
-import React  from 'react';
-import { reduxForm } from 'redux-form';
-import { connect } from 'react-redux';
+import React from 'react';
+import {reduxForm} from 'redux-form';
+import {connect} from 'react-redux';
 import * as TeacherActions from 'actions/TeacherActionCreators';
-import {
-  fetchCourseCategories
-} from 'actions/ReferenceActions/ReferenceDataActionCreator';
+import {fetchCourseCategories} from 'actions/ReferenceActions/ReferenceDataActionCreator';
 import cssModules from 'react-css-modules';
 import styles from '../../../../styles/components/CommonFilterObjects.module.scss';
-import { getSelectedSpecializesFromCategory } from '../../Courses/Filter/CourseFilterContainer';
-import SuggestionBox from './SuggestionBox';
-import SelectFilterTeachers from './SelectFilterTeachers';
+import {getSelectedSpecializesFromCategory} from '../../Courses/Filter/CourseFilterContainer';
 import AbstractFilter from 'components/Core/AbstractFilterComponent';
 import * as asyncActions from 'actions/AsyncActionCreator';
+import {FETCH_CATEGORIES, FETCH_LOCATIONS} from "../../../actions/AsyncActionCreator";
+import Network from "utils/network";
+import BaseFilter from "../../../components/Courses/BaseFilter";
 
 
 class TeacherFilterContainer extends AbstractFilter {
   componentDidMount() {
     this.props.dispatch(fetchCourseCategories());
-  }
-
-  searchQuery(q, filters) {
-    return {
-      q,
-      categories: filters.selectedCategories.map(category => category.id),
-      specializes: filters.selectedSpecializes.map(spec => spec.id)
-    };
-  }
-
-  searchTeachers(filters) {
-    this.props.dispatch(
-      TeacherActions.searchTeachers(
-        this.searchQuery(filters.term, filters)
-      )
-    );
   }
 
   loadSuggestionsTeacher(event) {
@@ -43,7 +26,7 @@ class TeacherFilterContainer extends AbstractFilter {
 
     this.props.dispatch(
       TeacherActions.loadSuggestionsTeacher(
-        this.searchQuery(event.target.value.trim(), this.props.filters)
+        this.searchQuery(Object.assign({}, this.props.filters, {term: event.target.value.trim()}))
       )
     );
   }
@@ -56,52 +39,49 @@ class TeacherFilterContainer extends AbstractFilter {
     );
   }
 
+  search(e) {
+    this.props.searchTeachers(this.searchQuery(this.props.filters));
+  }
+
   doRemoveFilter(filterId, typeFilter) {
     const removedFilters = this.removeFilterCriteria(this.props.filters, filterId, typeFilter);
     this.props.dispatch(TeacherActions.updateFilterTeacher(removedFilters));
-    this.searchTeachers(removedFilters);
+    this.props.searchTeachers(this.searchQuery(removedFilters));
   }
 
   doSelectFilter(filter, category) {
     let nextFilters = this.addFilterCriteria(this.props.filters, filter, category);
     this.props.dispatch(TeacherActions.updateFilterTeacher(nextFilters));
-    this.searchTeachers(nextFilters);
+    this.props.searchTeachers(this.searchQuery(nextFilters));
   }
 
-  handleAddCriteria(id, title) {
-    this.props.dispatch({type: asyncActions.CLEAR_SUGGESTION});
-    this.context.router.history.push('/teacher/' + id);
+  searchQuery(filters) {
+    return {
+      q: filters.term,
+      categories: filters.selectedCategories.map(category => category.id),
+      specializes: filters.selectedSpecializes.map(spec => spec.id)
+    };
+  }
+
+  onSelectTeacher(id) {
+    this.props.clearSuggestion();
+    this.context.router.history.push('/teachers/' + id);
   }
 
   render() {
-    const {
-      handleSubmit, categories, suggestions, showSuggestion, loadingSuggestion, filters, listSpecializes
-    } = this.props;
-    const { selectedCategories, selectedSpecializes } = filters;
 
     return (
-      <div className="row">
-        <div className="col-xs-12 col-sm-12">
-          <form onSubmit={handleSubmit(this.onSubmit.bind(this))} className='inline-form' multiple={true}>
-            <div className={styles.filterActionBlock + ' col-md-12 col-sm-12'}>
-              <div className="row full-height">
-                <SuggestionBox {...{
-                  selectedCategories, selectedSpecializes, suggestions,
-                  filters, showSuggestion, loadingSuggestion,
-                  doRemoveFilter: this.doRemoveFilter.bind(this),
-                  handleAddCriteria: this.handleAddCriteria.bind(this),
-                  loadSuggestionsTeacher: this.loadSuggestionsTeacher.bind(this)
-                }}/>
-
-                <SelectFilterTeachers {...{
-                  categories, selectedCategories, selectedSpecializes,
-                  listSpecializes, doSelectFilter: this.doSelectFilter.bind(this),
-                }} />
-              </div>
-            </div>
-          </form>
-        </div>
-      </div>
+      <BaseFilter {...this.props}
+                    onSubmit={this.search.bind(this)}
+                    search={this.search.bind(this)}
+                    selectAllCoursesHdl={this.selectAllCourses}
+                    loadSuggestions={this.loadSuggestionsTeacher.bind(this)}
+                    onSelectFilter={this.doSelectFilter.bind(this)}
+                    onRemoveFilter={this.doRemoveFilter.bind(this)}
+                    onSelectSuggestion={this.onSelectTeacher.bind(this) }
+                    closeSuggestion={this.props.closeSuggestion}
+                    courseFilterMode={false}
+      />
     );
   }
 }
@@ -112,16 +92,18 @@ TeacherFilterContainer.contextTypes = {
 };
 
 const mapStateToProps = (state) => {
-  const { filters, showSuggestion, loadingSuggestion } = state.Teachers
-  const categories = state.referenceData.courseCategories || []
+  const {form = {}, Teachers} = state;
+  const { filters, showSuggestion, loadingSuggestion, headers } = Teachers;
+  const {teacherFilterForm = {}} = form;
+  const categories = state.referenceData.courseCategories || [];
   const suggestions = state.Teachers.suggestions.map((s) => {
     return {
-      avatar: s.avatar || null,
+      avatar: s.user.avatar || null,
       id: s.id,
       title: s.title || '',
       sub_title: s.user ? s.user.name : ''
     }
-  })
+  });
 
   return {
     categories,
@@ -129,10 +111,34 @@ const mapStateToProps = (state) => {
     filters,
     showSuggestion,
     loadingSuggestion,
+    totalResult: headers != null ? headers.xTotal : 0,
+    formfieldValues: teacherFilterForm.values ? teacherFilterForm.values : {},
     listSpecializes: getSelectedSpecializesFromCategory(categories, filters.selectedCategories),
   }
 };
 
-export default connect(mapStateToProps)(reduxForm({
+const mapDispatchToProps = (dispatch) => ({
+  searchTeachers: (filters) => dispatch(TeacherActions.searchTeachers(filters)),
+  clearSuggestion: () => dispatch({type: asyncActions.CLEAR_SUGGESTION}),
+  loadSuggestions: (query) => dispatch({
+    type: asyncActions.LOAD_SUGGESTION_TEACHERS,
+    payload: Network().get('courses/search', query),
+    meta: 'courseSuggestionPlaceholder'
+  }),
+  updateFilter: (filters) => dispatch(TeacherActions.updateFilterTeacher(filters)),
+  fetchCategories: () => dispatch({
+    type: FETCH_CATEGORIES,
+    payload: Network().get('categories'),
+    meta: 'publicTeacherListPlaceholder'
+  }),
+  fetchLocations: () => dispatch({
+    type: FETCH_LOCATIONS,
+    payload: Network().get('locations'),
+    meta: 'publicTeacherListPlaceholder'
+  }),
+  closeSuggestion: () => dispatch({type: asyncActions.CLEAR_SUGGESTION})
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(reduxForm({
   form: 'teacherFilterForm', fields: ['key_word', 'category_ids']
 })(cssModules(TeacherFilterContainer, styles)));

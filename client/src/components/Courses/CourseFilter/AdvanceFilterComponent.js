@@ -9,50 +9,68 @@ import cssModules from 'react-css-modules';
 class AdvanceFilterComponent extends Component {
   render() {
     const {selectedWeekDays, categories, selectedCategories, listSpecializes,
-           selectedSpecializes, onSelectFilter} = this.props;
+           selectedSpecializes, onSelectFilter, courseFilterMode} = this.props;
     return (
       <div className="d-flex flex-g1">
-        <div className="flex-col-3">
-          <FilterOption label={this.context.t('day_of_week')}
-                        options={DAYS_IN_WEEK.map((e) => {
-                          return {id: e.id, name: e.text}
-                        })}
-                        selectedOptions={selectedWeekDays}
-                        onSelectFilter={onSelectFilter}
-                        isFirst={true}
-                        type="single-select"
-                        name="selectedWeekDays">
-          </FilterOption>
-        </div>
-        <div className="flex-col-3">
-          <FilterOption label={this.context.t('course_category_title')}
-                        options={categories.map((x) => {
-                          return {name: x.name, id: x.id}
-                        })}
-                        selectedOptions={selectedCategories}
-                        onSelectFilter={onSelectFilter}
-                        type="multi-select"
-                        name="selectedCategories">
-          </FilterOption>
-        </div>
-        <div className="flex-col-3">
-          <FilterOption label={this.context.t('tuition_fee_filter')} onSelectFilter={onSelectFilter} name="tuition_fee">
-            <div className="d-flex flex-horizontal">
-              <div className="select-course-fee">
+        {
+          selectedWeekDays ?
+            <div className="flex-col-3">
+              <FilterOption label={this.context.t('day_of_week')}
+                            options={DAYS_IN_WEEK.map((e) => {
+                              return {id: e.id, name: e.text}
+                            })}
+                            selectedOptions={selectedWeekDays}
+                            onSelectFilter={onSelectFilter}
+                            isFirst={true}
+                            type="single-select"
+                            name="selectedWeekDays">
+              </FilterOption>
+            </div> : null
+        }
+        {
+          selectedCategories ?
+            <div className="flex-col-3">
+              <FilterOption label={this.context.t('course_category_title')}
+                            options={categories.map((x) => {
+                              return {name: x.name, id: x.id}
+                            })}
+                            selectedOptions={selectedCategories}
+                            onSelectFilter={onSelectFilter}
+                            type="multi-select"
+                            name="selectedCategories">
+              </FilterOption>
+            </div> : null
+        }
+        {
+          courseFilterMode ?
+            <div className="flex-col-3">
+              <FilterOption label={this.context.t('tuition_fee_filter')} onSelectFilter={onSelectFilter} name="tuition_fee">
                 <div className="d-flex flex-horizontal">
-                  <FormField className="md-number-field" fieldId="filter_min_fees" showLabel={false} placeholder={this.context.t('min_fee_placeholder')}
-                             onChange={(e) => onSelectFilter(e.target.value, 'resetMinFee')}
-                             formControlName="selectedMinFee" typeField="custom_input">
-                  </FormField>
-                  <span className="ml-10 mr-10 mt-5">{this.context.t('to')}</span>
-                  <FormField className="md-number-field" fieldId="filter_max_fees" showLabel={false} placeholder={this.context.t('max_fee_placeholder')}
-                             onChange={(e) => onSelectFilter(e.target.value, 'resetMaxFee')} formControlName="selectedMaxFee" typeField="custom_input">
-                  </FormField>
+                  <div className="select-course-fee">
+                    <div className="d-flex flex-horizontal">
+                      <FormField className="md-number-field price-field"
+                                 fieldId="filter_min_fees"
+                                 showLabel={false}
+                                 placeholder={this.context.t('min_fee_placeholder')}
+                                 onChange={(e) => onSelectFilter(e.target.value, 'resetMinFee')}
+                                 formControlName="selectedMinFee"
+                                 typeField="custom_input">
+                      </FormField>
+                      <span className="ml-10 mr-10 mt-5">{this.context.t('to')}</span>
+                      <FormField className="md-number-field price-field"
+                                 fieldId="filter_max_fees"
+                                 showLabel={false}
+                                 placeholder={this.context.t('max_fee_placeholder')}
+                                 onChange={(e) => onSelectFilter(e.target.value, 'resetMaxFee')}
+                                 formControlName="selectedMaxFee"
+                                 typeField="custom_input">
+                      </FormField>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </div>
-          </FilterOption>
-        </div>
+              </FilterOption>
+            </div> : null
+        }
         <div className="flex-col-3">
           <FilterOption label={this.context.t('level')} onSelectFilter={onSelectFilter}
                         options={listSpecializes} isGroupOption={true}
@@ -78,7 +96,8 @@ AdvanceFilterComponent.propTypes = {
   selectedCategories: React.PropTypes.array,
   listSpecializes: React.PropTypes.array,
   selectedSpecializes: React.PropTypes.array,
-  onSelectFilter: React.PropTypes.func
+  onSelectFilter: React.PropTypes.func,
+  courseFilterMode: React.PropTypes.bool
 };
 
 export default cssModules(AdvanceFilterComponent, styles);

@@ -12,6 +12,7 @@ class CourseDetailComments extends Component {
   constructor(props) {
     super(props);
   }
+
   render() {
     const {course_comments, loadMoreCommentsHdl, activeMenu} = this.props
     const active = activeMenu === PUBLIC_COURSE_DETAIL_MENU_COMMENTS

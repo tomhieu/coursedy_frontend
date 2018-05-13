@@ -10,6 +10,10 @@ import './CourseDetail.scss';
 
 import {CoreComponent} from '../index';
 import {PUBLIC_COURSE_MAX_NUMBER_COMMENTS_PER_LOAD} from '../../constants/Courses';
+import {
+  TRIGGER_DISPLAY_FIX_HEADER_BAR_OFFSET,
+  CHECK_ACTIVE_MENU_OFFSET
+} from "../../constants/WebConstants.js"
 
 /**
   * @Course group template 2
@@ -17,17 +21,73 @@ import {PUBLIC_COURSE_MAX_NUMBER_COMMENTS_PER_LOAD} from '../../constants/Course
   */
 class CourseDetail extends Component {
   constructor(props) {
-    super(props);
+    super(props)
+    this.state = {
+      displayFixedSidebar: false,
+      currentScrollPosition: 0,
+      activeMenu: 'course-detail-intro'
+    }
   }
+
+  componentDidMount() {
+    window.addEventListener('scroll', this.handleScroll.bind(this))
+    this.checkScrollPosition()
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.handleScroll.bind(this))
+  }
+
+  /*
+    @Check scroll position for active menu, display header bar
+  */
+  checkScrollPosition() {
+    const currentPosition  = window.pageYOffset || document.documentElement.scrollTop
+    if (TRIGGER_DISPLAY_FIX_HEADER_BAR_OFFSET < currentPosition) {
+      this.setState({
+        displayFixedSidebar: true
+      })
+    } else {
+      this.setState({
+        displayFixedSidebar: false
+      })
+    }
+    this.setState({
+      currentScrollPosition: currentPosition,
+      activeMenu: Object.keys(this.props.sectionPositions).reduce(
+        (currentPosition, newPosition) => {
+          return this.props.sectionPositions[newPosition] < CHECK_ACTIVE_MENU_OFFSET 
+            ? newPosition : currentPosition
+        }, 'course-detail-intro'
+      )
+    })
+  }
+
+  handleScroll(event) {
+    this.checkScrollPosition()
+  }
+
   render() {
+    const { activeMenu, currentScrollPosition, displayFixedSidebar } = this.state
     return (
-      <div className="course-detail">
-        <div className="course-detail-header full-width-in-container">
-          <div className="container">
-            <CourseDetailHeader {...this.props}/>
-          </div>
-        </div>
-        <CourseDetailMain {...this.props}/>
+      <div className="d-flex flex-auto flex-vertical full-width-in-container">
+        <div 
+          className={
+            displayFixedSidebar ?  
+              "d-none d-md-block white-mask-scrolled" : 
+              "d-none d-md-block white-mask-normal"
+          }
+        ></div>
+        <CourseDetailHeader
+          {...this.props}
+          displayFixedSidebar={displayFixedSidebar}
+        />
+        <CourseDetailMain
+          {...this.props}
+          displayFixedSidebar={displayFixedSidebar}
+          activeMenu={activeMenu}
+          currentScrollPosition={currentScrollPosition}
+        />
       </div>
     )
   }

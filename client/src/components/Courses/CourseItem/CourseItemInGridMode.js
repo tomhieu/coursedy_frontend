@@ -4,8 +4,7 @@ import styles from '../Course.module.scss';
 import {LinkContainer} from 'react-router-bootstrap'
 import Image from 'react-graceful-image';
 import RatingItem from '../../Rating/index'
-import ObjectUtils from "utils/ObjectUtils";
-
+import ObjectUtils from "../../../utils/ObjectUtils"
 
 /**
  * @Course group item template 2
@@ -42,7 +41,11 @@ class CourseItemInGridMode extends Component {
             </div>
           </LinkContainer>
           <div className="course-item-price">
-            {ObjectUtils.currencyFormat(item.tuition_fee, item.currency)}
+            {
+              item.is_free ?
+                this.context.t('free') :
+                ObjectUtils.currencyFormat(item.tuition_fee || 0, item.currency || 'VND')
+            }
           </div>
         </div>
         <LinkContainer to={isPublic ? '/course/' + item.id : '/dashboard/courses/detail/' + item.id} className='course-detail-lnk'>
@@ -54,7 +57,7 @@ class CourseItemInGridMode extends Component {
         </LinkContainer>
         <div className="course-item-bottom clearfix">
           <div><i className="fa fa-folder-open-o"/><span className="block"> {item.category.name} </span></div>
-          <div><i className="fa fa-pencil-square-o"/><span className="block"> {this.context.t('lesson_count', {lessons: item.period})}</span></div>
+          <div><i className="fa fa-pencil-square-o"/><span className="block"> {this.context.t('lesson_count', {lessons: item.lesson_count})}</span></div>
         </div>
       </div>
     )

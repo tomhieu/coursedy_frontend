@@ -6,7 +6,8 @@ import { dummyTeacherDetail } from '../constants/Teachers';
 export const searchTeachers = (query) => {
   return {
     type: asyncActs.FETCH_TEACHERS,
-    payload: Network().get('tutors/search', query)
+    payload: Network().get('tutors/search', query),
+    meta: 'publicTeacherListPlaceholder'
   };
 };
 

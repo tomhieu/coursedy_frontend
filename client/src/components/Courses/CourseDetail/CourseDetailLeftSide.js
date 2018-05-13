@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import './CourseDetailLeftSide.scss'
 import {
   PUBLIC_COURSE_DETAIL_MENU_INTRO,
@@ -8,64 +8,73 @@ import {
   PUBLIC_COURSE_DETAIL_MENU_RELATED
 } from "../../../constants/WebConstants.js"
 import AnchorLink from 'react-anchor-link-smooth-scroll'
-import {
+import { 
   CourseDetailFollowContainer,
   CourseDetailEnrollContainer
 } from "../../../containers/index.js"
 
 class CourseDetailLeftSide extends Component {
   render() {
-    const {activeMenu, updateActiveMenu} = this.props
+    const {
+      activeMenu, displayFixedSidebar,
+      course_sections, relatedCourses
+    } = this.props
     return (
-      <div>
+      <div 
+        className={ displayFixedSidebar ? 
+          "col-md-3 no-pad d-none d-md-block sidebar-fixed-scrolled" :
+          "col-md-3 no-pad d-none d-md-block sidebar-fixed-normal"
+        } 
+      >
         <aside className="sidebar-wrapper">
           <div className="scrollspy-sidebar alt-style-01 affix-top">
             <ul className="scrollspy-sidenav">
               <li className="sidebar-heading"><h5>{this.context.t('course_menu')}</h5></li>
               <li className="">
                 <ul className="course-detail-left-nav">
-                  <li>
-                    <AnchorLink href='#course-detail-intro'
-                                className="anchor">{this.context.t('course_intro')}</AnchorLink>
+                  <li className={activeMenu === 'course-detail-intro' ? 'active' : ''}>
+                    <AnchorLink href='#course-detail-intro' className="anchor">{this.context.t('course_intro')}</AnchorLink>
                   </li>
-                  <li>
-                    <AnchorLink href='#course-detail-lessons'
-                                className="anchor">{this.context.t('course_lessons')}</AnchorLink>
+                  {
+                    course_sections.length ?
+                    <li className={activeMenu === 'course-detail-lessons' ? 'active' : ''}>
+                      <AnchorLink href='#course-detail-lessons' className="anchor">{this.context.t('course_lessons')}</AnchorLink>
+                    </li> : null
+                  }
+                  <li className={activeMenu === 'course-detail-tutor' ? 'active' : ''}>
+                    <AnchorLink href='#course-detail-tutor' className="anchor">{this.context.t('course_teacher')}</AnchorLink>
                   </li>
-                  <li>
-                    <AnchorLink href='#course-detail-tutor'
-                                className="anchor">{this.context.t('course_teacher')}</AnchorLink>
+                  <li className={activeMenu === 'course-detail-comments' ? 'active' : ''}>
+                    <AnchorLink href='#courses-detail-comments' className="anchor">{this.context.t('course_comments')}</AnchorLink>
                   </li>
-                  <li>
-                    <AnchorLink href='#courses-detail-comments'
-                                className="anchor">{this.context.t('course_comments')}</AnchorLink>
-                  </li>
-                  <li>
-                    <AnchorLink href='#course-detail-related'
-                                className="anchor">{this.context.t('course_related')}</AnchorLink>
-                  </li>
+                  {
+                    relatedCourses.length ?
+                    <li className={activeMenu === 'course-detail-related' ? 'active' : ''}>
+                      <AnchorLink href='#course-detail-related' className="anchor">{this.context.t('course_related')}</AnchorLink>
+                    </li> : null
+                  }
+                  
                 </ul>
               </li>
             </ul>
           </div>
 
           <div className="clearfix mb-20 mt-30">
-            <CourseDetailEnrollContainer/>
+            <CourseDetailEnrollContainer />
           </div>
-
-          <div className="call-featiured">
+          
+          <div className="call-featured">
             <div className="icon">
               <i className="fa fa-phone"></i>
             </div>
             <div className="content">
-              <h5>{this.context.t('contact')}</h5>
               <p className="phone-number">
                 +66-85-658-8754
               </p>
             </div>
           </div>
           <div className="favor-link-wrapper mb-30">
-            <CourseDetailFollowContainer/>
+            <CourseDetailFollowContainer />
           </div>
         </aside>
       </div>
@@ -77,6 +86,7 @@ CourseDetailLeftSide.contextTypes = {
   t: React.PropTypes.func.isRequired
 }
 
-CourseDetailLeftSide.propTypes = {};
+CourseDetailLeftSide.propTypes = {
+};
 
 export default CourseDetailLeftSide;

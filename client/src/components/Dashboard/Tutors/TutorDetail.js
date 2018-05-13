@@ -22,6 +22,15 @@ class TutorDetail extends Component {
             </div>
           </div>
           <hr/>
+          <div className='row'>
+            <div className='col-sm-4'>
+              <label className='control-label'>{this.context.t("account.tutot.edu.place_of_work")}</label>
+            </div>
+            <div className='col-sm-8'>
+              <span>{tutor.place_of_work}</span>
+            </div>
+          </div>
+          <hr/>
 
           <div className='row'>
             <div className='col-sm-4'>

@@ -20,15 +20,6 @@ export const changeDisplayMode = (mode) => {
   }
 }
 
-export const changeCurrentPage = (page) => {
-  return dispatch => {
-    dispatch({
-      type: asyncActs.CHANGE_CURRENT_PAGE,
-      payload: page
-    })
-  }
-}
-
 export const loadSuggestions = (query) => {
   return dispatch => {
     dispatch({

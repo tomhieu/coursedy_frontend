@@ -9,7 +9,7 @@ import Introduces from './Introduces/Introduces';
 import CourseGroup from './Course/CourseGroup/CourseGroup';
 import CourseGroupList from './Course/CourseGroupList/CourseGroupList';
 import CourseDetail from './Courses/CourseDetail';
-import CourseFilter from './Courses/CourseFilter';
+import CourseFilter from './Courses/BaseFilter';
 import CourseItem from './Courses/CourseItem/CourseItem';
 import CourseList from './Courses/CourseList';
 import TutorSearchForm from './Tutor/TutorSearchForm/TutorSearchForm';

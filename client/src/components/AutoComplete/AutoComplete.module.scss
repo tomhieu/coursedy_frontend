@@ -4,14 +4,23 @@
   position: absolute;
   z-index: 9999;
   background-color: $white-background;
-  border: 1px solid $border-color;
   max-height: 250px;
   overflow-y: auto;
   border-radius: 0 0 2px 2px;
   padding-bottom: 10px;
-  width: calc(100% - 15px);
-  top: 58px;
+  width: 100%;
+  top: 50px;
   left: 0;
+}
+
+.suggestionItemWrapper {
+  border-top: 1px solid $color-border;
+  background-color: $white-background;
+  padding: 10px;
+}
+
+.suggestionItemWrapper:hover {
+  background-color: $gray-background;
 }
 
 .suggestionLine {
@@ -20,12 +29,7 @@
   line-height: 1.45em;
   width: 100%;
   color: #000;
-  background-color: $white-background;
   cursor: pointer;
-}
-
-.suggestionLine:hover {
-  background-color: $gray-background;
 }
 
 .suggestionGroup {

@@ -1,16 +1,22 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import TeacherItem from './TeacherItem';
-import { searchTeachers } from 'actions/TeacherActionCreators';
+import React, {Component} from 'react';
+import {connect} from 'react-redux';
+import {searchTeachers} from 'actions/TeacherActionCreators';
 import Pagination from 'react-js-pagination';
 import LoadingMask from 'components/LoadingMask/LoadingMask';
-import EmptyResultWarning from 'components/Core/EmptyResultWarning';
-import { FETCH_TEACHERS } from 'actions/AsyncActionCreator';
+import TutorList from "../../../components/Tutor/TutorList/TutorList";
+import * as WebConstants from "../../../constants/WebConstants";
 
 
 class PublicTeacherListContainer extends Component {
   componentDidMount() {
-    this.props.searchTeachers();
+    this.props.fetchTeacherList();
+    this.props.hideFooter();
+    this.props.stretchFull();
+  }
+
+  componentWillUnmount() {
+    this.props.showFooter();
+    this.props.stretchAuto();
   }
 
   handlePageChange(pageNumber) {
@@ -18,75 +24,47 @@ class PublicTeacherListContainer extends Component {
   }
 
   render() {
+    const {teachers, isFetching, headers} = this.props;
     return (
-      <LoadingMask belongingActions={[FETCH_TEACHERS]}>
+      <LoadingMask placeholderId="publicTeacherListPlaceholder"
+                   loaderType="COURSE_ITEM_PLACEHOLDER"
+                   repeatTime={4}>
         <div className="teacher-list">
-          { !this.props.teachers.isFetching  && this.props.teachers.data.length ?
-            <SearchingNotification numMatchs={this.props.teachers.data.length} /> : null
-          }
-
-          { this.props.teachers.isFetching ? null :
-            this.props.teachers.data.length ?
-              <TeacherList data={this.props.teachers.data}/>:
-            <EmptyResultWarning styles={"teacher-list_not-found"} searchType="search_teacher"/>
-          }
-
+          <div className="container-fluid mt-15 mb-15">
+            <TutorList
+              {...this.props}
+              isPublic={true}
+            />
+          </div>
           {
-            !this.props.teachers.isFetching && this.props.teachers.data.length ?
-              <div className="row">
-                <div className="col-sm-12">
-                  <Pagination
-                    activePage={this.props.headers.currentPage}
-                    itemsCountPerPage={this.props.headers.perPage}
-                    totalItemsCount={this.props.headers.total}
-                    pageRangeDisplayed={5}
-                    onChange={this.handlePageChange.bind(this)}
-                  />
-                </div>
+            !isFetching && teachers.length > 0 ? (
+              <div className="container-fluid course-pagination mb-15">
+                <Pagination
+                  activePage={headers.currentPage}
+                  itemsCountPerPage={headers.perPage}
+                  totalItemsCount={headers.total}
+                  pageRangeDisplayed={5}
+                  activeClass={'active'}
+                  onChange={this.handlePageChange.bind(this)}
+                />
               </div>
-              :null
+            ) : null
           }
         </div>
       </LoadingMask>
-    );
+    )
   };
 }
-
-const SearchingNotification = (props) => {
-  return (
-    <div className="row">
-      <div className="col-12 col-sm-6 col-md-4 col-lg-3">
-        We found {props.numMatchs} teachers.
-      </div>
-    </div>
-  )
-}
-
-const TeacherList = ({data}) => {
-  return (
-    <div className="row">
-      {
-       data.map((item) => {
-          if (!item.user) {
-            return null;
-          }
-          return <TeacherItem data={item} key={item.id}/>
-        })
-      }
-    </div>
-  )
-}
-
 
 PublicTeacherListContainer.contextTypes = {
   t: React.PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => {
-  const headers = state.Teachers.headers
+  const {data, headers} = state.Teachers;
 
   return {
-    teachers: state.Teachers,
+    teachers: data.filter(tutor => tutor.user != null),
     headers: {
       currentPage: headers && parseInt(headers.xPage) || 0,
       perPage: headers && parseInt(headers.xPerPage) || 0,
@@ -95,4 +73,12 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { searchTeachers })(PublicTeacherListContainer);
+const mapDispatchToProps = (dispatch) => ({
+  fetchTeacherList: (props) => dispatch(searchTeachers({})),
+  showFooter: () => dispatch({ type: WebConstants.SHOW_FOOTER }),
+  hideFooter: () => dispatch({ type: WebConstants.HIDE_FOOTER }),
+  stretchFull: () => dispatch({ type: WebConstants.STETCH_FULL }),
+  stretchAuto: () => dispatch({ type: WebConstants.STETCH_AUTO }),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(PublicTeacherListContainer);
