@@ -9,7 +9,7 @@ import cssModules from 'react-css-modules';
 class AdvanceFilterComponent extends Component {
   render() {
     const {selectedWeekDays, categories, selectedCategories, listSpecializes,
-           selectedSpecializes, onSelectFilter, isCourseFilter} = this.props;
+           selectedSpecializes, onSelectFilter, courseFilterMode} = this.props;
     return (
       <div className="d-flex flex-g1">
         {
@@ -42,19 +42,28 @@ class AdvanceFilterComponent extends Component {
             </div> : null
         }
         {
-          isCourseFilter ?
+          courseFilterMode ?
             <div className="flex-col-3">
               <FilterOption label={this.context.t('tuition_fee_filter')} onSelectFilter={onSelectFilter} name="tuition_fee">
                 <div className="d-flex flex-horizontal">
                   <div className="select-course-fee">
                     <div className="d-flex flex-horizontal">
-                      <FormField className="md-number-field" fieldId="filter_min_fees" showLabel={false} placeholder={this.context.t('min_fee_placeholder')}
+                      <FormField className="md-number-field price-field"
+                                 fieldId="filter_min_fees"
+                                 showLabel={false}
+                                 placeholder={this.context.t('min_fee_placeholder')}
                                  onChange={(e) => onSelectFilter(e.target.value, 'resetMinFee')}
-                                 formControlName="selectedMinFee" typeField="custom_input">
+                                 formControlName="selectedMinFee"
+                                 typeField="custom_input">
                       </FormField>
                       <span className="ml-10 mr-10 mt-5">{this.context.t('to')}</span>
-                      <FormField className="md-number-field" fieldId="filter_max_fees" showLabel={false} placeholder={this.context.t('max_fee_placeholder')}
-                                 onChange={(e) => onSelectFilter(e.target.value, 'resetMaxFee')} formControlName="selectedMaxFee" typeField="custom_input">
+                      <FormField className="md-number-field price-field"
+                                 fieldId="filter_max_fees"
+                                 showLabel={false}
+                                 placeholder={this.context.t('max_fee_placeholder')}
+                                 onChange={(e) => onSelectFilter(e.target.value, 'resetMaxFee')}
+                                 formControlName="selectedMaxFee"
+                                 typeField="custom_input">
                       </FormField>
                     </div>
                   </div>
@@ -87,7 +96,8 @@ AdvanceFilterComponent.propTypes = {
   selectedCategories: React.PropTypes.array,
   listSpecializes: React.PropTypes.array,
   selectedSpecializes: React.PropTypes.array,
-  onSelectFilter: React.PropTypes.func
+  onSelectFilter: React.PropTypes.func,
+  courseFilterMode: React.PropTypes.bool
 };
 
 export default cssModules(AdvanceFilterComponent, styles);

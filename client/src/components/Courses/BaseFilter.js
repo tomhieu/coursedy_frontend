@@ -83,7 +83,8 @@ class BaseFilter extends Component {
                                           selectedCategories={selectedCategories}
                                           listSpecializes={listSpecializes}
                                           selectedSpecializes={selectedSpecializes}
-                                          onSelectFilter={onSelectFilter}>
+                                          onSelectFilter={onSelectFilter}
+                                          {...this.props}>
                   </AdvanceFilterComponent>
                 </div>
               </div>
@@ -104,7 +105,8 @@ class BaseFilter extends Component {
                                       selectedCategories={selectedCategories}
                                       listSpecializes={listSpecializes}
                                       selectedSpecializes={selectedSpecializes}
-                                      onSelectFilter={onSelectFilter}>
+                                      onSelectFilter={onSelectFilter}
+                                      {...this.props}>
               </AdvanceFilterComponent>
             </div>
           </div>
