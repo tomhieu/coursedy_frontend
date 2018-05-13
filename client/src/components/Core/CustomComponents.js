@@ -15,7 +15,7 @@ export const renderField = ({input, label, placeholder, type = 'text', disabled 
     <input {...input} placeholder={placeholder ? placeholder : ''} type={type} disabled={disabled}
            className={customClassName}/>
     {
-      type === 'checkbox' ? <span class="custom-control-description">{label}</span> : null
+      type === 'checkbox' ? <span className="custom-control-description">{label}</span> : null
     }
     {touched && ((error && <span className='input-errors'>{error}</span>) || (warning && <span>{warning}</span>))}
   </div>

@@ -2,8 +2,9 @@
 
 .teacher-detail {
   font-size: 15px;
+  background: $white-background;
   &__header {
-    border: 1px solid $border-color;
+    border-bottom: 1px solid $border-color;
     &._fixed {
       position: fixed;
       left: 0;
@@ -103,10 +104,6 @@
     background: $color-bg-gray-form;
     border: 1px solid $border-color;
     padding: 20px;
-  }
-
-  @media only screen and (min-width: 993px) {
-    margin-top: -30px;
   }
 }
 

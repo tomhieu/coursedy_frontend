@@ -12,6 +12,10 @@ class DateUtils {
     return formatedDate;
   }
 
+  static dateTimeFromNow(dateValue) {
+    return moment(dateValue).fromNow()
+  }
+
   static normalizeTime = (time) => {
     return time.substr(0, time.length - 3);
   }

@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-// import styles from '../Course.module.scss';
 import {connect} from "react-redux";
 import {reduxForm} from "redux-form";
 import {Button, Modal} from 'react-bootstrap';
@@ -87,7 +86,6 @@ class CommentFormContainer extends Component {
             {this.context.t('save')}
           </Button>
         </form>
-
         {/* Require login modal */}
         <SimpleDialogComponent 
           title={this.context.t('require_login')}
@@ -133,6 +131,7 @@ const mapStateToProps = (state) => {
     require_login_message: state.PublicCourseDetail.require_login_message
   }
 }
+
 
 export default connect(
     mapStateToProps
