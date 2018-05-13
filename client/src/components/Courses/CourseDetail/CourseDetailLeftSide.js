@@ -16,7 +16,7 @@ import {
 class CourseDetailLeftSide extends Component {
   render() {
     const {
-      activeMenu, updateActiveMenu, displayFixedSidebar,
+      activeMenu, displayFixedSidebar,
       course_sections, relatedCourses
     } = this.props
     return (
@@ -32,24 +32,24 @@ class CourseDetailLeftSide extends Component {
               <li className="sidebar-heading"><h5>{this.context.t('course_menu')}</h5></li>
               <li className="">
                 <ul className="course-detail-left-nav">
-                  <li>
+                  <li className={activeMenu === 'course-detail-intro' ? 'active' : ''}>
                     <AnchorLink href='#course-detail-intro' className="anchor">{this.context.t('course_intro')}</AnchorLink>
                   </li>
                   {
                     course_sections.length ?
-                    <li>
+                    <li className={activeMenu === 'course-detail-lessons' ? 'active' : ''}>
                       <AnchorLink href='#course-detail-lessons' className="anchor">{this.context.t('course_lessons')}</AnchorLink>
                     </li> : null
                   }
-                  <li>
+                  <li className={activeMenu === 'course-detail-tutor' ? 'active' : ''}>
                     <AnchorLink href='#course-detail-tutor' className="anchor">{this.context.t('course_teacher')}</AnchorLink>
                   </li>
-                  <li>
+                  <li className={activeMenu === 'course-detail-comments' ? 'active' : ''}>
                     <AnchorLink href='#courses-detail-comments' className="anchor">{this.context.t('course_comments')}</AnchorLink>
                   </li>
                   {
                     relatedCourses.length ?
-                    <li>
+                    <li className={activeMenu === 'course-detail-related' ? 'active' : ''}>
                       <AnchorLink href='#course-detail-related' className="anchor">{this.context.t('course_related')}</AnchorLink>
                     </li> : null
                   }
