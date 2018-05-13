@@ -19,7 +19,14 @@ const EducationData = (state = {}, action) => {
       return Object.assign({}, state, {listLevel: action.data})
     case FETCH_TEACHER_SKILL_SET + FULFILLED:
       const skillSet = action.payload.map((category) => {
-        return {id: category.id,  text: category.name}
+        return {
+          id: category.id,
+          text: category.name,
+          children: category.children.map((spec) => ({
+              id: spec.id,
+              text: spec.name
+            })
+          )}
       });
       return Object.assign({}, state, {skillSet: skillSet})
     case TutorAccountTypes.RECEIVE_CERTIFICATES_DATA:

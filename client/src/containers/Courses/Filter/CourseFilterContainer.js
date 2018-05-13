@@ -1,5 +1,4 @@
 import React from 'react';
-import {CourseFilter} from '../../../components/index';
 import * as CourseFilterActions from '../../../actions/CourseFilterActionCreator'
 import * as asyncActions from '../../../actions/AsyncActionCreator'
 import {
@@ -12,10 +11,10 @@ import {connect} from 'react-redux';
 import {reduxForm} from "redux-form";
 import {MAX_FEE, MIN_FEE} from "utils/CommonConstant";
 import {TT} from "utils/locale";
-import {dispatch} from "redux";
 import AbstractFilter from '../../../components/Core/AbstractFilterComponent';
 import Network from "utils/network";
 import {FETCH_COURSES} from "../../../constants/Courses";
+import BaseFilter from "../../../components/Courses/BaseFilter";
 
 class CourseFilterContainer extends AbstractFilter {
 
@@ -28,20 +27,8 @@ class CourseFilterContainer extends AbstractFilter {
     this.props.changeDisplayMode(mode);
   }
 
-  changeCurrentPage(page) {
-    this.props.changeCurrentPage(page);
-  }
-
-  selectAllCourses(isTrue) {
-    if (isTrue) {
-      this.props.removeAllCourses();
-    } else {
-      this.props.selectAllCourses();
-    }
-  }
-
-  searchCourse(filters, selectedMinFee, selectedMaxFee, order_by, display_mode) {
-    this.props.search(this.buildQuery(filters, selectedMinFee, selectedMaxFee, order_by, display_mode));
+  search(filters, selectedMinFee, selectedMaxFee, order_by, display_mode) {
+    this.props.searchCourse(this.buildQuery(filters, selectedMinFee, selectedMaxFee, order_by, display_mode));
   }
 
 
@@ -77,12 +64,12 @@ class CourseFilterContainer extends AbstractFilter {
 
     this.props.updateFilter(nextFilters);
 
-    this.props.search(this.buildQuery(nextFilters, selectedMinFee, selectedMaxFee, order_by, display_mode));
+    this.props.searchCourse(this.buildQuery(nextFilters, selectedMinFee, selectedMaxFee, order_by, display_mode));
   }
 
-  reloadCourseList(e) {
+  search(e) {
     let {selectedMinFee, selectedMaxFee, order_by, display_mode} = this.props.formfieldValues;
-    this.props.search(this.buildQuery(this.props.filters, selectedMinFee, selectedMaxFee, order_by, display_mode));
+    this.props.searchCourse(this.buildQuery(this.props.filters, selectedMinFee, selectedMaxFee, order_by, display_mode));
   }
 
   buildQuery(filters, selectedMinFee, selectedMaxFee, order_by, display_mode) {
@@ -105,7 +92,7 @@ class CourseFilterContainer extends AbstractFilter {
     const currentFilters = JSON.parse(JSON.stringify(this.props.filters));
     const removedFilters = this.removeFilterCriteria(currentFilters, filterId, typeFilter);
     this.props.updateFilter(removedFilters);
-    this.props.search(this.buildQuery(removedFilters, selectedMinFee, selectedMaxFee, order_by, display_mode));
+    this.props.searchCourse(this.buildQuery(removedFilters, selectedMinFee, selectedMaxFee, order_by, display_mode));
   }
 
   autoCompleteSearchCourse(id) {
@@ -115,17 +102,16 @@ class CourseFilterContainer extends AbstractFilter {
 
   render() {
     return (
-      <CourseFilter {...this.props}
-                    onSubmit={this.searchCourse.bind(this)}
-                    reloadCourseList={this.reloadCourseList.bind(this)}
+      <BaseFilter {...this.props}
+                    onSubmit={this.search.bind(this)}
+                    search={this.search.bind(this)}
                     changeDisplayModeHdl={this.changeDisplayMode}
-                    changeCurrentPageHdl={this.changeCurrentPage}
-                    selectAllCoursesHdl={this.selectAllCourses}
                     loadSuggestions={this.loadSuggestions.bind(this)}
                     onSelectFilter={this.doSelectFilter.bind(this)}
                     onRemoveFilter={this.doRemoveFilter.bind(this)}
                     onSelectSuggestion={this.autoCompleteSearchCourse.bind(this) }
                     closeSuggestion={this.props.closeSuggestion}
+                    courseFilterMode={true}
       />
     )
   }
@@ -184,15 +170,12 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  search: (query) => dispatch({
+  searchCourse: (query) => dispatch({
     type: FETCH_COURSES,
     payload: Network().get('courses/search', query),
     meta: 'publicCourseListPlaceholder'
   }),
   changeDisplayMode: (mode) => dispatch(CourseFilterActions.changeDisplayMode(mode)),
-  changeCurrentPage: (page) => dispatch(CourseFilterActions.changeCurrentPage(page)),
-  removeAllCourses: () => dispatch(CourseFilterActions.removeAllCourses()),
-  selectAllCourses: () => dispatch(CourseFilterActions.selectAllCourses()),
   clearSuggestion: () => dispatch({type: asyncActions.CLEAR_SUGGESTION}),
   loadSuggestions: (query) => dispatch({
     type: LOAD_SUGGESTION,

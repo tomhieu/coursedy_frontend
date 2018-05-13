@@ -43,12 +43,25 @@ class BasicFilterComponent extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    this.hasUpdateFilter = nextProps.selectedWeekDays.length != this.props.selectedWeekDays.length ||
-      nextProps.selectedLocations.length != this.props.selectedLocations.length ||
-      nextProps.selectedCategories.length != this.props.selectedCategories.length ||
-      nextProps.selectedSpecializes.length != this.props.selectedSpecializes.length ||
-      nextProps.formfieldValues.selectedMinFee != this.props.formfieldValues.selectedMinFee ||
-      nextProps.formfieldValues.selectedMaxFee != this.props.formfieldValues.selectedMaxFee
+    const hasChangeWeekDay = nextProps.selectedWeekDays ?
+      nextProps.selectedWeekDays.length != this.props.selectedWeekDays.length : false;
+    const hasChangeLocation = nextProps.selectedLocations ?
+      nextProps.selectedLocations.length != this.props.selectedLocations.length : false;
+    const hasChangeCategory = nextProps.selectedCategories ?
+      nextProps.selectedCategories.length != this.props.selectedCategories.length : false;
+    const hasChangeSpecialize = nextProps.selectedSpecializes ?
+      nextProps.selectedSpecializes.length != this.props.selectedSpecializes.length : false;
+    const hasChangeMinfee = nextProps.formfieldValues.selectedMinFee ?
+      nextProps.formfieldValues.selectedMinFee != this.props.selectedSpecializes.length : false;
+    const hasChangeMaxfee = nextProps.formfieldValues.selectedMaxFee ?
+      nextProps.formfieldValues.selectedMaxFee != this.props.formfieldValues.selectedMaxFee : false;
+
+    this.hasUpdateFilter = hasChangeWeekDay ||
+                          hasChangeLocation ||
+                          hasChangeCategory ||
+                        hasChangeSpecialize ||
+                            hasChangeMinfee ||
+                            hasChangeMaxfee
   }
 
   componentDidUpdate() {
@@ -83,13 +96,14 @@ class BasicFilterComponent extends Component {
         </div>
         <div ref={(el) => { this.filterContainer = el} } id="chipContainer" className={filterListClassNames}>
           {
+            selectedWeekDays ?
             selectedWeekDays.map((f) =>
               <Chip key={"filter_days_" + f.id} id={"filter_days_" + f.id} ref={"filter_days_" + f.id}
                     onRequestDelete={() => onRemoveFilter(f.id, 'selectedWeekDays')}
                     show={this.hiddenFilters.indexOf("filter_days_" + f.id) < 0}
                     label={f.name}>
               </Chip>
-            )
+            ) : null
           }
           {
             selectedCategories.map((sc) =>
@@ -101,13 +115,14 @@ class BasicFilterComponent extends Component {
             )
           }
           {
+            selectedLocations ?
             selectedLocations.map((f) =>
               <Chip key={"filter_locs_" + f.id} ref={"filter_locs_" + f.id}
                     onRequestDelete={() => onRemoveFilter(f.id, 'selectedLocations')}
                     show={this.hiddenFilters.indexOf("filter_locs_" + f.id) < 0}
                     label={f.name}
               ></Chip>
-            )
+            ) : null
           }
           {
             formfieldValues.selectedMinFee ?

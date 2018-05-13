@@ -33,6 +33,10 @@ class TutorForm extends Component {
                          isMandatoryField={true} formControlName="title" typeField="custom_input"/>
             </div>
             <div>
+              <FormField fieldId="placeOfWorkId" fieldLabel={this.context.t("account.tutot.edu.place_of_work")}
+                         isMandatoryField={true} formControlName="place_of_work" typeField="custom_input"/>
+            </div>
+            <div>
               <FormField fieldId="descriptionId" fieldLabel={this.context.t("account.tutor.edu.description")}
                          isMandatoryField={true} formControlName="description" typeField="custom_textarea"/>
             </div>

@@ -9,7 +9,7 @@ body {
   font-family: 'Lato', sans-serif;
   color: $black-color;
   font-weight: 400;
-  background-color: #fdfdfd;
+  background-color: $color-default-bg;
 }
 
 @font-face {
@@ -3309,4 +3309,9 @@ a {
 
 a.clear-filter {
   color: $color-blue;
+}
+
+.teacher-list {
+  width: 100%;
+  background-color: $white-color;
 }
