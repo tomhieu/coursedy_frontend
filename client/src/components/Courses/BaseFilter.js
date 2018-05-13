@@ -8,7 +8,7 @@ import FlatButton from "../Core/FlatButton/FlatButton";
 import {TRIGGER_STICKY_HEADER_AT} from "constants/Layout";
 
 
-class CourseFilter extends Component {
+class BaseFilter extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -31,9 +31,10 @@ class CourseFilter extends Component {
       loadingSuggestion,
       formfieldValues,
       listSpecializes,
-      reloadCourseList,
+      search,
       onSelectFilter,
-      closeSuggestion
+      closeSuggestion,
+      courseFilterMode
     } = this.props;
 
     const {selectedWeekDays, selectedCategories, selectedLocations, selectedSpecializes} = filters;
@@ -59,7 +60,7 @@ class CourseFilter extends Component {
         <div className={"d-flex flex-vertical"}>
           <div className={"d-flex flex-auto fixed-top-search-bar " + styles.filterActionBlock}>
             <div className="d-flex flex-wrap flex-auto">
-              <div className={"d-flex flex-nowrap " + styles.filterTextContainer}>
+              <div className={"d-flex flex-nowrap " + (courseFilterMode ? styles.filterCourseContainer : styles.filterTeachContainer)}>
                 <BasicFilterComponent selectedWeekDays={selectedWeekDays}
                                       selectedSpecializes={selectedSpecializes}
                                       selectedCategories={selectedCategories}
@@ -114,29 +115,35 @@ class CourseFilter extends Component {
               <div className={styles.orderDisplayResult + " d-flex flex-horizontal align-items-center justify-content-end"}>
                 <div className={styles.totalCoursesBox}>
                     <span className={styles.textTotalResult + " d-flex justify-content-end"}>
-                      {this.context.t("total_result", {total: totalResult !== undefined ? totalResult : 0})}
+                      {
+                        courseFilterMode ? this.context.t("total_result_course", {total: totalResult !== undefined ? totalResult : 0})
+                          : this.context.t("total_result_teacher", {total: totalResult !== undefined ? totalResult : 0})
+                      }
                     </span>
                 </div>
                 <div className={styles.orderBtn}>
-                  <Select2 onSelect={(e) => reloadCourseList(e)} data={orderList}></Select2>
+                  <Select2 onSelect={(e) => search(e)} data={orderList}></Select2>
                 </div>
-                <div className={styles.displayModeBtn}>
-                  <div className="d-flex flex-horizontal">
-                    <FlatButton secondary={true}
-                                 onClick={changeDisplayModeHdl.bind(this, "grid")} >
-                      <svg viewBox="0 0 24 24" className="material-icon primary" width={24} height={24}>
-                        <path d="M4 11h5V5H4v6zm0 7h5v-6H4v6zm6 0h5v-6h-5v6zm6 0h5v-6h-5v6zm-6-7h5V5h-5v6zm6-6v6h5V5h-5z"></path>
-                      </svg>
-                    </FlatButton>
+                {
+                  changeDisplayModeHdl !== undefined ?
+                  <div className={styles.displayModeBtn}>
+                    <div className="d-flex flex-horizontal">
+                      <FlatButton secondary={true}
+                                  onClick={changeDisplayModeHdl.bind(this, "grid")} >
+                        <svg viewBox="0 0 24 24" className="material-icon primary" width={24} height={24}>
+                          <path d="M4 11h5V5H4v6zm0 7h5v-6H4v6zm6 0h5v-6h-5v6zm6 0h5v-6h-5v6zm-6-7h5V5h-5v6zm6-6v6h5V5h-5z"></path>
+                        </svg>
+                      </FlatButton>
 
-                    <FlatButton secondary={true}
-                                 onClick={changeDisplayModeHdl.bind(this, "list")}>
-                      <svg viewBox="0 0 24 24" className="material-icon primary" width={24} height={24}>
-                        <path d="M4 14h4v-4H4v4zm0 5h4v-4H4v4zM4 9h4V5H4v4zm5 5h12v-4H9v4zm0 5h12v-4H9v4zM9 5v4h12V5H9z"></path>
-                      </svg>
-                    </FlatButton>
-                  </div>
-                </div>
+                      <FlatButton secondary={true}
+                                  onClick={changeDisplayModeHdl.bind(this, "list")}>
+                        <svg viewBox="0 0 24 24" className="material-icon primary" width={24} height={24}>
+                          <path d="M4 14h4v-4H4v4zm0 5h4v-4H4v4zM4 9h4V5H4v4zm5 5h12v-4H9v4zm0 5h12v-4H9v4zM9 5v4h12V5H9z"></path>
+                        </svg>
+                      </FlatButton>
+                    </div>
+                  </div> : null
+                }
               </div>
             </div>
           </div>
@@ -146,13 +153,13 @@ class CourseFilter extends Component {
   }
 }
 
-CourseFilter.contextTypes = {
+BaseFilter.contextTypes = {
   t: React.PropTypes.func.isRequired
 }
 
-CourseFilter.propTypes = {
+BaseFilter.propTypes = {
   categories: React.PropTypes.array.isRequired,
-  locations: React.PropTypes.array.isRequired,
+  locations: React.PropTypes.array,
   onSelectFilter: React.PropTypes.func.isRequired,
   suggestions: React.PropTypes.array.isRequired,
   loadSuggestions: React.PropTypes.func.isRequired,
@@ -160,8 +167,9 @@ CourseFilter.propTypes = {
   filters: React.PropTypes.object.isRequired,
   onSelectSuggestion: React.PropTypes.func.isRequired,
   showSuggestion: React.PropTypes.bool.isRequired,
-  reloadCourseList: React.PropTypes.func,
-  closeSuggestion: React.PropTypes.func
+  search: React.PropTypes.func,
+  closeSuggestion: React.PropTypes.func,
+  courseFilterMode: React.PropTypes.bool
 };
 
-export default cssModules(CourseFilter, styles);
+export default cssModules(BaseFilter, styles);

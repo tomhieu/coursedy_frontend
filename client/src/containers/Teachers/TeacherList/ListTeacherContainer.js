@@ -8,7 +8,7 @@ import './ListTeacher.scss';
 class ListTeacher extends Component {
   render() {
     return (
-      <div className="teacher-list-container">
+      <div className="d-flex flex-auto flex-vertical full-width-in-container course-filter-container">
         <TeacherFilterContainer/>
         <PublicTeacherListContainer/>
       </div>

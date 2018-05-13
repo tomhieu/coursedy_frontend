@@ -28,9 +28,9 @@ class AutoComplete extends Component {
 
   renderSuggestion(suggestion, handleAddCriteria) {
     return (
-      <div className="d-flex flex-horizontal pt-10 pl-10" key={"suggestion_" + suggestion.id}>
+      <div className={"d-flex flex-horizontal " + styles.suggestionItemWrapper} key={"suggestion_" + suggestion.id}>
         <div>
-          <img src={suggestion.avatar ? SERVER_NAME + suggestion.avatar : 'http://placehold.it/75x75'} alt="" className={styles.itemAvatar + ' img-responsive img-circle'} />
+          <img src={suggestion.avatar ? suggestion.avatar : 'http://placehold.it/75x75'} alt="" className={styles.itemAvatar + ' img-responsive img-circle'} />
         </div>
         <div className={styles.suggestionLine}>
           <a className="pl-10 d-flex flex-vertical suggestion-line" onClick={() => handleAddCriteria(suggestion.id, suggestion.title)}>

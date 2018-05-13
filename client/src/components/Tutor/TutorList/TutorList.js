@@ -5,17 +5,18 @@ import { TutorItem } from '../../index'
 
 class TutorList extends Component {
   render() {
+    const {teachers} = this.props;
     return (
-      <div id="tutor_list">
-        <div className="box-border">
-          {
-            [1,2,3,4,5].map((i) => {
-              return (
-                <TutorItem key={i}/>
-              )
-            })
-          }
-        </div>
+      <div className="row">
+        {
+          teachers.map((tutor) => {
+            return (
+              <div className="col-md-3 col-sm-6" key={tutor.id}>
+                <TutorItem tutor={tutor}/>
+              </div>
+            )
+          })
+        }
       </div>
     )
   }

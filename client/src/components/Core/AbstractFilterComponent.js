@@ -26,7 +26,6 @@ export default class AbstractFilter extends Component {
     } else {
       currentFilters.term = filterValue;
     }
-
     return currentFilters;
   }
 }

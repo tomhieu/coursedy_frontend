@@ -115,6 +115,7 @@
 .orderDisplayResult {
   flex-grow: 1;
   flex-wrap: wrap;
+  min-height: 50px;
 }
 
 .rowPrimary {
@@ -171,7 +172,12 @@
   margin: 10px 10px;
 }
 
-.filterTextContainer {
+.filterCourseContainer {
   position: relative;
   flex: 3;
+}
+
+.filterTeachContainer {
+  position: relative;
+  flex: 7;
 }
