@@ -192,11 +192,12 @@ export const fetchRelatedCourses = (params) => {
   } 
 }
 
-export const updateActiveMenu = (activeMenu) => {
+export const changeActiveMenu = (payload) => {
   return dispatch => {
     dispatch({
       type: types.PUBLIC_COURSE_DETAIL_UPDATE_ACTIVE_MENU,
-      payload: activeMenu
+      payload: payload
     })
   }
 }
+

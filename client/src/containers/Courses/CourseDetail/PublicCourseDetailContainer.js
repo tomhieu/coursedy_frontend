@@ -46,12 +46,17 @@ class PublicCourseDetailContainer extends Component {
     ))
   }
 
+  changeActiveMenu(payload) {
+    this.props.dispatch(PublicCourseActions.changeActiveMenu(payload))
+  }
+
   render() {
     return (
       <CourseDetail
         {...this.props}
         loadMoreCommentsHdl={this.loadMoreComments.bind(this)}
-        />
+        changeActiveMenu={this.changeActiveMenu.bind(this)}
+      />
     )
   }
 }
@@ -92,7 +97,7 @@ const mapStateToProps = (state) => {
     course_sections,
     course_comments,
     course_comments_page,
-    activeMenu
+    sectionPositions
   } = state.PublicCourseDetail
   return {
     course_category: getCourseCategory(categories, course),
@@ -100,7 +105,7 @@ const mapStateToProps = (state) => {
     categories, course, relatedCourses,
     course_tutor, course_sections,
     course_comments, course_comments_page,
-    activeMenu
+    sectionPositions
   }
 }
 
