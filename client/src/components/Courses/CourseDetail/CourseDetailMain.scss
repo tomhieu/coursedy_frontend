@@ -1,0 +1,17 @@
+@import "../../../../styles/global_style.scss";
+
+@media (min-width: $md-lower) {
+  .course-detail-main {
+    width: 100vw;
+    position: relative;
+    /* menu-height + gap + header-height + gap */
+    top: calc(70px + #{$box-gap} + 115px + #{$box-gap});
+    .container {
+      display: flex;
+    }
+  }
+}
+
+.course-detail-main {
+  background-color: $color-bg-gray-form;
+}

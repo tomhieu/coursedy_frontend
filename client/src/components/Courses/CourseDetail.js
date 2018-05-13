@@ -17,17 +17,53 @@ import {PUBLIC_COURSE_MAX_NUMBER_COMMENTS_PER_LOAD} from '../../constants/Course
   */
 class CourseDetail extends Component {
   constructor(props) {
-    super(props);
+    super(props)
+    this.state = {
+      displayFixedSidebar: false
+    }
   }
+
+  componentDidMount() {
+    window.addEventListener('scroll', this.handleScroll.bind(this))
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.handleScroll.bind(this))
+  }
+
+  handleScroll(event) {
+    const triggerPosition = 100
+    const top  = window.pageYOffset || document.documentElement.scrollTop
+    if (triggerPosition < top) {
+      this.setState({
+        displayFixedSidebar: true
+      })
+    } else {
+      this.setState({
+        displayFixedSidebar: false
+      })
+    }
+  }
+
   render() {
+    const { displayFixedSidebar } = this.state
     return (
-      <div className="course-detail">
-        <div className="course-detail-header full-width-in-container">
-          <div className="container">
-            <CourseDetailHeader {...this.props}/>
-          </div>
-        </div>
-        <CourseDetailMain {...this.props}/>
+      <div className="d-flex flex-auto flex-vertical full-width-in-container">
+        <div 
+          className={
+            displayFixedSidebar ?  
+              "d-none d-md-block white-mask-scrolled" : 
+              "d-none d-md-block white-mask-normal"
+          }
+        ></div>
+        <CourseDetailHeader
+          {...this.props}
+          displayFixedSidebar={displayFixedSidebar}
+        />
+        <CourseDetailMain
+          {...this.props}
+          displayFixedSidebar={displayFixedSidebar}
+        />
       </div>
     )
   }

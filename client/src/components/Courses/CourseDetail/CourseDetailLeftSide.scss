@@ -1,17 +1,26 @@
-.sidebar-fixed {
+@import "../../../../styles/global_style.scss";
+
+.sidebar-fixed-normal {
   position: fixed;
-  top: 70px;
+  /* menu-height + gap + header-height + gap */
+  top: calc(70px + #{$box-gap} + 115px + #{$box-gap});
+  z-index: 500;
+  width: 20.5%;
+}
+.sidebar-fixed-scrolled {
+  position: fixed;
+  top: calc(70px + #{$box-gap} + 70px + #{$box-gap});
+  z-index: 500;
+  width: 20.5%;
 }
 
 .sidebar-wrapper {
-  padding-top: 25px;
-  padding-bottom: 25px;
   background: #FFF;
-  padding-left: 0;
-  padding-right: 30px;
   position: relative;
-  border-right: 1px solid #E5E5E5;
+  border: 1px solid $border-color;
   width: 100%;
+
+
 }
 
 
@@ -19,8 +28,7 @@
   margin-bottom: 20px;
   padding-top: 5px;
   padding-bottom: 0;
-  border: 1px solid #F2F2F2;
-  background-color: #F2F2F2;
+
 
   &.affix {
     position: static;
@@ -37,7 +45,7 @@
       > a {
         display: block;
         color: #636363;
-        padding: 14px 20px;
+        padding: $box-gap 20px;
         transition: all .3s ease;
         -webkit-transition: all .3s ease;
         -moz-transition: all .3s ease;
@@ -66,7 +74,7 @@
         border-bottom: 1px solid #E8E8E8;
         margin: 0;
         margin-left: -1px;
-        padding: 14px 20px;
+        padding: $box-gap 20px;
       }
       > ul {
         border-bottom: 1px solid #E8E8E8;
@@ -126,7 +134,7 @@
         border-bottom: 1px solid #E8E8E8;
         margin: 0;
         font-weight: 700;
-        padding: 14px 20px;
+        padding: $box-gap 20px;
         text-transform: uppercase;
       }
     }
@@ -177,10 +185,10 @@
 
 
 
-.call-featiured {
+.call-featured {
   margin-top: 25px;
   position: relative;
-  padding-left: 50px;
+  padding-left: calc(#{$box-gap} + 36px + #{$box-gap});
   line-height: 1.45;
 
   .icon {
@@ -189,12 +197,12 @@
     border-radius: 50%;
     text-align: center;
     color: #FFF;
-    background: #DB0B23;
+    background: $md-color-pink;
     font-size: 17px;
     line-height: 36px;
     position: absolute;
-    top: 3px;
-    left: 0;
+    top: -5px;
+    left: $box-gap;
   }
 
   h5 {
@@ -208,7 +216,7 @@
 
   .phone-number {
     font-style: normal;
-    color: #DB0B23;
+    color: $md-color-pink;
     display: block;
     font-size: 19px;
     font-weight: 700;
@@ -221,6 +229,8 @@
 .favor-link-wrapper {
   border-top: 1px solid #EBEBEB;
   padding-top: 20px;
+  padding-left: $box-gap;
+  padding-right: $box-gap;
   margin-top: 20px;
 
   a {

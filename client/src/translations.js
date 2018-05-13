@@ -67,6 +67,7 @@ export const translations = {
     "num_student_mandatory": "Vui lòng nhập số học sinh",
     "tuition_fee": "Học phí",
     "tuition_fee_mandatory": "Vui lòng nhập học phí",
+    "free": "Miễn phí",
     "course_free": "Khoá học miễn phí",
     "course_not_free": "Khoá học có phí",
     "period_per_lesson": "Thời gian một buổi học",
@@ -397,7 +398,7 @@ export const translations = {
     "course_teacher": "Về giáo viên",
     "course_rating": "Đánh giá",
     "course_related": "Khóa học liên quan",
-    "unknown": "Chưa rõ",
+    "unknown": "Đang cập nhật",
     "read_more": "Chi tiết"
   },
   "en": {

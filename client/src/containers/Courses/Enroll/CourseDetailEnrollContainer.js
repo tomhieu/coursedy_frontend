@@ -107,8 +107,8 @@ class CourseDetailEnrollContainer extends Component {
 
     return (
       <div>
-        <div className="text-center">
-          <a onClick={this.submitEnrollCourse.bind(this)} className="btn btn-primary btn-block btn-md">{this.context.t('course_enroll')}</a>
+        <div className="enroll-btn text-center">
+          <button onClick={this.submitEnrollCourse.bind(this)} className="btn btn-primary btn-block btn-md">{this.context.t('course_enroll')}</button>
         </div>
 
         {/* Require login modal */}
