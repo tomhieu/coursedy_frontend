@@ -43,3 +43,11 @@ export const TEACHER_DETAIL_PROFILE_PLACEHOLDER = "TEACHER_DETAIL_PROFILE_PLACEH
 
 // authentication
 export const AUTHENTICATED = 'isAuthenticated';
+
+
+/*
+* Scrolled menu constanst
+*/
+export const TRIGGER_CHANGE_MENU_EVENT_OFFSET = 20
+export const TRIGGER_DISPLAY_FIX_HEADER_BAR_OFFSET = 100
+export const CHECK_ACTIVE_MENU_OFFSET= 250

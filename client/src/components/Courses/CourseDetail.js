@@ -10,6 +10,10 @@ import './CourseDetail.scss';
 
 import {CoreComponent} from '../index';
 import {PUBLIC_COURSE_MAX_NUMBER_COMMENTS_PER_LOAD} from '../../constants/Courses';
+import {
+  TRIGGER_DISPLAY_FIX_HEADER_BAR_OFFSET,
+  CHECK_ACTIVE_MENU_OFFSET
+} from "../../constants/WebConstants.js"
 
 /**
   * @Course group template 2
@@ -19,22 +23,27 @@ class CourseDetail extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      displayFixedSidebar: false
+      displayFixedSidebar: false,
+      currentScrollPosition: 0,
+      activeMenu: 'course-detail-intro'
     }
   }
 
   componentDidMount() {
     window.addEventListener('scroll', this.handleScroll.bind(this))
+    this.checkScrollPosition()
   }
 
   componentWillUnmount() {
     window.removeEventListener('scroll', this.handleScroll.bind(this))
   }
 
-  handleScroll(event) {
-    const triggerPosition = 100
-    const top  = window.pageYOffset || document.documentElement.scrollTop
-    if (triggerPosition < top) {
+  /*
+    @Check scroll position for active menu, display header bar
+  */
+  checkScrollPosition() {
+    const currentPosition  = window.pageYOffset || document.documentElement.scrollTop
+    if (TRIGGER_DISPLAY_FIX_HEADER_BAR_OFFSET < currentPosition) {
       this.setState({
         displayFixedSidebar: true
       })
@@ -43,10 +52,23 @@ class CourseDetail extends Component {
         displayFixedSidebar: false
       })
     }
+    this.setState({
+      currentScrollPosition: currentPosition,
+      activeMenu: Object.keys(this.props.sectionPositions).reduce(
+        (currentPosition, newPosition) => {
+          return this.props.sectionPositions[newPosition] < CHECK_ACTIVE_MENU_OFFSET 
+            ? newPosition : currentPosition
+        }, 'course-detail-intro'
+      )
+    })
+  }
+
+  handleScroll(event) {
+    this.checkScrollPosition()
   }
 
   render() {
-    const { displayFixedSidebar } = this.state
+    const { activeMenu, currentScrollPosition, displayFixedSidebar } = this.state
     return (
       <div className="d-flex flex-auto flex-vertical full-width-in-container">
         <div 
@@ -63,6 +85,8 @@ class CourseDetail extends Component {
         <CourseDetailMain
           {...this.props}
           displayFixedSidebar={displayFixedSidebar}
+          activeMenu={activeMenu}
+          currentScrollPosition={currentScrollPosition}
         />
       </div>
     )
