@@ -1,6 +1,4 @@
-
 import {StripeProvider} from "react-stripe-elements";
-import CourseItem from "../../components/Courses/CourseItem/CourseItem";
 import {TT} from "utils/locale";
 import * as React from "react";
 import PaymentContainer from "../../containers/Payment/PaymentContainer";

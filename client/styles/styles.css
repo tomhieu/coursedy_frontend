@@ -1437,7 +1437,7 @@ select[multiple]::-webkit-scrollbar-thumb {
     border-radius: 5px !important; }
 
   .hero-tag {
-    font-size: 16px;
+    font-size: 30px;
     letter-spacing: .5px; } }
 @media only screen and (max-width: 480px) {
   body {

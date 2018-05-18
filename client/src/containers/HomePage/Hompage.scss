@@ -2,6 +2,7 @@
 
 .course {
   &__new-courses {
+    background-color: $white-color;
     &__header {
       color: #534051;
       p {
@@ -10,6 +11,10 @@
         font-size: 30px;
       }
     }
+  }
+
+  &__student-comment {
+    background-color: $white-color;
   }
 
   &__how-to-learn, &__popular, &__teacher-guide {

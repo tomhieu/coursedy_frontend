@@ -1,10 +1,9 @@
-import React, {PropTypes, Component} from 'react';
-import {Navbar, NavbarToggler, NavDropdown, MenuItem, Nav, NavItem, NavLink} from 'react-bootstrap'
+import React, {Component, PropTypes} from 'react';
+import {NavbarToggler, NavLink} from 'react-bootstrap'
 import cssModules from 'react-css-modules';
 import styles from './Header.module.scss';
-import { LinkContainer } from 'react-router-bootstrap'
-import { dashboardUrls } from '../../actions/ReferenceActions/ReferenceData'
-import * as WebConstants from "constants/WebConstants";
+import {LinkContainer} from 'react-router-bootstrap'
+import {dashboardUrls} from '../../actions/ReferenceActions/ReferenceData'
 import {SecurityUtils} from "utils/SecurityUtils";
 import {TRIGGER_STICKY_HEADER_AT} from "constants/Layout";
 
@@ -36,8 +35,9 @@ class Header extends Component {
   render() {
     let dashboardUrl = this.props.session.currentUser ? 
       dashboardUrls[this.props.session.currentUser.roles[0]] : '';
+    const showDarkHeader = this.props.main.darkHeader;
     return (
-      <nav className={`header-nav navbar navbar-expand-lg navbar-light navbar-default bg-light`} ref={el => this.header = el}>
+      <nav className={"header-nav navbar navbar-expand-lg navbar-light navbar-default " + (showDarkHeader ? "dark-header" : "bg-light")} ref={el => this.header = el}>
         <div className="container">
           <a className="navbar-brand" href="#"><img src="/logo2.png" className="logo" alt="logo"/></a>
           <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">

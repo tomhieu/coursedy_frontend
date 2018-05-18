@@ -3,6 +3,7 @@ import * as types from '../constants/WebConstants';
 const MainReducer = (state = {
   showFooter: true,
   stetchAuto: true,
+  darkHeader: false,
 }, action) => {
   switch (action.type) {
     case types.SHOW_FOOTER:
@@ -13,6 +14,10 @@ const MainReducer = (state = {
       return {...state, stetchAuto: true};
     case types.STETCH_FULL:
       return {...state, stetchAuto: false};
+    case types.SHOW_DARK_HEADER:
+      return {...state, darkHeader: true};
+    case types.SHOW_WHITE_HEADER:
+      return {...state, darkHeader: false};
     default:
       return state;
   }

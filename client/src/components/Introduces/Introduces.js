@@ -37,7 +37,7 @@ class Introduces extends Component {
     ]
 
     return (
-      <section>
+      <section className={styles.introduceSection}>
         <div className="container">
           <div className="row row-padding">
             {this.renderMedias(mediaCards)}

@@ -2,6 +2,8 @@ export const SHOW_FOOTER = "SHOW_FOOTER";
 export const HIDE_FOOTER = "HIDE_FOOTER";
 export const STETCH_FULL = "STETCH_FULL";
 export const STETCH_AUTO = "STETCH_AUTO";
+export const SHOW_DARK_HEADER = "SHOW_DARK_HEADER";
+export const SHOW_WHITE_HEADER = "SHOW_WHITE_HEADER";
 
 
 //Student

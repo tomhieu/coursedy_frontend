@@ -10,13 +10,25 @@ body.application {
     max-height: 340px;
   }
 
-  .navbar-light .navbar-nav .nav-link {
-    color: $dark-text-color;
+  .navbar-light.dark-header .navbar-nav .nav-link {
+    color: $white-color;
     &.nav-btn {
-      color: $md-color-pink;
+      color: $white-color;
+      background-color: transparent;
+      border: none;
+    }
+  }
+
+  .navbar-light .navbar-nav .nav-link,
+  .navbar-light.dark-header.fixed-top .navbar-nav .nav-link {
+    color: $dark-text-color;
+    font-weight: bold;
+    &.nav-btn {
+      color: $dark-text-color;
+      border: 1px solid $dark-text-color;
       &:hover {
-        color: $primary-color;
-        background: $md-color-pink;
+        color: $md-color-pink;
+        border: 1px solid $md-color-pink;
         -webkit-transition: all .3s ease;
         transition: all .3s ease;
         -webkit-transition: 0.3s;
@@ -29,9 +41,7 @@ body.application {
 
   .nav-btn {
     border-radius: 2px;
-    background-color: $primary-color;
-    border: 1px solid $md-color-pink;
-    color: $md-color-pink;
+    border: 1px solid $white-color;
     font-size: 14px;
     font-weight: 400;
     margin: 0 10px;
@@ -55,35 +65,44 @@ body.application {
     cursor: pointer;
   }
 
-  .navbar-default.bg-light {
-    background: $primary-color !important;
+  .navbar-default {
     width: 100%;
     z-index: 999;
-    padding: 0;
-  }
+    padding: 5px 0 0 0;
+    .nav-btn {
+      padding: 0.25rem;
+    }
+    &.bg-light, &.dark-header.fixed-top {
+      background: $primary-color !important;
+    }
 
-  .navbar-default .navbar-nav > li > a {
-    color: $white-color;
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 37px;
+    &.dark-header {
+      background: transparent !important;
+    }
+
+    .navbar-nav > li > a {
+      color: $white-color;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 37px;
+    }
+
+    .navbar-toggle .icon-bar {
+      background-color: $md-color-pink;
+    }
+
+    .navbar-toggle {
+      border: 0;
+    }
   }
 
   .container > .navbar-header {
     margin-left: 0px;
   }
 
-  .navbar-default .navbar-toggle .icon-bar {
-    background-color: $md-color-pink;
-  }
-
-  .navbar-default .navbar-toggle {
-    border: 0;
-  }
-
   .logo {
     height: 100%;
-    max-height: 50px;
+    max-height: 35px;
     width: initial;
     margin-top: 10px;
   }
@@ -111,14 +130,16 @@ body.application {
   .header-homepage {
     color: $dark-text-color;
     background-color: $primary-color;
-    background: url("../images/header-cover.jpg") no-repeat center center fixed;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.4), hsla(0, 0%, 100%, 0) 55%), url("../images/new_temporal_cover_image.jpg") no-repeat center center;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
     background-position: center;
-    margin-top: -50px;
-    padding-top: 70px;
+    margin-top: -56px;
+    padding-top: 50px;
+    width: 100%;
+    height: 100vh;
   }
 
   .header-margin {
@@ -127,16 +148,16 @@ body.application {
 
   .hero-title {
     color: $md-color-pink;
-    font-size: 60px;
-    font-weight: 300;
+    font-size: 75px;
+    font-weight: 700;
     text-align: center;
-    line-height: 50px;
+    line-height: 75px;
     margin-bottom: 10px;
   }
 
   .hero-tag {
     color: $white-color;
-    font-size: 17px;
+    font-size: 30px;
     font-weight: 400;
     text-align: center;
     text-transform: capitalize;
@@ -202,8 +223,6 @@ body.application {
       margin-top: 15px;
     }
 
-
-
     .navbar-default.bg-light {
       //padding: 0.5rem 1rem;
     }
@@ -233,9 +252,15 @@ body.application {
   }
 
   .header-nav {
-    border-bottom: solid 1px $border-color;
-    &+main.container {
-      //margin-top: 15px;
+    &.dark-header {
+      border: none;
+    }
+    &.bg-light, &.dark-header.fixed-top {
+      border-bottom: solid 1px $border-color;
+    }
+    .container {
+      margin: 0 15px;
+      max-width: 100%;
     }
   }
 
@@ -250,7 +275,7 @@ body.application {
       margin-top: 100px;
       .course-filter-container .fixed-top-search-bar {
         position: fixed;
-        top: 70px;
+        top: 60px;
         left: 0;
         z-index: 99999;
         box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.12);

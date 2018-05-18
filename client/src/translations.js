@@ -321,7 +321,7 @@ export const translations = {
     "make_a_payment": "Nạp tiền",
     "fetch_payment_history_fail": "Lấy lịch sử thanh toán thất bại",
     /* home page */
-    "product_title": "EZYLEARNING",
+    "product_title": "COURSEDY",
     "product_tag": "Tìm Kiếm Khoá Học Yêu Thích Của Bạn",
     "product_description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut et lobortis diam vestibulum eget varius id, vulputate et mi. Nullam feugiat, diam quis interdum varius",
     "product_read_more": "Read more...",
