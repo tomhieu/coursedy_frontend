@@ -7,6 +7,7 @@ import { bindActionCreators } from 'redux'
 import { Slider } from '../../components/Slider/SliderComponent'
 import CourseGroupFooter from '../../components/Course/CourseGroup/CourseGroupFooter'
 import LoadingMask from "../../components/LoadingMask/LoadingMask";
+import CoursedySlider from "../../components/Slider/SliderComponent";
 
 
 class NewCourseList extends Component {
@@ -41,9 +42,11 @@ class NewCourseList extends Component {
               </div>
 
               <div className="course__new-courses__content">
-                {<Slider items={this.props.courses.map((course, index) => {
-                  return <NewCourse course={course} key={index}/>
-                })}/>}
+                {
+                  <CoursedySlider items={this.props.courses.map((course, index) => {
+                    return <NewCourse course={course} key={index}/>
+                  })}/>
+                }
               </div>
 
               <CourseGroupFooter

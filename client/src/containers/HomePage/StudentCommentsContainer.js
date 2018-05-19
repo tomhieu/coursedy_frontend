@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {Slider} from '../../components/Slider/SliderComponent';
 import data from '../../configs/data.json';
+import CoursedySlider from "../../components/Slider/SliderComponent";
 
 
 const Item = ({item}) => {
@@ -48,7 +49,7 @@ class StudentComments extends Component {
               <h2 className="heading"
                   dangerouslySetInnerHTML={{__html: this.context.t('student_top_comments')}}/>
               <div>
-                {<Slider
+                {<CoursedySlider
                          items={data.studentComments.map((item, index) => {
                            return <Item item={item} key={index}/>;
                          })}

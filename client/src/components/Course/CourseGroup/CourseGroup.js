@@ -23,6 +23,9 @@ class CourseGroup extends Component {
           <img className="course-group__content__img" src={course.cover_image}
                alt={course.title}/>
           <span className="course-group__content__title" title={course.title}>{course.title}</span>
+          <div className="d-flex flex-colum">
+
+          </div>
         </Link>
       </div>
     )

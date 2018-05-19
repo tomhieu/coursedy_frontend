@@ -1,19 +1,32 @@
-import React from 'react'
-import { defaultSettings } from '../../configs/slider'
+import React, {Component} from 'react'
 import PropTypes from 'prop-types'
+import Slider from 'react-slick';
 
 
-export const Slider = (props) => {
-  const settings = {...defaultSettings, ...(props.settings || {})}
-  return (
-    <div className='row'>
-      {props.items.map((item, index) => {
-        return <div className='col-sm-4 col-xs-12' key={index}>{item}</div>
-      })}
-    </div>
-  )
+class CoursedySlider extends Component {
+  render() {
+    const settings = {
+      dots: true,
+      infinite: true,
+      speed: 500,
+      slidesToShow: 4,
+      slidesToScroll: 1
+    };
+    const {items} = this.props;
+    return (
+      <Slider {...settings}>
+        {
+          items.map((item, index) => {
+            return <div key={index}>{item}</div>
+          })
+        }
+      </Slider>
+    );
+  }
 }
 
-Slider.propTypes = {
+CoursedySlider.propTypes = {
   items: PropTypes.array.isRequired
 }
+
+export default CoursedySlider;

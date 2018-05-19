@@ -5,6 +5,7 @@ import * as TeacherActions from 'actions/HomePageActionCreator';
 import { bindActionCreators } from 'redux';
 import { Slider } from '../../components/Slider/SliderComponent';
 import LoadingMask from "../../components/LoadingMask/LoadingMask";
+import CoursedySlider from "../../components/Slider/SliderComponent";
 
 
 const Item = ({ item }) => {
@@ -70,11 +71,12 @@ class TopTeachers extends Component {
                           dangerouslySetInnerHTML={{ __html: this.context.t('top_teacher_month') }}/>
                     </div>
                     <div className="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                      {<Slider settings={{ slidesToShow: 3, slidesToScroll: 3 }}
+                      {<CoursedySlider settings={{ slidesToShow: 3, slidesToScroll: 3 }}
                                items={this.props.topTeachers.map((item, index) => {
                                  return <Item item={item} key={index}/>;
                                })}
-                      />}
+                      />
+                      }
                     </div>
                   </div>
                 </div>

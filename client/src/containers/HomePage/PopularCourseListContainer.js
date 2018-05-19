@@ -8,6 +8,9 @@ import CourseGroupHeading from '../../components/Course/CourseGroup/CourseGroupH
 import CourseGroupFooter from '../../components/Course/CourseGroup/CourseGroupFooter';
 import { Slider } from '../../components/Slider/SliderComponent';
 import LoadingMask from "../../components/LoadingMask/LoadingMask";
+import CourseListInGridMode from "../../components/Courses/CourseList/CourseListInGridMode";
+import CoursedySlider from "../../components/Slider/SliderComponent";
+import CourseItemInGridMode from "../../components/Courses/CourseItem/CourseItemInGridMode";
 
 
 class PopularCourseList extends Component {
@@ -39,9 +42,12 @@ class PopularCourseList extends Component {
             <div className="row-padding">
               <CourseGroupHeading title={this.context.t('popular_courses')}/>
 
-              {<Slider items={this.props.courses.map((course, index) => {
-                return <CourseGroup course={course} key={index}/>;
-              })}/>}
+              {
+                <CoursedySlider items={this.props.courses.map((course, index) => {
+                    return <CourseItemInGridMode item={course} key={index}/>;
+                  })}/>
+              }
+
 
               <CourseGroupFooter
                 redirectUrl="/courses"
