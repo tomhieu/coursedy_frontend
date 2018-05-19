@@ -9,8 +9,14 @@ import {
 import {
   AdminContainers
 } from '../../../containers/'
-
+import * as sessionActions from '../../../actions/SessionActionCreator'
 class AdminDashboardPage extends RoleAuthorization {
+
+  signOut(e) {
+    e.preventDefault()
+    this.props.dispatch(sessionActions.signOutUser())
+  }
+
   render() {
 
     return (
@@ -19,14 +25,14 @@ class AdminDashboardPage extends RoleAuthorization {
           <div className="col-xs-12 col-sm-3 left-panel" id="sidebar">
             <div className="panel-group dashboard-menu" id="accordion">
               <AdminContainers.DashboardProfileContainer/>
-              <AdminComponents.AdminDashboardMenu />
+              <AdminComponents.AdminDashboardMenu signOut={this.signOut.bind(this)}/>
             </div>
           </div>
           <div className="col-xs-12 col-sm-9 d-flex dashboard-content">
             <div className="full-width daskboard-container">
               <switch>
                 <Route exact path="/admin/dashboard/account" 
-                  component={AdminComponents.AccountProfileContainer}
+                  component={AdminContainers.AccountProfileContainer}
                 />
                 <Route exact path="/admin/dashboard/courses" 
                   component={AdminContainers.CourseListContainer}

@@ -13,10 +13,6 @@ import {Modal, ModalHeader, Button, ModalBody, ModalFooter} from 'reactstrap';
 import {FETCH_USER_ACCOUNT} from "constants/AccountTypes";
 
 class DashboardProfileContainer extends Component {
-  componentWillMount() {
-    this.props.fetchUserBalance();
-  }
-
   showEditAvatarForm() {
     this.props.showAvatarEditForm();
   }
@@ -53,8 +49,6 @@ class DashboardProfileContainer extends Component {
               <div className="col-sm-12">
                 <h4>{user.name}</h4>
               </div>
-              <div className='col-sm-12'>
-                <p>{this.context.t('my_balance')}: <strong>{ObjectUtils.currencyFormat(userBalance)}</strong></p></div>
             </div>
           </div>
         </LoadingMask>: null
@@ -99,11 +93,6 @@ const mapStateToProps = (state) => ({
 })
 
 const mapStateToDispatch = (dispatch) => ({
-  fetchUserBalance: () => dispatch({
-    type: FETCH_USER_BALANCE,
-    payload: 0,
-    meta: 'userDetailsPlaceholder'
-  }),
   updateAvatar: (avatar) => dispatch(AccountActionCreator.updateAvatar(avatar)),
   showAvatarEditForm: () => dispatch(AccountActionCreator.showAvatarEditForm()),
   hideAvatarEditForm: () => dispatch(AccountActionCreator.hideAvatarEditForm()),
