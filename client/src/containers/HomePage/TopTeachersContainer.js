@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import * as TeacherActions from 'actions/HomePageActionCreator';
 import { bindActionCreators } from 'redux';
-import { Slider } from '../../components/Slider/SliderComponent';
+import { Slider } from '../../components/Slider/CoursedySlider';
 import LoadingMask from "../../components/LoadingMask/LoadingMask";
-import CoursedySlider from "../../components/Slider/SliderComponent";
+import CoursedySlider from "../../components/Slider/CoursedySlider";
 
 
 const Item = ({ item }) => {

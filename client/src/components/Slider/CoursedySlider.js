@@ -1,6 +1,8 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import Slider from 'react-slick';
+import cssModules from 'react-css-modules';
+import styles from './CoursedySlider.module.scss';
 
 
 class CoursedySlider extends Component {
@@ -17,7 +19,7 @@ class CoursedySlider extends Component {
       <Slider {...settings}>
         {
           items.map((item, index) => {
-            return <div key={index}>{item}</div>
+            return <div className={styles.itemContainer} key={index}>{item}</div>
           })
         }
       </Slider>
@@ -29,4 +31,4 @@ CoursedySlider.propTypes = {
   items: PropTypes.array.isRequired
 }
 
-export default CoursedySlider;
+export default cssModules(CoursedySlider, styles);

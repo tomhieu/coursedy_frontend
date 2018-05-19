@@ -11,7 +11,9 @@ class Introduces extends Component {
         <div className="col-md-4 col-sm-4 col-xs-12" key={index}>
           <MediaCard
             title={media.title}
-            description={media.description}/>
+            description={media.description}
+            iconName={media.iconName}
+          />
         </div>
       )
     })
@@ -22,17 +24,20 @@ class Introduces extends Component {
       {
         imgUrl: '#',
         title: this.context.t('introduction_interactive_title'),
-        description: this.context.t('introduction_interactive_description')
+        description: this.context.t('introduction_interactive_description'),
+        iconName: 'interaction'
       },
       {
         imgUrl: '#',
         title: this.context.t('introduction_save_cost_title'),
-        description: this.context.t('introduction_save_cost_description')
+        description: this.context.t('introduction_save_cost_description'),
+        iconName: 'save-money'
       },
       {
         imgUrl: '#',
         title: this.context.t('introduction_save_time_title'),
-        description: this.context.t('introduction_save_time_description')
+        description: this.context.t('introduction_save_time_description'),
+        iconName: 'save-time'
       }
     ]
 

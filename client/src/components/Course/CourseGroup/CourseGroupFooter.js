@@ -11,7 +11,7 @@ export default class CourseGroupFooter extends Component {
 
   render() {
     return (
-      <div className="row">
+      <div className="row mt-4">
         <div className="col-sm-12 course__footer">
           <Link to={ this.props.redirectUrl }
              className="btn-link-light">{this.props.btnName}</Link>

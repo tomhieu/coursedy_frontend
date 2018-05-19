@@ -1,15 +1,12 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
+import React, {Component} from 'react';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
 import PropTypes from 'prop-types';
 import * as HomePageActions from 'actions/HomePageActionCreator';
-import CourseGroup from 'components/Course/CourseGroup/CourseGroup';
 import CourseGroupHeading from '../../components/Course/CourseGroup/CourseGroupHeading';
 import CourseGroupFooter from '../../components/Course/CourseGroup/CourseGroupFooter';
-import { Slider } from '../../components/Slider/SliderComponent';
+import CoursedySlider, {Slider} from '../../components/Slider/CoursedySlider';
 import LoadingMask from "../../components/LoadingMask/LoadingMask";
-import CourseListInGridMode from "../../components/Courses/CourseList/CourseListInGridMode";
-import CoursedySlider from "../../components/Slider/SliderComponent";
 import CourseItemInGridMode from "../../components/Courses/CourseItem/CourseItemInGridMode";
 
 
@@ -39,7 +36,7 @@ class PopularCourseList extends Component {
       <section className="course__popular">
         <LoadingMask placeholderId="popularCourseListPlaceholder">
           <div className="container course__popular__content-wrap">
-            <div className="row-padding">
+            <div className="full-width-in-container row-padding">
               <CourseGroupHeading title={this.context.t('popular_courses')}/>
 
               {

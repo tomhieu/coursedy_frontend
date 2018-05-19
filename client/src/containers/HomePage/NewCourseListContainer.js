@@ -4,10 +4,11 @@ import NewCourse from './NewCourseContainer'
 import { connect } from 'react-redux'
 import * as HomePageActions from 'actions/HomePageActionCreator'
 import { bindActionCreators } from 'redux'
-import { Slider } from '../../components/Slider/SliderComponent'
+import { Slider } from '../../components/Slider/CoursedySlider'
 import CourseGroupFooter from '../../components/Course/CourseGroup/CourseGroupFooter'
 import LoadingMask from "../../components/LoadingMask/LoadingMask";
-import CoursedySlider from "../../components/Slider/SliderComponent";
+import CoursedySlider from "../../components/Slider/CoursedySlider";
+import CourseItemInGridMode from "components/Courses/CourseItem/CourseItemInGridMode";
 
 
 class NewCourseList extends Component {
@@ -36,7 +37,7 @@ class NewCourseList extends Component {
       <section className="course__new-courses">
         <LoadingMask placeholderId="newCourseListPlaceholder">
           <div className="container course__new-courses__content-wrap">
-            <div className="row-padding">
+            <div className="full-width-in-container row-padding">
               <div className="course__new-courses__heading">
                 <h2 className="heading">{this.context.t('new_courses')}</h2>
               </div>
@@ -44,7 +45,7 @@ class NewCourseList extends Component {
               <div className="course__new-courses__content">
                 {
                   <CoursedySlider items={this.props.courses.map((course, index) => {
-                    return <NewCourse course={course} key={index}/>
+                    return <CourseItemInGridMode item={course} key={index}/>
                   })}/>
                 }
               </div>

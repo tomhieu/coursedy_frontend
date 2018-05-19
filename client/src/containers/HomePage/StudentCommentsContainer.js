@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import {Slider} from '../../components/Slider/SliderComponent';
+import {Slider} from '../../components/Slider/CoursedySlider';
 import data from '../../configs/data.json';
-import CoursedySlider from "../../components/Slider/SliderComponent";
+import CoursedySlider from "../../components/Slider/CoursedySlider";
 
 
 const Item = ({item}) => {
@@ -41,6 +41,77 @@ class StudentComments extends Component {
       return null;
     }
 
+    const comments = [
+      {
+        "id" : 1,
+        "comment": {
+          "content": "This was great! I highly recommend her to anybody! Very nice and patient and straight to."
+        },
+        "user": {
+          "id": 1,
+          "avatar": "/doanquocbao.png",
+          "full_name": "Đoàn Quốc Bảo",
+          "job": "Nhân Viên Văn Phòng"
+        }
+      }, {
+        "id": 2,
+        "comment": {
+          "content": "This was great! I highly recommend her to anybody! Very nice and patient and straight to."
+        },
+        "user": {
+          "id": 2,
+          "avatar": "/nguyenthianhthu.png",
+          "full_name": "Nguyễn Thi Ánh Thu",
+          "job": "Phụ Huynh"
+        }
+      }, {
+        "id": 3,
+        "comment": {
+          "content": "This was great! I highly recommend her to anybody! Very nice and patient and straight to."
+        },
+        "user": {
+          "id": 3,
+          "avatar": "/lequochung.png",
+          "full_name": "Lê Tuấn Hưng",
+          "job": "Học Sinh"
+        }
+      },
+      {
+        "id" : 1,
+        "comment": {
+          "content": "This was great! I highly recommend her to anybody! Very nice and patient and straight to."
+        },
+        "user": {
+          "id": 1,
+          "avatar": "/doanquocbao.png",
+          "full_name": "Đoàn Quốc Bảo",
+          "job": "Nhân Viên Văn Phòng"
+        }
+      }, {
+        "id": 2,
+        "comment": {
+          "content": "This was great! I highly recommend her to anybody! Very nice and patient and straight to."
+        },
+        "user": {
+          "id": 2,
+          "avatar": "/nguyenthianhthu.png",
+          "full_name": "Nguyễn Thi Ánh Thu",
+          "job": "Phụ Huynh"
+        }
+      }, {
+        "id": 3,
+        "comment": {
+          "content": "This was great! I highly recommend her to anybody! Very nice and patient and straight to."
+        },
+        "user": {
+          "id": 3,
+          "avatar": "/lequochung.png",
+          "full_name": "Lê Tuấn Hưng",
+          "job": "Học Sinh"
+        }
+      }
+    ];
+
     return (
       <section className="course__student-comment">
         <div className="container course__student-comment__content-wrap">
@@ -49,11 +120,12 @@ class StudentComments extends Component {
               <h2 className="heading"
                   dangerouslySetInnerHTML={{__html: this.context.t('student_top_comments')}}/>
               <div>
-                {<CoursedySlider
-                         items={data.studentComments.map((item, index) => {
-                           return <Item item={item} key={index}/>;
-                         })}
-                />}
+                {
+                  <CoursedySlider items={comments.map((item, index) => {
+                      return <Item item={item} key={index}/>;
+                    })}
+                  />
+                }
               </div>
             </div>
           </div>

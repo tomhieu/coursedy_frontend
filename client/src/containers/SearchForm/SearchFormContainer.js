@@ -39,7 +39,7 @@ SearchFormContainer.contextTypes = {
 SearchFormContainer.propTypes = {};
 
 const mapStateToProps = (state) => {
-
+  return {};
 }
 
 const mapDispatchToProps = (dispatch) => ({
