@@ -1,1 +1,1 @@
-export const TRIGGER_STICKY_HEADER_AT = 400
+export const TRIGGER_STICKY_HEADER_AT = 60
