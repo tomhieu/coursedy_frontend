@@ -10,6 +10,11 @@ import ListTeacherContainer from 'containers/Teachers/TeacherList/ListTeacherCon
 import TeacherDetailContainer from 'containers/Teachers/TeacherDetail/TeacherDetailContainer';
 import PrivateRoute from "containers/PrivateRoute/PrivateRoute";
 import {UserRole} from "../constants/UserRole";
+import AboutUsContainer from '../containers/Others/AboutUsContainer'
+import HelpCenterContainer from '../containers/Others/HelpCenterContainer'
+import BecomeTeacherContainer from '../containers/Others/BecomeTeacherContainer'
+import TermsContainer from '../containers/Others/TermsContainer'
+import PrivacyContainer from '../containers/Others/PrivacyContainer'
 
 const router = (
   <Provider store={store}>
@@ -33,6 +38,11 @@ const router = (
             <PrivateRoute path="/student/dashboard" roles={[UserRole.STUDENT]} component={Pages.StudentDashboardPage} />
 
             <Route path="/payment" component={Pages.PaymentPage} />
+            <Route path="/about" component={AboutUsContainer} />
+            <Route path="/help" component={HelpCenterContainer} />
+            <Route path="/become-a-teacher" component={BecomeTeacherContainer} />
+            <Route path="/terms" component={TermsContainer} />
+            <Route path="/privacy" component={PrivacyContainer} />
             <Route path="/404" component={Pages.NotFoundPage} />
             <Route path="*" component={Pages.NotFoundPage} />
           </Switch>

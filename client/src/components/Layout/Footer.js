@@ -1,36 +1,30 @@
 import React, { Component } from 'react';
 import cssModules from 'react-css-modules';
 import styles from './Footer.module.scss';
-import SocialMedia from './SubFooter/SocialMedia';
-import CopyRight from './SubFooter/CopyRight';
-import ProductDescription from './SubFooter/ProductDescription';
-import ProductQuickLink from './SubFooter/ProductQuickLink';
-import ProductContact from './SubFooter/ProductContact';
+import FooterAside from './SubFooter/FooterAside'
+import FooterMain from './SubFooter/FooterMain'
+import FooterEnd from './SubFooter/FooterEnd'
 
 
 class Footer extends Component {
   render() {
     return (
-      <footer id="footer" className="style2">
-        <div className="footer-top">
-          <div className="container">
-            <div className="row">
-              <ProductDescription classNames="col-sm-12 col-md-6"/>
-              <ProductQuickLink classNames="col-sm-6 col-md-3"/>
-              <ProductContact classNames="col-sm-6 col-md-3"/>
+      <footer className="footer">
+        <div className="footer__top">
+          <div className="container footer__wrap">
+            <div className="flexbox flexbox--row">
+              <FooterAside />
+              <FooterMain />
             </div>
           </div>
         </div>
-        <div className="footer-bottom">
+        <div className="footer_bottom">
           <div className="container">
-            <div className="row">
-              <CopyRight classNames="col-sm-8"/>
-              <SocialMedia classNames="col-sm-4"/>
-            </div>
+            <FooterEnd />
           </div>
         </div>
       </footer>
-    );
+    )
   }
 }
 
