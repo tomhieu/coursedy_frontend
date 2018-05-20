@@ -67,20 +67,21 @@
         .red-circle-icon {
           font-size: 25px;
           position: absolute;
-          color: $md-color-pink;
+          background-color: $md-color-pink;
+          border-radius: 36px;
+          top: -5px;
+          box-shadow: 0 3px 8px 0 $color-box-shadow;
         }
 
         .util-icon {
           border-width: 0;
-          width: 100px;
-          height: 100px;
+          width: 120px;
+          height: 120px;
           background: inherit;
           background-color: $white-background;
+          box-shadow: 0 3px 8px 0 $color-light-box-shadow;
           border: none;
           border-radius: 80px;
-          -moz-box-shadow: none;
-          -webkit-box-shadow: none;
-          box-shadow: none;
           display: inline-block;
         }
       }
@@ -104,16 +105,13 @@
   &__avatar-left {
     display: inline-block;
     img {
-      border-width: 0;
       width: 100px;
       height: 100px;
       background: inherit;
       background-color: $body-color;
       border: none;
       border-radius: 80px;
-      -moz-box-shadow: none;
-      -webkit-box-shadow: none;
-      box-shadow: none;
+      box-shadow: 0 3px 8px 0 $color-light-box-shadow;
       display: inline-block;
     }
   }

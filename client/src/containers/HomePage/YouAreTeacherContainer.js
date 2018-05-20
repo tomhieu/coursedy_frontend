@@ -12,17 +12,17 @@ export default class YouAreTeacher extends Component {
       {
         id: 1,
         description: 'Tiết kiệm chi phí mở lớp học. Tất cả những gì cần thiết chỉ bao gồm một máy tính có kết nối mạng.',
-        icon: 'https://www.shareicon.net/data/128x128/2015/09/11/99442_glasses_512x512.png'
+        icon: 'computer'
       },
       {
         id: 2,
         description: 'Thời gian linh động, giáo viên có thể linh động sắp xếp thời gian cho khoá học. Và không tốn thời gian di chuyển.',
-        icon: 'https://www.shareicon.net/data/128x128/2015/09/11/99442_glasses_512x512.png'
+        icon: 'earning'
       },
       {
         id: 3,
         description: 'Tiếp cần mạng lưới học sinh rộng lớn từ khắp mọi nơi.',
-        icon: 'https://www.shareicon.net/data/128x128/2015/09/11/99442_glasses_512x512.png'
+        icon: 'connection'
       }
     ]
   }
@@ -34,8 +34,12 @@ export default class YouAreTeacher extends Component {
         <div className="col-12 col-sm-6 col-md-4" key={ item.id }>
             <div className="item-group">
               <Link className="item-group__heading-icon" to={'#'}>
-                <span className="red-circle-icon"><i className="fa fa-check-circle"></i></span>
-                <span className="util-icon"></span>
+                <span className="red-circle-icon">
+                  <div className="done-all-check-icon"></div>
+                </span>
+                <div className="util-icon">
+                  <div className={"teacher-icon " + item.icon}></div>
+                </div>
               </Link>
               <div className="item-group__description">{ item.description }</div>
             </div>
