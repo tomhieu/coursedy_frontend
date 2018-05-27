@@ -1,0 +1,86 @@
+@import "../../../styles/global_style";
+
+.help-center {
+  background: $white-background;
+  padding: 60px 0 70px;
+
+  h1 {
+    color: $black-color;
+  }
+
+  .fqa {
+    color: $black-color;
+    &__header {
+      text-align: center;
+    }
+
+    &__item-list {
+      margin-top: 40px;
+      .fqa-item {
+        border-bottom: 1px solid $border-color;
+        overflow: hidden;
+        -webkit-transition: all .3s ease-in-out;
+        -moz-transition: all .3s ease-in-out;
+        -ms-transition: all .3s ease-in-out;
+        -o-transition: all .3s ease-in-out;
+        transition: all .3s ease-in-out;
+
+        &__question {
+          position: relative;
+          padding: 20px 25px;
+          cursor: pointer;
+
+          h4 {
+            margin: 0;
+            line-height: 150%;
+            font-weight: 300;
+            font-size: 22px;
+          }
+
+          .icon-blockquote {
+            position: absolute;
+            left: 0;
+            top: 22px;
+          }
+
+          .icon-fa {
+            position: absolute;
+            right: 0;
+            top: 50%;
+            margin-top: -15px;
+          }
+
+          .icon-fa-arrow-down {
+            display: inline-block;
+          }
+
+          .icon-fa-arrow-up {
+            display: none;
+          }
+
+          &[aria-expanded="true"] {
+            .icon-fa-arrow-down {
+              display: none;
+            }
+
+            .icon-fa-arrow-up {
+              display: inline-block;
+            }
+          }
+        }
+
+        &__answer {
+          padding: 0 25px;
+          p {
+            font-size: 16px;
+          }
+        }
+      }
+    }
+
+    &__contact {
+      margin-top: 40px;
+      text-align: center;
+    }
+  }
+}

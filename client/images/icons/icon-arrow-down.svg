@@ -1,0 +1,23 @@
+
+<svg width="13px" height="8px" viewBox="0 0 13 8" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <polygon id="path-1" points="8 17.03125 12.58 12.25 8 7.46875 9.41 6 15.41 12.25 9.41 18.5"></polygon>
+    </defs>
+    <g id="🛠--Symbols-&amp;-Components" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Molecules-/-Question-/-Cell-/-v1-Copy-1" transform="translate(-906.000000, -38.000000)">
+            <g id="#1-Question" transform="translate(1.000000, 0.000000)">
+                <g id="Atoms-/-Icon/System/arrow-right" transform="translate(912.000000, 42.000000) rotate(-270.000000) translate(-912.000000, -42.000000) translate(900.000000, 30.000000)">
+                    <mask id="mask-2" fill="white">
+                        <use xlink:href="#path-1"></use>
+                    </mask>
+                    <use id="Shape" fill-opacity="0.7" fill="#3C88B5" fill-rule="evenodd" xlink:href="#path-1"></use>
+                    <g id="Atoms-/-Brand-/-Color/Gray_medium" mask="url(#mask-2)" fill="#B3BDBC" fill-rule="evenodd">
+                        <rect id="Rectangle-Copy-2" x="0" y="0" width="24" height="24"></rect>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

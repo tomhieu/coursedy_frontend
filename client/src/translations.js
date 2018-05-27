@@ -440,6 +440,10 @@ export const translations = {
     "whoweare-description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex.",
     "whatwedo-label": "What we do?",
     "whatwedo-description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex.",
+
+    "coursedy_fqa": "FQA",
+    "fqa_still_looking_for": "Still cannot find what you’re looking for?",
+    "contact_the_team": "Contact the team",
   },
   "en": {
     "home_page": "Home",
