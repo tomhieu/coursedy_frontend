@@ -15,20 +15,22 @@ class CourseListContainer extends Component {
   }
 
   fetchData(state, instance) {
-    console.log('DEBUG fetchData')
-    console.log(state.sorted)
-    console.log(state.filtered)
-
-    // this.props.fetchUnapprovedCourses({...this.props, keyWord: state.filtered})
+    this.props.fetchUnapprovedCourses({
+      ...this.props, 
+      keyWord: state.filtered,
+      currentPage: state.page + 1,
+      perPage: state.pageSize,
+    })
   }
 
   render() {
-    const { courses, totalResult, perPage, isLoading } = this.props;
+    const { courses, totalResult, perPage, isLoading, currentPage } = this.props;
     return (
       <div className="row">
-        <div className="col-xs-12 col-sm-12 col-md-12">
-          <button className="btn btn-lg btn-default">{this.context.t('admin_courses_new')}</button>
+        <div className="col-xs-12 col-sm-12 col-md-12 mb-15">
+          <button className="btn btn-lg btn-primary">{this.context.t('admin_courses_new')}</button>
         </div>
+
         <div className="col-xs-12 col-sm-12 col-md-12">
           <div className="panel panel-primary">
             <div className="panel-body">
@@ -45,22 +47,23 @@ class CourseListContainer extends Component {
                       Header: "Giáo viên",
                       id: "teacher_name",
                       accessor: d => d.user.name,
+                      filterable: false
                     },
                     {
                       Header: "Ngày bắt đầu",
                       id: "start_date",
                       accessor: d => DateUtils.formatDate(d.start_date),
+                      filterable: false
                     },
                   ]}
-                  pageSize={10}
+                  defaultPageSize={10}
                   className="-striped -highlight"
                   manual // Forces table not to paginate or sort automatically, so we can handle it server-side
-                  pages={2} // Display the total number of pages
+                  pages={Math.ceil(totalResult / perPage)} // Display the total number of pages
                   loading={isLoading} // Display the loading overlay when we need it
                   onFetchData={this.fetchData.bind(this)} // Request new data when things change
                   showPaginationTop
                   showPaginationBottom
-                  page={1}
                   previousText={this.context.t('react_table_previous_text')}
                   nextText={this.context.t('react_table_next_text')}
                   loadingText={this.context.t('react_table_loading_text')}
@@ -94,7 +97,10 @@ const buildQuery = (props) => {
 
 const mapStateToProps = (state) => ({
   courses: state.AdminCourseListReducer.unapprovedCourses,
-  isLoading: state.AdminCourseListReducer.isLoading
+  isLoading: state.AdminCourseListReducer.isLoading,
+  totalResult: state.AdminCourseListReducer.totalResult,
+  perPage: state.AdminCourseListReducer.perPage,
+  currentPage: state.AdminCourseListReducer.currentPage
 })
 
 const mapDispatchToProps = (dispatch) => ({
