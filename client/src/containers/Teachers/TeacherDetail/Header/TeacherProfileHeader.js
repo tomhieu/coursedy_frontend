@@ -4,7 +4,7 @@ import RatingItem from 'components/Rating'
 import defaultAvatar from '../../../../../images/default_avatar.png'
 
 const TeacherProfileHeader = (props) => {
-  const { teacher } = props
+  const { teacher, specializes } = props
   if (!teacher.user) { return null }
   return (
     <div className="d-flex flex-column flex-sm-column flex-md-row flex-lg-row teacher-detail-profile-header">
@@ -16,7 +16,7 @@ const TeacherProfileHeader = (props) => {
         <h3>{teacher.user.name}</h3>
         <div className="mb-5">{teacher.title}</div>
 
-        <TeacherCategories categories={teacher.categories}/>
+        <TeacherCategories categories={specializes}/>
         {teacher.twitter || teacher.linkedIn ? <div className="social">
           {teacher.twitter ? <a href={teacher.twitter} className="twitter"
                                 data-toggle="tooltip" data-placement="top"

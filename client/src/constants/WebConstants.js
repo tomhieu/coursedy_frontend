@@ -43,6 +43,8 @@ export const TEACHER_DETAIL_PROFILE_PLACEHOLDER = "TEACHER_DETAIL_PROFILE_PLACEH
 // authentication
 export const AUTHENTICATED = 'isAuthenticated';
 
+// rating
+export const MAX_RATING_POINTS = 5.0
 
 /*
 * Scrolled menu constanst

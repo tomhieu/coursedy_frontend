@@ -26,13 +26,13 @@ const TeacherShortIntroduce = (props) => {
                  normalPlaceholder={false}
                  facebookPlaceholder={true}
                  loaderType={webConstants.USER_ACCOUNT_PLACEHOLDER}>
-      {props.teacher.description ? <div className="profile-list-item">
+      <div className="profile-list-item">
         <div className="icon">
           <span><i className="fa fa-user"></i></span>
         </div>
         <h4>{props.context.t('teacher_short_introduce')}</h4>
-        <p>{props.teacher.description}</p>
-      </div> : null}
+        <p>{props.teacher.description || <i>{props.context.t('content_is_updating')}</i>}</p>
+      </div>
     </LoadingMask>
   )
 }
@@ -43,21 +43,24 @@ const TeacherEducation = (props) => {
                  normalPlaceholder={false}
                  facebookPlaceholder={true}
                  loaderType={webConstants.USER_ACCOUNT_PLACEHOLDER}>
-      {
-        props.teacher.educations && props.teacher.educations.length ?
-          <div className="profile-list-item">
-            <div className="icon">
-              <span><i className="fa fa-graduation-cap"></i></span>
-            </div>
-            <h4>{props.context.t('teacher_education')}</h4>
+
+      <div className="profile-list-item">
+        <div className="icon">
+          <span><i className="fa fa-graduation-cap"></i></span>
+        </div>
+        <h4>{props.context.t('teacher_education')}</h4>
+        {
+          props.teacher.educations && props.teacher.educations.length ?
             <ul className="the-list">
-              {props.teacher.educations.map((education) => {
-                return <EducationItem education={education}/>
-              })}
+              {
+                props.teacher.educations.map((education) => {
+                  return <EducationItem education={education} key={education.id} />
+                })
+              }
             </ul>
-          </div>
-          :null
-      }
+            : <i>{props.context.t('content_is_updating')}</i>
+        }
+      </div>
     </LoadingMask>
   )
 }
@@ -69,19 +72,16 @@ const TeacherDegrees = (props) => {
                  normalPlaceholder={false}
                  facebookPlaceholder={true}
                  loaderType={webConstants.USER_ACCOUNT_PLACEHOLDER}>
-      {
-        degrees && degrees.length ?
-          <div className="profile-list-item">
-            <div className="icon">
-              <span><i className="fa fa-briefcase"></i></span>
-            </div>
-            <h4>{props.context.t('teacher_degrees')}</h4>
-            {degrees.map((degree) => {
-              return <DegreeItem degree={degree}/>
-            })}
-          </div>
-          :null
-      }
+      <div className="profile-list-item">
+        <div className="icon">
+          <span><i className="fa fa-briefcase"></i></span>
+        </div>
+        <h4>{props.context.t('teacher_degrees')}</h4>
+        {degrees && degrees.length ? degrees.map((degree) => {
+          return <DegreeItem degree={degree} key={degree.id}/>
+        }) : <i>{props.context.t('content_is_updating')}</i>
+        }
+      </div>
     </LoadingMask>
   )
 }
@@ -93,20 +93,21 @@ const TeacherWorkExperience = (props) => {
                  normalPlaceholder={false}
                  facebookPlaceholder={true}
                  loaderType={webConstants.USER_ACCOUNT_PLACEHOLDER}>
-      {
-        workExperiences && workExperiences.length ?
-          <div className="profile-list-item">
-            <div className="icon">
-              <span><i className="fa fa-briefcase"></i></span>
-            </div>
-            <h4>{props.context.t('teacher_experience')}</h4>
+      <div className="profile-list-item">
+        <div className="icon">
+          <span><i className="fa fa-briefcase"></i></span>
+        </div>
+        <h4>{props.context.t('teacher_experience')}</h4>
+        {
+          workExperiences && workExperiences.length ?
             <ul className="the-list">
               {workExperiences.map((experience) => {
-                return <WorkExperienceItem experience={experience}/>
+                return <WorkExperienceItem experience={experience} key={experience.id} />
               })}
             </ul>
-          </div>: null
-      }
+            : <i>{props.context.t('content_is_updating')}</i>
+        }
+      </div>
     </LoadingMask>
   )
 }

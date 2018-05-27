@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import './ReviewContent.scss'
+import DateUtils from 'utils/DateUtils'
 
 class ReviewContent extends Component {
   render() {
@@ -29,7 +30,7 @@ const ReviewHeader = ({review}) => {
         <h6>{review.user.name}</h6>
       </div>
       <div className="col-sm-3">
-        <p className="review-date">{review.created}</p>
+        <p className="review-date">{DateUtils.dateTimeFromNow(review.created_at)}</p>
       </div>
     </div>
   )
