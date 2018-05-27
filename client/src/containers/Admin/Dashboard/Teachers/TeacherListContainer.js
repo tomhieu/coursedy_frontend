@@ -27,7 +27,7 @@ class TeacherListContainer extends Component {
     return (
       <div className="row">
         <div className="col-xs-12 col-sm-12 col-md-12 mb-15">
-          <button className="btn btn-lg btn-primary">{this.context.t('admin_courses_new')}</button>
+          <button className="btn btn-lg btn-primary">{this.context.t('admin_teachers_new')}</button>
         </div>
 
         <div className="col-xs-12 col-sm-12 col-md-12">
