@@ -12,21 +12,22 @@ const AdminCourseListReducer = (state = {
   errors: []
 }, action) => {
   switch (action.type) {
-    case asyncActs.FETCH_UNAPPROVED_COURSES + asyncActs.HEADERS:
+    case asyncActs.FETCH_ADMIN_UNAPPROVED_COURSES + asyncActs.HEADERS:
       return {
         ...state, 
         totalResult: parseInt(action.payload.xTotal),
+        perPage: parseInt(action.payload.xPerPage),
         currentPage: parseInt(action.payload.xPage)
       }
-    case asyncActs.FETCH_UNAPPROVED_COURSES + asyncActs.PENDING:
+    case asyncActs.FETCH_ADMIN_UNAPPROVED_COURSES + asyncActs.PENDING:
       return {...state, isLoading: true}
-    case asyncActs.FETCH_UNAPPROVED_COURSES + asyncActs.FULFILLED:
+    case asyncActs.FETCH_ADMIN_UNAPPROVED_COURSES + asyncActs.FULFILLED:
       return {
         ...state, 
         unapprovedCourses: action.payload,
         isLoading: false
       }
-    case asyncActs.FETCH_UNAPPROVED_COURSES + asyncActs.REJECTED:
+    case asyncActs.FETCH_ADMIN_UNAPPROVED_COURSES + asyncActs.REJECTED:
       const enrollErrorMessages = (action.payload && Array.isArray(action.payload) && action.payload.length > 0) ?
         errors : [TT.t('fetch_course_fail')];
       return {

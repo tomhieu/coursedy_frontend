@@ -6,7 +6,7 @@ import "react-table/react-table.css";
 import Network from "utils/network";
 import DateUtils from "utils/DateUtils"
 import {
-  FETCH_UNAPPROVED_COURSES
+  FETCH_ADMIN_UNAPPROVED_COURSES
 } from "../../../../actions/AsyncActionCreator"
 
 class CourseListContainer extends Component {
@@ -105,11 +105,11 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   // fetchUnapprovedCourses: (props) => dispatch({
-  //   type: FETCH_UNAPPROVED_COURSES,
+  //   type: FETCH_ADMIN_UNAPPROVED_COURSES,
   //   payload: Network().get('courses/unapproved', buildQuery(props)),
   // }),
   fetchUnapprovedCourses: (props) => dispatch({
-    type: FETCH_UNAPPROVED_COURSES,
+    type: FETCH_ADMIN_UNAPPROVED_COURSES,
     payload: Network().get('courses/search', buildQuery(props)),
   }),
 });
