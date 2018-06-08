@@ -96,7 +96,7 @@ class CourseFilterContainer extends AbstractFilter {
   }
 
   autoCompleteSearchCourse(id) {
-    this.props.clearSuggestion();
+    this.props.closeSuggestion();
     this.context.router.history.push('/course/' + id);
   }
 

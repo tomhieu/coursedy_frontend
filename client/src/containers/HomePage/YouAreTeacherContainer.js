@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import {Link} from 'react-router-dom';
+import PrimaryButton from "../../components/Core/PrimaryButton/PrimaryButton";
+import {TT} from "utils/locale";
 
 export default class YouAreTeacher extends Component {
   static propTypes = {
@@ -34,9 +36,6 @@ export default class YouAreTeacher extends Component {
         <div className="col-12 col-sm-6 col-md-4" key={ item.id }>
             <div className="item-group">
               <Link className="item-group__heading-icon" to={'#'}>
-                <span className="red-circle-icon">
-                  <div className="done-all-check-icon"></div>
-                </span>
                 <div className="util-icon">
                   <div className={"teacher-icon " + item.icon}></div>
                 </div>
@@ -61,6 +60,12 @@ export default class YouAreTeacher extends Component {
 
             <div className="row course__teacher-guide__body">
               { this.renderUtilities() }
+            </div>
+            <div className="row align-items-center justify-content-center mt-4">
+              <div className="col-sm-4 course__footer">
+                <PrimaryButton type="button" isPrimary={true} title={TT.t('homepage_search_become_teacher')}>
+                </PrimaryButton>
+              </div>
             </div>
           </div>
         </div>

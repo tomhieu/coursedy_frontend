@@ -18,7 +18,7 @@
   }
 
   &__how-to-learn, &__popular, &__teacher-guide {
-    background-color: $white-background;
+    background-color: $body-color;
   }
 
   &__top-teacher {
@@ -79,8 +79,7 @@
           height: 120px;
           background: inherit;
           background-color: $white-background;
-          box-shadow: 0 3px 8px 0 $color-light-box-shadow;
-          border: none;
+          border: 1px solid $black-color;
           border-radius: 80px;
           display: inline-block;
         }
@@ -90,6 +89,7 @@
 
   &__footer {
     text-align: center;
+    width: 200px;
     a {
       display: inline-block;
     }

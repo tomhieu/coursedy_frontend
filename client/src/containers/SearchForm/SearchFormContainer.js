@@ -4,6 +4,12 @@ import styles from './SearchFormContainer.module.scss';
 import cssModules from 'react-css-modules';
 import {connect} from 'react-redux';
 import * as WebConstants from "../../constants/WebConstants";
+import {FETCH_COURSES} from "../../constants/Courses";
+import {TT} from "utils/locale";
+import {CLOSE_COURSE_FILTER_SUGGESTION, LOAD_SUGGESTION} from "../../actions/AsyncActionCreator";
+import {reduxForm} from "redux-form";
+import Network from "utils/network";
+import * as CourseFilterActions from "../../actions/CourseFilterActionCreator";
 
 class SearchFormContainer extends Component {
   componentWillMount() {
@@ -13,7 +19,27 @@ class SearchFormContainer extends Component {
     this.props.showWhiteHeader();
   }
 
+  fetchSearchSuggestion(event) {
+    if (event.target.value === '') {
+      this.props.closeSuggestion();
+      return;
+    }
+
+    this.props.loadSuggestions({q: event.target.value});
+  }
+
+  onSelectSuggestion(id) {
+    this.props.closeSuggestion();
+    this.context.router.history.push('/course/' + id);
+  }
+
+  onSearchMoreCourse(searchForm) {
+    this.props.updateFilter({term: searchForm.key_work})
+    this.context.router.history.push('/courses?q=' + searchForm.key_work);
+  }
+
   render() {
+    const {suggestions, showSuggestion, loadingSuggestion, searchCourseSuggestion, loadSuggestions} = this.props;
     return (
       <section className="header-homepage d-flex align-items-center">
         <div className="container">
@@ -23,7 +49,12 @@ class SearchFormContainer extends Component {
               <p className="hero-tag">{this.context.t('product_tag')}</p>
             </div>
             <div className="col-sm-12">
-              <SearchForm/>
+              <SearchForm suggestions={suggestions}
+                          onSelectSuggestion={this.onSelectSuggestion.bind(this)}
+                          showSuggestion={showSuggestion}
+                          loadingSuggestion={loadingSuggestion}
+                          loadSuggestions={this.fetchSearchSuggestion.bind(this)}
+                          onSubmit={this.onSearchMoreCourse.bind(this)} {...this.props}/>
             </div>
           </div>
         </div>
@@ -33,18 +64,35 @@ class SearchFormContainer extends Component {
 }
 
 SearchFormContainer.contextTypes = {
-  t: React.PropTypes.func.isRequired
+  t: React.PropTypes.func.isRequired,
+  router: React.PropTypes.object
 }
 
 SearchFormContainer.propTypes = {};
 
 const mapStateToProps = (state) => {
-  return {};
+  const {CourseFilter} = state;
+  const {sugestions, showSuggestion, loadingSuggestion} = CourseFilter;
+  return {
+    showSuggestion,
+    suggestions: sugestions.map((sug) => ({
+      id: sug.id, avatar: sug.cover_image, title: sug.title,
+        sub_title: TT.t('teacher_info_suggestion', {teacher: sug.user.name})
+    })),
+    loadingSuggestion
+  };
 }
 
 const mapDispatchToProps = (dispatch) => ({
   showDarkHeader: () => dispatch({ type: WebConstants.SHOW_DARK_HEADER }),
   showWhiteHeader: () => dispatch({ type: WebConstants.SHOW_WHITE_HEADER }),
+  updateFilter: (filters) => dispatch(CourseFilterActions.updateFilter(filters)),
+  loadSuggestions: (query) => dispatch({
+    type: LOAD_SUGGESTION,
+    payload: Network().get('courses/search', query),
+    meta: 'courseSuggestionPlaceholder'
+  }),
+  closeSuggestion: () => dispatch({type: CLOSE_COURSE_FILTER_SUGGESTION})
 });
 
 
@@ -52,4 +100,7 @@ const StyledComponent = cssModules(SearchFormContainer, styles);
 
 export default connect(
   mapStateToProps, mapDispatchToProps
-)(StyledComponent);
+)(reduxForm({
+  form: 'generalSearchForm',
+  fields: ['key_word']
+})(StyledComponent));

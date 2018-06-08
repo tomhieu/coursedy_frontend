@@ -6,6 +6,8 @@ import {LinkContainer} from 'react-router-bootstrap'
 import {dashboardUrls} from '../../actions/ReferenceActions/ReferenceData'
 import {SecurityUtils} from "utils/SecurityUtils";
 import {TRIGGER_STICKY_HEADER_AT} from "constants/Layout";
+import PrimaryButton from "../Core/PrimaryButton/PrimaryButton";
+import {globalHistory} from '../../utils/globalHistory'
 
 class Header extends Component {
   componentWillMount() {
@@ -30,6 +32,14 @@ class Header extends Component {
     } else {
       this.header.classList.remove('navbar-sticky', 'fixed-top')
     }
+  }
+
+  login() {
+    globalHistory.push('/login');
+  }
+
+  openDashboard(dashboardUrl) {
+    globalHistory.push(dashboardUrl);
   }
 
   render() {
@@ -66,26 +76,29 @@ class Header extends Component {
               {
                 SecurityUtils.isAuthenticated() ? (
                   <li className="nav-item">
-                    <LinkContainer className="nav-link" to={dashboardUrl}>
+                    <PrimaryButton callback={this.openDashboard.bind(this)}
+                                   isPrimary={false}
+                                   title={this.context.t('dashboard')}>
                       <span className="nav-btn"> <i className="fa fa-user"></i> &nbsp; {this.context.t('dashboard')}</span>
-                    </LinkContainer>
+                    </PrimaryButton>
                   </li>
                 ) : null
               }
               {
                 SecurityUtils.isAuthenticated() ? (
                   <li className="nav-item">
-                    <LinkContainer className="nav-link" onClick={() => this.props.signOut()} to="#">
-                      <span className="nav-btn"> <i className="fa fa-sign-out"></i> &nbsp; {this.context.t('signout')}</span>
-                    </LinkContainer>
+                    <PrimaryButton callback={this.props.signOut.bind(this)}
+                                   isPrimary={false} title={this.context.t('signout')}>
+                      <span className="nav-btn"> <i className="fa fa-sign-out"></i> &nbsp; </span>
+                    </PrimaryButton>
                   </li>
                 ) : (
                   <li className="nav-item">
-                    <LinkContainer className="nav-link" to="/login">
-                      <span className="nav-btn"> <i className="fa  fa-sign-in"></i> &nbsp; {this.context.t('login')}
+                    <PrimaryButton callback={this.login.bind(this)} isPrimary={false} title={this.context.t('login')}>
+                      <span className="nav-btn"> <i className="fa  fa-sign-in"></i> &nbsp;
                         <span className="hidden-navbtn"> | {this.context.t('register')} </span>
                       </span>
-                    </LinkContainer>
+                    </PrimaryButton>
                   </li>
                 )
               }

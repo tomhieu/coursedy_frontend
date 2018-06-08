@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
+import PrimaryButton from "../../Core/PrimaryButton/PrimaryButton";
 
 
 export default class CourseGroupFooter extends Component {
@@ -9,12 +10,16 @@ export default class CourseGroupFooter extends Component {
     btnName: PropTypes.string.isRequired,
   }
 
+  gotoSearchCourseList() {
+
+  }
+
   render() {
     return (
-      <div className="row mt-4">
-        <div className="col-sm-12 course__footer">
-          <Link to={ this.props.redirectUrl }
-             className="btn-link-light">{this.props.btnName}</Link>
+      <div className="row align-items-center justify-content-center mt-4">
+        <div className="col-sm-4 course__footer">
+          <PrimaryButton type="button" isPrimary={false} callback={this.gotoSearchCourseList.bind(this)} title={this.props.btnName}>
+          </PrimaryButton>
         </div>
       </div>
     )

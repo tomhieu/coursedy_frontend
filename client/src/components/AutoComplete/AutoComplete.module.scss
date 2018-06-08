@@ -9,7 +9,7 @@
   border-radius: 0 0 2px 2px;
   padding-bottom: 10px;
   width: 100%;
-  top: 50px;
+  top: 45px;
   left: 0;
 }
 
@@ -38,6 +38,7 @@
 .filterBox {
   min-width: 100px;
   flex: 1 1 auto;
+  position: relative;
   input {
     border: none;
   }

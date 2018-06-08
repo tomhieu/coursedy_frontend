@@ -1,13 +1,11 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import PropTypes from 'prop-types'
-import NewCourse from './NewCourseContainer'
-import { connect } from 'react-redux'
+import {connect} from 'react-redux'
 import * as HomePageActions from 'actions/HomePageActionCreator'
-import { bindActionCreators } from 'redux'
-import { Slider } from '../../components/Slider/CoursedySlider'
+import {bindActionCreators} from 'redux'
+import CoursedySlider, {Slider} from '../../components/Slider/CoursedySlider'
 import CourseGroupFooter from '../../components/Course/CourseGroup/CourseGroupFooter'
 import LoadingMask from "../../components/LoadingMask/LoadingMask";
-import CoursedySlider from "../../components/Slider/CoursedySlider";
 import CourseItemInGridMode from "components/Courses/CourseItem/CourseItemInGridMode";
 
 

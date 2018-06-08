@@ -1,0 +1,20 @@
+@import '/../../../../styles/global_style.scss';
+
+.button {
+  height: 48px;
+  min-width: 125px;
+  width: 100%;
+  border-radius: 100px;
+  color: $white-color;
+  text-transform: uppercase;
+  font-weight: 600;
+  &.primary {
+    background-color: $color-organe;
+  }
+
+  &.round {
+    border: 1px solid $color-organe;
+    color: $color-organe;
+    background-color: transparent;
+  }
+}

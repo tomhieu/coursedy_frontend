@@ -1,4 +1,22 @@
 @import '/../../../styles/global_style.scss';
 .introduceSection {
+  background-color: transparent;
+  margin-top: -80px;
+}
+
+.headerSearchContainer {
   background-color: $white-color;
+  padding: 30px;
+}
+.headerSearchIcon {
+  margin-right: 10px;
+}
+.headerSearchIntroduce {
+  font-size: 18px;
+  color: $color-darker-text;
+}
+
+.contentSearchIntroduce {
+  font-size: 16px;
+  color: $color-text;
 }
