@@ -1374,4 +1374,47 @@ body.application {
       margin-bottom: 15px;
     }
   }
+
+  // divider
+  .divider {
+    background: $color_orange;
+    border-radius: 3px;
+    width: 56px;
+    height: 6px;
+    margin: 20px auto 20px;
+  }
+
+  .button {
+    display: inline-block;
+    height: 42px;
+    line-height: 42px;
+    padding: 0 20px;
+    font-size: 14px;
+    font-weight: bold;
+    border: 1px solid transparent;
+    text-align: center;
+    cursor: pointer;
+    text-shadow: 0 1px 1px rgba(0,0,0,0.15);
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    border-radius: 3px;
+    -webkit-transition: all .2s ease-in-out;
+    -moz-transition: all .2s ease-in-out;
+    -ms-transition: all .2s ease-in-out;
+    -o-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
+
+    &.button-border-blue {
+      background-color: transparent;
+      border-color: $color-blue-dark;
+      color: $color-blue-dark;
+      text-shadow: none;
+
+      &:hover {
+        background-color: $color-blue-dark;
+        color: $white-color;
+      }
+    }
+  }
 }

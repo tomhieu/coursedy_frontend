@@ -438,7 +438,18 @@ export const translations = {
     "course_rating": "Đánh giá",
     "course_related": "Khóa học liên quan",
     "unknown": "Đang cập nhật",
-    "read_more": "Chi tiết"
+    "read_more": "Chi tiết",
+
+    "our-story-title": "Our Story",
+    "our-story-description": "Healthy self esteem originates in the environment found in the: family, school, peer group, work place, and community. There are certain characteristics of your environment that need to be present in order for self esteem to be fostered and grow.",
+    "whoweare-label": "Who we are?",
+    "whoweare-description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex.",
+    "whatwedo-label": "What we do?",
+    "whatwedo-description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex.",
+
+    "coursedy_fqa": "FQA",
+    "fqa_still_looking_for": "Still cannot find what you’re looking for?",
+    "contact_the_team": "Contact the team",
   },
   "en": {
     "home_page": "Home",

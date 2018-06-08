@@ -1,10 +1,14 @@
 import React, {Component} from 'react'
+import HelpCenterFQA from '../../components/Layout/SubHelpCenter/HelpCenterFQA'
+import './HelpCenter.scss'
 
 class HelpCenterContainer extends Component {
   render() {
     return (
-      <div className="container">
-        {this.context.t('product_helper_center_info')}
+      <div className="help-center full-width-in-container">
+        <div className="container">
+          <HelpCenterFQA/>
+        </div>
       </div>
     )
   }

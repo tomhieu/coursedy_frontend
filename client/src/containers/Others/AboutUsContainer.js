@@ -1,10 +1,12 @@
 import React, {Component} from 'react'
+import AboutTop from '../../components/Layout/SubAbout/AboutTop'
+import './AboutUs.scss'
 
 class AboutUsContainer extends Component {
   render() {
     return (
-      <div className="container">
-        {this.context.t('product_about_us_info')}
+      <div className="about-us full-width-in-container">
+        <AboutTop />
       </div>
     )
   }
