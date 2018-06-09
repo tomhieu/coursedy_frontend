@@ -71,7 +71,6 @@ body.application {
 
   .navbar-light .navbar-nav .active > .nav-link,
   .navbar-light .navbar-nav .nav-link:focus, .navbar-light .navbar-nav .nav-link:hover {
-    color: $md-color-pink;
     cursor: pointer;
   }
 
@@ -79,12 +78,12 @@ body.application {
     width: 100%;
     z-index: 999;
     padding: 0;
+    height: 60px;
     .nav-btn {
       padding: 0.25rem;
     }
     &.bg-light, &.dark-header.fixed-top {
       background: $primary-color !important;
-      padding: 10px 0;
     }
 
     &.dark-header {
@@ -104,6 +103,10 @@ body.application {
 
     .navbar-toggle {
       border: 0;
+    }
+
+    .container {
+      padding: 10px 0;
     }
   }
 
@@ -146,7 +149,7 @@ body.application {
     -o-background-size: cover;
     background-size: cover;
     background-position: center;
-    margin-top: -56px;
+    margin-top: -60px;
     padding-top: 50px;
     width: 100%;
     height: calc(100vh - 200px);

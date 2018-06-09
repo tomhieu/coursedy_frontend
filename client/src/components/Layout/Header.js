@@ -55,12 +55,9 @@ class Header extends Component {
           </button>
           <div className="collapse navbar-collapse justify-content-right" id="navbarNav">
             <ul className="navbar-nav">
-              <li className="nav-item active">
-                <LinkContainer className="nav-link" to="/" role="button">
-                  <div>
-                    <span>{this.context.t('home_page')}</span>
-                    <span className="sr-only">(current)</span>
-                  </div>
+              <li className="nav-item">
+                <LinkContainer className="nav-link" to="/home" role="button">
+                  <span>{this.context.t('home_page')}</span>
                 </LinkContainer>
               </li>
               <li className="nav-item">
@@ -76,7 +73,7 @@ class Header extends Component {
               {
                 SecurityUtils.isAuthenticated() ? (
                   <li className="nav-item">
-                    <PrimaryButton callback={this.openDashboard.bind(this)}
+                    <PrimaryButton callback={this.openDashboard.bind(this, dashboardUrl)}
                                    isPrimary={false}
                                    title={this.context.t('dashboard')}>
                       <span className="nav-btn"> <i className="fa fa-user"></i> &nbsp; {this.context.t('dashboard')}</span>
