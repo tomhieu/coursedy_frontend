@@ -440,8 +440,10 @@ export const translations = {
     "unknown": "Đang cập nhật",
     "read_more": "Chi tiết",
 
-    "our-story-title": "Our Story",
-    "our-story-description": "Healthy self esteem originates in the environment found in the: family, school, peer group, work place, and community. There are certain characteristics of your environment that need to be present in order for self esteem to be fostered and grow.",
+    "our-story-title": "Câu chuyện",
+    "our-story-description": "Học tập trực tuyến đang là xu hướng của tương lai và hiện tại có rất nhiều ứng dụng học trực tuyến nhưng còn nhiều hạn chế, không có tính tương tác trực tiếp giữa người dạy và người học, đa phần chỉ dạy qua video, người học hoàn toàn thụ động trong việc học. Và Coursedy ra đời để giải quyết những hạn chế của các ứng dụng hoc trực tuyến hiện tại. Chúng tôi cung cấp nền tảng học trực tuyến có tính tương tác trực tiếp giữa người dạy và người học.",
+    "product-introduce": "Giới thiệu sản phẩm",
+    "product-introduce-description": "Coursedy là nền tảng học trực tuyến có tính tương tác trực tiếp giữa người dạy và người học đầu tiên tại Việt Nam mang công nghệ video streaming hiện đại cho phép người dạy có thể tạo lớp học, chia sẻ tài liệu. Người học có thể tham gia vào lớp học mọi lúc mọi nơi, có thể hỏi và trao đổi trực tiếp người dạy.",
     "whoweare-label": "Who we are?",
     "whoweare-description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex.",
     "whatwedo-label": "What we do?",

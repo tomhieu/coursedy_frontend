@@ -1,12 +1,14 @@
 import React, {Component} from 'react'
 import AboutTop from '../../components/Layout/SubAbout/AboutTop'
 import './AboutUs.scss'
+import AboutCenter from '../../components/Layout/SubAbout/AboutCenter'
 
 class AboutUsContainer extends Component {
   render() {
     return (
       <div className="about-us full-width-in-container">
         <AboutTop />
+        <AboutCenter />
       </div>
     )
   }
