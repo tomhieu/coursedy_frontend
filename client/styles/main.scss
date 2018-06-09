@@ -432,8 +432,8 @@ body.application {
   }
 
   .dashboard-profile h4 {
-    color: $md-color-pink;
-    font-size: 16px;
+    color: $black-text-color;
+    font-size: 18px;
     font-weight: 600;
     margin-top: 5px;
     margin-bottom: 12px;
@@ -948,7 +948,7 @@ body.application {
   .course-item {
     position: relative;
     height: 100%;
-    padding-bottom: 60px;
+    box-shadow: 0 0 1px 1px rgba(20,23,28,.1), 0 3px 1px 0 rgba(20,23,28,.1);
     &:hover {
       -webkit-box-shadow: 0px 0px 12px -1px rgba(0, 0, 0, 0.29);
       -moz-box-shadow: 0px 0px 12px -1px rgba(0, 0, 0, 0.29);
@@ -985,40 +985,16 @@ body.application {
           box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.43);
         }
       }
-      .course-item-price {
-        background-color: $md-color-pink;
-        color: $white-color;
-        position: absolute;
-        top: 10px;
-        right: -5px;
-        line-height: 1;
-        font-weight: 700;
-        font-size: 14px;
-        padding: 4px 10px 3px;
-
-        &:before {
-          content: "";
-          position: absolute;
-          top: -5px;
-          right: 0;
-          width: 0;
-          height: 0;
-          border-style: solid;
-          border-width: 5px 0 0 5px;
-          border-color: transparent transparent transparent $md-color-pink;
-        }
-      }
     }
     .course-item-content {
-      padding: 25px 15px;
-      padding-left: 20px;
+      padding: 10px;
       p {
         margin-top: 20px;
         font-size: 14px;
       }
       h3 {
-        font-size: 23px;
-        color: $md-color-pink;
+        font-size: 16px;
+        color: $black-text-color;
       }
       .rating-wrapper {
         margin: 0 0 5px;
@@ -1037,24 +1013,25 @@ body.application {
       }
     }
     .course-item-bottom {
-      position: absolute;
+      position: relative;
       width: 100%;
       font-size: 11px;
       text-align: center;
-      line-height: 1.4;
       padding: 0 5px;
       border-top: 1px solid $border-color;
       display: table;
-      bottom: 0;
-      left: 0;
-      right: 0;
       & > div {
         display: table-cell;
-        padding: 20px 10px;
+        padding: 10px;
       }
 
       & > div:last-child {
         border-left: 1px solid $border-color;
+      }
+
+      .block {
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
     }
   }

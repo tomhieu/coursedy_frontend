@@ -59,8 +59,8 @@
       }
       > a:hover {
         background: none;
-        color: #0D7CC9;
-        border-right: 1px solid #0D7CC9;
+        color: $md-color-pink;
+        border-right: 1px solid $md-color-pink;
       }
       > a:focus {
         background: none;
@@ -95,9 +95,9 @@
     > .active, .active:hover .active:focus {
       a {
         font-weight: 600;
-        color: #0D7CC9;
+        color: $md-color-pink;
         background: none;
-        border-right: 1px solid #0D7CC9;
+        border-right: 1px solid $md-color-pink;
         border-bottom: 1px solid #E8E8E8
       }
     }
@@ -119,13 +119,13 @@
       }
 
       > a {
-        color: #0D7CC9;
+        color: $md-color-pink;
         padding-left: 20px!important
       }
 
       > a:after {
         left: 0;
-        color: #0D7CC9
+        color: $md-color-pink
       }
     }
     &.sidebar-heading {
@@ -239,7 +239,7 @@
     margin-bottom: 3px;
 
     i {
-      color: #0D7CC9;
+      color: $md-color-pink;
       margin-right: 5px;
     }
   }

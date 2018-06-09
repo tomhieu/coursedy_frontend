@@ -1,3 +1,4 @@
+@import "../../../../styles/global_style";
 .review-header {
   line-height: 1.2;
   h4, h5 {
@@ -45,7 +46,7 @@
 
   span {
     font-weight: 700;
-    color: #0D7CC9;
+    color: $color-orange;
     font-size: 24px;
   }
 
@@ -187,7 +188,7 @@ ul.review-list {
         }
 
         a:hover {
-          color: #0D7CC9;
+          color: $md-color-pink;
         }
     }
 

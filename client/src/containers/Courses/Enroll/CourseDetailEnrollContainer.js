@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
+import styles from './CourseDetailEnrollContainer.module.scss';
 import cssModules from 'react-css-modules';
-import styles from './CourseDetailEnrollContainer.scss';
-import { connect } from 'react-redux';
-import { Modal, Button } from 'react-bootstrap';
+import {connect} from 'react-redux';
+import {Button} from 'react-bootstrap';
 import * as Actions from 'actions/PublicCourseActionCreator';
-import { globalHistory } from '../../../utils/globalHistory';
 import SimpleDialogComponent from "../../../components/Core/SimpleDialogComponent";
+import PrimaryButton from "../../../components/Core/PrimaryButton/PrimaryButton";
 
 
 /**
@@ -107,8 +107,8 @@ class CourseDetailEnrollContainer extends Component {
 
     return (
       <div>
-        <div className="enroll-btn text-center">
-          <button onClick={this.submitEnrollCourse.bind(this)} className="btn btn-primary btn-block btn-md">{this.context.t('course_enroll')}</button>
+        <div className={styles.enrollBtn}>
+          <PrimaryButton isPrimary={true} callback={this.submitEnrollCourse.bind(this)} title={this.context.t('course_enroll')}></PrimaryButton>
         </div>
 
         {/* Require login modal */}

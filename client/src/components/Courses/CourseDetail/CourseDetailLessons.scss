@@ -1,3 +1,4 @@
+@import "../../../../styles/global_style";
 .course-lession-wrapper-2 {
   margin-bottom: -10px;
 }
@@ -30,7 +31,7 @@
     display: inline-block;
     vertical-align: middle;
     background: #E6E6E6;
-    color: #0D7CC9;
+    color: $md-color-pink;
     font-weight: 700;
     line-height: 1;
     padding: 5px 7px;

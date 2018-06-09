@@ -22,7 +22,7 @@ class CourseItemInGridMode extends Component {
     } = this.props;
 
     return (
-      <div className="course-item">
+      <div className="course-item d-flex flex-column">
         <LinkContainer to={isPublic ? '/course/' + item.id : '/dashboard/courses/detail/' + item.id} className='course-detail-lnk'>
           <div className="course-item-image">
             <Image src={item.cover_image} width={200} height={150} alt={'comming soon'} className="full-width-img"
@@ -40,19 +40,18 @@ class CourseItemInGridMode extends Component {
               <span>{item.user.name}</span>
             </div>
           </LinkContainer>
-          <div className="course-item-price">
-            {
-              item.is_free ?
-                this.context.t('free') :
-                ObjectUtils.currencyFormat(item.tuition_fee || 0, item.currency || 'VND')
-            }
-          </div>
         </div>
-        <LinkContainer to={isPublic ? '/course/' + item.id : '/dashboard/courses/detail/' + item.id} className='course-detail-lnk'>
-          <div className="course-item-content">
+        <LinkContainer to={isPublic ? '/course/' + item.id : '/dashboard/courses/detail/' + item.id} className='course-detail-lnk flex-auto'>
+          <div className="d-flex flex-column justify-content-right course-item-content">
             <RatingItem num_stars={item.rating_count == 0 ? 0 : parseFloat(item.rating_points)/item.rating_count} num_reviews={item.rating_count}/>
-            <h3>{item.title}</h3>
-            <p className='course-item-description'>{item.description}</p>
+            <h3 className={styles.courseGridTitleContainer}>{item.title}</h3>
+            <div className={styles.courseItemPrice}>
+              {
+                item.is_free ?
+                  this.context.t('free') :
+                  ObjectUtils.currencyFormat(item.tuition_fee || 0, item.currency || 'VND')
+              }
+            </div>
           </div>
         </LinkContainer>
         <div className="course-item-bottom clearfix">
