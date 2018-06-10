@@ -3,9 +3,10 @@
 .sidebar-fixed-normal {
   position: fixed;
   /* menu-height + gap + header-height + gap */
-  top: calc(70px + #{$box-gap} + 115px + #{$box-gap});
+  top: calc(70px + #{$box-gap} + 125px + #{$box-gap});
   z-index: 500;
   width: 20.5%;
+  box-shadow: 0 3px 8px 0 $color-light-box-shadow;
 }
 .sidebar-fixed-scrolled {
   position: fixed;

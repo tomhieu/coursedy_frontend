@@ -323,7 +323,7 @@ export const translations = {
     "fetch_payment_history_fail": "Lấy lịch sử thanh toán thất bại",
     /* home page */
     "product_title": "COURSEDY",
-    "product_tag": "Tìm Kiếm Khoá Học Yêu Thích Của Bạn",
+    "product_tag": "Tìm kiếm khoá học yêu thích ngay bây giờ",
     "product_description": "Là trung tâm quy tụ giáo viên nhiệt huyết, yêu nghề, giỏi chuyên môn, già dặn kinh nghiệm từ khắp mọi nơi. Bên cạnh đó hệ thống còn tích hợp các tiện ích đáp ứng nhu cầu dạy trực tuyến của giảng viên.",
     "product_customer_support": "Hỗ trợ khách hàng",
     "product_contact_email": "team@coursedy.com",

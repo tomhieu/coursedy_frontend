@@ -6,6 +6,7 @@ import FormField from "../../../components/Core/FormField";
 import {validate} from "../../../validations/CommonValidator";
 import * as Actions from "../../../actions/PublicCourseActionCreator";
 import SimpleDialogComponent from "../../../components/Core/SimpleDialogComponent"
+import PrimaryButton from "../../../components/Core/PrimaryButton/PrimaryButton";
 
 /**
   * @Course group template 2
@@ -82,9 +83,8 @@ class CommentFormContainer extends Component {
           <FormField fieldId={'course_comment_content'} formGroupId={'content'} formLabel={this.context.t('course_comment_content')}
                    placeholder={this.context.t('course_comment_content')} isMandatoryField={true}
                    formControlName={'content'} typeField={'custom_textarea'}></FormField>
-          <Button type="submit" disabled={!valid} className="btn-primary">
-            {this.context.t('save')}
-          </Button>
+          <PrimaryButton type="submit" line={false} disabled={!valid} title={this.context.t('save')}>
+          </PrimaryButton>
         </form>
         {/* Require login modal */}
         <SimpleDialogComponent 

@@ -7,6 +7,7 @@
     background-color: #fff;
     border: 1px solid $border-color;
     padding: $box-gap;
+    box-shadow: 0 3px 8px 0 $color-light-box-shadow;
   }
   .info {
     > .image {
