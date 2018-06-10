@@ -8,7 +8,6 @@ import {TT} from "../../utils/locale";
 import ObjectUtils from "../../utils/ObjectUtils";
 import Cropper from 'react-cropper'
 import 'cropperjs/dist/cropper.css';
-import FormField from "components/Core/FormField";
 
 export const renderField = ({input, label, placeholder, type = 'text', disabled = false, customClassName, meta: {touched, error, warning}}) => (
   <div className='full-width-input-wrapper'>

@@ -324,7 +324,7 @@ body.application {
       margin-top: 100px;
       .course-filter-container .fixed-top-search-bar {
         position: fixed;
-        top: 60px;
+        top: 80px;
         left: 0;
         z-index: 99999;
         box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.12);
@@ -678,7 +678,8 @@ body.application {
 
   // select2 styles
   .select2-container--default .select2-results__option--highlighted[aria-selected] {
-    background-color: $md-color-pink;
+    background-color: $color-light-color;
+    color: $black-text-color;
   }
 
   .home-search .select2-container--default .select2-selection--single {
@@ -822,7 +823,7 @@ body.application {
   }
 
   .forgot-pass {
-    color: #9b9b9b;
+    color: $md-color-pink;
     font-size: 14px;
     font-weight: 400;
     float: right;

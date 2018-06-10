@@ -3,6 +3,7 @@ import FormField from "components/Core/FormField";
 import * as React from "react";
 import defaultAvatar from '../../../images/default_avatar.png'
 import {SERVER_NAME} from "utils/CommonConstant";
+import PrimaryButton from "../Core/PrimaryButton/PrimaryButton";
 
 export class UserAvatarForm extends Component {
   setFileContent(file) {
@@ -31,12 +32,15 @@ export class UserAvatarForm extends Component {
 
         <div className='row'>
           <div className='col-sm-12 mb-5'>
-            <button type="submit" className="btn btn-primary full-width" disabled={!avatarSelected}>{this.context.t("save")}</button>
+            <PrimaryButton type="submit" customClasses="full-width"
+                           disabled={!avatarSelected} title={this.context.t("save")}>
+            </PrimaryButton>
           </div>
           <div className='col-sm-12'>
-            <button type="button" className="btn btn-small cancel-button full-width" onClick={this.props.cancel}>
-              {this.context.t("cancel")}
-            </button>
+            <PrimaryButton type="button" customClasses="full-width"
+                           callback={this.props.cancel}
+                           disabled={!avatarSelected} title={this.context.t("cancel")}>
+            </PrimaryButton>
           </div>
         </div>
       </form>

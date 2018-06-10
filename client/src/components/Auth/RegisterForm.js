@@ -7,6 +7,7 @@ import {TT} from '../../utils/locale'
 import {ROLES} from "constants/Roles";
 import SignUpSuccessModal from "./SignUpSuccessModal";
 import {renderSelect, renderField} from "../Core/CustomComponents";
+import PrimaryButton from "../Core/PrimaryButton/PrimaryButton";
 
 const renderSelectComponent = renderSelect(ROLES.map((role) => ({text: TT.t(role), id: role})))
 
@@ -78,9 +79,12 @@ class RegisterForm extends Component {
           />
         </FormGroup>
 
-        <button type="submit" className="btn btn-primary btn-link-dark center-block">
-          {this.context.t("register")}
-        </button>
+        <div className="d-flex justify-content-center">
+          <PrimaryButton type="submit" round={true}
+                         customClasses={styles.registerButton}
+                         title={this.context.t("register_now")} line={false}>
+          </PrimaryButton>
+        </div>
         <SignUpSuccessModal show={this.props.SignUpComponent.success} close={this.props.resetForm}/>
       </form>
     )

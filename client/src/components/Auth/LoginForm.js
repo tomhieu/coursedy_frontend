@@ -5,6 +5,7 @@ import {FormGroup, ControlLabel} from 'react-bootstrap';
 import {Field} from 'redux-form';
 import {Auth} from 'j-toker'
 import * as Actions from '../../actions/LoginActionCreator'
+import PrimaryButton from "../Core/PrimaryButton/PrimaryButton";
 
 class LoginForm extends Component {
   hideLoginError(){
@@ -48,19 +49,16 @@ class LoginForm extends Component {
           />
         </FormGroup>
 
-        <div className="check">
-          <a href="#"
-             className="forgot-pass"> {this.context.t("forgot_password")}</a>
+        <div className="d-flex justify-content-right">
+          <a href="#" className="forgot-pass"> {this.context.t("forgot_password")}</a>
         </div>
 
-        <FormGroup>
-          <button type="submit"
-                  className="btn btn-primary btn-link-dark signin-btn center-block"
-                  disabled={pristine || submitting}
-          >
-            {this.context.t("login")}
-          </button>
-        </FormGroup>
+        <div className="d-flex justify-content-center">
+          <PrimaryButton type="submit" disabled={pristine || submitting}
+                         customClasses={styles.loginButton}
+                         title={this.context.t("login")} line={false} round={true}>
+          </PrimaryButton>
+        </div>
       </form>
     )
   }
