@@ -110,6 +110,7 @@ class CourseDetailEnrollContainer extends Component {
         <div className={styles.enrollBtn}>
           <PrimaryButton round={true}
                          line={false}
+                         customClasses="full-width"
                          callback={this.submitEnrollCourse.bind(this)}
                          title={this.context.t('course_enroll')}>
           </PrimaryButton>

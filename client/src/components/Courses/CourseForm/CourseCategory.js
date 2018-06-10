@@ -3,6 +3,7 @@ import * as React from "react";
 import CourseCateogryEditMode from "./CourseCateogryEditMode";
 import {FormGroup} from "react-bootstrap";
 import {Component} from "react";
+import PrimaryButton from "../../Core/PrimaryButton/PrimaryButton";
 
 class CourseCategory extends Component {
   constructor(props) {
@@ -26,13 +27,16 @@ class CourseCategory extends Component {
           <div className="row">
             <div className="col-md-12 col-sm-12">
               <FormGroup className="d-flex justify-content-right">
-                <button type="submit" className="btn btn-primary mr-10" disabled={pristine || submitting}>
-                  {this.context.t("save")}
-                </button>
-                <button type='button' onClick={onEditCourseCategory}
-                        className="btn btn-default btn-small margin-left-10 cancel-button">
-                  {this.context.t("cancel")}
-                </button>
+                <PrimaryButton type="submit" line={false}
+                               disabled={pristine || submitting}
+                               title={this.context.t("save")}>
+                </PrimaryButton>
+                <PrimaryButton type="button"
+                               isPrimary={false}
+                               customClasses="ml-15"
+                               callback={onEditCourseCategory}
+                               title={this.context.t("cancel")}>
+                </PrimaryButton>
               </FormGroup>
             </div>
           </div>

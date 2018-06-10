@@ -28,7 +28,7 @@ class SimpleDialogComponent extends Component {
             }
             {
               cancelCallback && cancelLabel ?
-              <PrimaryButton type="button" line={false}
+              <PrimaryButton type="button" line={true}
                              callback={cancelCallback}
                              isPrimary={false}
                              title={cancelLabel}>

@@ -46,7 +46,7 @@ class FormDialogContainer extends Component {
                          customClasses="button accept-button"
                          title={okLabel}>
           </PrimaryButton>
-          <PrimaryButton type="button" line={false}
+          <PrimaryButton type="button"
                          callback={this.cancelPopup.bind(this)}
                          isPrimary={false}
                          customClasses="button cancel-button"

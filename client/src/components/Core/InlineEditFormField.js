@@ -2,6 +2,7 @@ import React from "react";
 import "react-datepicker/dist/react-datepicker.css";
 import {FormGroup} from "react-bootstrap";
 import FormField from "./FormField";
+import PrimaryButton from "./PrimaryButton/PrimaryButton";
 
 class InlineEditFormField extends FormField {
   constructor(props) {
@@ -38,13 +39,16 @@ class InlineEditFormField extends FormField {
           <div className={displayStyle + " d-flex flex-vertical"}>
             {super.render()}
             <FormGroup className="d-flex justify-content-right">
-              <button type="submit" className="btn btn-primary mr-10" disabled={pristine || submitting}>
-                {this.context.t("save")}
-              </button>
-              <button type='button' onClick={() => this.closeEditForm(activatedFieldIds)}
-                      className="btn btn-default btn-small margin-left-10 cancel-button">
-                {this.context.t("cancel")}
-              </button>
+              <PrimaryButton type="submit" line={false}
+                             disabled={pristine || submitting}
+                             title={this.context.t("save")}>
+              </PrimaryButton>
+              <PrimaryButton type="button"
+                             isPrimary={false}
+                             customClasses="ml-15"
+                             callback={() => this.closeEditForm(activatedFieldIds)}
+                             title={this.context.t("cancel")}>
+              </PrimaryButton>
             </FormGroup>
           </div>
         )

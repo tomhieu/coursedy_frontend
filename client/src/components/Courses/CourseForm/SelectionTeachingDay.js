@@ -3,6 +3,7 @@ import {Component} from "react";
 import SelectionTeachingDayEditMode from "./SelectionTeachingDayEditMode";
 import SelectionTeachingDayViewMode from "./SelectionTeachingDayViewMode";
 import {FormGroup} from "react-bootstrap";
+import PrimaryButton from "../../Core/PrimaryButton/PrimaryButton";
 
 class SelectionTeachingDay extends Component {
     constructor(props) {
@@ -33,13 +34,16 @@ class SelectionTeachingDay extends Component {
                     <div className='row'>
                       <div className="col-md-12 col-sm-12">
                         <FormGroup className="mt-10 d-flex justify-content-right">
-                          <button type="submit" className="btn btn-primary mr-10" disabled={pristine || submitting}>
-                            {this.context.t("save")}
-                          </button>
-                          <button type='button' onClick={() => onEditTechingDay()}
-                                  className="btn btn-default btn-small margin-left-10 cancel-button">
-                            {this.context.t("cancel")}
-                          </button>
+                          <PrimaryButton type="submit" line={false}
+                                         disabled={pristine || submitting}
+                                         title={this.context.t("save")}>
+                          </PrimaryButton>
+                          <PrimaryButton type="button"
+                                         isPrimary={false}
+                                         customClasses="ml-15"
+                                         callback={() => onEditTechingDay()}
+                                         title={this.context.t("cancel")}>
+                          </PrimaryButton>
                         </FormGroup>
                       </div>
                     </div>
