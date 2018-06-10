@@ -2,19 +2,64 @@
 
 .button {
   height: 48px;
-  min-width: 125px;
-  width: 100%;
-  border-radius: 100px;
+  min-width: 100px;
   color: $white-color;
   text-transform: uppercase;
   font-weight: 600;
-  &.primary {
-    background-color: $color-organe;
+  transition: width 2s;
+  padding: 0 20px;
+  &.round {
+    border-radius: 100px;
   }
 
-  &.round {
-    border: 1px solid $color-organe;
-    color: $color-organe;
-    background-color: transparent;
+  &.radius {
+    border-radius: 3px;
+  }
+
+
+  &.filled {
+    &.primary {
+      background-color: $color-organe;
+
+      &:hover {
+        border: 1px solid $color-organe;
+        color: $color-organe;
+        background-color: transparent;
+      }
+    }
+
+    &.secondary {
+      background-color: $secondary-color;
+
+      &:hover {
+        border: 1px solid $secondary-color;
+        color: $secondary-color;
+        background-color: transparent;
+      }
+    }
+  }
+
+  &.line {
+    &.primary {
+      border: 1px solid $color-organe;
+      color: $color-organe;
+      background-color: transparent;
+
+      &:hover {
+        background-color: $color-orange;
+        color: $white-color;
+      }
+    }
+
+    &.secondary {
+      border: 1px solid $secondary-color;
+      color: $secondary-color;
+      background-color: transparent;
+
+      &:hover {
+        background-color: $secondary-color;
+        color: $white-color;
+      }
+    }
   }
 }

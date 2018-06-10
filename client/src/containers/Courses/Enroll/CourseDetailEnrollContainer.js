@@ -108,7 +108,11 @@ class CourseDetailEnrollContainer extends Component {
     return (
       <div>
         <div className={styles.enrollBtn}>
-          <PrimaryButton isPrimary={true} callback={this.submitEnrollCourse.bind(this)} title={this.context.t('course_enroll')}></PrimaryButton>
+          <PrimaryButton round={true}
+                         line={false}
+                         callback={this.submitEnrollCourse.bind(this)}
+                         title={this.context.t('course_enroll')}>
+          </PrimaryButton>
         </div>
 
         {/* Require login modal */}

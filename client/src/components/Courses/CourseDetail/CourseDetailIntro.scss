@@ -1,3 +1,4 @@
+@import "../../../../styles/global_style";
 #course-detail-intro {
   .full-width {
     width: 100%;
@@ -19,7 +20,7 @@
       line-height: 1;
       margin: 0;
       padding: 15px 20px;
-      color: #0D7CC9;
+      color: $md-color-pink;
     }
     ul.listing-box-list {
         margin: 0;

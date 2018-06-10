@@ -3,6 +3,7 @@ import * as React from "react";
 import {ControlLabel, FormGroup} from "react-bootstrap";
 import {Field} from "redux-form";
 import FormField from "../../../Core/FormField";
+import PrimaryButton from "../../../Core/PrimaryButton/PrimaryButton";
 
 export class TutorWorkExperienceForm extends Component {
   render() {
@@ -21,10 +22,16 @@ export class TutorWorkExperienceForm extends Component {
         </div>
         <FormField formControlName="description" typeField='custom_textarea' fieldLabel={this.context.t('account.tutot.edu.form.description')}/>
         <FormGroup>
-          <button type="submit" className="btn btn-primary mr-10">{this.context.t("save")}</button>
-          <button type="button" className="btn btn-small margin-left-10 cancel-button" onClick={this.props.cancel}>
-            {this.context.t("cancel")}
-          </button>
+          <PrimaryButton isPrimary={true} line={false}
+                         type="submit"
+                         title={this.context.t("save")}>
+          </PrimaryButton>
+          <PrimaryButton isPrimary={false} line={true}
+                         type="button"
+                         customClasses="ml-15"
+                         callback={this.props.cancel}
+                         title={this.context.t("cancel")}>
+          </PrimaryButton>
         </FormGroup>
       </form>
     )

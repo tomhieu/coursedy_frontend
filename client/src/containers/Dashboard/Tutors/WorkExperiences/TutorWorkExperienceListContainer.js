@@ -6,6 +6,7 @@ import {reduxForm} from "redux-form";
 import {connect} from "react-redux";
 import * as actions from "actions/DashboarTutorWorkExperienceListActionCreator";
 import NewWorkExperienceFormContainer from './NewWorkExperienceFormContainer'
+import PrimaryButton from "../../../../components/Core/PrimaryButton/PrimaryButton";
 
 class TutorWorkExperienceListContainer extends Component {
   componentWillMount() {
@@ -48,8 +49,13 @@ class TutorWorkExperienceListContainer extends Component {
           }
           {
             !showNewTutorWorkExperienceForm ?
-              <button className='btn btn-link-light' onClick={this.showNewWorkExperienceForm.bind(this)}><i
-                className='fa fa-plus'/> {this.context.t('account.tutot.edu.add_work_experience')}</button> : null
+              <PrimaryButton isPrimary={true} line={true}
+                             iconButton={true}
+                             type="button"
+                             callback={this.showNewWorkExperienceForm.bind(this)}
+                             title={this.context.t('account.tutot.edu.add_work_experience')}>
+                <i className='fa fa-plus'/>
+              </PrimaryButton> : null
           }
         </div>
       </div>

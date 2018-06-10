@@ -3,6 +3,7 @@ import {Component} from "react";
 import {submit} from 'redux-form';
 import {connect} from "react-redux";
 import Modal from "react-bootstrap4-modal";
+import PrimaryButton from "../../components/Core/PrimaryButton/PrimaryButton";
 
 class FormDialogContainer extends Component {
   constructor(props) {
@@ -39,12 +40,18 @@ class FormDialogContainer extends Component {
           {this.props.children}
         </div>
         <div className="modal-footer">
-          <button type="button" className="btn btn-primary" onClick={this.onSubmitPopup.bind(this)}>
-            {okLabel}
-          </button>
-          <button type="button" className="btn cancel-button" onClick={this.cancelPopup.bind(this)}>
-            {cancelLabel}
-          </button>
+          <PrimaryButton type="button" line={false}
+                         isPrimary={true}
+                         callback={this.onSubmitPopup.bind(this)}
+                         customClasses="button accept-button"
+                         title={okLabel}>
+          </PrimaryButton>
+          <PrimaryButton type="button" line={false}
+                         callback={this.cancelPopup.bind(this)}
+                         isPrimary={false}
+                         customClasses="button cancel-button"
+                         title={cancelLabel}>
+          </PrimaryButton>
         </div>
       </Modal>
     )

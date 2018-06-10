@@ -18,7 +18,8 @@ export default class CourseGroupFooter extends Component {
     return (
       <div className="row align-items-center justify-content-center mt-4">
         <div className="col-sm-4 course__footer">
-          <PrimaryButton type="button" isPrimary={false} callback={this.gotoSearchCourseList.bind(this)} title={this.props.btnName}>
+          <PrimaryButton type="button" isPrimary={true} round={true}
+                         callback={this.gotoSearchCourseList.bind(this)} title={this.props.btnName}>
           </PrimaryButton>
         </div>
       </div>

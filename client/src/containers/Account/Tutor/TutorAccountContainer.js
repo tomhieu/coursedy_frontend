@@ -1,29 +1,20 @@
 import React, {Component} from "react";
 import ChangePasswordContainer from "../ChangePasswordContainer";
-import cssModules from 'react-css-modules';
 import {connect} from "react-redux";
 import PersonInfoContainer from "../PersonInfoContainer";
 import Certificate from "./Certificate";
 import {UserInfo} from 'components/index'
 import TutorForm from '../../Dashboard/Tutors/TutorForm'
 
-import {
-  AccountActions,
-  TutorAccountActions
-} from '../../../actions/index'
-import {
-  RequireEmailConfirmationModal
-} from '../../../components/index'
+import {AccountActions, TutorAccountActions} from '../../../actions/index'
+import {RequireEmailConfirmationModal} from '../../../components/index'
 import LoadingMask from "../../../components/LoadingMask/LoadingMask";
-import {FETCH_CURRENT_USER, FETCH_TUTOR_DATA} from "../../../constants/Session";
+import {FETCH_TUTOR_DATA} from "../../../constants/Session";
 import {CERTIFICATE, FETCH_TEACHER_SKILL_SET} from "../../../actions/AsyncActionCreator";
 import Network from "utils/network";
 import TutorDetail from "components/Dashboard/Tutors/TutorDetail";
-import TutorEducationList from "components/Dashboard/Tutors/Educations/TutorEducationList";
 import TutorEducationListContainer from "containers/Dashboard/Tutors/Educations/TutorEducationListContainer";
 import TutorWorkExperienceListContainer from "containers/Dashboard/Tutors/WorkExperiences/TutorWorkExperienceListContainer";
-import session from "reducers/Session";
-import * as AccountTypes from "constants/AccountTypes";
 
 class TutorAccount extends Component {
   componentWillMount(){

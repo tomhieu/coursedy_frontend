@@ -63,7 +63,7 @@ export default class YouAreTeacher extends Component {
             </div>
             <div className="row align-items-center justify-content-center mt-4">
               <div className="col-sm-4 course__footer">
-                <PrimaryButton type="button" isPrimary={true} title={TT.t('homepage_search_become_teacher')}>
+                <PrimaryButton type="button" isPrimary={true} round={true} line={false} title={TT.t('homepage_search_become_teacher')}>
                 </PrimaryButton>
               </div>
             </div>

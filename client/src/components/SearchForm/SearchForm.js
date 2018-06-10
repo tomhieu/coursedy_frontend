@@ -20,7 +20,11 @@ class SearchForm extends Component {
                         isLoading={loadingSuggestion}
           />
           <div className={styles.searchButton}>
-            <PrimaryButton type="submit" title={this.context.t('home_search')} isPrimary={true}></PrimaryButton>
+            <PrimaryButton type="submit" title={this.context.t('home_search')}
+                           round={true}
+                           customClasses="full-width"
+                           line={false}>
+            </PrimaryButton>
           </div>
         </div>
       </Form>

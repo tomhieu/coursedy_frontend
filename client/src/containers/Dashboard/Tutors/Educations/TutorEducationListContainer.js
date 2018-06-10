@@ -6,6 +6,7 @@ import {reduxForm} from "redux-form";
 import {connect} from "react-redux";
 import * as actions from "actions/DashboarTutorEducationListActionCreator";
 import NewEducationFormContainer from './NewEducationFormContainer'
+import PrimaryButton from "../../../../components/Core/PrimaryButton/PrimaryButton";
 
 class TutorEducationListContainer extends Component {
   componentWillMount() {
@@ -48,8 +49,13 @@ class TutorEducationListContainer extends Component {
           }
           {
             !showNewTutorEducationForm ?
-              <button className='btn btn-link-light' onClick={this.showNewEducationForm.bind(this)}><i
-                className='fa fa-plus'/> {this.context.t('account.tutot.edu.add_education')}</button> : null
+              <PrimaryButton isPrimary={true} line={true}
+                             iconButton={true}
+                             type="button"
+                             callback={this.showNewEducationForm.bind(this)}
+                             title={this.context.t('account.tutot.edu.add_education')}>
+                <i className='fa fa-plus'/>
+              </PrimaryButton> : null
           }
         </div>
       </div>

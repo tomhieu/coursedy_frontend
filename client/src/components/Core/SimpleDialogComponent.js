@@ -1,6 +1,7 @@
 import {Component} from "react";
 import * as React from "react";
 import Modal from "react-bootstrap4-modal";
+import PrimaryButton from "./PrimaryButton/PrimaryButton";
 
 class SimpleDialogComponent extends Component {
     constructor(props) {
@@ -19,15 +20,19 @@ class SimpleDialogComponent extends Component {
           <div className="modal-footer">
             {
               acceptCallback && acceptLabel ?
-                <button type="button" className="btn btn-primary" onClick={acceptCallback}>
-                  {acceptLabel}
-                </button> : null
+                <PrimaryButton type="button" line={false}
+                               isPrimary={true}
+                               callback={acceptCallback}
+                               title={acceptLabel}>
+                </PrimaryButton> : null
             }
             {
               cancelCallback && cancelLabel ?
-              <button type="button" className="btn cancel-button" onClick={cancelCallback}>
-                {cancelLabel}
-              </button> : null
+              <PrimaryButton type="button" line={false}
+                             callback={cancelCallback}
+                             isPrimary={false}
+                             title={cancelLabel}>
+              </PrimaryButton> : null
             }
           </div>
         </Modal>

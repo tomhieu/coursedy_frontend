@@ -12,10 +12,11 @@ import FormField from "components/Core/FormField";
 
 export const renderField = ({input, label, placeholder, type = 'text', disabled = false, customClassName, meta: {touched, error, warning}}) => (
   <div className='full-width-input-wrapper'>
-    <input {...input} placeholder={placeholder ? placeholder : ''} type={type} disabled={disabled}
-           className={customClassName}/>
     {
-      type === 'checkbox' ? <span className="custom-control-description">{label}</span> : null
+      touched && error ? <input {...input} placeholder={placeholder ? placeholder : ''} type={type} disabled={disabled}
+                                className={customClassName + ' error'}/> :
+        <input {...input} placeholder={placeholder ? placeholder : ''} type={type} disabled={disabled}
+               className={customClassName}/>
     }
     {touched && ((error && <span className='input-errors'>{error}</span>) || (warning && <span>{warning}</span>))}
   </div>
@@ -35,8 +36,12 @@ export const renderCheckBoxField = ({input, label, placeholder, type = 'text', d
 
 export const renderTextAreaField = ({input, label, placeholder, type, disabled = false, meta: {touched, error, warning}}) => (
   <div className='full-width-input-wrapper'>
-    <textarea {...input} placeholder={placeholder ? placeholder : ''} type={type} disabled={disabled}
-              className='form-control' rows={6}/>
+    {
+      touched && error ? <textarea {...input} placeholder={placeholder ? placeholder : ''} type={type} disabled={disabled}
+                                   className='form-control error' rows={6}/> :
+        <textarea {...input} placeholder={placeholder ? placeholder : ''} type={type} disabled={disabled}
+                  className='form-control' rows={6}/>
+    }
     {touched && ((error && <span className='input-errors'>{error}</span>) || (warning && <span>{warning}</span>))}
   </div>
 )

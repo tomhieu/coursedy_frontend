@@ -7,6 +7,7 @@ import CourseFormItem from "./CourseFormItem";
 import SelectionTeachingDay from "./SelectionTeachingDay";
 import CourseCategory from "./CourseCategory";
 import CourseFeeComponent from "./CourseFeeComponent";
+import PrimaryButton from "../../Core/PrimaryButton/PrimaryButton";
 
 class CourseForm extends Component {
 
@@ -136,10 +137,12 @@ class CourseForm extends Component {
             !editMode ? (
               <div className="row">
                 <div className="col-md-12 col-sm-12">
-                  <button type="submit" className="btn btn-primary btn-link-dark signin-btn mr-10"
-                          disabled={(pristine || submitting) && courseData}>
-                    {this.context.t("save_course")}
-                  </button>
+                  <PrimaryButton isPrimary={true} line={false}
+                                 type="submit"
+                                 customClasses="mr-10"
+                                 disabled={(pristine || submitting) && courseData}
+                                 title={this.context.t("save_course")}>
+                  </PrimaryButton>
                 </div>
               </div>
             ) : ''

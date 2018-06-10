@@ -74,7 +74,7 @@ class Header extends Component {
                 SecurityUtils.isAuthenticated() ? (
                   <li className="nav-item">
                     <PrimaryButton callback={this.openDashboard.bind(this, dashboardUrl)}
-                                   isPrimary={false}
+                                   round={true}
                                    title={this.context.t('dashboard')}>
                       <span className="nav-btn"> <i className="fa fa-user"></i> &nbsp; {this.context.t('dashboard')}</span>
                     </PrimaryButton>
@@ -85,13 +85,16 @@ class Header extends Component {
                 SecurityUtils.isAuthenticated() ? (
                   <li className="nav-item">
                     <PrimaryButton callback={this.props.signOut.bind(this)}
-                                   isPrimary={false} title={this.context.t('signout')}>
+                                   round={true}
+                                   title={this.context.t('signout')}>
                       <span className="nav-btn"> <i className="fa fa-sign-out"></i> &nbsp; </span>
                     </PrimaryButton>
                   </li>
                 ) : (
                   <li className="nav-item">
-                    <PrimaryButton callback={this.login.bind(this)} isPrimary={false} title={this.context.t('login')}>
+                    <PrimaryButton callback={this.login.bind(this)}
+                                   round={true}
+                                   title={this.context.t('login')}>
                       <span className="nav-btn"> <i className="fa  fa-sign-in"></i> &nbsp;
                         <span className="hidden-navbtn"> | {this.context.t('register')} </span>
                       </span>

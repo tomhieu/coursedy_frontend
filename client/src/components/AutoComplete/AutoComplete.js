@@ -21,7 +21,7 @@ class AutoComplete extends Component {
   }
 
   handleClickOutside(event) {
-    if (this.autoCompleteWrapper && !this.autoCompleteWrapper.contains(event.target)) {
+    if (this.autoCompleteWrapper && !this.autoCompleteWrapper.contains(event.target) && this.props.closeSuggestion) {
       this.props.closeSuggestion();
     }
   }

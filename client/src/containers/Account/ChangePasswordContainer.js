@@ -8,6 +8,7 @@ import cssModules from 'react-css-modules';
 import * as AccountActions from "../../actions/AccountActionCreator";
 import {validate} from '../../validations/ChangePasswordFormValidator'
 import Notice from "components/PopupMessage/Notice";
+import PrimaryButton from "../../components/Core/PrimaryButton/PrimaryButton";
 
 class ChangePasswordContainer extends Component {
   updatePassword({current_password, password, password_confirmation}) {
@@ -46,7 +47,10 @@ class ChangePasswordContainer extends Component {
             </div>
 
             <div className='form-group'>
-              <button type="submit" className="mt-15 btn-link-dark">{this.context.t("account_tutor_new_password_btn")}</button>
+              <PrimaryButton isPrimary={true} line={false}
+                             type="submit"
+                             title={this.context.t("account_tutor_new_password_btn")}>
+              </PrimaryButton>
             </div>
           </form>
           <Notice title={this.context.t("update_password")}

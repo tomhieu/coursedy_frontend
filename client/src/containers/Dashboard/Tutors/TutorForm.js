@@ -7,6 +7,7 @@ import {connect} from "react-redux";
 import cssModules from "react-css-modules";
 import {TutorAccountActions} from '../../../actions/index'
 import {validate} from '../../../validations/TutorFormValidation'
+import PrimaryButton from "../../../components/Core/PrimaryButton/PrimaryButton";
 
 class TutorForm extends Component {
   constructor(props) {
@@ -47,11 +48,16 @@ class TutorForm extends Component {
             </div>
 
             <div className='form-group'>
-              <button type="submit" className="btn btn-primary mr-10">{this.context.t("save")}</button>
-              <button type="button" className="btn btn-default btn-small margin-left-10 cancel-button"
-                      onClick={this.props.cancel}>
-                {this.context.t("cancel")}
-              </button>
+              <PrimaryButton isPrimary={true} line={false}
+                             type="submit"
+                             title={this.context.t("save")}>
+              </PrimaryButton>
+              <PrimaryButton isPrimary={false} line={true}
+                             type="button"
+                             customClasses="ml-15"
+                             callback={this.props.cancel}
+                             title={this.context.t("cancel")}>
+              </PrimaryButton>
             </div>
           </form>
         </div>

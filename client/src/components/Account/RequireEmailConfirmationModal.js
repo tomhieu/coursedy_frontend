@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {Modal, ModalHeader, Button, ModalBody, ModalFooter} from 'reactstrap';
+import PrimaryButton from "../Core/PrimaryButton/PrimaryButton";
 
 class RequireEmailConfirmationModal extends Component {
   render(){
@@ -12,7 +13,8 @@ class RequireEmailConfirmationModal extends Component {
           <p> {this.context.t('update_email_successfully')} </p>
         </ModalBody>
         <ModalFooter>
-          <Button className='btn-link-dark' onClick={this.props.close}>{this.context.t('close')}</Button>
+          <PrimaryButton type="button" callback={this.props.close} title={this.context.t('close')}>
+          </PrimaryButton>
         </ModalFooter>
       </Modal>
     )
