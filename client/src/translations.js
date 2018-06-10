@@ -444,18 +444,24 @@ export const translations = {
     "our-story-title": "Câu chuyện",
     "our-story-description": "Học tập trực tuyến đang là xu hướng của tương lai và hiện tại có rất nhiều ứng dụng học trực tuyến nhưng còn nhiều hạn chế, không có tính tương tác trực tiếp giữa người dạy và người học, đa phần chỉ dạy qua video, người học hoàn toàn thụ động trong việc học. Và Coursedy ra đời để giải quyết những hạn chế của các ứng dụng hoc trực tuyến hiện tại. Chúng tôi cung cấp nền tảng học trực tuyến có tính tương tác trực tiếp giữa người dạy và người học.",
     "product-introduce": "Giới thiệu sản phẩm",
-    "product-introduce-description": "Coursedy là nền tảng học trực tuyến có tính tương tác trực tiếp giữa người dạy và người học đầu tiên tại Việt Nam mang công nghệ video streaming hiện đại cho phép người dạy có thể tạo lớp học, chia sẻ tài liệu. Người học có thể tham gia vào lớp học mọi lúc mọi nơi, có thể hỏi và trao đổi trực tiếp người dạy.",
+    "product-introduce-description": "Coursedy là nền tảng học trực tuyến có tính tương tác trực tiếp giữa người dạy và người học đầu tiên tại Việt Nam man công nghệ video streaming hiện đại cho phép người dạy có thể tạo lớp học, chia sẻ tài liệu. Người học có thể tham gia vào lớp học mọi lúc mọi nơi, có thể hỏi và trao đổi trực tiếp người dạy.",
     "whoweare-label": "Who we are?",
     "whoweare-description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex.",
     "whatwedo-label": "What we do?",
     "whatwedo-description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex.",
 
     "coursedy_fqa": "FQA",
-    "fqa_still_looking_for": "Still cannot find what you’re looking for?",
-    "contact_the_team": "Contact the team",
+    "fqa_still_looking_for": "Nếu bạn vẫn chưa tìm thấy điều bạn muốn",
+    "contact_the_team": "Liên hệ chúng tôi",
+    "fqa": [
+      {question: 'Tôi có thể huỷ khoá học giữa chừng hay không? Nếu có thì tiền có được hoàn lại phần nào hay không?', answer: 'Simply, select your destination. Then use the filters to find which Local Insider fits what you’re looking for. Send out booking requests to those you like. After a short while you should get responses as to whether your requests have been accepted or not. You won\'t wait longer than 48 hours to receive a confirmation and proceed through to the fun part, payment... (If none of your chosen Local Insiders say yes then we will pick one for you, we promise we\'ll pick a good one based on what you want.)'},
+      {question: 'Thời hạn sử dụng khoá học đã đăng kí là bao lâu?', answer: 'We ask that payments be made upfront. This is because we operate in developing countries so for your Local Insider your experience is much more than just a little bit of extra cash. We want to ensure that as soon as your tour is completed and a review is left our locals partner gets is paid what they have earnt.'},
+    ],
   },
   "en": {
     "home_page": "Home",
     "find_tutors": "Find Tutors",
+    "fqa_still_looking_for": "Still cannot find what you’re looking for?",
+    "contact_the_team": "Contact the team",
   }
 }
