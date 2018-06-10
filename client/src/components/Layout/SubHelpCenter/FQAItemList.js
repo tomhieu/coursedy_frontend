@@ -36,7 +36,7 @@ class FQAItem extends Component {
       <div className="fqa-item">
         <div className="fqa-item__question" data-toggle="collapse" data-target={`#collapse${id}`} aria-expanded="false" aria-controls={`collapse${id}`}>
           <h4>{item.question}</h4>
-          <img src="/icons/icon-blockquote-blue.svg" className="icon-blockquote" style={{"width": "18px"}} />
+          <img src="/icons/icon-blockquote-orange.svg" className="icon-blockquote" style={{"width": "18px"}} />
           <img className="icon-fa icon-fa-arrow-down" src="/icons/icon-arrow-down.svg" />
           <img className="icon-fa icon-fa-arrow-up" src="/icons/icon-arrow-up.svg" />
         </div>
