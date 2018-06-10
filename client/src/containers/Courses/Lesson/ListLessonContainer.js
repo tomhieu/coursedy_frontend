@@ -7,6 +7,7 @@ import styles from "./ListLesson.module.scss";
 import {addLesson, createCourse, deleteLesson, editLessonDetail} from "../../../actions/CourseFormActionCreator";
 import {reduxForm} from "redux-form";
 import {Link} from "react-router-dom";
+import PrimaryButton from "../../../components/Core/PrimaryButton/PrimaryButton";
 
 class ListLessonContainer extends Component {
     constructor(props) {
@@ -46,7 +47,8 @@ class ListLessonContainer extends Component {
         return (
             <div className="d-flex flex-vertical">
                 <div className="d-flex flex-auto">
-                    <button className="btn btn-primary" onClick={this.addNewLesson.bind(this)}>{this.context.t('lesson_add_more')}</button>
+                    <PrimaryButton type="button" callback={this.addNewLesson.bind(this)} title={this.context.t('lesson_add_more')}>
+                    </PrimaryButton>
                 </div>
                 <div className="d-flex flex-horizontal flex-wrap mt-20 ">
                     <div className="index-lesson-col lesson-col-no-text">
@@ -74,10 +76,8 @@ class ListLessonContainer extends Component {
                 <div className="d-flex flex-horizontal">
                     <Link to="/dashboard/courses/new" className="btn btn-link-dark signin-btn mr-10">{this.context.t('course_modification')}</Link>
                     {lessonList.length > 0 ?
-                        <button type="button" className="btn btn-primary btn-link-dark signin-btn" onClick={this.saveCourseWithLesson.bind(this)}>
-                        {this.context.t("save_course")}
-                        </button>
-                        : null
+                          <PrimaryButton type="button" callback={this.saveCourseWithLesson.bind(this)} title={this.context.t("save_course")}>
+                          </PrimaryButton> : null
                     }
                 </div>
 

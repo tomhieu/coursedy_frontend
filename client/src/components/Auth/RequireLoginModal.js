@@ -4,6 +4,7 @@ import cssModules from 'react-css-modules';
 import {Button, Modal} from 'react-bootstrap';
 import {validate} from "../../../validations/CommonValidator";
 import * as Actions from "../../../actions/PublicCourseActionCreator";
+import PrimaryButton from "../Core/PrimaryButton/PrimaryButton";
 
 
 /**
@@ -39,8 +40,14 @@ class RequireLoginModal extends Component {
           {this.context.t('course_enroll_require_login_message')}
         </Modal.Body>
         <Modal.Footer>
-          <Button onClick={this.redirectToLogin.bind(this)}>{this.context.t('ok')}</Button>
-          <Button onClick={this.hideRequireLoginModal.bind(this)}>{this.context.t('close')}</Button>
+          <PrimaryButton type="button" customClasses="button accept-button"
+                         callback={this.redirectToLogin.bind(this)}
+                         title={this.context.t('ok')}>
+          </PrimaryButton>
+          <PrimaryButton type="button" customClasses="button accept-button"
+                         callback={this.hideRequireLoginModal.bind(this)}
+                         title={this.context.t('close')}>
+          </PrimaryButton>
         </Modal.Footer>
       </Modal>
     )

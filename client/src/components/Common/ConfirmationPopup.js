@@ -1,5 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import {Modal, ModalHeader, Button, ModalBody, ModalFooter} from 'reactstrap';
+import PrimaryButton from "../Core/PrimaryButton/PrimaryButton";
 
 class ConfirmationPopup extends Component {
   render() {
@@ -12,8 +13,10 @@ class ConfirmationPopup extends Component {
           <p> {this.props.message} </p>
         </ModalBody>
         <ModalFooter>
-          <Button className='btn-link-dark' onClick={this.props.confirm}>{this.context.t('confirm_delete')}</Button>
-          <Button className='btn-link-dark cancel-button' onClick={this.props.closePopup}>{this.context.t('close')}</Button>
+          <PrimaryButton type="button" customClasses="button accept-button" callback={this.props.confirm} title={this.context.t('confirm_delete')}>
+          </PrimaryButton>
+          <PrimaryButton type="button" customClasses="button cancel-button" callback={this.props.closePopup} title={this.context.t('close')}>
+          </PrimaryButton>
         </ModalFooter>
       </Modal>
     )

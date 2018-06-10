@@ -16,6 +16,7 @@ import {
 } from "../../../actions/AsyncActionCreator";
 import Network from "utils/network";
 import {TT} from "utils/locale";
+import PrimaryButton from "../../../components/Core/PrimaryButton/PrimaryButton";
 
 class LessonDetailFormContainer extends Component {
   addDocumentForLesson(document) {
@@ -93,10 +94,8 @@ class LessonDetailFormContainer extends Component {
               </div>
             </div>
             <div className="col-md-12 col-sm-12">
-              <button type="button" className="btn btn-primary"
-                      onClick={() => this.onDeleteLesson(lesson.id)}>
-                {this.context.t('lesson_delete_btn')}
-              </button>
+              <PrimaryButton type="button" callback={this.onDeleteLesson.bind(this, lesson.id)} title={this.context.t('lesson_delete_btn')}>
+              </PrimaryButton>
             </div>
           </div>
         </div>
