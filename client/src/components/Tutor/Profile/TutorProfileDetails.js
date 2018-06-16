@@ -1,8 +1,14 @@
 import React, {Component} from 'react';
 import * as Actions from '../../../actions/TutorProfileActionCreator'
-import InlineEditFormComponent from '../../Core/InlineEditFormField'
 import cssModules from 'react-css-modules';
 import styles from './TutorProfileDetails.module.scss';
+import ChangePasswordContainer from "../../../containers/Account/ChangePasswordContainer";
+import PersonInfoContainer from "../../../containers/Account/PersonInfoContainer";
+import UserInfo from "../../Account/UserInfo";
+import {connect} from "react-redux";
+import LoadingMask from "../../LoadingMask/LoadingMask";
+import * as AccountActions from "../../../actions/AccountActionCreator";
+import * as TutorAccountActions from "../../../actions/Tutor/Account/TutorAccountActionCreator";
 
 
 class TutorProfileDetails extends Component {
@@ -10,77 +16,36 @@ class TutorProfileDetails extends Component {
     this.props.dispatch(Actions.fetchTutor())
   }
 
+  hideProfileEditForm(){
+    this.props.hideAccountEditForm();
+  }
+
+  showProfileEditForm(){
+    this.props.showAccountEditForm();
+  }
+
   render() {
-    let {tutor} = this.props
+    const {editProfileMode, user} = this.props
 
     return (
-      <div className=" content-section module row">
-        <div className="col-sm-4 col-xs-12 single-teacher">
-          <div className="shadow">
-            <div className="clearfix"></div>
-            <h3>{this.context.t('speciality')}</h3>
-            <InlineEditFormComponent
-              onSubmit={this.props.onUpdate}
-              displayStyle='dart-text'
-              content={tutor.speciality ? tutor.speciality : ''}
-              name='speciality'
-            />
-            <h3>Availability</h3>
-            <ul className="no-bullet">
-              <li>Sunday - Saturday: Only Appointment</li>
-              <li>Monday - Friday: 9:00 - 15:00</li>
-            </ul>
-          </div>
+      <div className="row">
+        <div className="col-md-12 col-xs-12 col-sm-12 ">
+          <LoadingMask placeholderId="userAccountPlaceholder"
+                       normalPlaceholder={false}
+                       facebookPlaceholder={true}
+                       loaderType="USER_ACCOUNT_PLACEHOLDER">
+            <div className="dashboard-content-section">
+              {
+                editProfileMode ?
+                  <PersonInfoContainer cancel={this.hideProfileEditForm.bind(this)} /> :
+                  <UserInfo user={user} showEditForm={this.showProfileEditForm.bind(this)}/>
+              }
+            </div>
+          </LoadingMask>
         </div>
-
-        <div className="col-sm-8 col-xs-12 columns">
-          <InlineEditFormComponent
-            onSubmit={this.props.onUpdate}
-            displayStyle=''
-            dispplayComponent='h2'
-            content={tutor.name ? tutor.name : ''}
-            name='name'
-          />
-
-          <InlineEditFormComponent
-            onSubmit={this.props.onUpdate}
-            displayStyle='tutor-title dart-text inline-block'
-            dispplayComponent='b'
-            content={tutor.title ? tutor.title : ''}
-            name='title'
-          />
-
-          <InlineEditFormComponent
-            onSubmit={this.props.onUpdate}
-            displayStyle=''
-            dispplayComponent='p'
-            editComponent='textarea'
-            content={tutor.description ? tutor.description : ''}
-            name='description'
-          />
-
-          <div className="appiontment-section">
-            <h3>Expertise</h3>
-            <label>Impressive Teaching Method</label>
-            <div className="secondary progress" role="progressbar" aria-valuenow="25" aria-valuemin="0"
-                 aria-valuetext="25 percent" aria-valuemax="100">
-              <div className="progress-meter ninty-five"></div>
-            </div>
-
-            <label>Communication Skills</label>
-            <div className="success progress">
-              <div className="progress-meter eighty-five"></div>
-            </div>
-
-            <label>Experience</label>
-            <div className="warning progress">
-              <div className="progress-meter seventy-five"></div>
-            </div>
-
-            <label>Grooming</label>
-            <div className="alert progress">
-              <div className="progress-meter sixty-five"></div>
-            </div>
+        <div className="col-md-12 col-xs-12 col-sm-12">
+          <div className="dashboard-content-section">
+            <ChangePasswordContainer/>
           </div>
         </div>
       </div>
@@ -96,4 +61,18 @@ TutorProfileDetails.propTypes = {
   onUpdate: React.PropTypes.func.isRequired
 };
 
-export default cssModules(TutorProfileDetails, styles);
+const mapStateToProps = (state) => ({
+  user: state.session.currentUser,
+  editProfileMode: state.AccountReducer.editProfileMode
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  showAccountEditForm: () => dispatch(AccountActions.showAccountEditForm()),
+  hideAccountEditForm: () => dispatch(AccountActions.hideAccountEditForm()),
+  hideEmailChangedPopup: () => dispatch(AccountActions.hideEmailChangedPopup()),
+  showEmailChangedPopup: () => dispatch(AccountActions.showEmailChangedPopup())
+})
+
+export default connect(
+  mapStateToProps, mapDispatchToProps
+)(cssModules(TutorProfileDetails, styles));

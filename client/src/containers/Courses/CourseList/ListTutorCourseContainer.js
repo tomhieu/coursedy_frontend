@@ -12,7 +12,12 @@ import {DELETE_COURSE} from "../../../actions/AsyncActionCreator";
 class ListTutorCourseContainer extends Component {
 
   componentDidMount() {
-    this.props.fetchListTutorCourse();
+    const {status} = this.props;
+    if (status === 'active') {
+      this.props.fetchListTutorActiveCourse();
+    } else {
+      this.props.fetchListTutorCourse();
+    }
   }
 
   addNewCourses() {
@@ -24,6 +29,7 @@ class ListTutorCourseContainer extends Component {
   }
 
   render() {
+    const {status} = this.props;
     return (
       <div className="d-flex flex-vertical flex-auto">
         <div className="d-flex flex-auto">
@@ -34,6 +40,7 @@ class ListTutorCourseContainer extends Component {
               displayMode="grid"
               itemClass='col-xs-12 col-sm-6 col-md-4 mb-15'
               isPublic={false}
+              courseStatus={status}
             />
           </LoadingMask>
         </div>
@@ -57,6 +64,11 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => ({
   fetchListTutorCourse: () => dispatch({
+    type: FETCH_TUTOR_COURSES,
+    payload: Network().get('courses'),
+    meta: 'tutorCourseListPlaceholder'
+  }),
+  fetchListTutorActiveCourse: () => dispatch({
     type: FETCH_TUTOR_COURSES,
     payload: Network().get('courses'),
     meta: 'tutorCourseListPlaceholder'

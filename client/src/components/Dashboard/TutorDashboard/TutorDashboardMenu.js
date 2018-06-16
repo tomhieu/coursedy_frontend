@@ -21,7 +21,7 @@ class TutorDashboardMenu extends Component {
                   <Link to={'/dashboard/account'}>{this.context.t('my_profile')}</Link>
                 </li>
                 <li>
-                  <Link to={'/dashboard/profile'}>{this.context.t('my_education')}</Link>
+                  <Link to={'/dashboard/profile'}>{this.context.t('account_setting')}</Link>
                 </li>
               </ul>
             </div>
@@ -40,6 +40,9 @@ class TutorDashboardMenu extends Component {
               <ul className="dashboard-links">
                 <li>
                   <Link to={'/dashboard/courses/new'}>{this.context.t('course_add_btn')}</Link>
+                </li>
+                <li>
+                  <Link to={'/dashboard/courses/active'}>{this.context.t('course_active_list')}</Link>
                 </li>
                 <li>
                   <Link to={'/dashboard/courses/list'}>{this.context.t('course_list')}</Link>

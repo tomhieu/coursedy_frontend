@@ -12,6 +12,13 @@ export const fetchCurrentUser = () => {
   }
 };
 
+export const fetchNotificationOfCurrentUser = () => {
+  return {
+    type: types.FETCH_NOTIFICATION_USER,
+    payload: Network().get('notification')
+  }
+};
+
 export const checkRole = (authorizedRoles, unauthorizedPath) => {
   return dispatch => {
     fetchCurrentUser(dispatch, (currentUser) => {

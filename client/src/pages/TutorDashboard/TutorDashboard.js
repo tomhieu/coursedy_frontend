@@ -13,6 +13,7 @@ import ListLessonContainer from "../../containers/Courses/Lesson/ListLessonConta
 import ListTutorCourseContainer from "../../containers/Courses/CourseList/ListTutorCourseContainer";
 import TutorAccount from "../../containers/Account/Tutor/TutorAccountContainer";
 import * as sessionActions from '../../actions/SessionActionCreator'
+import {CourseStatus} from "../../constants/CourseStatus";
 
 class TutorDashboard extends RoleAuthorization {
   render() {
@@ -29,12 +30,13 @@ class TutorDashboard extends RoleAuthorization {
           <div className="col-xs-12 col-sm-9 d-flex dashboard-content">
             <div className="full-width daskboard-container">
               <switch>
-                <Route exact path="/dashboard/account" component={TutorAccount}/>
-                <Route exact path="/dashboard/courses/list" component={ListTutorCourseContainer}/>
+                <Route exact path="/dashboard/profile" component={TutorAccount}/>
+                <Route exact path="/dashboard/courses/active" render={props => <ListTutorCourseContainer status={CourseStatus.ACTIVE} {...props}/>} />
+                <Route exact path="/dashboard/courses/list" render={props => <ListTutorCourseContainer status={CourseStatus.INACTIVE} {...props}/>} />
                 <Route exact path="/dashboard/courses/list-lesson" component={ListLessonContainer}/>
                 <Route exact path="/dashboard/courses/new" component={CourseFormContainer}/>
                 <Route exact path="/dashboard/courses/detail/:id" component={CourseFormContainer}/>
-                <Route exact path="/dashboard/profile" component={TutorProfileDetailsContainer}/>
+                <Route exact path="/dashboard/account" component={TutorProfileDetailsContainer}/>
               </switch>
             </div>
           </div>

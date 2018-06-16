@@ -1,5 +1,5 @@
-import Header from './Layout/Header';
-import Footer from './Layout/Footer';
+import Header from './Header/Header';
+import Footer from './Footer/Footer';
 import Layout from './Layout/Layout';
 import * as CoreComponent from "./Core"
 import LoginForm from './Auth/LoginForm';

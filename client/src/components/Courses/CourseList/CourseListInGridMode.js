@@ -14,7 +14,7 @@ class CourseListInGridMode extends Component {
   render() {
     const {
       displayMode,
-      itemClass, isPublic
+      itemClass, isPublic, courseStatus
     } = this.props;
 
     return (
@@ -25,6 +25,7 @@ class CourseListInGridMode extends Component {
             <CourseItem item={item}
                         displayMode={displayMode}
                         isPublic={isPublic}
+                        courseStatus={courseStatus}
             />
           </div>
         ))

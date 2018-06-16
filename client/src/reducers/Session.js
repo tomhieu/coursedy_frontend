@@ -7,7 +7,8 @@ const session = (state = {
   currentUser: null,
   fetchingUser: false,
   userBalance: 0,
-  errors: []
+  errors: [],
+  notifications: []
 }, action) => {
   switch (action.type) {
     case types.FETCH_CURRENT_USER + asyncActs.FULFILLED:
@@ -30,6 +31,8 @@ const session = (state = {
       const errorMessages = (action.payload && Array.isArray(action.payload) && action.payload.length > 0) ?
         errors : [TT.t('fetch_user_balance_fail')];
       return {...state, userBalance: 0, errors: errorMessages, fetchingUser: false }
+    case types.FETCH_NOTIFICATION_USER + asyncActs.FULFILLED:
+      return { ...state, notifications: action.payload}
     default:
       return state;
   }

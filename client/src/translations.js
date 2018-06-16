@@ -275,6 +275,7 @@ export const translations = {
         Public course detail
     */
     "course_list": "Danh sách khóa học",
+    "course_active_list": "Danh sách khóa học đang học",
     "course_info": "Thông tin khóa học",
     "course_detail": "Chi tiết khóa học",
     "tutor_info": "Thông tin giáo viên",
@@ -413,7 +414,7 @@ export const translations = {
 
     "my_account": "Tài khoản",
     "my_profile": "Thông tin người dùng",
-    "my_education": "Chuyên môn",
+    "account_setting": "Thiết lập tài khoản",
     "my_balance": "Số dư tài khoản",
 
     "my_courses": "Khóa học",
@@ -457,6 +458,11 @@ export const translations = {
       {question: 'Tôi có thể huỷ khoá học giữa chừng hay không? Nếu có thì tiền có được hoàn lại phần nào hay không?', answer: 'Simply, select your destination. Then use the filters to find which Local Insider fits what you’re looking for. Send out booking requests to those you like. After a short while you should get responses as to whether your requests have been accepted or not. You won\'t wait longer than 48 hours to receive a confirmation and proceed through to the fun part, payment... (If none of your chosen Local Insiders say yes then we will pick one for you, we promise we\'ll pick a good one based on what you want.)'},
       {question: 'Thời hạn sử dụng khoá học đã đăng kí là bao lâu?', answer: 'We ask that payments be made upfront. This is because we operate in developing countries so for your Local Insider your experience is much more than just a little bit of extra cash. We want to ensure that as soon as your tour is completed and a review is left our locals partner gets is paid what they have earnt.'},
     ],
+    "user_navigation_basic_info": "Thông tin cá nhân",
+    "user_navigation_your_course": "Khoá học",
+    "user_navigation_sign_out": "Đăng xuất",
+    "no_notification_found": "Hiện tại không có thông báo nào",
+    "course_progress": "{progress}% hoàn thành"
   },
   "en": {
     "home_page": "Home",

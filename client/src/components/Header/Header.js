@@ -8,6 +8,8 @@ import {SecurityUtils} from "utils/SecurityUtils";
 import {TRIGGER_STICKY_HEADER_AT} from "constants/Layout";
 import PrimaryButton from "../Core/PrimaryButton/PrimaryButton";
 import {globalHistory} from '../../utils/globalHistory'
+import Notification from "./Notification";
+import UserNavigation from "./UserNavigation";
 
 class Header extends Component {
   componentWillMount() {
@@ -73,22 +75,14 @@ class Header extends Component {
               {
                 SecurityUtils.isAuthenticated() ? (
                   <li className="nav-item">
-                    <PrimaryButton callback={this.openDashboard.bind(this, dashboardUrl)}
-                                   round={true}
-                                   title={this.context.t('dashboard')}>
-                      <span className="nav-btn"> <i className="fa fa-user"></i> &nbsp; {this.context.t('dashboard')}</span>
-                    </PrimaryButton>
+                    <Notification {...this.props}></Notification>
                   </li>
                 ) : null
               }
               {
                 SecurityUtils.isAuthenticated() ? (
                   <li className="nav-item">
-                    <PrimaryButton callback={this.props.signOut.bind(this)}
-                                   round={true}
-                                   title={this.context.t('signout')}>
-                      <span className="nav-btn"> <i className="fa fa-sign-out"></i> &nbsp; </span>
-                    </PrimaryButton>
+                    <UserNavigation {...this.props}></UserNavigation>
                   </li>
                 ) : (
                   <li className="nav-item">

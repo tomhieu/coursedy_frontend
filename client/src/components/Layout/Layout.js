@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import Header from './Header'
-import Footer from './Footer'
+import Header from '../Header/Header'
+import Footer from '../Footer/Footer'
 import I18n from "redux-i18n"
 import {translations} from "../../translations"
 import {TT} from '../../utils/locale'

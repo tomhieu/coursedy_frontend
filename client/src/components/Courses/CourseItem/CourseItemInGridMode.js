@@ -5,6 +5,8 @@ import {LinkContainer} from 'react-router-bootstrap'
 import Image from 'react-graceful-image';
 import RatingItem from '../../Rating/index'
 import ObjectUtils from "../../../utils/ObjectUtils"
+import {CourseStatus} from "../../../constants/CourseStatus";
+import CoursedyProgressBar from "../../Core/CoursedyProgressBar/CoursedyProgressBar";
 
 /**
  * @Course group item template 2
@@ -18,7 +20,7 @@ class CourseItemInGridMode extends Component {
   render() {
     const {
       item,
-      isPublic
+      isPublic, courseStatus
     } = this.props;
 
     return (
@@ -52,12 +54,20 @@ class CourseItemInGridMode extends Component {
                   ObjectUtils.currencyFormat(item.tuition_fee || 0, item.currency || 'VND')
               }
             </div>
+
           </div>
         </LinkContainer>
-        <div className="course-item-bottom clearfix">
-          <div><i className="fa fa-folder-open-o"/><span className="block"> {item.category.name} </span></div>
-          <div><i className="fa fa-pencil-square-o"/><span className="block"> {this.context.t('lesson_count', {lessons: item.lesson_count})}</span></div>
-        </div>
+        {
+          courseStatus === CourseStatus.ACTIVE ?
+            <div className={styles.courseProgress}>
+              <CoursedyProgressBar progress={30}></CoursedyProgressBar>
+              <span>{this.context.t('course_progress', {progress: 30})}</span>
+            </div>:
+            <div className="course-item-bottom clearfix">
+              <div><i className="fa fa-folder-open-o"/><span className="block"> {item.category.name} </span></div>
+              <div><i className="fa fa-pencil-square-o"/><span className="block"> {this.context.t('lesson_count', {lessons: item.lesson_count})}</span></div>
+            </div>
+        }
       </div>
     )
   }

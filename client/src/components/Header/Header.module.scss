@@ -1,0 +1,33 @@
+@import "../../../styles/global_style";
+
+.notificationNumber {
+  position: absolute;
+  top: -5px;
+  right: -3px;
+  background-color: $color-red;
+  width: 15px;
+  height: 15px;
+  border-radius: 20px;
+  color: $white-color;
+  font-size: 11px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.userAvatar {
+  width: 24px;
+  height: 24px;
+  border-radius: 24px;
+  cursor: pointer;
+  img {
+    border-radius: 50%;
+  }
+}
+
+.notificationContainer {
+  position: relative;
+  cursor: pointer;
+  margin-top: 8px;
+}

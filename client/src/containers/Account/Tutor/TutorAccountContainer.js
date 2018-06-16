@@ -23,16 +23,8 @@ class TutorAccount extends Component {
     this.props.loadDegrees();
   }
 
-  showProfileEditForm(){
-    this.props.showAccountEditForm();
-  }
-
   showEducationEditForm(){
     this.props.showEducationEditForm();
-  }
-
-  hideProfileEditForm(){
-    this.props.hideAccountEditForm();
   }
 
   hideEducationEditForm(){
@@ -52,21 +44,6 @@ class TutorAccount extends Component {
     const {editProfileMode, editEducationMode} = this.props
     return (
       <div className="row">
-        <div className="col-md-12 col-xs-12 col-sm-12 ">
-          <LoadingMask placeholderId="userAccountPlaceholder"
-                       normalPlaceholder={false}
-                       facebookPlaceholder={true}
-                       loaderType="USER_ACCOUNT_PLACEHOLDER">
-            <div className="dashboard-content-section">
-                {
-                  editProfileMode ?
-                    <PersonInfoContainer cancel={this.hideProfileEditForm.bind(this)} /> :
-                    <UserInfo user={user} showEditForm={this.showProfileEditForm.bind(this)}/>
-                }
-            </div>
-          </LoadingMask>
-        </div>
-
         <div className="col-md-12 col-xs-12 col-sm-12">
           <LoadingMask placeholderId="userEducationPlaceholder"
                        normalPlaceholder={false}
@@ -105,11 +82,6 @@ class TutorAccount extends Component {
           </LoadingMask>
         </div>
 
-        <div className="col-md-12 col-xs-12 col-sm-12">
-          <div className="dashboard-content-section">
-            <ChangePasswordContainer/>
-          </div>
-        </div>
         <div className="col-md-12 col-xs-12 col-sm-12">
           <RequireEmailConfirmationModal close={this.closeEmailConfirmationModal.bind(this)} show={this.props.showEmailConfirmationModal}/>
         </div>
