@@ -1,0 +1,35 @@
+@import "../../../styles/global_style";
+
+.terms-of-use {
+  background-color: $color-bg-neutral;
+  padding: 60px 0 70px;
+
+  &__heading {
+    .terms-of-use {
+      &__title {
+        color: $black-color;
+        text-align: center;
+      }
+    }
+  }
+
+  &__main {
+    .terms-of-use {
+      &__block {
+        ul {
+          margin-right: 0;
+          padding: 0 30px;
+          text-align: left;
+
+          li {
+            list-style-type: disc;
+
+            li {
+              list-style-type: circle;
+            }
+          }
+        }
+      }
+    }
+  }
+}

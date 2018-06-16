@@ -463,6 +463,45 @@ export const translations = {
     "user_navigation_sign_out": "Đăng xuất",
     "no_notification_found": "Hiện tại không có thông báo nào",
     "course_progress": "{progress}% hoàn thành"
+    "terms_title": "Quy Định",
+    "terms_latest_update": "Cập nhật 16/06/2018",
+    "terms_description": "Khi quý khách truy cập vào trang web của chúng tôi có nghĩa là quý khách đồng ý với các điều khoản này. Trang web có quyền thay đổi, chỉnh sửa, thêm hoặc lược bỏ bất kỳ phần nào trong Điều khoản và Quy định chung vào bất cứ lúc nào. Các thay đổi có hiệu lực ngay lập tức khi được đăng lên trang web mà không cần thông báo trước. Và khi quý khách tiếp tục sử dụng trang web, sau khi các thay đổi về Quy định chính sách và Điều khoản được đăng tải lên có nghĩa là quý khách chấp nhận với những thay đổi đó. Quý khách vui lòng kiểm tra thường xuyên để cập nhật những thay đổi của chúng tôi.",
+    "terms" : [
+      {
+        heading: "Quy Định Chung",
+        items: [
+          {content: "Khi giao tiếp với người dùng khác trong hệ thống dịch vụ của Coursedy không được quấy rối, chửi bới, làm phiền hay có bất kỳ hành vi thiếu văn hoá nào đối với người khác. Tuyệt đối nghiêm cấm việc xúc phạm, nhạo báng, chê bai, kỳ thị tôn giáo, giới tính, sắc tộc,... người khác dưới bất kỳ hình thức nào."},
+          {content: "Tuyệt đối nghiêm cấm mọi hành vi tuyên truyền chống phá và xuyên tạc chính quyền, thể chế chính trị, và các chính sách của nhà nước... Trường hợp phát hiện không những bị xoá tài khoản mà chúng tôi còn có thể cung cấp thông tin của người sử dụng (NSD) đó cho các cơ quan chức năng để xử lý theo pháp luật."},
+          {content: "Tuyệt đối không bàn luận về các vấn đề chính trị, kỳ thị tôn giáo, kỳ thị sắc tộc. Không có những hành vi, thái độ làm tổn hại đến uy tín của các sản phẩm, dịch vụ, khoá học trong hệ thống Coursedy dưới bất kỳ hình thức nào, phương thức nào. Mọi hành vi vi phạm sẽ bị tước bỏ mọi quyền lợi liên quan đối với tài khoản hoặc xử lý trước pháp luật nếu cần thiết."},
+        ]
+      },
+      {
+        heading: "Bản Quyền Tài Liệu Giảng Dạy",
+        items: [
+          {content: "Toàn bộ nội dung đào tạo bao gồm bài giảng slide, video,... đều thuộc quyền sở hữu trí tuệ của Coursedy và giáo viên trực tiếp làm ra."},
+          {content: "Thời gian xem tài liệu khoá học là vĩnh viễn."},
+          {content: "Học viên không được phép chia sẻ, phát tán dưới bất kỳ hình thức nào mà không có sự đồng ý của Coursedy."},
+          {
+            content: "Video, slide bài giảng, quiz được Coursedy cung cấp trực tiếp trên website, không thể download. Coursedy đảm bảo chất lượng đường truyền để học viên cảm thấy thoải mái khi học với đường truyền internet phổ thông. Mọi hành vi cố ý tải về, tấn công hệ thống nếu bị phát hiện sẽ bị xử lý theo các cấp độ sau:",
+            child_content: {
+              items: [
+                {content: "Cảnh cáo."},
+                {content: "Xoá tài khoản học viên, không hoàn lại học phí."},
+                {content: "Truy tố trước pháp luật vì hành vi xâm phạm bản quyền, và tấn công mạng."},
+              ]
+            }
+          },
+        ]
+      },
+      {
+        heading: "Về tài khoản sử dụng (TKSD)",
+        items: [
+          {content: "TKSD có trách nhiệm bảo mật thông tin tài khoản, nếu những thông tin trên bị tiết lộ dưới bất kỳ hình thức nào thì TKSD phải chấp nhận những rủi ro phát sinh."},
+          {content: "Khi phát hiện lỗi của Coursedy người sử dụng hãy thông báo cho chúng tôi qua email hoặc gọi tới tổng đài."},
+          {content: "Thực hiện quyền và trách nhiệm khác theo quy định của pháp luật Việt Nam."},
+        ]
+      }
+    ]
   },
   "en": {
     "home_page": "Home",
