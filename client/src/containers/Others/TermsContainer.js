@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import './TermOfUse.scss'
+import './Items.scss'
 import { TT } from 'utils/locale'
 
 class TermsContainer extends Component {
@@ -23,8 +24,8 @@ export default TermsContainer
 
 const TermOfUseTop = () => {
   return (
-    <div className="terms-of-use__heading">
-      <h1 className="terms-of-use__title">{TT.t('terms_title')}</h1>
+    <div className="items__heading">
+      <h1 className="items__title">{TT.t('terms_title')}</h1>
       <div className="divider"></div>
       <p><strong>{TT.t('terms_latest_update')}</strong></p>
       <p>{TT.t('terms_description')}</p>
@@ -34,31 +35,31 @@ const TermOfUseTop = () => {
 
 const TermOfUseCenter = () => {
   return (
-    <div className="terms-of-use__main">
+    <div className="items__main">
       {TT.t('terms').map((term, index) => {
-        return <TermsBlock term={term} key={index}/>
+        return <Blocks term={term} key={index}/>
       })}
     </div>
   )
 }
 
-const TermsBlock = ({term}) => {
+export const Blocks = ({term}) => {
   return (
-    <div className="terms-of-use__block">
+    <div>
       <h4>{term.heading}</h4>
-      <TermList term={term} />
-      <TermDescription term={term} />
+      <BlockList term={term} />
+      <BlockDescription term={term} />
     </div>
   )
 }
 
-const TermList = ({term}) => {
+export const BlockList = ({term}) => {
   return (
       term.items.length ? <ul>
         {term.items.map((term, index) => {
           return <li key={index}>{term.content}
             {term.child_content ?
-              <TermList term={term.child_content} />: null
+              <BlockList term={term.child_content} />: null
             }
           </li>
         })}
@@ -66,10 +67,10 @@ const TermList = ({term}) => {
   )
 }
 
-const TermDescription = ({term}) => {
+export const BlockDescription = ({term}) => {
   return (
     term.description ? <p>
-      {term.ddescription}
+      {term.description}
     </p>: null
   )
 }

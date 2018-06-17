@@ -1,0 +1,28 @@
+@import "../../../styles/global_style";
+
+.items {
+  &__heading {
+    .items {
+      &__title {
+        color: $black-color;
+        text-align: center;
+      }
+    }
+  }
+
+  &__main {
+    ul {
+      margin-right: 0;
+      padding: 0 30px;
+      text-align: left;
+
+      li {
+        list-style-type: disc;
+
+        li {
+          list-style-type: circle;
+        }
+      }
+    }
+  }
+}
