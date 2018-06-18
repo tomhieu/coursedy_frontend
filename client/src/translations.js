@@ -340,7 +340,7 @@ export const translations = {
     "product_resources": "Thông tin hữu ích",
     "product_help_center": "Giải đáp thắc mắc",
     "product_become_a_teacher": "Đăng kí làm giáo viên",
-    "product_privacy": "Riêng tư",
+    "product_privacy": "Chính sách bảo mật",
     "product_terms": "Quy định",
     "product_copyright": "Copyright © 2018 coursedy",
     "product_about_us_info": "Thông tin đang cập nhật.",
@@ -463,7 +463,121 @@ export const translations = {
     "user_navigation_your_course": "Khoá học",
     "user_navigation_sign_out": "Đăng xuất",
     "no_notification_found": "Hiện tại không có thông báo nào",
-    "course_progress": "{progress}% hoàn thành"
+    "course_progress": "{progress}% hoàn thành",
+    "terms_title": "Quy Định",
+    "terms_latest_update": "Sửa đổi gần nhất ngày 16 tháng 06, 2018",
+    "terms_description": "Khi quý khách truy cập vào trang web của chúng tôi có nghĩa là quý khách đồng ý với các điều khoản này. Trang web có quyền thay đổi, chỉnh sửa, thêm hoặc lược bỏ bất kỳ phần nào trong Điều khoản và Quy định chung vào bất cứ lúc nào. Các thay đổi có hiệu lực ngay lập tức khi được đăng lên trang web mà không cần thông báo trước. Và khi quý khách tiếp tục sử dụng trang web, sau khi các thay đổi về Quy định chính sách và Điều khoản được đăng tải lên có nghĩa là quý khách chấp nhận với những thay đổi đó. Quý khách vui lòng kiểm tra thường xuyên để cập nhật những thay đổi của chúng tôi.",
+    "terms" : [
+      {
+        heading: "Quy Định Chung",
+        items: [
+          {content: "Khi giao tiếp với người dùng khác trong hệ thống dịch vụ của Coursedy không được quấy rối, chửi bới, làm phiền hay có bất kỳ hành vi thiếu văn hoá nào đối với người khác. Tuyệt đối nghiêm cấm việc xúc phạm, nhạo báng, chê bai, kỳ thị tôn giáo, giới tính, sắc tộc,... người khác dưới bất kỳ hình thức nào."},
+          {content: "Tuyệt đối nghiêm cấm mọi hành vi tuyên truyền chống phá và xuyên tạc chính quyền, thể chế chính trị, và các chính sách của nhà nước... Trường hợp phát hiện không những bị xoá tài khoản mà chúng tôi còn có thể cung cấp thông tin của người sử dụng (NSD) đó cho các cơ quan chức năng để xử lý theo pháp luật."},
+          {content: "Tuyệt đối không bàn luận về các vấn đề chính trị, kỳ thị tôn giáo, kỳ thị sắc tộc. Không có những hành vi, thái độ làm tổn hại đến uy tín của các sản phẩm, dịch vụ, khoá học trong hệ thống Coursedy dưới bất kỳ hình thức nào, phương thức nào. Mọi hành vi vi phạm sẽ bị tước bỏ mọi quyền lợi liên quan đối với tài khoản hoặc xử lý trước pháp luật nếu cần thiết."},
+        ]
+      },
+      {
+        heading: "Bản Quyền Tài Liệu Giảng Dạy",
+        items: [
+          {content: "Toàn bộ nội dung đào tạo bao gồm bài giảng slide, video,... đều thuộc quyền sở hữu trí tuệ của Coursedy và giáo viên trực tiếp làm ra."},
+          {content: "Thời gian xem tài liệu khoá học là vĩnh viễn."},
+          {content: "Học viên không được phép chia sẻ, phát tán dưới bất kỳ hình thức nào mà không có sự đồng ý của Coursedy."},
+          {
+            content: "Video, slide bài giảng, quiz được Coursedy cung cấp trực tiếp trên website, không thể download. Coursedy đảm bảo chất lượng đường truyền để học viên cảm thấy thoải mái khi học với đường truyền internet phổ thông. Mọi hành vi cố ý tải về, tấn công hệ thống nếu bị phát hiện sẽ bị xử lý theo các cấp độ sau:",
+            child_content: {
+              items: [
+                {content: "Cảnh cáo."},
+                {content: "Xoá tài khoản học viên, không hoàn lại học phí."},
+                {content: "Truy tố trước pháp luật vì hành vi xâm phạm bản quyền, và tấn công mạng."},
+              ]
+            }
+          },
+        ]
+      },
+      {
+        heading: "Về Tài Khoản Sử Dụng (TKSD)",
+        items: [
+          {content: "TKSD có trách nhiệm bảo mật thông tin tài khoản, nếu những thông tin trên bị tiết lộ dưới bất kỳ hình thức nào thì TKSD phải chấp nhận những rủi ro phát sinh."},
+          {content: "Khi phát hiện lỗi của Coursedy người sử dụng hãy thông báo cho chúng tôi qua email hoặc gọi tới tổng đài."},
+          {content: "Thực hiện quyền và trách nhiệm khác theo quy định của pháp luật Việt Nam."},
+        ]
+      }
+    ],
+    "terms_privacy_title": "Chính Sách Bảo Mật",
+    "terms_privacy_update": "Sửa đổi gần nhất ngày 16 tháng 06, 2018",
+    "terms_privacy_description": "Chào mừng bạn đến với trang web coursedy. Chúng tôi muốn bạn làm quen với cách chúng tôi thu thập sử dụng, tiết lộ bảo mật thông tin của bạn.\n" + "Bằng cách đồng ý chính sách bảo mật trong thiết lập tài khoản Coursedy của bạn, hoặc bằng cách sử dụng dịch vụ Coursedy, bạn đồng ý với những thông tin được mô tả trong thông báo này.",
+    "privacies": [
+      {
+        heading: "Thông tin Coursedy thu thập",
+        items: [
+          {content: "Thông tin người mà dùng cung cấp. Bạn có thể cung cấp cho Coursedy “thông tin cá nhân”(như tên, địa chỉ, email, số điện thoại, số thẻ tín dụng,...)"},
+          {content: "Thông tin “Cookies”: Khi bạn truy cập các dịch vụ Coursedy, chúng tôi có thể gửi một hoặc nhiều “cookie” - các tập tin văn bản nhỏ chứa một chuỗi ký tự số và chữ - vào máy tính của bạn."},
+          {content: "“Tự động thu thập\" thông tin: Khi bạn truy cập các dịch vụ Coursedy, chúng tôi có thể tự động ghi lại những thông tin đó từ hệ thống của bạn bằng cách sử dụng các tập tin cookie và các loại công nghệ theo dõi. Việc “thu thập” thông tin này có thể bao gồm địa chỉ Internet Protocal(“Địa chỉ IP”), ID người dùng duy nhất, loại thiết bị, nhận dạng thiết bị, các loại trình duyệt, và ngôn ngữ, giới thiệu, loại nền tảng, phiên bản của phần mềm cài đặt, loại hệ thống, nội dung và các trang web mà bạn truy cập các dịch vụ của Coursedy và thông tin tương tự khác. Tuỳ thuộc vào pháp luật của nước bạn cư trú, địa chỉ IP của bạn có thể hợp pháp được gọi là thông tin cá nhân."},
+          {content: "Thông tin từ các nguồn khác: Chúng tôi có thể có được thông tin bao gồm thông tin cá nhân từ các bên thứ ba và các nguồn khác với dịch vụ của Coursedy, như các nhà quảng cáo hoặc các mạng truyền thông xã hội mà bạn đã chấp thuận cho chúng tôi(ví dụ thông tin từ tài khoản Facebook của bạn cung cấp bởi các dịch vụ API Facebook). Khi bạn truy cập các dịch vụ Coursedy thông qua các mạng truyền thông xã hội hoặc khi bạn kết nối một dịch vụ Coursedy với các mạng truyền thông xã hội, bạn sẽ uỷ quyền cho Coursedy thu thập, lưu trữ và sử dụng thông tin và nội dung phù hợp với chính sách bảo mật. Nếu chúng tôi kết hợp hoặc liên kết thông tin từ các nguồn khác với thông tin cá nhân mà chúng tôi thu thập thông qua các dịch vụ Coursedy, chúng tôi sẽ xử lý thông tin kết hợp như thông tin cá nhân phù hợp với chính sách bảo mật."},
+        ]
+      },
+      {
+        heading: "Phương thức Coursedy sử dụng thông tin",
+        items: [
+          {content: "Coursedy sử dụng các thông tin mà bạn cung cấp hoặc chúng tôi thu thập từ bạn để hoạt động, duy trì, tăng cường và cung cấp tất cả các tính năng và dịch vụ trên Coursedy; để cải thiện trải nghiệm của bạn với các dịch vụ của coursedy bằng cách cung cấp các nội dung mà chúng tôi hy vọng bạn sẽ thấy có liên quan và thú vị. "},
+          {content: "Chúng tôi sẽ sử dụng địa chỉ email của bạn cho việc truyền thông như thông báo về bản cập nhật Coursedy, dịch vụ khách hàng, để giải quyết các vấn đề vi phạm bản quyền hoặc các vấn đề phỉ báng, hoặc liên lạc với bạn đối với bất kỳ nội dung mà bạn đã đăng lên hoặc tải về từ Coursedy."},
+          {content: "Coursedy sử dụng những thông tin mà chúng tôi thu thập để hiểu xu hướng sử dụng và sở thích của người sử dụng của chúng tôi, để cải thiện cách các dịch vụ Coursedy làm việc, nhìn và để để tạo ra các tính năng mới."},
+        ]
+      },
+      {
+        heading: "Trẻ em",
+        items: [],
+        description: "Chúng tôi nhận thức những lợi ích riêng tư cho trẻ em và chúng tôi khuyến khích các bậc cha mẹ và người giám hộ nên có một vai trò tích cực trong các hoạt động trực tuyến vì lợi ích của con cái."
+      },
+      {
+        heading: "Tiết lộ thông tin",
+        items: [
+          {content: "Chúng tôi sẽ chia sẻ thông tin trang web cá nhân của bạn với các bên thứ ba chỉ trong những trường hợp được mô tả trong chính sách bảo mật này. Chúng bao gồm chia sẻ thông tin với các nhà cung cấp dịch vụ trang web để cho phép họ thực hiện đầy đủ các yêu cầu của bạn. Chúng tôi không bán thông tin cá nhân của bạn cho bên thứ ba."},
+          {
+            content: "Chúng tôi cũng có thể tiết lộ thông tin cá nhận của bạn: ",
+            child_content: {
+              items: [
+                {content: "Nếu chúng tôi được yêu cầu phải làm như vậy theo pháp luật, quy định hoặc cơ quan khác của chính phủ hoặc phối hợp điều tra với môt cuộc điều tra của một cơ quan chính phủ."},
+                {content: "Để thực thi điều khoản sử dụng."},
+                {content: "Để bảo vệ sự an toàn của người sử dụng của trang web của chúng tôi và dịch vụ, các khoá học chúng tôi."},
+              ]
+            }
+          },
+        ]
+      },
+      {
+        heading: "Lưu trữ dữ liệu",
+        items: [],
+        description: "Chúng tôi giữ lại các dữ liệu cá nhân để cung cấp các dịch vụ tốt hơn. Chúng tôi sẽ giữ lại và sử dụng thông tin cần thiết trên trang web cá nhân để tuân thủ các nghĩa vụ pháp lý, giải quyết tranh chấp và thực thi các thoả thuận của chúng tôi với người sử dụng hoặc thời gian theo yêu cầu của pháp luật tại các nước áp dụng."
+      },
+      {
+        heading: "Cập nhật và chỉnh sửa thông tin của bạn",
+        items: [
+          {content: "Nếu cần thiết, bạn có thể sử dụng các dịch vụ sửa chữa, sửa đổi, hoặc xoá thông tin của bạn trên Coursedy. Bạn cũng có thể liên hệ với chúng tôi bằng cách gửi email tới contact@coursedy.com."},
+          {content: "Chúng tôi có thể gửi tới email bạn về các khoá học hoặc dịch vụ mới sửa đổi mà chúng tôi tin rằng có thể bạn quan tâm. Nếu bạn không muốn nhận được các thông tin này, bạn có thể thực hiện theo các thủ tục huỷ bỏ đăng ký được cung cấp trong email."}
+        ]
+      },
+      {
+        heading: "Bảo mật",
+        items: [],
+        description: "Bảo mật thông tin của bạn là việc rất quan trọng đối với chúng tôi. Coursedy sử dụng các biện pháp tố tụng và công nghệ để bảo vệ thông tin cá nhân của bạn. Những biện pháp này được thiết kế hợp lý để bảo vệ thông tin cá nhân của bạn khỏi mất mát, truy cập trái phép, tiết lộ, thay đổi hoặc phá huỷ. Chúng tôi sử dụng phần mềm, công nghệ mã hoá, mật khẩu bảo vệ, tường lửa hạn chế nội bộ và các biện pháp đảm bảo khác để giúp ngăn chặn truy cập trái phép thông tin cá nhân của bạn. Các thông tin nhạy cảm/tín dụng bạn cung cấp được mã  hoá qua Secure Sockets Layer (SSL). Tuy nhiên, Coursedy không thể đảm bảo rằng rằng các tổ chức bất hợp pháp sẽ không bao giờ có thể vượt qua các biện pháp bảo mật này hoặc sử dụng thông tin cá nhân của bạn cho các mục đích không chính đáng. Vì vậy, bạn nên biết rằng khi các bạn tự nguyện hiển thị hay phân phối thông tin cá nhân, thông tin có thể được thu thập và sử dụng bởi những người khác. Coursedy không chịu trách nhiệm về việc sử dụng trái của các bên thứ ba thông tin mà bạn gửi  hoặc cung cấp công khai."
+      },
+      {
+        heading: "Liên kết đến các trang web khác",
+        items: [],
+        description: "Các trang web, dịch vụ và đặc biệt là các khoá học, có thể cung cấp liên kết đến các trang web của bên thứ ba hoặc các nguồn tài nguyên không liên quan với chúng tôi và qua đó, chúng tôi không thể kiểm soát “bên ngoài website”. Bạn thừa nhận rằng Coursedy chỉ cung cấp những liên kết như là một tiện ích và không chịu trách nhiệm về nội dung của trang web đó."
+      },
+      {
+        heading: "Thay đổi chính sách",
+        items: [],
+        description: "Coursedy bảo lưu quyền thay đổi chính sách bảo mật theo thời gian. Chúng tôi sẽ cập nhật chính sách bảo mật trên trang web này nằm tại https://coursedy.com/privacy và sẽ gửi một thông báo đến địa chỉ email mà bạn cung cấp. Chúng tôi khuyến khích bạn xem lại chính sách bảo mật thường xuyên để cập nhật bất kỳ thay đổi nào. Tất cả các dịch vụ mà bạn sử dụng sẽ được tuân theo chính sách bảo mật hiện tại."
+      },
+      {
+        heading: "Liên hệ với Coursedy",
+        items: [],
+        description: "Chúng tôi hoan nghênh ý kiến đóng góp hoặc câu hỏi của bạn liên quan đến chính sách bảo mật của chúng tôi. Nếu bạn muốn liên lạc với Coursedy về Chính Sách Bảo Mật này, vui lòng liên hệ với chúng tôi bằng cách gửi email cho chúng tôi tại contact@coursedy.com"
+      }
+    ],
   },
   "en": {
     "home_page": "Home",
