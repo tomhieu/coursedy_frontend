@@ -2,14 +2,23 @@ import * as React from "react";
 import {Component} from "react";
 import CourseList from "../../../components/Courses/CourseList";
 import {connect} from "react-redux";
-import {fetchListTutorCourse} from "../../../actions/ListTutorCourseActionCreator";
 import LoadingMask from "../../../components/LoadingMask/LoadingMask";
-import {deleteCourse} from "actions/CourseFormActionCreator";
 import {FETCH_TUTOR_COURSES} from "actions/AsyncActionCreator";
 import Network from "utils/network";
 import {DELETE_COURSE} from "../../../actions/AsyncActionCreator";
+import * as dashboardActions from '../../../actions/DashboardMenuActionCreator';
+import {CourseStatus} from "../../../constants/CourseStatus";
 
 class ListTutorCourseContainer extends Component {
+
+  componentWillMount() {
+    const {status} = this.props;
+    if (status === 'active') {
+      this.props.activateTab('course_active_list');
+    } else {
+      this.props.activateTab('course_list');
+    }
+  }
 
   componentDidMount() {
     const {status} = this.props;
@@ -20,10 +29,6 @@ class ListTutorCourseContainer extends Component {
     }
   }
 
-  addNewCourses() {
-    this.context.router.history.push("/dashboard/courses/new");
-  }
-
   deleteCourse(courseId) {
     this.props.deleteCourse(courseId);
   }
@@ -32,6 +37,11 @@ class ListTutorCourseContainer extends Component {
     const {status} = this.props;
     return (
       <div className="d-flex flex-vertical flex-auto">
+        <div className="d-flex flex-auto">
+          <div className="title">
+            {status === CourseStatus.ACTIVE ? this.context.t('course_active_list') : this.context.t('course_list')}
+          </div>
+        </div>
         <div className="d-flex flex-auto">
           <LoadingMask placeholderId="tutorCourseListPlaceholder">
             <CourseList
@@ -65,21 +75,22 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => ({
   fetchListTutorCourse: () => dispatch({
     type: FETCH_TUTOR_COURSES,
-    payload: Network().get('courses'),
+    payload: Network().get('courses', {per_page: 100}),
     meta: 'tutorCourseListPlaceholder'
   }),
   fetchListTutorActiveCourse: () => dispatch({
     type: FETCH_TUTOR_COURSES,
-    payload: Network().get('courses'),
+    payload: Network().get('courses', {per_page: 100}),
     meta: 'tutorCourseListPlaceholder'
   }),
   deleteCourse: (courseId) => dispatch({
     type: DELETE_COURSE,
     payload: Network().delete('courses/' + courseId).then(() => {
-      dispatch(fetchListTutorCourse());
+      dispatch(this.fetchListTutorCourse());
     }),
     meta: 'tutorCourseListPlaceholder'
-  })
+  }),
+  activateTab: (tabId) => dispatch(dashboardActions.activateTab(tabId))
 });
 
 export default connect(

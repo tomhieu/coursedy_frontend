@@ -2,10 +2,15 @@ import React, {Component} from 'react';
 import {TutorProfileDetails} from '../../../components/index';
 import {connect} from 'react-redux';
 import * as Actions from "actions/TutorProfileActionCreator"
+import * as dashboardActions from 'actions/DashboardMenuActionCreator';
+import * as AccountActions from "../../../actions/AccountActionCreator";
 
 class TutorProfileDetailsContainer extends Component {
+  componentWillMount() {
+    this.props.activateTab('my_profile');
+  }
   onUpdate(formData, onSuccess, onError){
-    this.props.dispatch(Actions.updateTutor(this.props.tutor.id, formData, onSuccess, onError))
+    this.props.updateDetailsTutor(this.props.tutor.id, formData, onSuccess, onError);
   }
 
   render(){
@@ -20,10 +25,21 @@ TutorProfileDetailsContainer.contextTypes = {
 }
 
 const mapStateToProps = (state) => ({
-  currentUser: state.session.currentUser,
+  user: state.session.currentUser,
+  editProfileMode: state.AccountReducer.editProfileMode,
   tutor: state.TutorProfile.tutor
 });
 
+const mapDispatchToProps = (dispatch) => ({
+  activateTab: (tabId) => dispatch(dashboardActions.activateTab(tabId)),
+  fetchDetailsTutor: () => dispatch(Actions.fetchTutor()),
+  updateDetailsTutor: (tutorId, formData, onSuccess, onError) => dispatch(Actions.updateTutor(tutorId, formData, onSuccess, onError)),
+  showAccountEditForm: () => dispatch(AccountActions.showAccountEditForm()),
+  hideAccountEditForm: () => dispatch(AccountActions.hideAccountEditForm()),
+  hideEmailChangedPopup: () => dispatch(AccountActions.hideEmailChangedPopup()),
+  showEmailChangedPopup: () => dispatch(AccountActions.showEmailChangedPopup())
+});
+
 export default connect(
-  mapStateToProps
+  mapStateToProps, mapDispatchToProps
 )(TutorProfileDetailsContainer);

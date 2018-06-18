@@ -17,7 +17,6 @@ class TutorEducationList extends Component {
                   (<TutorEducationItem education={e} delete={this.props.deleteItem}
                                        showEditEducationForm={this.props.showEditEducationForm}/>)
               }
-              <hr/>
             </div>
           ))
         }

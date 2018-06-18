@@ -110,6 +110,7 @@ export const translations = {
     'create_course_sucessfully': 'Tạo Khoá Học Thành Công',
     "create_course_sucessfully_message": "Khoá Học {title} vừa được tạo thành công. Bây giờ bạn có thể thêm thông tin về các buổi học và đăng khoá học.",
     "course_publish": "Đăng lên",
+    "join_class": "Vào lớp",
     'popup_warning_publish_course_title': 'Đăng Khoá Học',
     'popup_warning_publish_course_message_1': 'Bạn muốn đăng khoá học {course_title}.',
     'popup_warning_publish_course_message_2': 'Một khí khoá học đăng lên, tất cả mọi người đều có thể xem thông tin và nội dung khoá học',

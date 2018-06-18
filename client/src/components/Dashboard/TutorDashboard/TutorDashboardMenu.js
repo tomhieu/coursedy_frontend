@@ -1,54 +1,58 @@
 import React, {Component} from 'react';
-import { Link } from 'react-router-dom';
+import cssModules from 'react-css-modules';
+import styles from './TutorDashboardMenu.module.scss';
+import {globalHistory} from "utils/globalHistory";
+import UserProfileIcon from "../../Core/Icons/UserProfileIcon";
+import SettingIcon from "../../Core/Icons/SettingIcon";
+import AddCourseIcon from "../../Core/Icons/AddCourseIcon";
+import ActiveCourseListIcon from "../../Core/Icons/ActiveCourseListIcon";
+import CourseListIcon from "../../Core/Icons/CourseListIcon";
 
 class TutorDashboardMenu extends Component {
 
+  onClickDashboardLink(urlNavigation, activeTab) {
+    // navigate to destination tab
+    globalHistory.push(urlNavigation);
+  }
+
   render(){
+    const {activatedTab} = this.props;
     return (
       <div className="dashboard-menu-panel">
-
         <div className="panel panel-default">
-          <div className="panel-heading">
-            <h4 className="panel-title">
-              <a className="collapsed" data-toggle="collapse" data-parent="#accordion" href="#student-dashboard-account-menu">
-                <i className="fa fa-calendar-check-o"></i>{this.context.t('my_account')}</a>
-            </h4>
-          </div>
-          <div id="student-dashboard-account-menu" className="panel-collapse collapse">
-            <div className="panel-body">
-              <ul className="dashboard-links">
-                <li>
-                  <Link to={'/dashboard/account'}>{this.context.t('my_profile')}</Link>
-                </li>
-                <li>
-                  <Link to={'/dashboard/profile'}>{this.context.t('account_setting')}</Link>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        <div className="panel panel-default">
-          <div className="panel-heading">
-            <h4 className="panel-title">
-              <a className="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseSellCourses">
-                <i className="fa fa-book"></i>{this.context.t('my_courses')}</a>
-            </h4>
-          </div>
-          <div id="collapseSellCourses" className="panel-collapse collapse">
-            <div className="panel-body">
-              <ul className="dashboard-links">
-                <li>
-                  <Link to={'/dashboard/courses/new'}>{this.context.t('course_add_btn')}</Link>
-                </li>
-                <li>
-                  <Link to={'/dashboard/courses/active'}>{this.context.t('course_active_list')}</Link>
-                </li>
-                <li>
-                  <Link to={'/dashboard/courses/list'}>{this.context.t('course_list')}</Link>
-                </li>
-              </ul>
-            </div>
+          <div className="panel-body">
+            <ul className="dashboard-links">
+              <li className={activatedTab === 'my_profile' ? styles.dashboardItem + ' ' + styles.active : styles.dashboardItem}>
+                {
+                  activatedTab === 'my_profile' ? <UserProfileIcon fillColor="#1CABA0"/> : <UserProfileIcon/>
+                }
+                <a onClick={this.onClickDashboardLink.bind(this, '/dashboard/profile', 'my_profile')}>{this.context.t('my_profile')}</a>
+              </li>
+              <li className={activatedTab === 'account_setting' ? styles.dashboardItem + ' ' + styles.active : styles.dashboardItem}>
+                {
+                  activatedTab === 'account_setting' ? <SettingIcon fillColor="#1CABA0"/> : <SettingIcon/>
+                }
+                <a onClick={this.onClickDashboardLink.bind(this, '/dashboard/account', 'account_setting')}>{this.context.t('account_setting')}</a>
+              </li>
+              <li className={activatedTab === 'course_add' ? styles.dashboardItem + ' ' + styles.active : styles.dashboardItem}>
+                {
+                  activatedTab === 'course_add' ? <AddCourseIcon fillColor="#1CABA0"/> : <AddCourseIcon/>
+                }
+                <a onClick={this.onClickDashboardLink.bind(this, '/dashboard/courses/new', 'course_add')}>{this.context.t('course_add_btn')}</a>
+              </li>
+              <li className={activatedTab === 'course_active_list' ? styles.dashboardItem + ' ' + styles.active : styles.dashboardItem}>
+                {
+                  activatedTab === 'course_active_list' ? <ActiveCourseListIcon fillColor="#1CABA0"/> : <ActiveCourseListIcon/>
+                }
+                <a onClick={this.onClickDashboardLink.bind(this, '/dashboard/courses/active', 'course_active_list')}>{this.context.t('course_active_list')}</a>
+              </li>
+              <li className={activatedTab === 'course_list' ? styles.dashboardItem + ' ' + styles.active : styles.dashboardItem}>
+                {
+                  activatedTab === 'course_list' ? <CourseListIcon fillColor="#1CABA0"/> : <CourseListIcon/>
+                }
+                <a onClick={this.onClickDashboardLink.bind(this, '/dashboard/courses/list', 'course_list')}>{this.context.t('course_list')}</a>
+              </li>
+            </ul>
           </div>
         </div>
       </div>
@@ -61,8 +65,5 @@ TutorDashboardMenu.contextTypes = {
   t: React.PropTypes.func.isRequired
 }
 
-TutorDashboardMenu.propTypes = {
-}
 
-
-export default TutorDashboardMenu;
+export default cssModules(TutorDashboardMenu, styles);

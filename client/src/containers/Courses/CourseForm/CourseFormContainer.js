@@ -11,6 +11,8 @@ import SectionLessonContainer from "../Section/SectionLessonContainer";
 import LoadingMask from "../../../components/LoadingMask/LoadingMask";
 import Network from "utils/network";
 import FlatButton from "../../../components/Core/FlatButton/FlatButton";
+import * as dashboardActions from '../../../actions/DashboardMenuActionCreator';
+import {FETCH_BBB_ROOM_LINK} from "../../../actions/AsyncActionCreator";
 
 class CourseFormContainer extends Component {
   constructor(props) {
@@ -26,6 +28,13 @@ class CourseFormContainer extends Component {
       this.props.createNewCourse();
     }
     this.props.fetchCourseCategories();
+    this.props.activateTab('course_add');
+  }
+
+  createClassRoom(slug) {
+    Network().get(`rooms/${slug}/join`, {}, true).then((res) => {
+      window.open(res.url, '_blank');
+    })
   }
 
   addNewSection() {
@@ -54,12 +63,17 @@ class CourseFormContainer extends Component {
   }
 
   render() {
-    const {editMode, listSection, courseTitle, createCourseSucess, publishCourse, isFetching} = this.props;
+    const {editMode, listSection, courseTitle, createCourseSucess, publishCourse, isFetching, bbbRoomSlug} = this.props;
 
     return (
       <div className="row mb-15">
         <div className="col-sm-12 col-md-12">
-          <div className="bordered-box">
+          <div className="title">
+            {this.courseId > 0 ? this.context.t('course_add_btn') : this.context.t('course_add_btn')}
+          </div>
+        </div>
+        <div className="col-sm-12 col-md-12">
+          <div className="dashboard-content-section">
             <LoadingMask placeholderId="courseDetailPlaceholder"
                          normalPlaceholder={false}
                          facebookPlaceholder={true}
@@ -91,7 +105,7 @@ class CourseFormContainer extends Component {
                 <div className="row">
                   <div className="col-sm-12 col-md-12">
                     <div className="row">
-                      <div className="col-md-6 col-sm-6">
+                      <div className="col-md-4 col-sm-4">
                         <FlatButton label={this.context.t('lesson_link_edit')}
                                     secondary={false}
                                     onClick={this.addNewSection.bind(this)}>
@@ -101,7 +115,7 @@ class CourseFormContainer extends Component {
                           </svg>
                         </FlatButton>
                       </div>
-                      <div className="col-md-6 col-sm-6">
+                      <div className="col-md-4 col-sm-4">
                         <FlatButton label={this.context.t('course_publish')}
                                     secondary={true}
                                     onClick={this.validateBeforePublishCourse.bind(this)}>
@@ -112,6 +126,20 @@ class CourseFormContainer extends Component {
 
                         </FlatButton>
                       </div>
+                      {
+                        bbbRoomSlug ?
+                          <div className="col-md-4 col-sm-4">
+                            <FlatButton label={this.context.t('join_class')}
+                                        secondary={true}
+                                        onClick={this.createClassRoom.bind(this, bbbRoomSlug)}>
+                              <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" className="material-icon">
+                                <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
+                                <path d="M0 0h24v24H0z" fill="none"/>
+                              </svg>
+
+                            </FlatButton>
+                          </div> : null
+                      }
                     </div>
                   </div>
                   <div className="col-md-12 col-sm-12">
@@ -175,7 +203,7 @@ CourseFormContainer.propTypes = {};
 const mapStateToProps = (state) => {
   const {courseDetails} = state;
   const {listSection, editMode, activatedField, createCourseSucess, courseData = {}, publishCourse, isFetching} = courseDetails;
-  const {cover_image, title} = courseData;
+  const {cover_image, title, bigbluebutton_room} = courseData;
   return {
     listSection,
     editMode,
@@ -184,7 +212,8 @@ const mapStateToProps = (state) => {
     cover_image,
     publishCourse,
     courseTitle: title,
-    isFetching
+    isFetching,
+    bbbRoomSlug: bigbluebutton_room ? bigbluebutton_room.slug : undefined
   };
 };
 
@@ -210,7 +239,14 @@ const mapDispatchToProps = (dispatch) => ({
   validateBeforePublishCCourse: () => dispatch(CourseActions.validateBeforePublishCCourse()),
   doPublishCourse: (courseId) => dispatch(CourseActions.publishCourse(courseId)),
   cancelPublishCourse: () => dispatch({type: AsynActions.CANCEL_PUBLISH_COURSE}),
-  cancelCoursePopup: () => dispatch({type: AsynActions.CLOSE_COURSE_POPUP})
+  cancelCoursePopup: () => dispatch({type: AsynActions.CLOSE_COURSE_POPUP}),
+  activateTab: (tabId) => dispatch(dashboardActions.activateTab(tabId)),
+  createClassRoom: (slug) => dispatch({
+    type: FETCH_BBB_ROOM_LINK,
+    payload: Network().get(`rooms/${slug}/join`, {}, true).then((res) => {
+      window.open(res.url, '_blank');
+    })
+  })
 });
 
 export default connect(

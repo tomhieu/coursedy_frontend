@@ -14,13 +14,21 @@ import {SERVER_NAME} from "./CommonConstant";
  * @param {string} resource The resource used for config
  */
  const Network = (res={}) => {
-   const buildUrl = (path) => {
+   const buildUrl = (path, isBBBApi = false) => {
      let { id, resource } = res;
      let parameters = [
        SERVER_NAME,
        'api',
        'v1'
      ];
+
+     if (isBBBApi) {
+       parameters = [
+         SERVER_NAME,
+         'bigbluebutton',
+         'api'
+       ];
+     }
 
      if (path.trim() && path.trim() != '/') parameters = parameters.concat([path]);
 
@@ -70,9 +78,9 @@ import {SERVER_NAME} from "./CommonConstant";
       * @param {object} options
       * @returns {promise}
       */
-     get: (path, options = {}) => {
+     get: (path, options = {}, isBBBApi = false) => {
        let q = queryString.stringify(options, {arrayFormat: 'bracket'})
-       return request(buildUrl(path) + `?${q}`, Object.assign(
+       return request(buildUrl(path, isBBBApi) + `?${q}`, Object.assign(
          options,
          defaultOptions,
          { method: 'GET' }

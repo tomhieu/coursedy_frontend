@@ -13,30 +13,31 @@ import ListLessonContainer from "../../containers/Courses/Lesson/ListLessonConta
 import ListTutorCourseContainer from "../../containers/Courses/CourseList/ListTutorCourseContainer";
 import TutorAccount from "../../containers/Account/Tutor/TutorAccountContainer";
 import * as sessionActions from '../../actions/SessionActionCreator'
+import * as dashboardActions from '../../actions/DashboardMenuActionCreator'
 import {CourseStatus} from "../../constants/CourseStatus";
 
 class TutorDashboard extends RoleAuthorization {
   render() {
 
     return (
-      <div className="dashboard-section">
-        <div className="row flex-auto">
-          <div className="col-xs-12 col-sm-3 left-panel" id="sidebar">
+      <div className="dashboard-section full-width-in-container">
+        <div className="d-flex flex-row flex-auto">
+          <div className={styles.leftPanel} id="sidebar">
             <div className="panel-group dashboard-menu" id="accordion">
               <TutorContainers.DashboardProfileContainer/>
-              <TutorDashboardMenu />
+              <TutorDashboardMenu {...this.props}/>
             </div>
           </div>
-          <div className="col-xs-12 col-sm-9 d-flex dashboard-content">
+          <div className="d-flex flex-auto dashboard-content">
             <div className="full-width daskboard-container">
               <switch>
-                <Route exact path="/dashboard/profile" component={TutorAccount}/>
+                <Route exact path="/dashboard/profile" component={TutorProfileDetailsContainer}/>
                 <Route exact path="/dashboard/courses/active" render={props => <ListTutorCourseContainer status={CourseStatus.ACTIVE} {...props}/>} />
                 <Route exact path="/dashboard/courses/list" render={props => <ListTutorCourseContainer status={CourseStatus.INACTIVE} {...props}/>} />
                 <Route exact path="/dashboard/courses/list-lesson" component={ListLessonContainer}/>
                 <Route exact path="/dashboard/courses/new" component={CourseFormContainer}/>
                 <Route exact path="/dashboard/courses/detail/:id" component={CourseFormContainer}/>
-                <Route exact path="/dashboard/account" component={TutorProfileDetailsContainer}/>
+                <Route exact path="/dashboard/account" component={TutorAccount}/>
               </switch>
             </div>
           </div>
@@ -50,7 +51,13 @@ const styleComponent = cssModules(TutorDashboard, styles);
 
 const mapStateToProps = (state) => ({
   currentUser: state.session.currentUser,
-  fetchingUser: state.session.fetchingUser
+  fetchingUser: state.session.fetchingUser,
+  activatedTab: state.DashboardMenu.activatedTab
 })
 
-export default connect(mapStateToProps)(styleComponent)
+const mapDispatchToProps = (dispatch) => ({
+  activateTab: (tabId) => dispatch(dashboardActions.activateTab(tabId)),
+  signOut: () => dispatch(sessionActions.signOutUser())
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(styleComponent)

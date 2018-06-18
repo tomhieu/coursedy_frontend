@@ -50,10 +50,10 @@ class DashboardProfileContainer extends Component {
           <div className="dashboard-profile text-center">
             <div className="row">
               {this.renderAvatar(user, editAvatarMode, avatarSelected)}
-              <div className="col-sm-12">
+              <div className="col-sm-12 user-name">
                 <h4>{user.name}</h4>
               </div>
-              <div className='col-sm-12'>
+              <div className='col-sm-12 sub-title'>
                 <p>{this.context.t('my_balance')}: <strong>{ObjectUtils.currencyFormat(userBalance)}</strong></p></div>
             </div>
           </div>

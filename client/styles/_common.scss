@@ -475,7 +475,6 @@ Footer
 ---------------------------------- */
 
 .footer {
-  background-color: #f1f1f1;
   position: relative;
 }
 
@@ -1485,10 +1484,6 @@ select[multiple]::-webkit-scrollbar-thumb {
   padding-right: 10px;
 }
 
-.dashboard-menu-panel {
-  padding: 25px;
-}
-
 .d-block1 {
   background: #8798cc;
   border-top: 6px solid #526394;
@@ -1553,7 +1548,7 @@ textarea.form-control{
 }
 
 #footer {
-  background: #364247;
+  background: $color-bg-dashboard-menu;
   padding: 0 0 19px 0;
 }
 

@@ -1,9 +1,6 @@
 import React, {Component} from "react";
-import ChangePasswordContainer from "../ChangePasswordContainer";
 import {connect} from "react-redux";
-import PersonInfoContainer from "../PersonInfoContainer";
 import Certificate from "./Certificate";
-import {UserInfo} from 'components/index'
 import TutorForm from '../../Dashboard/Tutors/TutorForm'
 
 import {AccountActions, TutorAccountActions} from '../../../actions/index'
@@ -15,12 +12,14 @@ import Network from "utils/network";
 import TutorDetail from "components/Dashboard/Tutors/TutorDetail";
 import TutorEducationListContainer from "containers/Dashboard/Tutors/Educations/TutorEducationListContainer";
 import TutorWorkExperienceListContainer from "containers/Dashboard/Tutors/WorkExperiences/TutorWorkExperienceListContainer";
+import * as dashboardActions from '../../../actions/DashboardMenuActionCreator';
 
 class TutorAccount extends Component {
   componentWillMount(){
     this.props.fetchTutorData();
     this.props.loadListSkillData();
     this.props.loadDegrees();
+    this.props.activateTab('account_setting');
   }
 
   showEducationEditForm(){
@@ -40,10 +39,15 @@ class TutorAccount extends Component {
   }
 
   render() {
-    const {user, tutor} = this.props
-    const {editProfileMode, editEducationMode} = this.props
+    const {tutor} = this.props
+    const {editEducationMode} = this.props
     return (
       <div className="row">
+        <div className="col-sm-12 col-md-12">
+          <div className="title">
+            {this.context.t('account_setting')}
+          </div>
+        </div>
         <div className="col-md-12 col-xs-12 col-sm-12">
           <LoadingMask placeholderId="userEducationPlaceholder"
                        normalPlaceholder={false}
@@ -125,7 +129,8 @@ const mapDispatchToProps = (dispatch) => ({
   hideEducationEditForm: () => dispatch(TutorAccountActions.hideEducationEditForm()),
   showEducationEditForm: () => dispatch(TutorAccountActions.showEducationEditForm()),
   hideEmailChangedPopup: () => dispatch(AccountActions.hideEmailChangedPopup()),
-  showEmailChangedPopup: () => dispatch(AccountActions.showEmailChangedPopup())
+  showEmailChangedPopup: () => dispatch(AccountActions.showEmailChangedPopup()),
+  activateTab: (tabId) => dispatch(dashboardActions.activateTab(tabId))
 })
 
 export default connect(

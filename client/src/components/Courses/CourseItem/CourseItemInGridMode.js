@@ -7,6 +7,7 @@ import RatingItem from '../../Rating/index'
 import ObjectUtils from "../../../utils/ObjectUtils"
 import {CourseStatus} from "../../../constants/CourseStatus";
 import CoursedyProgressBar from "../../Core/CoursedyProgressBar/CoursedyProgressBar";
+import PrimaryButton from "../../Core/PrimaryButton/PrimaryButton";
 
 /**
  * @Course group item template 2

@@ -17,7 +17,6 @@ class TutorWorkExperienceList extends Component {
                   (<TutorWorkExperienceItem workExperience={w} delete={this.props.deleteItem}
                                        showEditWorkExperienceForm={this.props.showEditWorkExperienceForm}/>)
               }
-              <hr/>
             </div>
           ))
         }
