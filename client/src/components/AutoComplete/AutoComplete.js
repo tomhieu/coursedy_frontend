@@ -44,7 +44,8 @@ class AutoComplete extends Component {
 
   onKeyPress(e) {
     if (e.key === 'Enter') {
-      this.props.handleAddCriteria("", "", e.target.value)
+      this.props.handleAddCriteria(e.target.value)
+      this.props.reset();
     }
   }
 

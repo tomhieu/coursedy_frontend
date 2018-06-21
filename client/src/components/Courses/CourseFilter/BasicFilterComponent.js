@@ -73,7 +73,7 @@ class BasicFilterComponent extends Component {
   render() {
     const {selectedWeekDays, selectedCategories, onRemoveFilter, selectedLocations, formfieldValues, selectedSpecializes,
       suggestions, onSelectSuggestion, loadSuggestions,
-      showSuggestion, loadingSuggestion, closeSuggestion} = this.props;
+      showSuggestion, loadingSuggestion, closeSuggestion, term} = this.props;
     const isOverFlow = this.hiddenFilters.length > 0;
     this.filters = [];
     let filterListClassNames = "d-flex flex-horizontal basic-filter-container ";
@@ -150,6 +150,13 @@ class BasicFilterComponent extends Component {
             )
           }
           {
+            term ?
+              <Chip key={"filter_by_term_" + term} ref={"filter_by_term_" + term}
+                         show={this.hiddenFilters.indexOf("filter_levels_" + term) < 0}
+                         onRequestDelete={() => onRemoveFilter(term, 'term')}
+                         label={term}></Chip> : null
+          }
+          {
             this.state.isFocus ?
               <AutoComplete placeholder={this.context.t('search_course')}
                             fieldName="key_word" fieldId="key_word_filter"
@@ -174,6 +181,7 @@ class BasicFilterComponent extends Component {
                             show={showSuggestion}
                             isLoading={loadingSuggestion}
                             closeSuggestion={closeSuggestion}
+                            {...this.props}
               /> : null
           }
         </div>
@@ -199,7 +207,8 @@ BasicFilterComponent.propTypes = {
   loadSuggestions: React.PropTypes.func,
   showSuggestion: React.PropTypes.bool,
   loadingSuggestion: React.PropTypes.bool,
-  closeSuggestion: React.PropTypes.func
+  closeSuggestion: React.PropTypes.func,
+  term: React.PropTypes.string
 };
 
 export default cssModules(BasicFilterComponent, styles);

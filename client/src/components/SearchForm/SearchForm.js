@@ -18,6 +18,7 @@ class SearchForm extends Component {
                         loadSuggestions={loadSuggestions}
                         show={showSuggestion}
                         isLoading={loadingSuggestion}
+                        {...this.props}
           />
           <div className={styles.searchButton}>
             <PrimaryButton type="submit" title={this.context.t('home_search')}

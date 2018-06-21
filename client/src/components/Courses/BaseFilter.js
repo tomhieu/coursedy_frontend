@@ -37,7 +37,7 @@ class BaseFilter extends Component {
       courseFilterMode
     } = this.props;
 
-    const {selectedWeekDays, selectedCategories, selectedLocations, selectedSpecializes} = filters;
+    const {selectedWeekDays, selectedCategories, selectedLocations, selectedSpecializes, term} = filters;
 
     const orderList = [{id: 1, text: this.context.t("order_by_time")}, {
       id: 2,
@@ -72,7 +72,8 @@ class BaseFilter extends Component {
                                       onRemoveFilter={onRemoveFilter}
                                       onSelectSuggestion={onSelectSuggestion}
                                       suggestions={suggestions}
-                                      closeSuggestion={closeSuggestion}>
+                                      closeSuggestion={closeSuggestion}
+                                      term={term}>
                 </BasicFilterComponent>
               </div>
               <div className="seperate-filter-line"></div>

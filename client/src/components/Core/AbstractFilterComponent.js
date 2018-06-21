@@ -8,6 +8,8 @@ export default class AbstractFilter extends Component {
     if (Array.isArray(currentFilters[filterType])) {
       const clonedFilters = JSON.parse(JSON.stringify(currentFilters[filterType]));
       currentFilters[filterType] = clonedFilters.filter(f => f.id !== Number(filterValue));
+    } else if (filterType === 'term') {
+      currentFilters.term = undefined;
     } else {
       currentFilters[filterType] = true;
     }

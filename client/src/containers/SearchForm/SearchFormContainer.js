@@ -34,8 +34,8 @@ class SearchFormContainer extends Component {
   }
 
   onSearchMoreCourse(searchForm) {
-    this.props.updateFilter({term: searchForm.key_work})
-    this.context.router.history.push('/courses?q=' + searchForm.key_work);
+    this.props.updateFilter({term: searchForm.key_word})
+    this.context.router.history.push('/courses?q=' + searchForm.key_word);
   }
 
   render() {
@@ -72,7 +72,7 @@ SearchFormContainer.propTypes = {};
 
 const mapStateToProps = (state) => {
   const {CourseFilter} = state;
-  const {sugestions, showSuggestion, loadingSuggestion} = CourseFilter;
+  const {sugestions, showSuggestion, loadingSuggestion, filters} = CourseFilter;
   return {
     showSuggestion,
     suggestions: sugestions.map((sug) => ({
