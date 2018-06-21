@@ -54,7 +54,8 @@ class SearchFormContainer extends Component {
                           showSuggestion={showSuggestion}
                           loadingSuggestion={loadingSuggestion}
                           loadSuggestions={this.fetchSearchSuggestion.bind(this)}
-                          onSubmit={this.onSearchMoreCourse.bind(this)} {...this.props}/>
+                          onSubmit={this.onSearchMoreCourse.bind(this)}
+                          {...this.props}/>
             </div>
           </div>
         </div>

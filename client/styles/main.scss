@@ -1421,4 +1421,17 @@ body.application {
       max-width: 100px;
     }
   }
+
+  .loading-bar-autocomplete {
+    position: absolute;
+    top: 50px;
+    height: 80px;
+    background-color: white;
+    width: 100%;
+    #spinner {
+      .circular {
+        width: 40px;
+      }
+    }
+  }
 }

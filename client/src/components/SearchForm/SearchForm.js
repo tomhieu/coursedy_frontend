@@ -7,7 +7,7 @@ import PrimaryButton from "../Core/PrimaryButton/PrimaryButton";
 
 class SearchForm extends Component {
   render() {
-    const {suggestions, onSelectSuggestion, loadSuggestions, showSuggestion, loadingSuggestion, handleSubmit} = this.props;
+    const {suggestions, onSelectSuggestion, loadSuggestions, showSuggestion, loadingSuggestion, closeSuggestion, handleSubmit} = this.props;
     return (
       <Form onSubmit={handleSubmit(this.props.onSubmit)} id="search_form" method="post">
         <div className={styles.searchCourseHomePage + " d-flex align-items-center flex-row"}>
@@ -18,6 +18,7 @@ class SearchForm extends Component {
                         loadSuggestions={loadSuggestions}
                         show={showSuggestion}
                         isLoading={loadingSuggestion}
+                        closeSuggestion={closeSuggestion}
                         {...this.props}
           />
           <div className={styles.searchButton}>
@@ -42,7 +43,8 @@ SearchForm.propTypes = {
   onSelectSuggestion: React.PropTypes.func,
   loadSuggestions: React.PropTypes.func,
   showSuggestion: React.PropTypes.bool,
-  loadingSuggestion: React.PropTypes.bool
+  loadingSuggestion: React.PropTypes.bool,
+  closeSuggestion: React.PropTypes.func
 };
 
 export default cssModules(SearchForm, styles);

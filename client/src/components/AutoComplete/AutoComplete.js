@@ -5,6 +5,7 @@ import styles from './AutoComplete.module.scss';
 import {renderField} from "../Core/CustomComponents";
 import Field from "redux-form/es/Field";
 import {SERVER_NAME} from "utils/CommonConstant";
+import AsyncLoader from "../LoadingMask/AsyncLoader";
 
 class AutoComplete extends Component {
 
@@ -64,7 +65,10 @@ class AutoComplete extends Component {
           </div>
         </div>
         {
-          isLoading ? <div>Loading...</div> :
+          isLoading ?
+            <div className="loading-bar-autocomplete">
+              <AsyncLoader normalPlaceholder={true} />
+            </div> :
             show ? dataSource.length > 0 ?
               <div className={styles.modalSuggestion + " flex flex-vertical"}>
                 {
