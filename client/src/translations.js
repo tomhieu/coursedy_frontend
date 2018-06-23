@@ -410,8 +410,28 @@ export const translations = {
     "course_teacher": "Về giáo viên",
     "course_rating": "Đánh giá",
     "course_related": "Khóa học liên quan",
+    "course_status": "Khóa học",
     "unknown": "Đang cập nhật",
-    "read_more": "Chi tiết"
+    "read_more": "Chi tiết",
+
+    "admin_courses": "Khóa học",
+    "admin_courses_list": "Tất cả",
+    "admin_courses_new": "Tạo mới",
+    "admin_teachers": "Giáo viên",
+    "admin_teachers_list": "Tất cả",
+    "admin_teachers_new": "Tạo mới",
+    "admin_students": "Học viên",
+    "admin_students_list": "Tất cả",
+    "admin_students_new": "Tạo mới",
+
+
+    "react_table_previous_text": "<",
+    "react_table_next_text": ">",
+    "react_table_loading_text": "Đang tải...",
+    "react_table_no_data_text": "Không có dữ liệu",
+    "react_table_page_text": "Trang",
+    "react_table_of_text": "trong",
+    "react_table_rows_text": "dòng",
   },
   "en": {
     "home_page": "Home",

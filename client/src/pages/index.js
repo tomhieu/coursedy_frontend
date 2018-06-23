@@ -8,6 +8,7 @@ import TutorDashboard from './TutorDashboard/TutorDashboard'
 import PaymentPage from './PaymentPage/PaymentPage'
 
 import StudentDashboardPage from './Student/Dashboard/StudentDashboardPage'
+import AdminDashboardPage from "./Admin/Dashboard/AdminDashboardPage"
 
 export {
   NotFoundPage,
@@ -21,5 +22,6 @@ export {
   TutorDashboard,
   PaymentPage,
 
-  StudentDashboardPage
+  StudentDashboardPage,
+  AdminDashboardPage
 };

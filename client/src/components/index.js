@@ -18,6 +18,7 @@ import TutorList from './Tutor/TutorList/TutorList';
 import TutorProfileDetails from './Tutor/Profile/TutorProfileDetails';
 
 import * as StudentComponents from './Student'
+import * as AdminComponents from './Admin'
 
 import RoleAuthorization from './RoleAuthorization';
 import LoadingMask from './LoadingMask/LoadingMask'
@@ -53,10 +54,10 @@ export {
   TutorDashboardMenu,
   TutorDetail,
 
+  AdminComponents,
   StudentComponents,
   PaymentComponents,
   StatisticCard,
-
 
   CourseForm,
   TutorProfileDetails,

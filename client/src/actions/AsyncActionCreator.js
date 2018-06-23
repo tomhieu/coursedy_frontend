@@ -80,11 +80,19 @@ export const FETCH_TUTOR_COURSES = 'FETCH_TUTOR_COURSES';
 export const DELETE_COURSE = 'DELETE_COURSE';
 
 /**
- * Define actions of Tutor
+ * Define actions of Student
  * @type {string}
  */
 export const FETCH_STUDENT_ENROLL_COURSES = 'FETCH_STUDENT_ENROLL_COURSES';
 export const FETCH_STUDENT_FOLLOW_COURSES = 'FETCH_STUDENT_FOLLOW_COURSES';
+
+/**
+ * Define actions of Admin
+ * @type {string}
+ */
+export const FETCH_ADMIN_UNAPPROVED_COURSES = 'FETCH_ADMIN_UNAPPROVED_COURSES';
+export const FETCH_ADMIN_UNAPPROVED_TEACHERS = 'FETCH_ADMIN_UNAPPROVED_TEACHERS';
+export const FETCH_ADMIN_STUDENTS = 'FETCH_ADMIN_STUDENTS';
 
 /**
  * Define actions to load Reference Data

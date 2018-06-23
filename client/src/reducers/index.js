@@ -29,6 +29,11 @@ import Certificate from './Certificate'
 import Payment from './Payment'
 
 import AccountReducer from './AccountReducer'
+
+import AdminCourseListReducer from './Admin/AdminCourseListReducer'
+import AdminTeacherListReducer from './Admin/AdminTeacherListReducer'
+import AdminStudentListReducer from './Admin/AdminStudentListReducer'
+
 import StudentAccountReducer from './Student/StudentAccountReducer'
 import StudentCourseListReducer from './Student/StudentCourseListReducer'
 import TutorAccountReducer from './Tutor/TutorAccountReducer'
@@ -51,6 +56,11 @@ const rootReducer = combineReducers({
   PublicCourseDetail,
   courseDetails,
   TutorCourseList,
+  //Reducers for admin
+  AdminCourseListReducer,
+  AdminTeacherListReducer,
+  AdminStudentListReducer,
+  //Reducers for student
   StudentCourseListReducer,
   //Reducers for account
   AccountReducer,
