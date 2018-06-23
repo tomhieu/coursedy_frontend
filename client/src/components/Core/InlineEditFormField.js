@@ -41,12 +41,14 @@ class InlineEditFormField extends FormField {
             <FormGroup className="d-flex justify-content-right">
               <PrimaryButton type="submit" line={false}
                              disabled={pristine || submitting}
+                             isSmallButton={true}
                              title={this.context.t("save")}>
               </PrimaryButton>
               <PrimaryButton type="button"
                              isPrimary={false}
                              customClasses="ml-15"
                              callback={() => this.closeEditForm(activatedFieldIds)}
+                             isSmallButton={true}
                              title={this.context.t("cancel")}>
               </PrimaryButton>
             </FormGroup>

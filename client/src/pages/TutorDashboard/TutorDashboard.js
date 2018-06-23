@@ -15,10 +15,17 @@ import TutorAccount from "../../containers/Account/Tutor/TutorAccountContainer";
 import * as sessionActions from '../../actions/SessionActionCreator'
 import * as dashboardActions from '../../actions/DashboardMenuActionCreator'
 import {CourseStatus} from "../../constants/CourseStatus";
+import * as WebConstants from "../../constants/WebConstants";
 
 class TutorDashboard extends RoleAuthorization {
-  render() {
+  componentDidMount() {
+    this.props.hideFooter();
+  }
 
+  componentWillUnmount() {
+    this.props.showFooter();
+  }
+  render() {
     return (
       <div className="dashboard-section full-width-in-container">
         <div className="d-flex flex-row flex-auto">
@@ -57,7 +64,9 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   activateTab: (tabId) => dispatch(dashboardActions.activateTab(tabId)),
-  signOut: () => dispatch(sessionActions.signOutUser())
+  signOut: () => dispatch(sessionActions.signOutUser()),
+  showFooter: () => dispatch({ type: WebConstants.SHOW_FOOTER }),
+  hideFooter: () => dispatch({ type: WebConstants.HIDE_FOOTER }),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(styleComponent)

@@ -25,12 +25,12 @@ class Notification extends Component {
   }
 
   render() {
-    const {main} = this.props;
+    const {session, whiteIcon} = this.props;
 
     const dropdownContainerClassList = [styles.notificationContainer];
 
     let fillColor = '#B3BDBC';
-    if (main.darkHeader) {
+    if (whiteIcon) {
       fillColor = '#FFFFFF';
       dropdownContainerClassList.push(styles.homepage);
     }
@@ -43,7 +43,7 @@ class Notification extends Component {
       dropdownContainerClassList.push(styles.close);
     }
 
-    const notificationList = session.notifications | [];
+    const notificationList = session.notifications;
 
     return (
       <div className={dropdownContainerClassList.join(" ")} onClick={this.onClickArrow.bind(this)}>
@@ -84,6 +84,7 @@ Notification.contextTypes = {
 
 Notification.propTypes = {
   session: PropTypes.object,
+  whiteIcon: PropTypes.bool
 };
 
 export default cssModules(Notification, styles);

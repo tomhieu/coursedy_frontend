@@ -1,8 +1,6 @@
 import * as React from "react";
 import {Component} from "react";
 import TutorWorkExperienceList from "components/Dashboard/Tutors/WorkExperiences/TutorWorkExperienceList";
-import {TutorWorkExperienceForm} from "components/Dashboard/Tutors/WorkExperiences/TutorWorkExperienceForm";
-import {reduxForm} from "redux-form";
 import {connect} from "react-redux";
 import * as actions from "actions/DashboarTutorWorkExperienceListActionCreator";
 import NewWorkExperienceFormContainer from './NewWorkExperienceFormContainer'
@@ -53,6 +51,7 @@ class TutorWorkExperienceListContainer extends Component {
                              iconButton={true}
                              type="button"
                              callback={this.showNewWorkExperienceForm.bind(this)}
+                             isSmallButton={true}
                              title={this.context.t('account.tutot.edu.add_work_experience')}>
                 <i className='fa fa-plus'/>
               </PrimaryButton> : null

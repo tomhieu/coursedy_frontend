@@ -36,12 +36,14 @@ class SelectionTeachingDay extends Component {
                         <FormGroup className="mt-10 d-flex justify-content-right">
                           <PrimaryButton type="submit" line={false}
                                          disabled={pristine || submitting}
+                                         isSmallButton={true}
                                          title={this.context.t("save")}>
                           </PrimaryButton>
                           <PrimaryButton type="button"
                                          isPrimary={false}
                                          customClasses="ml-15"
                                          callback={() => onEditTechingDay()}
+                                         isSmallButton={true}
                                          title={this.context.t("cancel")}>
                           </PrimaryButton>
                         </FormGroup>

@@ -53,6 +53,7 @@ class TutorEducationListContainer extends Component {
                              iconButton={true}
                              type="button"
                              callback={this.showNewEducationForm.bind(this)}
+                             isSmallButton={true}
                              title={this.context.t('account.tutot.edu.add_education')}>
                 <i className='fa fa-plus'/>
               </PrimaryButton> : null

@@ -44,12 +44,14 @@ class FormDialogContainer extends Component {
                          isPrimary={true}
                          callback={this.onSubmitPopup.bind(this)}
                          customClasses="button accept-button"
+                         isSmallButton={true}
                          title={okLabel}>
           </PrimaryButton>
           <PrimaryButton type="button"
                          callback={this.cancelPopup.bind(this)}
                          isPrimary={false}
                          customClasses="button cancel-button"
+                         isSmallButton={true}
                          title={cancelLabel}>
           </PrimaryButton>
         </div>

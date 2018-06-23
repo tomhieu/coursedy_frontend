@@ -1,8 +1,6 @@
 import React, {Component} from "react";
 import FormField from "../../Core/FormField";
-import ObjectUtils from "../../../utils/ObjectUtils";
 import styles from "./../Course.module.scss";
-import {SERVER_NAME} from "../../../utils/CommonConstant";
 import CourseFormItem from "./CourseFormItem";
 import SelectionTeachingDay from "./SelectionTeachingDay";
 import CourseCategory from "./CourseCategory";
@@ -141,6 +139,7 @@ class CourseForm extends Component {
                                  type="submit"
                                  customClasses="mr-10"
                                  disabled={(pristine || submitting) && courseData}
+                                 isSmallButton={true}
                                  title={this.context.t("save_course")}>
                   </PrimaryButton>
                 </div>

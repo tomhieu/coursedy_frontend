@@ -50,12 +50,14 @@ class TutorForm extends Component {
             <div className='form-group'>
               <PrimaryButton isPrimary={true} line={false}
                              type="submit"
+                             isSmallButton={true}
                              title={this.context.t("save")}>
               </PrimaryButton>
               <PrimaryButton isPrimary={false} line={true}
                              type="button"
                              customClasses="ml-15"
                              callback={this.props.cancel}
+                             isSmallButton={true}
                              title={this.context.t("cancel")}>
               </PrimaryButton>
             </div>

@@ -23,6 +23,7 @@ class SimpleDialogComponent extends Component {
                 <PrimaryButton type="button" line={false}
                                isPrimary={true}
                                callback={acceptCallback}
+                               isSmallButton={true}
                                title={acceptLabel}>
                 </PrimaryButton> : null
             }
@@ -31,6 +32,7 @@ class SimpleDialogComponent extends Component {
               <PrimaryButton type="button" line={true}
                              callback={cancelCallback}
                              isPrimary={false}
+                             isSmallButton={true}
                              title={cancelLabel}>
               </PrimaryButton> : null
             }

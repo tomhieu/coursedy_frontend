@@ -12,6 +12,17 @@ import Notification from "./Notification";
 import UserNavigation from "./UserNavigation";
 
 class Header extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      normalNotification: !props.main.darkHeader
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({normalNotification: !nextProps.main.darkHeader});
+  }
+
   componentWillMount() {
     if (SecurityUtils.isAuthenticated()) {
       this.props.fetchUser();
@@ -31,8 +42,10 @@ class Header extends Component {
     const top = window.pageYOffset || document.documentElement.scrollTop
     if (triggerPosition < top) {
       this.header.classList.add('navbar-sticky', 'fixed-top')
+      this.setState({normalNotification: true})
     } else {
       this.header.classList.remove('navbar-sticky', 'fixed-top')
+      this.setState({normalNotification: !this.props.main.darkHeader})
     }
   }
 
@@ -45,8 +58,6 @@ class Header extends Component {
   }
 
   render() {
-    let dashboardUrl = this.props.session.currentUser ? 
-      dashboardUrls[this.props.session.currentUser.roles[0]] : '';
     const showDarkHeader = this.props.main.darkHeader;
     return (
       <nav className={"header-nav navbar navbar-expand-lg navbar-light navbar-default " + (showDarkHeader ? "dark-header" : "bg-light")} ref={el => this.header = el}>
@@ -75,7 +86,7 @@ class Header extends Component {
               {
                 SecurityUtils.isAuthenticated() ? (
                   <li className="nav-item">
-                    <Notification {...this.props}></Notification>
+                    <Notification whiteIcon={!this.state.normalNotification} {...this.props}></Notification>
                   </li>
                 ) : null
               }

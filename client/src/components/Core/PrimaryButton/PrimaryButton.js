@@ -6,7 +6,7 @@ import cssModules from 'react-css-modules';
 class PrimaryButton extends Component {
   render() {
     const {type, callback, title, isPrimary = true, round = false,
-           disabled = false, line = true, customClasses, iconButton = false} = this.props;
+           disabled = false, line = true, customClasses, iconButton = false, isSmallButton = false} = this.props;
     // build list classes
     const classNames = [styles.button];
     if (isPrimary) {
@@ -30,6 +30,10 @@ class PrimaryButton extends Component {
     // add custom classes
     if (customClasses) {
       classNames.push(customClasses);
+    }
+
+    if (isSmallButton) {
+      classNames.push(styles.small);
     }
 
     return (
@@ -59,7 +63,8 @@ PrimaryButton.propTypes = {
   line: React.PropTypes.bool,
   customClasses: React.PropTypes.string,
   iconButton: React.PropTypes.bool,
-  disabled: React.PropTypes.bool
+  disabled: React.PropTypes.bool,
+  isSmallButton: React.PropTypes.bool
 }
 
 export default cssModules(PrimaryButton, styles);

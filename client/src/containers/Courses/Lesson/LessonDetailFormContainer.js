@@ -94,7 +94,10 @@ class LessonDetailFormContainer extends Component {
               </div>
             </div>
             <div className="col-md-12 col-sm-12">
-              <PrimaryButton type="button" callback={this.onDeleteLesson.bind(this, lesson.id)} title={this.context.t('lesson_delete_btn')}>
+              <PrimaryButton type="button"
+                             callback={this.onDeleteLesson.bind(this, lesson.id)}
+                             isSmallButton={true}
+                             title={this.context.t('lesson_delete_btn')}>
               </PrimaryButton>
             </div>
           </div>
