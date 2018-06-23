@@ -123,7 +123,7 @@ class StudentComments extends Component {
                 {
                   <CoursedySlider items={comments.map((item, index) => {
                       return <Item item={item} key={index}/>;
-                    })}
+                    })} numOfSlideToShow={4}
                   />
                 }
               </div>

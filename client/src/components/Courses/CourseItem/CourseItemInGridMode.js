@@ -79,7 +79,9 @@ CourseItemInGridMode.contextTypes = {
 }
 
 CourseItemInGridMode.propTypes = {
-  item: React.PropTypes.object.isRequired
+  item: React.PropTypes.object.isRequired,
+  isPublic: React.PropTypes.bool,
+  courseStatus: React.PropTypes.string
 };
 
 export default cssModules(CourseItemInGridMode, styles);

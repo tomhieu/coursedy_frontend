@@ -43,7 +43,7 @@ class NewCourseList extends Component {
               <div className="course__new-courses__content">
                 {
                   <CoursedySlider items={this.props.courses.map((course, index) => {
-                    return <CourseItemInGridMode item={course} key={index}/>
+                    return <CourseItemInGridMode item={course} key={index} isPublic={true}/>
                   })}/>
                 }
               </div>

@@ -41,10 +41,9 @@ class PopularCourseList extends Component {
 
               {
                 <CoursedySlider items={this.props.courses.map((course, index) => {
-                    return <CourseItemInGridMode item={course} key={index}/>;
+                    return <CourseItemInGridMode item={course} key={index} isPublic={true}/>;
                   })}/>
               }
-
 
               <CourseGroupFooter
                 redirectUrl="/courses"

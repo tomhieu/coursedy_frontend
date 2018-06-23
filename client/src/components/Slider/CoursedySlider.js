@@ -7,14 +7,24 @@ import styles from './CoursedySlider.module.scss';
 
 class CoursedySlider extends Component {
   render() {
+    const {numOfSlideToShow = 6} = this.props;
     const settings = {
       dots: true,
       infinite: true,
       speed: 300,
-      slidesToShow: 4,
+      slidesToShow: numOfSlideToShow,
       slidesToScroll: 1,
       className: 'coursedy-slider',
       responsive: [
+        {
+          breakpoint: 1200,
+          settings: {
+            slidesToShow: 4,
+            slidesToScroll: 4,
+            infinite: true,
+            dots: true
+          }
+        },
         {
           breakpoint: 1024,
           settings: {
@@ -54,7 +64,8 @@ class CoursedySlider extends Component {
 }
 
 CoursedySlider.propTypes = {
-  items: PropTypes.array.isRequired
+  items: PropTypes.array.isRequired,
+  numOfSlideToShow: PropTypes.number
 }
 
 export default cssModules(CoursedySlider, styles);
