@@ -14,7 +14,7 @@ export const updatePassword = (data) => {
 export const fetchUser = () => {
   return dispatch => {
     dispatch({
-      type: AccountTypes.FETCH_USER_ACCOUNT,
+      type: UPDATE_CURRENT_USER,
       payload: Network().get('current_user')
         .then((data) => {
           dispatch(fetchTutor(data.id))
@@ -28,7 +28,7 @@ export const savePersonData = (name, email, date_of_birth, address, gender, emai
   let body = {name, email, date_of_birth, address, gender}
   return dispatch => {
     let response = dispatch({
-      type: AccountTypes.FETCH_USER_ACCOUNT,
+      type: UPDATE_CURRENT_USER,
       payload: Network().update('/auth', body)
     })
     

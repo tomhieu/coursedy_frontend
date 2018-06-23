@@ -37,6 +37,7 @@ const router = (
 
             <PrivateRoute path="/dashboard" roles={[UserRole.TEACHER]} component={Pages.TutorDashboard} />
             <PrivateRoute path="/student/dashboard" roles={[UserRole.STUDENT]} component={Pages.StudentDashboardPage} />
+            <PrivateRoute path="/admin/dashboard" roles={[UserRole.ADMIN]} component={Pages.AdminDashboardPage} />
 
             <Route path="/payment" component={Pages.PaymentPage} />
             <Route path="/about" component={AboutUsContainer} />
