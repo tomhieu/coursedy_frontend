@@ -13,6 +13,7 @@ class CoursedySlider extends Component {
       speed: 300,
       slidesToShow: 4,
       slidesToScroll: 1,
+      className: 'coursedy-slider',
       responsive: [
         {
           breakpoint: 1024,
@@ -44,7 +45,7 @@ class CoursedySlider extends Component {
       <Slider {...settings}>
         {
           items.map((item, index) => {
-            return <div key={index}>{item}</div>
+            return <div className={styles.itemContainer} key={index}>{item}</div>
           })
         }
       </Slider>
