@@ -49,7 +49,7 @@ class PublicCourseListContainer extends Component {
           <div className="container-fluid mt-15 mb-15">
             <CourseList
               {...this.props}
-              itemClass='col-xs-12 col-sm-4 col-md-3 mb-15'
+              itemClass='col-xs-12 col-sm-4 col-md-3 col-lg-2 mb-15'
               selectCourseHdl={this.selectCourseHdl.bind(this)}
               isPublic={true}
             />

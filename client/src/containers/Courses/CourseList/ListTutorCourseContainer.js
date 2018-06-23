@@ -48,7 +48,7 @@ class ListTutorCourseContainer extends Component {
               deleteCourse={this.deleteCourse.bind(this)}
               {...this.props}
               displayMode="grid"
-              itemClass='col-xs-12 col-sm-6 col-md-4 mb-15'
+              itemClass='col-xs-12 col-sm-6 col-md-4 col-lg-2 mb-15'
               isPublic={false}
               courseStatus={status}
             />
