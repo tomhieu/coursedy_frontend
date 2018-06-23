@@ -2775,23 +2775,9 @@ input[type="url"], input[type="text"], textarea, .form-control {
   }
 }
 
-body {
-  display: flex;
-  flex-grow: 1;
-  min-height: 100vh;
-}
-
-#app {
-  display: flex;
-  flex-grow: 1;
-}
-
 .main-content {
-  display: flex;
-  flex-grow: 1;
-  flex-direction: column;
+  width: 100%;
 }
-
 
 div[data-reactroot] {
   display: flex;
