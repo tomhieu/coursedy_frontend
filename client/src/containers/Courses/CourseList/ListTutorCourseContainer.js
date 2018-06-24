@@ -39,7 +39,7 @@ class ListTutorCourseContainer extends Component {
       <div className="d-flex flex-vertical flex-auto">
         <div className="d-flex flex-auto">
           <div className="title">
-            {status === CourseStatus.ACTIVE ? this.context.t('course_active_list') : this.context.t('course_list')}
+            {status === CourseStatus.STARTED ? this.context.t('course_active_list') : this.context.t('course_list')}
           </div>
         </div>
         <div className="d-flex flex-auto">
@@ -80,7 +80,7 @@ const mapDispatchToProps = (dispatch) => ({
   }),
   fetchListTutorActiveCourse: () => dispatch({
     type: FETCH_TUTOR_COURSES,
-    payload: Network().get('users/courses', {per_page: 100}),
+    payload: Network().get('courses/upcomming_teaching_classes', {per_page: 100}),
     meta: 'tutorCourseListPlaceholder'
   }),
   deleteCourse: (courseId) => dispatch({

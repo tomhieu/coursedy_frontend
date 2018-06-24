@@ -59,7 +59,7 @@ class CourseItemInGridMode extends Component {
           </div>
         </LinkContainer>
         {
-          courseStatus === CourseStatus.ACTIVE ?
+          courseStatus === CourseStatus.STARTED ?
             <div className={styles.courseProgress}>
               <CoursedyProgressBar progress={30}></CoursedyProgressBar>
               <span>{this.context.t('course_progress', {progress: 30})}</span>

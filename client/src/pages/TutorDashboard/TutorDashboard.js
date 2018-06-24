@@ -39,8 +39,8 @@ class TutorDashboard extends RoleAuthorization {
             <div className="full-width daskboard-container">
               <switch>
                 <Route exact path="/dashboard/profile" component={TutorProfileDetailsContainer}/>
-                <Route exact path="/dashboard/courses/active" render={props => <ListTutorCourseContainer status={CourseStatus.ACTIVE} {...props}/>} />
-                <Route exact path="/dashboard/courses/list" render={props => <ListTutorCourseContainer status={CourseStatus.INACTIVE} {...props}/>} />
+                <Route exact path="/dashboard/courses/active" render={props => <ListTutorCourseContainer status={CourseStatus.STARTED} {...props}/>} />
+                <Route exact path="/dashboard/courses/list" render={props => <ListTutorCourseContainer status={CourseStatus.NOT_STARTED} {...props}/>} />
                 <Route exact path="/dashboard/courses/list-lesson" component={ListLessonContainer}/>
                 <Route exact path="/dashboard/courses/new" component={CourseFormContainer}/>
                 <Route exact path="/dashboard/courses/detail/:id" component={CourseFormContainer}/>
