@@ -7,19 +7,24 @@ import styles from './CoursedySlider.module.scss';
 
 class CoursedySlider extends Component {
   render() {
-    const {numOfSlideToShow = 6} = this.props;
+    let {numOfSlideToShow, items} = this.props;
+
+    if (!numOfSlideToShow) {
+      numOfSlideToShow = items.length > 6 ? 6 : items.length;
+    }
+
     const settings = {
       dots: true,
       infinite: true,
       speed: 300,
       slidesToShow: numOfSlideToShow,
-      slidesToScroll: 1,
+      slidesToScroll: 6,
       className: 'coursedy-slider',
       responsive: [
         {
           breakpoint: 1200,
           settings: {
-            slidesToShow: 4,
+            slidesToShow: numOfSlideToShow - 2 > 0 ? numOfSlideToShow - 2 : 1,
             slidesToScroll: 4,
             infinite: true,
             dots: true
@@ -28,8 +33,8 @@ class CoursedySlider extends Component {
         {
           breakpoint: 1024,
           settings: {
-            slidesToShow: 3,
-            slidesToScroll: 3,
+            slidesToShow: numOfSlideToShow - 3 > 0 ? numOfSlideToShow - 3 : 1,
+            slidesToScroll: numOfSlideToShow - 3 > 0 ? numOfSlideToShow - 3 : 1,
             infinite: true,
             dots: true
           }
@@ -37,20 +42,19 @@ class CoursedySlider extends Component {
         {
           breakpoint: 600,
           settings: {
-            slidesToShow: 2,
-            slidesToScroll: 2
+            slidesToShow: numOfSlideToShow - 4 > 0 ? numOfSlideToShow - 4 : 1,
+            slidesToScroll: numOfSlideToShow - 4 > 0 ? numOfSlideToShow - 4 : 1
           }
         },
         {
           breakpoint: 480,
           settings: {
-            slidesToShow: 1,
-            slidesToScroll: 1
+            slidesToShow: numOfSlideToShow - 5 > 0 ? numOfSlideToShow - 5 : 1,
+            slidesToScroll: numOfSlideToShow - 5 > 0 ? numOfSlideToShow - 5 : 1
           }
         }
       ]
     };
-    const {items} = this.props;
     return (
       <Slider {...settings}>
         {
