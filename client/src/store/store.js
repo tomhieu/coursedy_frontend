@@ -74,13 +74,15 @@ const loadingHandler = store => next => action => {
 const authorizeHandler = store => next => action => {
   if (action.type === asyncActions.LOGIN + asyncActions.FULFILLED) {
     store.dispatch(setCurrentUser());
+    console.log('DEBUG authorizeHandler');
+    console.log(action.payload.data.role)
     switch (action.payload.data.role) {
       case UserRole.TEACHER:
       case UserRole.STUDENT:
         globalHistory.push('/dashboard/account');
         break;
       case UserRole.ADMIN:
-        globalHistory.push('/dashboard/admin');
+        globalHistory.push('/admin/dashboard');
         break;
       default:
         throw new Error('Unsupported role ' + action.payload.role + ' in current application');
