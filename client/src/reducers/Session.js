@@ -17,6 +17,8 @@ const session = (state = {
       } else {
         return {...state, fetchingUser: false};
       }
+    case types.FETCH_CURRENT_USER + asyncActs.REJECTED:
+      return {...state, currentUser: null, fetchingUser: false};
     case types.REMOVE_CURRENT_USER:
       return {...state, currentUser: null};
     case types.FETCH_CURRENT_USER + asyncActs.PENDING:

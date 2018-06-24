@@ -10,9 +10,9 @@ class FlatButton extends Component {
       <button className={styles.flatBtn} type="button" onClick={onClick}>
         <div className={secondary ? styles.secondary : styles.primary}>
           {this.props.children}
-          <span className={styles.flatLabel}>
-            {label}
-          </span>
+          {
+            label && label !== '' ? <span className={styles.flatLabel}>{label}</span> : null
+          }
         </div>
       </button>
     )

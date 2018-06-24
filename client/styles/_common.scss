@@ -2829,6 +2829,20 @@ div[data-reactroot] {
   color: $md-color-pink;
 }
 
+.pagination>li:first-child>a,
+.pagination>li:last-child>a {
+  &.prev-page-icon, &.next-page-icon {
+    padding-top: 3px;
+    width: 20px;
+    &:hover {
+      background-color: transparent;
+      svg use {
+        fill: $md-color-pink;
+      }
+    }
+  }
+}
+
 .pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover, .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover {
   z-index: 3;
   cursor: default;
@@ -3293,8 +3307,8 @@ Course Item (List Mode) Style Sheet
   user-select: none;
   transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
   vertical-align: middle;
-  margin-left: 12px;
   margin-right: 0px;
+  fill: $secondary-color;
 }
 
 .material-icon.primary {
