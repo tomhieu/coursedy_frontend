@@ -9,12 +9,10 @@ import ActiveCourseListIcon from "../../Core/Icons/ActiveCourseListIcon";
 import CourseListIcon from "../../Core/Icons/CourseListIcon";
 
 class TutorDashboardMenu extends Component {
-
   onClickDashboardLink(urlNavigation, activeTab) {
     // navigate to destination tab
     globalHistory.push(urlNavigation);
   }
-
   render(){
     const {activatedTab} = this.props;
     return (

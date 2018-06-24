@@ -1433,5 +1433,7 @@ body.application {
 
   .dashboard-content {
     margin-left: 267px;
+    height: auto;
+    min-height: calc(100vh - 60px);
   }
 }

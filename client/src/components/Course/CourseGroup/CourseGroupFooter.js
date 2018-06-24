@@ -1,7 +1,7 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import PropTypes from 'prop-types'
-import { Link } from 'react-router-dom'
 import PrimaryButton from "../../Core/PrimaryButton/PrimaryButton";
+import {globalHistory} from "utils/globalHistory";
 
 
 export default class CourseGroupFooter extends Component {
@@ -11,7 +11,7 @@ export default class CourseGroupFooter extends Component {
   }
 
   gotoSearchCourseList() {
-
+    globalHistory.push(this.props.redirectUrl);
   }
 
   render() {
