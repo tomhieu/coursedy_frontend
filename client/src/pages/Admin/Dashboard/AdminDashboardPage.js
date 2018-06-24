@@ -10,25 +10,32 @@ import {
   AdminContainers
 } from '../../../containers/'
 import * as sessionActions from '../../../actions/SessionActionCreator'
-class AdminDashboardPage extends RoleAuthorization {
+import * as WebConstants from '../../../constants/WebConstants.js'
 
+class AdminDashboardPage extends RoleAuthorization {
+  componentDidMount() {
+    this.props.hideFooter();
+  }
+
+  componentWillUnmount() {
+    this.props.showFooter();
+  }
   signOut(e) {
     e.preventDefault()
-    this.props.dispatch(sessionActions.signOutUser())
+    this.props.signOut()
   }
 
   render() {
-
     return (
-      <div className="dashboard-section">
-        <div className="row flex-auto">
-          <div className="col-xs-12 col-sm-3 left-panel" id="sidebar">
+      <div className="dashboard-section full-width-in-container">
+        <div className="d-flex flex-row flex-auto">
+          <div className="left-panel" id="sidebar">
             <div className="panel-group dashboard-menu" id="accordion">
               <AdminContainers.DashboardProfileContainer/>
               <AdminComponents.AdminDashboardMenu signOut={this.signOut.bind(this)}/>
             </div>
           </div>
-          <div className="col-xs-12 col-sm-9 d-flex dashboard-content">
+          <div className="d-flex flex-auto dashboard-content">
             <div className="full-width daskboard-container">
               <switch>
                 <Route exact path="/admin/dashboard/account" 
@@ -57,4 +64,11 @@ const mapStateToProps = (state) => ({
   fetchingUser: state.session.fetchingUser
 })
 
-export default connect(mapStateToProps)(AdminDashboardPage)
+const mapDispatchToProps = (dispatch) => ({
+  activateTab: (tabId) => dispatch(dashboardActions.activateTab(tabId)),
+  signOut: () => dispatch(sessionActions.signOutUser()),
+  showFooter: () => dispatch({ type: WebConstants.SHOW_FOOTER }),
+  hideFooter: () => dispatch({ type: WebConstants.HIDE_FOOTER }),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(AdminDashboardPage)
