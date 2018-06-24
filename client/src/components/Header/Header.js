@@ -10,6 +10,7 @@ import PrimaryButton from "../Core/PrimaryButton/PrimaryButton";
 import {globalHistory} from '../../utils/globalHistory'
 import Notification from "./Notification";
 import UserNavigation from "./UserNavigation";
+import LangNavigation from "./LangNavigation";
 
 class Header extends Component {
   constructor(props) {
@@ -82,6 +83,9 @@ class Header extends Component {
                 <LinkContainer className="nav-link" to="/courses" role="button">
                   <span>{this.context.t('find_courses')}</span>
                 </LinkContainer>
+              </li>
+              <li className="nav-item">
+                <LangNavigation {...this.props}></LangNavigation>
               </li>
               {
                 SecurityUtils.isAuthenticated() ? (
