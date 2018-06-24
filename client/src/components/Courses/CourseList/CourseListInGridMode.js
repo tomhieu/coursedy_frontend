@@ -18,7 +18,7 @@ class CourseListInGridMode extends Component {
     } = this.props;
 
     return (
-      <div className="row">
+      <div className="row flex-auto">
       {
         this.props.courses.map((item, index) => (
           <div className={itemClass} key={'course-' +index}>
