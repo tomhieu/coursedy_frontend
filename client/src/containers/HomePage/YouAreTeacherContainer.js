@@ -23,7 +23,7 @@ export default class YouAreTeacher extends Component {
       },
       {
         id: 3,
-        description: 'Tiếp cần mạng lưới học sinh rộng lớn từ khắp mọi nơi.',
+        description: 'Tiếp cận mạng lưới học sinh rộng lớn từ khắp mọi nơi.',
         icon: 'connection'
       }
     ]

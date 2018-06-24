@@ -1,7 +1,9 @@
 @import '/../../../styles/global_style.scss';
 .introduceSection {
   background-color: transparent;
-  margin-top: -80px;
+  position: relative;
+  top: -65px;
+  height: 0;
 }
 
 .headerSearchContainer {

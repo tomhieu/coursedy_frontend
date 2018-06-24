@@ -139,6 +139,7 @@ body.application {
 
   .header-homepage {
     color: $dark-text-color;
+    min-height: 600px;
     background-color: $md-color-pink;
     -webkit-background-size: cover;
     -moz-background-size: cover;
