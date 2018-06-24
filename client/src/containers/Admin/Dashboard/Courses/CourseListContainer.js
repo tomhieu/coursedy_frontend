@@ -8,10 +8,12 @@ import DateUtils from "utils/DateUtils"
 import {
   FETCH_ADMIN_UNAPPROVED_COURSES
 } from "../../../../actions/AsyncActionCreator"
+import * as dashboardActions from '../../../../actions/DashboardMenuActionCreator';
 
 class CourseListContainer extends Component {
   componentDidMount() {
     this.props.fetchUnapprovedCourses(this.props)
+    this.props.activateTab('admin_courses')
   }
 
   fetchData(state, instance) {
@@ -112,6 +114,7 @@ const mapDispatchToProps = (dispatch) => ({
     type: FETCH_ADMIN_UNAPPROVED_COURSES,
     payload: Network().get('courses/search', buildQuery(props)),
   }),
+  activateTab: (tabId) => dispatch(dashboardActions.activateTab(tabId)),
 });
 
 export default connect(
