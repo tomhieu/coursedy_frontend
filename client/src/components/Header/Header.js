@@ -62,7 +62,7 @@ class Header extends Component {
     return (
       <nav className={"header-nav navbar navbar-expand-lg navbar-light navbar-default " + (showDarkHeader ? "dark-header" : "bg-light")} ref={el => this.header = el}>
         <div className="container">
-          <a className="navbar-brand" href="#"><img src="/logo2.png" className="logo" alt="logo"/></a>
+          <a className="navbar-brand" href="#"><img src="/coursedy-logo-2.png" className="logo" alt="logo"/></a>
           <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
           </button>
