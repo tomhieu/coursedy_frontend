@@ -11,7 +11,7 @@ export const translations = {
     "dashboard": "Trang Cá Nhân",
     "with_your_account": "Với Tài Khoản",
     "register": "Đăng Ký",
-    "register_now": "Đăng Ký Miễn Phí",
+    "register_now": "Đăng Ký",
     "new_account": "Tài Khoản Mới",
     "email": "Email",
     "password": "Mật Khẩu",
