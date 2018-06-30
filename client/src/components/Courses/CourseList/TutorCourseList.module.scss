@@ -1,0 +1,10 @@
+@import '/../../../../styles/global_style.scss';
+
+.tutorCourseHeader {
+  color: #B5BECB;
+  font-size: 11px;
+  margin-right: -15px;
+  &.courseName {
+    margin-left: 25px;
+  }
+}

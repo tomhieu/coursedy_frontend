@@ -1,19 +1,22 @@
 import * as React from "react";
 import {Component} from "react";
-import CourseList from "../../../components/Courses/CourseList";
 import {connect} from "react-redux";
 import LoadingMask from "../../../components/LoadingMask/LoadingMask";
 import {FETCH_TUTOR_COURSES} from "actions/AsyncActionCreator";
 import Network from "utils/network";
-import {DELETE_COURSE} from "../../../actions/AsyncActionCreator";
+import {DELETE_COURSE, UPDATE_COURSE} from "../../../actions/AsyncActionCreator";
 import * as dashboardActions from '../../../actions/DashboardMenuActionCreator';
 import {CourseStatus} from "../../../constants/CourseStatus";
+import TutorCourseList from "../../../components/Courses/CourseList/TutorCourseList";
+import {globalHistory} from "utils/globalHistory";
+import cssModules from 'react-css-modules';
+import styles from './ListTutorCourseContainer.module.scss';
 
 class ListTutorCourseContainer extends Component {
 
   componentWillMount() {
     const {status} = this.props;
-    if (status === 'active') {
+    if (status === CourseStatus.STARTED) {
       this.props.activateTab('course_active_list');
     } else {
       this.props.activateTab('course_list');
@@ -22,19 +25,19 @@ class ListTutorCourseContainer extends Component {
 
   componentDidMount() {
     const {status} = this.props;
-    if (status === 'active') {
+    if (status === CourseStatus.STARTED) {
       this.props.fetchListTutorActiveCourse();
     } else {
       this.props.fetchListTutorCourse();
     }
   }
 
-  deleteCourse(courseId) {
-    this.props.deleteCourse(courseId);
+  openCourseCreation() {
+    globalHistory.push('/dashboard/courses/new');
   }
 
   render() {
-    const {status} = this.props;
+    const {status, courses, isFetching} = this.props;
     return (
       <div className="d-flex flex-vertical flex-auto">
         <div className="d-flex flex-auto">
@@ -44,14 +47,17 @@ class ListTutorCourseContainer extends Component {
         </div>
         <div className="d-flex flex-auto">
           <LoadingMask placeholderId="tutorCourseListPlaceholder">
-            <CourseList
-              deleteCourse={this.deleteCourse.bind(this)}
-              {...this.props}
-              displayMode="grid"
-              itemClass='col-xs-12 col-sm-6 col-md-3 mb-15'
-              isPublic={false}
-              courseStatus={status}
-            />
+            {
+              courses.length > 0 ? <TutorCourseList courseList={courses} {...this.props}></TutorCourseList> :
+                this.props.status === CourseStatus.STARTED && !isFetching ?
+                <div className={styles.noCourseWarning}>
+                  <span>{this.context.t('no_active_course_message')}</span>
+                </div> : this.props.status === CourseStatus.NOT_STARTED && !isFetching ?
+                  <div className={styles.noCourseWarning}>
+                    <span>{this.context.t('no_course_message')}</span>
+                    <a onClick={this.openCourseCreation.bind(this)}>{this.context.t('search_more_course_link')}</a>
+                  </div> : null
+            }
           </LoadingMask>
         </div>
       </div>
@@ -80,7 +86,12 @@ const mapDispatchToProps = (dispatch) => ({
   }),
   fetchListTutorActiveCourse: () => dispatch({
     type: FETCH_TUTOR_COURSES,
-    payload: Network().get('courses/upcomming_teaching_classes', {per_page: 100}),
+    payload: Network().get('users/courses', {per_page: 100, status: 'started'}),
+    meta: 'tutorCourseListPlaceholder'
+  }),
+  fetchListTeachingCourse: () => dispatch({
+    type: FETCH_TUTOR_COURSES,
+    payload: Network().get('courses/upcomming_teaching_classes'),
     meta: 'tutorCourseListPlaceholder'
   }),
   deleteCourse: (courseId) => dispatch({
@@ -90,9 +101,16 @@ const mapDispatchToProps = (dispatch) => ({
     }),
     meta: 'tutorCourseListPlaceholder'
   }),
+  startCourse: (courseId) => dispatch({
+    type: UPDATE_COURSE,
+    payload: Network().update(`courses/${courseId}`, {status: CourseStatus.STARTED})
+  }),
+  openCourseDetails: (courseId) => {
+    globalHistory.push(`/dashboard/courses/detail/${courseId}`)
+  },
   activateTab: (tabId) => dispatch(dashboardActions.activateTab(tabId))
 });
 
 export default connect(
   mapStateToProps, mapDispatchToProps
-)(ListTutorCourseContainer);
+)(cssModules(ListTutorCourseContainer, styles));
