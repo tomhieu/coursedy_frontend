@@ -599,6 +599,33 @@ export const translations = {
         description: "Chúng tôi hoan nghênh ý kiến đóng góp hoặc câu hỏi của bạn liên quan đến chính sách bảo mật của chúng tôi. Nếu bạn muốn liên lạc với Coursedy về Chính Sách Bảo Mật này, vui lòng liên hệ với chúng tôi bằng cách gửi email cho chúng tôi tại contact@coursedy.com"
       }
     ],
+    "become-a-teacher": "Trở Thành Giáo Viên",
+    "become-a-teacher-short-description": "Mang kiến thức của bạn để mở ra các cơ hội nghề nghiệp và các tương lai sáng lạng",
+    "become-a-teacher-introduction": {
+      title: "Chia sẻ kiến thức của bạn đến với tất cả mọi người",
+      picture: "https://inspitrip.imgix.net/static/assets/images/img-people.jpg",
+      description: "Bạn sẽ có cơ hội mang những kiến thức, hiểu biết thú vị của bạn đến với mọi người một cách dễ dàng thông qua mạng internet"
+    },
+    "become-a-teacher-reasons": {
+      title: "Tại sao bạn nên trở thành giáo viên",
+      reasons: [
+        {
+          title: "Kiếm thêm thu nhập",
+          picture: "https://inspitrip.imgix.net/static/assets/images/svg-images/make-money.svg",
+          description: "Bạn có thể kiếm được một mức lương tuyệt vời, với việc thiết lập học phí khoá học và chọn lịch biểu linh hoạt của riêng bạn."
+        },
+        {
+          title: "Dễ dàng mở rộng mạng lưới dạy học",
+          picture: "https://inspitrip.imgix.net/static/assets/images/svg-images/make-connection.svg",
+          description: "Với kiến thức sẵn có của bạn, tất cả bạn cần là tự tin và giảng dạy tốt là bạn có thể tiếp xúc với tất cả mọi người trên thế giới."
+        },
+        {
+          title: "Nâng cao kĩ năng mềm",
+          picture: "https://inspitrip.imgix.net/static/assets/images/svg-images/make-skills.svg",
+          description: "Nếu bạn muốn nâng tầm kĩ năng truyền đạt, hay kĩ năng quản lý và chăm sóc khách hàng. Bằng việc trở thành giáo viên bạn có thể bắt gặp các học viên từ nền văn hoá nước khác… Kỹ năng truyền đạt của bạn sẽ phải đa dạng và phong phú hơn. Ngoài ra đến một lúc nào đó, lượng học viên của bạn đủ lớn để thành cộng đồng trên mạng xã hội. Khi đó bạn cần phải quản lý và chăm sóc khách hàng một cách ngày càng chuyên nghiệp, hiệu quả hơn."
+        }
+      ]
+    }
   },
   "en": {
     "home_page": "Home",
