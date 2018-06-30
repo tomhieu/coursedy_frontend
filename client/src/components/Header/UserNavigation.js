@@ -22,7 +22,7 @@ class UserNavigation extends Component {
   render() {
     const {currentUser} = this.props.session;
     const dropdownOptions = [
-      {id: 1, link: "/dashboard/account", text: this.context.t('user_navigation_basic_info')},
+      {id: 1, link: "/dashboard/profile", text: this.context.t('user_navigation_basic_info')},
       {id: 2, link: "/dashboard/courses/list", text: this.context.t('user_navigation_your_course')},
       {id: 3, callback: this.props.signOut, text: this.context.t('user_navigation_sign_out')}
     ]

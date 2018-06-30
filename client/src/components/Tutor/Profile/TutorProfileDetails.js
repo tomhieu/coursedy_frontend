@@ -5,11 +5,14 @@ import ChangePasswordContainer from "../../../containers/Account/ChangePasswordC
 import PersonInfoContainer from "../../../containers/Account/PersonInfoContainer";
 import UserInfo from "../../Account/UserInfo";
 import LoadingMask from "../../LoadingMask/LoadingMask";
+import {UserRole} from "constants/UserRole";
 
 
 class TutorProfileDetails extends Component {
   componentWillMount() {
-    this.props.fetchDetailsTutor()
+    if (this.props.user && this.props.user.roles.indexOf(UserRole.TEACHER) >= 0) {
+      this.props.fetchDetailsTutor()
+    }
   }
 
   hideProfileEditForm(){

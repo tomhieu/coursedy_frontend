@@ -1,6 +1,7 @@
 import * as types from '../constants/Session';
 import * as asyncActs from '../actions/AsyncActionCreator'
 import {TT} from "utils/locale";
+import {SIGN_OUT} from "actions/AsyncActionCreator";
 
 
 const session = (state = {
@@ -19,7 +20,7 @@ const session = (state = {
       }
     case types.FETCH_CURRENT_USER + asyncActs.REJECTED:
       return {...state, currentUser: null, fetchingUser: false};
-    case types.REMOVE_CURRENT_USER:
+    case types.SIGN_OUT + asyncActs.REJECTED:
       return {...state, currentUser: null};
     case types.FETCH_CURRENT_USER + asyncActs.PENDING:
       return {...state, fetchingUser: true};
