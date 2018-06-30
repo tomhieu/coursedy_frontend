@@ -33,27 +33,30 @@ export const checkRole = (authorizedRoles, unauthorizedPath) => {
   }
 }
 
-export const setCurrentUser = (user) => {
+export const confirmUser = () => {
   return dispatch => {
     const confirmation = queryString.parse(globalHistory.location.search)
-    localStorage.setItem(WebConstants.AUTHENTICATED, true);
 
     if (confirmation.account_confirmation_success == 'true' && confirmation.token) {
-      // redirect from api devise's confirmation when activating account
       localStorage.setItem('ezyLearningToken', confirmation.token)
       localStorage.setItem('ezyLearningClient', confirmation.client_id)
       localStorage.setItem('ezyLearningUid', confirmation.uid)
-      return dispatch(fetchCurrentUser());
-    } else if (localStorage.getItem('ezyLearningToken')) {
-      return dispatch(fetchCurrentUser());
-    } else {
-      dispatch({
-        type: types.REMOVE_CURRENT_USER
-      })
-      localStorage.removeItem('ezyLearningToken')
-      localStorage.removeItem('ezyLearningClient')
-      localStorage.removeItem('ezyLearningUid')
+      dispatch(setCurrentUser())
     }
+  }
+}
+
+export const setCurrentUser = () => {
+  return dispatch => {
+    dispatch(fetchCurrentUser()).then(({value, action}) => {
+      if (value.roles.indexOf(UserRole.ADMIN) >= 0) {
+        globalHistory.push('/admin/dashboard');
+      } else if (value.roles.indexOf(UserRole.TEACHER) >= 0 || value.roles.indexOf(UserRole.STUDENT) >= 0) {
+        globalHistory.push('/dashboard/profile');
+      } else {
+        throw new Error('Not authorized');
+      }
+    })
   };
 }
 
@@ -64,15 +67,7 @@ export const loginUser = (email, password) => {
       payload: Network().post('auth/sign_in', {email, password}),
       meta: 'loginPlaceholder'
     }).then(() => {
-      dispatch(fetchCurrentUser()).then(({value, action}) => {
-        if (value.roles.indexOf(UserRole.ADMIN) >= 0) {
-          globalHistory.push('/admin/dashboard');
-        } else if (value.roles.indexOf(UserRole.TEACHER) >= 0 || value.roles.indexOf(UserRole.STUDENT) >= 0) {
-          globalHistory.push('/dashboard/account');
-        } else {
-          throw new Error('Not authorized');
-        }
-      })
+      dispatch(setCurrentUser())
     }, ({value, action}) => {
       dispatch({
         type: LOGIN_FAILED,

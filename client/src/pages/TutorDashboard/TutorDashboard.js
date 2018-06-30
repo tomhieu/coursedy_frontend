@@ -16,6 +16,8 @@ import * as sessionActions from '../../actions/SessionActionCreator'
 import * as dashboardActions from '../../actions/DashboardMenuActionCreator'
 import {CourseStatus} from "../../constants/CourseStatus";
 import * as WebConstants from "../../constants/WebConstants";
+import {UserRole} from "constants/UserRole";
+import PrivateRoute from "containers/PrivateRoute/PrivateRoute";
 
 class TutorDashboard extends RoleAuthorization {
   componentDidMount() {
@@ -32,7 +34,7 @@ class TutorDashboard extends RoleAuthorization {
           <div className={styles.leftPanel} id="sidebar">
             <div className="panel-group dashboard-menu" id="accordion">
               <TutorContainers.DashboardProfileContainer/>
-              <TutorDashboardMenu {...this.props}/>
+              <TutorDashboardMenu {...this.props} />
             </div>
           </div>
           <div className="d-flex flex-auto dashboard-content">
@@ -40,11 +42,11 @@ class TutorDashboard extends RoleAuthorization {
               <switch>
                 <Route exact path="/dashboard/profile" component={TutorProfileDetailsContainer}/>
                 <Route exact path="/dashboard/courses/active" render={props => <ListTutorCourseContainer status={CourseStatus.ACTIVE} {...props}/>} />
-                <Route exact path="/dashboard/courses/list" render={props => <ListTutorCourseContainer status={CourseStatus.INACTIVE} {...props}/>} />
+                <PrivateRoute exact path="/dashboard/courses/list" roles={[UserRole.TEACHER]} render={props => <ListTutorCourseContainer status={CourseStatus.INACTIVE} {...props}/>} />
                 <Route exact path="/dashboard/courses/list-lesson" component={ListLessonContainer}/>
-                <Route exact path="/dashboard/courses/new" component={CourseFormContainer}/>
-                <Route exact path="/dashboard/courses/detail/:id" component={CourseFormContainer}/>
-                <Route exact path="/dashboard/account" component={TutorAccount}/>
+                <PrivateRoute exact path="/dashboard/courses/new" roles={[UserRole.TEACHER]} component={CourseFormContainer}/>
+                <PrivateRoute exact path="/dashboard/courses/detail/:id" roles={[UserRole.TEACHER]} component={CourseFormContainer}/>
+                <PrivateRoute exact path="/dashboard/account" roles={[UserRole.TEACHER]} component={TutorAccount}/>
               </switch>
             </div>
           </div>
