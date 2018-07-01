@@ -5,6 +5,7 @@ import Pagination from 'react-js-pagination';
 import LoadingMask from 'components/LoadingMask/LoadingMask';
 import TutorList from "../../../components/Tutor/TutorList/TutorList";
 import * as WebConstants from "../../../constants/WebConstants";
+import PaginationArrowIcon from "../../../components/Core/Icons/PaginationArrowIcon";
 
 
 class PublicTeacherListContainer extends Component {
@@ -40,6 +41,11 @@ class PublicTeacherListContainer extends Component {
             !isFetching && teachers.length > 0 ? (
               <div className="container-fluid course-pagination mb-15">
                 <Pagination
+                  hideFirstLastPages
+                  prevPageText={<PaginationArrowIcon isLeftArrow={true} />}
+                  nextPageText={<PaginationArrowIcon />}
+                  linkClassPrev="prev-page-icon"
+                  linkClassNext="next-page-icon"
                   activePage={headers.currentPage}
                   itemsCountPerPage={headers.perPage}
                   totalItemsCount={headers.total}

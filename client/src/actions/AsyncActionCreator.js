@@ -78,6 +78,7 @@ export const DELETE_DOCUMENT = 'DELETE_DOCUMENT';
  */
 export const FETCH_TUTOR_COURSES = 'FETCH_TUTOR_COURSES';
 export const DELETE_COURSE = 'DELETE_COURSE';
+export const START_COURSE = 'START_COURSE';
 
 /**
  * Define actions of Student
@@ -165,3 +166,9 @@ export const TEACHER_DETAIL_SUBMIT_COMMENT = 'TEACHER_DETAIL_SUBMIT_COMMENT'
 
 export const ACTIVATE_DASHBOARD_MENU_TAB = 'ACTIVATE_DASHBOARD_MENU_TAB'
 export const FETCH_BBB_ROOM_LINK = 'FETCH_BBB_ROOM_LINK'
+
+/**
+ * Define actions to load enrolled Students
+ */
+
+export const FETCH_ENROLLED_STUDENT = 'FETCH_ENROLLED_STUDENT'

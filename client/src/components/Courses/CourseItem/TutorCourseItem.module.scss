@@ -1,0 +1,60 @@
+@import '/../../../../styles/global_style.scss';
+
+.courseAvatarImage img {
+  width: 80px;
+  height: 60px;
+  margin: 5px 10px;
+}
+
+.courseTutorContainer {
+  background-color: $white-color;
+  border: none;
+  border-radius: 6px;
+  margin-bottom: 10px;
+  box-shadow: 0 3px 8px 0 $color-light-box-shadow;
+
+  .courseTitle {
+    font-size: 16px;
+    font-weight: bold;
+  }
+  .courseSubTitle {
+    font-size: 13px;
+    color: #B5BECB;
+  }
+}
+
+.courseActionButton {
+  margin: 0 5px;
+}
+
+.courseNumberData {
+  font-size: 22px;
+  &.fee {
+    font-size: 18px;
+  }
+}
+
+.courseStatus {
+  display: flex;
+  justify-content: center;
+  padding: 2px 5px;
+  border-radius: 10px;
+  font-weight: 700;
+  color: $white-color;
+  font-size: 11px;
+  &.notStart {
+    background-color: #EC506E;
+  }
+  &.started {
+    background-color: #54D89F;
+  }
+  &.finished {
+    background-color: #95A0B1;
+  }
+}
+
+.leftSeperateLine {
+  border-left: 1px solid $color-seperator-line;
+  height: 35px;
+  margin-right: 10px;
+}

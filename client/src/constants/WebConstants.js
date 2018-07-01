@@ -43,7 +43,7 @@ export const DEFAULT_PLACEHOLDER = "ezylearningFullLoader";
 export const TEACHER_DETAIL_PROFILE_PLACEHOLDER = "TEACHER_DETAIL_PROFILE_PLACEHOLDER";
 
 // authentication
-export const AUTHENTICATED = 'isAuthenticated';
+export const AUTHENTICATED = 'ezyLearningToken';
 
 // rating
 export const MAX_RATING_POINTS = 5.0

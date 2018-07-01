@@ -6,6 +6,7 @@ import * as asyncAction from '../../actions/AsyncActionCreator';
 import {connect} from 'react-redux';
 import {reduxForm} from 'redux-form';
 import Network from "utils/network";
+import {loginUser} from "actions/SessionActionCreator";
 
 
 class LoginFormContainer extends Component {
@@ -38,11 +39,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  login: (email, password) => dispatch({
-    type: asyncAction.LOGIN,
-    payload: Network().post('auth/sign_in', {email, password}),
-    meta: 'loginPlaceholder'
-  })
+  login: (email, password) => dispatch(loginUser(email,  password))
 })
 
 const StyledComponent = cssModules(LoginFormContainer, styles);

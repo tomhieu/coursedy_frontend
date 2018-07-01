@@ -34,7 +34,8 @@ class BaseFilter extends Component {
       search,
       onSelectFilter,
       closeSuggestion,
-      courseFilterMode
+      courseFilterMode,
+      displayMode
     } = this.props;
 
     const {selectedWeekDays, selectedCategories, selectedLocations, selectedSpecializes, term} = filters;
@@ -44,17 +45,14 @@ class BaseFilter extends Component {
       text: this.context.t("order_by_view")
     }, {id: 3, text: this.context.t("order_by_register")}];
 
-    const internalStyles = {
-      checkbox: {
-        marginRight: 0,
-      },
-      defaultColorStyle: {
-        color: "#e27d7f"
-      },
-      defaultBackgroundColorStyle: {
-        backgroundColor: "#e27d7f"
-      }
-    };
+    const gridIconButtonClasses = ["material-icon"];
+    const listIconButtonClasses = ["material-icon"];
+
+    if (displayMode === "grid") {
+      gridIconButtonClasses.push("primary");
+    } else {
+      listIconButtonClasses.push("primary");
+    }
     return (
       <form onSubmit={handleSubmit(this.props.onSubmit)} className='course-filter-form inline-form' multiple={true}>
         <div className={"d-flex flex-vertical"}>
@@ -133,14 +131,14 @@ class BaseFilter extends Component {
                     <div className="d-flex flex-horizontal">
                       <FlatButton secondary={true}
                                   onClick={changeDisplayModeHdl.bind(this, "grid")} >
-                        <svg viewBox="0 0 24 24" className="material-icon primary" width={24} height={24}>
+                        <svg viewBox="0 0 24 24" className={gridIconButtonClasses.join(" ")} width={24} height={24}>
                           <path d="M4 11h5V5H4v6zm0 7h5v-6H4v6zm6 0h5v-6h-5v6zm6 0h5v-6h-5v6zm-6-7h5V5h-5v6zm6-6v6h5V5h-5z"></path>
                         </svg>
                       </FlatButton>
 
                       <FlatButton secondary={true}
                                   onClick={changeDisplayModeHdl.bind(this, "list")}>
-                        <svg viewBox="0 0 24 24" className="material-icon primary" width={24} height={24}>
+                        <svg viewBox="0 0 24 24" className={listIconButtonClasses.join(" ")} width={24} height={24}>
                           <path d="M4 14h4v-4H4v4zm0 5h4v-4H4v4zM4 9h4V5H4v4zm5 5h12v-4H9v4zm0 5h12v-4H9v4zM9 5v4h12V5H9z"></path>
                         </svg>
                       </FlatButton>
@@ -172,7 +170,8 @@ BaseFilter.propTypes = {
   showSuggestion: React.PropTypes.bool.isRequired,
   search: React.PropTypes.func,
   closeSuggestion: React.PropTypes.func,
-  courseFilterMode: React.PropTypes.bool
+  courseFilterMode: React.PropTypes.bool,
+  displayMode: React.PropTypes.string
 };
 
 export default cssModules(BaseFilter, styles);

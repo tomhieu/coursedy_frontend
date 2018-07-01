@@ -144,7 +144,7 @@ const mapStateToProps = (state) => {
   const categories = referenceData.courseCategories || []
   const locations = referenceData.locations || []
 
-  const {courses = [], selectedCourses = [],
+  const {courses = [], selectedCourses = [], displayMode,
          totalResult = 0, currentPage, perPage, sugestions, filters, showSuggestion, loadingSuggestion} = CourseFilter;
   const {courseFilterForm = {}} = form;
   const filterSuggestions = [];
@@ -163,7 +163,7 @@ const mapStateToProps = (state) => {
   }
 
   return {
-    categories, courses, selectedCourses, locations,
+    categories, courses, selectedCourses, locations, displayMode,
     totalResult, currentPage, perPage, filters, showSuggestion, suggestions: filterSuggestions, loadingSuggestion,
     formfieldValues: courseFilterForm.values ? courseFilterForm.values : {},
     listSpecializes: getSelectedSpecializesFromCategory(categories, filters.selectedCategories),

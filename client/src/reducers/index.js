@@ -41,6 +41,7 @@ import TeacherDetail from './TeacherDetailPageReducer';
 import DashboardTutorEducationList from './Dashboard/Tutors/Educations/DashboardTutorEducationList';
 import DashboardTutorWorkExperienceList from './Dashboard/Tutors/Educations/DashboardTutorWorkExperienceList';
 import DashboardMenu from "./Dashboard/Menu/DashboardMenuReducer";
+import EnrolledStudentList from "./Dashboard/Tutors/CourseList/EnrolledStudent/ListEnrolledStudentReducer";
 
 const rootReducer = combineReducers({
   DashboardTutorEducationList,
@@ -85,7 +86,8 @@ const rootReducer = combineReducers({
   Payment,
   HomePage,
   Certificate,
-  DashboardMenu
+  DashboardMenu,
+  EnrolledStudentList
 });
 
 export default rootReducer;

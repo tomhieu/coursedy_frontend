@@ -19,6 +19,13 @@
 
   &__how-to-learn, &__popular, &__teacher-guide {
     background-color: $body-color;
+
+  }
+
+  &__popular {
+    .heading {
+      margin-top: 65px;
+    }
   }
 
   &__top-teacher {

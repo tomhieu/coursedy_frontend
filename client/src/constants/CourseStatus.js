@@ -1,4 +1,5 @@
 export class CourseStatus {
-  static ACTIVE = 'active';
-  static INACTIVE = 'inactive';
+  static NOT_STARTED = 'not_started';
+  static STARTED = 'started';
+  static FINISH = 'finish';
 }

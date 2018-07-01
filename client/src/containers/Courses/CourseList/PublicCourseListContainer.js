@@ -10,6 +10,7 @@ import * as WebConstants from "constants/WebConstants";
 import styles from './PublicCourseList.module.scss'
 import Network from "utils/network";
 import cssModules from "react-css-modules";
+import PaginationArrowIcon from "../../../components/Core/Icons/PaginationArrowIcon";
 
 class PublicCourseListContainer extends Component {
 
@@ -58,6 +59,11 @@ class PublicCourseListContainer extends Component {
             !isFetching && courses.length > 0 ? (
               <div className="container-fluid course-pagination mb-15">
                 <Pagination
+                  hideFirstLastPages
+                  prevPageText={<PaginationArrowIcon isLeftArrow={true} />}
+                  nextPageText={<PaginationArrowIcon />}
+                  linkClassPrev="prev-page-icon"
+                  linkClassNext="next-page-icon"
                   activePage={this.props.currentPage}
                   itemsCountPerPage={this.props.perPage}
                   totalItemsCount={this.props.totalResult}
