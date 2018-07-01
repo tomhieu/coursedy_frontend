@@ -64,8 +64,26 @@ class CoursedyDropDown extends Component {
               items.length > 0 ?
               items.map((item) => {
                 return item.link ?
-                  <li key={item.id + 'option'} className={styles.option}><a onClick={this.onSelectOption.bind(this, item.link)}>{item.text}</a></li> :
-                  <li key={item.id + 'option'} className={styles.option}><a onClick={this.onSelectOption.bind(this, undefined, item.callback)}>{item.text}</a></li>
+                  <li key={item.id + 'option'} className={styles.option}>
+                    <a onClick={this.onSelectOption.bind(this, item.link)}>
+                      {
+                        item.prefix ? 
+                          item.prefix.type == 'image' ? <img src={item.prefix.value} /> : item.prefix.value
+                          : ''
+                      }
+                      {item.text}
+                    </a>
+                  </li> :
+                  <li key={item.id + 'option'} className={styles.option}>
+                    <a onClick={this.onSelectOption.bind(this, undefined, item.callback)}>
+                      {
+                        item.prefix ? 
+                          item.prefix.type == 'image' ? <img src={item.prefix.value} /> : item.prefix.value
+                          : ''
+                      }
+                      {item.text}
+                    </a>
+                  </li>
               }) : <span>{emptyMessage}</span>
             }
           </ul>

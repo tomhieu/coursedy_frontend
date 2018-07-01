@@ -26,22 +26,32 @@ class LangNavigation extends Component {
 
   render() {
     const dropdownOptions = [
-      {id: 1, callback: this.handleSwitchLang.bind(this, "en"), text: 'Tiếng Anh'},
-      {id: 2, callback: this.handleSwitchLang.bind(this, "vn"), text: 'Tiếng Việt'}
+      {id: 1, callback: this.handleSwitchLang.bind(this, "en"), text: '  EN', 
+        'prefix': {
+          'type': 'image',
+          'value': '/flags/en.png'
+        }
+      },
+      {id: 2, callback: this.handleSwitchLang.bind(this, "vn"), text: '  VI', 
+        'prefix': {
+          'type': 'image',
+          'value': '/flags/vn.png'
+        }
+      }
     ]
     return (
       <div className="d-flex flex-column">
         <div className="d-flex flex-row">
-          <div className={styles.langIcon}>
-            <img className="media-object full-width" onClick={this.onClickArrow.bind(this)}
-                 src={'/flags/' + this.props.lang + '.png'}
-            />
+          <div>
+            <span className="nav-link" onClick={this.onClickArrow.bind(this)}>{this.props.lang.toUpperCase()}</span>
           </div>
         </div>
         <CoursedyDropDown items={dropdownOptions}
                           isOpen={this.state.show}
                           bgColor="#F4FAFA"
-                          closeDropDown={this.onCloseDropDown.bind(this)}>
+                          closeDropDown={this.onCloseDropDown.bind(this)}
+                          width={'75px'}
+                          >
         </CoursedyDropDown>
       </div>
     )
