@@ -20,7 +20,7 @@ export const validate = (values) => {
 
   if (!values.phone_number) {
     errors.phone_number = TT.t('phone_number_required')
-  } else if (!/^\d*$/i.test(values.phone_number)) {
+  } else if (!/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/i.test(values.phone_number)) {
     errors.phone_number = TT.t('invalid_phone_number')
   }
 
