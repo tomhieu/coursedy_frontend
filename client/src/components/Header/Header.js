@@ -86,14 +86,14 @@ class Header extends Component {
               {
                 SecurityUtils.isAuthenticated() ? (
                   <li className="nav-item">
-                    <Notification whiteIcon={!this.state.normalNotification} {...this.props}></Notification>
+                    <Notification whiteIcon={!this.state.normalNotification} session={this.props.session}></Notification>
                   </li>
                 ) : null
               }
               {
                 SecurityUtils.isAuthenticated() ? (
                   <li className="nav-item">
-                    <UserNavigation {...this.props}></UserNavigation>
+                    <UserNavigation session={this.props.session}></UserNavigation>
                   </li>
                 ) : (
                   <li className="nav-item">
