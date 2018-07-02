@@ -42,7 +42,7 @@ class TutorDashboard extends RoleAuthorization {
               <switch>
                 <Route exact path="/dashboard/profile" component={TutorProfileDetailsContainer}/>
                 <Route exact path="/dashboard/courses/active" render={props => <ListTutorCourseContainer status={CourseStatus.ACTIVE} {...props}/>} />
-                <PrivateRoute exact path="/dashboard/courses/list" roles={[UserRole.TEACHER]} render={props => <ListTutorCourseContainer status={CourseStatus.INACTIVE} {...props}/>} />
+                <PrivateRoute exact path="/dashboard/courses/list" roles={[UserRole.TEACHER]} component={props => <ListTutorCourseContainer status={CourseStatus.INACTIVE} {...props}/>} />
                 <Route exact path="/dashboard/courses/list-lesson" component={ListLessonContainer}/>
                 <PrivateRoute exact path="/dashboard/courses/new" roles={[UserRole.TEACHER]} component={CourseFormContainer}/>
                 <PrivateRoute exact path="/dashboard/courses/detail/:id" roles={[UserRole.TEACHER]} component={CourseFormContainer}/>
