@@ -27,15 +27,15 @@ class CourseDetail extends Component {
       currentScrollPosition: 0,
       activeMenu: 'course-detail-intro'
     }
+    this.onScroll = this.checkScrollPosition.bind(this)
   }
 
   componentDidMount() {
-    window.addEventListener('scroll', this.handleScroll.bind(this))
-    this.checkScrollPosition()
+    window.addEventListener('scroll', this.onScroll)
   }
 
   componentWillUnmount() {
-    window.removeEventListener('scroll', this.handleScroll.bind(this))
+    window.removeEventListener('scroll', this.onScroll)
   }
 
   /*
@@ -61,10 +61,6 @@ class CourseDetail extends Component {
         }, 'course-detail-intro'
       )
     })
-  }
-
-  handleScroll(event) {
-    this.checkScrollPosition()
   }
 
   render() {
