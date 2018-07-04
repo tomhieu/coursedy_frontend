@@ -17,6 +17,7 @@ class Header extends Component {
     this.state = {
       normalNotification: !props.main.darkHeader
     }
+    this.onScroll = this.handleScroll.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -30,11 +31,11 @@ class Header extends Component {
   }
 
   componentDidMount() {
-    window.addEventListener('scroll', this.handleScroll.bind(this))
+    window.addEventListener('scroll', this.onScroll)
   }
 
   componentWillUnmount() {
-    window.removeEventListener('scroll', this.handleScroll.bind(this))
+    window.removeEventListener('scroll', this.onScroll)
   }
 
   handleScroll(event) {
