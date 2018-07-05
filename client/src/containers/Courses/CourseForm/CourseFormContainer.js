@@ -13,10 +13,13 @@ import Network from "utils/network";
 import FlatButton from "../../../components/Core/FlatButton/FlatButton";
 import * as dashboardActions from '../../../actions/DashboardMenuActionCreator';
 import {FETCH_BBB_ROOM_LINK} from "../../../actions/AsyncActionCreator";
+import * as queryString from "query-string";
 
 class CourseFormContainer extends Component {
   constructor(props) {
     super(props);
+    let params = queryString.parse(this.props.location.search)
+    console.log(params);
     this.courseId = this.props.match.params.id;
   }
 

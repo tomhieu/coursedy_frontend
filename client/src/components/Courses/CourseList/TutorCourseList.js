@@ -44,8 +44,8 @@ class TutorCourseList extends Component {
           <div className="row">
             {
               courseList.map((course) =>
-                <div className="col-md-12">
-                  <TutorCourseItem key={'tutorCourse' + course.id} course={course} {...this.props}></TutorCourseItem>
+                <div className="col-md-12" key={'tutorCourse' + course.id}>
+                  <TutorCourseItem course={course} {...this.props}></TutorCourseItem>
                 </div>
               )
             }

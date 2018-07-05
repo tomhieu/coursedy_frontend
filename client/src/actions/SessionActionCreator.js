@@ -9,6 +9,7 @@ import {LOGIN_FAILED} from "constants/LoginComponent";
 import {TT} from "utils/locale";
 import {UserRole} from "constants/UserRole";
 import {REMOVE_CURRENT_USER, SET_CURRENT_USER} from "constants/Session";
+import {CourseStatus} from "../constants/CourseStatus";
 
 export const fetchCurrentUser = () => {
   return {
@@ -53,11 +54,19 @@ export const setCurrentUser = () => {
         globalHistory.push('/admin/dashboard');
       } else if (value.roles.indexOf(UserRole.TEACHER) >= 0 || value.roles.indexOf(UserRole.STUDENT) >= 0) {
         globalHistory.push('/dashboard/profile');
+        dispatch(fetchActiveCourses());
       } else {
         throw new Error('Not authorized');
       }
     })
   };
+}
+
+export const fetchActiveCourses = () => {
+  return {
+    type: asyncActions.FETCH_TUTOR_ACTIVE_COURSES,
+    payload: Network().get('users/courses', {per_page: 100, status: CourseStatus.STARTED})
+  }
 }
 
 export const loginUser = (email, password) => {
@@ -84,10 +93,14 @@ export const signOutUser = () => {
       payload: Network().delete('auth/sign_out'),
       meta: 'ezylearningFullLoader'
     }).then(({value, action}) => {
-      localStorage.removeItem('ezyLearningToken');
-      localStorage.removeItem('ezyLearningClient');
-      localStorage.removeItem('ezyLearningUid');
+      clearAuthenticationData();
       globalHistory.push('/');
     })
   }
+}
+
+export const clearAuthenticationData = () => {
+  localStorage.removeItem('ezyLearningToken');
+  localStorage.removeItem('ezyLearningClient');
+  localStorage.removeItem('ezyLearningUid');
 }

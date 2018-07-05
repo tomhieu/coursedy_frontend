@@ -4,7 +4,7 @@ import {connect} from "react-redux";
 import LoadingMask from "../../../components/LoadingMask/LoadingMask";
 import {FETCH_TUTOR_COURSES} from "actions/AsyncActionCreator";
 import Network from "utils/network";
-import {DELETE_COURSE, UPDATE_COURSE} from "../../../actions/AsyncActionCreator";
+import {DELETE_COURSE, FETCH_TUTOR_ACTIVE_COURSES, UPDATE_COURSE} from "../../../actions/AsyncActionCreator";
 import * as dashboardActions from '../../../actions/DashboardMenuActionCreator';
 import {CourseStatus} from "../../../constants/CourseStatus";
 import TutorCourseList from "../../../components/Courses/CourseList/TutorCourseList";

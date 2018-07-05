@@ -621,6 +621,10 @@ export const translations = {
     "no_active_course_message": "Hiện tại bạn chưa dạy khoá học nảo",
     "search_more_course_link": "tạo khoá học ngay hôm nay",
     "start_course_warning_message": "Bạn có chắc là muốn bắt đầu dạy khoá học ‘{courseName}’.Một khi hoá học bắt đầu, chúng tôi sẽ thông báo tất cả học sinh đã đăng ký thơi gian học chính thức. Bạn sẽ không thể thay đổi những thông tin khoá học.",
+    "join_active_course_popup_title": "Vào lớp",
+    "join_active_course_popup_message": "Khoá học {courseName} đã đến giờ vào lớp. Mời bạn vào lớp học.",
+    "join_active_course_popup_accept_button": "Vào lớp"
+
   },
   "en": {
     "home_page": "Home",

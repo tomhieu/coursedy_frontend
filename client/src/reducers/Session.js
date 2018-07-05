@@ -1,7 +1,8 @@
 import * as types from '../constants/Session';
 import * as asyncActs from '../actions/AsyncActionCreator'
 import {TT} from "utils/locale";
-import {SIGN_OUT} from "actions/AsyncActionCreator";
+import {DAYS_IN_WEEK} from "../actions/CourseFormActionCreator";
+import {UserRole} from "../constants/UserRole";
 
 
 const session = (state = {
@@ -9,7 +10,9 @@ const session = (state = {
   fetchingUser: false,
   userBalance: 0,
   errors: [],
-  notifications: []
+  notifications: [],
+  hasActiveCourseToLearn: false,
+  teachingCourse: null
 }, action) => {
   switch (action.type) {
     case types.FETCH_CURRENT_USER + asyncActs.FULFILLED:
@@ -36,6 +39,15 @@ const session = (state = {
       return {...state, userBalance: 0, errors: errorMessages, fetchingUser: false }
     case types.FETCH_NOTIFICATION_USER + asyncActs.FULFILLED:
       return { ...state, notifications: action.payload}
+    case asyncActs.FETCH_TUTOR_ACTIVE_COURSES + asyncActs.FULFILLED:
+      const activeCourses = action.payload;
+      const currentDay = DAYS_IN_WEEK.find((day) =>  new Date().getDay() === day.id);
+      const haveActiveCourseToday = activeCourses.filter((course) =>
+        course.week_day_schedules.find((day) => day.day ===currentDay.name) !== undefined).length > 0;
+      return {...state, hasActiveCourseToLearn: haveActiveCourseToday }
+    case asyncActs.FETCH_TUTOR_UPCOMING_COURSES + asyncActs.FULFILLED:
+    case asyncActs.FETCH_STUDENT_UPCOMING_COURSES + asyncActs.FULFILLED:
+      return {...state, teachingCourse: action.payload.courses}
     default:
       return state;
   }

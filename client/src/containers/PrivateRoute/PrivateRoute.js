@@ -3,9 +3,10 @@ import {Redirect, Route} from "react-router";
 import {connect} from "react-redux";
 import * as sessionActions from 'actions/SessionActionCreator'
 import {SecurityUtils} from "utils/SecurityUtils";
+import {globalHistory} from "utils/globalHistory";
 
 class PrivateRoute extends Component {
-  componentDidMount() {
+  componentWillMount() {
     if (SecurityUtils.isAuthenticated() && this.props.user == null) {
       this.props.fetchUserData();
     }
@@ -18,10 +19,10 @@ class PrivateRoute extends Component {
   }
 
   render() {
-    const {user, component: Component, ...rest} = this.props;
+    const {user, fetchingUser, component: Component, ...rest} = this.props;
     const isAuthenticated = SecurityUtils.isAuthenticated();
     if (isAuthenticated && user == null) {
-      return <div>LOADING</div>;
+      return fetchingUser ? <div>LOADING</div> : <Redirect to={{pathname: '/login', state: {from: this.props.location}}}/>;
     } else {
       return (
         <Route {...rest} render={props => (
@@ -40,7 +41,8 @@ class PrivateRoute extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  user: state.session.currentUser
+  user: state.session.currentUser,
+  fetchingUser: state.session.fetchingUser
 })
 
 const mapStateToDispatch = (dispatch) => ({
@@ -49,6 +51,7 @@ const mapStateToDispatch = (dispatch) => ({
 
 PrivateRoute.propTypes = {
   user: React.PropTypes.object,
+  fetchingUser: React.PropTypes.bool,
   roles: React.PropTypes.array
 }
 

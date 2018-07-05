@@ -2,6 +2,7 @@ import {connect} from 'react-redux';
 import Main from './Main';
 import {withRouter} from 'react-router-dom';
 import * as sessionActions from 'actions/SessionActionCreator';
+import * as courseActions from 'actions/ListTutorCourseActionCreator';
 import * as WebConstants from "../constants/WebConstants";
 
 // Map the global state to global props here.
@@ -13,6 +14,8 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   fetchUser: () => dispatch(sessionActions.fetchCurrentUser()),
   signOut: () => dispatch(sessionActions.signOutUser()),
+  fetchUpCommingTeacherCourse: () => dispatch(courseActions.fetchUpcomingTutorCourse()),
+  fetchUpCommingStudentCourse: () => dispatch(courseActions.fetchUpcomingStudentCourse()),
   showDarkHeader: () => dispatch({ type: WebConstants.SHOW_DARK_HEADER }),
   showWhiteHeader: () => dispatch({ type: WebConstants.SHOW_WHITE_HEADER }),
 });
