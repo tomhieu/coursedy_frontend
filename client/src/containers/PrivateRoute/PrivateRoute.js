@@ -1,9 +1,9 @@
 import React, {Component} from "react";
-import {Redirect, Route} from "react-router";
+import {Redirect} from "react-router";
+import {Route} from 'react-router-dom'
 import {connect} from "react-redux";
 import * as sessionActions from 'actions/SessionActionCreator'
 import {SecurityUtils} from "utils/SecurityUtils";
-import {globalHistory} from "utils/globalHistory";
 
 class PrivateRoute extends Component {
   componentWillMount() {
