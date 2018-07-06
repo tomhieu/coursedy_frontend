@@ -8,6 +8,7 @@ import {TT} from "../../utils/locale";
 import ObjectUtils from "../../utils/ObjectUtils";
 import Cropper from 'react-cropper'
 import 'cropperjs/dist/cropper.css';
+import { Field } from 'redux-form'
 
 export const renderField = ({input, label, placeholder, type = 'text', disabled = false, customClassName, meta: {touched, error, warning}}) => (
   <div className='full-width-input-wrapper'>
@@ -20,6 +21,32 @@ export const renderField = ({input, label, placeholder, type = 'text', disabled 
     {touched && ((error && <span className='input-errors'>{error}</span>) || (warning && <span>{warning}</span>))}
   </div>
 )
+
+export const renderRadioFields = props => {
+  if (props && props.input && props.options) {
+    const renderRadioButtons = (key, index) => {
+      return (
+        <label className="mr-10" key={`${index}`} htmlFor={`${props.input.name}-${index}`}>
+          <Field
+            id={`${props.input.name}-${index}`}
+            component="input"
+            name={props.input.name}
+            type="radio"
+            value={key}
+          />
+          {props.options[key]}
+        </label>
+      )
+    };
+    return (
+      <div>
+        {props.options &&
+        Object.keys(props.options).map(renderRadioButtons)}
+      </div>
+    );
+  }
+  return <div></div>
+}
 
 export const renderCheckBoxField = ({input, label, placeholder, type = 'text', disabled = false, customClassName, meta: {touched, error, warning}}) => (
   <div className='full-width-input-wrapper'>

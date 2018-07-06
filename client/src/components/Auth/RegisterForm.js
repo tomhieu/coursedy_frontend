@@ -6,10 +6,10 @@ import {Field} from 'redux-form';
 import {TT} from '../../utils/locale'
 import {ROLES} from "constants/Roles";
 import SignUpSuccessModal from "./SignUpSuccessModal";
-import {renderSelect, renderField} from "../Core/CustomComponents";
+import {
+  renderField, renderRadioFields
+} from '../Core/CustomComponents'
 import PrimaryButton from "../Core/PrimaryButton/PrimaryButton";
-
-const renderSelectComponent = renderSelect(ROLES.map((role) => ({text: TT.t(role), id: role})))
 
 class RegisterForm extends Component {
   render() {
@@ -20,7 +20,10 @@ class RegisterForm extends Component {
           <ControlLabel> {this.context.t("register_as")} &nbsp;<font color="red">*</font> </ControlLabel>
           <Field
             name="role"
-            component={renderSelectComponent}
+            component={renderRadioFields}
+            options={ROLES.reduce((acc, curr) => {
+              acc[curr] = TT.t(curr)
+              return acc}, {})}
           />
         </FormGroup>
 
