@@ -5,7 +5,8 @@ import SettingIcon from "../../Core/Icons/SettingIcon";
 import AddCourseIcon from "../../Core/Icons/AddCourseIcon";
 import ActiveCourseListIcon from "../../Core/Icons/ActiveCourseListIcon";
 import CourseListIcon from "../../Core/Icons/CourseListIcon";
-import { Link } from 'react-router-dom'
+import {globalHistory} from "utils/globalHistory";
+
 
 class AdminDashboardMenu extends Component {
   onClickDashboardLink(urlNavigation, activeTab) {
@@ -14,7 +15,7 @@ class AdminDashboardMenu extends Component {
   }
 
   render(){
-    const {activatedTab, signOut} = this.props
+    const {activatedTab} = this.props
     return (
       <div className="dashboard-menu-panel">
         <div className="panel panel-default">

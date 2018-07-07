@@ -12,22 +12,27 @@ import {
   RequireEmailConfirmationModal
 } from '../../../components/index'
 import LoadingMask from "../../../components/LoadingMask/LoadingMask";
+import * as dashboardActions from '../../../actions/DashboardMenuActionCreator';
 
 class AccountProfileContainer extends Component {
+  componentDidMount() {
+    this.props.activateTab('my_profile')
+  }
+
   showProfileEditForm(){
-    this.props.showAccountEditForm();
+    this.props.showAccountEditForm()
   }
 
   hideProfileEditForm(){
-    this.props.hideAccountEditForm();
+    this.props.hideAccountEditForm()
   }
 
   closeEmailConfirmationModal(){
-    this.props.hideEmailChangedPopup();
+    this.props.hideEmailChangedPopup()
   }
 
   showEmailConfirmationModal() {
-    this.props.showEmailChangedPopup();
+    this.props.showEmailChangedPopup()
   }
 
   render() {
@@ -78,7 +83,8 @@ const mapDispatchToProps = (dispatch) => ({
   showAccountEditForm: () => dispatch(AccountActions.showAccountEditForm()),
   hideAccountEditForm: () => dispatch(AccountActions.hideAccountEditForm()),
   hideEmailChangedPopup: () => dispatch(AccountActions.hideEmailChangedPopup()),
-  showEmailChangedPopup: () => dispatch(AccountActions.showEmailChangedPopup())
+  showEmailChangedPopup: () => dispatch(AccountActions.showEmailChangedPopup()),
+  activateTab: (tabId) => dispatch(dashboardActions.activateTab(tabId))
 })
 
 export default connect(
