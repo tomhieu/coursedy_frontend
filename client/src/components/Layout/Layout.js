@@ -8,12 +8,15 @@ import LoadingMask from "../LoadingMask/LoadingMask";
 import SimpleDialogComponent from "../Core/SimpleDialogComponent";
 import {joinToClassRoom} from "../../actions/ListTutorCourseActionCreator";
 import {UserRole} from "../../constants/UserRole";
+import {SecurityUtils} from "utils/SecurityUtils";
+import {Link} from "react-router-dom";
+import UpcommingCourseNotificationPopup from "./UpcommingCoursePopup/UpcommingCourseNotificationPopup";
 
 class Layout extends Component {
 
   componentWillReceiveProps(nextProps) {
-    const {hasActiveCourseToLearn, currentUser} = nextProps.session;
-    if (hasActiveCourseToLearn && currentUser) {
+    const {hasActiveCourseToLearn, isJoiningActiveClass, currentUser} = nextProps.session;
+    if (hasActiveCourseToLearn && currentUser && !isJoiningActiveClass) {
       this.startPoll(currentUser);
     } else {
       clearTimeout(this.timeout);
@@ -37,7 +40,7 @@ class Layout extends Component {
   startPoll(currentUser) {
     this.timeout = setTimeout(() => {
       this.checkUpcommingCourse(currentUser);
-    }, 5000);
+    }, 20000);
   }
 
   checkUpcommingCourse(currentUser) {
@@ -48,10 +51,21 @@ class Layout extends Component {
     }
   }
 
+  acceptJoinToClassRoom(classRoomId) {
+    clearTimeout(this.timeout);
+    // closed popup
+    this.props.closePopupJoinUpcomingClass();
+    // join to class
+    joinToClassRoom(classRoomId);
+    // executed after joining an active class
+    this.props.afterJoinUpcomingClass();
+  }
+
   render() {
     const {main, session} = this.props;
     const teachingCourseTeacherName = session.teachingCourse !== null ? session.teachingCourse.user.name : '';
-    const teachingCourseName = session.teachingCourse !== null ? session.teachingCourse.name : '';
+    const teachingCourseName = session.teachingCourse !== null ? session.teachingCourse.title : '';
+    const teachingCourseId = session.teachingCourse !== null ? session.teachingCourse.id : '';
     const classRoomId = session.teachingCourse !== null ? session.teachingCourse.bigbluebutton_room.slug : '';
     return (
       <I18n translations={translations} initialLang={TT.locale}>
@@ -67,12 +81,14 @@ class Layout extends Component {
             <LoadingMask placeholderId="ezylearningFullLoader" isFullLoading={true}></LoadingMask>
           </div>
           <div className="join-course">
-            <SimpleDialogComponent show={session.teachingCourse !== null}
-                                   title={TT.t('join_active_course_popup_title')}
-                                   acceptCallback={joinToClassRoom.bind(this, classRoomId)}
-                                   cancelCallback={this.props.closePopupJoinUpcomingClass.bind(this)}>
-              {TT.t('join_active_course_popup_message', {courseName: teachingCourseName, teacher: teachingCourseTeacherName})}
-            </SimpleDialogComponent>
+            <UpcommingCourseNotificationPopup teacherName={teachingCourseTeacherName}
+                                              currentUser={session.currentUser}
+                                              courseName={teachingCourseName}
+                                              courseId={teachingCourseId} isShowPopup={session.teachingCourse !== null}
+                                              classRoomId={classRoomId}
+                                              acceptJoinToClassRoom={this.acceptJoinToClassRoom.bind(this)}
+                                              closePopupJoinUpcomingClass={this.props.closePopupJoinUpcomingClass.bind(this)}>
+            </UpcommingCourseNotificationPopup>
           </div>
         </div>
       </I18n>

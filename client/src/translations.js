@@ -632,6 +632,7 @@ export const translations = {
     "start_course_warning_message": "Bạn có chắc là muốn bắt đầu dạy khoá học ‘{courseName}’.Một khi hoá học bắt đầu, chúng tôi sẽ thông báo tất cả học sinh đã đăng ký thơi gian học chính thức. Bạn sẽ không thể thay đổi những thông tin khoá học.",
     "join_active_course_popup_title": "Vào lớp",
     "join_active_course_popup_message": "Khoá học {courseName} của giáo viên {teacherName} đã đến giờ vào lớp. Mời bạn vào lớp học.",
+    "join_active_course_popup_message_for_teacher": "Khoá học {courseName} đã đến giờ dạy. Mời bạn vào lớp dạy.",
     "join_active_course_popup_accept_button": "Vào lớp"
 
   },

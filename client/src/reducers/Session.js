@@ -11,6 +11,7 @@ const session = (state = {
   errors: [],
   notifications: [],
   hasActiveCourseToLearn: false,
+  isJoiningActiveClass: false,
   teachingCourse: null
 }, action) => {
   switch (action.type) {
@@ -53,6 +54,11 @@ const session = (state = {
       return {...state, teachingCourse: upcommingCourse};
     case asyncActs.CLOSE_POPUP_JOIN_UPCOMMING_CLASS:
       return {...state, teachingCourse: null};
+    case asyncActs.STARTED_JOINING_ACTIVE_CLASS:
+      return {...state, teachingCourse: null, isJoiningActiveClass: true};
+    case asyncActs.LEAVED_JOINING_CLASS:
+      return {...state, isJoiningActiveClass: false};
+
     default:
       return state;
   }
