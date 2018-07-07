@@ -1,21 +1,23 @@
-import React, {Component} from 'react';
-import cssModules from 'react-css-modules';
-import styles from './RegisterForm.module.scss';
-import {FormGroup, ControlLabel} from 'react-bootstrap';
-import {Field} from 'redux-form';
-import {TT} from '../../utils/locale'
-import {ROLES} from "constants/Roles";
-import SignUpSuccessModal from "./SignUpSuccessModal";
+import React, {Component} from 'react'
+import cssModules from 'react-css-modules'
+import styles from './RegisterForm.module.scss'
+import {FormGroup, ControlLabel} from 'react-bootstrap'
+import {Field} from 'redux-form'
+import {TT} from 'utils/locale'
+import {ROLES} from "constants/Roles"
+import SignUpSuccessModal from "./SignUpSuccessModal"
 import {
   renderField, renderRadioFields
 } from '../Core/CustomComponents'
-import PrimaryButton from "../Core/PrimaryButton/PrimaryButton";
+import PrimaryButton from "../Core/PrimaryButton/PrimaryButton"
+import './LoginRegisterForm.scss'
+import { Link } from 'react-router-dom'
 
 class RegisterForm extends Component {
   render() {
-    const {handleSubmit} = this.props;
+    const {handleSubmit} = this.props
     return (
-      <form onSubmit={handleSubmit(this.props.onSubmit)} className="form-signin">
+      <form onSubmit={handleSubmit(this.props.onSubmit)} className="form-signup">
         <FormGroup controlId="formHorizontalEmail">
           <ControlLabel> {this.context.t("register_as")} &nbsp;<font color="red">*</font> </ControlLabel>
           <Field
@@ -82,11 +84,19 @@ class RegisterForm extends Component {
           />
         </FormGroup>
 
+        <div className="sigup-term-privacy d-flex justify-content-center">
+          <p>{this.context.t('signup_term', {term: <a target="_blank" href="/terms">{this.context.t('term')}</a>, privacy: <a target="_blank" href="/privacy">{this.context.t('privacy')}</a>})}</p>
+        </div>
+
         <div className="d-flex justify-content-center">
           <PrimaryButton type="submit" round={true}
                          customClasses={styles.registerButton}
                          title={this.context.t("register_now")} line={false}>
           </PrimaryButton>
+        </div>
+
+        <div className="d-flex justify-content-center mt-10">
+          {this.context.t('signup_link_to_login', {'login': <Link to="/login" className="signin-signup-footer-link">{this.context.t('login')}</Link>})}
         </div>
         <SignUpSuccessModal show={this.props.SignUpComponent.success} close={this.props.resetForm}/>
       </form>
@@ -100,4 +110,4 @@ RegisterForm.contextTypes = {
 
 RegisterForm.propTypes = {}
 
-export default cssModules(RegisterForm, styles);
+export default cssModules(RegisterForm, styles)

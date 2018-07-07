@@ -6,6 +6,8 @@ import {Field} from 'redux-form';
 import {Auth} from 'j-toker'
 import * as Actions from '../../actions/LoginActionCreator'
 import PrimaryButton from "../Core/PrimaryButton/PrimaryButton";
+import { Link } from 'react-router-dom'
+import './LoginRegisterForm.scss'
 
 class LoginForm extends Component {
   hideLoginError(){
@@ -58,6 +60,10 @@ class LoginForm extends Component {
                          customClasses={styles.loginButton}
                          title={this.context.t("login")} line={false} round={true}>
           </PrimaryButton>
+        </div>
+
+        <div className="d-flex justify-content-center mt-10">
+          {this.context.t('login_link_to_signup', {'register': <Link to="/register" className="signin-signup-footer-link">{this.context.t('register')}</Link>})}
         </div>
       </form>
     )

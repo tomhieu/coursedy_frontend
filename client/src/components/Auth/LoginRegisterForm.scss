@@ -1,0 +1,30 @@
+@import "../../../styles/global_style";
+
+.signin-signup-footer-link {
+  color: $md-color-pink;
+  font-size: 14px;
+  font-weight: 400;
+
+  &:hover {
+    text-decoration: none;
+    color: $dark-text-color;
+  }
+}
+
+.form-signup {
+  .sigup-term-privacy {
+    p {
+      max-width: 516px;
+    }
+    a {
+      color: $md-color-pink;
+      font-size: 14px;
+      font-weight: 400;
+
+      &:hover {
+        text-decoration: none;
+        color: $dark-text-color;
+      }
+    }
+  }
+}

@@ -34,7 +34,7 @@ export const renderRadioFields = props => {
             type="radio"
             value={key}
           />
-          {props.options[key]}
+          <span className="pl-5">{props.options[key]}</span>
         </label>
       )
     };
