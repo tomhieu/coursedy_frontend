@@ -3,10 +3,13 @@
 @media (min-width: $md-lower) {
   .right-content {
     position: relative;
-    top: -70px;
+    top: -198px;
     z-index: 0;
     margin-left: calc(0.205 * 100vw + #{$box-gap});
     width: calc(100% - 0.205 * 100vw - #{$box-gap});
+  }
+  .course-detail-header-scrolled + .course-detail-main .right-content {
+    top: -104px;
   }
 }
 

@@ -133,6 +133,11 @@ body.application {
     box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.12);
   }
 
+  .navbar-sticky.no-shadow {
+    box-shadow: none;
+    border-bottom: 1px solid $border-color !important;
+  }
+
   /* ----------------------------------
   Homepage >> Header #Search
   ---------------------------------- */
@@ -322,7 +327,6 @@ body.application {
         left: 0;
         z-index: 99;
         box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.12);
-        border-top: solid 1px $border-color;
       }
       .teacher-detail .fixed-top-profile-teacher {
         position: fixed;

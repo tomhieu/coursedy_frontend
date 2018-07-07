@@ -2,12 +2,10 @@
 
 .course-detail-header {
   width: 100vw;
-
+  background-color: #fff;
   .container {
     background-color: #fff;
-    border: 1px solid $border-color;
-    padding: $box-gap;
-    box-shadow: 0 3px 8px 0 $color-light-box-shadow;
+    padding: $box-gap 0;
   }
   .info {
     > .image {
@@ -112,21 +110,18 @@
 
   
 @media (min-width: $md-lower) {
-  .course-detail-header {
-    position: fixed;
-    top: calc(70px + #{$box-gap});
-    z-index: 500;
-  }
-  .course-detail-header-normal {
-    height: 100px;
-  }
   .course-detail-header-scrolled {
-    height: 50px;
+    position: fixed;
+    top: 60px;
+    z-index: 100;
+    -webkit-box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.43);
+    -moz-box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.43);
+    box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.43);
   }
 }
 
 @media (max-width: $sm-upper) {
   .course-detail-header {
-    padding-top: 15px;
+    padding-top: 15px 0;
   }
 }

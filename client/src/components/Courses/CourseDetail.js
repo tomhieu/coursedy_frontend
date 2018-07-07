@@ -67,13 +67,6 @@ class CourseDetail extends Component {
     const { activeMenu, currentScrollPosition, displayFixedSidebar } = this.state
     return (
       <div className="d-flex flex-auto flex-vertical full-width-in-container">
-        <div 
-          className={
-            displayFixedSidebar ?  
-              "d-none d-md-block white-mask-scrolled" : 
-              "d-none d-md-block white-mask-normal"
-          }
-        ></div>
         <CourseDetailHeader
           {...this.props}
           displayFixedSidebar={displayFixedSidebar}
