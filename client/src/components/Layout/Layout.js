@@ -12,8 +12,9 @@ import {UserRole} from "../../constants/UserRole";
 class Layout extends Component {
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.hasActiveCourseToLearn) {
-      this.startPoll(this.props.currentUser);
+    const {hasActiveCourseToLearn, currentUser} = nextProps.session;
+    if (hasActiveCourseToLearn && currentUser) {
+      this.startPoll(currentUser);
     } else {
       clearTimeout(this.timeout);
     }
@@ -40,18 +41,18 @@ class Layout extends Component {
   }
 
   checkUpcommingCourse(currentUser) {
-    if (currentUser.roles.indexOf(UserRole.TEACHER)) {
+    if (currentUser.roles.indexOf(UserRole.TEACHER) >= 0) {
       this.props.fetchUpCommingTeacherCourse();
-    }
-
-    if (currentUser.roles.indexOf(UserRole.STUDENT)) {
+    } else if (currentUser.roles.indexOf(UserRole.STUDENT) >= 0) {
       this.props.fetchUpCommingStudentCourse();
     }
   }
 
   render() {
     const {main, session} = this.props;
-    const classRoomId = session.teachingCourse ? session.teachingCourse.bigbluebutton_room.slug : '';
+    const teachingCourseTeacherName = session.teachingCourse !== null ? session.teachingCourse.user.name : '';
+    const teachingCourseName = session.teachingCourse !== null ? session.teachingCourse.name : '';
+    const classRoomId = session.teachingCourse !== null ? session.teachingCourse.bigbluebutton_room.slug : '';
     return (
       <I18n translations={translations} initialLang={TT.locale}>
         <div className="main-content">
@@ -66,7 +67,12 @@ class Layout extends Component {
             <LoadingMask placeholderId="ezylearningFullLoader" isFullLoading={true}></LoadingMask>
           </div>
           <div className="join-course">
-            <SimpleDialogComponent show={session.teachingCourse !== null} title={TT.t('join_active_course_popup_title')} acceptCallback={joinToClassRoom.bind(this, classRoomId)}/>
+            <SimpleDialogComponent show={session.teachingCourse !== null}
+                                   title={TT.t('join_active_course_popup_title')}
+                                   acceptCallback={joinToClassRoom.bind(this, classRoomId)}
+                                   cancelCallback={this.props.closePopupJoinUpcomingClass.bind(this)}>
+              {TT.t('join_active_course_popup_message', {courseName: teachingCourseName, teacher: teachingCourseTeacherName})}
+            </SimpleDialogComponent>
           </div>
         </div>
       </I18n>

@@ -1,7 +1,12 @@
 import React, {Component} from "react";
 import * as CourseActions from "../../../actions/CourseFormActionCreator";
 import * as AsynActions from "../../../actions/AsyncActionCreator";
-import {CREATE_UPDATE_SECTION, FETCH_DETAIL_COURSE, FETCH_LIST_SECTION} from "../../../actions/AsyncActionCreator";
+import {
+  CREATE_UPDATE_SECTION,
+  FETCH_BBB_ROOM_LINK,
+  FETCH_DETAIL_COURSE,
+  FETCH_LIST_SECTION
+} from "../../../actions/AsyncActionCreator";
 import * as ReferenceActions from "../../../actions/ReferenceActions/ReferenceDataActionCreator";
 import {connect} from "react-redux";
 import CourseDetailContainer from "./CourseDetailContainer";
@@ -12,14 +17,10 @@ import LoadingMask from "../../../components/LoadingMask/LoadingMask";
 import Network from "utils/network";
 import FlatButton from "../../../components/Core/FlatButton/FlatButton";
 import * as dashboardActions from '../../../actions/DashboardMenuActionCreator';
-import {FETCH_BBB_ROOM_LINK} from "../../../actions/AsyncActionCreator";
-import * as queryString from "query-string";
 
 class CourseFormContainer extends Component {
   constructor(props) {
     super(props);
-    let params = queryString.parse(this.props.location.search)
-    console.log(params);
     this.courseId = this.props.match.params.id;
   }
 

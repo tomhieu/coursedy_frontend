@@ -2,7 +2,6 @@ import * as types from '../constants/Session';
 import * as asyncActs from '../actions/AsyncActionCreator'
 import {TT} from "utils/locale";
 import {DAYS_IN_WEEK} from "../actions/CourseFormActionCreator";
-import {UserRole} from "../constants/UserRole";
 
 
 const session = (state = {
@@ -47,7 +46,13 @@ const session = (state = {
       return {...state, hasActiveCourseToLearn: haveActiveCourseToday }
     case asyncActs.FETCH_TUTOR_UPCOMING_COURSES + asyncActs.FULFILLED:
     case asyncActs.FETCH_STUDENT_UPCOMING_COURSES + asyncActs.FULFILLED:
-      return {...state, teachingCourse: action.payload.courses}
+      let upcommingCourse = null;
+      if (Array.isArray(action.payload) && action.payload.length > 0) {
+        upcommingCourse = action.payload[0];
+      }
+      return {...state, teachingCourse: upcommingCourse};
+    case asyncActs.CLOSE_POPUP_JOIN_UPCOMMING_CLASS:
+      return {...state, teachingCourse: null};
     default:
       return state;
   }
