@@ -215,13 +215,13 @@ class avatarInput extends renderFileInput {
   }
 
   render() {
-    let {zoneHeight} = this.props
+    let {zoneHeight, scaleWidth = 1, scaleHeight = 1} = this.props
 
     let cropper = <Cropper
       src={this.state.previewUrl || ''}
       ref='cropper'
       style={{height: zoneHeight || '300px', width: '100%'}}
-      aspectRatio={1 / 1}
+      aspectRatio={scaleWidth / scaleHeight}
       crop={this._crop.bind(this)}
       checkCrossOrigin={false}
       movable={true}

@@ -6,8 +6,33 @@ import SelectionTeachingDay from "./SelectionTeachingDay";
 import CourseCategory from "./CourseCategory";
 import CourseFeeComponent from "./CourseFeeComponent";
 import PrimaryButton from "../../Core/PrimaryButton/PrimaryButton";
+import CourseCoverImageContainer from "../../../containers/Courses/CourseForm/CourseCoverImageContainer";
 
 class CourseForm extends Component {
+
+  constructor() {
+    super();
+    this.state = {
+      showPoupChangeCoverImage: false,
+      selectedNewCoverImage: false
+    }
+  }
+
+  showPopupToChangeCoverImage() {
+    this.setState({showPoupChangeCoverImage: true});
+  }
+
+  hidePopupToChangeCoverImage() {
+    this.setState({showPoupChangeCoverImage: false});
+  }
+
+  onSelectNewCoverImage() {
+    this.setState({selectedNewCoverImage: true});
+  }
+
+  onDeselectNewCoverImage() {
+    this.setState({selectedNewCoverImage: false});
+  }
 
   render() {
     const {handleSubmit, editMode, onDropCoverImage, cover_image, submitting, pristine,
@@ -19,18 +44,17 @@ class CourseForm extends Component {
             {
               editMode ? (
                 <div className={styles.avatarImage}>
-                  <FormField fieldId="cover_image_Id"
-                             showLabel={false}
-                             isMandatoryField={false}
-                             previewUrl={cover_image != null ? cover_image : null}
-                             internalPreview={true}
-                             zoneHeight="300px"
-                             formControlName="cover_image"
-                             typeField="upload_file"
-                             onUpload={onDropCoverImage}>
-                  </FormField>
+                  <CourseCoverImageContainer courseCoverImage={cover_image != null ? cover_image : null}
+                                             uploadCourseCoverImage={onDropCoverImage}
+                                             openPopupToChangeCoverImage={this.showPopupToChangeCoverImage.bind(this)}
+                                             closePopupToChangeCoverImage={this.hidePopupToChangeCoverImage.bind(this)}
+                                             showPopupChangeCoverImage={this.state.showPoupChangeCoverImage}
+                                             onDeselectNewCoverImage={this.onDeselectNewCoverImage.bind(this)}
+                                             onSelectedNewCoverImage={this.onSelectNewCoverImage.bind(this)}
+                                             selectedNewCoverImage={this.state.selectedNewCoverImage}>
+                  </CourseCoverImageContainer>
                 </div>
-              ) : ('')
+              ) : null
             }
           </div>
           <div className="row">

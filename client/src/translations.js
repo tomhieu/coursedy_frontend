@@ -127,6 +127,7 @@ export const translations = {
     'no_comment': 'Không bình luận',
     'add_more_lesson': 'Thêm bài học',
     'delete_lesson': 'Xoá bài học',
+    'update_cover_image': 'Thay Đổi Ảnh Nền Khoá Học',
     /*
      * Lesson Page
      */
@@ -624,8 +625,9 @@ export const translations = {
     "finished": "Kết thúc",
     "alert_popup": "Chú ý",
     "delete_course_warning_message": "Bạn có chắc là muốn xoá khoá học ‘{courseName}’",
-    "no_course_message": "Hiện tại bạn chưa tạo khoá học nảo",
-    "no_active_course_message": "Hiện tại bạn chưa dạy khoá học nảo",
+    "no_course_message": "Hiện tại bạn chưa tạo khoá học nào",
+    "no_active_course_message": "Hiện tại bạn chưa dạy khoá học nào",
+    "no_active_course_message_for_student": "Hiện tại bạn chưa tham gia khoá học nào",
     "search_more_course_link": "tạo khoá học ngay hôm nay",
     "start_course_warning_message": "Bạn có chắc là muốn bắt đầu dạy khoá học ‘{courseName}’.Một khi hoá học bắt đầu, chúng tôi sẽ thông báo tất cả học sinh đã đăng ký thơi gian học chính thức. Bạn sẽ không thể thay đổi những thông tin khoá học.",
     "join_active_course_popup_title": "Vào lớp",

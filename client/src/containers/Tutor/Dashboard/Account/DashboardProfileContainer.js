@@ -5,12 +5,9 @@ import {UserAvatarForm} from "components/Account/UserAvatarForm";
 import * as AccountActionCreator from 'actions/AccountActionCreator'
 import {reduxForm} from "redux-form";
 import defaultAvatar from '../../../../../images/default_avatar.png'
-import {SERVER_NAME} from "utils/CommonConstant";
 import LoadingMask from "../../../../components/LoadingMask/LoadingMask";
-import Network from "utils/network";
 import {FETCH_USER_BALANCE} from "../../../../actions/AsyncActionCreator";
-import {Modal, ModalHeader, Button, ModalBody, ModalFooter} from 'reactstrap';
-import {FETCH_USER_ACCOUNT} from "constants/AccountTypes";
+import {Modal, ModalBody} from 'reactstrap';
 
 class DashboardProfileContainer extends Component {
   componentWillMount() {
@@ -83,6 +80,7 @@ class DashboardProfileContainer extends Component {
                             avatarSelected={avatarSelected}
                             selectAvatar={this.avatarSelected.bind(this)}
                             deselectAvatar={this.avatarDeselected.bind(this)}
+                            fieldId="avatar"
             />
           </ModalBody>
         </Modal>

@@ -11,6 +11,7 @@ import TutorCourseList from "../../../components/Courses/CourseList/TutorCourseL
 import {globalHistory} from "utils/globalHistory";
 import cssModules from 'react-css-modules';
 import styles from './ListTutorCourseContainer.module.scss';
+import {SecurityUtils} from "utils/SecurityUtils";
 
 class ListTutorCourseContainer extends Component {
 
@@ -36,8 +37,20 @@ class ListTutorCourseContainer extends Component {
     globalHistory.push('/dashboard/courses/new');
   }
 
+  getNoCourseWarningMessage(courseStatus, currentUser) {
+    if (courseStatus === CourseStatus.STARTED) {
+      return SecurityUtils.isTeacher(currentUser) ? this.context.t('no_active_course_message')
+        : this.context.t('no_active_course_message_for_student');
+    } else if (courseStatus === CourseStatus.NOT_STARTED) {
+      return SecurityUtils.isTeacher(currentUser) ? this.context.t('no_course_message') : '';
+    } else {
+      return '';
+    }
+  }
+
+
   render() {
-    const {status, courses, isFetching} = this.props;
+    const {status, courses, isFetching, currentUser} = this.props;
     return (
       <div className="d-flex flex-vertical flex-auto">
         <div className="d-flex flex-auto">
@@ -48,15 +61,13 @@ class ListTutorCourseContainer extends Component {
         <div className="d-flex flex-auto">
           <LoadingMask placeholderId="tutorCourseListPlaceholder">
             {
-              courses.length > 0 ? <TutorCourseList courseList={courses} {...this.props}></TutorCourseList> :
-                this.props.status === CourseStatus.STARTED && !isFetching ?
+              courses.length > 0 ? <TutorCourseList courseList={courses} {...this.props}></TutorCourseList> : !isFetching ?
                 <div className={styles.noCourseWarning}>
-                  <span>{this.context.t('no_active_course_message')}</span>
-                </div> : this.props.status === CourseStatus.NOT_STARTED && !isFetching ?
-                  <div className={styles.noCourseWarning}>
-                    <span>{this.context.t('no_course_message')}</span>
-                    <a onClick={this.openCourseCreation.bind(this)}>{this.context.t('search_more_course_link')}</a>
-                  </div> : null
+                  <span>{this.getNoCourseWarningMessage(status, currentUser)}</span>
+                  {
+                    status === CourseStatus.NOT_STARTED ? <a onClick={this.openCourseCreation.bind(this)}>{this.context.t('search_more_course_link')}</a> : null
+                  }
+                </div>: null
             }
           </LoadingMask>
         </div>
@@ -71,10 +82,11 @@ ListTutorCourseContainer.contextTypes = {
 }
 
 const mapStateToProps = (state) => {
-  const {TutorCourseList} = state;
+  const {TutorCourseList, session} = state;
   const {courses, isFetching} = TutorCourseList;
+  const {currentUser} = session;
   return {
-    courses, isFetching
+    courses, isFetching, currentUser
   }
 };
 

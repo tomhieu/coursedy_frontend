@@ -83,7 +83,7 @@ class CourseDetailContainer extends Component {
   }
 
   onDropCoverImage(data) {
-    this.coverImage = data.content;
+    this.coverImage = data;
     if (this.props.courseId && this.props.courseId > 0) {
       this.props.updateCourse(this.props.courseId, {cover_image: this.coverImage});
     }
