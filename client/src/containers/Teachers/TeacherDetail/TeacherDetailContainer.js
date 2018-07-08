@@ -30,6 +30,14 @@ class TeacherDetail extends Component {
     this.props.fetchTeacherCourses({ teacherId: parseInt(this.props.match.params.id), meta: 'teacherCoursesPlaceholder' })
   }
 
+  componentWillMount(){
+    this.props.noShadowHeader()
+  }
+
+  componentWillUnmount(){
+    this.props.shadowHeader()
+  }
+
   fetchTeacherCoursesWithPageNumber(page, per_page) {
     this.props.fetchTeacherCourses({
       teacherId: parseInt(this.props.match.params.id),
@@ -199,6 +207,8 @@ const mapDispatchToProps = (dispatch) => ({
   fetchTeacherWorkExperiences: (query) => dispatch(fetchTeacherWorkExperiences(query)),
   fetchTeacherReviews: (query) => dispatch(fetchTeacherReviews(query)),
   fetchTeacherCourses: (query) => dispatch(fetchTeacherCourses(query)),
+  noShadowHeader: () => dispatch({ type: WebConstants.ADD_HEADER_CLASS, payload: 'no-shadow'}),
+  shadowHeader: () => dispatch({ type: WebConstants.REMOVE_HEADER_CLASS})
 })
 
 const getSpecializesFromCategories = (courseCategories, teacherCategories) => {
