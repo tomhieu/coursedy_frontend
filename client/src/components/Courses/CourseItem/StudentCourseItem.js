@@ -2,15 +2,12 @@ import React, {Component} from 'react';
 import cssModules from 'react-css-modules';
 import styles from './TutorCourseItem.module.scss';
 import PrimaryButton from "../../Core/PrimaryButton/PrimaryButton";
-import TrashIcon from "../../Core/Icons/TrashIcon";
 import SettingIcon from "../../Core/Icons/SettingIcon";
-import DetailsIcon from "../../Core/Icons/DetailsIcon";
 import ListEnrolledStudent from "../../../containers/Courses/TutorCourse/ListEnrolledStudent";
 import {TT} from "utils/locale";
 import ObjectUtils from "utils/ObjectUtils";
 import {CourseStatus} from "../../../constants/CourseStatus";
 import SimpleDialogComponent from "../../Core/SimpleDialogComponent";
-import CheckIcon from "../../Core/Icons/CheckIcon";
 import DateUtils from "utils/DateUtils";
 
 class StudentCourseItem extends Component {

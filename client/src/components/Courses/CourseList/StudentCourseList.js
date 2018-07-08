@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import cssModules from 'react-css-modules';
 import styles from './TutorCourseList.module.scss';
-import TutorCourseItem from "../CourseItem/TutorCourseItem";
 import StudentCourseItem from "../CourseItem/StudentCourseItem";
 
 class StudentCourseList extends Component {
