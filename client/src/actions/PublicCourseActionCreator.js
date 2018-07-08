@@ -8,42 +8,23 @@ import * as PublicCourseConstants from "../constants/PublicCourseConstants"
 
 export const fetchPublicCourse = (courseId) => {
   return dispatch => {
-    Network().get('courses/'+courseId).then((response) => {
+    dispatch({
+      type: types.FETCH_PUBLIC_COURSE,
+      payload: Network().get('courses/'+courseId)
+    }).then((value, action) => {
       dispatch(fetchPublicCourseSections(courseId))
-      dispatch(fetchPublicCourseTutor(response.user.id))
+      dispatch(fetchPublicCourseTutor(value.user.id))
 
-      //Dispatch submit view after timeout
       setTimeout(() => {
         dispatch(submitViewCourse(courseId, response.token || ''))
       }, PublicCourseConstants.PUBLIC_COURSE_DETAIL_SUBMIT_VIEW_TIMEOUT)
+    }, () => {
+      const error_messages = [TT.t('fetch_course_fail')]
       dispatch({
-        type: types.FETCH_PUBLIC_COURSE_SUCCESSFULLY,
-        payload: response
+        type: types.FETCH_PUBLIC_COURSE_FAIL,
+        payload: {errors: error_messages}
       })
-    }, (errors) => {
-      const error_messages = (errors && errors.constructor == Array && errors.length > 0) ?
-        errors :
-        [TT.t('fetch_course_fail')]
-
-      //TODO tinhuynh: Fix me after API server return 404 error
-      //Redirect to 404 page
-      if (error_messages.indexOf("course not found") >= 0) {
-        globalHistory.push('/404')
-      } else {
-        dispatch({
-          type: types.FETCH_PUBLIC_COURSE_FAIL,
-          payload: {errors: error_messages}
-        })  
-      }
-      
     })
-
-    //FIXME: Remove me
-    // dispatch({
-    //   type: asyncActs.FETCH_PUBLIC_COURSE_SUCCESSFULLY,
-    //   payload: asyncActs.dummyCourse
-    // })
-
   }
 }
 
