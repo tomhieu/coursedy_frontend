@@ -33,6 +33,14 @@
 
   ul.meta-list {
     margin: 0;
+    height: auto;
+    transition: all 0.8s;
+    -webkit-transition: all 0.8s;
+    .course-summary {
+      opacity: 1;
+      transition: all 0.3s;
+      -webkit-transition: all 0.3s;
+    }
   }
 
   ul.meta-list li {
@@ -118,20 +126,17 @@
     -webkit-box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.43);
     -moz-box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.43);
     box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.43);
-    transition: all 0.8s;
-    -webkit-transition: all 0.8s;
-    .course-title {
-      display: inline-block;
-      transition: all 0.8s;
-      -webkit-transition: all 0.8s;
-    }
     .meta-list {
-      display: inline-block;
-      float: right;
+      height: 0 !important;
       transition: all 0.8s;
       -webkit-transition: all 0.8s;
       .course-summary {
-        display: none !important;
+        opacity: 0 !important;
+        transition: all 0.3s;
+        -webkit-transition: all 0.3s;
+      }
+      .meta-price {
+        margin-top: -40px;
         transition: all 0.8s;
         -webkit-transition: all 0.8s;
       }

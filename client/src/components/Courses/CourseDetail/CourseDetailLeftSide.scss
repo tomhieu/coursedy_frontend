@@ -10,9 +10,11 @@
 }
 .sidebar-fixed-scrolled {
   position: fixed;
-  top: calc(125px + #{$box-gap} + #{$box-gap});
+  top: calc(115px + #{$box-gap} + #{$box-gap});
   z-index: 500;
   width: 20.5%;
+  transition: top 0.8s;
+  -webkit-transition: top 0.8s;
 }
 
 .sidebar-wrapper {
