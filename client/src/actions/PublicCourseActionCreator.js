@@ -10,7 +10,8 @@ export const fetchPublicCourse = (courseId) => {
   return dispatch => {
     dispatch({
       type: types.FETCH_PUBLIC_COURSE,
-      payload: Network().get('courses/'+courseId)
+      payload: Network().get('courses/'+courseId),
+      meta: 'ezylearningFullLoader'
     }).then((value, action) => {
       dispatch(fetchPublicCourseSections(courseId))
       dispatch(fetchPublicCourseTutor(value.user.id))
