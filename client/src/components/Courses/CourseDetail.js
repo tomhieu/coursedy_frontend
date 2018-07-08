@@ -32,6 +32,7 @@ class CourseDetail extends Component {
 
   componentDidMount() {
     window.addEventListener('scroll', this.onScroll)
+    window.scrollTo(0,0)
   }
 
   componentWillUnmount() {
