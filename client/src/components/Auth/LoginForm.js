@@ -63,7 +63,7 @@ class LoginForm extends Component {
         </div>
 
         <div className="d-flex justify-content-center mt-10">
-          {this.context.t('login_link_to_signup', {'register': <Link to="/register" className="signin-signup-footer-link">{this.context.t('register')}</Link>})}
+          {this.context.t('login_link_to_signup', {register: <Link to="/register" className="signin-signup-footer-link">{this.context.t('register')}</Link>})}
         </div>
       </form>
     )
