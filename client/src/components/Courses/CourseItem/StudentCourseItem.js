@@ -74,7 +74,7 @@ class StudentCourseItem extends Component {
   }
 
   render() {
-    const {course, startCourse, deleteCourse, openCourseDetails} = this.props;
+    const {course} = this.props;
     return (
       <div className="row">
         <div className="col-md-12">
