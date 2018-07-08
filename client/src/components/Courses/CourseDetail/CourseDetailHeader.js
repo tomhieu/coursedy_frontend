@@ -19,19 +19,15 @@ class CourseDetailHeader extends Component {
               "course-detail-header course-detail-header-normal"
         }
       >
-        <div 
-          className={
-            displayFixedSidebar ? "d-none" : "container"
-          }
-        >
-          <div className="content mb-15">
+        <div className='container'>
+          <div className="content mb-15 course-title">
             <h2>{
               course && course.title ?
                 course.title : this.context.t('unknown')
             }</h2>
           </div>
           <ul className="meta-list">
-            <li className="d-none d-md-inline-block">
+            <li className="d-none d-md-inline-block course-summary">
               <div className="meta-teacher clearfix">
                 <div className="image">
                   <img src="http://placehold.it/40x40" alt="Images" />
@@ -47,7 +43,7 @@ class CourseDetailHeader extends Component {
               </div>
             </li>
             
-            <li className="d-none d-md-inline-block">
+            <li className="d-none d-md-inline-block course-summary">
               <div className="meta-category">
                 <div className="content">
                   <span className="text-muted mt-3 block">{this.context.t('category')}</span>
@@ -60,7 +56,7 @@ class CourseDetailHeader extends Component {
               </div>
             </li>
             
-            <li className="d-none d-md-inline-block">
+            <li className="d-none d-md-inline-block course-summary">
               <div className="meta-category">
                 <div className="content">
                   <span className="text-muted mt-3 block">{this.context.t('period')}</span>
@@ -74,7 +70,7 @@ class CourseDetailHeader extends Component {
               </div>
             </li>
             
-            <li className="d-none d-md-inline-block">
+            <li className="d-none d-md-inline-block course-summary">
               <div className="meta-rating">
                 <div className="content">
                   <span className="text-muted mt-3 block">{this.context.t('course_comments')}</span>
@@ -92,37 +88,6 @@ class CourseDetailHeader extends Component {
               </div>
             </li>
           </ul>
-        </div>
-
-        <div 
-          className={
-            displayFixedSidebar ? "container" : "d-none"
-          }
-        >
-          <div className="row">
-            <div className="col-xs-12 col-md-9">
-              <div className="content">
-                <h2>{
-                  course && course.title ?
-                    course.title : this.context.t('unknown')
-                }</h2>
-              </div>
-            </div>
-            <div className="col-xs-12 col-md-3">
-              <ul className="meta-list">
-                <li className="meta-price no-margin">
-                  <div className="price">
-                  {
-                    course.is_free ?
-                      this.context.t('free') :
-                      ObjectUtils.currencyFormat(course.tuition_fee || 0, course.currency || 'VND')
-                  }
-                  </div>
-                </li>
-              </ul>
-            </div>
-          </div>
-
         </div>
       </div>
     )

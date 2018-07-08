@@ -114,14 +114,33 @@
     position: fixed;
     top: 60px;
     z-index: 100;
+    border-bottom: none;
     -webkit-box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.43);
     -moz-box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.43);
     box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.43);
+    transition: all 0.8s;
+    -webkit-transition: all 0.8s;
+    .course-title {
+      display: inline-block;
+      transition: all 0.8s;
+      -webkit-transition: all 0.8s;
+    }
+    .meta-list {
+      display: inline-block;
+      float: right;
+      transition: all 0.8s;
+      -webkit-transition: all 0.8s;
+      .course-summary {
+        display: none !important;
+        transition: all 0.8s;
+        -webkit-transition: all 0.8s;
+      }
+    }
   }
 }
 
 @media (max-width: $sm-upper) {
   .course-detail-header {
-    padding-top: 15px 0;
+    padding: 15px 0;
   }
 }
