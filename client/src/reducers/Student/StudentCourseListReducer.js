@@ -1,10 +1,7 @@
 import * as asyncActs from "../../actions/AsyncActionCreator";
-import {
-  UNSTARTED_COURSE,
-  STARTED_COURSE,
-  TERMINATED_COURSE
-} from "../../constants/WebConstants"
+import {STARTED_COURSE, TERMINATED_COURSE} from "../../constants/WebConstants"
 import {TT} from "utils/locale";
+
 const StudentCourseListReducer = (state = {
   isFetchingEnrollCourse: true,
   isFetchingFollowCourse: true,

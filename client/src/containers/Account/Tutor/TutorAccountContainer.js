@@ -13,13 +13,14 @@ import TutorDetail from "components/Dashboard/Tutors/TutorDetail";
 import TutorEducationListContainer from "containers/Dashboard/Tutors/Educations/TutorEducationListContainer";
 import TutorWorkExperienceListContainer from "containers/Dashboard/Tutors/WorkExperiences/TutorWorkExperienceListContainer";
 import * as dashboardActions from '../../../actions/DashboardMenuActionCreator';
+import {TutorNavigationTab} from "../../../constants/TutorNavigationTab";
 
 class TutorAccount extends Component {
   componentWillMount(){
     this.props.fetchTutorData();
     this.props.loadListSkillData();
     this.props.loadDegrees();
-    this.props.activateTab('account_setting');
+    this.props.activateTab(TutorNavigationTab.ACCOUNT_SETTING);
   }
 
   showEducationEditForm(){

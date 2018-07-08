@@ -50,7 +50,7 @@ UpcommingCourseNotificationPopup.contextTypes = {
 
 UpcommingCourseNotificationPopup.propTypes = {
   currentUser: React.PropTypes.object,
-  courseId: React.PropTypes.number,
+  courseId: React.PropTypes.string,
   courseName: React.PropTypes.string,
   teacherName: React.PropTypes.string,
   isShowPopup: React.PropTypes.bool,

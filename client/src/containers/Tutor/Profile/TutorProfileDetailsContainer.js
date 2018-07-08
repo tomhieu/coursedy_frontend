@@ -4,10 +4,11 @@ import {connect} from 'react-redux';
 import * as Actions from "actions/TutorProfileActionCreator"
 import * as dashboardActions from 'actions/DashboardMenuActionCreator';
 import * as AccountActions from "../../../actions/AccountActionCreator";
+import {TutorNavigationTab} from "../../../constants/TutorNavigationTab";
 
 class TutorProfileDetailsContainer extends Component {
   componentWillMount() {
-    this.props.activateTab('my_profile');
+    this.props.activateTab(TutorNavigationTab.PROFILE);
   }
   onUpdate(formData, onSuccess, onError){
     this.props.updateDetailsTutor(this.props.tutor.id, formData, onSuccess, onError);

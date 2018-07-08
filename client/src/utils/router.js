@@ -36,7 +36,8 @@ const router = (
             <Route path="/teachers/:id" component={TeacherDetailContainer} />
             <Route path="/teachers" component={ListTeacherContainer} />
 
-            <PrivateRoute path="/dashboard" roles={[UserRole.TEACHER, UserRole.STUDENT]} component={Pages.TutorDashboard} />
+            <PrivateRoute path="/dashboard" roles={[UserRole.TEACHER]} component={Pages.TutorDashboard} />
+            <PrivateRoute path="/student/dashboard" roles={[UserRole.STUDENT]} component={Pages.StudentDashboard} />
             <PrivateRoute path="/admin/dashboard" roles={[UserRole.ADMIN]} component={Pages.AdminDashboardPage} />
 
             <Route path="/payment" component={Pages.PaymentPage} />

@@ -7,13 +7,6 @@ import rootReducer from '../reducers/index';
 import initialState from './initialState';
 import {createLogger} from 'redux-logger'
 import * as asyncActions from "actions/AsyncActionCreator";
-import {globalHistory} from '../utils/globalHistory'
-import {TT} from "utils/locale";
-import {LOGIN_FAILED} from "../constants/LoginComponent";
-import {setCurrentUser} from "../actions/SessionActionCreator";
-import {UserRole} from "../constants/UserRole";
-import {REMOVE_CURRENT_USER} from "../constants/Session";
-import * as WebConstants from "constants/WebConstants";
 
 /* Commonly used middlewares and enhancers */
 /* See: http://redux.js.org/docs/advanced/Middleware.html*/

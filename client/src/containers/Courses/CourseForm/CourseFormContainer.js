@@ -17,6 +17,7 @@ import LoadingMask from "../../../components/LoadingMask/LoadingMask";
 import Network from "utils/network";
 import FlatButton from "../../../components/Core/FlatButton/FlatButton";
 import * as dashboardActions from '../../../actions/DashboardMenuActionCreator';
+import {TutorNavigationTab} from "../../../constants/TutorNavigationTab";
 
 class CourseFormContainer extends Component {
   constructor(props) {
@@ -32,7 +33,7 @@ class CourseFormContainer extends Component {
       this.props.createNewCourse();
     }
     this.props.fetchCourseCategories();
-    this.props.activateTab('course_add');
+    this.props.activateTab(TutorNavigationTab.COURSE_ADD);
   }
 
   createClassRoom(slug) {

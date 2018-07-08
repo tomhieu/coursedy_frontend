@@ -5,12 +5,11 @@ import I18n from "redux-i18n"
 import {translations} from "../../translations"
 import {TT} from '../../utils/locale'
 import LoadingMask from "../LoadingMask/LoadingMask";
-import SimpleDialogComponent from "../Core/SimpleDialogComponent";
 import {joinToClassRoom} from "../../actions/ListTutorCourseActionCreator";
 import {UserRole} from "../../constants/UserRole";
-import {SecurityUtils} from "utils/SecurityUtils";
-import {Link} from "react-router-dom";
 import UpcommingCourseNotificationPopup from "./UpcommingCoursePopup/UpcommingCourseNotificationPopup";
+import Notifications, {success} from "react-notification-system-redux";
+import NotificationSystemComponent from "./NotificationSystem/NotificationSystemComponent";
 
 class Layout extends Component {
 
@@ -62,11 +61,15 @@ class Layout extends Component {
   }
 
   render() {
-    const {main, session} = this.props;
+    const {main, session, notifications} = this.props;
     const teachingCourseTeacherName = session.teachingCourse !== null ? session.teachingCourse.user.name : '';
     const teachingCourseName = session.teachingCourse !== null ? session.teachingCourse.title : '';
     const teachingCourseId = session.teachingCourse !== null ? session.teachingCourse.id : '';
     const classRoomId = session.teachingCourse !== null ? session.teachingCourse.bigbluebutton_room.slug : '';
+
+    // get new started courses
+    const {newStartedCourses} = session;
+
     return (
       <I18n translations={translations} initialLang={TT.locale}>
         <div className="main-content">
@@ -89,6 +92,9 @@ class Layout extends Component {
                                               acceptJoinToClassRoom={this.acceptJoinToClassRoom.bind(this)}
                                               closePopupJoinUpcomingClass={this.props.closePopupJoinUpcomingClass.bind(this)}>
             </UpcommingCourseNotificationPopup>
+          </div>
+          <div className="notification-system-container">
+            <NotificationSystemComponent newStartedCourses={newStartedCourses} {...this.props}></NotificationSystemComponent>
           </div>
         </div>
       </I18n>

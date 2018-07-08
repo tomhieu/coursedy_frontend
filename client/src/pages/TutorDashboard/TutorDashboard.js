@@ -18,6 +18,12 @@ import {CourseStatus} from "../../constants/CourseStatus";
 import * as WebConstants from "../../constants/WebConstants";
 import {UserRole} from "constants/UserRole";
 import PrivateRoute from "containers/PrivateRoute/PrivateRoute";
+import {SecurityUtils} from "utils/SecurityUtils";
+import StudentDashboardMenu from "../../components/Student/Dashboard/StudentDashboardMenu";
+import StudentDashboardProfile from "../../components/Student/Dashboard/StudentDashboardProfile";
+import StudentCoursesEnrolledContainer from "../../containers/Student/Dashboard/Courses/StudentCoursesEnrolledContainer";
+import StudentCoursesEnrollingContainer from "../../containers/Student/Dashboard/Courses/StudentCoursesEnrollingContainer";
+import StudentCoursesFollowContainer from "../../containers/Student/Dashboard/Courses/StudentCoursesFollowContainer";
 
 class TutorDashboard extends RoleAuthorization {
   componentDidMount() {
@@ -28,14 +34,23 @@ class TutorDashboard extends RoleAuthorization {
     this.props.showFooter();
   }
   render() {
+    const {currentUser} = this.props;
     return (
       <div className="dashboard-section full-width-in-container">
         <div className="d-flex flex-row flex-auto">
           <div className={styles.leftPanel} id="sidebar">
-            <div className="panel-group dashboard-menu" id="accordion">
-              <TutorContainers.DashboardProfileContainer/>
-              <TutorDashboardMenu {...this.props} />
-            </div>
+            {
+              SecurityUtils.isTeacher(currentUser) ?
+                <div className="panel-group dashboard-menu" id="accordion">
+                  <TutorContainers.DashboardProfileContainer/>
+                  <TutorDashboardMenu {...this.props} />
+                </div> :
+                <div className="panel-group dashboard-menu" id="accordion">
+                  <TutorContainers.DashboardProfileContainer/>
+                  <StudentDashboardMenu {...this.props} />
+                </div>
+            }
+
           </div>
           <div className="d-flex flex-auto dashboard-content">
             <div className="full-width daskboard-container">
