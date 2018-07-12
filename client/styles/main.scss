@@ -319,6 +319,11 @@ body.application {
       border-bottom: solid 1px $border-color;
     }
 
+    .fixed-top-profile-teacher {
+      background-color: #fff;
+      width: 100%;
+    }
+
     .navbar-sticky.fixed-top+main.container {
       margin-top: 50px;
       .course-filter-container .fixed-top-search-bar {
@@ -328,34 +333,38 @@ body.application {
         z-index: 99;
         box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.12);
       }
-      .teacher-detail .fixed-top-profile-teacher {
-        position: fixed;
-        top: 60px;
-        left: 0;
-        z-index: 99;
-        box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.12);
-        background-color: #fff;
-        width: 100%;
-        .teacher-detail-profile-header {
-          padding: 10px 0 10px 0;
-          .profile-picture img {
-            height: 70px;
-            width: 70px;
-            cursor: pointer;
-            transition: all 0.8s;
-            -webkit-transition: all 0.8s;
-            border-radius: 3px;
-            padding: 1px;
-          }
+      .teacher-detail {
+        .fixed-top-profile-teacher {
+          position: fixed;
+          top: 60px;
+          left: 0;
+          z-index: 99;
+          box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.12);
 
-          .profile-summary {
-            .categories, .rating-wrapper {
-              visibility: hidden;
-              opacity: 0;
-              transition: visibility 0.5s, height 0.5s linear;
-              height: 0;
+          .teacher-detail-profile-header {
+            padding: 10px 0 10px 0;
+            .profile-picture img {
+              height: 70px;
+              width: 70px;
+              cursor: pointer;
+              transition: all 0.8s;
+              -webkit-transition: all 0.8s;
+              border-radius: 3px;
+              padding: 1px;
+            }
+
+            .profile-summary {
+              .categories, .rating-wrapper {
+                visibility: hidden;
+                opacity: 0;
+                transition: visibility 0.5s, height 0.5s linear;
+                height: 0;
+              }
             }
           }
+        }
+        .teacher-detail__content {
+          margin-top: 175px;
         }
       }
       .moving-sort-bar {

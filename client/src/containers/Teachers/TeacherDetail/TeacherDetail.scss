@@ -2,7 +2,6 @@
 
 .teacher-detail {
   font-size: 15px;
-  background: $white-background;
   &__header {
     border-bottom: 1px solid $border-color;
     &._fixed {
@@ -24,22 +23,16 @@
   }
 
   &__content {
-    margin-top: 50px;
+    margin-top: 15px;
     @media only screen and (max-width: 767.98px) {
-      margin-top: 50px;
+      margin-top: 15px;
     }
 
-    &__background, &__courses {
+    &__background, &__courses, &__review {
+      background-color: $white-background;
       border: 1px solid $border-color;
-      border-radius: 5px;
-      padding: 30px 40px 40px;
-    }
-
-    &__review {
-      margin-top: 50px;
-      border: 1px solid $border-color;
-      border-radius: 5px;
-      padding: 30px 40px 40px;
+      padding: 15px;
+      margin-bottom: 15px;
     }
   }
 

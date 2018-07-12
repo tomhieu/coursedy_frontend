@@ -1,6 +1,6 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import './TeacherDetail.scss'
-import { connect } from 'react-redux'
+import {connect} from 'react-redux'
 import CourseListInGridMode from 'components/Courses/CourseList/CourseListInGridMode'
 import Pagination from 'react-js-pagination'
 import TeacherBackground from './Content/TeacherBackground'
@@ -15,7 +15,7 @@ import {
 } from '../../../actions/TeacherActionCreators'
 import LoadingMask from '../../../components/LoadingMask/LoadingMask'
 import * as WebConstants from '../../../constants/WebConstants'
-import { FETCH_CATEGORIES } from '../../../actions/AsyncActionCreator'
+import {FETCH_CATEGORIES} from '../../../actions/AsyncActionCreator'
 import Network from 'utils/network'
 import ReviewTeacherForm from './Content/ReviewTeacherForm'
 
@@ -23,18 +23,24 @@ import ReviewTeacherForm from './Content/ReviewTeacherForm'
 class TeacherDetail extends Component {
   componentDidMount() {
     this.props.fetchCategories()
-    this.props.fetchTeacherDetail({ teacherId: parseInt(this.props.match.params.id), meta: 'teacherDetailProfilePlaceholder' })
-    this.props.fetchTeacherEducations({ teacherId: parseInt(this.props.match.params.id), meta: 'userAccountPlaceholder' })
-    this.props.fetchTeacherWorkExperiences({ teacherId: parseInt(this.props.match.params.id), meta: 'userAccountPlaceholder' })
-    this.props.fetchTeacherReviews({ teacherId: parseInt(this.props.match.params.id), meta: 'userAccountPlaceholder' })
-    this.props.fetchTeacherCourses({ teacherId: parseInt(this.props.match.params.id), meta: 'teacherCoursesPlaceholder' })
+    this.props.fetchTeacherDetail({
+      teacherId: parseInt(this.props.match.params.id),
+      meta: 'teacherDetailProfilePlaceholder'
+    })
+    this.props.fetchTeacherEducations({teacherId: parseInt(this.props.match.params.id), meta: 'userAccountPlaceholder'})
+    this.props.fetchTeacherWorkExperiences({
+      teacherId: parseInt(this.props.match.params.id),
+      meta: 'userAccountPlaceholder'
+    })
+    this.props.fetchTeacherReviews({teacherId: parseInt(this.props.match.params.id), meta: 'userAccountPlaceholder'})
+    this.props.fetchTeacherCourses({teacherId: parseInt(this.props.match.params.id), meta: 'teacherCoursesPlaceholder'})
   }
 
-  componentWillMount(){
+  componentWillMount() {
     this.props.noShadowHeader()
   }
 
-  componentWillUnmount(){
+  componentWillUnmount() {
     this.props.shadowHeader()
   }
 
@@ -60,24 +66,31 @@ class TeacherDetail extends Component {
         </section>
 
         <section className="teacher-detail__content">
-          <section className="container">
-            <TeacherBackgroundSection
-              {...this.props}
-              context={this.context}
-            />
+          <div className="container">
+            <div className='row'>
+              <div className='col-sm-9'>
+                <TeacherBackgroundSection
+                  {...this.props}
+                  context={this.context}
+                />
+                <TeacherReviewSection
+                  {...this.props}
+                  context={this.context}
+                  fetchTeacherReviewsWithPageNumber={this.fetchTeacherReviewsWithPageNumber.bind(this)}
+                />
+                <TeacherTaughtCoursesSection
+                  {...this.props}
+                  handlePageChange={this.fetchTeacherCoursesWithPageNumber.bind(this)}
+                  context={this.context}
+                />
+              </div>
 
-            <TeacherReviewSection
-              {...this.props}
-              context={this.context}
-              fetchTeacherReviewsWithPageNumber={this.fetchTeacherReviewsWithPageNumber.bind(this)}
-            />
+              <div className='col-sm-3'>
 
-            <TeacherTaughtCoursesSection
-              {...this.props}
-              handlePageChange={this.fetchTeacherCoursesWithPageNumber.bind(this)}
-              context={this.context}
-            />
-          </section>
+              </div>
+            </div>
+
+          </div>
         </section>
       </section>
     )
@@ -85,15 +98,15 @@ class TeacherDetail extends Component {
 }
 
 const TeacherProfileSection = (props) => {
-  return(
-      <div className="container">
-        <LoadingMask placeholderId="teacherDetailProfilePlaceholder"
-                     normalPlaceholder={false}
-                     facebookPlaceholder={true}
-                     loaderType={WebConstants.TEACHER_DETAIL_PROFILE_PLACEHOLDER}>
-          <TeacherProfileHeader {...props} />
-        </LoadingMask>
-      </div>
+  return (
+    <div className="container">
+      <LoadingMask placeholderId="teacherDetailProfilePlaceholder"
+                   normalPlaceholder={false}
+                   facebookPlaceholder={true}
+                   loaderType={WebConstants.TEACHER_DETAIL_PROFILE_PLACEHOLDER}>
+        <TeacherProfileHeader {...props} />
+      </LoadingMask>
+    </div>
   )
 }
 
@@ -117,7 +130,7 @@ const TeacherReviewSection = (props) => {
           </div>
           <ReviewHeader {...props}/>
           <TeacherReviewList {...props} handlePageChange={props.fetchTeacherReviewsWithPageNumber}/>
-          <ReviewTeacherForm />
+          <ReviewTeacherForm/>
         </div>
       </div>
     </div>
@@ -125,16 +138,18 @@ const TeacherReviewSection = (props) => {
 }
 
 const ReviewHeader = (props) => {
-  const { teacher } = props
-  if (!teacher.user) { return null }
-  return(
+  const {teacher} = props
+  if (!teacher.user) {
+    return null
+  }
+  return (
     <div className="teacher-detail-review-header">
       <div className="row">
         <div className="col-xs-12 col-sm-4 col-md-3">
           <div className="review-overall">
             <h5>{props.context.t('teacher_rating')}</h5>
             <p className="review-overall-point">
-              <span>{teacher.user && teacher.user.rating_count ? parseFloat(teacher.user.rating_points/teacher.user.rating_count).toFixed(1) : 0}</span> / {WebConstants.MAX_RATING_POINTS}
+              <span>{teacher.user && teacher.user.rating_count ? parseFloat(teacher.user.rating_points / teacher.user.rating_count).toFixed(1) : 0}</span> / {WebConstants.MAX_RATING_POINTS}
             </p>
             <div className="rating-wrapper">
               <span>({props.teacher.reviews.data.length} {props.context.t('teacher_comments')})</span>
@@ -147,7 +162,7 @@ const ReviewHeader = (props) => {
 }
 
 const TeacherTaughtCoursesSection = (props) => {
-  const { teacher } = props
+  const {teacher} = props
   if (!teacher.courses || !teacher.courses.data.length) {
     return null
   }
@@ -182,9 +197,9 @@ const TeacherTaughtCoursesSection = (props) => {
                   pageRangeDisplayed={5}
                   onChange={(pageNumber) => {
                     props.handlePageChange(pageNumber, headers.perPage)
-                  }} />
+                  }}/>
               </div>
-              :null
+              : null
           }
         </div>
       </div>
@@ -207,8 +222,8 @@ const mapDispatchToProps = (dispatch) => ({
   fetchTeacherWorkExperiences: (query) => dispatch(fetchTeacherWorkExperiences(query)),
   fetchTeacherReviews: (query) => dispatch(fetchTeacherReviews(query)),
   fetchTeacherCourses: (query) => dispatch(fetchTeacherCourses(query)),
-  noShadowHeader: () => dispatch({ type: WebConstants.ADD_HEADER_CLASS, payload: 'no-shadow'}),
-  shadowHeader: () => dispatch({ type: WebConstants.REMOVE_HEADER_CLASS})
+  noShadowHeader: () => dispatch({type: WebConstants.ADD_HEADER_CLASS, payload: 'no-shadow'}),
+  shadowHeader: () => dispatch({type: WebConstants.REMOVE_HEADER_CLASS})
 })
 
 const getSpecializesFromCategories = (courseCategories, teacherCategories) => {
