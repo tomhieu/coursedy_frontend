@@ -2,10 +2,11 @@ import React, {Component} from 'react';
 import {LoginForm} from '../../components/index';
 import styles from './LoginFormContainer.module.scss';
 import cssModules from 'react-css-modules';
-import * as asyncAction from '../../actions/AsyncActionCreator';
+import * as asyncAction from 'actions/AsyncActionCreator';
 import {connect} from 'react-redux';
 import {reduxForm} from 'redux-form';
 import Network from "utils/network";
+import {asyncValidate, validate} from 'validations/SignInFormValidation';
 
 
 class LoginFormContainer extends Component {
@@ -51,5 +52,7 @@ export default connect(
   mapStateToProps, mapDispatchToProps
 )( reduxForm({
   form: 'login',
-  fields: ['email', 'password']
+  fields: ['email', 'password'],
+  validate,
+  asyncValidate
 })(StyledComponent));

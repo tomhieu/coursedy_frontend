@@ -8,6 +8,7 @@ import * as Actions from '../../actions/LoginActionCreator'
 import PrimaryButton from "../Core/PrimaryButton/PrimaryButton";
 import { Link } from 'react-router-dom'
 import './LoginRegisterForm.scss'
+import { renderField } from '../Core/CustomComponents'
 
 class LoginForm extends Component {
   hideLoginError(){
@@ -33,7 +34,7 @@ class LoginForm extends Component {
           <ControlLabel> {this.context.t("email")} <font color="red">*</font> </ControlLabel>
           <Field
             name="email"
-            component="input"
+            component={renderField}
             type="email"
             placeholder={this.context.t("email")}
             className="form-control"
@@ -44,7 +45,7 @@ class LoginForm extends Component {
           <ControlLabel> {this.context.t("password")} <font color="red">*</font> </ControlLabel>
           <Field
             name="password"
-            component="input"
+            component={renderField}
             type="password"
             placeholder={this.context.t("password")}
             className="form-control"
@@ -52,7 +53,7 @@ class LoginForm extends Component {
         </FormGroup>
 
         <div className="d-flex justify-content-right">
-          <a href="#" className="forgot-pass"> {this.context.t("forgot_password")}</a>
+          <Link to="/forgot-password" className="forgot-pass"> {this.context.t("forgot_password")}</Link>
         </div>
 
         <div className="d-flex justify-content-center">

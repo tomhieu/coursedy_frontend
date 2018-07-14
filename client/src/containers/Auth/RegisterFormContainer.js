@@ -2,10 +2,10 @@ import React, {Component} from 'react';
 import {RegisterForm} from '../../components';
 import styles from './RegisterFormContainer.module.scss';
 import cssModules from 'react-css-modules';
-import * as Action from '../../actions/SignUpActionCreator';
+import * as Action from 'actions/SignUpActionCreator';
 import {connect} from 'react-redux';
 import {reduxForm} from 'redux-form';
-import {asyncValidate, validate} from '../../validations/SignUpFormValidation'
+import {asyncValidate, validate} from 'validations/SignUpFormValidation'
 
 class RegisterFormContainer extends Component {
   submit({email, password, password_confirmation, name, phone_number, role}) {
