@@ -1464,4 +1464,17 @@ body.application {
     border-top: 1px solid $border-color;
     margin: 12px 0;
   }
+
+  .rejoin-class-button {
+    background-color: #50ca33 !important;
+    color: $black-text-color !important;
+    width: 150px;
+    &:hover {
+      border: 1px solid #50ca33;
+      background-color: transparent;
+    }
+  }
+  .evaluation-lesson-button {
+    width: 175px;
+  }
 }

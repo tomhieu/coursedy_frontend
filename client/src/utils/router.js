@@ -15,6 +15,7 @@ import HelpCenterContainer from '../containers/Others/HelpCenterContainer'
 import BecomeTeacherContainer from '../containers/Others/BecomeTeacherContainer'
 import TermsContainer from '../containers/Others/TermsContainer'
 import PrivacyContainer from '../containers/Others/PrivacyContainer'
+import LessonEvaluationContainer from "../containers/Courses/Lesson/LessonEvaluationContainer";
 
 const router = (
   <Provider store={store}>
@@ -32,6 +33,7 @@ const router = (
             <Route path="/login" component={Pages.LoginRegisterPage} />
             <Route path="/confirm_account" component={Pages.ConfirmationPage} />
             <Route path="/courses" component={Pages.PublicCourseListPage} />
+            <Route path="/course/:courseId/evaluate/lesson/:bbbRoom" component={LessonEvaluationContainer} />
             <Route path="/course/:id" component={Pages.PublicCourseDetailPage}/>
             <Route path="/teachers/:id" component={TeacherDetailContainer} />
             <Route path="/teachers" component={ListTeacherContainer} />
@@ -39,6 +41,7 @@ const router = (
             <PrivateRoute path="/dashboard" roles={[UserRole.TEACHER]} component={Pages.TutorDashboard} />
             <PrivateRoute path="/student/dashboard" roles={[UserRole.STUDENT]} component={Pages.StudentDashboard} />
             <PrivateRoute path="/admin/dashboard" roles={[UserRole.ADMIN]} component={Pages.AdminDashboardPage} />
+
 
             <Route path="/payment" component={Pages.PaymentPage} />
             <Route path="/about" component={AboutUsContainer} />

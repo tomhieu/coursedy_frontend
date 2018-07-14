@@ -43,6 +43,7 @@ import DashboardTutorWorkExperienceList from './Dashboard/Tutors/Educations/Dash
 import DashboardMenu from "./Dashboard/Menu/DashboardMenuReducer";
 import EnrolledStudentList from "./Dashboard/Tutors/CourseList/EnrolledStudent/ListEnrolledStudentReducer";
 import {reducer as notifications} from 'react-notification-system-redux';
+import LessonEvaluation from "./Lesson/LessonEvaluationReducer";
 
 const rootReducer = combineReducers({
   DashboardTutorEducationList,
@@ -89,7 +90,8 @@ const rootReducer = combineReducers({
   Certificate,
   DashboardMenu,
   EnrolledStudentList,
-  notifications
+  notifications,
+  LessonEvaluation
 });
 
 export default rootReducer;

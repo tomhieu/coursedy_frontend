@@ -655,6 +655,10 @@ export const translations = {
     "join_active_course_popup_accept_button": "Vào lớp",
     "new_started_course_notification_message": "Khoá học {courseName} đã bắt đầu học. Ngày học đầu tiên là {firstDayLearning}. Bạn chú ý sắp xếp thời gian học.",
     "new_started_course_notification_title": "Khoá học mới bắt đầu học",
+    "lesson_rating_title": "Đánh giá buổi học",
+    "lesson_rating_btn": "Đánh giá & Kết thúc",
+    "rejoin_class_room": "Vào lại lớp",
+    "thank_for_evaluation": "Cảm ơn bạn đã đánh giá bài học, điều này sẽ giúp giáo viên hoàn thiện khoá học hơn nữa",
   },
   "en": {
     "lang": "Tiếng Việt",

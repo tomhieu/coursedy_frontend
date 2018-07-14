@@ -28,7 +28,10 @@ class FormDialogContainer extends Component {
   render() {
     const { show, title, cancelCallback,
             cancelLabel = this.context.t('close'),
-            okLabel = this.context.t('ok')
+            acceptLabel = this.context.t('ok'),
+            customCancelButtonStyling = "button cancel-button",
+            customAcceptButtonStyling = "button accept-button",
+            isProcessing = false
       } = this.props;
 
     return (
@@ -43,15 +46,17 @@ class FormDialogContainer extends Component {
           <PrimaryButton type="button" line={false}
                          isPrimary={true}
                          callback={this.onSubmitPopup.bind(this)}
-                         customClasses="button accept-button"
+                         customClasses={customAcceptButtonStyling}
                          isSmallButton={true}
-                         title={okLabel}>
+                         disabled={isProcessing}
+                         title={acceptLabel}>
           </PrimaryButton>
           <PrimaryButton type="button"
                          callback={this.cancelPopup.bind(this)}
                          isPrimary={false}
-                         customClasses="button cancel-button"
+                         customClasses={customCancelButtonStyling}
                          isSmallButton={true}
+                         disabled={isProcessing}
                          title={cancelLabel}>
           </PrimaryButton>
         </div>
@@ -69,8 +74,11 @@ FormDialogContainer.propTypes = {
   title: React.PropTypes.string.isRequired,
   formName: React.PropTypes.string.isRequired,
   cancelCallback: React.PropTypes.func.isRequired,
-  okLabel: React.PropTypes.string,
-  cancelLabel: React.PropTypes.string
+  acceptLabel: React.PropTypes.string,
+  cancelLabel: React.PropTypes.string,
+  customCancelButtonStyling: React.PropTypes.string,
+  customAcceptButtonStyling: React.PropTypes.string,
+  isProcessing: React.PropTypes.bool
 }
 
 export default connect()(FormDialogContainer);
