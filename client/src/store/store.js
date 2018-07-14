@@ -31,19 +31,10 @@ if (typeof devToolsExtension === 'function') {
 const drivingResponseHandler = store => next => action => {
   const fulfillIndex = action.type.indexOf(asyncActions.FULFILLED);
   if (fulfillIndex >= 0) {
-    if (action.payload.headers) {
-      let actionType = action.type.replace(asyncActions.FULFILLED, '')
-      store.dispatch({
-        type: actionType + asyncActions.HEADERS,
-        payload: action.payload.headers
-      })
-      action.payload.body.then((response) => {
-        store.dispatch({
-          type: action.type,
-          payload: response
-        })
-      })
-      return false
+    let headers = action.payload.headers;
+    if (headers) {
+      action.payload = action.payload.body
+      action.headers = headers
     }
   }
   return next(action)
