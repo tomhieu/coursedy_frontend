@@ -14,7 +14,7 @@ export const validate = (values) => {
   const errors = {}
 
   validateMandatoryField('role', values.role, 'role_required', errors);
-  validateMandatoryField('first_name', values.first_name, 'first_name_required', errors);
+  validateMandatoryField('name', values.name, 'name_required', errors);
   validateEmail('email', values.email, errors);
   validatePassword(values.password, values.password_confirmation, 'password', errors);
 

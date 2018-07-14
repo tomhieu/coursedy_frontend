@@ -22,30 +22,30 @@ export const renderField = ({input, label, placeholder, type = 'text', disabled 
   </div>
 )
 
-export const renderRadioFields = props => {
-  if (props && props.input && props.options) {
+export const renderRadioFields = ({options, input, meta: {touched, error, warning}}) => {
+  if (input && options) {
     const renderRadioButtons = (key, index) => {
       return (
-        <label className="mr-10" key={`${index}`} htmlFor={`${props.input.name}-${index}`}>
+        <label className="mr-10" key={`${index}`} htmlFor={`${input.name}-${index}`}>
           <Field
-            id={`${props.input.name}-${index}`}
+            id={`${input.name}-${index}`}
             component="input"
-            name={props.input.name}
+            name={input.name}
             type="radio"
             value={key}
           />
-          <span className="pl-5">{props.options[key]}</span>
+          <span className="pl-5">{options[key]}</span>
         </label>
       )
     };
     return (
       <div>
-        {props.options &&
-        Object.keys(props.options).map(renderRadioButtons)}
+        {options &&
+        Object.keys(options).map(renderRadioButtons)}
+        {touched && ((error && <div className='input-errors'>{error}</div>) || (warning && <div>{warning}</div>))}
       </div>
     );
   }
-  return <div></div>
 }
 
 export const renderCheckBoxField = ({input, label, placeholder, type = 'text', disabled = false, customClassName, meta: {touched, error, warning}}) => (
