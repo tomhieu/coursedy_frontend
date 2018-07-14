@@ -44,15 +44,6 @@ class CourseDetail extends Component {
   */
   checkScrollPosition() {
     const currentPosition  = window.pageYOffset || document.documentElement.scrollTop
-    if (TRIGGER_DISPLAY_FIX_HEADER_BAR_OFFSET < currentPosition) {
-      this.setState({
-        displayFixedSidebar: true
-      })
-    } else {
-      this.setState({
-        displayFixedSidebar: false
-      })
-    }
     this.setState({
       currentScrollPosition: currentPosition,
       activeMenu: Object.keys(this.props.sectionPositions).reduce(
@@ -65,16 +56,14 @@ class CourseDetail extends Component {
   }
 
   render() {
-    const { activeMenu, currentScrollPosition, displayFixedSidebar } = this.state
+    const { activeMenu, currentScrollPosition } = this.state
     return (
       <div className="d-flex flex-auto flex-vertical full-width-in-container">
         <CourseDetailHeader
           {...this.props}
-          displayFixedSidebar={displayFixedSidebar}
         />
         <CourseDetailMain
           {...this.props}
-          displayFixedSidebar={displayFixedSidebar}
           activeMenu={activeMenu}
           currentScrollPosition={currentScrollPosition}
         />

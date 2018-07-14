@@ -1,29 +1,10 @@
 @import "../../../../styles/global_style.scss";
 
-.sidebar-fixed-normal {
-  position: fixed;
-  /* menu-height + gap + header-height + gap */
-  top: calc(60px + #{$box-gap} + 100px + #{$box-gap});
-  z-index: 500;
-  width: 20.5%;
-  box-shadow: 0 3px 8px 0 $color-light-box-shadow;
-}
-.sidebar-fixed-scrolled {
-  position: fixed;
-  top: calc(115px + #{$box-gap} + #{$box-gap});
-  z-index: 500;
-  width: 20.5%;
-  transition: top 0.8s;
-  -webkit-transition: top 0.8s;
-}
-
 .sidebar-wrapper {
   background: #FFF;
   position: relative;
   border: 1px solid $border-color;
   width: 100%;
-
-
 }
 
 
