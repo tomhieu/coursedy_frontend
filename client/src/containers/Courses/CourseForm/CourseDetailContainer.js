@@ -99,6 +99,12 @@ class CourseDetailContainer extends Component {
     this.props.doEditCourseCategory();
   }
 
+
+  onEditFee() {
+    this.props.reset();
+    this.props.doEditCourseFee();
+  }
+
   onActivatedField(fieldIds) {
     this.props.activatedEditField(fieldIds);
   }
@@ -114,6 +120,7 @@ class CourseDetailContainer extends Component {
       <CourseForm onSubmit={this.createCourse.bind(this)} onDropCoverImage={this.onDropCoverImage.bind(this)}
                   onEditTechingDay={this.onEditTechingDay.bind(this)}
                   onEditCourseCategory={this.onEditCategory.bind(this)}
+                  onEditCourseFee={this.onEditFee.bind(this)}
                   onActivatedField={this.onActivatedField.bind(this)}
                   onClosedField={this.onClosedField.bind(this)}
                   editMode={editMode} courseData={courseData} courseId={this.courseId} {...this.props}/>
@@ -175,7 +182,7 @@ const initializeCourseDetail = (courseData) => {
 const mapStateToProps = (state) => {
   const {courseDetails, referenceData, form} = state
   let courseFormValues = form.courseCreationForm && form.courseCreationForm.values ? form.courseCreationForm.values : null
-  const {editMode, editTeachingDay, editCourseCategory} = courseDetails
+  const {editMode, editTeachingDay, editCourseCategory, editCourseFee} = courseDetails
   const {courseCategories} = referenceData
 
   let course_specializes = [];
@@ -224,7 +231,7 @@ const mapStateToProps = (state) => {
     });
   }
   return {
-    courseData, editMode, isSamePeriod, isFree, selectedDays, editTeachingDay, editCourseCategory,
+    courseData, editMode, isSamePeriod, isFree, selectedDays, editTeachingDay, editCourseCategory, editCourseFee,
     categories: courseCategories,
     cover_image: !courseData ? null : courseData.cover_image,
     courseSpecializes: course_specializes,
@@ -246,6 +253,7 @@ const mapDispatchToProps = (dispatch) => ({
   }),
   doEditTechingDay: () => dispatch({type: AsyncAction.EDIT_TEACHING_DAY}),
   doEditCourseCategory: () => dispatch({type: AsyncAction.EDIT_COURSE_CATEGORY}),
+  doEditCourseFee: () => dispatch({type: AsyncAction.EDIT_COURSE_FEE}),
   activatedEditField: (fieldIds) => dispatch(CourseActions.activatedEditField(fieldIds)),
   closedEditField: (fieldIds) => dispatch(CourseActions.closedEditField(fieldIds)),
 });

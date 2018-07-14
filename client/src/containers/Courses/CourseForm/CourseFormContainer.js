@@ -36,12 +36,6 @@ class CourseFormContainer extends Component {
     this.props.activateTab(TutorNavigationTab.COURSE_ADD);
   }
 
-  createClassRoom(slug) {
-    Network().get(`rooms/${slug}/join`, {}, true).then((res) => {
-      window.open(res.url, '_blank');
-    })
-  }
-
   addNewSection() {
     this.props.addNewSection();
   }
@@ -131,20 +125,6 @@ class CourseFormContainer extends Component {
 
                         </FlatButton>
                       </div>
-                      {
-                        bbbRoomSlug ?
-                          <div className="col-md-4 col-sm-4">
-                            <FlatButton label={this.context.t('join_class')}
-                                        secondary={true}
-                                        onClick={this.createClassRoom.bind(this, bbbRoomSlug)}>
-                              <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" className="material-icon">
-                                <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
-                                <path d="M0 0h24v24H0z" fill="none"/>
-                              </svg>
-
-                            </FlatButton>
-                          </div> : null
-                      }
                     </div>
                   </div>
                   <div className="col-md-12 col-sm-12">
