@@ -96,7 +96,7 @@ class RegisterForm extends Component {
         </div>
 
         <div className="d-flex justify-content-center mt-10">
-          {this.context.t('signup_link_to_login', {'login': <Link to="/login" className="signin-signup-footer-link">{this.context.t('login')}</Link>})}
+          {this.context.t('signup_link_to_login', {'login': <Link to="/login" className="link-in-form">{this.context.t('login')}</Link>})}
         </div>
         <SignUpSuccessModal show={this.props.SignUpComponent.success} close={this.props.resetForm}/>
       </form>

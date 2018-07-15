@@ -1,0 +1,12 @@
+@import "../../../styles/global_style";
+
+.link-in-form {
+  color: $md-color-pink;
+  font-size: 14px;
+  font-weight: 400;
+
+&:hover {
+    text-decoration: none;
+    color: $dark-text-color;
+  }
+}

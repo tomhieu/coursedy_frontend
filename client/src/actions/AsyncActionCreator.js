@@ -143,6 +143,7 @@ export const LOGIN = "LOGIN"
 export const SIGN_OUT = "SIGN_OUT"
 export const REGISTER = "REGISTER"
 export const FETCH_TEACHERS = 'FETCH_TEACHERS'
+export const RESET_PASSWORD = 'RESET_PASSWORD'
 
 /**
  * Define actions course detail

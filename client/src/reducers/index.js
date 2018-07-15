@@ -41,6 +41,7 @@ import TeacherDetail from './TeacherDetailPageReducer';
 import DashboardTutorEducationList from './Dashboard/Tutors/Educations/DashboardTutorEducationList';
 import DashboardTutorWorkExperienceList from './Dashboard/Tutors/Educations/DashboardTutorWorkExperienceList';
 import DashboardMenu from "./Dashboard/Menu/DashboardMenuReducer";
+import forgotPassword from './ForgotPasswordReducer'
 
 const rootReducer = combineReducers({
   DashboardTutorEducationList,
@@ -50,6 +51,7 @@ const rootReducer = combineReducers({
   i18nState,
   LoginComponent,
   SignUpComponent,
+  forgotPassword,
 
   //Reducers for course
   CourseListReducer,

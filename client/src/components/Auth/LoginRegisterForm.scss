@@ -1,15 +1,4 @@
-@import "../../../styles/global_style";
-
-.signin-signup-footer-link {
-  color: $md-color-pink;
-  font-size: 14px;
-  font-weight: 400;
-
-  &:hover {
-    text-decoration: none;
-    color: $dark-text-color;
-  }
-}
+@import "AuthForm";
 
 .form-signup {
   .sigup-term-privacy {

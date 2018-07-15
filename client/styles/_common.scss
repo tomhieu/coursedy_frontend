@@ -1071,34 +1071,33 @@ Page >> Login / Register
 .sign-block {
   width: 100%;
   height: auto;
+
+  h2 {
+    color: #534051;
+    font-size: 24px;
+    font-weight: 400;
+    position: relative;
+    border-bottom: 1px solid #ebebeb;
+    padding-bottom: 12px;
+    margin-bottom: 30px;
+
+    span {
+      color: $md-color-pink;
+      &:after {
+        content: "";
+        position: absolute;
+        width: 72px;
+        height: 1px;
+        background: $md-color-pink;
+        bottom: -0.5px;
+        left: 0;
+      }
+    }
+  }
 }
 
 .comment-form input[type=checkbox] {
   height: auto;
-}
-
-.sign-block h2 {
-  color: #534051;
-  font-size: 24px;
-  font-weight: 400;
-  position: relative;
-  border-bottom: 1px solid #ebebeb;
-  padding-bottom: 12px;
-  margin-bottom: 30px;
-}
-
-.sign-block h2 span {
-  color: $md-color-pink;
-}
-
-.sign-block h2 span:after {
-  content: "";
-  position: absolute;
-  width: 72px;
-  height: 1px;
-  background: $md-color-pink;
-  bottom: -0.5px;
-  left: 0;
 }
 
 .fb-btn {

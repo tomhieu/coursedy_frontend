@@ -32,7 +32,7 @@ export const signUpUser =  (email, password, password_confirmation, name, phone_
 export const clearError = () => {
   return dispatch => {
     dispatch({
-      type: types.CLEAR_ERROR
+      type: types.CLEAR_SIGNUP_ERROR
     })
   }
 }

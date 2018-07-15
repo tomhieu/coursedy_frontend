@@ -6,7 +6,7 @@ import {globalHistory} from '../utils/globalHistory'
 export const clearError = () => {
   return dispatch => {
     dispatch({
-      type: types.CLEAR_ERROR,
+      type: types.CLEAR_LOGIN_ERROR,
       payload: {errors: null}
     })
   }

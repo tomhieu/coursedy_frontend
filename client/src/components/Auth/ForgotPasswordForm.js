@@ -3,28 +3,25 @@ import cssModules from 'react-css-modules';
 import styles from './LoginForm.module.scss';
 import {FormGroup, ControlLabel} from 'react-bootstrap';
 import {Field} from 'redux-form';
-import {Auth} from 'j-toker'
-import * as Actions from '../../actions/LoginActionCreator'
 import PrimaryButton from "../Core/PrimaryButton/PrimaryButton";
 import { Link } from 'react-router-dom'
 import './LoginRegisterForm.scss'
 import { renderField } from '../Core/CustomComponents'
+import './AuthForm.scss'
 
-class LoginForm extends Component {
-  hideLoginError(){
-    this.props.dispatch(Actions.clearError());
-  }
-
+class ForgotPasswordForm extends Component {
   render() {
     const {handleSubmit} = this.props;
-    const {errors} = this.props.LoginComponent;
-
+    const {errors} = this.props.forgotPassword;
     return (
-      <form onSubmit={handleSubmit(this.props.onSubmit)} className="form-signin">
+      <form onSubmit={handleSubmit(this.props.onSubmit)} className="form-forgot-pass">
         <div className={errors ? styles.shouldBeVisible : styles.shouldNotBeVisible}>
           <span className="error">
             <div className="alert alert-danger">
-              <a href="#" className="close" onClick={this.hideLoginError.bind(this)}>×</a>
+              <a href="#" className="close" onClick={(e) => {
+                e.preventDefault()
+                this.props.clearError()
+              }}>×</a>
               <strong>{this.context.t("error")} ! </strong>
               <p className="error">{errors && errors[0]}</p>
             </div>
@@ -41,42 +38,27 @@ class LoginForm extends Component {
           />
         </FormGroup>
 
-        <FormGroup controlId="formHorizontalPassword">
-          <ControlLabel> {this.context.t("password")} <font color="red">*</font> </ControlLabel>
-          <Field
-            name="password"
-            component={renderField}
-            type="password"
-            placeholder={this.context.t("password")}
-            className="form-control"
-          />
-        </FormGroup>
-
-        <div className="d-flex justify-content-right">
-          <Link to="/forgot-password" className="forgot-pass"> {this.context.t("forgot_password")}</Link>
-        </div>
-
         <div className="d-flex justify-content-center">
           <PrimaryButton type="submit"
                          customClasses={styles.loginButton}
-                         title={this.context.t("login")} line={false} round={true}>
+                         title={this.context.t("send")} line={false} round={true}>
           </PrimaryButton>
         </div>
 
         <div className="d-flex justify-content-center mt-10">
-          {this.context.t('login_link_to_signup', {register: <Link to="/register" className="link-in-form">{this.context.t('register')}</Link>})}
+          <Link to="/login" className="link-in-form">{this.context.t('back')}</Link>
         </div>
       </form>
     )
   }
 }
 
-LoginForm.contextTypes = {
+ForgotPasswordForm.contextTypes = {
   t: React.PropTypes.func.isRequired
 }
 
-LoginForm.propTypes = {
+ForgotPasswordForm.propTypes = {
   onSubmit: React.PropTypes.func.isRequired
 }
 
-export default cssModules(LoginForm, styles);
+export default cssModules(ForgotPasswordForm, styles);
