@@ -11,11 +11,11 @@ export class UserAvatarForm extends Component {
     this.props.selectAvatar()
   }
 
-  submit(){
+  submit() {
     this.props.onSubmit(this.fileContent)
     this.props.deselectAvatar()
   }
-  
+
   render() {
     const {handleSubmit, user, avatarSelected, deselectAvatar} = this.props;
 
@@ -37,9 +37,10 @@ export class UserAvatarForm extends Component {
             </PrimaryButton>
           </div>
           <div className='col-sm-12'>
-            <PrimaryButton type="button" customClasses="full-width"
+            <PrimaryButton isPrimary={false}
+                           type="button" customClasses="full-width"
                            callback={this.props.cancel}
-                           disabled={!avatarSelected} title={this.context.t("cancel")}>
+                           title={this.context.t("cancel")}>
             </PrimaryButton>
           </div>
         </div>

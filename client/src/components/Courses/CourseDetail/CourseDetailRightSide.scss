@@ -1,22 +1,4 @@
 @import "../../../../styles/global_style.scss";
-
-@media (min-width: $md-lower) {
-  .right-content {
-    position: relative;
-    top: -70px;
-    z-index: 0;
-    margin-left: calc(0.205 * 100vw + #{$box-gap});
-    width: calc(100% - 0.205 * 100vw - #{$box-gap});
-  }
-}
-
-@media (max-width: $sm-upper) {
-  .right-content {
-    width: 100%;
-  }
-}
-
-
 .content-wrapper {
   background-color: #fff;
   padding: $box-gap;

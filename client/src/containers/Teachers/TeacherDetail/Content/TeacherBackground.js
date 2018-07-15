@@ -7,9 +7,6 @@ class TeacherBackground extends Component {
   render() {
     return (
       <div className="teacher-detail__content__background">
-        <div className="mb-20">
-          <h3>{this.context.t('teacher_background')}</h3>
-        </div>
         <TeacherShortIntroduce {...this.props} context={this.context}/>
         <TeacherEducation {...this.props} context={this.context}/>
         <TeacherDegrees {...this.props} context={this.context}/>
@@ -27,10 +24,11 @@ const TeacherShortIntroduce = (props) => {
                  facebookPlaceholder={true}
                  loaderType={webConstants.USER_ACCOUNT_PLACEHOLDER}>
       <div className="profile-list-item">
-        <div className="icon">
-          <span><i className="fa fa-user"></i></span>
+        <div className="head-title">
+          <i className="fa fa-user"></i>
+          <h4>{props.context.t('teacher_short_introduce')}</h4>
         </div>
-        <h4>{props.context.t('teacher_short_introduce')}</h4>
+
         <p>{props.teacher.description || <i>{props.context.t('content_is_updating')}</i>}</p>
       </div>
     </LoadingMask>
@@ -45,10 +43,10 @@ const TeacherEducation = (props) => {
                  loaderType={webConstants.USER_ACCOUNT_PLACEHOLDER}>
 
       <div className="profile-list-item">
-        <div className="icon">
-          <span><i className="fa fa-graduation-cap"></i></span>
+        <div className="head-title">
+          <i className="fa fa-graduation-cap"></i>
+          <h4>{props.context.t('teacher_education')}</h4>
         </div>
-        <h4>{props.context.t('teacher_education')}</h4>
         {
           props.teacher.educations && props.teacher.educations.length ?
             <ul className="the-list">
@@ -73,10 +71,11 @@ const TeacherDegrees = (props) => {
                  facebookPlaceholder={true}
                  loaderType={webConstants.USER_ACCOUNT_PLACEHOLDER}>
       <div className="profile-list-item">
-        <div className="icon">
-          <span><i className="fa fa-briefcase"></i></span>
+        <div className="head-title">
+          <i className="fa fa-briefcase"></i>
+          <h4>{props.context.t('teacher_degrees')}</h4>
         </div>
-        <h4>{props.context.t('teacher_degrees')}</h4>
+
         {degrees && degrees.length ? degrees.map((degree) => {
           return <DegreeItem degree={degree} key={degree.id}/>
         }) : <i>{props.context.t('content_is_updating')}</i>
@@ -94,10 +93,11 @@ const TeacherWorkExperience = (props) => {
                  facebookPlaceholder={true}
                  loaderType={webConstants.USER_ACCOUNT_PLACEHOLDER}>
       <div className="profile-list-item">
-        <div className="icon">
-          <span><i className="fa fa-briefcase"></i></span>
+        <div className="head-title">
+          <i className="fa fa-briefcase"></i>
+          <h4>{props.context.t('teacher_experience')}</h4>
         </div>
-        <h4>{props.context.t('teacher_experience')}</h4>
+
         {
           workExperiences && workExperiences.length ?
             <ul className="the-list">

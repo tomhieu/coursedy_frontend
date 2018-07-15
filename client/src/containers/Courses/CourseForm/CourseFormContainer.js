@@ -17,7 +17,9 @@ import {FETCH_BBB_ROOM_LINK} from "../../../actions/AsyncActionCreator";
 class CourseFormContainer extends Component {
   constructor(props) {
     super(props);
-    this.courseId = this.props.match.params.id;
+    if (this.props.match){
+      this.courseId = this.props.match.params.id;
+    }
   }
 
   componentWillMount() {

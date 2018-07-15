@@ -2,11 +2,10 @@ import React, {Component} from 'react';
 import {LoginForm} from '../../components/index';
 import styles from './LoginFormContainer.module.scss';
 import cssModules from 'react-css-modules';
-import * as asyncAction from 'actions/AsyncActionCreator';
 import {connect} from 'react-redux';
 import {reduxForm} from 'redux-form';
-import Network from "utils/network";
 import {asyncValidate, validate} from 'validations/SignInFormValidation';
+import {loginUser} from "actions/SessionActionCreator";
 
 
 class LoginFormContainer extends Component {
@@ -39,11 +38,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  login: (email, password) => dispatch({
-    type: asyncAction.LOGIN,
-    payload: Network().post('auth/sign_in', {email, password}),
-    meta: 'loginPlaceholder'
-  })
+  login: (email, password) => dispatch(loginUser(email,  password))
 })
 
 const StyledComponent = cssModules(LoginFormContainer, styles);

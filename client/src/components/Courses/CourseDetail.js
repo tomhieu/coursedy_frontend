@@ -27,15 +27,16 @@ class CourseDetail extends Component {
       currentScrollPosition: 0,
       activeMenu: 'course-detail-intro'
     }
+    this.onScroll = this.checkScrollPosition.bind(this)
   }
 
   componentDidMount() {
-    window.addEventListener('scroll', this.handleScroll.bind(this))
-    this.checkScrollPosition()
+    window.addEventListener('scroll', this.onScroll)
+    window.scrollTo(0,0)
   }
 
   componentWillUnmount() {
-    window.removeEventListener('scroll', this.handleScroll.bind(this))
+    window.removeEventListener('scroll', this.onScroll)
   }
 
   /*
@@ -43,15 +44,6 @@ class CourseDetail extends Component {
   */
   checkScrollPosition() {
     const currentPosition  = window.pageYOffset || document.documentElement.scrollTop
-    if (TRIGGER_DISPLAY_FIX_HEADER_BAR_OFFSET < currentPosition) {
-      this.setState({
-        displayFixedSidebar: true
-      })
-    } else {
-      this.setState({
-        displayFixedSidebar: false
-      })
-    }
     this.setState({
       currentScrollPosition: currentPosition,
       activeMenu: Object.keys(this.props.sectionPositions).reduce(
@@ -63,28 +55,15 @@ class CourseDetail extends Component {
     })
   }
 
-  handleScroll(event) {
-    this.checkScrollPosition()
-  }
-
   render() {
-    const { activeMenu, currentScrollPosition, displayFixedSidebar } = this.state
+    const { activeMenu, currentScrollPosition } = this.state
     return (
       <div className="d-flex flex-auto flex-vertical full-width-in-container">
-        <div 
-          className={
-            displayFixedSidebar ?  
-              "d-none d-md-block white-mask-scrolled" : 
-              "d-none d-md-block white-mask-normal"
-          }
-        ></div>
         <CourseDetailHeader
           {...this.props}
-          displayFixedSidebar={displayFixedSidebar}
         />
         <CourseDetailMain
           {...this.props}
-          displayFixedSidebar={displayFixedSidebar}
           activeMenu={activeMenu}
           currentScrollPosition={currentScrollPosition}
         />

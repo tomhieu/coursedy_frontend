@@ -32,13 +32,13 @@ const router = (
             <Route path="/login" component={Pages.LoginRegisterPage} />
             <Route path="/register" component={Pages.RegisterPage} />
             <Route path="/forgot-password" component={Pages.ForgotPasswordPage} />
+            <Route path="/confirm_account" component={Pages.ConfirmationPage} />
             <Route path="/courses" component={Pages.PublicCourseListPage} />
             <Route path="/course/:id" component={Pages.PublicCourseDetailPage}/>
             <Route path="/teachers/:id" component={TeacherDetailContainer} />
             <Route path="/teachers" component={ListTeacherContainer} />
 
-            <PrivateRoute path="/dashboard" roles={[UserRole.TEACHER]} component={Pages.TutorDashboard} />
-            <PrivateRoute path="/student/dashboard" roles={[UserRole.STUDENT]} component={Pages.StudentDashboardPage} />
+            <PrivateRoute path="/dashboard" roles={[UserRole.TEACHER, UserRole.STUDENT]} component={Pages.TutorDashboard} />
             <PrivateRoute path="/admin/dashboard" roles={[UserRole.ADMIN]} component={Pages.AdminDashboardPage} />
 
             <Route path="/payment" component={Pages.PaymentPage} />

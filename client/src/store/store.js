@@ -31,19 +31,10 @@ if (typeof devToolsExtension === 'function') {
 const drivingResponseHandler = store => next => action => {
   const fulfillIndex = action.type.indexOf(asyncActions.FULFILLED);
   if (fulfillIndex >= 0) {
-    if (action.payload.headers) {
-      let actionType = action.type.replace(asyncActions.FULFILLED, '')
-      store.dispatch({
-        type: actionType + asyncActions.HEADERS,
-        payload: action.payload.headers
-      })
-      action.payload.body.then((response) => {
-        store.dispatch({
-          type: action.type,
-          payload: response
-        })
-      })
-      return false
+    let headers = action.payload.headers;
+    if (headers) {
+      action.payload = action.payload.body
+      action.headers = headers
     }
   }
   return next(action)
@@ -71,43 +62,8 @@ const loadingHandler = store => next => action => {
   return next(action);
 }
 
-const authorizeHandler = store => next => action => {
-  if (action.type === asyncActions.LOGIN + asyncActions.FULFILLED) {
-    store.dispatch(setCurrentUser());
-    console.log('DEBUG authorizeHandler');
-    console.log(action.payload.data.role)
-    switch (action.payload.data.role) {
-      case UserRole.TEACHER:
-      case UserRole.STUDENT:
-        globalHistory.push('/dashboard/account');
-        break;
-      case UserRole.ADMIN:
-        globalHistory.push('/admin/dashboard');
-        break;
-      default:
-        throw new Error('Unsupported role ' + action.payload.role + ' in current application');
-    }
-  } else if (action.type === asyncActions.LOGIN + asyncActions.REJECTED) {
-    const error_messages = (errors && errors.constructor == Array && errors.length > 0) ?
-      errors : [TT.t('email_or_password_incorrect')]
-
-    store.dispatch({
-      type: LOGIN_FAILED,
-      payload: { errors: error_messages }
-    })
-  } else if (action.type === asyncActions.SIGN_OUT + asyncActions.FULFILLED) {
-    store.dispatch({type: REMOVE_CURRENT_USER})
-    localStorage.removeItem('ezyLearningToken');
-    localStorage.removeItem('ezyLearningClient');
-    localStorage.removeItem('ezyLearningUid');
-    localStorage.removeItem(WebConstants.AUTHENTICATED);
-    globalHistory.replace('/');
-  }
-  return next(action);
-}
-
 const composedEnhancers = compose(
-  applyMiddleware(...middlewares, createLogger(), drivingResponseHandler, loadingHandler, authorizeHandler),
+  applyMiddleware(...middlewares, createLogger(), drivingResponseHandler, loadingHandler),
   ...enhancers
 );
 

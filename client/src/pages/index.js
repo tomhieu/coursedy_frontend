@@ -3,13 +3,13 @@ import LandingPage from './LandingPage/LandingPage'
 import LoginRegisterPage from './LoginRegisterPage/LoginRegisterPage'
 import RegisterPage from './LoginRegisterPage/RegisterPage'
 import ForgotPasswordPage from 'pages/User/ForgotPasswordPage'
+import ConfirmationPage from './LoginRegisterPage/ConfirmationPage'
 import PublicCourseListPage from './CoursePage/PublicCourseListPage'
 import PublicCourseDetailPage from './CoursePage/PublicCourseDetailPage'
 import TutorPage from './TutorPage/TutorPage'
 import TutorDashboard from './TutorDashboard/TutorDashboard'
 import PaymentPage from './PaymentPage/PaymentPage'
 
-import StudentDashboardPage from './Student/Dashboard/StudentDashboardPage'
 import AdminDashboardPage from "./Admin/Dashboard/AdminDashboardPage"
 
 export {
@@ -24,7 +24,7 @@ export {
   TutorPage,
   TutorDashboard,
   PaymentPage,
+  ConfirmationPage,
 
-  StudentDashboardPage,
   AdminDashboardPage
 };
