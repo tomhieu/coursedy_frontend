@@ -1438,6 +1438,16 @@ body.application {
       width: calc(100% - 0.20 * 100vw - #{$box-gap});
     }
   }
+
+  @media (min-width: $xl-lower) {
+    & {
+      width: 288px;
+    }
+    &+.right-content {
+      margin-left: 303px;
+      width: 837px;
+    }
+  }
 }
 
 .link-tag {
