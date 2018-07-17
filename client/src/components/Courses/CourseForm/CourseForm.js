@@ -14,7 +14,8 @@ class CourseForm extends Component {
     super();
     this.state = {
       showPoupChangeCoverImage: false,
-      selectedNewCoverImage: false
+      selectedNewCoverImage: false,
+      newCoverImage: undefined
     }
   }
 
@@ -34,6 +35,12 @@ class CourseForm extends Component {
     this.setState({selectedNewCoverImage: false});
   }
 
+  onUploadCoverImage(data) {
+    this.hidePopupToChangeCoverImage();
+    this.setState({newCoverImage: data})
+    this.props.onDropCoverImage(data);
+  }
+
   render() {
     const {handleSubmit, editMode, onDropCoverImage, cover_image, submitting, pristine,
       valid, courseData, categories, courseSpecializes, selectedDays, isSamePeriod, isFree} = this.props;
@@ -45,7 +52,7 @@ class CourseForm extends Component {
               editMode ? (
                 <div className={styles.avatarImage}>
                   <CourseCoverImageContainer courseCoverImage={cover_image != null ? cover_image : null}
-                                             uploadCourseCoverImage={onDropCoverImage}
+                                             uploadCourseCoverImage={this.onUploadCoverImage.bind(this)}
                                              openPopupToChangeCoverImage={this.showPopupToChangeCoverImage.bind(this)}
                                              closePopupToChangeCoverImage={this.hidePopupToChangeCoverImage.bind(this)}
                                              showPopupChangeCoverImage={this.state.showPoupChangeCoverImage}
@@ -129,16 +136,15 @@ class CourseForm extends Component {
           {
             !editMode ? (
               <div>
-                <FormField fieldId="cover_image_Id"
-                           fieldLabel={this.context.t("cover_image")}
-                           isMandatoryField={true}
-                           previewUrl={cover_image != null ? cover_image.previewUrl : null}
-                           zoneHeight="300px"
-                           internalPreview={true}
-                           formControlName="cover_image"
-                           typeField="upload_file"
-                           onUpload={onDropCoverImage}>
-                </FormField>
+                <CourseCoverImageContainer courseCoverImage={cover_image != null ? cover_image : this.state.newCoverImage}
+                                           uploadCourseCoverImage={this.onUploadCoverImage.bind(this)}
+                                           openPopupToChangeCoverImage={this.showPopupToChangeCoverImage.bind(this)}
+                                           closePopupToChangeCoverImage={this.hidePopupToChangeCoverImage.bind(this)}
+                                           showPopupChangeCoverImage={this.state.showPoupChangeCoverImage}
+                                           onDeselectNewCoverImage={this.onDeselectNewCoverImage.bind(this)}
+                                           onSelectedNewCoverImage={this.onSelectNewCoverImage.bind(this)}
+                                           selectedNewCoverImage={this.state.selectedNewCoverImage}>
+                </CourseCoverImageContainer>
               </div>
             ) : (<div></div>)
           }

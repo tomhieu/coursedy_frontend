@@ -1,9 +1,8 @@
-import {Component} from "react";
-import {Modal, ModalBody} from 'reactstrap';
 import * as React from "react";
+import {Component} from "react";
 import {reduxForm} from "redux-form";
-import {UserAvatarForm} from "../../../components/Account/UserAvatarForm";
 import {connect} from "react-redux";
+import CoursedyUploadImage from "../../../components/Core/CoursedyUploadImage/CoursedyUploadImage";
 
 class CourseCoverImageContainer extends Component {
 
@@ -12,31 +11,19 @@ class CourseCoverImageContainer extends Component {
       closePopupToChangeCoverImage, showPopupChangeCoverImage, selectedNewCoverImage,
       onSelectedNewCoverImage, onDeselectNewCoverImage } = this.props;
     return (
-      <div className="col-sm-12 mb-15 avatar-container">
-        <figure className="full-width">
-          <img className="media-object full-width" src={courseCoverImage} alt={'new cover image'}/>
-        </figure>
-        <span className='edit-avatar-btn' onClick={openPopupToChangeCoverImage.bind(this)}>
-          <span className='base-line-btn'>
-            <i className='fa fa-camera'/>
-            <span className='ml-10'>{this.context.t('update_cover_image')}</span>
-          </span>
-        </span>
-        <Modal isOpen={showPopupChangeCoverImage} onClosed={closePopupToChangeCoverImage.bind(this)}>
-          <ModalBody>
-            <UserAvatarForm onSubmit={uploadCourseCoverImage.bind(this)}
-                            cancel={closePopupToChangeCoverImage.bind(this)}
-                            avatarSelected={selectedNewCoverImage}
-                            selectAvatar={onSelectedNewCoverImage.bind(this)}
-                            deselectAvatar={onDeselectNewCoverImage.bind(this)}
-                            fieldId="cover_image_Id"
-                            scaleWidth={16}
-                            scaleHeight={9}
-                            {...this.props}
-            />
-          </ModalBody>
-        </Modal>
-      </div>
+      <CoursedyUploadImage uploadCourseCoverImage={uploadCourseCoverImage.bind(this)}
+                           closePopupToSelectImage={closePopupToChangeCoverImage.bind(this)}
+                           editImageLabel={this.context.t('update_cover_image')}
+                           onDeselectNewImage={onDeselectNewCoverImage.bind(this)}
+                           onSelectedNewImage={onSelectedNewCoverImage.bind(this)}
+                           isSelectedNewImage={selectedNewCoverImage}
+                           openPopupToSelectImage={openPopupToChangeCoverImage.bind(this)}
+                           showPopupChangeImage={showPopupChangeCoverImage}
+                           previewImage={courseCoverImage ? courseCoverImage : undefined}
+                           fieldId="cover_image_Id"
+                           scaleWidth={16}
+                           scaleHeight={7}
+                           {...this.props} />
     )
   }
 }

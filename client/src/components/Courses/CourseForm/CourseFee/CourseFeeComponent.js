@@ -6,7 +6,7 @@ import CourseFeeEditMode from "./CourseFeeEditMode";
 
 class CourseFeeComponent extends Component {
   render() {
-    const {courseData, editCourseFee, onEditCourseFee} = this.props;
+    const {courseData, editCourseFee, onEditCourseFee, editMode} = this.props;
     const concurrency = CURRENCIES.map((type) => {
       return {text: type, id: type};
     });
@@ -17,9 +17,11 @@ class CourseFeeComponent extends Component {
       )
     } else {
       return (
-        <CourseFeeViewMode tuitionFee={courseData.tuition_fee}
-                           currency={courseData.currency}
-                           onEditFormField={onEditCourseFee} />
+        <CourseFeeViewMode tuitionFee={courseData !== null ? courseData.tuition_fee : undefined}
+                           currency={courseData !== null ? courseData.currency : undefined}
+                           editMode={editMode}
+                           concurrency={concurrency}
+                           onActivatedField={onEditCourseFee} />
       )
     }
   }
@@ -32,7 +34,8 @@ CourseFeeComponent.contextTypes = {
 CourseFeeComponent.propTypes = {
   editCourseFee: React.PropTypes.bool,
   courseData: React.PropTypes.object,
-  onEditCourseFee: React.PropTypes.func
+  onEditCourseFee: React.PropTypes.func,
+  editMode: React.PropTypes.bool.isRequired
 };
 
 export default CourseFeeComponent;

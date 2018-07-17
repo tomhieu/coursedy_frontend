@@ -2,14 +2,8 @@ import React from 'react'
 import './AdminDashboardPage.scss'
 import {Route} from 'react-router-dom'
 import {connect} from 'react-redux';
-import {
-  RoleAuthorization, 
-  AdminComponents,
-} from '../../../components/index';
-import {
-  AdminContainers
-} from '../../../containers/'
-import * as dashboardActions from '../../../actions/DashboardMenuActionCreator'
+import {AdminComponents, RoleAuthorization,} from '../../../components/index';
+import {AdminContainers} from '../../../containers/'
 import * as sessionActions from '../../../actions/SessionActionCreator'
 import * as WebConstants from '../../../constants/WebConstants.js'
 

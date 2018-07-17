@@ -846,13 +846,15 @@ body.application {
     cursor: pointer;
   }
 
+  .avatar-container {
+    position: relative;
+  }
+
   .edit-avatar-btn {
     position: absolute;
     bottom: 0;
     width: 100%;
-    display: none;
-    padding-right: 30px;
-    margin-bottom: 6px;
+    display: table;
     min-height: 50px;
     max-height: 100%;
     .base-line-btn {
@@ -1047,6 +1049,7 @@ body.application {
     border-radius: 50%;
     width: 104px;
     height: 104px;
+    position: relative;
   }
 
   .yellow-color {

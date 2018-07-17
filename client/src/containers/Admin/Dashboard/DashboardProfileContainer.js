@@ -1,16 +1,10 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import ObjectUtils from '../../../utils/ObjectUtils'
-import {UserAvatarForm} from "components/Account/UserAvatarForm";
 import * as AccountActionCreator from 'actions/AccountActionCreator'
 import {reduxForm} from "redux-form";
 import defaultAvatar from '../../../../images/default_avatar.png'
-import {SERVER_NAME} from "utils/CommonConstant";
 import LoadingMask from "../../../components/LoadingMask/LoadingMask";
-import Network from "utils/network";
-import {FETCH_USER_BALANCE} from "../../../actions/AsyncActionCreator";
-import {Modal, ModalHeader, Button, ModalBody, ModalFooter} from 'reactstrap';
-import {FETCH_USER_ACCOUNT} from "constants/AccountTypes";
+import CoursedyUploadImage from "../../../components/Core/CoursedyUploadImage/CoursedyUploadImage";
 
 class DashboardProfileContainer extends Component {
   showEditAvatarForm() {
@@ -45,42 +39,21 @@ class DashboardProfileContainer extends Component {
                      loaderType="USER_DETAILS_PLACEHOLDER">
           <div className="dashboard-profile text-center">
             <div className="row">
-              {this.renderAvatar(user, editAvatarMode, avatarSelected)}
+              <CoursedyUploadImage uploadCourseCoverImage={this.uploadAvatar.bind(this)}
+                                   closePopupToSelectImage={this.hideEditAvatarForm.bind(this)}
+                                   editImageLabel={this.context.t('update_avatar')}
+                                   onDeselectNewImage={this.avatarDeselected.bind(this)}
+                                   onSelectedNewImage={this.avatarSelected.bind(this)}
+                                   isSelectedNewImage={avatarSelected}
+                                   openPopupToSelectImage={this.showEditAvatarForm.bind(this)}
+                                   showPopupChangeImage={editAvatarMode}
+                                   previewImage={user.avatar ? user.avatar : defaultAvatar} />
               <div className="col-sm-12">
                 <h4>{user.name}</h4>
               </div>
             </div>
           </div>
         </LoadingMask>: null
-    )
-  }
-
-  renderAvatar(currentUser, editAvatarMode, avatarSelected) {
-    return (
-      <div className="col-sm-12 mb-15 avatar-container">
-        <figure className="imghvr-zoom-in full-width">
-          <img className="media-object full-width"
-               src={currentUser.avatar ? currentUser.avatar : defaultAvatar}
-               alt={currentUser.name}
-          />
-        </figure>
-        <span className='edit-avatar-btn' onClick={this.showEditAvatarForm.bind(this)}>
-          <span className='base-line-btn'>
-            <i className='fa fa-camera'/>
-            <span className='ml-10'>{this.context.t('update_avatar')}</span>
-          </span>
-        </span>
-        <Modal isOpen={editAvatarMode} onClosed={this.hideEditAvatarForm.bind(this)}>
-          <ModalBody>
-            <UserAvatarForm onSubmit={this.uploadAvatar.bind(this)}
-                            cancel={this.hideEditAvatarForm.bind(this)} {...this.props}
-                            avatarSelected={avatarSelected}
-                            selectAvatar={this.avatarSelected.bind(this)}
-                            deselectAvatar={this.avatarDeselected.bind(this)}
-            />
-          </ModalBody>
-        </Modal>
-      </div>
     )
   }
 }

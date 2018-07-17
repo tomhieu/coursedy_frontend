@@ -1,0 +1,35 @@
+@import "../../../../styles/global_style";
+
+.uploadImageContainer {
+  position: relative;
+  margin-bottom: 15px;
+  &.avatarUser {
+    border-radius: 50%;
+    overflow: hidden;
+  }
+  .previewImageContainer {
+    width: 100%;
+    .editAvatarBtn {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      display: table;
+      .baseLineBtn {
+        background: rgba(78,144,254,.7);
+        bottom: 0;
+        color: #fff;
+        font-size: 9px;
+        font-weight: bold;
+        left: 0;
+        position: absolute;
+        padding: 7px 0;
+        text-align: center;
+        width: 100%;
+      }
+    }
+  }
+  .selectNewImage {
+    border: 1px dashed $border-color;
+    border-radius: 6px;
+  }
+}

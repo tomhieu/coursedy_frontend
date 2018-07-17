@@ -1,8 +1,6 @@
+import * as React from "react";
 import {Component} from "react";
 import FormField from "components/Core/FormField";
-import * as React from "react";
-import defaultAvatar from '../../../images/default_avatar.png'
-import {SERVER_NAME} from "utils/CommonConstant";
 import PrimaryButton from "../Core/PrimaryButton/PrimaryButton";
 
 export class UserAvatarForm extends Component {

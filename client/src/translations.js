@@ -659,6 +659,7 @@ export const translations = {
     "lesson_rating_btn": "Đánh giá & Kết thúc",
     "rejoin_class_room": "Vào lại lớp",
     "thank_for_evaluation": "Cảm ơn bạn đã đánh giá bài học, điều này sẽ giúp giáo viên hoàn thiện khoá học hơn nữa",
+    "update_image": "Thay đổi ảnh"
   },
   "en": {
     "lang": "Tiếng Việt",

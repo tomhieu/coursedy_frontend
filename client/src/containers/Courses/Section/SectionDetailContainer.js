@@ -13,10 +13,10 @@ class SectionDetailContainer extends Component {
   }
 
     render() {
-        const {handleSubmit, section} = this.props;
+        const {handleSubmit, section, activatedField = []} = this.props;
         return (
             <form onSubmit={handleSubmit(this.props.onSubmit)} className='inline-form' multiple={true}>
-                <InlineEditFormField activated={this.props.activatedField.indexOf("sectionTitleId_" + section.id) >= 0}
+                <InlineEditFormField activated={activatedField.indexOf("sectionTitleId_" + section.id) >= 0}
                                      fieldId={"sectionTitleId_" + section.id}
                                      showLabel={false}
                                      fieldLabel={this.context.t("section_title")}
@@ -41,8 +41,6 @@ SectionDetailContainer.contextTypes = {
 const mapStateToProps = (state, props) => {
     const {courseDetails} = state;
     const {editMode} = courseDetails;
-
-
     return {editMode, initialValues: {title: props.section.title}};
 };
 
