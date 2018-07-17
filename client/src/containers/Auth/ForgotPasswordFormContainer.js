@@ -15,6 +15,20 @@ class ForgotPasswordFormContainer extends Component {
   }
 
   render() {
+    const { emailSent, sentEmailSuccessfully } = this.props.forgotPassword
+    if (sentEmailSuccessfully) {
+      return (
+        <div className="sign-block">
+          <div className="mb-20">
+            <h5>{this.context.t('please_check_your_email')}</h5>
+          </div>
+          <p>
+            {this.context.t('check_email_description', {email: <strong>{emailSent}</strong>})}
+          </p>
+        </div>
+      )
+    }
+
     return (
       <div className="sign-block">
         <div className="mb-20">

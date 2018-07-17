@@ -33,7 +33,7 @@ export const translations = {
     "confirm_password": "Xác Nhận Mật Khẩu",
     "phone_number": "Số Điện Thoại",
     "forgot_password": "Quên Mật Khẩu",
-    "forgot_password_description": "Nhập địa chỉ email của bạn dưới đây và chúng tôi sẽ gửi cho bạn một liên kết để đặt lại mật khẩu của bạn.",
+    "forgot_password_description": "Nhập địa chỉ email lúc đăng ký để thực hiện cài đặt lại mật khẩu, hệ thống sẽ gửi cho bạn một email kèm hướng dẫn.",
     "registration_email_require": "Vui lòng nhập email",
     "invalid_email": "Email không hợp lệ",
     "password_required": "Vui lòng nhập mật khẩu",
@@ -55,6 +55,8 @@ export const translations = {
     "confirm_delete_degree_message": "Bạn có muốn xoá chứng chỉ này không?",
     'change_email_success': 'Yêu cầu đổi email đã được gửi',
     'update_email_successfully': 'Bạn vừa yêu cầu thay đổi email. Hệ thống đã gửi 1 email đến địa chỉ email mới của bạn. Vui lòng kiểm tra email và xác nhận địa chỉ email mới',
+    'please_check_your_email': 'Vui lòng kiểm tra email của bạn',
+    'check_email_description': 'Một email đã được gởi về địa chỉ {email} kèm hướng dẫn thiết lập mật khẩu . Vui lòng kiểm tra email và thực hiện theo hướng dẫn. Lưu ý kiểm tra mục spam nếu không nhận được email.',
     /*
      * Course Creation/Edit Page
      */
@@ -467,7 +469,6 @@ export const translations = {
     "react_table_page_text": "Trang",
     "react_table_of_text": "trong",
     "react_table_rows_text": "dòng",
-    "read_more": "Chi tiết",
 
     /* login & register define */
     "login_link_to_signup": "Thành viên mới, {register} tại đây",
