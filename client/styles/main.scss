@@ -449,7 +449,7 @@ body.application {
   }
 
   .dashboard-profile {
-    padding: 15px 30px;
+    padding: 15px 50px;
     border-bottom: 1px solid $color-active-dashboard-menu;
     color: $color-bg-neutral;
 
@@ -546,13 +546,16 @@ body.application {
     background-color: $gray-background;
     .daskboard-container {
       background-color: transparent;
-      padding: 10px 17%;
+      padding: 10px 30px;
       border: none;
       .title {
         font-size: 22px;
         color: $color-darker-text;
         padding-bottom: 30px;
         text-transform: uppercase;
+      }
+      .course-details-container {
+        padding: 0 17%;
       }
     }
   }

@@ -67,7 +67,7 @@ class CourseFormContainer extends Component {
     const {editMode, listSection, courseTitle, createCourseSucess, publishCourse, isFetching, bbbRoomSlug} = this.props;
 
     return (
-      <div className="row mb-15">
+      <div className="row course-details-container">
         <div className="col-sm-12 col-md-12">
           <div className="dashboard-content-section">
             <LoadingMask placeholderId="courseDetailPlaceholder"
