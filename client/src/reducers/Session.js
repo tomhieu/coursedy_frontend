@@ -48,6 +48,9 @@ const session = (state = {
       const haveActiveCourseToday = activeCourses.filter((course) =>
         course.week_day_schedules.find((day) => day.day ===currentDay.name) !== undefined).length > 0;
       if (SecurityUtils.isTeacher(state.currentUser)) {
+        // const notReadyCourses = activeCourses.filter((course) => {
+        //  course.s
+        // })
         return {...state, hasActiveCourseToLearn: haveActiveCourseToday }
       } else if (SecurityUtils.isStudent(state.currentUser)) {
         return {...state, hasActiveCourseToLearn: haveActiveCourseToday, newStartedCourses: activeCourses }

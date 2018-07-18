@@ -30,20 +30,20 @@ export default function request(url, options) {
         let xTotal = response.headers.get('X-Total');
 
         if (xPage && xPerPage && xTotal) {
-          return resolve({
-            headers: {
-              xPage,
-              xPerPage,
-              xTotal
-            },
-            body: response.json()
-          })          
+          return response.json().then(r => {
+            resolve({
+              headers: {
+                xPage,
+                xPerPage,
+                xTotal
+              },
+              body: r
+            } )
+          })
         }
-        return response.json()
-      })
-      .then(response => {
-        if (response.errors) reject(response.errors);
-        else resolve(response);
+        response.json().then(r => {
+          resolve(r)
+        })
       })
       .catch(reject)
   });

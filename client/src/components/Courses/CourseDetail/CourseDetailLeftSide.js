@@ -12,20 +12,16 @@ import {
   CourseDetailFollowContainer,
   CourseDetailEnrollContainer
 } from "../../../containers/index.js"
+import FixedSideBar from "components/Common/FixedSideBar";
 
 class CourseDetailLeftSide extends Component {
   render() {
     const {
-      activeMenu, displayFixedSidebar,
+      activeMenu,
       course_sections, relatedCourses
     } = this.props
     return (
-      <div 
-        className={ displayFixedSidebar ? 
-          "col-md-3 no-pad d-none d-md-block sidebar-fixed-scrolled" :
-          "col-md-3 no-pad d-none d-md-block sidebar-fixed-normal"
-        } 
-      >
+      <FixedSideBar>
         <aside className="sidebar-wrapper">
           <div className="scrollspy-sidebar alt-style-01 affix-top">
             <ul className="scrollspy-sidenav">
@@ -77,7 +73,7 @@ class CourseDetailLeftSide extends Component {
             <CourseDetailFollowContainer />
           </div>
         </aside>
-      </div>
+      </FixedSideBar>
     )
   }
 }

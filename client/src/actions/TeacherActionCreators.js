@@ -59,7 +59,7 @@ export const fetchTeacherReviews = ({teacherId, meta, query}) => {
 export const fetchTeacherCourses = ({teacherId, meta, query}) => {
   return {
     type: asyncActs.FETCH_TEACHER_COURSES,
-    payload: Network().get(`users/${teacherId}/courses`, query),
+    payload: Network().get(`tutors/${teacherId}/courses`, query),
     meta,
   };
 }

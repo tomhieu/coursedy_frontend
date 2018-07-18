@@ -22,7 +22,9 @@ import {TutorNavigationTab} from "../../../constants/TutorNavigationTab";
 class CourseFormContainer extends Component {
   constructor(props) {
     super(props);
-    this.courseId = this.props.match.params.id;
+    if (this.props.match){
+      this.courseId = this.props.match.params.id;
+    }
   }
 
   componentWillMount() {
@@ -66,11 +68,6 @@ class CourseFormContainer extends Component {
 
     return (
       <div className="row mb-15">
-        <div className="col-sm-12 col-md-12">
-          <div className="title">
-            {this.courseId > 0 ? this.context.t('course_add_btn') : this.context.t('course_add_btn')}
-          </div>
-        </div>
         <div className="col-sm-12 col-md-12">
           <div className="dashboard-content-section">
             <LoadingMask placeholderId="courseDetailPlaceholder"

@@ -25,7 +25,7 @@ class CoursedyUploadImage extends Component {
               <span className={styles.editAvatarBtn} onClick={openPopupToSelectImage.bind(this)}>
                 <span className={styles.baseLineBtn}>
                   <i className='fa fa-camera'/>
-                  <span className='ml-10'>{editImageLabel}</span>
+                  <span className='ml-5'>{editImageLabel}</span>
                 </span>
               </span>
             </a> :
@@ -75,7 +75,7 @@ CoursedyUploadImage.propTypes = {
   onSelectedNewImage: React.PropTypes.func,
   showPopupChangeImage: React.PropTypes.bool.isRequired,
   isSelectedNewImage: React.PropTypes.bool,
-  previewImage: React.PropTypes.string.isRequired,
+  previewImage: React.PropTypes.string,
   uploadCourseCoverImage: React.PropTypes.func.isRequired,
   scaleWidth: React.PropTypes.number,
   scaleHeight: React.PropTypes.number,

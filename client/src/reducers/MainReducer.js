@@ -4,10 +4,15 @@ const MainReducer = (state = {
   showFooter: true,
   stetchAuto: true,
   darkHeader: false,
+  customHeaderClass: ''
 }, action) => {
   switch (action.type) {
     case types.SHOW_FOOTER:
       return {...state, showFooter: true};
+    case types.ADD_HEADER_CLASS:
+      return {...state, customHeaderClass: action.payload};
+    case types.REMOVE_HEADER_CLASS:
+      return {...state, customHeaderClass: ''};
     case types.HIDE_FOOTER:
       return {...state, showFooter: false};
     case types.STETCH_AUTO:

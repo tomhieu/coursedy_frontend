@@ -31,7 +31,9 @@ const PublicCourseDetail = (state = {
     }
   }, action) => {
   switch (action.type) {
-    case courseTypes.FETCH_PUBLIC_COURSE_SUCCESSFULLY:
+    case courseTypes.FETCH_PUBLIC_COURSE + asyncActs.PENDING:
+      return {...state, course: {} }
+    case courseTypes.FETCH_PUBLIC_COURSE + asyncActs.FULFILLED:
       return {...state, course: action.payload }
     case courseTypes.FETCH_PUBLIC_COURSE_FAIL:
       return {...state, course: null}

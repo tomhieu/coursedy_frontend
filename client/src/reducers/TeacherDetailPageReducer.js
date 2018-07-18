@@ -26,14 +26,10 @@ const TeacherDetail = (state = {
       return {...state, workExperiences: action.payload}
 
     case asyncActs.FETCH_TEACHER_REVIEWS + asyncActs.FULFILLED:
-      return {...state, reviews: {...state.reviews, data: action.payload}}
-    case asyncActs.FETCH_TEACHER_REVIEWS + asyncActs.HEADERS:
-      return {...state, reviews: {...state.reviews, headers: action.payload}}
+      return {...state, reviews: {...state.reviews, data: action.payload, headers: action.headers}}
 
     case asyncActs.FETCH_TEACHER_COURSES + asyncActs.FULFILLED:
-      return {...state, courses: {...state.courses, data: action.payload}}
-    case asyncActs.FETCH_TEACHER_COURSES + asyncActs.HEADERS:
-      return {...state, courses: {...state.courses, headers: action.payload}}
+      return {...state, courses: {...state.courses, data: action.payload, headers: action.headers}}
     // comments for the teacher
     case asyncActs.TEACHER_DETAIL_SUBMIT_COMMENT + asyncActs.PENDING:
       return {...state, submitCommentSuccess: false, submitCommentFail: false}

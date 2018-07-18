@@ -14,6 +14,7 @@ class PublicCourseDetailContainer extends Component {
   componentWillMount() {
     this.props.hideFooter();
     this.props.stretchFull();
+    this.props.noShadowHeader();
     this.props.dispatch(ReferActions.fetchCourseCategories())
     if (this.props.courseId) {
       //Fetch course
@@ -37,6 +38,7 @@ class PublicCourseDetailContainer extends Component {
   componentWillUnmount() {
     this.props.showFooter();
     this.props.stretchAuto();
+    this.props.shadowHeader();
   }
 
   loadMoreComments() {
@@ -114,6 +116,8 @@ const mapDispatchToProps = (dispatch) => ({
   hideFooter: () => dispatch({ type: WebConstants.HIDE_FOOTER }),
   stretchFull: () => dispatch({ type: WebConstants.STETCH_FULL }),
   stretchAuto: () => dispatch({ type: WebConstants.STETCH_AUTO }),
+  noShadowHeader: () => dispatch({ type: WebConstants.ADD_HEADER_CLASS, payload: 'no-shadow'}),
+  shadowHeader: () => dispatch({ type: WebConstants.REMOVE_HEADER_CLASS}),
   dispatch: dispatch
 });
 
