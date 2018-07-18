@@ -476,6 +476,12 @@ export const translations = {
     "signup_term": "Bằng cách nhấp vào Đăng ký, bạn đồng ý với {term} và {privacy} của chúng tôi. Bạn có thể nhận được thông báo của chúng tôi qua SMS và hủy nhận bất kỳ lúc nào.",
     "term": "Điều khoản",
     "privacy": "Chính sách dữ liệu",
+    "recover_password": "Đặt lại mật khẩu",
+    "token_invalid_or_expired": "Token không hợp lệ hoặc quá hạn sử dụng",
+    "your_new_password": "Mật khẩu mới",
+    "your_new_password_": "Xác nhận mật khẩu mới",
+    "new_password": "Nhập mật khẩu mới",
+    "new_password_confirmation": "Nhập lại mật khẩu mới",
 
     "our-story-title": "Câu chuyện",
     "our-story-description": "Học tập trực tuyến đang là xu hướng của tương lai và hiện tại có rất nhiều ứng dụng học trực tuyến nhưng còn nhiều hạn chế, không có tính tương tác trực tiếp giữa người dạy và người học, đa phần chỉ dạy qua video, người học hoàn toàn thụ động trong việc học. Và Coursedy ra đời để giải quyết những hạn chế của các ứng dụng hoc trực tuyến hiện tại. Chúng tôi cung cấp nền tảng học trực tuyến có tính tương tác trực tiếp giữa người dạy và người học.",

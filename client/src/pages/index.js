@@ -2,7 +2,8 @@ import NotFoundPage from './NotFoundPage/NotFoundPage';
 import LandingPage from './LandingPage/LandingPage'
 import LoginRegisterPage from './LoginRegisterPage/LoginRegisterPage'
 import RegisterPage from './LoginRegisterPage/RegisterPage'
-import ForgotPasswordPage from 'pages/User/ForgotPasswordPage'
+import ForgotPasswordPage from 'pages/Auth/ForgotPasswordPage'
+import RecoverPasswordPage from 'pages/Auth/RecoverPasswordPage'
 import ConfirmationPage from './LoginRegisterPage/ConfirmationPage'
 import PublicCourseListPage from './CoursePage/PublicCourseListPage'
 import PublicCourseDetailPage from './CoursePage/PublicCourseDetailPage'
@@ -20,7 +21,7 @@ export {
   ForgotPasswordPage,
   PublicCourseListPage,
   PublicCourseDetailPage,
-  
+  RecoverPasswordPage,
   TutorPage,
   TutorDashboard,
   PaymentPage,

@@ -32,6 +32,7 @@ const router = (
             <Route path="/login" component={Pages.LoginRegisterPage} />
             <Route path="/register" component={Pages.RegisterPage} />
             <Route path="/forgot-password" component={Pages.ForgotPasswordPage} />
+            <Route path="/recover-password" component={Pages.RecoverPasswordPage} />
             <Route path="/confirm_account" component={Pages.ConfirmationPage} />
             <Route path="/courses" component={Pages.PublicCourseListPage} />
             <Route path="/course/:id" component={Pages.PublicCourseDetailPage}/>
