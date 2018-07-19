@@ -16,7 +16,7 @@ class LoginFormContainer extends Component {
   render() {
     return (
       <div className="sign-block">
-        <h2><span>{this.context.t('login')}</span> {this.context.t('with_your_account')}</h2>
+        <h2><span className="login-title">{this.context.t('login')}</span> {this.context.t('with_your_account')}</h2>
         <span className="error"/>
         <LoginForm onSubmit={this.loginUser.bind(this)} {...this.props}/>
       </div>

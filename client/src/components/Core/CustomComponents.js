@@ -26,7 +26,7 @@ export const renderRadioFields = ({options, input, meta: {touched, error, warnin
   if (input && options) {
     const renderRadioButtons = (key, index) => {
       return (
-        <label className="mr-10" key={`${index}`} htmlFor={`${input.name}-${index}`}>
+        <label className="col-md mr-10" key={`${index}`} htmlFor={`${input.name}-${index}`}>
           <Field
             id={`${input.name}-${index}`}
             component="input"
@@ -34,12 +34,12 @@ export const renderRadioFields = ({options, input, meta: {touched, error, warnin
             type="radio"
             value={key}
           />
-          <span className="pl-5">{options[key]}</span>
+          <span className="pl-10">{options[key]}</span>
         </label>
       )
     };
     return (
-      <div>
+      <div className="row">
         {options &&
         Object.keys(options).map(renderRadioButtons)}
         {touched && ((error && <div className='input-errors'>{error}</div>) || (warning && <div>{warning}</div>))}

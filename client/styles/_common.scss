@@ -1083,11 +1083,14 @@ Page >> Login / Register
 
     span {
       color: $md-color-pink;
+      &.login-title:after {
+        width: 120px;
+      }
       &:after {
         content: "";
         position: absolute;
-        width: 72px;
-        height: 1px;
+        width: 87px;
+        height: 4px;
         background: $md-color-pink;
         bottom: -0.5px;
         left: 0;
