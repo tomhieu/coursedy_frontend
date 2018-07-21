@@ -1,7 +1,7 @@
 import {Component} from "react";
 import * as React from "react";
-import FormField from "../../../../components/Core/FormField"
-import PrimaryButton from "../../../../components/Core/PrimaryButton/PrimaryButton"
+import FormField from "../../../Core/FormField"
+import PrimaryButton from "../../../Core/PrimaryButton/PrimaryButton"
 
 export default class BankAccountForm extends Component {
 

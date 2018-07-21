@@ -32,6 +32,13 @@ const AdminPaymentMethodsReducer = (state = {
       enrollErrorMessages = (action.payload && Array.isArray(action.payload) && action.payload.length > 0) ?
         errors : [TT.t('fetch_course_fail')];
       return {...state,  errors: enrollErrorMessages, isLoading: false}
+    case asyncActs.STORE_ADMIN_PAYMENT_SETTINGS + asyncActs.PENDING:
+      return state
+    case asyncActs.STORE_ADMIN_PAYMENT_SETTINGS + asyncActs.FULFILLED:
+      return {...state, paymentSettings: action.payload}
+    case asyncActs.STORE_ADMIN_PAYMENT_SETTINGS + asyncActs.REJECTED:
+      return state
+
 
     //Reducer for payment integrations
     case asyncActs.FETCH_ADMIN_PAYMENT_INTEGRATIONS + asyncActs.PENDING:

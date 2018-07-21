@@ -44,7 +44,7 @@ class BankAccountList extends Component {
                     <SettingIcon width={14} height={14}></SettingIcon>
                   </button>
                   <button type="button" onClick={this.deleteBankAccountHdl.bind(this, item)}>
-                    <TrashIcon width={11} height={21}></TrashIcon>
+                    <TrashIcon width={14} height={14}></TrashIcon>
                   </button>
                </td>
              </tr>

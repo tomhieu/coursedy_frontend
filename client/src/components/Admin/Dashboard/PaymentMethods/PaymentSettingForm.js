@@ -1,11 +1,12 @@
 import {Component} from "react";
 import * as React from "react";
 import FormField from "../../../Core/FormField"
+import PrimaryButton from "../../../Core/PrimaryButton/PrimaryButton"
+
 
 export default class PaymentSettingForm extends Component {
   render() {
     const {handleSubmit} = this.props
-    let self = this
 
     return (
       <form onSubmit={handleSubmit(this.props.onSubmit)}>
@@ -22,9 +23,8 @@ export default class PaymentSettingForm extends Component {
         <div className="col-md-4">
           <FormField fieldId="visa" fieldLabel={'Visa / MasterCard'}
                 placeholder={'Visa / MasterCard'} isMandatoryField={true}
-                formControlName="bank_account_number" typeField="checkbox"/>
+                formControlName="visa" typeField="checkbox"/>
         </div>
-        <button type="submit" className="btn">Cập nhật</button>
       </form>
     )
   }

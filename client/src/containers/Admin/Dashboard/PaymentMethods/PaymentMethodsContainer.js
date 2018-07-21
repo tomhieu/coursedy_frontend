@@ -19,11 +19,10 @@ import {
 } from "../../../../actions/AsyncActionCreator"
 import {
   BankAccountList,
-  PaymentSettingForm,
   PaymentIntegrationForm
 } from "../../../../components/Admin"
 import BankAccountContainer from "./BankAccountContainer"
-
+import PaymentSettingContainer from "./PaymentSettingContainer"
 
 class PaymentMethodsContainer extends Component {
   componentDidMount() {
@@ -49,34 +48,34 @@ class PaymentMethodsContainer extends Component {
             <span className="text-uppercase bold">Phương thức thanh toán</span>
           </div>
 
-          {/*Payment Setting Form*/}
-          {/*<div className="col-md-12">
-            <PaymentSettingForm
+          {/*Payment Setting Container*/}
+          <div className="col-md-12">
+            <PaymentSettingContainer
               onSubmit={this.savePaymentSetting.bind(this)}
               {...this.props}
-            ></PaymentSettingForm>
-          </div>*/}
-  
-          {/*Payment Integration Form*/}
-          {/*<div className="col-md-12">
-            <PaymentIntegrationForm
-              {...this.props}
-              onSubmit={this.savePaymentIntegration.bind(this)}
-            ></PaymentIntegrationForm>
-          </div>*/}
-
-          {/*Bank account list*/}
-          <div className="col-md-12">
-          <BankAccountList
-              bankAccounts={bankAccounts}
-              {...this.props}
-            ></BankAccountList>
+            />
           </div>
 
-          {/*Bank account form */}
-          <div className="col-md-12">
-            <BankAccountContainer {...this.props} />
-          </div>
+          {
+            // Bank account list
+            paymentSettings.manual ? 
+              <div className="col-md-12">
+                <BankAccountList
+                  bankAccounts={bankAccounts}
+                  {...this.props}
+                ></BankAccountList>
+              </div> :
+              null
+          }
+          {
+            // Bank account form
+            paymentSettings.manual ? 
+              <div className="col-md-12">
+                <BankAccountContainer {...this.props} />
+              </div> :
+              null
+          }
+         
           
 
         </div>
