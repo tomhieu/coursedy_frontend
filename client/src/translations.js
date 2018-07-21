@@ -1,5 +1,7 @@
+import { payment_translation } from "./translations/payment"
 export const translations = {
   "vn": {
+    ...payment_translation.vn,
     "home_page": "Trang Chủ",
     "find_tutors": "Tìm Gia Sư",
     "find_teachers": "Tìm Giáo Viên",
@@ -634,6 +636,7 @@ export const translations = {
 
   },
   "en": {
+    ...payment_translation.en,
     "lang": "Tiếng Việt",
     "home_page": "Home page",
     "find_tutors": "Find tutors",

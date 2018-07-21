@@ -17,31 +17,31 @@ export default class BankAccountForm extends Component {
       <form onSubmit={handleSubmit(this.props.onSubmit)}>
         <div className="bank-account">
           <div className="bank-name">
-            <FormField fieldId="bankName" fieldLabel={'Tên ngân hàng'}
-                  placeholder={'Tên ngân hàng'} isMandatoryField={true}
+            <FormField fieldId="bankName" fieldLabel={this.context.t('admin_payment_methods_bank_name')}
+                  placeholder={this.context.t('admin_payment_methods_bank_name')} isMandatoryField={true}
                   formControlName="name" typeField="custom_input"/>
           </div>
           <div className="bank-account-name">
-            <FormField fieldId="bankAccountName" fieldLabel={'Chủ tài khoản'}
-                  placeholder={'Chủ tài khoản'} isMandatoryField={true}
+            <FormField fieldId="bankAccountName" fieldLabel={this.context.t('admin_payment_methods_account_name')}
+                  placeholder={this.context.t('admin_payment_methods_account_name')} isMandatoryField={true}
                   formControlName="bankAccount.accountName" typeField="custom_input"/>
           </div>
           <div className="bank-account-number">
-            <FormField fieldId="bankAccountNumber" fieldLabel={'Số tài khoản'}
-                  placeholder={'Số tài khoản'} isMandatoryField={true}
+            <FormField fieldId="bankAccountNumber" fieldLabel={this.context.t('admin_payment_methods_account_number')}
+                  placeholder={this.context.t('admin_payment_methods_account_number')} isMandatoryField={true}
                   formControlName="bankAccount.accountNumber" typeField="custom_input"/>
           </div>
           <div className="bank-account-office">
-            <FormField fieldId="bankAccountOffice" fieldLabel={'Chi nhánh'}
-                  placeholder={'Chi nhánh'} isMandatoryField={true}
+            <FormField fieldId="bankAccountOffice" fieldLabel={this.context.t('admin_payment_methods_account_office')}
+                  placeholder={this.context.t('admin_payment_methods_account_office')} isMandatoryField={true}
                   formControlName="bankAccount.accountOffice" typeField="custom_input"/>
           </div>
         </div>
 
-        <PrimaryButton type={'submit'} title={"Lưu"} />
+        <PrimaryButton type={'submit'} title={this.context.t('admin_payment_methods_save')} />
         <PrimaryButton 
           type={'button'} 
-          title={"Xóa"} 
+          title={this.context.t('admin_payment_methods_cancel')} 
           isPrimary={false}
           callback={this.resetForm.bind(this)}
         />

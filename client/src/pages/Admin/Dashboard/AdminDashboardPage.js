@@ -53,6 +53,9 @@ class AdminDashboardPage extends RoleAuthorization {
                 <Route exact path="/admin/dashboard/payment-methods"
                   component={AdminContainers.PaymentMethodsContainer}
                 />
+                <Route exact path="/admin/dashboard/payment-history"
+                  component={AdminContainers.PaymentHistoryContainer}
+                />
               </switch>
             </div>
           </div>

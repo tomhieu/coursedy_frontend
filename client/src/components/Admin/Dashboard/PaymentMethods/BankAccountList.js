@@ -23,12 +23,11 @@ class BankAccountList extends Component {
       <table className="table table-responsive table-borderd">
         <thead>
           <tr>
-            <th>Tên ngân hàng</th>
-            <th>Chủ tài khoản</th>
-            <th>Số tài khoản</th>
-            <th>Chi nhánh</th>
-            <th>
-            </th>
+            <th>{this.context.t('admin_payment_methods_bank_name')}</th>
+            <th>{this.context.t('admin_payment_methods_account_name')}</th>
+            <th>{this.context.t('admin_payment_methods_account_number')}</th>
+            <th>{this.context.t('admin_payment_methods_account_office')}</th>
+            <th></th>
           </tr>
         </thead>
         <tbody>

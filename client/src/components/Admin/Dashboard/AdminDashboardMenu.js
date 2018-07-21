@@ -56,6 +56,13 @@ class AdminDashboardMenu extends Component {
                 <a onClick={this.onClickDashboardLink.bind(this, '/admin/dashboard/payment-methods', 'admin_payment_methods')}>{this.context.t('admin_payment_methods')}</a>
               </li>
 
+              <li className={activatedTab === 'admin_payment_history' ? 'dashboard-item active' : 'dashboard-item'}>
+                {
+                  activatedTab === 'admin_payment_history' ? <CourseListIcon fillColor="#1CABA0"/> : <CourseListIcon/>
+                }
+                <a onClick={this.onClickDashboardLink.bind(this, '/admin/dashboard/payment-history', 'admin_payment_history')}>{this.context.t('admin_payment_history')}</a>
+              </li>
+
             </ul>
           </div>
         </div>
