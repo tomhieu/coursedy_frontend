@@ -19,7 +19,6 @@ import {
 } from "../../../../actions/AsyncActionCreator"
 import {
   BankAccountList,
-  PaymentIntegrationForm
 } from "../../../../components/Admin"
 import BankAccountContainer from "./BankAccountContainer"
 import PaymentSettingContainer from "./PaymentSettingContainer"

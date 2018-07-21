@@ -5,14 +5,10 @@ import SettingIcon from "../../../Core/Icons/SettingIcon";
 
 class BankAccountList extends Component {
   fetchBankAccountHdl(bankAccount) {
-    console.log('DEBUG fetchBankAccount')
-    console.log(bankAccount)
     this.props.fetchBankAccount(bankAccount)
   }
   deleteBankAccountHdl(bankAccount) {
-    console.log('DEBUG deleteBankAccount')
-    console.log(bankAccount)
-    if (confirm('Are you sure?')) {
+    if (confirm(this.context.t('admin_payment_methods_bank_account_delete_confirm'))) {
       this.props.deleteBankAccount(bankAccount)
     }
   }

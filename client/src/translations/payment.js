@@ -11,8 +11,11 @@ export const payment_translation = {
     "admin_payment_methods_account_name": "Chủ tài khoản",
     "admin_payment_methods_account_number": "Số tài khoản",
     "admin_payment_methods_account_office": "Chi nhánh",
+    "admin_payment_methods_bank_account_delete_confirm": "Bạn muốn xóa tài khoản này?",
     "admin_payment_methods_save": "Lưu",
-    "admin_payment_methods_cancel": "Hủy"
+    "admin_payment_methods_cancel": "Hủy",
+
+    "admin_payment_history": "Lịch sử thanh toán"
   },
   "en": {
     "admin_payment_methods": "Payment methods",
@@ -23,7 +26,11 @@ export const payment_translation = {
     "admin_payment_methods_account_name": "Account owner",
     "admin_payment_methods_account_number": "Account number",
     "admin_payment_methods_account_office": "Branch",
+    "admin_payment_methods_bank_account_delete_confirm": "Are you sure?",
     "admin_payment_methods_save": "Save",
-    "admin_payment_methods_cancel": "Cancel"
+    "admin_payment_methods_cancel": "Cancel",
+
+    "admin_payment_history": "Payment History"
+
   }
 }

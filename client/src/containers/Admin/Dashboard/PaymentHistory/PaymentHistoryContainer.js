@@ -18,7 +18,7 @@ class PaymentHistoryContainer extends Component {
       <div className="row">
         <div className="col-md-12 col-sm-12">
           <div className="block-title">
-            <span className="text-uppercase bold">Lịch sử thanh toán</span>
+            <span className="text-uppercase bold">{this.context.t('admin_payment_history')}</span>
           </div>
         </div>
       </div>
