@@ -1,0 +1,19 @@
+@import "AuthForm";
+
+.form-signup {
+  .sigup-term-privacy {
+    p {
+      max-width: 516px;
+    }
+    a {
+      color: $md-color-pink;
+      font-size: 14px;
+      font-weight: 400;
+
+      &:hover {
+        text-decoration: none;
+        color: $dark-text-color;
+      }
+    }
+  }
+}

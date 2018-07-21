@@ -31,6 +31,9 @@ const router = (
             <Route exact path="/" component={Pages.LandingPage}/>
             <Route path="/home" component={Pages.LandingPage}/>
             <Route path="/login" component={Pages.LoginRegisterPage} />
+            <Route path="/register" component={Pages.RegisterPage} />
+            <Route path="/forgot-password" component={Pages.ForgotPasswordPage} />
+            <Route path="/recover-password" component={Pages.RecoverPasswordPage} />
             <Route path="/confirm_account" component={Pages.ConfirmationPage} />
             <Route path="/courses" component={Pages.PublicCourseListPage} />
             <Route path="/course/:courseId/evaluate/lesson/:bbbRoom" component={LessonEvaluationContainer} />

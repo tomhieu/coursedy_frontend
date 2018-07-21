@@ -21,8 +21,8 @@ class CourseCoverImageContainer extends Component {
                            showPopupChangeImage={showPopupChangeCoverImage}
                            previewImage={courseCoverImage ? courseCoverImage : undefined}
                            fieldId="cover_image_Id"
-                           scaleWidth={16}
-                           scaleHeight={7}
+                           scaleWidth={5}
+                           scaleHeight={3}
                            {...this.props} />
     )
   }

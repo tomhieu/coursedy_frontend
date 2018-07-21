@@ -8,13 +8,13 @@ export const translations = {
     "forum": "Diễn Đàn",
     "login": "Đăng Nhập",
     "signout": "Đăng xuất",
-    "dashboard": "Trang Cá Nhân",
-    "with_your_account": "Với Tài Khoản",
-    "register": "Đăng Ký",
-    "register_now": "Đăng Ký Miễn Phí",
-    "new_account": "Tài Khoản Mới",
+    "dashboard": "Trang cá nhân",
+    "with_your_account": "với tài khoản",
+    "register": "Đăng ký",
+    "register_now": "Đăng Ký",
+    "new_account": "tài khoản mới",
     "email": "Email",
-    "password": "Mật Khẩu",
+    "password": "Mật khẩu",
     "error": "Lỗi",
     "email_or_password_incorrect": "Email hoặc Mật khẩu không đúng",
     "email_taken": "Email này đã đăng ký với tài khoản khác",
@@ -28,10 +28,12 @@ export const translations = {
     "role_required": "Vui lòng chọn tài khoản người dùng",
     "email_required": "Vui lòng nhập địa chỉ e-mail",
     "first_name_required": "Vui lòng nhập tên",
+    "name_required": "Vui lòng nhập tên",
     "current_password_required": "Vui lòng nhập mật khẩu hiện tại",
-    "confirm_password": "Xác Nhận Mật Khẩu",
-    "phone_number": "Số Điện Thoại",
-    "forgot_password": "Quên Mật Khẩu?",
+    "confirm_password": "Xác nhận mật khẩu",
+    "phone_number": "Số điện thoại",
+    "forgot_password": "Quên mật khẩu?",
+    "forgot_password_description": "Nhập địa chỉ email lúc đăng ký để thực hiện cài đặt lại mật khẩu, hệ thống sẽ gửi cho bạn một email kèm hướng dẫn.",
     "registration_email_require": "Vui lòng nhập email",
     "invalid_email": "Email không hợp lệ",
     "password_required": "Vui lòng nhập mật khẩu",
@@ -40,18 +42,21 @@ export const translations = {
     "password_confirmation_not_match": "Xác nhận mật khẩu không đúng",
     "phone_number_required": "Vui lòng nhập số điện thoại",
     "invalid_phone_number": "Số điện thoại không đúng",
-    "sign_up_success": "Đăng Ký Thành Công !",
+    "sign_up_success": "Đăng ký thành công !",
     "confirming": "Đang xác nhận tài khoản ....",
-    "congrat_sign_up_success": "Chúc mừng bạn đã đăng ký thành viên của EzyLearning thành công. Chúng tôi đã gửi email xác nhận đến địa chỉ email của bạn. Vui lòng kiểm tra hộp thư đến để kích hoạt tài khoản",
+    "congrat_sign_up_success": "Chúc mừng bạn đã đăng ký thành viên của Coursedy thành công. Chúng tôi đã gửi email xác nhận đến địa chỉ email của bạn. Vui lòng kiểm tra hộp thư đến để kích hoạt tài khoản",
     "ok": "Đồng ý",
     "close": "Đóng",
     "confirm_delete": "Xoá",
+    "back": "Quay lại",
     "delete_education_confirmation_message": "Bạn có muốn xoá lịch sử học tập này không?",
     "delete_work_experience_confirmation_message": "Bạn có muốn xoá lịch sử làm việc này không?",
     "confirm_delete_header": "Chú ý",
     "confirm_delete_degree_message": "Bạn có muốn xoá chứng chỉ này không?",
     'change_email_success': 'Yêu cầu đổi email đã được gửi',
     'update_email_successfully': 'Bạn vừa yêu cầu thay đổi email. Hệ thống đã gửi 1 email đến địa chỉ email mới của bạn. Vui lòng kiểm tra email và xác nhận địa chỉ email mới',
+    'please_check_your_email': 'Vui lòng kiểm tra email của bạn',
+    'check_email_description': 'Một email đã được gởi về địa chỉ {email} kèm hướng dẫn thiết lập mật khẩu . Vui lòng kiểm tra email và thực hiện theo hướng dẫn. Lưu ý kiểm tra mục spam nếu không nhận được email.',
     /*
      * Course Creation/Edit Page
      */
@@ -213,7 +218,7 @@ export const translations = {
     "drag_and_drop": "Kéo thả tập tin vào đây",
     "speciality": "Chuyên môn",
     "save": "Lưu",
-    "sent": "Gửi",
+    "send": "Gửi",
     "cancel": "Huỷ",
     "select": "Chọn",
     'male': 'Nam',
@@ -472,7 +477,19 @@ export const translations = {
     "react_table_page_text": "Trang",
     "react_table_of_text": "trong",
     "react_table_rows_text": "dòng",
-    "read_more": "Chi tiết",
+
+    /* login & register define */
+    "login_link_to_signup": "Thành viên mới, {register} tại đây",
+    "signup_link_to_login": "Bạn đã là thành viên? {login} tại đây",
+    "signup_term": "Bằng cách nhấp vào Đăng ký, bạn đồng ý với {term} và {privacy} của chúng tôi. Bạn có thể nhận được thông báo của chúng tôi qua SMS và hủy nhận bất kỳ lúc nào.",
+    "term": "Điều khoản",
+    "privacy": "Chính sách dữ liệu",
+    "recover_password": "Đặt lại mật khẩu",
+    "token_invalid_or_expired": "Token không hợp lệ hoặc quá hạn sử dụng",
+    "your_new_password": "Mật khẩu mới",
+    "your_new_password_": "Xác nhận mật khẩu mới",
+    "new_password": "Nhập mật khẩu mới",
+    "new_password_confirmation": "Nhập lại mật khẩu mới",
 
     "our-story-title": "Câu chuyện",
     "our-story-description": "Học tập trực tuyến đang là xu hướng của tương lai và hiện tại có rất nhiều ứng dụng học trực tuyến nhưng còn nhiều hạn chế, không có tính tương tác trực tiếp giữa người dạy và người học, đa phần chỉ dạy qua video, người học hoàn toàn thụ động trong việc học. Và Coursedy ra đời để giải quyết những hạn chế của các ứng dụng hoc trực tuyến hiện tại. Chúng tôi cung cấp nền tảng học trực tuyến có tính tương tác trực tiếp giữa người dạy và người học.",
@@ -660,7 +677,34 @@ export const translations = {
     "lesson_rating_btn": "Đánh giá & Kết thúc",
     "rejoin_class_room": "Vào lại lớp",
     "thank_for_evaluation": "Cảm ơn bạn đã đánh giá bài học, điều này sẽ giúp giáo viên hoàn thiện khoá học hơn nữa",
-    "update_image": "Thay đổi ảnh"
+    "update_image": "Thay đổi ảnh",
+    "become-a-teacher": "Trở Thành Giáo Viên",
+    "become-a-teacher-short-description": "Mang kiến thức của bạn để mở ra các cơ hội nghề nghiệp và các tương lai sáng lạng",
+    "become-a-teacher-introduction": {
+      title: "Chia sẻ kiến thức của bạn đến với tất cả mọi người",
+      picture: "https://inspitrip.imgix.net/static/assets/images/img-people.jpg",
+      description: "Bạn sẽ có cơ hội mang những kiến thức, hiểu biết thú vị của bạn đến với mọi người một cách dễ dàng thông qua mạng internet"
+    },
+    "become-a-teacher-reasons": {
+      title: "Tại sao bạn nên trở thành giáo viên",
+      reasons: [
+        {
+          title: "Kiếm thêm thu nhập",
+          picture: "https://inspitrip.imgix.net/static/assets/images/svg-images/make-money.svg",
+          description: "Bạn có thể kiếm được một mức lương tuyệt vời, với việc thiết lập học phí khoá học và chọn lịch biểu linh hoạt của riêng bạn."
+        },
+        {
+          title: "Dễ dàng mở rộng mạng lưới dạy học",
+          picture: "https://inspitrip.imgix.net/static/assets/images/svg-images/make-connection.svg",
+          description: "Với kiến thức sẵn có của bạn, tất cả bạn cần là tự tin và giảng dạy tốt là bạn có thể tiếp xúc với tất cả mọi người trên thế giới."
+        },
+        {
+          title: "Nâng cao kĩ năng mềm",
+          picture: "https://inspitrip.imgix.net/static/assets/images/svg-images/make-skills.svg",
+          description: "Nếu bạn muốn nâng tầm kĩ năng truyền đạt, hay kĩ năng quản lý và chăm sóc khách hàng. Bằng việc trở thành giáo viên bạn có thể bắt gặp các học viên từ nền văn hoá nước khác… Kỹ năng truyền đạt của bạn sẽ phải đa dạng và phong phú hơn. Ngoài ra đến một lúc nào đó, lượng học viên của bạn đủ lớn để thành cộng đồng trên mạng xã hội. Khi đó bạn cần phải quản lý và chăm sóc khách hàng một cách ngày càng chuyên nghiệp, hiệu quả hơn."
+        }
+      ]
+    }
   },
   "en": {
     "lang": "Tiếng Việt",
@@ -778,7 +822,7 @@ export const translations = {
     'popup_warning_publish_course_message_2': 'Once you publish a course, everyone will see content of your courses',
     'popup_warning_publish_course_message_3': 'Course {course_title} haven\'t had schedule yet. Please add schedule for this course.',
     'course_period_type': 'Period',
-    'course_comments_add': 'Add comment', 
+    'course_comments_add': 'Add comment',
     'course_comments': 'Comment',
     'course_comment_content': 'Content',
     'comment_content': 'Content',

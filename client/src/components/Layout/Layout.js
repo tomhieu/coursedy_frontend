@@ -2,13 +2,14 @@ import React, {Component} from 'react';
 import Header from '../Header/Header'
 import Footer from '../Footer/Footer'
 import I18n from "redux-i18n"
-import {translations} from "../../translations"
-import {TT} from '../../utils/locale'
+import {translations} from "translations"
+import {TT} from 'utils/locale'
 import LoadingMask from "../LoadingMask/LoadingMask";
+import ScrollToTop from 'utils/ScrollToTop'
 import {joinToClassRoom} from "../../actions/ListTutorCourseActionCreator";
 import {UserRole} from "../../constants/UserRole";
 import UpcommingCourseNotificationPopup from "./UpcommingCoursePopup/UpcommingCourseNotificationPopup";
-import Notifications, {success} from "react-notification-system-redux";
+import {success} from "react-notification-system-redux";
 import NotificationSystemComponent from "./NotificationSystem/NotificationSystemComponent";
 
 class Layout extends Component {
@@ -72,31 +73,33 @@ class Layout extends Component {
 
     return (
       <I18n translations={translations} initialLang={TT.locale}>
-        <div className="main-content">
-          <Header session={session} {...this.props} />
-          <main className='container'>
-            {this.props.children}
-          </main>
-          {
-            main.showFooter ? <Footer/> : null
-          }
-          <div className="general-placeholder">
-            <LoadingMask placeholderId="ezylearningFullLoader" isFullLoading={true}></LoadingMask>
+        <ScrollToTop>
+          <div className="main-content">
+            <Header session={session} {...this.props} />
+            <main className='container'>
+              {this.props.children}
+            </main>
+            {
+              main.showFooter ? <Footer/> : null
+            }
+            <div className="general-placeholder">
+              <LoadingMask placeholderId="ezylearningFullLoader" isFullLoading={true}></LoadingMask>
+            </div>
+            <div className="join-course">
+              <UpcommingCourseNotificationPopup teacherName={teachingCourseTeacherName}
+                                                currentUser={session.currentUser}
+                                                courseName={teachingCourseName}
+                                                courseId={teachingCourseId} isShowPopup={session.teachingCourse !== null}
+                                                classRoomId={classRoomId}
+                                                acceptJoinToClassRoom={this.acceptJoinToClassRoom.bind(this)}
+                                                closePopupJoinUpcomingClass={this.props.closePopupJoinUpcomingClass.bind(this)}>
+              </UpcommingCourseNotificationPopup>
+            </div>
+            <div className="notification-system-container">
+              <NotificationSystemComponent newStartedCourses={newStartedCourses} {...this.props}></NotificationSystemComponent>
+            </div>
           </div>
-          <div className="join-course">
-            <UpcommingCourseNotificationPopup teacherName={teachingCourseTeacherName}
-                                              currentUser={session.currentUser}
-                                              courseName={teachingCourseName}
-                                              courseId={teachingCourseId} isShowPopup={session.teachingCourse !== null}
-                                              classRoomId={classRoomId}
-                                              acceptJoinToClassRoom={this.acceptJoinToClassRoom.bind(this)}
-                                              closePopupJoinUpcomingClass={this.props.closePopupJoinUpcomingClass.bind(this)}>
-            </UpcommingCourseNotificationPopup>
-          </div>
-          <div className="notification-system-container">
-            <NotificationSystemComponent newStartedCourses={newStartedCourses} {...this.props}></NotificationSystemComponent>
-          </div>
-        </div>
+        </ScrollToTop>
       </I18n>
     )
   }
