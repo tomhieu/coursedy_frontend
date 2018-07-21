@@ -1,15 +1,15 @@
 import {connect} from 'react-redux';
 import Main from './Main';
 import {withRouter} from 'react-router-dom';
-import * as sessionActions from 'actions/SessionActionCreator';
-import * as courseActions from 'actions/ListTutorCourseActionCreator';
+import * as sessionActions from '../actions/SessionActionCreator';
+import * as courseActions from '../actions/ListTutorCourseActionCreator';
 import * as WebConstants from "../constants/WebConstants";
 import {
   CLOSE_POPUP_JOIN_UPCOMMING_CLASS, LEAVED_JOINING_CLASS,
   STARTED_JOINING_ACTIVE_CLASS
 } from "../actions/AsyncActionCreator";
 import {setLanguage} from "redux-i18n";
-import info, {success} from 'react-notification-system-redux';
+import info, {success, error} from 'react-notification-system-redux';
 
 // Map the global state to global props here.
 const mapStateToProps = (state) => ({
@@ -32,7 +32,9 @@ const mapDispatchToProps = (dispatch) => ({
   showDarkHeader: () => dispatch({ type: WebConstants.SHOW_DARK_HEADER }),
   showWhiteHeader: () => dispatch({ type: WebConstants.SHOW_WHITE_HEADER }),
   switchLang: (lang) => dispatch(setLanguage(lang)),
-  showInfoNotification: (notification) => dispatch(success(notification))
+  showInfoNotification: (notification) => dispatch(success(notification)),
+  showErrorNotification: (notification) => dispatch(error(notification)),
+  closeConfirmationPopup: () => dispatch({ type: WebConstants.CLOSE_CONFIRMATION_POPUP })
 });
 
 // Use connect both here and in your components.

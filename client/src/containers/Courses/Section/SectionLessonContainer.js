@@ -2,6 +2,7 @@ import * as React from "react";
 import {Component} from "react";
 import * as LessonActions from "../../../actions/LessonActionCreator";
 import * as CourseActions from "../../../actions/CourseFormActionCreator";
+import * as MainActions from "../../../actions/MainActionCreator";
 import {connect} from "react-redux";
 import cssModules from "react-css-modules";
 import styles from "./SectionDetail.module.scss";
@@ -97,12 +98,15 @@ class SectionLessonContainer extends Component {
             </div>
             <div className="card-actions">
               <FlatButton label={this.context.t('add_more_lesson')} onClick={() => this.addLesson(section.id)}>
-                <svg viewBox="0 0 24 24" className="material-icon primary" height="24" width="24">
+                <svg viewBox="0 0 24 24" className="material-icon primary" height="18" width="18">
                   <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5 11h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"></path>
                 </svg>
               </FlatButton>
-              <FlatButton label={this.context.t('delete_lesson')} onClick={() => this.deleteSection(section.id)} secondary={true}>
-                <svg viewBox="0 0 24 24" className="material-icon secondary" height="24" width="24">
+              <FlatButton label={this.context.t('delete_lesson')} onClick={() => this.props.openConfirmationPopup(
+                this.context.t('warning_delete_section_title'),
+                this.context.t('warning_delete_section_message', {sectionName: <strong>{section.title}</strong>, seperator: <br></br>}),
+                this.deleteSection.bind(this, section.id))} secondary={true}>
+                <svg viewBox="0 0 24 24" className="material-icon secondary" height="18" width="18">
                   <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"></path>
                 </svg>
               </FlatButton>
@@ -157,7 +161,8 @@ const mapDispatchToProps = (dispatch) => ({
     payload: Network().delete('course_sections/' + id),
     meta: 'sectionLessonPlaceholder' + id
   }),
-  activatedEditField: (fieldIds) => dispatch(CourseActions.activatedEditField(fieldIds))
+  activatedEditField: (fieldIds) => dispatch(CourseActions.activatedEditField(fieldIds)),
+  openConfirmationPopup: (title, message, callback) => dispatch(MainActions.openConfirmationPopup(title, message, callback))
 });
 
 export default connect(

@@ -6,3 +6,11 @@
   top: 60px;
   height: 100%;
 }
+
+@media (max-width: 830px) {
+  .leftPanel {
+    width: 85px;
+    max-width: 85px;
+    min-width: 85px;
+  }
+}

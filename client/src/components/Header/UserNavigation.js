@@ -25,7 +25,7 @@ class UserNavigation extends Component {
     const dropdownOptions = [
       {id: 1, link: SecurityUtils.isTeacher(currentUser) ? "/dashboard/profile" : "/student/dashboard/profile", text: this.context.t('user_navigation_basic_info')},
       {id: 2, link: SecurityUtils.isTeacher(currentUser) ? "/dashboard/courses/list" : "/student/dashboard/courses/enrolled", text: this.context.t('user_navigation_your_course')},
-      {id: 3, callback: this.props.signOut, text: this.context.t('user_navigation_sign_out')}
+      {id: 3, callback: this.props.signOut.bind(this), text: this.context.t('user_navigation_sign_out')}
     ]
     return (
       currentUser == null ? null :
@@ -55,6 +55,7 @@ UserNavigation.contextTypes = {
 
 UserNavigation.propTypes = {
   session: PropTypes.object.isRequired,
+  signOut: PropTypes.func.isRequired
 };
 
 export default cssModules(UserNavigation, styles);

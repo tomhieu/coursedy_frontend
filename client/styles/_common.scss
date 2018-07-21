@@ -1436,10 +1436,7 @@ select[multiple]::-webkit-scrollbar-thumb {
     padding-top: 20px;
     padding-bottom: 11px;
   }
-  .dashboard-profile {
-    padding-top: 15px;
-    padding-bottom: 15px;
-  }
+
   .dashboard-menu .panel {
     margin: 0;
     margin-bottom: 5px;
@@ -1764,6 +1761,11 @@ textarea, .form-control {
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+  padding-top: 5px;
+}
+
+.icon-delete {
+  padding-top: 5px;
 }
 
 /**
@@ -3319,7 +3321,7 @@ Course Item (List Mode) Style Sheet
 }
 
 .material-icon.secondary {
-  fill: $black-color
+  fill: $secondary-color
 }
 
 .rating-item .fa {

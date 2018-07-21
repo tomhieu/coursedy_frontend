@@ -17,6 +17,7 @@ import {
 import Network from "utils/network";
 import {TT} from "utils/locale";
 import PrimaryButton from "../../../components/Core/PrimaryButton/PrimaryButton";
+import * as MainActions from "../../../actions/MainActionCreator";
 
 class LessonDetailFormContainer extends Component {
   addDocumentForLesson(document) {
@@ -31,6 +32,22 @@ class LessonDetailFormContainer extends Component {
 
   onDeleteLesson(lessonId) {
     this.props.deleteLesson(lessonId, this.props.lesson.course_section_id);
+  }
+
+  showDeleteWarning(lessonId, lessonName) {
+    this.props.openConfirmationPopup(
+      this.context.t('warning_delete_lesson_title'),
+      this.context.t('warning_delete_lesson_message', {lessonName: <strong>{lessonName}</strong>, seperator: <br></br>}),
+      this.onDeleteLesson.bind(this, lessonId)
+    )
+  }
+
+  showDeleteDocumentWarning(documentId, documentName) {
+    this.props.openConfirmationPopup(
+      this.context.t('warning_delete_lesson_document_title'),
+      this.context.t('warning_delete_lesson_document_message', {documentName: <strong>{documentName}</strong>}),
+      this.onDeleteDocumentLesson.bind(this, documentId)
+    )
   }
 
   onClosedField(fieldIds) {
@@ -88,14 +105,14 @@ class LessonDetailFormContainer extends Component {
                            typeField="upload_file"/>
                 <div className="d-flex flex-vertical">
                   {
-                    documents.map((doc) => renderPreviewFile(doc, () => this.onDeleteDocumentLesson(doc.id)))
+                    documents.map((doc) => renderPreviewFile(doc, () => this.showDeleteDocumentWarning(doc.id, doc.name)))
                   }
                 </div>
               </div>
             </div>
             <div className="col-md-12 col-sm-12">
               <PrimaryButton type="button"
-                             callback={this.onDeleteLesson.bind(this, lesson.id)}
+                             callback={this.showDeleteWarning.bind(this, lesson.id, lesson.title)}
                              isSmallButton={true}
                              title={this.context.t('lesson_delete_btn')}>
               </PrimaryButton>
@@ -146,7 +163,8 @@ const mapDispatchToProps = (dispatch) => ({
       data: {sectionId: sectionId, lessonId: lessonId, documentId: res.id}
     })),
     meta: 'sectionLessonPlaceholder' + sectionId
-  })
+  }),
+  openConfirmationPopup: (title, message, callback) => dispatch(MainActions.openConfirmationPopup(title, message, callback))
 });
 
 export default connect(

@@ -11,6 +11,7 @@ import {UserRole} from "../../constants/UserRole";
 import UpcommingCourseNotificationPopup from "./UpcommingCoursePopup/UpcommingCourseNotificationPopup";
 import {success} from "react-notification-system-redux";
 import NotificationSystemComponent from "./NotificationSystem/NotificationSystemComponent";
+import SimpleDialogComponent from "../Core/SimpleDialogComponent";
 
 class Layout extends Component {
 
@@ -40,7 +41,7 @@ class Layout extends Component {
   startPoll(currentUser) {
     this.timeout = setTimeout(() => {
       this.checkUpcommingCourse(currentUser);
-    }, 20000);
+    }, 200000);
   }
 
   checkUpcommingCourse(currentUser) {
@@ -61,8 +62,14 @@ class Layout extends Component {
     this.props.afterJoinUpcomingClass();
   }
 
+  executeConfirmCallback(callback) {
+    callback();
+    this.props.closeConfirmationPopup();
+  }
+
   render() {
     const {main, session, notifications} = this.props;
+    const {showConfirmationPopup, confirmationTitle, confirmationMessage, confirmCallback} = main;
     const teachingCourseTeacherName = session.teachingCourse !== null ? session.teachingCourse.user.name : '';
     const teachingCourseName = session.teachingCourse !== null ? session.teachingCourse.title : '';
     const teachingCourseId = session.teachingCourse !== null ? session.teachingCourse.id : '';
@@ -84,6 +91,14 @@ class Layout extends Component {
             }
             <div className="general-placeholder">
               <LoadingMask placeholderId="ezylearningFullLoader" isFullLoading={true}></LoadingMask>
+            </div>
+            <div className="confirmation-popup">
+              <SimpleDialogComponent show={showConfirmationPopup}
+                                     title={confirmationTitle}
+                                     cancelCallback={this.props.closeConfirmationPopup.bind(this)}
+                                     acceptCallback={confirmCallback ? this.executeConfirmCallback.bind(this, confirmCallback) : undefined}>
+                <div>{confirmationMessage}</div>
+              </SimpleDialogComponent>
             </div>
             <div className="join-course">
               <UpcommingCourseNotificationPopup teacherName={teachingCourseTeacherName}

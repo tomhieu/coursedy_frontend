@@ -133,6 +133,12 @@ export const translations = {
     'add_more_lesson': 'Thêm bài học',
     'delete_lesson': 'Xoá bài học',
     'update_cover_image': 'Thay Đổi Ảnh Nền Khoá Học',
+    'warning_delete_section_title': 'Xoá mục',
+    'warning_delete_section_message': 'Bạn có chắc chắn muốn xoá mục ‘{sectionName}’ không? {seperator} Một khi mục bị xoá, tất cả bài học trong mục cũng sẽ bị xoá.',
+    'warning_delete_lesson_title': 'Xoá bài học',
+    'warning_delete_lesson_message': 'Bạn có chắc chắn muốn xoá bài học ‘{lessonName}’ không? {seperator} Một khi bài học bị xoá, tất cả tài liệu đính kèm theo bài học cũng sẽ bị xoá.',
+    'warning_delete_lesson_document_title': 'Xoá tài liệu',
+    'warning_delete_lesson_document_message': 'Bạn có chắc chắn muốn xoá tài liệu ‘{documentName}’ không?',
     /*
      * Lesson Page
      */
@@ -652,9 +658,9 @@ export const translations = {
     "started": "Đang dạy",
     "finished": "Kết thúc",
     "alert_popup": "Chú ý",
-    "delete_course_warning_message": "Bạn có chắc là muốn xoá khoá học ‘{courseName}’",
-    "cancel_course_warning_message": "Bạn có chắc là muốn huỷ tham khoá học ‘{courseName}’.",
-    "cancel_started_course_warning_message": "Khoá học đang dạy và chưa kết thúc, nêu huỷ bây giờ bạn có thể mất phí nếu chưa học đủ số buổi học tối thiểu",
+    "delete_course_warning_message": "Bạn có chắc là muốn xoá khoá học ‘{courseName}’ không?",
+    "cancel_course_warning_message": "Bạn có chắc là muốn huỷ tham khoá học ‘{courseName}’ không?",
+    "cancel_started_course_warning_message": "Khoá học đang dạy và chưa kết thúc, nêu huỷ bây giờ bạn có thể mất phí nếu chưa học đủ số buổi học tối thiểu.",
     "bill_course_fee_popup_title": "Thanh toán khoá học",
     "enrolled_course_title": "Khoá học {courseName}",
     "enrolled_course_teacher_name": "Giáo viên {teacherName}",

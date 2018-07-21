@@ -6,6 +6,11 @@
   &.avatarUser {
     border-radius: 50%;
     overflow: hidden;
+    &:hover {
+      .previewImageContainer .editAvatarBtn .baseLineBtn.btnChangeUserAvatar {
+        display: block;
+      }
+    }
   }
   .previewImageContainer {
     width: 100%;
@@ -25,6 +30,10 @@
         padding: 7px 0;
         text-align: center;
         width: 100%;
+        &.btnChangeUserAvatar {
+          padding-bottom: 15px;
+          display: none;
+        }
       }
     }
   }

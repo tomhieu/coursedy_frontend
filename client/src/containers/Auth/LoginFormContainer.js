@@ -49,5 +49,6 @@ export default connect(
   form: 'login',
   fields: ['email', 'password'],
   validate,
-  asyncValidate
+  asyncValidate,
+  asyncChangeFields: ['email']
 })(StyledComponent));

@@ -19,29 +19,33 @@ class StudentDashboardMenu extends Component {
         <div className="panel panel-default">
           <div className="panel-body">
             <ul className="dashboard-links">
-              <li className={activatedTab === 'my_profile' ? styles.dashboardItem + ' ' + styles.active : styles.dashboardItem}>
+              <li className={activatedTab === 'my_profile' ? styles.dashboardItem + ' ' + styles.active : styles.dashboardItem}
+                  onClick={this.onClickDashboardLink.bind(this, '/student/dashboard/profile', 'my_profile')}>
                 {
                   activatedTab === 'my_profile' ? <UserProfileIcon fillColor="#1CABA0"/> : <UserProfileIcon/>
                 }
-                <a onClick={this.onClickDashboardLink.bind(this, '/student/dashboard/profile', 'my_profile')}>{this.context.t('my_profile')}</a>
+                <a className={styles.itemName}>{this.context.t('my_profile')}</a>
               </li>
-              <li className={activatedTab === 'enrolled_course_list' ? styles.dashboardItem + ' ' + styles.active : styles.dashboardItem}>
+              <li className={activatedTab === 'enrolled_course_list' ? styles.dashboardItem + ' ' + styles.active : styles.dashboardItem}
+                  onClick={this.onClickDashboardLink.bind(this, '/student/dashboard/courses/enrolled', 'enrolled_course_list')}>
                 {
                   activatedTab === 'enrolled_course_list' ? <CourseListIcon fillColor="#1CABA0"/> : <CourseListIcon/>
                 }
-                <a onClick={this.onClickDashboardLink.bind(this, '/student/dashboard/courses/enrolled', 'enrolled_course_list')}>{this.context.t('enrolled_courses')}</a>
+                <a className={styles.itemName}>{this.context.t('enrolled_courses')}</a>
               </li>
-              <li className={activatedTab === 'enrolling_course_list' ? styles.dashboardItem + ' ' + styles.active : styles.dashboardItem}>
+              <li className={activatedTab === 'enrolling_course_list' ? styles.dashboardItem + ' ' + styles.active : styles.dashboardItem}
+                  onClick={this.onClickDashboardLink.bind(this, '/student/dashboard/courses/enrolling', 'enrolling_course_list')}>
                 {
                   activatedTab === 'enrolling_course_list' ? <ActiveCourseListIcon fillColor="#1CABA0"/> : <ActiveCourseListIcon/>
                 }
-                <a onClick={this.onClickDashboardLink.bind(this, '/student/dashboard/courses/enrolling', 'enrolling_course_list')}>{this.context.t('enrolling_courses')}</a>
+                <a className={styles.itemName}>{this.context.t('enrolling_courses')}</a>
               </li>
-              <li className={activatedTab === 'following_course_list' ? styles.dashboardItem + ' ' + styles.active : styles.dashboardItem}>
+              <li className={activatedTab === 'following_course_list' ? styles.dashboardItem + ' ' + styles.active : styles.dashboardItem}
+                  onClick={this.onClickDashboardLink.bind(this, '/student/dashboard/courses/follow', 'following_course_list')}>
                 {
                   activatedTab === 'following_course_list' ? <ActiveCourseListIcon fillColor="#1CABA0"/> : <ActiveCourseListIcon/>
                 }
-                <a onClick={this.onClickDashboardLink.bind(this, '/student/dashboard/courses/follow', 'following_course_list')}>{this.context.t('followed_courses')}</a>
+                <a className={styles.itemName}>{this.context.t('followed_courses')}</a>
               </li>
             </ul>
           </div>

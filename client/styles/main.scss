@@ -481,6 +481,15 @@ body.application {
     }
   }
 
+  @media (max-width: 830px) {
+    .dashboard-profile {
+      padding: 15px;
+      .user-name, .sub-title {
+        display: none;
+      }
+    }
+  }
+
   .dashboard-link {
     margin: 2px 0;
   }
@@ -814,10 +823,15 @@ body.application {
       a {
         font-size: 14px;
         font-weight: 400;
-        line-height: 48px;
         display: inline-block;
         margin-left: 20px;
         width: 100%;
+      }
+
+      @media (max-width: 830px) {
+        a {
+          display: none;
+        }
       }
     }
 
@@ -1487,6 +1501,12 @@ body.application {
     min-height: calc(100vh - 60px);
   }
 
+  @media (max-width: 830px) {
+    .dashboard-content {
+      margin-left: 85px;
+    }
+  }
+
   .start-course-btn {
     min-width: 120px;
   }
@@ -1573,4 +1593,16 @@ body.application {
 
 .link-tag {
   cursor: pointer;
+}
+
+@media (min-width: $lg-lower) and (max-width: $xl-lower) {
+  .course-fee-col, .num-lesson-col {
+    display: none !important;
+  }
+}
+
+@media (min-width: $md-lower) and (max-width: $lg-lower) {
+  .course-fee-col, .num-lesson-col, .course-status-col {
+    display: none !important;
+  }
 }

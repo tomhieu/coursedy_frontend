@@ -119,14 +119,14 @@ export const renderPreviewFile = (file, doDeleteNewUploadFile, saveDocument) => 
         <span className="degree-filename ml-10" title={file.fileName}>{file.fileName}</span>
       </div>
       <a className="icon-delete ml-10" onClick={() => doDeleteNewUploadFile(file.uid)} title={file.fileName}>
-        <svg viewBox="0 0 24 24" className="material-icon secondary" height="24" width="24">
+        <svg viewBox="0 0 24 24" className="material-icon secondary" height="18" width="18">
           <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"></path>
         </svg>
       </a>
       {
         saveDocument !== undefined ?
           <a className="icon-upload ml-10" onClick={() => saveDocument(file)} title={file.fileName}>
-            <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+            <svg fill="#000000" height="18" viewBox="0 0 24 24" width="18" className="material-icon">
               <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
               <path d="M0 0h24v24H0z" fill="none"/>
             </svg>
@@ -191,7 +191,7 @@ class renderFileInput extends Component {
           <div className="d-flex flex-auto justify-content-center align-items-center">
             <div className={this.state.previewUrl ? 'd-none' : 'd-flex flex-horizontal align-self-center padd-10'}>
               <a className="icon-upload">
-                <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+                <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" className="material-icon">
                   <path d="M0 0h24v24H0z" fill="none"/>
                   <path d="M9 16h6v-6h4l-7-7-7 7h4zm-4 2h14v2H5z"/>
                 </svg>

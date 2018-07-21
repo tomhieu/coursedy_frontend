@@ -13,8 +13,10 @@ class CoursedyUploadImage extends Component {
            openPopupToSelectImage, closePopupToSelectImage, showPopupChangeImage, isSelectedNewImage,
            onSelectedNewImage, onDeselectNewImage, scaleWidth, scaleHeight, isUserAvatar = false } = this.props;
     const containerClasses = [styles.uploadImageContainer];
+    const baseLineBtnClasses = [styles.baseLineBtn];
     if (isUserAvatar) {
       containerClasses.push(styles.avatarUser);
+      baseLineBtnClasses.push(styles.btnChangeUserAvatar);
     }
     return (
       <div className={containerClasses.join(' ')}>
@@ -23,7 +25,7 @@ class CoursedyUploadImage extends Component {
             <a className={styles.previewImageContainer}>
               <img className={previewImageClasses} src={previewImage} alt={editImageLabel}/>
               <span className={styles.editAvatarBtn} onClick={openPopupToSelectImage.bind(this)}>
-                <span className={styles.baseLineBtn}>
+                <span className={baseLineBtnClasses.join(' ')}>
                   <i className='fa fa-camera'/>
                   <span className='ml-5'>{editImageLabel}</span>
                 </span>

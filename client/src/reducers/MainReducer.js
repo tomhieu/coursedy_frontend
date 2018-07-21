@@ -4,7 +4,11 @@ const MainReducer = (state = {
   showFooter: true,
   stetchAuto: true,
   darkHeader: false,
-  customHeaderClass: ''
+  customHeaderClass: '',
+  showConfirmationPopup: false,
+  confirmationTitle: undefined,
+  confirmationMessage: undefined,
+  confirmCallback: undefined
 }, action) => {
   switch (action.type) {
     case types.SHOW_FOOTER:
@@ -23,6 +27,15 @@ const MainReducer = (state = {
       return {...state, darkHeader: true};
     case types.SHOW_WHITE_HEADER:
       return {...state, darkHeader: false};
+    case types.OPEN_CONFIRMATION_POPUP:
+      return {...state, showConfirmationPopup: true,
+        confirmationTitle: action.payload.title,
+        confirmationMessage: action.payload.message,
+        confirmCallback: action.payload.callback
+      };
+    case types.CLOSE_CONFIRMATION_POPUP:
+      return {...state, showConfirmationPopup: false,
+        confirmationTitle: undefined, confirmationMessage: undefined, confirmCallback: undefined};
     default:
       return state;
   }

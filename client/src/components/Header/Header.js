@@ -3,7 +3,6 @@ import {NavbarToggler, NavLink} from 'react-bootstrap'
 import cssModules from 'react-css-modules';
 import styles from './Header.module.scss';
 import {LinkContainer} from 'react-router-bootstrap'
-import {dashboardUrls} from '../../actions/ReferenceActions/ReferenceData'
 import {SecurityUtils} from "utils/SecurityUtils";
 import {TRIGGER_STICKY_HEADER_AT} from "constants/Layout";
 import PrimaryButton from "../Core/PrimaryButton/PrimaryButton";
@@ -55,8 +54,8 @@ class Header extends Component {
     globalHistory.push('/login');
   }
 
-  openDashboard(dashboardUrl) {
-    globalHistory.push(dashboardUrl);
+  isAuthenticated() {
+    return this.props.session.currentUser !== null || SecurityUtils.isAuthenticated();
   }
 
   render() {
@@ -103,7 +102,7 @@ class Header extends Component {
               {
                 SecurityUtils.isAuthenticated() ? (
                   <li className="nav-item">
-                    <UserNavigation session={this.props.session}></UserNavigation>
+                    <UserNavigation session={this.props.session} signOut={this.props.signOut}></UserNavigation>
                   </li>
                 ) : (
                   <li className="nav-item">

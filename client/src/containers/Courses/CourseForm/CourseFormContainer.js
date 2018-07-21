@@ -105,7 +105,7 @@ class CourseFormContainer extends Component {
                         <FlatButton label={this.context.t('lesson_link_edit')}
                                     secondary={false}
                                     onClick={this.addNewSection.bind(this)}>
-                          <svg viewBox="0 0 24 24" className="material-icon primary" height="24" width="24">
+                          <svg viewBox="0 0 24 24" className="material-icon primary" height="18" width="18">
                             <path
                               d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5 11h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"></path>
                           </svg>
@@ -115,9 +115,9 @@ class CourseFormContainer extends Component {
                         <FlatButton label={this.context.t('course_publish')}
                                     secondary={true}
                                     onClick={this.validateBeforePublishCourse.bind(this)}>
-                          <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" className="material-icon">
-                            <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
+                          <svg className="material-icon" width="24" height="24" viewBox="0 0 24 24">
                             <path d="M0 0h24v24H0z" fill="none"/>
+                            <path d="M5 4v2h14V4H5zm0 10h4v6h6v-6h4l-7-7-7 7z"/>
                           </svg>
 
                         </FlatButton>
