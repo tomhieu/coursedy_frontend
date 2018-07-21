@@ -3,6 +3,7 @@ import cssModules from 'react-css-modules';
 import styles from './Header.module.scss';
 import defaultAvatar from '../../../images/default_avatar.png'
 import CoursedyDropDown from "../Core/CoursedyDropdown/CoursedyDropDown";
+import {SecurityUtils} from "utils/SecurityUtils";
 
 class UserNavigation extends Component {
   constructor(props) {
@@ -22,8 +23,8 @@ class UserNavigation extends Component {
   render() {
     const {currentUser} = this.props.session;
     const dropdownOptions = [
-      {id: 1, link: "/dashboard/profile", text: this.context.t('user_navigation_basic_info')},
-      {id: 2, link: "/dashboard/courses/list", text: this.context.t('user_navigation_your_course')},
+      {id: 1, link: SecurityUtils.isTeacher(currentUser) ? "/dashboard/profile" : "/student/dashboard/profile", text: this.context.t('user_navigation_basic_info')},
+      {id: 2, link: SecurityUtils.isTeacher(currentUser) ? "/dashboard/courses/list" : "/student/dashboard/courses/enrolled", text: this.context.t('user_navigation_your_course')},
       {id: 3, callback: this.props.signOut, text: this.context.t('user_navigation_sign_out')}
     ]
     return (

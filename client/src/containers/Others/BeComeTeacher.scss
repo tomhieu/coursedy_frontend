@@ -1,0 +1,129 @@
+@import "../../../styles/global_style";
+
+.become-teacher {
+  %container {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1080px;
+  }
+
+
+  background-color: $color-bg-neutral;
+  h1 {
+    font-size: 34px;
+    line-height: 50px;
+    color: $title-color;
+    margin: 0.67em 0;
+    font-weight: bold;
+  }
+
+  h2 {
+    font-weight: bold;
+    font-size: 30px;
+    line-height: 34px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+  }
+
+  h4 {
+    font-size: 22px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-weight: bold;
+    line-height: 28px;
+  }
+
+  p {
+    line-height: 22px;
+  }
+
+  .become-teacher-banner {
+    background: url(https://inspitrip.imgix.net/static/assets/images/banner-bg.jpg) no-repeat center top;
+    height: 504px;
+    margin-bottom: 50px;
+
+    h4 {
+      font-weight: normal;
+    }
+
+    &__text {
+      text-align: center;
+      padding-top: 140px;
+      @media (max-width: 767px) {
+        padding-top: 60px;
+      }
+    }
+
+    @media (max-width: 767px) {
+      height: 450px;
+    }
+  }
+
+  .become-teacher-introduction {
+    @extend %container;
+    display: flex;
+    overflow: hidden;
+    text-align: center;
+    //margin-top: 100px;
+    padding: 25px 0;
+    &__picture, &__text {
+      width: 50%;
+      display: inline-block;
+      padding: 0 15px;
+    }
+
+    &__picture {
+      img {
+        max-width: 100%;
+      }
+    }
+
+    &__text {
+      padding-top: 10px;
+    }
+
+    @media (max-width: 767px) {
+      flex-direction: column;
+      &__picture, &__text {
+        width: 100%;
+      }
+    }
+  }
+
+  .become-teacher-reason {
+    @extend %container;
+    padding: 0 15px 0;
+    text-align: center;
+
+    &__items {
+      display: flex;
+    }
+
+    &__item {
+      flex: 1;
+      padding: 30px 15px 10px;
+
+      &__picture {
+        margin-bottom: 30px;
+        img {
+          height: 200px;
+        }
+      }
+    }
+
+    @media (max-width: 767px) {
+      &__items {
+        flex-direction: column;
+      }
+
+      &__item {
+        padding: 30px 15px 20px;
+        &__picture {
+          img {
+            height: 150px;
+          }
+        }
+      }
+    }
+  }
+}

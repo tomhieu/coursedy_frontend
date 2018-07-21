@@ -133,6 +133,11 @@ body.application {
     box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.12);
   }
 
+  .navbar-sticky.no-shadow {
+    box-shadow: none;
+    border-bottom: 1px solid $border-color !important;
+  }
+
   /* ----------------------------------
   Homepage >> Header #Search
   ---------------------------------- */
@@ -301,10 +306,6 @@ body.application {
     &.bg-light, &.dark-header.fixed-top {
       border-bottom: solid 1px $border-color;
     }
-    .container {
-      margin: 0 15px;
-      max-width: 100%;
-    }
   }
 
   @media only screen and (min-width: 993px) {
@@ -448,7 +449,7 @@ body.application {
   }
 
   .dashboard-profile {
-    padding: 15px 30px;
+    padding: 15px 50px;
     border-bottom: 1px solid $color-active-dashboard-menu;
     color: $color-bg-neutral;
 
@@ -545,13 +546,16 @@ body.application {
     background-color: $gray-background;
     .daskboard-container {
       background-color: transparent;
-      padding: 30px;
+      padding: 10px 30px;
       border: none;
       .title {
         font-size: 22px;
         color: $color-darker-text;
         padding-bottom: 30px;
         text-transform: uppercase;
+      }
+      .course-details-container {
+        padding: 0 17%;
       }
     }
   }
@@ -846,13 +850,15 @@ body.application {
     cursor: pointer;
   }
 
+  .avatar-container {
+    position: relative;
+  }
+
   .edit-avatar-btn {
     position: absolute;
     bottom: 0;
     width: 100%;
-    display: none;
-    padding-right: 30px;
-    margin-bottom: 6px;
+    display: table;
     min-height: 50px;
     max-height: 100%;
     .base-line-btn {
@@ -1047,6 +1053,7 @@ body.application {
     border-radius: 50%;
     width: 104px;
     height: 104px;
+    position: relative;
   }
 
   .yellow-color {
@@ -1214,20 +1221,38 @@ body.application {
     }
 
     &__aside {
-      flex: 0 0 30%;
-      max-width: 30%;
-      padding-right: 90px;
+      flex: 0 0 35%;
+      max-width: 35%;
+      padding-right: 30px;
+
+      @media (max-width: 767px) and (min-width: 320px) {
+        flex: 0 0 100%;
+        max-width: 100%;
+        padding: 0;
+      }
     }
 
     &__main {
-      flex: 0 0 70%;
-      max-width: 70%;
+      flex: 0 0 65%;
+      max-width: 65%;
+
+      @media (max-width: 767px) and (min-width: 320px) {
+        flex: 0 0 100%;
+        max-width: 100%;
+        margin-top: 20px;
+      }
     }
 
     &__end {
       flex: 0 0 100%;
       max-width: 100%;
       padding-top: 20px;
+      @media (max-width: 767px) and (min-width: 320px) {
+        .flexbox {
+          flex-flow: column wrap;
+        }
+        text-align: center;
+      }
     }
 
     &__links {
@@ -1241,6 +1266,16 @@ body.application {
       &__column {
         flex: 0 0 33.333%;
         max-width: 33.333%;
+        @media (max-width: 767px) and (min-width: 320px) {
+          flex: 0 0 50%;
+          max-width: 50%;
+          margin-bottom: 20px;
+        }
+        @media (max-width: 480px) and (min-width: 320px) {
+          flex: 0 0 100%;
+          max-width: 100%;
+          margin-bottom: 10px;
+        }
       }
 
       &__list {
@@ -1297,13 +1332,19 @@ body.application {
       color: $color-gray-light;
       flex: 0 0 50%;
       max-width: 50%;
+      @media (max-width: 767px) and (min-width: 320px) {
+        max-width: none;
+      }
     }
 
     &__page-link {
       flex: 0 0 50%;
       max-width: 50%;
       text-align: right;
-
+      @media (max-width: 767px) and (min-width: 320px) {
+        max-width: none;
+        text-align: center;
+      }
       ._link-text {
         margin-left: 20px;
       }
@@ -1318,6 +1359,14 @@ body.application {
       -ms-border-radius: 3px;
       border-radius: 3px;
       line-height: 1.42857;
+
+      @media (max-width: 767px) and (min-width: 320px) {
+        display: inline-block;
+      }
+
+      @media (max-width: 480px) and (min-width: 320px) {
+        display: block;
+      }
 
       a {
         display: block;
@@ -1371,6 +1420,7 @@ body.application {
     }
   }
 
+  // end footer
   // divider
   .divider {
     background: $color_orange;
@@ -1444,4 +1494,83 @@ body.application {
   .pb-10px {
     padding-bottom: 10px;
   }
+
+  .link-course-details {
+    color: $md-color-pink;
+    font-weight: 700;
+  }
+
+  .no-course-warning {
+    display: flex;
+    justify-content: center;
+    font-size: 16px;
+  }
+
+  .find-more-course-link {
+    margin-left: 10px;
+    color: $md-color-pink;
+  }
+  .seperate-bill-line {
+    border-top: 1px solid $border-color;
+    margin: 12px 0;
+  }
+
+  .rejoin-class-button {
+    background-color: #50ca33 !important;
+    color: $black-text-color !important;
+    width: 150px;
+    &:hover {
+      border: 1px solid #50ca33;
+      background-color: transparent;
+    }
+  }
+  .evaluation-lesson-button {
+    width: 175px;
+  }
+}
+
+.left-sidebar {
+  width: 100%;
+  position: static;
+  margin-bottom: 15px;
+  background-color: $white-background;
+  top: calc(60px + #{$box-gap});
+  z-index: 500;
+  box-shadow: 0 3px 8px 0 $color-light-box-shadow;
+  transition: all 0.8s;
+  -webkit-transition: all 0.8s;
+
+  &+.right-content {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  @media (min-width: $md-lower) {
+    & {
+      box-shadow: none;
+      position: fixed;
+      width: 20%;
+      margin-bottom: 0;
+      background-color: transparent;
+      border: none;
+    }
+    &+.right-content {
+      margin-left: calc(0.20 * 100vw + #{$box-gap});
+      width: calc(100% - 0.20 * 100vw - #{$box-gap});
+    }
+  }
+
+  @media (min-width: $xl-lower) {
+    & {
+      width: 288px;
+    }
+    &+.right-content {
+      margin-left: 303px;
+      width: 837px;
+    }
+  }
+}
+
+.link-tag {
+  cursor: pointer;
 }

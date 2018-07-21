@@ -17,11 +17,14 @@ import LoadingMask from "../../../components/LoadingMask/LoadingMask";
 import Network from "utils/network";
 import FlatButton from "../../../components/Core/FlatButton/FlatButton";
 import * as dashboardActions from '../../../actions/DashboardMenuActionCreator';
+import {TutorNavigationTab} from "../../../constants/TutorNavigationTab";
 
 class CourseFormContainer extends Component {
   constructor(props) {
     super(props);
-    this.courseId = this.props.match.params.id;
+    if (this.props.match){
+      this.courseId = this.props.match.params.id;
+    }
   }
 
   componentWillMount() {
@@ -32,13 +35,7 @@ class CourseFormContainer extends Component {
       this.props.createNewCourse();
     }
     this.props.fetchCourseCategories();
-    this.props.activateTab('course_add');
-  }
-
-  createClassRoom(slug) {
-    Network().get(`rooms/${slug}/join`, {}, true).then((res) => {
-      window.open(res.url, '_blank');
-    })
+    this.props.activateTab(TutorNavigationTab.COURSE_ADD);
   }
 
   addNewSection() {
@@ -70,12 +67,7 @@ class CourseFormContainer extends Component {
     const {editMode, listSection, courseTitle, createCourseSucess, publishCourse, isFetching, bbbRoomSlug} = this.props;
 
     return (
-      <div className="row mb-15">
-        <div className="col-sm-12 col-md-12">
-          <div className="title">
-            {this.courseId > 0 ? this.context.t('course_add_btn') : this.context.t('course_add_btn')}
-          </div>
-        </div>
+      <div className="row course-details-container">
         <div className="col-sm-12 col-md-12">
           <div className="dashboard-content-section">
             <LoadingMask placeholderId="courseDetailPlaceholder"
@@ -130,20 +122,6 @@ class CourseFormContainer extends Component {
 
                         </FlatButton>
                       </div>
-                      {
-                        bbbRoomSlug ?
-                          <div className="col-md-4 col-sm-4">
-                            <FlatButton label={this.context.t('join_class')}
-                                        secondary={true}
-                                        onClick={this.createClassRoom.bind(this, bbbRoomSlug)}>
-                              <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" className="material-icon">
-                                <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
-                                <path d="M0 0h24v24H0z" fill="none"/>
-                              </svg>
-
-                            </FlatButton>
-                          </div> : null
-                      }
                     </div>
                   </div>
                   <div className="col-md-12 col-sm-12">

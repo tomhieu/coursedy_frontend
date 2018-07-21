@@ -1,11 +1,11 @@
 import {Component} from "react";
 import * as React from "react";
-import CourseFormItem from "./CourseFormItem";
-import FormField from "../../Core/FormField";
-import {DAYS_IN_WEEK, HOURS_IN_DAY} from "../../../actions/CourseFormActionCreator";
-import styles from "./../Course.module.scss";
+import {DAYS_IN_WEEK, HOURS_IN_DAY} from "../../../../actions/CourseFormActionCreator";
+import styles from "./../../Course.module.scss";
 import DateUtils from "utils/DateUtils";
 import {TT} from "utils/locale";
+import CourseFormItem from "../CourseFormItem";
+import FormField from "../../../Core/FormField";
 
 class SelectionTeachingDayViewMode extends Component {
   render() {

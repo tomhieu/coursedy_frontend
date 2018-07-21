@@ -8,10 +8,12 @@ import DateUtils from "utils/DateUtils"
 import {
   FETCH_ADMIN_STUDENTS
 } from "../../../../actions/AsyncActionCreator"
+import * as dashboardActions from '../../../../actions/DashboardMenuActionCreator';
 
 class StudentListContainer extends Component {
   componentDidMount() {
     this.props.fetchStudents(this.props)
+    this.props.activateTab('admin_students')
   }
 
   fetchData(state, instance) {
@@ -103,6 +105,8 @@ const mapDispatchToProps = (dispatch) => ({
     type: FETCH_ADMIN_STUDENTS,
     payload: Network().get('tutors/search', buildQuery(props)),
   }),
+  activateTab: (tabId) => dispatch(dashboardActions.activateTab(tabId)),
+
 });
 
 export default connect(

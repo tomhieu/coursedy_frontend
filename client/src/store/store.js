@@ -7,13 +7,6 @@ import rootReducer from '../reducers/index';
 import initialState from './initialState';
 import {createLogger} from 'redux-logger'
 import * as asyncActions from "actions/AsyncActionCreator";
-import {globalHistory} from '../utils/globalHistory'
-import {TT} from "utils/locale";
-import {LOGIN_FAILED} from "../constants/LoginComponent";
-import {setCurrentUser} from "../actions/SessionActionCreator";
-import {UserRole} from "../constants/UserRole";
-import {REMOVE_CURRENT_USER} from "../constants/Session";
-import * as WebConstants from "constants/WebConstants";
 
 /* Commonly used middlewares and enhancers */
 /* See: http://redux.js.org/docs/advanced/Middleware.html*/
@@ -31,19 +24,10 @@ if (typeof devToolsExtension === 'function') {
 const drivingResponseHandler = store => next => action => {
   const fulfillIndex = action.type.indexOf(asyncActions.FULFILLED);
   if (fulfillIndex >= 0) {
-    if (action.payload.headers) {
-      let actionType = action.type.replace(asyncActions.FULFILLED, '')
-      store.dispatch({
-        type: actionType + asyncActions.HEADERS,
-        payload: action.payload.headers
-      })
-      action.payload.body.then((response) => {
-        store.dispatch({
-          type: action.type,
-          payload: response
-        })
-      })
-      return false
+    let headers = action.payload.headers;
+    if (headers) {
+      action.payload = action.payload.body
+      action.headers = headers
     }
   }
   return next(action)

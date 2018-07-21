@@ -3,6 +3,7 @@ import {
   FETCH_STUDENT_ENROLL_COURSES,
   FETCH_STUDENT_FOLLOW_COURSES 
 } from "../../actions/AsyncActionCreator";
+import {FINISH_COURSE} from "../AsyncActionCreator";
 
 export const fetchListStudentEnrollCourses = () => {
   return dispatch => {
@@ -18,6 +19,15 @@ export const fetchListStudentFollowCourses = () => {
     dispatch({
       type: FETCH_STUDENT_FOLLOW_COURSES,
       payload: Network().get('users/followed_courses')
+    })
+  }
+}
+
+export const finishCourse = (courseId) => {
+  return dispatch => {
+    dispatch({
+      type: FINISH_COURSE,
+      payload: Network().update(`users/finish_courses/${courseId}`)
     })
   }
 }

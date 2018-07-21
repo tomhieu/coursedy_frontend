@@ -4,6 +4,8 @@ export const STETCH_FULL = "STETCH_FULL";
 export const STETCH_AUTO = "STETCH_AUTO";
 export const SHOW_DARK_HEADER = "SHOW_DARK_HEADER";
 export const SHOW_WHITE_HEADER = "SHOW_WHITE_HEADER";
+export const ADD_HEADER_CLASS = "ADD_HEADER_CLASS";
+export const REMOVE_HEADER_CLASS = "REMOVE_HEADER_CLASS";
 
 
 //Student
@@ -51,8 +53,8 @@ export const MAX_RATING_POINTS = 5.0
 /*
 * Scrolled menu constanst
 */
-export const TRIGGER_CHANGE_MENU_EVENT_OFFSET = 20
-export const TRIGGER_DISPLAY_FIX_HEADER_BAR_OFFSET = 100
+export const TRIGGER_CHANGE_MENU_EVENT_OFFSET = 1
+export const TRIGGER_DISPLAY_FIX_HEADER_BAR_OFFSET = 1
 export const CHECK_ACTIVE_MENU_OFFSET= 250
 
 

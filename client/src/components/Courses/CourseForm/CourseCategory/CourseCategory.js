@@ -3,7 +3,7 @@ import * as React from "react";
 import CourseCateogryEditMode from "./CourseCateogryEditMode";
 import {FormGroup} from "react-bootstrap";
 import {Component} from "react";
-import PrimaryButton from "../../Core/PrimaryButton/PrimaryButton";
+import PrimaryButton from "../../../Core/PrimaryButton/PrimaryButton";
 
 class CourseCategory extends Component {
   constructor(props) {

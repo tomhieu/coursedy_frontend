@@ -6,11 +6,11 @@ const SignUpComponent = (state = {
   switch (action.type) {
     case types.SIGN_UP_SUCCESS:
       return {...state, success: true};
-    case types.RESET_FORM:
+    case types.RESET_SIGNUP_FORM:
       return {...state, success: false};
     case types.SIGNUP_FAILED:
       return {...state, success: false, errors: action.payload};
-    case types.CLEAR_ERROR:
+    case types.CLEAR_SIGNUP_ERROR:
       return {...state, success: false, errors: null};
     default:
       return state;

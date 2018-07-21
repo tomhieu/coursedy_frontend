@@ -3,6 +3,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import {FormGroup} from "react-bootstrap";
 import FormField from "./FormField";
 import PrimaryButton from "./PrimaryButton/PrimaryButton";
+import ReadOnlyField from "./ReadOnlyField";
 
 class InlineEditFormField extends FormField {
   constructor(props) {
@@ -56,13 +57,13 @@ class InlineEditFormField extends FormField {
         )
       } else {
         return (
-          <div className={displayStyle + ' inline-field d-flex flex-horizontal'}>
-            {showLabel && fieldLabel !== undefined && fieldLabel !== '' ? (<label className="control-label">{fieldLabel}: </label>) : ''}
-            <label className='pre-wrap'>{this.props.content}</label>
-            <span className='inline-edit' onClick={() => this.showEditForm(activatedFieldIds)}>
-              <i className="fa fa-pencil"></i>
-            </span>
-          </div>
+          <ReadOnlyField fieldLabel={fieldLabel}
+                         showLabel={showLabel}
+                         activatedFields={activatedFieldIds}
+                         displayStyle={displayStyle}
+                         content={this.props.content}
+                         showEditFormField={this.showEditForm.bind(this)}/>
+
         )
       }
     }

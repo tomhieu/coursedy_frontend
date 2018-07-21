@@ -5,10 +5,11 @@ import FormField from "../../Core/FormField";
 
 class CourseFormItem extends Component {
   render() {
-    const {editMode = false, showLabel = true, placeholder, fieldLabel, fieldId, isMandatory, fieldName} = this.props;
+    const {editMode = false, showLabel = true, placeholder,
+           fieldLabel, fieldId, isMandatory, fieldName, activatedField = []} = this.props;
     if (editMode) {
       return (
-        <InlineEditFormField activated={this.props.activatedField.indexOf(fieldId) >= 0}
+        <InlineEditFormField activated={activatedField.indexOf(fieldId) >= 0}
                              placeholder={placeholder || fieldLabel}
                              showLabel={showLabel}
                              isMandatoryField={isMandatory}
@@ -40,7 +41,7 @@ CourseFormItem.propTypes = {
   options: React.PropTypes.array,
   displayStyle: React.PropTypes.string,
   styleCustomField: React.PropTypes.string,
-  activatedFieldIds: React.PropTypes.array
+  activatedField: React.PropTypes.array
 };
 
 export default CourseFormItem;

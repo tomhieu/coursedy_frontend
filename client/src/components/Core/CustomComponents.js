@@ -8,6 +8,7 @@ import {TT} from "../../utils/locale";
 import ObjectUtils from "../../utils/ObjectUtils";
 import Cropper from 'react-cropper'
 import 'cropperjs/dist/cropper.css';
+import { Field } from 'redux-form'
 
 export const renderField = ({input, label, placeholder, type = 'text', disabled = false, customClassName, meta: {touched, error, warning}}) => (
   <div className='full-width-input-wrapper'>
@@ -20,6 +21,32 @@ export const renderField = ({input, label, placeholder, type = 'text', disabled 
     {touched && ((error && <span className='input-errors'>{error}</span>) || (warning && <span>{warning}</span>))}
   </div>
 )
+
+export const renderRadioFields = ({options, input, meta: {touched, error, warning}}) => {
+  if (input && options) {
+    const renderRadioButtons = (key, index) => {
+      return (
+        <label className="col-md mr-10" key={`${index}`} htmlFor={`${input.name}-${index}`}>
+          <Field
+            id={`${input.name}-${index}`}
+            component="input"
+            name={input.name}
+            type="radio"
+            value={key}
+          />
+          <span className="pl-10">{options[key]}</span>
+        </label>
+      )
+    };
+    return (
+      <div className="row">
+        {options &&
+        Object.keys(options).map(renderRadioButtons)}
+        {touched && ((error && <div className='input-errors'>{error}</div>) || (warning && <div>{warning}</div>))}
+      </div>
+    );
+  }
+}
 
 export const renderCheckBoxField = ({input, label, placeholder, type = 'text', disabled = false, customClassName, meta: {touched, error, warning}}) => (
   <div className='full-width-input-wrapper'>
@@ -215,13 +242,13 @@ class avatarInput extends renderFileInput {
   }
 
   render() {
-    let {zoneHeight} = this.props
+    let {zoneHeight, scaleWidth = 1, scaleHeight = 1} = this.props
 
     let cropper = <Cropper
       src={this.state.previewUrl || ''}
       ref='cropper'
       style={{height: zoneHeight || '300px', width: '100%'}}
-      aspectRatio={1 / 1}
+      aspectRatio={scaleWidth / scaleHeight}
       crop={this._crop.bind(this)}
       checkCrossOrigin={false}
       movable={true}

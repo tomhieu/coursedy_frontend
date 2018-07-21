@@ -4,22 +4,23 @@ import {connect} from "react-redux";
 import LoadingMask from "../../../components/LoadingMask/LoadingMask";
 import {FETCH_TUTOR_COURSES} from "actions/AsyncActionCreator";
 import Network from "utils/network";
-import {DELETE_COURSE, FETCH_TUTOR_ACTIVE_COURSES, UPDATE_COURSE} from "../../../actions/AsyncActionCreator";
+import {DELETE_COURSE, UPDATE_COURSE} from "../../../actions/AsyncActionCreator";
 import * as dashboardActions from '../../../actions/DashboardMenuActionCreator';
 import {CourseStatus} from "../../../constants/CourseStatus";
 import TutorCourseList from "../../../components/Courses/CourseList/TutorCourseList";
 import {globalHistory} from "utils/globalHistory";
 import cssModules from 'react-css-modules';
 import styles from './ListTutorCourseContainer.module.scss';
+import {TutorNavigationTab} from "../../../constants/TutorNavigationTab";
 
 class ListTutorCourseContainer extends Component {
 
   componentWillMount() {
     const {status} = this.props;
     if (status === CourseStatus.STARTED) {
-      this.props.activateTab('course_active_list');
+      this.props.activateTab(TutorNavigationTab.ACTIVE_COURSE_LIST);
     } else {
-      this.props.activateTab('course_list');
+      this.props.activateTab(TutorNavigationTab.COURSE_LIST);
     }
   }
 
@@ -36,8 +37,19 @@ class ListTutorCourseContainer extends Component {
     globalHistory.push('/dashboard/courses/new');
   }
 
+  getNoCourseWarningMessage(courseStatus) {
+    if (courseStatus === CourseStatus.STARTED) {
+      return this.context.t('no_active_course_message');
+    } else if (courseStatus === CourseStatus.NOT_STARTED) {
+      return this.context.t('no_course_message');
+    } else {
+      return '';
+    }
+  }
+
+
   render() {
-    const {status, courses, isFetching} = this.props;
+    const {status, courses, isFetching, currentUser} = this.props;
     return (
       <div className="d-flex flex-vertical flex-auto">
         <div className="d-flex flex-auto">
@@ -48,15 +60,13 @@ class ListTutorCourseContainer extends Component {
         <div className="d-flex flex-auto">
           <LoadingMask placeholderId="tutorCourseListPlaceholder">
             {
-              courses.length > 0 ? <TutorCourseList courseList={courses} {...this.props}></TutorCourseList> :
-                this.props.status === CourseStatus.STARTED && !isFetching ?
+              courses.length > 0 ? <TutorCourseList courseList={courses} {...this.props}></TutorCourseList> : !isFetching ?
                 <div className={styles.noCourseWarning}>
-                  <span>{this.context.t('no_active_course_message')}</span>
-                </div> : this.props.status === CourseStatus.NOT_STARTED && !isFetching ?
-                  <div className={styles.noCourseWarning}>
-                    <span>{this.context.t('no_course_message')}</span>
-                    <a onClick={this.openCourseCreation.bind(this)}>{this.context.t('search_more_course_link')}</a>
-                  </div> : null
+                  <span>{this.getNoCourseWarningMessage(status)}</span>
+                  {
+                    status === CourseStatus.NOT_STARTED ? <a onClick={this.openCourseCreation.bind(this)}>{this.context.t('search_more_course_link')}</a> : null
+                  }
+                </div>: null
             }
           </LoadingMask>
         </div>
@@ -71,10 +81,11 @@ ListTutorCourseContainer.contextTypes = {
 }
 
 const mapStateToProps = (state) => {
-  const {TutorCourseList} = state;
+  const {TutorCourseList, session} = state;
   const {courses, isFetching} = TutorCourseList;
+  const {currentUser} = session;
   return {
-    courses, isFetching
+    courses, isFetching, currentUser
   }
 };
 

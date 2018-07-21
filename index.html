@@ -19,18 +19,15 @@
 <!-- The app will bootstrap into this div -->
 <div id="app"></div>
 
-<!--Start of Tawk.to Script-->
+<!--Integration of Verloop chat widget.-->
 <script type="text/javascript">
-  var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-  (function(){
-    var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-    s1.async=true;
-    s1.src='https://embed.tawk.to/5b1c9e8410b99c7b36d4c857/default';
-    s1.charset='UTF-8';
-    s1.setAttribute('crossorigin','*');
-    s0.parentNode.insertBefore(s1,s0);
-  })();
+  (function(w, d, s, u) {
+    w.Verloop = function(c) { w.Verloop._.push(c) }; w.Verloop._ = []; w.Verloop.url = u;
+    var h = d.getElementsByTagName(s)[0], j = d.createElement(s); j.async = true;
+    j.src = 'https://coursedy.verloop.io/livechat/script.min.js?v=v1.11.1';
+    h.parentNode.insertBefore(j, h);
+  })(window, document, 'script', 'https://coursedy.verloop.io/livechat');
 </script>
-<!--End of Tawk.to Script-->
+<!--End of Integration-->
 </body>
 </html>

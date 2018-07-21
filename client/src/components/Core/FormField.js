@@ -79,7 +79,9 @@ class FormField extends Component {
       case "upload_avatar": {
         fieldComponent = <Field name={formControlName} placeholder={placeholder} zoneHeight={zoneHeight}
                                 internalPreview={internalPreview} disabled={this.props.disabled}
-                                previewUrl={previewUrl} onUpload={onUpload} component={cropImageInput} onFileRemoved={onFileRemoved}/>
+                                previewUrl={previewUrl} onUpload={onUpload} component={cropImageInput} onFileRemoved={onFileRemoved}
+                                scaleWidth={this.props.scaleWidth}
+                                scaleHeight={this.props.scaleHeight}/>
         break;
       }
       case "multi_select": {

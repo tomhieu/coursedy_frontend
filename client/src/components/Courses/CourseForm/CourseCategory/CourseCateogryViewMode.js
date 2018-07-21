@@ -1,6 +1,6 @@
 import {Component} from "react";
 import * as React from "react";
-import CourseFormItem from "./CourseFormItem";
+import CourseFormItem from "../CourseFormItem";
 
 class CourseCategoryViewMode extends Component {
   render() {

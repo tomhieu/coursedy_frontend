@@ -1,7 +1,6 @@
-import {Component} from "react";
 import * as React from "react";
-import CourseFormItem from "./CourseFormItem";
-import FormField from "../../Core/FormField";
+import {Component} from "react";
+import FormField from "../../../Core/FormField";
 
 class CourseCateogryEditMode extends Component {
   render() {

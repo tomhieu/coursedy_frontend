@@ -42,7 +42,11 @@ import TeacherDetail from './TeacherDetailPageReducer';
 import DashboardTutorEducationList from './Dashboard/Tutors/Educations/DashboardTutorEducationList';
 import DashboardTutorWorkExperienceList from './Dashboard/Tutors/Educations/DashboardTutorWorkExperienceList';
 import DashboardMenu from "./Dashboard/Menu/DashboardMenuReducer";
+import forgotPassword from './ForgotPasswordReducer';
+import recoverPassword from './Auth/RecoverPasswordReducer';
 import EnrolledStudentList from "./Dashboard/Tutors/CourseList/EnrolledStudent/ListEnrolledStudentReducer";
+import {reducer as notifications} from 'react-notification-system-redux';
+import LessonEvaluation from "./Lesson/LessonEvaluationReducer";
 
 const rootReducer = combineReducers({
   DashboardTutorEducationList,
@@ -52,6 +56,8 @@ const rootReducer = combineReducers({
   i18nState,
   LoginComponent,
   SignUpComponent,
+  forgotPassword,
+  recoverPassword,
 
   //Reducers for course
   CourseListReducer,
@@ -89,7 +95,9 @@ const rootReducer = combineReducers({
   HomePage,
   Certificate,
   DashboardMenu,
-  EnrolledStudentList
+  EnrolledStudentList,
+  notifications,
+  LessonEvaluation
 });
 
 export default rootReducer;

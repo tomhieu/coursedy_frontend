@@ -10,6 +10,7 @@ import {TT} from "utils/locale";
 import {UserRole} from "constants/UserRole";
 import {REMOVE_CURRENT_USER, SET_CURRENT_USER} from "constants/Session";
 import {CourseStatus} from "../constants/CourseStatus";
+import {SecurityUtils} from "utils/SecurityUtils";
 
 export const fetchCurrentUser = () => {
   return {
@@ -52,9 +53,12 @@ export const setCurrentUser = () => {
     dispatch(fetchCurrentUser()).then(({value, action}) => {
       if (value.roles.indexOf(UserRole.ADMIN) >= 0) {
         globalHistory.push('/admin/dashboard');
-      } else if (value.roles.indexOf(UserRole.TEACHER) >= 0 || value.roles.indexOf(UserRole.STUDENT) >= 0) {
+      } else if (value.roles.indexOf(UserRole.TEACHER) >= 0) {
         globalHistory.push('/dashboard/profile');
-        dispatch(fetchActiveCourses());
+        dispatch(fetchActiveCourses(value));
+      } else if (value.roles.indexOf(UserRole.STUDENT) >= 0) {
+        globalHistory.push('/student/dashboard/profile');
+        dispatch(fetchActiveCourses(value));
       } else {
         throw new Error('Not authorized');
       }
@@ -62,10 +66,17 @@ export const setCurrentUser = () => {
   };
 }
 
-export const fetchActiveCourses = () => {
-  return {
-    type: asyncActions.FETCH_TUTOR_ACTIVE_COURSES,
-    payload: Network().get('users/courses', {per_page: 100, status: CourseStatus.STARTED})
+export const fetchActiveCourses = (user) => {
+  if (SecurityUtils.isTeacher(user)) {
+    return {
+      type: asyncActions.FETCH_TUTOR_ACTIVE_COURSES,
+      payload: Network().get('users/courses', {per_page: 100, status: CourseStatus.STARTED})
+    }
+  } else if (SecurityUtils.isStudent(user)) {
+    return {
+      type: asyncActions.FETCH_STUDENT_ACTIVE_COURSES,
+      payload: Network().get('users/enrolled_courses', {per_page: 100, status: CourseStatus.STARTED})
+    }
   }
 }
 

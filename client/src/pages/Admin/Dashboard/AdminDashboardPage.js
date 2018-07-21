@@ -2,13 +2,8 @@ import React from 'react'
 import './AdminDashboardPage.scss'
 import {Route} from 'react-router-dom'
 import {connect} from 'react-redux';
-import {
-  RoleAuthorization, 
-  AdminComponents,
-} from '../../../components/index';
-import {
-  AdminContainers
-} from '../../../containers/'
+import {AdminComponents, RoleAuthorization,} from '../../../components/index';
+import {AdminContainers} from '../../../containers/'
 import * as sessionActions from '../../../actions/SessionActionCreator'
 import * as WebConstants from '../../../constants/WebConstants.js'
 
@@ -32,7 +27,7 @@ class AdminDashboardPage extends RoleAuthorization {
           <div className="left-panel" id="sidebar">
             <div className="panel-group dashboard-menu" id="accordion">
               <AdminContainers.DashboardProfileContainer/>
-              <AdminComponents.AdminDashboardMenu signOut={this.signOut.bind(this)}/>
+              <AdminComponents.AdminDashboardMenu {...this.props}/>
             </div>
           </div>
           <div className="d-flex flex-auto dashboard-content">
@@ -67,11 +62,11 @@ class AdminDashboardPage extends RoleAuthorization {
 
 const mapStateToProps = (state) => ({
   currentUser: state.session.currentUser,
-  fetchingUser: state.session.fetchingUser
+  fetchingUser: state.session.fetchingUser,
+  activatedTab: state.DashboardMenu.activatedTab
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  activateTab: (tabId) => dispatch(dashboardActions.activateTab(tabId)),
   signOut: () => dispatch(sessionActions.signOutUser()),
   showFooter: () => dispatch({ type: WebConstants.SHOW_FOOTER }),
   hideFooter: () => dispatch({ type: WebConstants.HIDE_FOOTER }),

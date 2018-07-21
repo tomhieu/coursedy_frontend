@@ -1,8 +1,6 @@
 @import "../../../../styles/global_style";
 
 .teacher-detail {
-  font-size: 15px;
-  background: $white-background;
   &__header {
     border-bottom: 1px solid $border-color;
     &._fixed {
@@ -24,22 +22,17 @@
   }
 
   &__content {
-    margin-top: 50px;
+    margin-top: 15px;
     @media only screen and (max-width: 767.98px) {
-      margin-top: 50px;
+      margin-top: 15px;
     }
 
-    &__background, &__courses {
+    &__background, &__courses, &__review {
+      background-color: $white-background;
       border: 1px solid $border-color;
-      border-radius: 5px;
-      padding: 30px 40px 40px;
-    }
-
-    &__review {
-      margin-top: 50px;
-      border: 1px solid $border-color;
-      border-radius: 5px;
-      padding: 30px 40px 40px;
+      padding: 15px;
+      margin-bottom: 15px;
+      box-shadow: 0 3px 8px 0 $color-light-box-shadow;
     }
   }
 
@@ -49,12 +42,11 @@
   }
 
   h3 {
-    color: inherit;
-    font-size: 25px;
+    font-size: 20px;
   }
 
   h4 {
-    font-size: 23px;
+    font-size: 20px;
     margin: 0 0 15px;
     text-transform: uppercase;
   }
@@ -63,29 +55,23 @@
     font-weight: 700;
   }
 
-  .icon {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background: $color-bg-light-blue;
-    text-align: center;
-    color: $white-color;
-    padding: 2px;
-    margin: 0 0 18px;
-
-    span {
+  .head-title {
+    color: $dark-text-color;
+    i {
       border-radius: 50%;
-      display: block;
-      border: 4px double $white-color;
-      width: 100%;
-      height: 100%;
+      display: inline-block;
+      border: solid 1px $white-color;
       line-height: 36px;
-      font-size: 18px;
-    };
+      font-size: 20px;
+      margin-right: 15px;
+    }
+    h4 {
+      display: inline-block;
+    }
   }
 
   .profile-list-item {
-    margin: 30px 0;
+    margin: 0 0 20px;
     ul.the-list li {
       position: relative;
       padding-left: 10px;
@@ -114,30 +100,25 @@
 }
 
 .teacher-detail-profile-header {
-  padding: 10px 0 10px 0;
-
+  border: solid 1px #e5e5e5;
+  padding: 15px;
+  text-align: center;
   .profile-picture {
     img {
-      height: 100px;
-      width: 100px;
+      border-radius: 50%;
+      height: 115px;
+      width: 115px;
       cursor: pointer;
       transition: all 0.2s ease-in-out;
-      border-radius: 50%;
       padding: 1px;
     }
   }
 
   .profile-summary {
-    padding: 0 15px 0;
-    display: flex;
-    flex-direction: column;
-    flex-basis: 100%;
-
     .categories {
       display: flex;
       flex-wrap: wrap;
       .category {
-        color: $md-color-pink;
         border: 1px solid $md-color-pink;
         line-height: 1;
         padding: 3px 8px;

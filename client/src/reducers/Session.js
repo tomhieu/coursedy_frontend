@@ -2,6 +2,7 @@ import * as types from '../constants/Session';
 import * as asyncActs from '../actions/AsyncActionCreator'
 import {TT} from "utils/locale";
 import {DAYS_IN_WEEK} from "../actions/CourseFormActionCreator";
+import {SecurityUtils} from "utils/SecurityUtils";
 
 
 const session = (state = {
@@ -11,7 +12,9 @@ const session = (state = {
   errors: [],
   notifications: [],
   hasActiveCourseToLearn: false,
-  teachingCourse: null
+  isJoiningActiveClass: false,
+  teachingCourse: null,
+  newStartedCourses: []
 }, action) => {
   switch (action.type) {
     case types.FETCH_CURRENT_USER + asyncActs.FULFILLED:
@@ -39,11 +42,19 @@ const session = (state = {
     case types.FETCH_NOTIFICATION_USER + asyncActs.FULFILLED:
       return { ...state, notifications: action.payload}
     case asyncActs.FETCH_TUTOR_ACTIVE_COURSES + asyncActs.FULFILLED:
+    case asyncActs.FETCH_STUDENT_ACTIVE_COURSES + asyncActs.FULFILLED:
       const activeCourses = action.payload;
       const currentDay = DAYS_IN_WEEK.find((day) =>  new Date().getDay() === day.id);
       const haveActiveCourseToday = activeCourses.filter((course) =>
         course.week_day_schedules.find((day) => day.day ===currentDay.name) !== undefined).length > 0;
-      return {...state, hasActiveCourseToLearn: haveActiveCourseToday }
+      if (SecurityUtils.isTeacher(state.currentUser)) {
+        // const notReadyCourses = activeCourses.filter((course) => {
+        //  course.s
+        // })
+        return {...state, hasActiveCourseToLearn: haveActiveCourseToday }
+      } else if (SecurityUtils.isStudent(state.currentUser)) {
+        return {...state, hasActiveCourseToLearn: haveActiveCourseToday, newStartedCourses: activeCourses }
+      }
     case asyncActs.FETCH_TUTOR_UPCOMING_COURSES + asyncActs.FULFILLED:
     case asyncActs.FETCH_STUDENT_UPCOMING_COURSES + asyncActs.FULFILLED:
       let upcommingCourse = null;
@@ -53,6 +64,11 @@ const session = (state = {
       return {...state, teachingCourse: upcommingCourse};
     case asyncActs.CLOSE_POPUP_JOIN_UPCOMMING_CLASS:
       return {...state, teachingCourse: null};
+    case asyncActs.STARTED_JOINING_ACTIVE_CLASS:
+      return {...state, teachingCourse: null, isJoiningActiveClass: true};
+    case asyncActs.LEAVED_JOINING_CLASS:
+      return {...state, isJoiningActiveClass: false};
+
     default:
       return state;
   }

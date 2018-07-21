@@ -12,7 +12,8 @@ const courseDetails = (state = {
   createCourseSucess: false,
   publishCourse: false,
   editTeachingDay: false,
-  editCourseCategory: false
+  editCourseCategory: false,
+  editCourseFee: false
 }, action) => {
   let currentSectionList = JSON.parse(JSON.stringify(state.listSection));
   switch (action.type) {
@@ -26,7 +27,12 @@ const courseDetails = (state = {
     case asyncActions.CANCEL_PUBLISH_COURSE:
       return Object.assign({}, state, {publishCourse: false});
     case asyncActions.TRIGGER_ACTIVATE_FIELD:
-      return Object.assign({}, state, {activatedField: action.data});
+      return Object.assign({}, state, {
+        activatedField: action.data,
+        createCourseSucess: false,
+        editTeachingDay: false,
+        editCourseCategory: false
+      });
     case asyncActions.CLOSED_ACTIVATED_FIELD:
       return Object.assign({}, state, {activatedField: []});
     /**
@@ -55,19 +61,27 @@ const courseDetails = (state = {
         createCourseSucess: false,
         editTeachingDay: false,
         editCourseCategory: false,
+        editCourseFee: false
       });
     /**
      * handle creation course actions
      */
     case asyncActions.CREATE_NEW_COURSE:
       return Object.assign({}, state, {
-        courseData: {cover_image: null}, editMode: false, isFetching: false,
-        listSection: [], showSectionPopup: false, activatedField: null, createCourseSucess: false
+        courseData: {cover_image: null},
+        editMode: false, isFetching: false,
+        listSection: [], showSectionPopup: false,
+        activatedField: null,
+        createCourseSucess: false
       });
     case asyncActions.CREATE_NEW_COURSE + asyncActions.FULFILLED:
       return Object.assign({}, state, {
-        courseData: action.payload, editMode: false, isFetching: false,
-        listSection: [], showSectionPopup: false, activatedField: null, createCourseSucess: true
+        courseData: action.payload, editMode: false,
+        isFetching: false,
+        listSection: [],
+        showSectionPopup: false,
+        activatedField: null,
+        createCourseSucess: true
       });
     /**
      * activate to edit teaching day
@@ -75,20 +89,57 @@ const courseDetails = (state = {
     case asyncActions.EDIT_TEACHING_DAY: {
       const currentEditTeachingDay = state.editTeachingDay;
       if (currentEditTeachingDay) {
-        return Object.assign({}, state, {editTeachingDay: false, activatedField: []});
+        return Object.assign({}, state, {
+          editTeachingDay: false,
+          editCourseCategory: false,
+          editCourseFee: false,
+          activatedField: []
+        });
       } else {
-        return Object.assign({}, state, {editTeachingDay: true, activatedField: ['selectedDay']});
-
+        return Object.assign({}, state, {
+          editTeachingDay: true,
+          editCourseCategory: false,
+          editCourseFee: false,
+          activatedField: ['selectedDay']
+        });
       }
     }
 
     case asyncActions.EDIT_COURSE_CATEGORY: {
       const currentEditCourseCategory = state.editCourseCategory;
       if (currentEditCourseCategory) {
-        return Object.assign({}, state, {editCourseCategory: false});
+        return Object.assign({}, state, {
+          editCourseCategory: false,
+          editTeachingDay: false,
+          editCourseFee: false,
+          activatedField: []
+        });
       } else {
-        return Object.assign({}, state, {editCourseCategory: true});
+        return Object.assign({}, state, {
+          editCourseCategory: true,
+          editTeachingDay: false,
+          editCourseFee: false,
+          activatedField: []
+        });
+      }
+    }
 
+    case asyncActions.EDIT_COURSE_FEE: {
+      const currentEditCourseCategory = state.editCourseFee;
+      if (currentEditCourseCategory) {
+        return Object.assign({}, state, {
+          editCourseFee: false,
+          editCourseCategory: false,
+          editTeachingDay: false,
+          activatedField: []
+        });
+      } else {
+        return Object.assign({}, state, {
+          editCourseFee: true,
+          editCourseCategory: false,
+          editTeachingDay: false,
+          activatedField: []
+        });
       }
     }
     /**

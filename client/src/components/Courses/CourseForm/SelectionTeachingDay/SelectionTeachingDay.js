@@ -3,7 +3,7 @@ import {Component} from "react";
 import SelectionTeachingDayEditMode from "./SelectionTeachingDayEditMode";
 import SelectionTeachingDayViewMode from "./SelectionTeachingDayViewMode";
 import {FormGroup} from "react-bootstrap";
-import PrimaryButton from "../../Core/PrimaryButton/PrimaryButton";
+import PrimaryButton from "../../../Core/PrimaryButton/PrimaryButton";
 
 class SelectionTeachingDay extends Component {
     constructor(props) {

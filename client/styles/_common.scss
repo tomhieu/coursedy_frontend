@@ -997,9 +997,8 @@ Page >>Single Tutor Details
 
 .box-border {
   border: 1px solid #e5e5e5;
-  margin: -1px;
-  border-radius: 5px;
-  margin-bottom: 30px;
+  margin: 5px 0;
+  box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.13);
 }
 
 .profile-listing {
@@ -1069,36 +1068,39 @@ Page >> Login / Register
 ---------------------------------- */
 
 .sign-block {
+  max-width: 498px;
   width: 100%;
   height: auto;
+  margin: auto;
+  h2 {
+    color: #534051;
+    font-size: 24px;
+    font-weight: 400;
+    position: relative;
+    border-bottom: 1px solid #ebebeb;
+    padding-bottom: 12px;
+    margin-bottom: 30px;
+
+    span {
+      color: $md-color-pink;
+      &.login-title:after {
+        width: 120px;
+      }
+      &:after {
+        content: "";
+        position: absolute;
+        width: 87px;
+        height: 4px;
+        background: $md-color-pink;
+        bottom: -0.5px;
+        left: 0;
+      }
+    }
+  }
 }
 
 .comment-form input[type=checkbox] {
   height: auto;
-}
-
-.sign-block h2 {
-  color: #534051;
-  font-size: 24px;
-  font-weight: 400;
-  position: relative;
-  border-bottom: 1px solid #ebebeb;
-  padding-bottom: 12px;
-  margin-bottom: 30px;
-}
-
-.sign-block h2 span {
-  color: $md-color-pink;
-}
-
-.sign-block h2 span:after {
-  content: "";
-  position: absolute;
-  width: 72px;
-  height: 1px;
-  background: $md-color-pink;
-  bottom: -0.5px;
-  left: 0;
 }
 
 .fb-btn {
@@ -3177,9 +3179,9 @@ Placeholder Style Sheet
 
 .circular {
   animation: rotate 2s linear infinite;
-  height: 80px;
+  height: 50px;
   transform-origin: center center;
-  width: 80px;
+  width: 50px;
   position: absolute;
   top: 0;
   bottom: 0;

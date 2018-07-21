@@ -15,12 +15,18 @@ import AbstractFilter from '../../../components/Core/AbstractFilterComponent';
 import Network from "utils/network";
 import {FETCH_COURSES} from "../../../constants/Courses";
 import BaseFilter from "../../../components/Courses/BaseFilter";
+import * as WebConstants from "constants/WebConstants";
 
 class CourseFilterContainer extends AbstractFilter {
 
   componentWillMount() {
     this.props.fetchCategories();
     this.props.fetchLocations();
+    this.props.noShadowHeader();
+  }
+
+  componentWillUnmount(){
+    this.props.shadowHeader();
   }
 
   changeDisplayMode(mode) {
@@ -195,6 +201,8 @@ const mapDispatchToProps = (dispatch) => ({
     payload: Network().get('locations'),
     meta: 'publicCourseListPlaceholder'
   }),
+  noShadowHeader: () => dispatch({ type: WebConstants.ADD_HEADER_CLASS, payload: 'no-shadow'}),
+  shadowHeader: () => dispatch({ type: WebConstants.REMOVE_HEADER_CLASS}),
   closeSuggestion: () => dispatch({type: CLOSE_COURSE_FILTER_SUGGESTION})
 });
 
