@@ -13,32 +13,23 @@ import {
   FETCH_ADMIN_STUDENTS,
   FETCH_ADMIN_PAYMENT_SETTINGS,
   FETCH_ADMIN_PAYMENT_INTEGRATIONS,
-  FETCH_ADMIN_BANK_ACCOUNTS
+  FETCH_ADMIN_BANK_ACCOUNTS,
+  FETCH_ADMIN_BANK_ACCOUNT,
+  DELETE_ADMIN_BANK_ACCOUNT
 } from "../../../../actions/AsyncActionCreator"
-import {validate} from '../../../../validations/PaymentMethodFormValidator'
 import {
-  BankAccountForm,
   BankAccountList,
   PaymentSettingForm,
   PaymentIntegrationForm
 } from "../../../../components/Admin"
+import BankAccountContainer from "./BankAccountContainer"
+
 
 class PaymentMethodsContainer extends Component {
   componentDidMount() {
     this.props.fetchPaymentSettings(this.props)
     this.props.fetchPaymentIntergrations(this.props)
     this.props.fetchBankAccounts(this.props)
-  }
-
-  deleteBankAccount() {
-    console.log('DEBUG deleteBankAccounte')
-    // this.props.deleteBankAccount(0)
-  }
-
-  saveBankAccount(data) {
-    const {bank_name, bank_account_name, bank_account_number, bank_account_office} = data
-    console.log('DEBUG saveBankAccount')
-    console.log(data)
   }
 
   savePaymentSetting(data) {
@@ -59,36 +50,32 @@ class PaymentMethodsContainer extends Component {
           </div>
 
           {/*Payment Setting Form*/}
-          <div className="col-md-12">
+          {/*<div className="col-md-12">
             <PaymentSettingForm
               onSubmit={this.savePaymentSetting.bind(this)}
               {...this.props}
             ></PaymentSettingForm>
-          </div>
+          </div>*/}
   
           {/*Payment Integration Form*/}
-          <div className="col-md-12">
+          {/*<div className="col-md-12">
             <PaymentIntegrationForm
               {...this.props}
               onSubmit={this.savePaymentIntegration.bind(this)}
             ></PaymentIntegrationForm>
-          </div>
+          </div>*/}
 
           {/*Bank account list*/}
           <div className="col-md-12">
-            <BankAccountList
+          <BankAccountList
               bankAccounts={bankAccounts}
-              deleteBankAccount={this.deleteBankAccount.bind(this)}
+              {...this.props}
             ></BankAccountList>
           </div>
 
           {/*Bank account form */}
           <div className="col-md-12">
-            <BankAccountForm
-              onSubmit={this.saveBankAccount.bind(this)}
-              {...this.props}
-            >
-            </BankAccountForm>
+            <BankAccountContainer {...this.props} />
           </div>
           
 
@@ -104,19 +91,11 @@ PaymentMethodsContainer.contextTypes = {
   router: React.PropTypes.object
 }
 
-const buildQuery = (props) => {
-  return {
-    page: props.currentPage,
-    per_page: props.perPage
-  }
-}
-
 const mapStateToProps = (state) => ({
   paymentSettings: state.AdminPaymentMethodsReducer.paymentSettings,
   paymentIntegrations: state.AdminPaymentMethodsReducer.paymentIntegrations,
   bankAccounts: state.AdminPaymentMethodsReducer.bankAccounts,
   isLoading: state.AdminPaymentMethodsReducer.isLoading,
-  initialValues: state.session.currentUser
 })
 
 const mapDispatchToProps = (dispatch) => ({
@@ -178,12 +157,25 @@ const mapDispatchToProps = (dispatch) => ({
       }, 250)
     })
   }),
-  storeBankAccount: (props) => dispatch({
-
+  fetchBankAccount: (props) => dispatch({
+    type: FETCH_ADMIN_BANK_ACCOUNT,
+    // payload: Network().get('bank-accounts/{id}')
+    payload: new Promise((resolve, reject) => {
+      setTimeout(function(){
+        resolve(props)
+      }, 250)
+    })
   }),
   deleteBankAccount: (props) => dispatch({
-
+    type: DELETE_ADMIN_BANK_ACCOUNT,
+    // payload: Network().get('bank-accounts/{id}')
+    payload: new Promise((resolve, reject) => {
+      setTimeout(function(){
+        resolve(props)
+      }, 250)
+    })
   }),
+
   storePaymentSettings: (props) => dispatch({
 
   }),
@@ -194,8 +186,4 @@ const mapDispatchToProps = (dispatch) => ({
 
 export default connect(
   mapStateToProps, mapDispatchToProps
-)(reduxForm({
-  form: 'personInfo',
-  fields: ['name', 'email', 'address', 'date_of_birth'],
-  validate
-})(cssModules(PaymentMethodsContainer, styles)));
+)(cssModules(PaymentMethodsContainer, styles))

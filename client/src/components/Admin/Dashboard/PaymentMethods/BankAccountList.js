@@ -1,18 +1,34 @@
 import {Component} from "react";
 import * as React from "react";
+import TrashIcon from "../../../Core/Icons/TrashIcon";
+import SettingIcon from "../../../Core/Icons/SettingIcon";
 
-export default class BankAccountList extends Component {
+class BankAccountList extends Component {
+  fetchBankAccountHdl(bankAccount) {
+    console.log('DEBUG fetchBankAccount')
+    console.log(bankAccount)
+    this.props.fetchBankAccount(bankAccount)
+  }
+  deleteBankAccountHdl(bankAccount) {
+    console.log('DEBUG deleteBankAccount')
+    console.log(bankAccount)
+    if (confirm('Are you sure?')) {
+      this.props.deleteBankAccount(bankAccount)
+    }
+  }
+
   render() {
-    const {bankAccounts, deleteBankAccount} = this.props
+    const { bankAccounts } = this.props
     return (
-      <table>
+      <table className="table table-responsive table-borderd">
         <thead>
           <tr>
             <th>Tên ngân hàng</th>
             <th>Chủ tài khoản</th>
             <th>Số tài khoản</th>
             <th>Chi nhánh</th>
-            <th></th>
+            <th>
+            </th>
           </tr>
         </thead>
         <tbody>
@@ -20,14 +36,19 @@ export default class BankAccountList extends Component {
           bankAccounts.map((item, index) => (
             <tr key={item.id + item.name}>
               <td>{item.name}</td>
-              <td>{item.bankAccount.accountName}</td>
-              <td>{item.bankAccount.accountNumber}</td>
-              <td>{item.bankAccount.accountOffice}</td>
-              <td>
-                <button onClick={deleteBankAccount(item.id)}>Delete</button>
-              </td>
-            </tr>
-          ))
+               <td>{item.bankAccount.accountName}</td>
+               <td>{item.bankAccount.accountNumber}</td>
+               <td>{item.bankAccount.accountOffice}</td>
+               <td>
+                  <button type="button" onClick={this.fetchBankAccountHdl.bind(this, item)}>
+                    <SettingIcon width={14} height={14}></SettingIcon>
+                  </button>
+                  <button type="button" onClick={this.deleteBankAccountHdl.bind(this, item)}>
+                    <TrashIcon width={11} height={21}></TrashIcon>
+                  </button>
+               </td>
+             </tr>
+           ))
         }
         </tbody>
       </table>
@@ -41,5 +62,6 @@ BankAccountList.contextTypes = {
 
 BankAccountList.propTypes = {
   bankAccounts: React.PropTypes.array.isRequired,
-  deleteBankAccount: React.PropTypes.func.isRequired
 }
+
+export default BankAccountList
