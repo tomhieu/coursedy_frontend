@@ -3,6 +3,9 @@ import PropTypes from 'prop-types'
 import {Link} from 'react-router-dom';
 import PrimaryButton from "../../components/Core/PrimaryButton/PrimaryButton";
 import {TT} from "utils/locale";
+import SaveMoneyIcon from "../../components/Core/Icons/SaveMoneyIcon";
+import FlexibilityTimeIcon from "../../components/Core/Icons/FlexibilityTimeIcon";
+import StudentNetworkIcon from "../../components/Core/Icons/StudentNetworkIcon";
 
 export default class YouAreTeacher extends Component {
   static propTypes = {
@@ -13,18 +16,18 @@ export default class YouAreTeacher extends Component {
     utilities: [
       {
         id: 1,
-        description: 'Tiết kiệm chi phí mở lớp học. Tất cả những gì cần thiết chỉ bao gồm một máy tính có kết nối mạng.',
-        icon: 'computer'
+        icon: <SaveMoneyIcon></SaveMoneyIcon>,
+        description: 'Tiết kiệm chi phí mở lớp học. Tất cả những gì cần thiết chỉ bao gồm một máy tính có kết nối mạng.'
       },
       {
         id: 2,
-        description: 'Thời gian linh động, giáo viên có thể linh động sắp xếp thời gian cho khoá học. Và không tốn thời gian di chuyển.',
-        icon: 'earning'
+        icon: <FlexibilityTimeIcon></FlexibilityTimeIcon>,
+        description: 'Thời gian linh động, giáo viên có thể linh động sắp xếp thời gian cho khoá học. Và không tốn thời gian di chuyển.'
       },
       {
         id: 3,
-        description: 'Tiếp cận mạng lưới học sinh rộng lớn từ khắp mọi nơi.',
-        icon: 'connection'
+        icon: <StudentNetworkIcon></StudentNetworkIcon>,
+        description: 'Tiếp cận mạng lưới học sinh rộng lớn từ khắp mọi nơi.'
       }
     ]
   }
@@ -37,7 +40,7 @@ export default class YouAreTeacher extends Component {
             <div className="item-group">
               <Link className="item-group__heading-icon" to={'#'}>
                 <div className="util-icon">
-                  <div className={"teacher-icon " + item.icon}></div>
+                  {item.icon}
                 </div>
               </Link>
               <div className="item-group__description">{ item.description }</div>
