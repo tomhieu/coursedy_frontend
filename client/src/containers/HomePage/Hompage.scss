@@ -112,8 +112,8 @@
   &__avatar-left {
     display: inline-block;
     img {
-      width: 100px;
-      height: 100px;
+      width: 160px;
+      height: 160px;
       background: inherit;
       background-color: $body-color;
       border: none;
@@ -131,14 +131,13 @@
   &__fullname {
     font-weight: 400;
     font-size: 18px;
-    color: #534051;
+    color: $color-orange;
   }
 
   &__job {
     font-weight: 400;
-    font-style: italic;
-    font-size: 15px;
-    color: $md-color-pink;
+    font-size: 11px;
+    color: #534051;
   }
 }
 

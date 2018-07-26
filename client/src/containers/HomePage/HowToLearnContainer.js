@@ -1,6 +1,12 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import {Link} from 'react-router-dom';
+import SearchCourseIcon from "../../components/Core/Icons/SearchCourseIcon";
+import CourseSelectionIcon from "../../components/Core/Icons/CourseSelectionIcon";
+import ApplyCourseIcon from "../../components/Core/Icons/ApplyCourseIcon";
+import TeacherInfoCourseIcon from "../../components/Core/Icons/TeacherInfoCourseIcon";
+import CourseTimelineIcon from "../../components/Core/Icons/CourseTimelineIcon";
+import LearnCourseIcon from "../../components/Core/Icons/LearnCourseIcon";
 
 export default class HowToLearn extends Component {
   static propTypes = {
@@ -11,40 +17,52 @@ export default class HowToLearn extends Component {
     list: [
       {
         id: 1,
-        name: 'TÌM KHOÁ HỌC',
-        description: 'Search for online tutoring. Need help with your search? Request a tutor and we’ll have tutors contact you very soon!',
-        icon: '/home_search_courses.png'
+        name: 'find_a_course_title',
+        description: 'find_a_course_content',
+        icon: <SearchCourseIcon></SearchCourseIcon>
       },
       {
         id: 2,
-        name: 'XEM NỘI DUNG KHOÁ HỌC',
-        description: 'Read feedback and ratings from parents and students. Detailed tutor profiles also include photos more.',
-        icon: '/home_browse_courses.png'
+        name: 'select_a_course_title',
+        description: 'select_a_course_content',
+        icon: <CourseSelectionIcon></CourseSelectionIcon>
       },
       {
         id: 3,
-        name: 'ĐĂNG KÝ LỊCH HỌC',
-        description: 'Communicate directly with tutors to find a time that works for you. Whether you need a single lesson.',
-        icon: '/home_register_courses.png'
+        name: 'apply_a_course_title',
+        description: 'apply_a_course_content',
+        icon: <ApplyCourseIcon></ApplyCourseIcon>
       },
       {
         id: 4,
-        name: 'THAM GIA HỌC',
-        description: 'One-on-one instruction is the most effective way to learn. Let us handle payments and administrative details.',
-        icon: '/home_join_courses.png'
+        name: 'receive_course_info_title',
+        description: 'receive_course_info_content',
+        icon: <TeacherInfoCourseIcon></TeacherInfoCourseIcon>
+      },
+      {
+        id: 5,
+        name: 'get_course_timeline_title',
+        description: 'get_course_timeline_content',
+        icon: <CourseTimelineIcon></CourseTimelineIcon>
+      },
+      {
+        id: 6,
+        name: 'start_learning_course_title',
+        description: 'start_learning_course_content',
+        icon: <LearnCourseIcon></LearnCourseIcon>
       }
     ]
   }
 
   renderItem(item) {
     return(
-      <div className="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-3" key={ item.id }>
+      <div className="col-12 col-md-4 col-xl-4" key={ item.id }>
           <div className="item-group">
-            <Link className="item-group__heading-icon" to={'#'} title={ item.name } >
-              <img src={ item.icon } alt={ item.name }/>
+            <Link className="item-group__heading-icon" to={'#'} title={ this.context.t(item.name) } >
+              {item.icon}
             </Link>
-            <strong className="item-group__title">{ item.name }</strong>
-            <div className="item-group__description">{ item.description }</div>
+            <strong className="item-group__title">{ this.context.t(item.name) }</strong>
+            <div className="item-group__description">{ this.context.t(item.description) }</div>
           </div>
       </div>
     )
@@ -67,7 +85,7 @@ export default class HowToLearn extends Component {
     return (
       <section className="course__how-to-learn">
         <div className="container course__how-to-learn__content-wrap">
-          <div className="row-padding">
+          <div className="section-content-wrapper">
             <div className="course__how-to-learn__heading">
               <h2 className="heading" dangerouslySetInnerHTML={{__html: this.context.t('how_study')}} />
             </div>

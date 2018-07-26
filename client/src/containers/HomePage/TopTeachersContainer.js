@@ -55,7 +55,7 @@ class TopTeachers extends Component {
       <section className="course__top-teacher">
         <LoadingMask placeholderId="topTeacherPlaceholder">
           <div className="course__top-teacher__content-wrap">
-            <div className="row-padding">
+            <div className="section-content-wrapper">
               <div className="course__top-teacher__heading">
                 <div className="container">
                   <h2>

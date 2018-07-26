@@ -36,7 +36,7 @@ class PopularCourseList extends Component {
       <section className="course__popular">
         <LoadingMask placeholderId="popularCourseListPlaceholder">
           <div className="container course__popular__content-wrap">
-            <div className="full-width-in-container row-padding">
+            <div className="section-content-wrapper">
               <CourseGroupHeading title={this.context.t('popular_courses')}/>
 
               {

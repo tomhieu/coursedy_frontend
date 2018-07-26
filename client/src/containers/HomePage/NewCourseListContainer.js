@@ -35,7 +35,7 @@ class NewCourseList extends Component {
       <section className="course__new-courses">
         <LoadingMask placeholderId="newCourseListPlaceholder">
           <div className="container course__new-courses__content-wrap">
-            <div className="full-width-in-container row-padding">
+            <div className="section-content-wrapper">
               <div className="course__new-courses__heading">
                 <h2 className="heading">{this.context.t('new_courses')}</h2>
               </div>

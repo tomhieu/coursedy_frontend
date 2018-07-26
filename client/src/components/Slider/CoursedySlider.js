@@ -7,7 +7,7 @@ import styles from './CoursedySlider.module.scss';
 
 class CoursedySlider extends Component {
   render() {
-    let {numOfSlideToShow, items} = this.props;
+    let {numOfSlideToShow, items, isLimit = true} = this.props;
 
     if (!numOfSlideToShow) {
       numOfSlideToShow = items.length > 6 ? 6 : items.length;
@@ -55,11 +55,12 @@ class CoursedySlider extends Component {
         }
       ]
     };
+    const sliderContainerClasses = isLimit ? [styles.itemLimitContainer] : [styles.itemContainer];
     return (
       <Slider {...settings}>
         {
           items.map((item, index) => {
-            return <div className={styles.itemContainer} key={index}>{item}</div>
+            return <div className={sliderContainerClasses.join(' ')} key={index}>{item}</div>
           })
         }
       </Slider>
@@ -69,7 +70,8 @@ class CoursedySlider extends Component {
 
 CoursedySlider.propTypes = {
   items: PropTypes.array.isRequired,
-  numOfSlideToShow: PropTypes.number
+  numOfSlideToShow: PropTypes.number,
+  isLimit: PropTypes.bool
 }
 
 export default cssModules(CoursedySlider, styles);

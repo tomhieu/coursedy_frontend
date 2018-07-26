@@ -51,11 +51,13 @@ export default class YouAreTeacher extends Component {
     return (
       <section className="course__teacher-guide">
         <div className="container course__teacher-guide__content-wrap">
-          <div className="row-padding">
+          <div className="section-content-wrapper">
             <div className="course__teacher-guide__heading">
               <h2 className="course__teacher-guide__heading__title heading">Bạn Là Giáo Viên?</h2>
-              <p className="course__teacher-guide__heading__description">Và đang tìm kiếm một nơi để dạy online tốt. Ezylearning chính là nơi lý tưởng để bạn thực hiện điều đó.</p>
-              <p className="course__teacher-guide__heading__description">Hãy {<Link to={'/dang-ky'}>đăng kí</Link>} làm giáo viên tại Ezylearning.</p>
+              <div className="d-flex flex-column">
+                <span className="course__teacher-guide__heading__description">Và đang tìm kiếm một nơi để dạy online tốt. Ezylearning chính là nơi lý tưởng để bạn thực hiện điều đó.</span>
+                <span className="course__teacher-guide__heading__description">Hãy {<Link to={'/dang-ky'}>đăng kí</Link>} làm giáo viên tại Ezylearning.</span>
+              </div>
             </div>
 
             <div className="row course__teacher-guide__body">

@@ -2,11 +2,12 @@
   position: relative;
   display: block;
   text-align: center;
-  margin-bottom: 10px;
+  margin-bottom: 25px;
 
   &__heading-icon {
     display: block;
     margin-bottom: 10px;
+    min-height: 87px;
   }
 
   &__title {

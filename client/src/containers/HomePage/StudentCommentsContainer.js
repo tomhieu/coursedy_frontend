@@ -3,21 +3,27 @@ import PropTypes from 'prop-types';
 import {Slider} from '../../components/Slider/CoursedySlider';
 import data from '../../configs/data.json';
 import CoursedySlider from "../../components/Slider/CoursedySlider";
+import {TT} from "../../utils/locale";
+import CommentIcon from "../../components/Core/Icons/CommentIcon";
 
 
 const Item = ({item}) => {
   return (
     <div className="slick-slide_item">
-      <div className="">
-        <div className="row">
-          <div className="col-lg-12 col-xs-12 col-md-12 col-sm-12 slick-slide_item__content">
-            <p>{item.comment.content}</p>
+      <div className="row">
+        <div className="col-md-4 slick-sl
+        ide_item__content">
+          <div className="comment-icon">
+            <CommentIcon fillColor="#FF7F45"></CommentIcon>
+          </div>
+          <div className="user__avatar-left">
+            <img src={item.user.avatar}/>
           </div>
         </div>
-        <div className="row">
-          <div className="col-lg-12 col-xs-12 col-md-12 col-sm-12 user">
-            <div className="user__avatar-left">
-              <img src={item.user.avatar}/>
+        <div className="col-md-8 user">
+          <div className="d-flex flex-column">
+            <div className="student-comment">
+              <span>{TT.t(item.comment.content)}</span>
             </div>
             <div className="user__info-right">
               <div className="user__fullname">{item.user.full_name}</div>
@@ -45,7 +51,7 @@ class StudentComments extends Component {
       {
         "id" : 1,
         "comment": {
-          "content": "This was great! I highly recommend her to anybody! Very nice and patient and straight to."
+          "content": "first_student_comment"
         },
         "user": {
           "id": 1,
@@ -56,58 +62,13 @@ class StudentComments extends Component {
       }, {
         "id": 2,
         "comment": {
-          "content": "This was great! I highly recommend her to anybody! Very nice and patient and straight to."
+          "content": "second_student_comment"
         },
         "user": {
           "id": 2,
           "avatar": "/nguyenthianhthu.png",
           "full_name": "Nguyễn Thi Ánh Thu",
           "job": "Phụ Huynh"
-        }
-      }, {
-        "id": 3,
-        "comment": {
-          "content": "This was great! I highly recommend her to anybody! Very nice and patient and straight to."
-        },
-        "user": {
-          "id": 3,
-          "avatar": "/lequochung.png",
-          "full_name": "Lê Tuấn Hưng",
-          "job": "Học Sinh"
-        }
-      },
-      {
-        "id" : 1,
-        "comment": {
-          "content": "This was great! I highly recommend her to anybody! Very nice and patient and straight to."
-        },
-        "user": {
-          "id": 1,
-          "avatar": "/doanquocbao.png",
-          "full_name": "Đoàn Quốc Bảo",
-          "job": "Nhân Viên Văn Phòng"
-        }
-      }, {
-        "id": 2,
-        "comment": {
-          "content": "This was great! I highly recommend her to anybody! Very nice and patient and straight to."
-        },
-        "user": {
-          "id": 2,
-          "avatar": "/nguyenthianhthu.png",
-          "full_name": "Nguyễn Thi Ánh Thu",
-          "job": "Phụ Huynh"
-        }
-      }, {
-        "id": 3,
-        "comment": {
-          "content": "This was great! I highly recommend her to anybody! Very nice and patient and straight to."
-        },
-        "user": {
-          "id": 3,
-          "avatar": "/lequochung.png",
-          "full_name": "Lê Tuấn Hưng",
-          "job": "Học Sinh"
         }
       }
     ];
@@ -115,7 +76,7 @@ class StudentComments extends Component {
     return (
       <section className="course__student-comment">
         <div className="container course__student-comment__content-wrap">
-          <div className="row row-padding">
+          <div className="section-content-wrapper">
             <div className='col-sm-12'>
               <h2 className="heading"
                   dangerouslySetInnerHTML={{__html: this.context.t('student_top_comments')}}/>
@@ -123,7 +84,7 @@ class StudentComments extends Component {
                 {
                   <CoursedySlider items={comments.map((item, index) => {
                       return <Item item={item} key={index}/>;
-                    })} numOfSlideToShow={4}
+                    })} numOfSlideToShow={2} isLimit={false}
                   />
                 }
               </div>
