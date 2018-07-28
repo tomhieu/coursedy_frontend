@@ -446,7 +446,7 @@ export const translations = {
     "teacher_interest": "Sở thích",
     "teacher_taught_courses": "Khoá Học Của Giáo Viên",
     "view_more": "Xem thêm",
-    "teacher_review": "Bình luận Giáo Viên",
+    "teacher_review": "Đánh Giá Giáo Viên",
     "teacher_rating": "Đánh giá",
     "teacher_comments": "Bình luận",
     "leave_your_review_teacher": "Nhận Xét Giáo Viên",

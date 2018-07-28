@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import TeacherFilterContainer from './TeacherFilterContainer';
 import PublicTeacherListContainer from './PublicTeacherListContainer';
-import './ListTeacher.scss';
+import './TeacherList.scss';
 
 
-class ListTeacher extends Component {
+class TeacherListContainer extends Component {
   render() {
     return (
       <div className="d-flex flex-auto flex-vertical full-width-in-container course-filter-container">
@@ -17,4 +17,4 @@ class ListTeacher extends Component {
 }
 
 
-export default connect()(ListTeacher);
+export default connect()(TeacherListContainer);

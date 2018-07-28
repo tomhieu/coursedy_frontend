@@ -118,7 +118,7 @@ const EducationItem = ({education}) => {
       <h6>{education.title}</h6>
       <span className="block mb-10"><span
         className="text-primary">{education.graduated_from}</span> - <span
-        className="font-italic">year {education.end_date}</span></span>
+        className="font-italic"> {education.end_date}</span></span>
       <p>{education.description}</p>
     </li>
   )
@@ -127,11 +127,12 @@ const EducationItem = ({education}) => {
 const DegreeItem = ({degree}) => {
   return(
     <div className="row mb-10" key={degree.id}>
-      <div className="col-sm-2">
-        <img src={degree.url} width="auto"
-             height="30"/>
+      <div className="col-sm-2 col-md-2 col-lg-1 col-2">
+        <a href={degree.url} target='_blank'>
+          <img src={degree.url} className="full-width"/>
+        </a>
       </div>
-      <div className="col-sm-7">{degree.name}</div>
+      <div className="col-sm-7 col-7"><a href={degree.url} target='_blank'>{degree.name}</a></div>
     </div>
   )
 }
@@ -142,7 +143,7 @@ const WorkExperienceItem = ({experience}) => {
      <h6>{experience.title}</h6>
      <span className="block mb-10"><span
        className="text-primary">{experience.company}</span> - <span
-       className="font-italic">year {experience.start_date}
+       className="font-italic"> {experience.start_date}
        - {experience.end_date}</span></span>
      <p>{experience.description}</p>
    </li>

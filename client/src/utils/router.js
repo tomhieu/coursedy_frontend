@@ -6,7 +6,7 @@ import * as Pages from '../pages/';
 import ReduxToastr from 'react-redux-toastr';
 import {Route, Router, Switch} from 'react-router-dom'
 import {globalHistory} from "utils/globalHistory";
-import ListTeacherContainer from 'containers/Teachers/TeacherList/ListTeacherContainer';
+import TeacherListContainer from 'containers/Teachers/TeacherList/TeacherListContainer';
 import TeacherDetailContainer from 'containers/Teachers/TeacherDetail/TeacherDetailContainer';
 import PrivateRoute from "containers/PrivateRoute/PrivateRoute";
 import {UserRole} from "../constants/UserRole";
@@ -39,7 +39,7 @@ const router = (
             <Route path="/course/:courseId/evaluate/lesson/:bbbRoom" component={LessonEvaluationContainer} />
             <Route path="/course/:id" component={Pages.PublicCourseDetailPage}/>
             <Route path="/teachers/:id" component={TeacherDetailContainer} />
-            <Route path="/teachers" component={ListTeacherContainer} />
+            <Route path="/teachers" component={TeacherListContainer} />
 
             <PrivateRoute path="/dashboard" roles={[UserRole.TEACHER]} component={Pages.TutorDashboard} />
             <PrivateRoute path="/student/dashboard" roles={[UserRole.STUDENT]} component={Pages.StudentDashboard} />
