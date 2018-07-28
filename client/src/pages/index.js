@@ -3,6 +3,7 @@ import LandingPage from './LandingPage/LandingPage'
 import LoginRegisterPage from './LoginRegisterPage/LoginRegisterPage'
 import RegisterPage from './LoginRegisterPage/RegisterPage'
 import ForgotPasswordPage from 'pages/Auth/ForgotPasswordPage'
+import EditPasswordPage from 'pages/Auth/EditPasswordPage'
 import RecoverPasswordPage from 'pages/Auth/RecoverPasswordPage'
 import ConfirmationPage from './LoginRegisterPage/ConfirmationPage'
 import PublicCourseListPage from './CoursePage/PublicCourseListPage'
@@ -28,6 +29,7 @@ export {
   StudentDashboard,
   PaymentPage,
   ConfirmationPage,
+  EditPasswordPage,
 
   AdminDashboardPage
 };

@@ -12,7 +12,7 @@ const forgotPassword = (state = {
     case asyncAction.RESET_PASSWORD + asyncAction.FULFILLED:
       return {...state, ...action.payload, isFetching: false, sentEmailSuccessfully: true}
     case asyncAction.RESET_PASSWORD + asyncAction.REJECTED:
-      return {...state, errors: action.payload, isFetching: false}
+      return {...state, errors: action.payload.errors, isFetching: false}
     case types.CLEAR_FORGOT_PASSWORD_ERROR:
       return {...state, errors: null, isFetching: false}
     default:

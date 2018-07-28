@@ -35,7 +35,7 @@ export const translations = {
     "confirm_password": "Xác nhận mật khẩu",
     "phone_number": "Số điện thoại",
     "forgot_password": "Quên mật khẩu?",
-    "forgot_password_description": "Nhập địa chỉ email lúc đăng ký để thực hiện cài đặt lại mật khẩu, hệ thống sẽ gửi cho bạn một email kèm hướng dẫn.",
+    "forgot_password_description": "Vui lòng nhập email để tìm kiếm tài khoản, hệ thống sẽ gửi cho bạn một email kèm hướng dẫn.",
     "registration_email_require": "Vui lòng nhập email",
     "invalid_email": "Email không hợp lệ",
     "password_required": "Vui lòng nhập mật khẩu",

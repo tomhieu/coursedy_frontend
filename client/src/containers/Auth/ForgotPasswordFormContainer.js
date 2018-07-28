@@ -11,7 +11,7 @@ import * as Actions from 'actions/ForgotPasswordActionCreator'
 
 class ForgotPasswordFormContainer extends Component {
   submit({email}) {
-    this.props.resetPassword(email);
+    this.props.requestToChangePassword(email);
   }
 
   render() {
@@ -31,12 +31,12 @@ class ForgotPasswordFormContainer extends Component {
 
     return (
       <div className="sign-block">
-        <div className="mb-20">
-          <h2>{this.context.t("forgot_password")}?</h2>
+        <div className="">
+          <h2>{this.context.t("forgot_password")}</h2>
           <p>{this.context.t("forgot_password_description")}</p>
         </div>
         <ForgotPasswordForm onSubmit={this.submit.bind(this)}
-                            clearError={this.props.clearForgotPassword}
+                            clearError={this.props.clearForgotPasswordError.bind(this)}
                             {...this.props}/>
       </div>
     );
@@ -53,12 +53,12 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  resetPassword: (email) => dispatch({
+  requestToChangePassword: (email) => dispatch({
     type: asyncAction.RESET_PASSWORD,
-    payload: Network().post('auth/forgot-password', {email}),
+    payload: Network().post('change_password_requests', {email}),
     meta: 'forgotPasswordPlaceholder'
   }),
-  clearForgotPassword: () => dispatch(Actions.clearError())
+  clearForgotPasswordError: () => dispatch(Actions.clearError())
 })
 
 const StyledComponent = cssModules(ForgotPasswordFormContainer, styles)
@@ -68,6 +68,5 @@ export default connect(
 )( reduxForm({
   form: 'forgotPassword',
   fields: ['email'],
-  validate,
-  asyncValidate
+  validate
 })(StyledComponent))
