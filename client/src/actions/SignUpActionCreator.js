@@ -40,7 +40,7 @@ export const clearError = () => {
 export const resetForm = () => {
   return dispatch => {
     dispatch({
-      type: types.RESET_FORM,
+      type: types.RESET_SIGNUP_FORM,
       payload: {}
     })
   }
