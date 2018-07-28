@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {confirmUser} from "actions/SessionActionCreator";
+import {redirectToDashboard} from "../../actions/SessionActionCreator";
 
 
 class ConfirmationContainer extends Component {
@@ -8,11 +9,20 @@ class ConfirmationContainer extends Component {
     this.props.confirm()
   }
 
+  redirectUser() {
+    this.props.redirectToDashboard(this.props.currentUser)
+  }
+
   render() {
+    let user = this.props.currentUser;
     return (
       <div className="row">
         <div className='col-sm-12'>
-          {this.context.t('confirming')}
+          {
+            user ?
+              <p>{this.context.t('confirmed')} <a href='#' onClick={this.redirectUser.bind(this)}> {this.context.t('dashboard_page')} </a></p> :
+              <p>{this.context.t('confirming')}</p>
+          }
         </div>
       </div>
     );
@@ -24,10 +34,12 @@ ConfirmationContainer.contextTypes = {
 }
 
 const mapStateToProps = (state) => ({
+  currentUser: state.session.currentUser
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  confirm: () => dispatch(confirmUser())
+  confirm: () => dispatch(confirmUser()),
+  redirectToDashboard: (user) => dispatch(redirectToDashboard(user))
 })
 
 

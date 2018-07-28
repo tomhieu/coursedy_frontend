@@ -40,8 +40,8 @@ export const confirmUser = () => {
     const confirmation = queryString.parse(globalHistory.location.search)
 
     if (confirmation.account_confirmation_success == 'true' && confirmation.token) {
-      let {token, cliend_id, uid} = confirmation
-      dispatch(autoLogin(token, cliend_id, uid))
+      let {token, client_id, uid} = confirmation
+      dispatch(autoLogin(token, client_id, uid))
     }
   }
 }
@@ -56,10 +56,10 @@ export const editPassword = () => {
   }
 }
 
-export const autoLogin = (token, cliendId, uid) => {
+export const autoLogin = (token, clientId, uid) => {
   return dispatch => {
     localStorage.setItem('ezyLearningToken', token)
-    localStorage.setItem('ezyLearningClient', cliendId)
+    localStorage.setItem('ezyLearningClient', clientId)
     localStorage.setItem('ezyLearningUid', uid)
     dispatch(fetchCurrentUser())
   }
@@ -68,19 +68,25 @@ export const autoLogin = (token, cliendId, uid) => {
 export const setCurrentUser = () => {
   return dispatch => {
     dispatch(fetchCurrentUser()).then(({value, action}) => {
-      if (value.roles.indexOf(UserRole.ADMIN) >= 0) {
-        globalHistory.push('/admin/dashboard');
-      } else if (value.roles.indexOf(UserRole.TEACHER) >= 0) {
-        globalHistory.push('/dashboard/profile');
-        dispatch(fetchActiveCourses(value));
-      } else if (value.roles.indexOf(UserRole.STUDENT) >= 0) {
-        globalHistory.push('/student/dashboard/profile');
-        dispatch(fetchActiveCourses(value));
-      } else {
-        throw new Error('Not authorized');
-      }
+      redirectToDashboard(value)
     })
   };
+}
+
+export const redirectToDashboard = (user) => {
+  return dispatch => {
+    if (user.roles.indexOf(UserRole.ADMIN) >= 0) {
+      globalHistory.push('/admin/dashboard');
+    } else if (user.roles.indexOf(UserRole.TEACHER) >= 0) {
+      globalHistory.push('/dashboard/profile');
+      dispatch(fetchActiveCourses(user));
+    } else if (user.roles.indexOf(UserRole.STUDENT) >= 0) {
+      globalHistory.push('/student/dashboard/profile');
+      dispatch(fetchActiveCourses(user));
+    } else {
+      throw new Error('Not authorized');
+    }
+  }
 }
 
 export const fetchActiveCourses = (user) => {

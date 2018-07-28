@@ -46,6 +46,8 @@ export const translations = {
     "invalid_phone_number": "Số điện thoại không đúng",
     "sign_up_success": "Đăng ký thành công !",
     "confirming": "Đang xác nhận tài khoản ....",
+    "confirmed": "Tài khoản của bạn đã được xác nhận. Bạn có thể cập nhật thông tin tài khoản ở đây",
+    'dashboard_page': 'trang cá nhân',
     "congrat_sign_up_success": "Chúc mừng bạn đã đăng ký thành viên của Coursedy thành công. Chúng tôi đã gửi email xác nhận đến địa chỉ email của bạn. Vui lòng kiểm tra hộp thư đến để kích hoạt tài khoản",
     "ok": "Đồng ý",
     "close": "Đóng",
