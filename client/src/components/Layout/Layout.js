@@ -94,6 +94,7 @@ class Layout extends Component {
             </div>
             <div className="confirmation-popup">
               <SimpleDialogComponent show={showConfirmationPopup}
+                                     cancelLabel={TT.t('close')}
                                      title={confirmationTitle}
                                      cancelCallback={this.props.closeConfirmationPopup.bind(this)}
                                      acceptCallback={confirmCallback ? this.executeConfirmCallback.bind(this, confirmCallback) : undefined}>
