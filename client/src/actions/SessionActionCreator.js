@@ -40,11 +40,28 @@ export const confirmUser = () => {
     const confirmation = queryString.parse(globalHistory.location.search)
 
     if (confirmation.account_confirmation_success == 'true' && confirmation.token) {
-      localStorage.setItem('ezyLearningToken', confirmation.token)
-      localStorage.setItem('ezyLearningClient', confirmation.client_id)
-      localStorage.setItem('ezyLearningUid', confirmation.uid)
-      dispatch(setCurrentUser())
+      let {token, cliend_id, uid} = confirmation
+      dispatch(autoLogin(token, cliend_id, uid))
     }
+  }
+}
+
+export const editPassword = () => {
+  return dispatch => {
+    const auth_info = queryString.parse(globalHistory.location.search)
+    if (auth_info.reset_password == 'true' && auth_info.token) {
+      let {token, client_id, uid} = auth_info
+      dispatch(autoLogin(token, client_id, uid))
+    }
+  }
+}
+
+export const autoLogin = (token, cliendId, uid) => {
+  return dispatch => {
+    localStorage.setItem('ezyLearningToken', token)
+    localStorage.setItem('ezyLearningClient', cliendId)
+    localStorage.setItem('ezyLearningUid', uid)
+    dispatch(fetchCurrentUser())
   }
 }
 
