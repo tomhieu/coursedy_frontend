@@ -4,7 +4,7 @@ import styles from './Icons.module.scss';
 
 class StudentNetworkIcon extends Component {
   render() {
-    const {width = 70, height = 52, fillColor = '#B3BDBC'} = this.props;
+    const {width = 91, height = 68, fillColor = '#B3BDBC'} = this.props;
     return (
       <svg width={width + "px"} height={height + "px"} viewBox="0 0 70 52" version="1.1" >
         <defs></defs>

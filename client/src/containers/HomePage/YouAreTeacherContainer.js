@@ -17,17 +17,17 @@ export default class YouAreTeacher extends Component {
       {
         id: 1,
         icon: <SaveMoneyIcon></SaveMoneyIcon>,
-        description: 'Tiết kiệm chi phí mở lớp học. Tất cả những gì cần thiết chỉ bao gồm một máy tính có kết nối mạng.'
+        description: 'first_benefit'
       },
       {
         id: 2,
         icon: <FlexibilityTimeIcon></FlexibilityTimeIcon>,
-        description: 'Thời gian linh động, giáo viên có thể linh động sắp xếp thời gian cho khoá học. Và không tốn thời gian di chuyển.'
+        description: 'second_benefit'
       },
       {
         id: 3,
         icon: <StudentNetworkIcon></StudentNetworkIcon>,
-        description: 'Tiếp cận mạng lưới học sinh rộng lớn từ khắp mọi nơi.'
+        description: 'third_benefit'
       }
     ]
   }
@@ -43,7 +43,7 @@ export default class YouAreTeacher extends Component {
                   {item.icon}
                 </div>
               </Link>
-              <div className="item-group__description">{ item.description }</div>
+              <div className="item-group__description">{ TT.t(item.description) }</div>
             </div>
         </div>
       )
@@ -56,10 +56,12 @@ export default class YouAreTeacher extends Component {
         <div className="container course__teacher-guide__content-wrap">
           <div className="section-content-wrapper">
             <div className="course__teacher-guide__heading">
-              <h2 className="course__teacher-guide__heading__title heading">Bạn Là Giáo Viên?</h2>
+              <h2 className="course__teacher-guide__heading__title heading">{this.context.t('section_title')}</h2>
               <div className="d-flex flex-column">
-                <span className="course__teacher-guide__heading__description">Và đang tìm kiếm một nơi để dạy online tốt. Ezylearning chính là nơi lý tưởng để bạn thực hiện điều đó.</span>
-                <span className="course__teacher-guide__heading__description">Hãy {<Link to={'/dang-ky'}>đăng kí</Link>} làm giáo viên tại Ezylearning.</span>
+                <span className="course__teacher-guide__heading__description">{this.context.t('section_sub_title')}</span>
+                <span className="course__teacher-guide__heading__description">{this.context.t('section_sub_title_2',
+                  {link_register: <Link to={'/register'}>{this.context.t('regiter_new_teacher')}</Link>})
+                }</span>
               </div>
             </div>
 
@@ -80,3 +82,8 @@ export default class YouAreTeacher extends Component {
     )
   }
 }
+
+YouAreTeacher.contextTypes = {
+  t: React.PropTypes.func.isRequired
+}
+

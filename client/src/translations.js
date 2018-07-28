@@ -424,6 +424,16 @@ export const translations = {
     // student comment
     "first_student_comment": "Công việc tại công ty bận rộn, tôi muốn luyện tiếng anh nhưng không có thời gian học tại trung tâm, được sự giới thiệu của bạn bè. Tôi thử tham gia một khoá học TOIEC tại Coursedy. Tôi thực sự hài lòng với chất lượng khoá học trên Coursedy. Tôi có thể học tài nhà vào buổi tối sau khi đi làm về, có thể tự tin giao tiếp hoặc hỏi những gì minh không hiểu với giáo viên.",
     "second_student_comment": "Minh tham gia một khoá học trên Coursedy. Mình ở quê không có điều kiện để lên thành phố học luyện thi đại học. Nhờ sự giới thiệu của người thân mình đã tìm hiểu và tham gia học ôn thi tiếng anh tại Coursedy. Nhờ sư giúp đỡ thầy cô mình đã đậu được trường đại học mình mong muốn. Minh muốn giới thiệu các bạn hãy tham gia học trên Coursedy.",
+    "office_staff": "Nhân viên văn phòng",
+    "bk_student": "Sinh viên Bách Khoa TpHCM năm nhất",
+    // become our teacher section
+    "section_title": "Bạn Là Giáo Viên?",
+    "section_sub_title": "Và đang tìm kiếm một nơi để dạy online tốt. Ezylearning chính là nơi lý tưởng để bạn thực hiện điều đó.",
+    "section_sub_title_2": "Hãy {link_register} làm giáo viên tại Ezylearning.",
+    "register_new_teacher": "đăng kí",
+    "first_benefit": "Tiết kiệm chi phí mở lớp học. Tất cả những gì cần thiết chỉ bao gồm một máy tính có kết nối mạng.",
+    "second_benefit": "Thời gian linh động, giáo viên có thể linh động sắp xếp thời gian cho khoá học. Và không tốn thời gian di chuyển.",
+    "third_benefit": "Tiếp cận mạng lưới học sinh rộng lớn từ khắp mọi nơi.",
     // teacher detail
     "teacher_background": "Thông Tin Giáo Viên",
     "teacher_short_introduce": " Giới thiệu",

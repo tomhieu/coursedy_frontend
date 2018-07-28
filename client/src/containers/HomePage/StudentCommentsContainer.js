@@ -27,7 +27,7 @@ const Item = ({item}) => {
             </div>
             <div className="user__info-right">
               <div className="user__fullname">{item.user.full_name}</div>
-              <div className="user__job">{item.user.job}</div>
+              <div className="user__job">{TT.t(item.user.job)}</div>
             </div>
           </div>
         </div>
@@ -57,7 +57,7 @@ class StudentComments extends Component {
           "id": 1,
           "avatar": "/doanquocbao.png",
           "full_name": "Đoàn Quốc Bảo",
-          "job": "Nhân Viên Văn Phòng"
+          "job": "office_staff"
         }
       }, {
         "id": 2,
@@ -68,7 +68,7 @@ class StudentComments extends Component {
           "id": 2,
           "avatar": "/nguyenthianhthu.png",
           "full_name": "Nguyễn Thi Ánh Thu",
-          "job": "Phụ Huynh"
+          "job": "bk_student"
         }
       }
     ];
