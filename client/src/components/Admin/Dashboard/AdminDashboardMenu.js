@@ -5,8 +5,7 @@ import SettingIcon from "../../Core/Icons/SettingIcon";
 import AddCourseIcon from "../../Core/Icons/AddCourseIcon";
 import ActiveCourseListIcon from "../../Core/Icons/ActiveCourseListIcon";
 import CourseListIcon from "../../Core/Icons/CourseListIcon";
-import {globalHistory} from "utils/globalHistory";
-
+import { globalHistory } from 'utils/globalHistory'
 
 class AdminDashboardMenu extends Component {
   onClickDashboardLink(urlNavigation, activeTab) {
@@ -47,6 +46,20 @@ class AdminDashboardMenu extends Component {
                   activatedTab === 'admin_students' ? <CourseListIcon fillColor="#1CABA0"/> : <CourseListIcon/>
                 }
                 <a onClick={this.onClickDashboardLink.bind(this, '/admin/dashboard/students', 'admin_students')}>{this.context.t('admin_students')}</a>
+              </li>
+
+              <li className={activatedTab === 'admin_payment_methods' ? 'dashboard-item active' : 'dashboard-item'}>
+                {
+                  activatedTab === 'admin_payment_methods' ? <CourseListIcon fillColor="#1CABA0"/> : <CourseListIcon/>
+                }
+                <a onClick={this.onClickDashboardLink.bind(this, '/admin/dashboard/payment-methods', 'admin_payment_methods')}>{this.context.t('admin_payment_methods')}</a>
+              </li>
+
+              <li className={activatedTab === 'admin_payment_history' ? 'dashboard-item active' : 'dashboard-item'}>
+                {
+                  activatedTab === 'admin_payment_history' ? <CourseListIcon fillColor="#1CABA0"/> : <CourseListIcon/>
+                }
+                <a onClick={this.onClickDashboardLink.bind(this, '/admin/dashboard/payment-history', 'admin_payment_history')}>{this.context.t('admin_payment_history')}</a>
               </li>
 
             </ul>

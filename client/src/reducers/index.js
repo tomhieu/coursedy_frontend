@@ -33,6 +33,7 @@ import AccountReducer from './AccountReducer'
 import AdminCourseListReducer from './Admin/AdminCourseListReducer'
 import AdminTeacherListReducer from './Admin/AdminTeacherListReducer'
 import AdminStudentListReducer from './Admin/AdminStudentListReducer'
+import AdminPaymentMethodsReducer from './Admin/AdminPaymentMethodsReducer'
 
 import StudentAccountReducer from './Student/StudentAccountReducer'
 import StudentCourseListReducer from './Student/StudentCourseListReducer'
@@ -68,6 +69,7 @@ const rootReducer = combineReducers({
   AdminCourseListReducer,
   AdminTeacherListReducer,
   AdminStudentListReducer,
+  AdminPaymentMethodsReducer,
   //Reducers for student
   StudentCourseListReducer,
   //Reducers for account

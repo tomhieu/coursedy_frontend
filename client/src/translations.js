@@ -1,5 +1,7 @@
+import { payment_translation } from "./translations/payment"
 export const translations = {
   "vn": {
+    ...payment_translation.vn,
     "home_page": "Trang Chủ",
     "find_tutors": "Tìm Gia Sư",
     "find_teachers": "Tìm Giáo Viên",
@@ -500,7 +502,7 @@ export const translations = {
     "admin_students": "Học viên",
     "admin_students_list": "Tất cả",
     "admin_students_new": "Tạo mới",
-
+    "admin_payment_methods": "Phương pháp thanh toán",
 
     "react_table_previous_text": "<",
     "react_table_next_text": ">",
@@ -739,6 +741,7 @@ export const translations = {
     }
   },
   "en": {
+    ...payment_translation.en,
     "lang": "Tiếng Việt",
     "home_page": "Home page",
     "find_tutors": "Find tutors",
@@ -1159,6 +1162,26 @@ export const translations = {
     "course_rating": "Rating",
     "course_related": "Related courses",
     "unknown": "N/A",
+    "read_more": "Read more",
+
+    "admin_courses": "Courses",
+    "admin_courses_list": "All courses",
+    "admin_courses_new": "New course",
+    "admin_teachers": "Teachers",
+    "admin_teachers_list": "All teachers",
+    "admin_teachers_new": "New teacher",
+    "admin_students": "Students",
+    "admin_students_list": "All students",
+    "admin_students_new": "New student",
+    "admin_payment_methods": "Payment methods",
+
+    "react_table_previous_text": "<",
+    "react_table_next_text": ">",
+    "react_table_loading_text": "Loading...",
+    "react_table_no_data_text": "Not available",
+    "react_table_page_text": "Page",
+    "react_table_of_text": "in",
+    "react_table_rows_text": "row",
     "read_more": "Read more",
 
     "our-story-title": "Our story",
