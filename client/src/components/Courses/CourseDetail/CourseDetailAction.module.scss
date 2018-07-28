@@ -1,0 +1,35 @@
+@import "../../../../styles/global_style.scss";
+
+.courseDetailAction {
+  .courseCoverImage {
+    img {
+      width: 300px;
+    }
+  }
+  .courseFee {
+
+  }
+  .courseActionButtons {
+
+  }
+  .courseShortIntroduce {
+
+  }
+
+  .courseShare {
+    .title {
+
+    }
+
+    .socialNetwork {
+
+    }
+  }
+}
+
+
+@media (max-width: $sm-upper) {
+  .course-detail-header {
+    padding: 15px 0;
+  }
+}

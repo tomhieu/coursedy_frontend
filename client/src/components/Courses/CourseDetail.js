@@ -1,19 +1,10 @@
 import React, {Component} from 'react';
 import CourseDetailHeader from './CourseDetail/CourseDetailHeader';
 import CourseDetailMain from './CourseDetail/CourseDetailMain';
-
-import CourseDetailGeneral from './CourseDetail/CourseDetailGeneral';
-import CourseDetailLessons from './CourseDetail/CourseDetailLessons';
-import CourseDetailComments from './CourseDetail/CourseDetailComments';
-import cssModules from 'react-css-modules';
 import './CourseDetail.scss';
-
-import {CoreComponent} from '../index';
 import {PUBLIC_COURSE_MAX_NUMBER_COMMENTS_PER_LOAD} from '../../constants/Courses';
-import {
-  TRIGGER_DISPLAY_FIX_HEADER_BAR_OFFSET,
-  CHECK_ACTIVE_MENU_OFFSET
-} from "../../constants/WebConstants.js"
+import {CHECK_ACTIVE_MENU_OFFSET} from "../../constants/WebConstants.js"
+import CourseDetailAction from "./CourseDetail/CourseDetailAction";
 
 /**
   * @Course group template 2
@@ -56,12 +47,16 @@ class CourseDetail extends Component {
   }
 
   render() {
-    const { activeMenu, currentScrollPosition } = this.state
+    const { activeMenu, currentScrollPosition } = this.state;
+    const {course, course_sections} = this.props;
     return (
       <div className="d-flex flex-auto flex-vertical full-width-in-container">
         <CourseDetailHeader
           {...this.props}
         />
+        <div className="course-action-container">
+          <CourseDetailAction course={course} course_sections={course_sections}></CourseDetailAction>
+        </div>
         <CourseDetailMain
           {...this.props}
           activeMenu={activeMenu}

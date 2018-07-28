@@ -2,9 +2,6 @@
 .content-wrapper {
   background-color: #fff;
   padding: $box-gap;
-  border: 1px solid $border-color;
-  box-shadow: 0 3px 8px 0 $color-light-box-shadow;
-
   .section-title:after {
     content: '';
   }
@@ -22,4 +19,8 @@
 
 .section-title {
   margin: 0 !important;
+}
+
+.right-content {
+  width: 850px;
 }

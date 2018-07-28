@@ -5,6 +5,17 @@
   background-color: #fff;
 }
 
+.course-action-container {
+  position: absolute;
+  top: 180px;
+  right: 180px;
+  z-index: 99;
+  background-color: $white-color;
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid rgba(0,0,0,.125);
+}
+
 @media (min-width: $md-lower) {
   .white-mask-normal {
     position: fixed;
