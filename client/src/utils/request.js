@@ -9,15 +9,6 @@
 
 import {clearAuthenticationData} from "../actions/SessionActionCreator";
 
-function errorHandler(err, reject) {
-  switch (err.status) {
-    case 401:
-      clearAuthenticationData();
-    default:
-      reject(err);
-  }
-}
-
 export default function request(url, options) {
   return new Promise((resolve, reject) => {
     if (!url) reject(new Error('URL parameter required'));
@@ -57,12 +48,16 @@ export default function request(url, options) {
             resolve(r)
           })
         } else {
-          // handle request error
-          errorHandler(response, reject);
+          switch (response.status) {
+            case 401:
+              clearAuthenticationData();
+          }
+          response.json().then((r) => {
+            reject(r)
+          })
         }
       })
       .catch(err => {
-        console.error(err);
         reject(err);
       })
   });
