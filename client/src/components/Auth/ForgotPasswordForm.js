@@ -22,7 +22,6 @@ class ForgotPasswordForm extends Component {
                 e.preventDefault()
                 this.props.clearError()
               }}>×</a>
-              <strong>{this.context.t("error")} ! </strong>
               <p className="error">{errors && errors[0]}</p>
             </div>
           </span>
