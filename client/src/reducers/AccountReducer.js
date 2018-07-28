@@ -1,12 +1,14 @@
 import { AccountTypes } from '../constants/index'
 import * as AsynPostfix from '../constants/AsynPostfix'
+import {ACCOUNT} from "../actions/AsyncActionCreator";
 
 const AccountReducer = (state = {
   showEmailConfirmationModal: false,
   editProfileMode: false,
   editAvatarMode: false,
   avatarSelected: false,
-  passwordUpdated: false
+  passwordUpdated: false,
+  passwordErrors: null
 }, action) => {
   switch (action.type) {
     case AccountTypes.SHOW_REQUIRED_EMAIL_CONFIRMATION_MODAL:
@@ -25,8 +27,12 @@ const AccountReducer = (state = {
       return {...state, avatarSelected: true}
     case AccountTypes.AVATAR_DESELECTED:
       return {...state, avatarSelected: false}
-    case AccountTypes.UPDATE_PASSWORD_SUCCESSFULLY:
-      return {...state, passwordUpdated: true}
+    case ACCOUNT.complete_updating_password + AsynPostfix.FULFILLED :
+      return {...state, passwordUpdated: true, passwordErrors: null}
+    case ACCOUNT.complete_updating_password + AsynPostfix.REJECTED :
+      return {...state, passwordUpdated: false, passwordErrors: action.payload.errors.full_messages}
+    case AccountTypes.CLEAR_PASSWORD_ERRORS:
+      return {...state, passwordErrors: null}
     case AccountTypes.RESET_UPDATE_PASSWORD_FORM:
       return {...state, passwordUpdated: false}
     default:

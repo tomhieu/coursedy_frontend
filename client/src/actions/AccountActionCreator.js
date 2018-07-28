@@ -108,3 +108,9 @@ export const resetUpdatePasswordForm = () => {
     type: AccountTypes.RESET_UPDATE_PASSWORD_FORM
   }
 }
+
+export const clearPasswordError = () => {
+  return {
+    type: AccountTypes.CLEAR_PASSWORD_ERRORS
+  }
+}

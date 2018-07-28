@@ -11,7 +11,9 @@ class EditPasswordFormContainer extends Component {
 
   render() {
     return (
-      <ChangePasswordContainer/>
+      <div className="sign-block">
+        <ChangePasswordContainer updateWithoutPassword={true}/>
+      </div>
     );
   }
 }
