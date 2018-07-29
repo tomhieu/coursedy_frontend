@@ -66,20 +66,44 @@ class TeacherDetail extends Component {
       <div className='teacher-detail row'>
         <section className="teacher-detail__content">
           <FixedSideBar onScrollTopMargin={0}>
-            <TeacherProfileSection {...this.props} />
-            <TeacherPriefCourses {...this.props} />
+            <LoadingMask placeholderId="teacherDetailProfilePlaceholder"
+                         normalPlaceholder={false}
+                         facebookPlaceholder={true}
+                         loaderType={WebConstants.TEACHER_DETAIL_PROFILE_PLACEHOLDER}>
+              <div className='full-width'>
+                <TeacherProfileHeader {...this.props} />
+                {this.props.teacher.courses && this.props.teacher.courses.data.length ? <hr/> : null}
+              </div>
+            </LoadingMask>
+            <TeacherBriefCourses {...this.props} />
           </FixedSideBar>
+
           <RightContent>
-            <TeacherBackgroundSection
-              {...this.props}
-              context={this.context}
-            />
-            <TeacherReviewSection
-              {...this.props}
-              context={this.context}
-              fetchTeacherReviewsWithPageNumber={this.fetchTeacherReviewsWithPageNumber.bind(this)}
-            />
-            <TeacherTaughtCoursesSection
+            <div className="row">
+              <div className="col-sm-12">
+                <TeacherBackground
+                  context={this.context}
+                  teacher={this.props.teacher}
+                />
+              </div>
+            </div>
+
+            <div className="row">
+              <div className="col-sm-12">
+                <div className="teacher-detail__content__review">
+                  <div className="teacher-detail__content__review__header mb-30">
+                    <h3>{this.context.t('teacher_review')}</h3>
+                  </div>
+                  <ReviewHeader {...this.props} context={this.context}/>
+                  <TeacherReviewList {...this.props}
+                                     handlePageChange={this.fetchTeacherReviewsWithPageNumber.bind(this)}
+                                     context={this.context}/>
+                  <ReviewTeacherForm/>
+                </div>
+              </div>
+            </div>
+
+            <TeacherTaughtCourses
               {...this.props}
               handlePageChange={this.fetchTeacherCoursesWithPageNumber.bind(this)}
               context={this.context}
@@ -91,86 +115,41 @@ class TeacherDetail extends Component {
   }
 }
 
-const TeacherProfileSection = (props) => {
-  return (
-    <LoadingMask placeholderId="teacherDetailProfilePlaceholder"
-                 normalPlaceholder={false}
-                 facebookPlaceholder={true}
-                 loaderType={WebConstants.TEACHER_DETAIL_PROFILE_PLACEHOLDER}>
-      <div className='full-width'>
-        <TeacherProfileHeader {...props} />
-        {props.teacher.courses && props.teacher.courses.data.length ? <hr/> : null}
-      </div>
-    </LoadingMask>
-  )
-}
 
-const TeacherPriefCourses = (props) => {
+const TeacherBriefCourses = (props) => {
   const {teacher} = props
   if (!teacher.courses || !teacher.courses.data.length) {
     return null
   }
 
   return (
-    <div className="row">
-      <div className="col-sm-12">
-        <div className="">
-          <div className="teacher-detail__content__courses__header">
-            <h3>
-              {TT.t('teacher_taught_courses')}
-            </h3>
-          </div>
-          <div className='row'>
-            {teacher.courses.data.slice(0, 3).map((course) => {
-              return (<div key={course.id} className='col-sm-12'>
-                <LinkContainer to={`/course/ + ${course.id}`} className='link-tag'>
-                  <div className='row pb-5 pt-5 box-border'>
-                    <div className='col-sm-6'>
-                      <img className='full-width' src={course.cover_image}/>
-                    </div>
-                    <div className='col-sm-6'>
-                      <b>{course.title}</b>
-                    </div>
-                  </div>
-                </LinkContainer>
-              </div>)
-            })}
-            <div className='col-sm-12 link-tag mt-15'>
-              <PrimaryButton title={TT.t('view_more')} customClasses='full-width'/>
+    <div className="full-width">
+      <div className="teacher-detail__content__courses__header">
+        <h3>
+          {TT.t('teacher_taught_courses')}
+        </h3>
+      </div>
+      {teacher.courses.data.slice(0, 3).map((course) => {
+        return (<div key={course.id}>
+          <LinkContainer to={`/course/ + ${course.id}`} className='link-tag'>
+            <div className='row pb-5 pt-5 box-border'>
+              <div className='col-sm-6'>
+                <img className='full-width' src={course.cover_image}/>
+              </div>
+              <div className='col-sm-6'>
+                <b>{course.title}</b>
+              </div>
             </div>
-          </div>
-        </div>
+          </LinkContainer>
+        </div>)
+      })}
+      <div className='link-tag mt-15'>
+        <PrimaryButton title={TT.t('view_more')} customClasses='full-width'/>
       </div>
     </div>
   )
 }
 
-const TeacherBackgroundSection = (props) => {
-  return (
-    <div className="row">
-      <div className="col-sm-12">
-        <TeacherBackground teacher={props.teacher}/>
-      </div>
-    </div>
-  )
-}
-
-const TeacherReviewSection = (props) => {
-  return (
-    <div className="row">
-      <div className="col-sm-12">
-        <div className="teacher-detail__content__review">
-          <div className="teacher-detail__content__review__header mb-30">
-            <h3>{props.context.t('teacher_review')}</h3>
-          </div>
-          <ReviewHeader {...props}/>
-          <TeacherReviewList {...props} handlePageChange={props.fetchTeacherReviewsWithPageNumber}/>
-          <ReviewTeacherForm/>
-        </div>
-      </div>
-    </div>
-  )
-}
 
 const ReviewHeader = (props) => {
   const {teacher} = props
@@ -196,7 +175,7 @@ const ReviewHeader = (props) => {
   )
 }
 
-const TeacherTaughtCoursesSection = (props) => {
+const TeacherTaughtCourses = (props) => {
   const {teacher} = props
   if (!teacher.courses || !teacher.courses.data.length) {
     return null
@@ -261,28 +240,10 @@ const mapDispatchToProps = (dispatch) => ({
   hideFooter: () => dispatch({ type: WebConstants.HIDE_FOOTER })
 })
 
-const getSpecializesFromCategories = (courseCategories, teacherCategories) => {
-  if (!teacherCategories || !courseCategories) {
-    return []
-  }
-  const specializes = []
-  teacherCategories.map((category) => {
-    courseCategories.map((courseCategory) => {
-      if (courseCategory.name === category.name) {
-        specializes.push(...courseCategory.children)
-      }
-    })
-  })
-  return specializes
-}
 
 const mapStateToProps = (state) => {
-  const teacherCategories = state.TeacherDetail.categories || []
-  const courseCategories = state.referenceData.courseCategories || []
-  const specializes = getSpecializesFromCategories(courseCategories, teacherCategories)
   return {
-    teacher: state.TeacherDetail,
-    specializes,
+    teacher: state.TeacherDetail
   }
 }
 

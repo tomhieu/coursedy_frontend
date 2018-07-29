@@ -229,6 +229,7 @@ ul.review-list > li:last-child {
 }
 
 .left-sidebar {
+  top: calc(60px + 15px);
   overflow-y: scroll;
-  height: 100vh;
+  height: calc(100vh - 60px - 15px);
 }
