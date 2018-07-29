@@ -99,11 +99,15 @@
     margin-bottom: 25px;
   }
 
-  .left-sidebar {
+  .teacher-profile-sidebar {
     h3 {
       font-size: 18px;
     }
-  }
+    padding-bottom: 15px;
+    @media (max-width: $md-lower) {
+      padding: 15px;
+    }
+  };
 }
 
 .teacher-detail-profile-header {
@@ -232,5 +236,4 @@ ul.review-list > li:last-child {
   top: calc(60px + 15px);
   overflow-y: scroll;
   height: calc(100vh - 60px - 15px);
-  padding-bottom: 15px;
 }

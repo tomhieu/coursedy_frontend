@@ -63,33 +63,30 @@ class TeacherDetail extends Component {
 
   render() {
     return (
-      <div className='teacher-detail row'>
-        <section className="teacher-detail__content">
-          <FixedSideBar onScrollTopMargin={0}>
-            <LoadingMask placeholderId="teacherDetailProfilePlaceholder"
-                         normalPlaceholder={false}
-                         facebookPlaceholder={true}
-                         loaderType={WebConstants.TEACHER_DETAIL_PROFILE_PLACEHOLDER}>
-              <div className='full-width'>
-                <TeacherProfileHeader {...this.props} />
-                {this.props.teacher.courses && this.props.teacher.courses.data.length ? <hr/> : null}
-              </div>
-            </LoadingMask>
-            <TeacherBriefCourses {...this.props} />
-          </FixedSideBar>
+      <div className="row">
+        <div className="col-md-12">
+          <div className='teacher-detail'>
+            <section className="teacher-detail__content">
+              <FixedSideBar onScrollTopMargin={0}>
+                <div className="teacher-profile-sidebar">
+                  <LoadingMask placeholderId="teacherDetailProfilePlaceholder"
+                               normalPlaceholder={false}
+                               facebookPlaceholder={true}
+                               loaderType={WebConstants.TEACHER_DETAIL_PROFILE_PLACEHOLDER}>
+                    <div className='full-width'>
+                      <TeacherProfileHeader {...this.props} />
+                      {this.props.teacher.courses && this.props.teacher.courses.data.length ? <hr/> : null}
+                    </div>
+                  </LoadingMask>
+                  <TeacherBriefCourses {...this.props} />
+                </div>
+              </FixedSideBar>
 
-          <RightContent>
-            <div className="row">
-              <div className="col-sm-12">
+              <RightContent>
                 <TeacherBackground
                   context={this.context}
                   teacher={this.props.teacher}
                 />
-              </div>
-            </div>
-
-            <div className="row">
-              <div className="col-sm-12">
                 <div className="teacher-detail__content__review">
                   <div className="teacher-detail__content__review__header mb-30">
                     <h3>{this.context.t('teacher_review')}</h3>
@@ -100,16 +97,16 @@ class TeacherDetail extends Component {
                                      context={this.context}/>
                   <ReviewTeacherForm/>
                 </div>
-              </div>
-            </div>
 
-            <TeacherTaughtCourses
-              {...this.props}
-              handlePageChange={this.fetchTeacherCoursesWithPageNumber.bind(this)}
-              context={this.context}
-            />
-          </RightContent>
-        </section>
+                <TeacherTaughtCourses
+                  {...this.props}
+                  handlePageChange={this.fetchTeacherCoursesWithPageNumber.bind(this)}
+                  context={this.context}
+                />
+              </RightContent>
+            </section>
+          </div>
+        </div>
       </div>
     )
   }
