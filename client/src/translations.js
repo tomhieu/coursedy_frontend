@@ -316,7 +316,8 @@ export const translations = {
     "course_submit_comment_status": "Kết quả gửi phản hồi",
     "course_submit_comment_success": "Gửi phản hồi thành công",
     "course_submit_comment_fail": "Gửi phản hồi thất bại",
-    "course_comments_no_comment": "Bạn là người đầu tiên phản hồi về khóa học này!!!",
+    "no_comment_about_course": "Chưa có nhận xét nào về khoá học này",
+    "course_comments_no_comment": "Hãy là người đầu tiên nhận xét về khóa học này!!!",
 
     "header_course_category": "Khoá học {course_category}",
     "header_teacher_name": "Khoá học được giảng dạy bởi: {teacherName}",

@@ -18,7 +18,7 @@ class CourseDetail extends Component {
       currentScrollPosition: 0,
       activeMenu: 'course-detail-intro'
     }
-    this.onScroll = this.checkScrollPosition.bind(this)
+    this.onScroll = this.handleScroll.bind(this)
   }
 
   componentDidMount() {
@@ -30,20 +30,14 @@ class CourseDetail extends Component {
     window.removeEventListener('scroll', this.onScroll)
   }
 
-  /*
-    @Check scroll position for active menu, display header bar
-  */
-  checkScrollPosition() {
-    const currentPosition  = window.pageYOffset || document.documentElement.scrollTop
-    this.setState({
-      currentScrollPosition: currentPosition,
-      activeMenu: Object.keys(this.props.sectionPositions).reduce(
-        (currentPosition, newPosition) => {
-          return this.props.sectionPositions[newPosition] < CHECK_ACTIVE_MENU_OFFSET 
-            ? newPosition : currentPosition
-        }, 'course-detail-intro'
-      )
-    })
+  handleScroll(event) {
+    const triggerPosition = 200;
+    const top = window.pageYOffset || document.documentElement.scrollTop
+    if (triggerPosition < top) {
+      this.courseActionBar.classList.add('fixed-action-bar')
+    } else {
+      this.courseActionBar.classList.remove('fixed-action-bar')
+    }
   }
 
   render() {
@@ -54,7 +48,7 @@ class CourseDetail extends Component {
         <CourseDetailHeader
           {...this.props}
         />
-        <div className="course-action-container">
+        <div ref={el => this.courseActionBar = el} className="course-action-container">
           <CourseDetailAction course={course} course_sections={course_sections}></CourseDetailAction>
         </div>
         <CourseDetailMain

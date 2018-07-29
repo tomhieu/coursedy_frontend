@@ -9,6 +9,7 @@ import CourseLessonlIcon from "../../Core/Icons/CourseLessonlIcon";
 import FacebookIcon from "../../Core/Icons/FacebookIcon";
 import GooglePlusIcon from "../../Core/Icons/GooglePlusIcon";
 import TwitterIcon from "../../Core/Icons/TwitterIcon";
+import ObjectUtils from "../../../utils/ObjectUtils";
 
 
 class CourseDetailAction extends Component {
@@ -70,7 +71,7 @@ class CourseDetailAction extends Component {
             <img src={course.cover_image ? course.cover_image : "http://placehold.it/1366x768"} alt="" />
           </div>
           <div className={styles.courseFee}>
-            {course.fee}
+            {ObjectUtils.currencyFormat(course.tuition_fee, course.currency)}
           </div>
           <div className={styles.courseActionButtons}>
             <PrimaryButton round={true}
@@ -81,25 +82,26 @@ class CourseDetailAction extends Component {
             </PrimaryButton>
           </div>
           <div className={styles.courseShortIntroduce}>
-            <span>{this.context.t('course_include')}</span>
+            <div className={styles.itemTitle}>{this.context.t('course_include')}</div>
             <ul>
-              <li>
-                <div><CourseAccessIcon></CourseAccessIcon></div>
+              <li className={styles.itemInclude}>
+                <div className={styles.itemIcon}><CourseAccessIcon width={15} height={15}></CourseAccessIcon></div>
                 <div>{this.context.t('account_access_to_course_room')}</div>
               </li>
-              <li>
-                <div><CourseMaterialIcon></CourseMaterialIcon></div>
+              <li className={styles.itemInclude}>
+                <div className={styles.itemIcon}><CourseMaterialIcon width={15} height={15}></CourseMaterialIcon></div>
                 <div>{this.context.t('course_material')}</div>
               </li>
-              <li>
-                <div><CourseLessonlIcon></CourseLessonlIcon></div>
+              <li className={styles.itemInclude}>
+                <div className={styles.itemIcon}><CourseLessonlIcon width={15} height={15}></CourseLessonlIcon></div>
                 <div>{this.context.t('course_lesson', {numberLesson: course_sections.length})}</div>
               </li>
             </ul>
           </div>
           <div className={styles.courseShare}>
+            <div className={styles.seperateLine}></div>
             <span className={styles.title}>{this.context.t('share_course_with_friend')}</span>
-            <div className="d-flex flex-row">
+            <div className="d-flex flex-row justify-content-center">
               <a className={styles.socialNetwork}><FacebookIcon></FacebookIcon></a>
               <a className={styles.socialNetwork}><GooglePlusIcon></GooglePlusIcon></a>
               <a className={styles.socialNetwork}><TwitterIcon></TwitterIcon></a>

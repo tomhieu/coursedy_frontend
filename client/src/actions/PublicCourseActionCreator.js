@@ -12,12 +12,12 @@ export const fetchPublicCourse = (courseId) => {
       type: types.FETCH_PUBLIC_COURSE,
       payload: Network().get('courses/'+courseId),
       meta: 'ezylearningFullLoader'
-    }).then((value, action) => {
+    }).then(({value, action}) => {
       dispatch(fetchPublicCourseSections(courseId))
       dispatch(fetchPublicCourseTutor(value.user.id))
 
       setTimeout(() => {
-        dispatch(submitViewCourse(courseId, response.token || ''))
+        dispatch(submitViewCourse(courseId, value.token || ''))
       }, PublicCourseConstants.PUBLIC_COURSE_DETAIL_SUBMIT_VIEW_TIMEOUT)
     }, () => {
       const error_messages = [TT.t('fetch_course_fail')]
@@ -136,22 +136,9 @@ export const submitCourseComment = (comment, courseId, userId) => {
   const params = {
     content: comment
   }
-  return dispatch => {
-    Network().post(`courses/${courseId}/comments`, params).then((response) => {
-      dispatch({
-        type: types.PUBLIC_COURSE_DETAIL_SUBMIT_COMMENT_SUCCESSFULLY,
-        payload: response
-      })
-    }, (errors) => {
-      const error_messages = (errors && errors.constructor == Array && errors.length > 0) ?
-        errors :
-        [TT.t('submit_comment_fail')]
-
-      dispatch({
-        type: types.PUBLIC_COURSE_DETAIL_SUBMIT_COMMENT_FAIL,
-        payload: {errors: error_messages}
-      })
-    })
+  return {
+    type: types.PUBLIC_COURSE_DETAIL_SUBMIT_COMMENT,
+    payload: Network().post(`courses/${courseId}/comments`, params)
   }
 }
 

@@ -79,7 +79,7 @@ const PublicCourseDetail = (state = {
       }
     case courseTypes.PUBLIC_COURSE_DETAIL_FETCH_COMMENTS_FAIL:
       return state
-    case courseTypes.PUBLIC_COURSE_DETAIL_SUBMIT_COMMENT_SUCCESSFULLY:
+    case courseTypes.PUBLIC_COURSE_DETAIL_SUBMIT_COMMENT + asyncActs.FULFILLED:
       return {
         ...state, 
         submit_comment_success: true, 
@@ -90,7 +90,7 @@ const PublicCourseDetail = (state = {
           ))
         ) 
       }
-    case courseTypes.PUBLIC_COURSE_DETAIL_SUBMIT_COMMENT_FAIL:
+    case courseTypes.PUBLIC_COURSE_DETAIL_SUBMIT_COMMENT + asyncActs.REJECTED:
       return {
         ...state, 
         submit_comment_fail: true, 
