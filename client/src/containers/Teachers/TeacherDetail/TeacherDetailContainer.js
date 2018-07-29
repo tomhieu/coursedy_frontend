@@ -12,10 +12,10 @@ import {
   fetchTeacherWorkExperiences,
   fetchTeacherCourses,
   fetchTeacherReviews
-} from '../../../actions/TeacherActionCreators'
-import LoadingMask from '../../../components/LoadingMask/LoadingMask'
-import * as WebConstants from '../../../constants/WebConstants'
-import {FETCH_CATEGORIES} from '../../../actions/AsyncActionCreator'
+} from 'actions/TeacherActionCreators'
+import LoadingMask from 'components/LoadingMask/LoadingMask'
+import * as WebConstants from 'constants/WebConstants'
+import {FETCH_CATEGORIES} from 'actions/AsyncActionCreator'
 import Network from 'utils/network'
 import ReviewTeacherForm from './Content/ReviewTeacherForm'
 import FixedSideBar from "components/Common/FixedSideBar";
@@ -27,6 +27,7 @@ import PrimaryButton from "components/Core/PrimaryButton/PrimaryButton";
 
 class TeacherDetail extends Component {
   componentDidMount() {
+    this.props.hideFooter();
     this.props.fetchCategories()
     this.props.fetchTeacherDetail({
       teacherId: parseInt(this.props.match.params.id),
@@ -53,6 +54,11 @@ class TeacherDetail extends Component {
       teacherId: parseInt(this.props.match.params.id),
       query: {page, per_page}
     });
+  }
+
+
+  componentWillUnmount() {
+    this.props.showFooter()
   }
 
   render() {
@@ -250,7 +256,9 @@ const mapDispatchToProps = (dispatch) => ({
   fetchTeacherEducations: (query) => dispatch(fetchTeacherEducations(query)),
   fetchTeacherWorkExperiences: (query) => dispatch(fetchTeacherWorkExperiences(query)),
   fetchTeacherReviews: (query) => dispatch(fetchTeacherReviews(query)),
-  fetchTeacherCourses: (query) => dispatch(fetchTeacherCourses(query))
+  fetchTeacherCourses: (query) => dispatch(fetchTeacherCourses(query)),
+  showFooter: () => dispatch({ type: WebConstants.SHOW_FOOTER }),
+  hideFooter: () => dispatch({ type: WebConstants.HIDE_FOOTER })
 })
 
 const getSpecializesFromCategories = (courseCategories, teacherCategories) => {

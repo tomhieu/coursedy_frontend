@@ -457,7 +457,8 @@ export const translations = {
     "enter_review": "Nội dung bình luận",
     "review_cancel_button": "Huỷ",
     "content_is_updating": "Thông tin đang cập nhật",
-
+    "see_more": "Xem thêm",
+    "see_less": "Rút gọn",
     "submit_comment_require_login_message": "Bạn cần đăng nhập để đăng phản hồi",
     "submit_comment_status": "Kết quả gửi phản hồi",
     "submit_comment_success": "Gửi phản hồi thành công",
@@ -954,7 +955,7 @@ export const translations = {
     "drag_and_drop": "Drag & Drop",
     "speciality": "Speciality",
     "save": "Save",
-    "sent": "Sent",
+    "sent": "Gửi",
     "cancel": "Cancel",
     "select": "Select",
     'male': 'Male',

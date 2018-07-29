@@ -43,6 +43,7 @@
 
   h3 {
     font-size: 20px;
+    color: $gray-dark;
   }
 
   h4 {
@@ -97,17 +98,20 @@
     padding-bottom: 25px;
     margin-bottom: 25px;
   }
+
+  .left-sidebar {
+    h3 {
+      font-size: 18px;
+    }
+  }
 }
 
 .teacher-detail-profile-header {
-  border: solid 1px #e5e5e5;
-  padding: 15px;
-  text-align: center;
   .profile-picture {
     img {
       border-radius: 50%;
-      height: 115px;
-      width: 115px;
+      height: 116px;
+      width: 116px;
       cursor: pointer;
       transition: all 0.2s ease-in-out;
       padding: 1px;
@@ -115,21 +119,42 @@
   }
 
   .profile-summary {
+    .profile-box {
+      color: $gray-pale;
+      margin-top: 5px;
+      margin-bottom: 5px;
+
+      h3 {
+        color: $gray-dark;
+        font-size: 18px;
+      }
+
+      .teacher-sub-title, .teacher-introduction {
+        font-size: 12px;
+      }
+
+      .vertical-slash {
+        &:before {
+          content: ' | ';
+        }
+      }
+    }
+
+    .horizontal-line {
+      border-bottom: 1px solid $border-color;
+    }
+
     .categories {
       display: flex;
       flex-wrap: wrap;
       .category {
-        border: 1px solid $md-color-pink;
+        color: $gray-pale;
+        background-color: $gray-pale-light;
         line-height: 1;
         padding: 3px 8px;
         border-radius: 2px;
         margin: 0 5px 5px 0;
-        font-size: 12px;
-
-        &:hover {
-          background: $md-color-pink;
-          color: $white-color;
-        }
+        font-size: 13px;
       }
     }
 
@@ -146,6 +171,11 @@
         top: 5px;
         left: 0;
       }
+    }
+
+    .see-more {
+      color: $color-blue-dark;
+      cursor: pointer;
     }
 
     @media only screen and (max-width: 991px) {
@@ -200,4 +230,9 @@ ul.review-list > li:last-child {
   .btn.collapsed {
     display: block;
   }
+}
+
+.left-sidebar {
+  overflow-y: scroll;
+  height: 100vh;
 }

@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
 import {reduxForm, reset} from "redux-form";
-import {Button} from 'react-bootstrap';
-import FormField from "../../../../components/Core/FormField";
-import {validate} from "../../../../validations/CommentFormValidation";
-import * as Actions from "../../../../actions/TeacherActionCreators";
-import SimpleDialogComponent from "../../../../components/Core/SimpleDialogComponent"
-import {globalHistory} from '../../../../utils/globalHistory'
+import FormField from "components/Core/FormField";
+import {validate} from "validations/CommentFormValidation";
+import * as Actions from "actions/TeacherActionCreators";
+import SimpleDialogComponent from "components/Core/SimpleDialogComponent"
+import {globalHistory} from 'utils/globalHistory'
+import PrimaryButton from 'components/Core/PrimaryButton/PrimaryButton'
 
 
 class ReviewTeacherForm extends Component {
@@ -90,9 +90,13 @@ class ReviewTeacherForm extends Component {
                      formControlName={'content'}
                      typeField={'custom_textarea'}>
           </FormField>
-          <Button type="submit" disabled={pristine || submitting} className="btn-primary">
-            {this.context.t('sent')}
-          </Button>
+          <div className="d-flex justify-content-right">
+            <PrimaryButton type="submit"
+                           title={this.context.t("send")} line={false}
+                           round={true}
+                           disabled={pristine || submitting}>
+            </PrimaryButton>
+          </div>
         </form>
         {/* Require login modal */}
         <SimpleDialogComponent

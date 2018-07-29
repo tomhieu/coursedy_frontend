@@ -7,32 +7,12 @@ class TeacherBackground extends Component {
   render() {
     return (
       <div className="teacher-detail__content__background">
-        <TeacherShortIntroduce {...this.props} context={this.context}/>
         <TeacherEducation {...this.props} context={this.context}/>
         <TeacherDegrees {...this.props} context={this.context}/>
         <TeacherWorkExperience {...this.props} context={this.context}/>
       </div>
     )
   }
-}
-
-
-const TeacherShortIntroduce = (props) => {
-  return (
-    <LoadingMask placeholderId="userAccountPlaceholder"
-                 normalPlaceholder={false}
-                 facebookPlaceholder={true}
-                 loaderType={webConstants.USER_ACCOUNT_PLACEHOLDER}>
-      <div className="profile-list-item">
-        <div className="head-title">
-          <i className="fa fa-user"></i>
-          <h4>{props.context.t('teacher_short_introduce')}</h4>
-        </div>
-
-        <p>{props.teacher.description || <i>{props.context.t('content_is_updating')}</i>}</p>
-      </div>
-    </LoadingMask>
-  )
 }
 
 const TeacherEducation = (props) => {
