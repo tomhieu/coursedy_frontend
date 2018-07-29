@@ -22,7 +22,7 @@ import FixedSideBar from "components/Common/FixedSideBar";
 import RightContent from "components/Common/RightContent";
 import {TT} from "utils/locale";
 import {LinkContainer} from 'react-router-bootstrap'
-import PrimaryButton from "components/Core/PrimaryButton/PrimaryButton";
+import PrimaryAnchor from "components/Core/PrimaryAnchor/PrimaryAnchor";
 
 
 class TeacherDetail extends Component {
@@ -141,7 +141,11 @@ const TeacherBriefCourses = (props) => {
         </div>)
       })}
       <div className='link-tag mt-15'>
-        <PrimaryButton title={TT.t('view_more')} customClasses='full-width'/>
+        <PrimaryAnchor
+          href="#more-his-courses"
+          title={TT.t('view_more')}
+          customClasses='full-width'
+        />
       </div>
     </div>
   )
@@ -187,7 +191,7 @@ const TeacherTaughtCourses = (props) => {
   return (
     <div className="row">
       <div className="col-sm-12">
-        <div className="teacher-detail__content__courses">
+        <div className="teacher-detail__content__courses" id="more-his-courses">
           <div className="teacher-detail__content__courses__header">
             <h3>
               {props.context.t('teacher_taught_courses')}
