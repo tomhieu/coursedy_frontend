@@ -21,9 +21,10 @@ class TeacherProfileHeader  extends React.Component {
             <span className="teacher-sub-title">{teacher.country}</span>
             <span className={`teacher-sub-title${teacher.country ? ' vertical-slash': ''}`}>{teacher.title}</span>
           </div>
-          <div className="horizontal-line"></div>
+          <hr/>
           <div className="profile-box">
-            <ReadMoreText text={teacher.description} min={50} ideal={80} className="teacher-introduction" readMoreText={this.context.t('see_more')}/>
+            <ReadMoreText text={teacher.description || this.context.t('content_is_updating')} min={50} ideal={80} className="teacher-introduction" readMoreText={this.context.t('see_more')}/>
+            {!teacher.twitter && !teacher.linkedIn && this.context.t('content_is_updating')}
             {teacher.twitter || teacher.linkedIn ? <div className="social">
               {teacher.twitter ? <a href={teacher.twitter} className="twitter"
                                     data-toggle="tooltip" data-placement="top"
@@ -32,7 +33,11 @@ class TeacherProfileHeader  extends React.Component {
                                      data-toggle="tooltip" data-placement="top"
                                      title="" data-original-title="LinkedIn"><i className="fa fa-linkedin"></i></a> : null}
             </div> : null}
-            <TeacherCategories categories={teacher.categories}/>
+            {
+              teacher.categories && teacher.categories.length ?
+                <TeacherCategories categories={teacher.categories}/>
+                : <div>{this.context.t('content_is_updating')}</div>
+            }
           </div>
         </div>
       </div>
@@ -56,6 +61,10 @@ class TeacherCategories extends React.Component {
   }
 
   render() {
+    if (!this.props.categories || !this.props.categories.length) {
+      return null
+    }
+
     let categories = this.state.showMore ?
       this.props.categories.slice(0, 2) :
       this.props.categories

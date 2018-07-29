@@ -99,7 +99,7 @@ const TeacherProfileSection = (props) => {
                  loaderType={WebConstants.TEACHER_DETAIL_PROFILE_PLACEHOLDER}>
       <div className='full-width'>
         <TeacherProfileHeader {...props} />
-        <hr/>
+        {props.teacher.courses && props.teacher.courses.data.length ? <hr/> : null}
       </div>
     </LoadingMask>
   )
