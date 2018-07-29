@@ -193,9 +193,9 @@ const TeacherTaughtCourses = (props) => {
       <div className="col-sm-12">
         <div className="teacher-detail__content__courses" id="more-his-courses">
           <div className="teacher-detail__content__courses__header">
-            <h3>
+            <h4>
               {props.context.t('teacher_taught_courses')}
-            </h3>
+            </h4>
           </div>
           <CourseListInGridMode {...{
             courses: teacher.courses.data,
