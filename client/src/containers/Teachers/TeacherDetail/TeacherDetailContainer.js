@@ -89,7 +89,7 @@ class TeacherDetail extends Component {
                 />
                 <div className="teacher-detail__content__review">
                   <div className="teacher-detail__content__review__header mb-30">
-                    <h3>{this.context.t('teacher_review')}</h3>
+                    <h4>{this.context.t('teacher_review')}</h4>
                   </div>
                   <ReviewHeader {...this.props} context={this.context}/>
                   <TeacherReviewList {...this.props}
