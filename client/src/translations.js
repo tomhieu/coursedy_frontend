@@ -716,6 +716,7 @@ export const translations = {
     "no_finished_course_message_for_student": "Hiện tại bạn chưa hoàn thành khoá học nào.",
     "no_following_course_message_for_student": "Hiện tại bạn chưa theo dõi khoá học nào.",
     "search_more_course_link": "tạo khoá học ngay hôm nay",
+    "no_enrolled_student": "Chưa có học sinh nào đăng ký khoá học",
     "find_course_link": "Tìm kiếm và tham gia khoá học yêu thích ngay hôm nay.",
     "start_course_warning_message": "Bạn có chắc là muốn bắt đầu dạy khoá học ‘{courseName}’.Một khi hoá học bắt đầu, chúng tôi sẽ thông báo tất cả học sinh đã đăng ký thơi gian học chính thức. Bạn sẽ không thể thay đổi những thông tin khoá học.",
     "join_active_course_popup_title": "Vào lớp",
