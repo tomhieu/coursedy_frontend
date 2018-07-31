@@ -10,6 +10,7 @@ import FacebookIcon from "../../Core/Icons/FacebookIcon";
 import GooglePlusIcon from "../../Core/Icons/GooglePlusIcon";
 import TwitterIcon from "../../Core/Icons/TwitterIcon";
 import ObjectUtils from "../../../utils/ObjectUtils";
+import {globalHistory} from "../../../utils/globalHistory";
 
 
 class CourseDetailAction extends Component {
@@ -27,33 +28,18 @@ class CourseDetailAction extends Component {
       //Show require login modal
       this.showRequireLoginModal();
     } else {
-      this.props.dispatch(Actions.submitEnrollCourse(this.props.course.id));
-      //Show enroll status modal
-      this.showEnrollCourseStatusModal();
+      this.props.enrollCourse(this.props.course.id);
     }
   }
 
-  hideRequireLoginModal() {
-    this.setState({
-      show_require_login_modal: false
-    })
-  }
-
   showRequireLoginModal() {
-    this.setState({
-      show_require_login_modal: true
-    })
+    this.props.showWarningPopup(this.context.t('require_login'),
+          this.context.t('course_enroll_require_login_message'),
+          this.redirectToLogin.bind(this));
   }
 
   redirectToLogin() {
-    this.hideRequireLoginModal()
-    this.props.dispatch(Actions.redirectAfterLogin('course/'+this.props.course.id))
-  }
-
-  hideEnrollCourseStatusModal() {
-    this.setState({
-      show_enroll_status_modal: false
-    })
+    globalHistory.push('/login');
   }
 
   showEnrollCourseStatusModal() {

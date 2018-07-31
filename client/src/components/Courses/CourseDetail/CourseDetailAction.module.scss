@@ -5,7 +5,18 @@
     img {
       width: 300px;
     }
+    @media (min-width: 1024px) and (max-width: 1200px) {
+      img {
+        width: 237px;
+      }
+    }
+    @media (max-width: 1024px) {
+      img {
+        width: 183px;
+      }
+    }
   }
+
   .courseFee {
     padding: 15px 30px;
     font-size: 36px;

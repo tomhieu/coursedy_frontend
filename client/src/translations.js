@@ -298,18 +298,18 @@ export const translations = {
     "course_enroll": "Đăng ký",
 
     "course_follow": "Theo dõi khóa học",
-    "course_follow_status": "Kết quả theo dõi khóa học",
-    "course_follow_submit_success": "Theo dõi khoá học thành công",
-    "course_follow_submit_fail": "Theo dõi khoá học thất bại",
+    "course_follow_status": "Kết quả theo dõi khóa học.",
+    "course_follow_submit_success": "Theo dõi khoá học thành công.",
+    "course_follow_submit_fail": "Theo dõi khoá học thất bại.",
 
     "require_login": "Yêu cầu đăng nhập",
-    "course_enroll_require_login_message": "Bạn cần đăng nhập để đăng ký khóa học",
-    "course_submit_comment_require_login_message": "Bạn cần đăng nhập để đăng phản hồi",
-    "course_follow_require_login_message": "Bạn cần đăng nhập để theo dõi khoá học",
+    "course_enroll_require_login_message": "Vui lòng đăng nhập trước khi đăng ký khóa học.",
+    "course_submit_comment_require_login_message": "Vui lòng đăng nhập trước khi đăng phản hồi.",
+    "course_follow_require_login_message": "Vui lòng đăng nhập trước để theo dõi khoá học.",
 
     "course_enroll_status": "Kết quả đăng ký",
-    "course_enroll_success": "Đăng ký khóa học thành công",
-    "course_enroll_fail": "Đăng ký khóa học thất bại",
+    "course_enroll_success": "Đăng ký khóa học thành công.",
+    "course_enroll_fail": "Đăng ký khóa học thất bại.",
 
     "course_enroll_deposit_more": "Nạp thêm",
 

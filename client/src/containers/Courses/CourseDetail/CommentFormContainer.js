@@ -1,13 +1,10 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
 import {reduxForm} from "redux-form";
-import {Button, Modal} from 'react-bootstrap';
 import FormField from "../../../components/Core/FormField";
 import {validate} from "../../../validations/CommonValidator";
 import * as Actions from "../../../actions/PublicCourseActionCreator";
-import SimpleDialogComponent from "../../../components/Core/SimpleDialogComponent"
 import PrimaryButton from "../../../components/Core/PrimaryButton/PrimaryButton";
-import * as WebConstants from "../../../constants/WebConstants";
 import {TT} from "../../../utils/locale";
 import {openConfirmationPopup} from "../../../actions/MainActionCreator";
 
@@ -41,7 +38,7 @@ class CommentFormContainer extends Component {
           <FormField fieldId={'course_comment_content'} formGroupId={'content'} formLabel={this.context.t('course_comment_content')}
                    placeholder={this.context.t('course_comment_content')} isMandatoryField={true}
                    formControlName={'content'} typeField={'custom_textarea'}></FormField>
-          <PrimaryButton type="submit" line={false} disabled={!valid} title={this.context.t('save')}>
+          <PrimaryButton type="submit" customClasses="save-comment" line={false} disabled={!valid} title={this.context.t('save')}>
           </PrimaryButton>
         </form>
       </div>

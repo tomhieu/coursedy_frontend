@@ -7,8 +7,8 @@
 
 .course-action-container {
   position: absolute;
-  top: 180px;
-  right: 180px;
+  top: 150px;
+  right: 135px;
   z-index: 99;
   background-color: $white-color;
   padding: 5px;
@@ -17,6 +17,20 @@
   &.fixed-action-bar {
     position: fixed;
     top: 75px;
+  }
+}
+
+@media (min-width: 1024px) and (max-width: 1200px) {
+  .course-action-container {
+    right: 30px;
+    width: 250px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .course-action-container {
+    right: 10px;
+    width: 195px;
   }
 }
 

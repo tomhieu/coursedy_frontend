@@ -49,7 +49,7 @@ class CourseDetail extends Component {
           {...this.props}
         />
         <div ref={el => this.courseActionBar = el} className="course-action-container">
-          <CourseDetailAction course={course} course_sections={course_sections}></CourseDetailAction>
+          <CourseDetailAction course={course} course_sections={course_sections} {...this.props}></CourseDetailAction>
         </div>
         <CourseDetailMain
           {...this.props}
