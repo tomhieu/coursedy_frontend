@@ -23,8 +23,7 @@ class TeacherProfileHeader  extends React.Component {
           </div>
           <hr/>
           <div className="profile-box">
-            <ReadMoreText text={teacher.description || this.context.t('content_is_updating')} min={50} ideal={80} className="teacher-introduction" readMoreText={this.context.t('see_more')}/>
-            {!teacher.twitter && !teacher.linkedIn && this.context.t('content_is_updating')}
+              {!teacher.twitter && !teacher.linkedIn && this.context.t('content_is_updating')}
             {teacher.twitter || teacher.linkedIn ? <div className="social">
               {teacher.twitter ? <a href={teacher.twitter} className="twitter"
                                     data-toggle="tooltip" data-placement="top"
