@@ -18,11 +18,11 @@ import * as WebConstants from 'constants/WebConstants'
 import {FETCH_CATEGORIES} from 'actions/AsyncActionCreator'
 import Network from 'utils/network'
 import ReviewTeacherForm from './Content/ReviewTeacherForm'
-import FixedSideBar from "components/Common/FixedSideBar";
-import RightContent from "components/Common/RightContent";
+import FixedSideBar from "components/Common/FixedSideBar"
+import RightContent from "components/Common/RightContent"
 import {TT} from "utils/locale";
 import {LinkContainer} from 'react-router-bootstrap'
-import PrimaryAnchor from "components/Core/PrimaryAnchor/PrimaryAnchor";
+import PrimaryAnchor from "components/Core/PrimaryAnchor/PrimaryAnchor"
 import RatingItem from 'components/Rating/index'
 import ObjectUtils from 'utils/ObjectUtils'
 
