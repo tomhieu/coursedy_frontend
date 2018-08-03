@@ -45,17 +45,27 @@ class CourseDetail extends Component {
     const {course, course_sections} = this.props;
     return (
       <div className="d-flex flex-auto flex-vertical full-width-in-container">
-        <CourseDetailHeader
-          {...this.props}
-        />
-        <div ref={el => this.courseActionBar = el} className="course-action-container">
-          <CourseDetailAction course={course} course_sections={course_sections} {...this.props}></CourseDetailAction>
+        <div className="row">
+          <div className="col-md-12">
+            <CourseDetailHeader
+                {...this.props}
+            />
+          </div>
         </div>
-        <CourseDetailMain
-          {...this.props}
-          activeMenu={activeMenu}
-          currentScrollPosition={currentScrollPosition}
-        />
+        <div className="row">
+          <div className="col-md-8">
+            <CourseDetailMain
+                {...this.props}
+                activeMenu={activeMenu}
+                currentScrollPosition={currentScrollPosition}
+            />
+          </div>
+          <div className="col-md-4 course-details-action">
+            <div ref={el => this.courseActionBar = el} className="course-action-container">
+              <CourseDetailAction course={course} course_sections={course_sections} {...this.props}></CourseDetailAction>
+            </div>
+          </div>
+        </div>
       </div>
     )
   }

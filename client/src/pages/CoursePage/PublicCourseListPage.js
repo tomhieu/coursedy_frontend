@@ -8,7 +8,9 @@ const PublicCourseListPage = (props) => (
           <CourseFilterContainer />
       </div>
       <div className="public-course-list-container d-flex flex-stretch">
-          <PublicCourseListContainer />
+          <div className="container">
+              <PublicCourseListContainer />
+          </div>
       </div>
   </div>
 );

@@ -5,10 +5,13 @@
   background-color: #fff;
 }
 
+.course-details-action {
+  position: relative;
+}
+
 .course-action-container {
   position: absolute;
-  top: 150px;
-  right: 135px;
+  top: -170px;
   z-index: 99;
   background-color: $white-color;
   padding: 5px;
@@ -22,15 +25,13 @@
 
 @media (min-width: 1024px) and (max-width: 1200px) {
   .course-action-container {
-    right: 30px;
     width: 250px;
   }
 }
 
 @media (max-width: 1024px) {
   .course-action-container {
-    right: 10px;
-    width: 195px;
+    width: 200px;
   }
 }
 
