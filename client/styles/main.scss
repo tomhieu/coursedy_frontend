@@ -1631,3 +1631,13 @@ body.application {
   top: 0;
   left: 0;
 }
+
+.clearfix {
+  &:before {
+    display: table;
+    content: " ";
+  }
+  &:after {
+    clear: both;
+  }
+}

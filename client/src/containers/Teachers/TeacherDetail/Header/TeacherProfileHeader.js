@@ -21,7 +21,6 @@ class TeacherProfileHeader  extends React.Component {
             <span className="teacher-sub-title">{teacher.country}</span>
             <span className={`teacher-sub-title${teacher.country ? ' vertical-slash': ''}`}>{teacher.title}</span>
           </div>
-          <hr/>
           <div className="profile-box">
               {!teacher.twitter && !teacher.linkedIn && this.context.t('content_is_updating')}
             {teacher.twitter || teacher.linkedIn ? <div className="social">

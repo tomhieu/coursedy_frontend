@@ -23,6 +23,8 @@ import RightContent from "components/Common/RightContent";
 import {TT} from "utils/locale";
 import {LinkContainer} from 'react-router-bootstrap'
 import PrimaryAnchor from "components/Core/PrimaryAnchor/PrimaryAnchor";
+import RatingItem from 'components/Rating/index'
+import ObjectUtils from 'utils/ObjectUtils'
 
 
 class TeacherDetail extends Component {
@@ -127,14 +129,24 @@ const TeacherBriefCourses = (props) => {
         </h3>
       </div>
       {teacher.courses.data.slice(0, 3).map((course) => {
-        return (<div key={course.id}>
+        return (<div key={course.id} className="related-course-item">
           <LinkContainer to={`/course/ + ${course.id}`} className='link-tag'>
-            <div className='row pb-5 pt-5 box-border'>
-              <div className='col-sm-6'>
+            <div className='pb-5 pt-5 clearfix'>
+              <div className='image'>
                 <img className='full-width' src={course.cover_image}/>
               </div>
-              <div className='col-sm-6'>
-                <b>{course.title}</b>
+              <div className='content'>
+                <h6>{course.title}</h6>
+                <div>
+                  <RatingItem num_stars={course.rating_count === 0 ? 0 : parseFloat(course.rating_points)/course.rating_count} num_reviews={course.rating_count}/>
+                </div>
+                <span className="price">
+                  {
+                    course.is_free ?
+                      TT.t('free') :
+                      ObjectUtils.currencyFormat(course.tuition_fee || 0, course.currency || 'VND')
+                  }
+                </span>
               </div>
             </div>
           </LinkContainer>

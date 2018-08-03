@@ -108,6 +108,35 @@
       padding: 15px;
     }
   };
+
+  .related-course-item {
+    border-bottom: 1px solid #DDD;
+    padding: 15px 0;
+    -o-transition: all 0.3s ease;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+
+    .image {
+      width: 75px;
+      height: 75px;
+      float: left;
+    }
+
+    .content {
+      margin-left: 85px;
+    }
+
+    .price {
+      font-size: 15px;
+      display: block;
+      color: $primary-text-color;
+    }
+
+    &:hover {
+      border-color: $primary-text-color;
+    }
+  }
 }
 
 .teacher-detail-profile-header {
