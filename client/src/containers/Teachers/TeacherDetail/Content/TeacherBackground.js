@@ -126,12 +126,12 @@ const EducationItem = ({education}) => {
 const DegreeItem = ({degree}) => {
   return(
     <div className="row mb-10" key={degree.id}>
-      <div className="col-sm-2 col-md-2 col-lg-1 col-2">
-        <a href={degree.url} target='_blank'>
+      <div className="col-12 col-sm-12 col-md-6 col-lg-4 mb-15 mt-15">
+        <a href={degree.url} target="_blank" className="d-flex flex-column">
           <img src={degree.url} className="full-width"/>
+          <div className="d-flex justify-content-center">{degree.name}</div>
         </a>
       </div>
-      <div className="col-sm-7 col-7"><a href={degree.url} target='_blank'>{degree.name}</a></div>
     </div>
   )
 }
