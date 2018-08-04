@@ -47,6 +47,7 @@ class DashboardProfileContainer extends Component {
                                    isSelectedNewImage={avatarSelected}
                                    openPopupToSelectImage={this.showEditAvatarForm.bind(this)}
                                    showPopupChangeImage={editAvatarMode}
+                                   fieldId="adminAvatarId"
                                    previewImage={user.avatar ? user.avatar : defaultAvatar} />
               <div className="col-sm-12">
                 <h4>{user.name}</h4>

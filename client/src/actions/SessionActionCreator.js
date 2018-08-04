@@ -78,24 +78,22 @@ export const autoLogin = (token, clientId, uid) => {
 export const setCurrentUser = () => {
   return dispatch => {
     dispatch(fetchCurrentUser()).then(({value, action}) => {
-      redirectToDashboard(value)
+      return dispatch(redirectToDashboard(value))
     })
   };
 }
 
-export const redirectToDashboard = (user) => {
-  return dispatch => {
-    if (user.roles.indexOf(UserRole.ADMIN) >= 0) {
-      globalHistory.push('/admin/dashboard');
-    } else if (user.roles.indexOf(UserRole.TEACHER) >= 0) {
-      globalHistory.push('/dashboard/profile');
-      dispatch(fetchActiveCourses(user));
-    } else if (user.roles.indexOf(UserRole.STUDENT) >= 0) {
-      globalHistory.push('/student/dashboard/profile');
-      dispatch(fetchActiveCourses(user));
-    } else {
-      throw new Error('Not authorized');
-    }
+export const redirectToDashboard = (user) => dispatch => {
+  if (user.roles.indexOf(UserRole.ADMIN) >= 0) {
+    globalHistory.push('/admin/dashboard/account');
+  } else if (user.roles.indexOf(UserRole.TEACHER) >= 0) {
+    globalHistory.push('/dashboard/profile');
+    dispatch(fetchActiveCourses(user));
+  } else if (user.roles.indexOf(UserRole.STUDENT) >= 0) {
+    globalHistory.push('/student/dashboard/profile');
+    dispatch(fetchActiveCourses(user));
+  } else {
+    throw new Error('Not authorized');
   }
 }
 

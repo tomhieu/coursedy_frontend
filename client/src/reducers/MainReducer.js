@@ -6,7 +6,7 @@ const MainReducer = (state = {
   darkHeader: false,
   customHeaderClass: '',
   showConfirmationPopup: false,
-  confirmationTitle: undefined,
+  confirmationTitle: '',
   confirmationMessage: undefined,
   confirmCallback: undefined
 }, action) => {
