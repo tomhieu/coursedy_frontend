@@ -53,7 +53,7 @@ class TutorDashboard extends RoleAuthorization {
 
           </div>
           <div className="d-flex flex-auto dashboard-content">
-            <div className="full-width daskboard-container">
+            <div className="full-width daskboard-container container">
               <switch>
                 <Route exact path="/dashboard/profile" component={TutorProfileDetailsContainer}/>
                 <Route exact path="/dashboard/courses/active" render={props => <ListTutorCourseContainer status={CourseStatus.STARTED} {...props}/>} />

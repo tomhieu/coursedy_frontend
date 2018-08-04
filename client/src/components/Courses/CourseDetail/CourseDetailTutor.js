@@ -2,8 +2,16 @@ import React, { Component } from 'react'
 import './CourseDetailTutor.scss'
 import { Link } from 'react-router-dom'
 import { PUBLIC_COURSE_DETAIL_MENU_TEACHER } from "../../../constants/WebConstants.js"
+import PrimaryButton from "../../Core/PrimaryButton/PrimaryButton";
+import {globalHistory} from "../../../utils/globalHistory";
 
 class CourseDetailTutor extends Component {
+  buildTeacherTitle(teacher) {
+    const titles = [teacher.title];
+    const teacherSpecializes = teacher.categories.map(category => category.name);
+    titles.push(...teacherSpecializes);
+    return titles.join(', ');
+  }
   render() {
     const { course, course_tutor, activeMenu } = this.props
     const active = activeMenu === PUBLIC_COURSE_DETAIL_MENU_TEACHER
@@ -35,13 +43,10 @@ class CourseDetailTutor extends Component {
               <div className="col-xs-12 col-sm-9 col-md-10">
                 <div className="content">
                   <h3>
-                    <Link to={course.user ? `/teachers/${course.user.id}` : '#'}>
-                      {course.user ? course.user.name : this.context.t('unknown')}
-                    </Link>
+                    <span>{course.user ? course.user.name : this.context.t('unknown')}</span>
                   </h3>
                   <p className="labeling">
-                    {course_tutor ? course_tutor.title : this.context.t('unknown')}
-                    {course_tutor && course_tutor.categories.length > 0 ? course_tutor.categories[0].name : ''}
+                    { course_tutor ? this.buildTeacherTitle(course_tutor) : this.context.t('unknown') }
                   </p>
                   <p className="short-info">
                     {
@@ -49,9 +54,9 @@ class CourseDetailTutor extends Component {
                         ? course_tutor.description : this.context.t('unknown')
                     }
                   </p>
-                  <Link to={course.user ? `/teachers/${course.user.id}` : '#'} className="btn btn-primary btn-inverse btn-sm">
-                    {this.context.t('read_more')}
-                  </Link>
+                  <PrimaryButton callback={() => {globalHistory.push(`/teachers/${course.user.id}`)}}
+                                 title={this.context.t('read_more')} isSmallButton={true} isPrimary={true} >
+                  </PrimaryButton>
                 </div>
               </div>
             </div>

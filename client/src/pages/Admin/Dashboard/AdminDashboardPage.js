@@ -31,7 +31,7 @@ class AdminDashboardPage extends RoleAuthorization {
             </div>
           </div>
           <div className="d-flex flex-auto dashboard-content">
-            <div className="full-width daskboard-container">
+            <div className="full-width daskboard-container container">
               <switch>
                 <Route exact path="/admin/dashboard/account" 
                   component={AdminContainers.AccountProfileContainer}

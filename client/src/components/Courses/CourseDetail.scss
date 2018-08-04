@@ -5,6 +5,36 @@
   background-color: #fff;
 }
 
+.course-details-action {
+  position: relative;
+}
+
+.course-action-container {
+  position: absolute;
+  top: -170px;
+  z-index: 99;
+  background-color: $white-color;
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid rgba(0,0,0,.125);
+  &.fixed-action-bar {
+    position: fixed;
+    top: 75px;
+  }
+}
+
+@media (min-width: 1024px) and (max-width: 1200px) {
+  .course-action-container {
+    width: 250px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .course-action-container {
+    width: 200px;
+  }
+}
+
 @media (min-width: $md-lower) {
   .white-mask-normal {
     position: fixed;

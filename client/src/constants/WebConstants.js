@@ -46,6 +46,8 @@ export const DEFAULT_PLACEHOLDER = "ezylearningFullLoader";
 // Teacher detail
 export const TEACHER_DETAIL_PROFILE_PLACEHOLDER = "TEACHER_DETAIL_PROFILE_PLACEHOLDER";
 
+export const LIST_ENROLLED_STUDENT_PLACEHOLDER= "LIST_ENROLLED_STUDENT_PLACEHOLDER";
+
 // authentication
 export const AUTHENTICATED = 'ezyLearningToken';
 
