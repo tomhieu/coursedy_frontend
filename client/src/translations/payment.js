@@ -4,9 +4,12 @@
 export const payment_translation = {
   "vn": {
     "admin_payment_methods": "Phương thức thanh toán",
-    "admin_payment_methods_manual": "Chuyển khoản",
+    "admin_payment_methods_manual": "Thanh toán tại quầy",
+    "admin_payment_methods_transfer": "Chuyển khoản",
     "admin_payment_methods_paypal": "Paypal",
     "admin_payment_methods_visa": "Visa / MasterCard",
+    "admin_payment_methods_manual_instruct": "Hướng dẫn thanh toán",
+    "admin_payment_methods_transfer_instruct": "Hướng dẫn thanh toán",
     "admin_payment_methods_bank_name": "Tên ngân hàng",
     "admin_payment_methods_account_name": "Chủ tài khoản",
     "admin_payment_methods_account_number": "Số tài khoản",
@@ -19,9 +22,12 @@ export const payment_translation = {
   },
   "en": {
     "admin_payment_methods": "Payment methods",
+    "admin_payment_methods_manual": "At counter",
     "admin_payment_methods_manual": "Direct transfer",
     "admin_payment_methods_paypal": "Paypal",
     "admin_payment_methods_visa": "Visa / MasterCard",
+    "admin_payment_methods_manual_instruct": "Instruction",
+    "admin_payment_methods_transfer_instruct": "Instruction",
     "admin_payment_methods_bank_name": "Bank name",
     "admin_payment_methods_account_name": "Account owner",
     "admin_payment_methods_account_number": "Account number",

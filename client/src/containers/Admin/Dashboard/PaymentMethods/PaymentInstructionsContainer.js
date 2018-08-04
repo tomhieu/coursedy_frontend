@@ -5,26 +5,26 @@ import {connect} from "react-redux";
 import {validate} from '../../../../validations/BankAccountFormValidator'
 import {
   BankAccountForm,
-  PaymentSettingForm
+  PaymentInstructionsForm
 } from "../../../../components/Admin"
 import {
-  STORE_ADMIN_PAYMENT_SETTINGS,
+  STORE_ADMIN_PAYMENT_INSTRUCTIONS,
 } from "../../../../actions/AsyncActionCreator"
 
-class PaymentSettingContainer extends Component {
-  savePaymentSettings(data) {
-    console.log('DEBUG savePaymentSettings')
+class PaymentInstructionsContainer extends Component {
+  savePaymentInstructions(data) {
+    console.log('DEBUG savePaymentInstructions')
     console.log(data)
-    this.props.storePaymentSettings(data)
+    this.props.storePaymentInstructions(data)
   }
 
   render() {
     return (
       <div className="row">
         <div className="col-md-12 col-sm-12">
-          <PaymentSettingForm 
+          <PaymentInstructionsForm 
             {...this.props}
-            onSubmit={this.savePaymentSettings.bind(this)} 
+            onSubmit={this.savePaymentInstructions.bind(this)} 
           />
         </div>
       </div>
@@ -32,17 +32,17 @@ class PaymentSettingContainer extends Component {
   }
 };
 
-PaymentSettingContainer.contextTypes = {
+PaymentInstructionsContainer.contextTypes = {
   t: React.PropTypes.func.isRequired
 }
 
 const mapStateToProps = (state) => ({
-  initialValues: state.AdminPaymentMethodsReducer.paymentSettings
+  initialValues: state.AdminPaymentMethodsReducer.PaymentInstructionss
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  storePaymentSettings: (props) => dispatch({
-    type: STORE_ADMIN_PAYMENT_SETTINGS,
+  storePaymentInstructions: (props) => dispatch({
+    type: STORE_ADMIN_PAYMENT_INSTRUCTIONS,
     // payload: Network().post('payment-settings'),
     payload: new Promise((resolve, reject) => {
       setTimeout(function(){
@@ -55,15 +55,13 @@ const mapDispatchToProps = (dispatch) => ({
 export default connect(
   mapStateToProps, mapDispatchToProps
 )(reduxForm({
-  form: 'paymentSetting',
+  form: 'PaymentInstructions',
   fields: [
-    'manual',
-    'transfer',
-    'paypal',
-    'visa'
+    'manual_instruct',
+    'transfer_instruct',
   ],
   onChange: (values, dispatch, props, previousValues) => {
-    props.storePaymentSettings(values)
+    props.storePaymentInstructions(values)
   },
   validate
-})(PaymentSettingContainer));
+})(PaymentInstructionsContainer));

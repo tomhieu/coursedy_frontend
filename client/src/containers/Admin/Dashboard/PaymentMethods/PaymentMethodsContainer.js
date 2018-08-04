@@ -12,6 +12,7 @@ import FormField from "../../../../components/Core/FormField";
 import {
   FETCH_ADMIN_STUDENTS,
   FETCH_ADMIN_PAYMENT_SETTINGS,
+  FETCH_ADMIN_PAYMENT_INSTRUCTIONS,
   FETCH_ADMIN_PAYMENT_INTEGRATIONS,
   FETCH_ADMIN_BANK_ACCOUNTS,
   FETCH_ADMIN_BANK_ACCOUNT,
@@ -22,6 +23,7 @@ import {
 } from "../../../../components/Admin"
 import BankAccountContainer from "./BankAccountContainer"
 import PaymentSettingContainer from "./PaymentSettingContainer"
+import PaymentInstructionsContainer from "./PaymentInstructionsContainer"
 
 class PaymentMethodsContainer extends Component {
   componentDidMount() {
@@ -55,9 +57,17 @@ class PaymentMethodsContainer extends Component {
             />
           </div>
 
+          {/*Payment instructions*/}
+          <div className="col-md-12">
+            <PaymentInstructionsContainer
+              onSubmit={this.savePaymentSetting.bind(this)}
+              {...this.props}
+            />
+          </div>
+
+          {/*Bank account list*/}
           {
-            // Bank account list
-            paymentSettings.manual ? 
+            paymentSettings.transfer ? 
               <div className="col-md-12">
                 <BankAccountList
                   bankAccounts={bankAccounts}
@@ -66,9 +76,10 @@ class PaymentMethodsContainer extends Component {
               </div> :
               null
           }
+
+          {/*Bank account form*/}
           {
-            // Bank account form
-            paymentSettings.manual ? 
+            paymentSettings.transfer ? 
               <div className="col-md-12">
                 <BankAccountContainer {...this.props} />
               </div> :
@@ -107,6 +118,9 @@ const mapDispatchToProps = (dispatch) => ({
             payment_method: 'manual',
             status: false
           }, {
+            payment_method: 'transfer',
+            status: false
+          }, {
             payment_method: 'paypal',
             status: true
           }, {
@@ -124,6 +138,18 @@ const mapDispatchToProps = (dispatch) => ({
       setTimeout(function(){
         resolve({
           stripe_api_key: '',
+        })
+      }, 250)
+    })
+  }),
+  fetchPaymentInstructions: (props) => dispatch({
+    type: FETCH_ADMIN_PAYMENT_INSTRUCTIONS,
+    // payload: Network().get('payment-instructions'),
+    payload: new Promise((resolve, reject) => {
+      setTimeout(function(){
+        resolve({
+          'manual_instruct': '',
+          'transfer_instruct': '',
         })
       }, 250)
     })
