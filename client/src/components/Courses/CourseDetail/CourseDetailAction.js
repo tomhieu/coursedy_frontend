@@ -2,15 +2,18 @@ import React, {Component} from 'react';
 import cssModules from 'react-css-modules';
 import styles from './CourseDetailAction.module.scss';
 import PrimaryButton from "../../Core/PrimaryButton/PrimaryButton";
-import * as Actions from "../../../actions/PublicCourseActionCreator";
 import CourseAccessIcon from "../../Core/Icons/CourseAccessIcon";
 import CourseMaterialIcon from "../../Core/Icons/CourseMaterialIcon";
 import CourseLessonlIcon from "../../Core/Icons/CourseLessonlIcon";
-import FacebookIcon from "../../Core/Icons/FacebookIcon";
-import GooglePlusIcon from "../../Core/Icons/GooglePlusIcon";
-import TwitterIcon from "../../Core/Icons/TwitterIcon";
 import ObjectUtils from "../../../utils/ObjectUtils";
 import {globalHistory} from "../../../utils/globalHistory";
+import FacebookShareCount from "react-share/es/FacebookShareCount";
+import FacebookShareButton from "react-share/es/FacebookShareButton";
+import FacebookIcon from "../../Core/Icons/FacebookIcon";
+import GooglePlusShareButton from "react-share/es/GooglePlusShareButton";
+import GooglePlusIcon from "../../Core/Icons/GooglePlusIcon";
+import LinkedinShareButton from "react-share/es/LinkedinShareButton";
+import LinkinIcon from "../../Core/Icons/LinkinIcon";
 
 
 class CourseDetailAction extends Component {
@@ -50,6 +53,7 @@ class CourseDetailAction extends Component {
 
   render() {
     const { categories, course, course_tutor, course_sections, course_comments } = this.props;
+    const courseDetailsFullUrl = window.location.href;
     return (
       <div className={styles.courseDetailAction}>
         <div className="d-flex flex-column">
@@ -88,9 +92,21 @@ class CourseDetailAction extends Component {
             <div className={styles.seperateLine}></div>
             <span className={styles.title}>{this.context.t('share_course_with_friend')}</span>
             <div className="d-flex flex-row justify-content-center">
-              <a className={styles.socialNetwork}><FacebookIcon></FacebookIcon></a>
-              <a className={styles.socialNetwork}><GooglePlusIcon></GooglePlusIcon></a>
-              <a className={styles.socialNetwork}><TwitterIcon></TwitterIcon></a>
+              <div className={styles.shareSocialIcon}>
+                <FacebookShareButton url={courseDetailsFullUrl}>
+                  <FacebookIcon></FacebookIcon>
+                </FacebookShareButton>
+              </div>
+              <div className={styles.shareSocialIcon}>
+                <GooglePlusShareButton url={courseDetailsFullUrl}>
+                  <GooglePlusIcon></GooglePlusIcon>
+                </GooglePlusShareButton>
+              </div>
+              <div className={styles.shareSocialIcon}>
+                <LinkedinShareButton url={courseDetailsFullUrl}>
+                  <LinkinIcon></LinkinIcon>
+                </LinkedinShareButton>
+              </div>
             </div>
           </div>
         </div>

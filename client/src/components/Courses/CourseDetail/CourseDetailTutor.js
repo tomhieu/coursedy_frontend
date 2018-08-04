@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import './CourseDetailTutor.scss'
 import { Link } from 'react-router-dom'
 import { PUBLIC_COURSE_DETAIL_MENU_TEACHER } from "../../../constants/WebConstants.js"
+import PrimaryButton from "../../Core/PrimaryButton/PrimaryButton";
+import {globalHistory} from "../../../utils/globalHistory";
 
 class CourseDetailTutor extends Component {
   buildTeacherTitle(teacher) {
@@ -52,9 +54,9 @@ class CourseDetailTutor extends Component {
                         ? course_tutor.description : this.context.t('unknown')
                     }
                   </p>
-                  <Link to={course.user ? `/teachers/${course.user.id}` : '#'} className="btn btn-primary btn-inverse btn-sm">
-                    {this.context.t('read_more')}
-                  </Link>
+                  <PrimaryButton callback={() => {globalHistory.push(`/teachers/${course.user.id}`)}}
+                                 title={this.context.t('read_more')} isSmallButton={true} isPrimary={true} >
+                  </PrimaryButton>
                 </div>
               </div>
             </div>

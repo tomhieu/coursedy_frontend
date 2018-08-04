@@ -107,7 +107,11 @@ const PublicCourseDetail = (state = {
         isFetching: false
       };
     case courseTypes.PUBLIC_COURSE_DETAIL_RELATED_COURSES + asyncActs.REJECTED:
-      return state;
+      return {
+        ...state,
+        relatedCourses: [],
+        isFetching: false
+      };
 
     //Reducer for course view
     case courseTypes.PUBIC_COURSE_DETAIL_SUBMIT_VIEW + asyncActs.FULFILLED:

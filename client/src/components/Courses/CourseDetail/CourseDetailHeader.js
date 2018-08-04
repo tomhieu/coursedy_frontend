@@ -27,10 +27,10 @@ class CourseDetailHeader extends Component {
             <div className={styles.courseTeacherInfo}>
               <div className="d-flex flex-row">
                 <div className={styles.teacherName}>
-                  {this.context.t('header_teacher_name', {teacherName: course.user ? course.user.name : this.context.t('unknown')})}
+                  {this.context.t('header_teacher_name', {teacherName: course && course.user ? course.user.name : this.context.t('unknown')})}
                 </div>
                 <div className={styles.lastUpdate}>
-                  {this.context.t('header_last_update', {lastUpdate: course.updated_date ? DateUtils.formatDate(course.updated_date) : this.context.t('unknown')})}
+                  {this.context.t('header_last_update', {lastUpdate: course && course.updated_date ? DateUtils.formatDate(course.updated_date) : this.context.t('unknown')})}
                 </div>
               </div>
             </div>
