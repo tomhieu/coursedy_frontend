@@ -83,7 +83,8 @@ export default connect(
 )(reduxForm({
   form: 'bankAccount',
   fields: [
-    'name', 
+    'name',
+    'code',
     'bankAccount.accountName', 
     'bankAccount.accountNumber', 
     'bankAccount.accountOffice'

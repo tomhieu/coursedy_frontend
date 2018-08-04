@@ -163,7 +163,8 @@ const mapDispatchToProps = (dispatch) => ({
         resolve([
           {
             id: 1,
-            name: "ACB",
+            name: "Ngân hàng Á châu",
+            code: "ACB",
             bankAccount: {
               accountName: "Pham Duy Bao Trung",
               accountNumber: "9124 6788 6778 900",
@@ -171,7 +172,8 @@ const mapDispatchToProps = (dispatch) => ({
             }
           }, {
             id: 2,
-            name: "Vietcombank",
+            name: "Ngân hàng thương mại cổ phần Ngoại thương Việt Nam",
+            code: "VCB",
             bankAccount: {
               accountName: "Pham Duy Bao Trung",
               accountNumber: "9124 6788 6778 900",
