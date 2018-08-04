@@ -103,6 +103,7 @@ PaymentMethodsContainer.contextTypes = {
 const mapStateToProps = (state) => ({
   paymentSettings: state.AdminPaymentMethodsReducer.paymentSettings,
   paymentIntegrations: state.AdminPaymentMethodsReducer.paymentIntegrations,
+  paymentInstructions: state.AdminPaymentMethodsReducer.paymentInstructions,
   bankAccounts: state.AdminPaymentMethodsReducer.bankAccounts,
   isLoading: state.AdminPaymentMethodsReducer.isLoading,
 })
