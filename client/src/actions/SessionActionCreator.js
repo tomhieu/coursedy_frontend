@@ -56,12 +56,22 @@ export const editPassword = () => {
   }
 }
 
+export const loginFacebook = (facebookToken, facebookId) => {
+  return dispatch => {
+    Network().post('/users/connect_facebook', {token: facebookToken, app_user_id: facebookId}).then((response) => {
+      dispatch(autoLogin(response.token, response.client_id, response.uid)).then(({value, action}) => {
+        dispatch(redirectToDashboard(value))
+      })
+    })
+  }
+}
+
 export const autoLogin = (token, clientId, uid) => {
   return dispatch => {
     localStorage.setItem('ezyLearningToken', token)
     localStorage.setItem('ezyLearningClient', clientId)
     localStorage.setItem('ezyLearningUid', uid)
-    dispatch(fetchCurrentUser())
+    return dispatch(fetchCurrentUser())
   }
 }
 
