@@ -3,7 +3,6 @@ import {routerReducer} from "react-router-redux";
 import {reducer as formReducer} from "redux-form";
 import {reducer as toastrReducer} from "react-redux-toastr";
 import {i18nState} from "redux-i18n";
-// Import the various reducers here:
 import LoginComponent from "./LoginComponent";
 import SignUpComponent from "./SignUpComponent";
 
@@ -47,6 +46,7 @@ import recoverPassword from './Auth/RecoverPasswordReducer';
 import EnrolledStudentList from "./Dashboard/Tutors/CourseList/EnrolledStudent/ListEnrolledStudentReducer";
 import {reducer as notifications} from 'react-notification-system-redux';
 import LessonEvaluation from "./Lesson/LessonEvaluationReducer";
+import ThirdPartyLoginReducer from "./ThirdPartyLoginReducer";
 
 const rootReducer = combineReducers({
   DashboardTutorEducationList,
@@ -97,7 +97,8 @@ const rootReducer = combineReducers({
   DashboardMenu,
   EnrolledStudentList,
   notifications,
-  LessonEvaluation
+  LessonEvaluation,
+  ThirdPartyLoginReducer
 });
 
 export default rootReducer;
