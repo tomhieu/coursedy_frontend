@@ -6,6 +6,13 @@ export class SecurityUtils {
     return localStorage.getItem(WebConstants.AUTHENTICATED) != null;
   }
 
+  static isAdmin(user) {
+    if (!user || !Array.isArray(user.roles)) {
+      return false;
+    }
+    return user.roles.indexOf(UserRole.ADMIN) >= 0;
+  }
+
   static isTeacher(user) {
     if (!user || !Array.isArray(user.roles)) {
       return false;

@@ -50,10 +50,6 @@
     text-transform: uppercase;
   }
 
-  h6 {
-    font-weight: 700;
-  }
-
   .head-title {
     color: $dark-text-color;
     i {
@@ -243,8 +239,10 @@ ul.review-list > li:last-child {
 .review-content-list {
   .review-info {
     h6 {
-      font-weight: 700;
-      margin: 0 0 15px;
+      font-weight: 500;
+      color: $color-black-one;
+      line-height: 1.2;
+      margin: 0 0 4px;
       padding-top: 3px;
       padding-right: 10px;
     }

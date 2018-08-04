@@ -10,6 +10,10 @@
   min-width: 303px;
   padding-left: 15px;
   padding-top: 15px;
+
+  @media (max-width: 992px) {
+   display: none;
+  }
 }
 
 .hr {

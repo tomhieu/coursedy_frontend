@@ -4,6 +4,8 @@ import * as PublicCourseActions from '../../../actions/PublicCourseActionCreator
 import * as ReferActions from '../../../actions/ReferenceActions/ReferenceDataActionCreator';
 import { connect } from 'react-redux';
 import * as WebConstants from "constants/WebConstants";
+import {openConfirmationPopup} from "../../../actions/MainActionCreator";
+import {TT} from "../../../utils/locale";
 
 class PublicCourseDetailContainer extends Component {
 
@@ -15,23 +17,23 @@ class PublicCourseDetailContainer extends Component {
     this.props.hideFooter();
     this.props.stretchFull();
     this.props.noShadowHeader();
-    this.props.dispatch(ReferActions.fetchCourseCategories())
+    this.props.getCourseCategories();
     if (this.props.courseId) {
       //Fetch course
-      this.props.dispatch(PublicCourseActions.fetchPublicCourse(this.props.courseId));
+      this.props.getPublicCourse(this.props.courseId);
 
       //Fetch comments
-      this.props.dispatch(PublicCourseActions.fetchCourseComments(
+      this.props.getCourseComments(
         this.props.courseId, 
         this.props.course_comments_page
-      ));
+      );
 
       //Fetch related courses
-      this.props.dispatch(PublicCourseActions.fetchRelatedCourses({
+      this.props.getRelatedCourses({
         course_id: this.props.courseId,
         page: 1,
         per_page: 4
-      }))
+      });
     }
   }
 
@@ -42,14 +44,11 @@ class PublicCourseDetailContainer extends Component {
   }
 
   loadMoreComments() {
-    this.props.dispatch(PublicCourseActions.fetchCourseComments(
-      this.props.courseId, 
-      this.props.course_comments_page+1
-    ))
+    this.props.getCourseComments( this.props.courseId, this.props.course_comments_page + 1 );
   }
 
   changeActiveMenu(payload) {
-    this.props.dispatch(PublicCourseActions.changeActiveMenu(payload))
+    this.props.changeActiveMenu(payload);
   }
 
   render() {
@@ -104,6 +103,7 @@ const mapStateToProps = (state) => {
   return {
     course_category: getCourseCategory(categories, course),
     course_level: getCourseLevel(categories, course),
+    user: state.session.currentUser,
     categories, course, relatedCourses,
     course_tutor, course_sections,
     course_comments, course_comments_page,
@@ -118,7 +118,19 @@ const mapDispatchToProps = (dispatch) => ({
   stretchAuto: () => dispatch({ type: WebConstants.STETCH_AUTO }),
   noShadowHeader: () => dispatch({ type: WebConstants.ADD_HEADER_CLASS, payload: 'no-shadow'}),
   shadowHeader: () => dispatch({ type: WebConstants.REMOVE_HEADER_CLASS}),
-  dispatch: dispatch
+  getCourseCategories: () => dispatch(ReferActions.fetchCourseCategories()),
+  getPublicCourse: (courseId) => dispatch(PublicCourseActions.fetchPublicCourse(courseId)),
+  getCourseComments: (courseId, page) => dispatch(PublicCourseActions.fetchCourseComments(courseId, page)),
+  getRelatedCourses: (courseId, page, perPage) => dispatch(PublicCourseActions.fetchRelatedCourses({courseId, page, perPage})),
+  enrollCourse: (courseId) => {
+    dispatch(PublicCourseActions.submitEnrollCourse(courseId)).then(() => {
+      dispatch(openConfirmationPopup(openConfirmationPopup(TT.t('course_enroll_status'), TT.t('course_enroll_success'))));
+    }, () => {
+      dispatch(openConfirmationPopup(openConfirmationPopup(TT.t('course_enroll_status'), TT.t('course_enroll_fail'))));
+    })
+  },
+  changeActiveMenu: (payload) => dispatch(PublicCourseActions.changeActiveMenu(payload)),
+  showWarningPopup: (title, message, callback) => dispatch(openConfirmationPopup(title, message, callback)),
 });
 
 export default connect(

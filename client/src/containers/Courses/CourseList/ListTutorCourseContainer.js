@@ -4,7 +4,7 @@ import {connect} from "react-redux";
 import LoadingMask from "../../../components/LoadingMask/LoadingMask";
 import {FETCH_TUTOR_COURSES} from "actions/AsyncActionCreator";
 import Network from "utils/network";
-import {DELETE_COURSE, UPDATE_COURSE} from "../../../actions/AsyncActionCreator";
+import {DELETE_COURSE, SHOW_ENROLLED_STUDENT_LIST, UPDATE_COURSE} from "../../../actions/AsyncActionCreator";
 import * as dashboardActions from '../../../actions/DashboardMenuActionCreator';
 import {CourseStatus} from "../../../constants/CourseStatus";
 import TutorCourseList from "../../../components/Courses/CourseList/TutorCourseList";
@@ -81,11 +81,12 @@ ListTutorCourseContainer.contextTypes = {
 }
 
 const mapStateToProps = (state) => {
-  const {TutorCourseList, session} = state;
+  const {TutorCourseList, session, EnrolledStudentList} = state;
   const {courses, isFetching} = TutorCourseList;
+  const {activeCourseId} = EnrolledStudentList;
   const {currentUser} = session;
   return {
-    courses, isFetching, currentUser
+    courses, isFetching, currentUser, activeCourseId
   }
 };
 
@@ -119,7 +120,11 @@ const mapDispatchToProps = (dispatch) => ({
   openCourseDetails: (courseId) => {
     globalHistory.push(`/dashboard/courses/detail/${courseId}`)
   },
-  activateTab: (tabId) => dispatch(dashboardActions.activateTab(tabId))
+  activateTab: (tabId) => dispatch(dashboardActions.activateTab(tabId)),
+  openEnrolledStudentList: (courseId) => dispatch({
+    type: SHOW_ENROLLED_STUDENT_LIST,
+    data: courseId
+  })
 });
 
 export default connect(

@@ -207,7 +207,7 @@ const ReviewHeader = props => {
   return (
     <div className="teacher-detail-review-header">
       <div className="row">
-        <div className="col-xs-12 col-sm-4 col-md-3">
+        <div className="col-xs-12 col-sm-6 col-md-6">
           <div className="review-overall">
             <h5>{props.context.t("teacher_rating")}</h5>
             <p className="review-overall-point">
@@ -217,15 +217,20 @@ const ReviewHeader = props => {
                       teacher.user.rating_points / teacher.user.rating_count
                     ).toFixed(1)
                   : 0}
-              </span>{" "}
-              / {WebConstants.MAX_RATING_POINTS}
+              </span>
             </p>
             <div className="rating-wrapper">
-              <span>
-                ({props.teacher.reviews.data.length}{" "}
-                {props.context.t("teacher_comments")})
-              </span>
+              <RatingItem
+                num_stars={teacher.user.rating_points / teacher.user.rating_count}
+                num_reviews={teacher.user.rating_count}
+              />
             </div>
+          </div>
+        </div>
+        <div className="border-left col-xs-12 col-sm-6 col-md-6">
+          <div className="text-left mb-20">
+            <h3>{props.context.t('teacher_comments')}</h3>
+            <span> ({props.teacher.reviews.data.length} {props.context.t('teacher_comments')})</span>
           </div>
         </div>
       </div>

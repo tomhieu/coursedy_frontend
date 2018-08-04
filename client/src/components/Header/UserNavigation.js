@@ -22,9 +22,13 @@ class UserNavigation extends Component {
   }
   render() {
     const {currentUser} = this.props.session;
+    const userProfileUrl = SecurityUtils.isAdmin(currentUser) ? "/admin/dashboard/account" : SecurityUtils.isTeacher(currentUser) ?
+      "/dashboard/profile" : "/student/dashboard/profile";
+    const courseListUrl = SecurityUtils.isAdmin(currentUser) ? "/admin/dashboard/courses" : SecurityUtils.isTeacher(currentUser) ?
+      "/dashboard/courses/list" : "/student/dashboard/courses/enrolled";
     const dropdownOptions = [
-      {id: 1, link: SecurityUtils.isTeacher(currentUser) ? "/dashboard/profile" : "/student/dashboard/profile", text: this.context.t('user_navigation_basic_info')},
-      {id: 2, link: SecurityUtils.isTeacher(currentUser) ? "/dashboard/courses/list" : "/student/dashboard/courses/enrolled", text: this.context.t('user_navigation_your_course')},
+      {id: 1, link: userProfileUrl, text: this.context.t('user_navigation_basic_info')},
+      {id: 2, link: courseListUrl, text: this.context.t('user_navigation_your_course')},
       {id: 3, callback: this.props.signOut.bind(this), text: this.context.t('user_navigation_sign_out')}
     ]
     return (

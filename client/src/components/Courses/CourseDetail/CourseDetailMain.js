@@ -8,9 +8,6 @@ class CourseDetailMain extends Component {
     return (
       <div className="course-detail-main">
         <div className="container no-pad">
-          <CourseDetailLeftSide 
-            {...this.props}
-          />
           <CourseDetailRightSide 
             {...this.props}
           />
