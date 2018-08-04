@@ -4,10 +4,7 @@ class FooterAside extends Component {
   render() {
     return (
       <div className="footer__aside">
-        <div className="footer__logo">
-          <img src="/logo2.png" />
-        </div>
-        <p>{this.context.t('product_description')}</p>
+        <div className="footer__label">{this.context.t('support_customer_title')}</div>
         <div className="footer__support">
           <a href={`mailto:${this.context.t('product_contact_email')}`} className="_no-underline">
             <i className="_icon fa fa-envelope"></i>

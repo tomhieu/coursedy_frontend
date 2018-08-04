@@ -102,7 +102,7 @@ body.application {
     }
 
     .container {
-      padding: 10px 0;
+      padding: 10px 15px;
     }
   }
 
@@ -452,7 +452,7 @@ body.application {
   }
 
   .dashboard-profile {
-    padding: 15px 50px;
+    padding: 15px 65px;
     border-bottom: 1px solid $color-active-dashboard-menu;
     color: $color-bg-neutral;
 
@@ -568,7 +568,7 @@ body.application {
         text-transform: uppercase;
       }
       .course-details-container {
-        padding: 0 17%;
+        padding: 0 10%;
       }
     }
   }
@@ -1226,7 +1226,7 @@ body.application {
 
   //  footer
   .footer {
-    padding: 0 0 19px;
+    padding: 0;
     background: $color-bg-dark-close-black;
     color: $white-color;
     p, a {
@@ -1239,9 +1239,9 @@ body.application {
     }
 
     &__aside {
-      flex: 0 0 35%;
-      max-width: 35%;
-      padding-right: 30px;
+      flex: 0 0 25%;
+      max-width: 25%;
+      padding-right: 60px;
 
       @media (max-width: 767px) and (min-width: 320px) {
         flex: 0 0 100%;
@@ -1251,8 +1251,8 @@ body.application {
     }
 
     &__main {
-      flex: 0 0 65%;
-      max-width: 65%;
+      flex: 0 0 75%;
+      max-width: 75%;
 
       @media (max-width: 767px) and (min-width: 320px) {
         flex: 0 0 100%;
@@ -1264,7 +1264,7 @@ body.application {
     &__end {
       flex: 0 0 100%;
       max-width: 100%;
-      padding-top: 20px;
+      padding-top: 15px;
       @media (max-width: 767px) and (min-width: 320px) {
         .flexbox {
           flex-flow: column wrap;
@@ -1359,6 +1359,7 @@ body.application {
       flex: 0 0 50%;
       max-width: 50%;
       text-align: right;
+      margin-top: 5px;
       @media (max-width: 767px) and (min-width: 320px) {
         max-width: none;
         text-align: center;
@@ -1370,8 +1371,8 @@ body.application {
 
     &__support {
       margin-top: 20px;
-      border: 1px solid $color-blue-light;
-      color: $color-blue-light;
+      border: 1px solid $white-color;
+      color: $white-color;
       -webkit-border-radius: 3px;
       -moz-border-radius: 3px;
       -ms-border-radius: 3px;
@@ -1397,10 +1398,9 @@ body.application {
         transition: all .2s ease-in-out;
 
         &:hover {
-          background-color: $color-blue-dark;
-          color: $white-color;
+          color: $color-blue-dark;
           ._icon, ._label {
-            color: $white-color;
+            color: $color-blue-dark;
           }
         }
       }
@@ -1410,12 +1410,12 @@ body.application {
         left: 15px;
         top: 20px;
         font-size: 20px;
-        color: $color-blue-dark;
+        color: $white-color;
       }
 
       ._label {
         display: block;
-        color: $color-blue-dark;
+        color: $white-color;
         font-size: 10px;
         text-transform: uppercase;
         -webkit-transition: all .2s ease-in-out;
@@ -1424,17 +1424,28 @@ body.application {
         -o-transition: all .2s ease-in-out;
         transition: all .2s ease-in-out;
       }
+
+      &:hover {
+        border-color: $color-blue-dark;
+        transition: all .2s ease-in-out;
+      }
     }
 
     &__label {
-      color: $color-blue-light;
+      color: $white-color;
       margin-bottom: 6px;
       font-size: 16px;
       font-weight: 600;
     }
 
-    &__logo {
-      margin-bottom: 15px;
+    .coursedy-introduce {
+      margin-top: 0;
+      text-align: start;
+    }
+
+    .coursedy-copyright {
+      margin-top: 5px;
+      margin-left: 10px;
     }
   }
 
@@ -1630,4 +1641,48 @@ body.application {
   position: absolute;
   top: 0;
   left: 0;
+}
+
+.facebook-login-btn {
+  background-color: #4267b2;
+  color: white;
+  border: none;
+  border-radius: 2px;
+  padding: 9px 20px;
+  width: 100%;
+  i.fa-facebook-square {
+    margin-right: 10px;
+    font-size: 17px;
+  }
+}
+
+.google-login-btn {
+  background-color: rgb(209, 72, 54);
+  color: white;
+  border: none;
+  border-radius: 2px;
+  padding: 9px 20px;
+  width: 100%;
+  margin-top: 10px;
+  i.fa-google-plus-square {
+    font-size: 17px;
+    margin-right: 10px;
+  }
+}
+.section-view-icon {
+  margin-right: 10px;
+  margin-top: 3px;
+}
+
+.active-link {
+  color: #007791;
+  cursor: pointer;
+}
+
+.save-comment {
+  width: 150px;
+}
+
+.no-enrolled-student {
+  padding: 10px;
 }

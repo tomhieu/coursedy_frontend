@@ -1,0 +1,70 @@
+@import "../../../../styles/global_style.scss";
+
+.courseDetailAction {
+  .courseCoverImage {
+    img {
+      width: 300px;
+    }
+    @media (min-width: 1024px) and (max-width: 1200px) {
+      img {
+        width: 237px;
+      }
+    }
+    @media (max-width: 1024px) {
+      img {
+        width: 183px;
+      }
+    }
+  }
+
+  .courseFee {
+    padding: 15px 30px;
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 36px;
+  }
+  .courseActionButtons {
+    padding: 5px 30px;
+  }
+  .courseShortIntroduce {
+    padding: 10px 30px;
+    .itemTitle {
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .itemInclude {
+      display: flex;
+      flex-direction: row;
+      padding: 5px 0;
+      .itemIcon {
+        margin-right: 10px;
+      }
+    }
+  }
+
+  .courseShare {
+    margin-top: 15px;
+    margin-bottom: 20px;
+    padding: 0 30px;
+    .seperateLine {
+      border-top: 1px solid rgba(0,0,0,.125);
+      padding-bottom: 20px;
+    }
+    .title {
+      margin-top: 30px;
+      font-size: 20px;
+    }
+
+    .shareSocialIcon {
+      margin-top: 20px;
+      margin-left: 10px;
+    }
+  }
+}
+
+
+@media (max-width: $sm-upper) {
+  .course-detail-header {
+    padding: 15px 0;
+  }
+}

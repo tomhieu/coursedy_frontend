@@ -24,9 +24,8 @@ class TutorCourseItem extends Component {
     }
   }
 
-  showEnrolledStudentList() {
-    const showStudentList = this.state.showStudentList;
-    this.setState({showStudentList: !showStudentList});
+  showEnrolledStudentList(courseId) {
+    this.props.openEnrolledStudentList(courseId);
   }
 
   openCourseDetails(courseId) {
@@ -61,6 +60,7 @@ class TutorCourseItem extends Component {
 
   render() {
     const {course, startCourse, deleteCourse, openCourseDetails} = this.props;
+    const showEnrolledStudentList = this.props.activeCourseId === course.id;
     return (
       <div className="row">
         <div className="col-md-12">
@@ -69,9 +69,9 @@ class TutorCourseItem extends Component {
               <div className="row">
                 <div className="col-xl-9 col-sm-12">
                   <div className="d-flex flex-row align-items-center">
-                    <a onClick={this.showEnrolledStudentList.bind(this)}>
+                    <a onClick={this.showEnrolledStudentList.bind(this, course.id)}>
                       {
-                        this.state.showStudentList ? <CheckIcon isActive={true} width={18} height={11}/> : <DetailsIcon/>
+                        showEnrolledStudentList ? <CheckIcon isActive={true} width={18} height={11}/> : <DetailsIcon/>
                       }
                     </a>
                     <a className={styles.courseAvatarImage}><img src={course.cover_image} /></a>
@@ -144,7 +144,7 @@ class TutorCourseItem extends Component {
         </div>
         <div className="col-md-12">
           {
-            this.state.showStudentList ? <ListEnrolledStudent courseId={course.id}></ListEnrolledStudent> : null
+            showEnrolledStudentList ? <ListEnrolledStudent courseId={course.id}></ListEnrolledStudent> : null
           }
         </div>
         <SimpleDialogComponent show={this.state.showPopup}
@@ -167,7 +167,8 @@ TutorCourseItem.propTypes = {
   course: React.PropTypes.object.isRequired,
   startCourse: React.PropTypes.func,
   deleteCourse: React.PropTypes.func,
-  openCourseDetails: React.PropTypes.func
+  openCourseDetails: React.PropTypes.func,
+  activeCourseId: React.PropTypes.number
 };
 
 export default cssModules(TutorCourseItem, styles);

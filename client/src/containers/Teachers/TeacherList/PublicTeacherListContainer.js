@@ -31,7 +31,7 @@ class PublicTeacherListContainer extends Component {
                    loaderType="COURSE_ITEM_PLACEHOLDER"
                    repeatTime={4}>
         <div className="teacher-list">
-          <div className="container-fluid mt-15 mb-15">
+          <div className="container mt-15 mb-15">
             <TutorList
               {...this.props}
               isPublic={true}

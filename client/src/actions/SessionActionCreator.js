@@ -56,36 +56,44 @@ export const editPassword = () => {
   }
 }
 
+export const loginFacebook = (facebookToken, facebookId) => {
+  return dispatch => {
+    Network().post('/users/connect_facebook', {token: facebookToken, app_user_id: facebookId}).then((response) => {
+      dispatch(autoLogin(response.token, response.client_id, response.uid)).then(({value, action}) => {
+        dispatch(redirectToDashboard(value))
+      })
+    })
+  }
+}
+
 export const autoLogin = (token, clientId, uid) => {
   return dispatch => {
     localStorage.setItem('ezyLearningToken', token)
     localStorage.setItem('ezyLearningClient', clientId)
     localStorage.setItem('ezyLearningUid', uid)
-    dispatch(fetchCurrentUser())
+    return dispatch(fetchCurrentUser())
   }
 }
 
 export const setCurrentUser = () => {
   return dispatch => {
     dispatch(fetchCurrentUser()).then(({value, action}) => {
-      redirectToDashboard(value)
+      return dispatch(redirectToDashboard(value))
     })
   };
 }
 
-export const redirectToDashboard = (user) => {
-  return dispatch => {
-    if (user.roles.indexOf(UserRole.ADMIN) >= 0) {
-      globalHistory.push('/admin/dashboard');
-    } else if (user.roles.indexOf(UserRole.TEACHER) >= 0) {
-      globalHistory.push('/dashboard/profile');
-      dispatch(fetchActiveCourses(user));
-    } else if (user.roles.indexOf(UserRole.STUDENT) >= 0) {
-      globalHistory.push('/student/dashboard/profile');
-      dispatch(fetchActiveCourses(user));
-    } else {
-      throw new Error('Not authorized');
-    }
+export const redirectToDashboard = (user) => dispatch => {
+  if (user.roles.indexOf(UserRole.ADMIN) >= 0) {
+    globalHistory.push('/admin/dashboard/account');
+  } else if (user.roles.indexOf(UserRole.TEACHER) >= 0) {
+    globalHistory.push('/dashboard/profile');
+    dispatch(fetchActiveCourses(user));
+  } else if (user.roles.indexOf(UserRole.STUDENT) >= 0) {
+    globalHistory.push('/student/dashboard/profile');
+    dispatch(fetchActiveCourses(user));
+  } else {
+    throw new Error('Not authorized');
   }
 }
 

@@ -92,7 +92,7 @@ class Header extends Component {
                 <LangNavigation {...this.props}></LangNavigation>
               </li>
               {
-                SecurityUtils.isAuthenticated() ? (
+                this.isAuthenticated() ? (
                   <li className="nav-item">
                     <Notification whiteIcon={!this.state.normalNotification}
                                   session={this.props.session}></Notification>
@@ -100,7 +100,7 @@ class Header extends Component {
                 ) : null
               }
               {
-                SecurityUtils.isAuthenticated() ? (
+                this.isAuthenticated() ? (
                   <li className="nav-item">
                     <UserNavigation session={this.props.session} signOut={this.props.signOut}></UserNavigation>
                   </li>
