@@ -1,0 +1,79 @@
+@import "../../../../styles/global_style.scss";
+
+.courseDetailHeader {
+  width: 100%;
+  background-color: $md-color-pink;
+  padding: 60px 0;
+  color: $white-color;
+  .mainContent {
+    max-width: 850px;
+  }
+  .courseTitle {
+    font-size: 36px;
+  }
+  .container {
+    padding: $box-gap 0;
+  }
+  .info {
+    > .image {
+      width: 155px;
+      float: left;
+    }
+
+    > .content {
+      h2 {
+        line-height: 1.2;
+        margin: -5px 0 13px;
+      }
+    }
+  }
+
+  .courseDetailSection:not(:last-child) {
+    margin-bottom: 30px;
+    border-bottom: 1px solid #E5E5E5;
+    padding-bottom: 30px;
+  }
+
+  .courseDetailSection ul.listWithIcon li {
+    word-wrap: break-word;
+  }
+
+  .courseCategory {
+    font-size: 21px;
+    margin-top: 5px;
+  }
+
+  .courseTeacherInfo {
+    font-size: 15px;
+    margin-top: 5px;
+    .teacherName {
+      margin-right: 20px;
+    }
+    .lastUpdate {
+
+    }
+  }
+
+  .courseRatingInfo {
+    font-size: 15px;
+    margin-top: 5px;
+  }
+
+  .courseSummaryInfo {
+    font-size: 15px;
+    margin-top: 5px;
+    .numberLesson {
+      margin-right: 20px;
+    }
+    .periodLesson {
+
+    }
+  }
+}
+
+
+@media (max-width: $sm-upper) {
+  .course-detail-header {
+    padding: 15px 0;
+  }
+}

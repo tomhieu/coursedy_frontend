@@ -1,19 +1,10 @@
 import React, {Component} from 'react';
 import CourseDetailHeader from './CourseDetail/CourseDetailHeader';
 import CourseDetailMain from './CourseDetail/CourseDetailMain';
-
-import CourseDetailGeneral from './CourseDetail/CourseDetailGeneral';
-import CourseDetailLessons from './CourseDetail/CourseDetailLessons';
-import CourseDetailComments from './CourseDetail/CourseDetailComments';
-import cssModules from 'react-css-modules';
 import './CourseDetail.scss';
-
-import {CoreComponent} from '../index';
 import {PUBLIC_COURSE_MAX_NUMBER_COMMENTS_PER_LOAD} from '../../constants/Courses';
-import {
-  TRIGGER_DISPLAY_FIX_HEADER_BAR_OFFSET,
-  CHECK_ACTIVE_MENU_OFFSET
-} from "../../constants/WebConstants.js"
+import {CHECK_ACTIVE_MENU_OFFSET} from "../../constants/WebConstants.js"
+import CourseDetailAction from "./CourseDetail/CourseDetailAction";
 
 /**
   * @Course group template 2
@@ -27,7 +18,7 @@ class CourseDetail extends Component {
       currentScrollPosition: 0,
       activeMenu: 'course-detail-intro'
     }
-    this.onScroll = this.checkScrollPosition.bind(this)
+    this.onScroll = this.handleScroll.bind(this)
   }
 
   componentDidMount() {
@@ -39,34 +30,42 @@ class CourseDetail extends Component {
     window.removeEventListener('scroll', this.onScroll)
   }
 
-  /*
-    @Check scroll position for active menu, display header bar
-  */
-  checkScrollPosition() {
-    const currentPosition  = window.pageYOffset || document.documentElement.scrollTop
-    this.setState({
-      currentScrollPosition: currentPosition,
-      activeMenu: Object.keys(this.props.sectionPositions).reduce(
-        (currentPosition, newPosition) => {
-          return this.props.sectionPositions[newPosition] < CHECK_ACTIVE_MENU_OFFSET 
-            ? newPosition : currentPosition
-        }, 'course-detail-intro'
-      )
-    })
+  handleScroll(event) {
+    const triggerPosition = 200;
+    const top = window.pageYOffset || document.documentElement.scrollTop
+    if (triggerPosition < top) {
+      this.courseActionBar.classList.add('fixed-action-bar')
+    } else {
+      this.courseActionBar.classList.remove('fixed-action-bar')
+    }
   }
 
   render() {
-    const { activeMenu, currentScrollPosition } = this.state
+    const { activeMenu, currentScrollPosition } = this.state;
+    const {course, course_sections} = this.props;
     return (
       <div className="d-flex flex-auto flex-vertical full-width-in-container">
-        <CourseDetailHeader
-          {...this.props}
-        />
-        <CourseDetailMain
-          {...this.props}
-          activeMenu={activeMenu}
-          currentScrollPosition={currentScrollPosition}
-        />
+        <div className="row">
+          <div className="col-md-12">
+            <CourseDetailHeader
+                {...this.props}
+            />
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-md-8">
+            <CourseDetailMain
+                {...this.props}
+                activeMenu={activeMenu}
+                currentScrollPosition={currentScrollPosition}
+            />
+          </div>
+          <div className="col-md-4 course-details-action">
+            <div ref={el => this.courseActionBar = el} className="course-action-container">
+              <CourseDetailAction course={course} course_sections={course_sections} {...this.props}></CourseDetailAction>
+            </div>
+          </div>
+        </div>
       </div>
     )
   }

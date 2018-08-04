@@ -34,7 +34,7 @@ class StudentDashboard extends RoleAuthorization {
             </div>
           </div>
           <div className="d-flex flex-auto dashboard-content">
-            <div className="full-width daskboard-container">
+            <div className="full-width daskboard-container container">
               <switch>
                 <PrivateRoute exact path="/student/dashboard/profile" roles={[UserRole.STUDENT]} component={TutorProfileDetailsContainer}/>
                 <PrivateRoute exact path="/student/dashboard/courses/enrolled" roles={[UserRole.STUDENT]} component={StudentCoursesEnrolledContainer}/>

@@ -1,0 +1,29 @@
+.lessonSummary {
+  padding: 10px 20px 10px 40px;
+  border-bottom: 1px solid rgba(0,0,0,.125);
+  .lessonIcon {
+    margin-right: 10px;
+  }
+  &:last-child {
+    border-bottom: none;
+  }
+  .lessonTitle {
+    flex: 6;
+    display: flex;
+  }
+  .lessonDescription {
+    flex: 2;
+    display: flex;
+    justify-content: flex-end;
+  }
+  .descriptionContent {
+    border-top: 1px solid rgba(0,0,0,.125);
+    margin: 8px 0;
+    padding-top: 8px;
+  }
+  .lesssonPeriod {
+    flex: 2;
+    display: flex;
+    justify-content: flex-end;
+  }
+}

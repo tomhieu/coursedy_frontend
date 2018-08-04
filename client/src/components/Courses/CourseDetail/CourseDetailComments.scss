@@ -41,13 +41,14 @@
 }
 
 .review-overall-point {
-  font-size: 15px;
-  margin: 0;
+  line-height: 45px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 
   span {
     font-weight: 700;
     color: $color-orange;
-    font-size: 24px;
+    font-size: 70px;
   }
 
 }
@@ -90,7 +91,6 @@ ul.breakdown-list {
 }
 
 ul.review-list {
-  margin-top: 20px;
   border-top: 1px solid #E5E5E5;
   padding-top: 25px;
 
@@ -128,7 +128,7 @@ ul.review-list {
        h6 {
         color: #333;
         line-height: 1.2;
-        margin: 0 0 15px;
+        margin: 0 0 4px;
         padding-top: 3px;
         padding-right: 10px;
       }
@@ -288,6 +288,16 @@ ul.review-list {
     padding: 20px;
 }
 
+.seperate-comment-line {
+  border-left: 1px solid #E5E5E5;
+  margin-left: -20px;
+  padding-left: 20px;
+}
+
+.review-overall .rating-wrapper .rating-item .rating-symbol .fa {
+  font-size: 20px;
+}
+
 @media only screen and (max-width: 1199px) {}
 
 @media only screen and (max-width: 991px) {
@@ -310,4 +320,3 @@ ul.review-list {
     }
 }
 
-@media (max-width: 479px) {}

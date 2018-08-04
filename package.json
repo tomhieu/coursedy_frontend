@@ -96,6 +96,7 @@
     "react-router-redux": "^4.0.8",
     "react-select2": "^4.0.3",
     "react-select2-wrapper": "1.0.3",
+    "react-share": "^2.2.0",
     "react-slick": "^0.23.1",
     "react-stripe-elements": "^1.6.0",
     "react-table": "^6.8.4",

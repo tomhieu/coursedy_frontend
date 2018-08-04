@@ -4,8 +4,7 @@
   .course-detail-main {
     width: 100vw;
     position: relative;
-    /* menu-height + gap + header-height + gap */
-    top: calc(70px + #{$box-gap} + 115px + #{$box-gap});
+    padding-top: 30px;
     .container {
       display: flex;
     }
@@ -13,5 +12,5 @@
 }
 
 .course-detail-main {
-  background-color: $color-bg-gray-form;
+  background-color: $white-color;
 }
