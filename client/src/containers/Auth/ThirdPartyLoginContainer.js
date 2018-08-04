@@ -72,7 +72,7 @@ class ThirdPartyLoginContainer extends Component {
         />
 
         <GoogleLogin
-          clientId="864253356921-geuqin4106ubr8v3r6dvkemm2bdvb0cq.apps.googleusercontent.com"
+          clientId="864253356921-6pdh77qqvaf5nn7kip6mbf8ptevoov90.apps.googleusercontent.com"
           buttonText={this.context.t('login_with_google')}
           onSuccess={this.handleGoogleResponse.bind(this)}
           onFailure={this.handleGoogleResponse.bind(this)}
