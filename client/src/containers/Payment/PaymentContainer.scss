@@ -1,0 +1,26 @@
+@import "../../../styles/global_style";
+
+.payment-container {
+  width: 100%;
+  max-width: 644px;
+  margin: auto;
+  .divider-payment {
+    border-bottom: 3px dashed $color-orange;
+    width: 80%;
+    height: 6px;
+    margin: 20px auto 20px;
+  }
+  .bank-logo {
+    text-align: center;
+    width: 125px;
+    padding: 5px 0;
+    border: 1px solid $color-border;
+    border-radius: 3px;
+    margin-left: 5px;
+    cursor: pointer;
+    &:hover {
+      border: 1px solid $md-color-pink;
+    }
+  }
+}
+
