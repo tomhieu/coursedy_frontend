@@ -1,13 +1,7 @@
 import * as actionTypes from "actions/AsyncActionCreator";
 
 const EnrolledStudentList = (state = {
-  enrolledStudents: [{
-    id: 0,
-    name: 'Pham Duy Bao Trung',
-    email: 'pdbaotrung@gmail.com',
-    gender: 'Nam',
-    date_of_enrollment: '01/01/2018'
-  }],
+  enrolledStudents: [],
   activeCourseId: undefined,
   isFetching: false
 }, action) => {
