@@ -134,7 +134,13 @@
     }
 
     &:hover {
-      border-color: $primary-text-color;
+      border-color: $color-orange;
+    }
+  }
+
+  .teacher-degree {
+    img {
+      height: 200px;
     }
   }
 }
@@ -177,13 +183,15 @@
       display: flex;
       flex-wrap: wrap;
       .category {
-        color: $gray-pale;
-        background-color: $gray-pale-light;
+        margin: 0 5px 5px 0;
+        color: $color-orange;
+        border: 1px solid $color-orange;
+        font-size: 13px;
+        letter-spacing: 1.5px;
         line-height: 1;
+        display: inline-block;
         padding: 3px 8px;
         border-radius: 2px;
-        margin: 0 5px 5px 0;
-        font-size: 13px;
       }
     }
 
@@ -233,6 +241,14 @@ ul.review-list > li:last-child {
 }
 
 .review-content-list {
+  .review-info {
+    h6 {
+      font-weight: 700;
+      margin: 0 0 15px;
+      padding-top: 3px;
+      padding-right: 10px;
+    }
+  }
   > .review-info:last-child {
     border-bottom: 0;
     padding-bottom: 0;

@@ -2826,11 +2826,11 @@ div[data-reactroot] {
   margin: 0 3px;
   border: 0;
   display: block;
-  height: 24px;
-  width: 24px;
-  line-height: 24px;
+  height: 44px;
+  width: 44px;
+  line-height: 44px;
   text-align: center;
-  color: $md-color-pink;
+  color: $primary-text-color;
 }
 
 .pagination>li:first-child>a,
@@ -2841,7 +2841,7 @@ div[data-reactroot] {
     &:hover {
       background-color: transparent;
       svg use {
-        fill: $md-color-pink;
+        fill: $primary-text-color;
       }
     }
   }
@@ -2851,18 +2851,18 @@ div[data-reactroot] {
   z-index: 3;
   cursor: default;
   pointer-events: none;
-  background-color: $md-color-pink;
+  background-color: $primary-text-color;
   color: $white-color;
   font-weight: 700;
 }
 
 .pagination > li > a:hover, .pagination > li > span:hover, .pagination > li > a:focus, .pagination > li > span:focus {
   color: $white-color;
-  background-color: $md-color-pink;
+  background-color: $primary-text-color;
 }
 
 .pagination>.disabled>a, .pagination>.disabled>a:focus, .pagination>.disabled>a:hover, .pagination>.disabled>span, .pagination>.disabled>span:focus, .pagination>.disabled>span:hover {
-  color: $md-color-pink;
+  color: $primary-text-color;
   cursor: not-allowed;
   background-color: $white-background;
   border-color: $border-color;
