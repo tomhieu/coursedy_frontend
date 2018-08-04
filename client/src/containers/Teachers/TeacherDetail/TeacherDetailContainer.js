@@ -15,8 +15,6 @@ import {
 } from "actions/TeacherActionCreators";
 import LoadingMask from "components/LoadingMask/LoadingMask";
 import * as WebConstants from "constants/WebConstants";
-import { FETCH_CATEGORIES } from "actions/AsyncActionCreator";
-import Network from "utils/network";
 import ReviewTeacherForm from "./Content/ReviewTeacherForm";
 import FixedSideBar from "components/Common/FixedSideBar";
 import RightContent from "components/Common/RightContent";
@@ -25,11 +23,13 @@ import { LinkContainer } from "react-router-bootstrap";
 import PrimaryAnchor from "components/Core/PrimaryAnchor/PrimaryAnchor";
 import RatingItem from "components/Rating/index";
 import ObjectUtils from "utils/ObjectUtils";
+import cssModules from 'react-css-modules';
+import styles from './TeacherDetail.module.scss';
+
 
 class TeacherDetail extends Component {
   componentDidMount() {
     this.props.hideFooter();
-    this.props.fetchCategories();
     this.props.fetchTeacherDetail({
       teacherId: parseInt(this.props.match.params.id),
       meta: "teacherDetailProfilePlaceholder"
@@ -86,43 +86,46 @@ class TeacherDetail extends Component {
                   >
                     <div className="full-width">
                       <TeacherProfileHeader {...this.props} />
-                      {this.props.teacher.courses &&
-                      this.props.teacher.courses.data.length ? (
-                        <hr />
-                      ) : null}
                     </div>
                   </LoadingMask>
-                  <TeacherBriefCourses {...this.props} />
                 </div>
               </FixedSideBar>
 
               <RightContent>
-                <TeacherBackground
-                  context={this.context}
-                  teacher={this.props.teacher}
-                />
-                <div className="teacher-detail__content__review">
-                  <div className="teacher-detail__content__review__header mb-30">
-                    <h4>{this.context.t("teacher_review")}</h4>
-                  </div>
-                  <ReviewHeader {...this.props} context={this.context} />
-                  <TeacherReviewList
-                    {...this.props}
-                    handlePageChange={this.fetchTeacherReviewsWithPageNumber.bind(
-                      this
-                    )}
-                    context={this.context}
-                  />
-                  <ReviewTeacherForm />
-                </div>
+                <div className={`${styles.mainContent || ''} d-flex flex-row`}>
+                  <div className={styles.mainSide}>
+                    <TeacherBackground
+                      context={this.context}
+                      teacher={this.props.teacher}
+                    />
+                    <div className="teacher-detail__content__review">
+                      <div className="teacher-detail__content__review__header mb-30">
+                        <h4>{this.context.t("teacher_review")}</h4>
+                      </div>
+                      <ReviewHeader {...this.props} context={this.context} />
+                      <TeacherReviewList
+                        {...this.props}
+                        handlePageChange={this.fetchTeacherReviewsWithPageNumber.bind(
+                          this
+                        )}
+                        context={this.context}
+                      />
+                      <ReviewTeacherForm />
+                    </div>
 
-                <TeacherTaughtCourses
-                  {...this.props}
-                  handlePageChange={this.fetchTeacherCoursesWithPageNumber.bind(
-                    this
-                  )}
-                  context={this.context}
-                />
+                    <TeacherTaughtCourses
+                      {...this.props}
+                      handlePageChange={this.fetchTeacherCoursesWithPageNumber.bind(
+                        this
+                      )}
+                      context={this.context}
+                    />
+                  </div>
+                  <div className={styles.rightSide}>
+                    <TeacherBriefCourses {...this.props} />
+                  </div>
+
+                </div>
               </RightContent>
             </section>
           </div>
@@ -139,53 +142,60 @@ const TeacherBriefCourses = props => {
   }
 
   return (
-    <div className="full-width">
-      <div className="teacher-detail__content__courses__header">
-        <h3>{TT.t("teacher_taught_courses")}</h3>
-      </div>
-      {teacher.courses.data.slice(0, 3).map(course => {
-        return (
-          <div key={course.id} className="related-course-item">
-            <LinkContainer to={`/course/ + ${course.id}`} className="link-tag">
-              <div className="pb-5 pt-5 clearfix">
-                <div className="image">
-                  <img className="full-width" src={course.cover_image} />
-                </div>
-                <div className="content">
-                  <h6>{course.title}</h6>
-                  <div>
-                    <RatingItem
-                      num_stars={
-                        course.rating_count === 0
-                          ? 0
-                          : parseFloat(course.rating_points) /
-                            course.rating_count
-                      }
-                      num_reviews={course.rating_count}
-                    />
+    <LoadingMask
+      placeholderId="teacherCoursesPlaceholder"
+      normalPlaceholder={false}
+      facebookPlaceholder={true}
+      loaderType={WebConstants.TEACHER_DETAIL_SHORT_COURSES_PLACEHOLDER}
+    >
+      <div className="full-width">
+        <div className="teacher-detail__content__courses__header">
+          <h3>{TT.t("teacher_taught_courses")}</h3>
+        </div>
+        {teacher.courses.data.slice(0, 3).map(course => {
+          return (
+            <div key={course.id} className="related-course-item">
+              <LinkContainer to={`/course/ + ${course.id}`} className="link-tag">
+                <div className="pb-5 pt-5 clearfix">
+                  <div className="image">
+                    <img className="full-width" src={course.cover_image} />
                   </div>
-                  <span className="price">
+                  <div className="content">
+                    <h6>{course.title}</h6>
+                    <div>
+                      <RatingItem
+                        num_stars={
+                          course.rating_count === 0
+                            ? 0
+                            : parseFloat(course.rating_points) /
+                            course.rating_count
+                        }
+                        num_reviews={course.rating_count}
+                      />
+                    </div>
+                    <span className="price">
                     {course.is_free
                       ? TT.t("free")
                       : ObjectUtils.currencyFormat(
-                          course.tuition_fee || 0,
-                          course.currency || "VND"
-                        )}
+                        course.tuition_fee || 0,
+                        course.currency || "VND"
+                      )}
                   </span>
+                  </div>
                 </div>
-              </div>
-            </LinkContainer>
-          </div>
-        );
-      })}
-      <div className="link-tag mt-15">
-        <PrimaryAnchor
-          href="#more-his-courses"
-          title={TT.t("view_more")}
-          customClasses="full-width"
-        />
+              </LinkContainer>
+            </div>
+          );
+        })}
+        <div className="link-tag mt-15">
+          <PrimaryAnchor
+            href="#more-his-courses"
+            title={TT.t("view_more")}
+            customClasses="full-width"
+          />
+        </div>
       </div>
-    </div>
+    </LoadingMask>
   );
 };
 
@@ -273,13 +283,7 @@ TeacherDetail.contextTypes = {
   t: React.PropTypes.func.isRequired
 };
 
-const mapDispatchToProps = dispatch => ({
-  fetchCategories: () =>
-    dispatch({
-      type: FETCH_CATEGORIES,
-      payload: Network().get("categories"),
-      meta: "publicCourseListPlaceholder"
-    }),
+const mapDispatchToProps = (dispatch) => ({
   fetchTeacherDetail: query => dispatch(fetchTeacherDetail(query)),
   fetchTeacherEducations: query => dispatch(fetchTeacherEducations(query)),
   fetchTeacherWorkExperiences: query =>
@@ -299,4 +303,4 @@ const mapStateToProps = state => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(TeacherDetail);
+)(cssModules(TeacherDetail, styles));

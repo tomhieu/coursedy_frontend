@@ -34,7 +34,7 @@ const ReviewHeader = ({ review }) => {
         <h6>{review.user.name}</h6>
       </div>
       <div className="col-sm-3">
-        <p className="review-date">{DateUtils.formatDate(review.created_at)}</p>
+        <p className="review-date">{DateUtils.dateTimeFromNow(review.created_at)}</p>
       </div>
     </div>
   );

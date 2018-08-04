@@ -22,14 +22,12 @@
   }
 
   &__content {
-    margin-top: 15px;
     @media only screen and (max-width: 767.98px) {
       margin-top: 15px;
     }
 
     &__background, &__courses, &__review {
       background-color: $white-background;
-      border: 1px solid $border-color;
       padding: 15px;
       margin-bottom: 15px;
       box-shadow: 0 3px 8px 0 $color-light-box-shadow;
@@ -146,6 +144,7 @@
 }
 
 .teacher-detail-profile-header {
+  padding-top: 25px;
   .profile-picture {
     img {
       border-radius: 50%;
@@ -158,18 +157,19 @@
   }
 
   .profile-summary {
+    font-size: 12px;
     .profile-box {
       color: $gray-pale;
-      margin-top: 5px;
-      margin-bottom: 5px;
+      margin-top: 10px;
+      margin-bottom: 10px;
 
       h3 {
         color: $gray-dark;
         font-size: 18px;
       }
 
-      .teacher-sub-title, .teacher-introduction {
-        font-size: 12px;
+      .teacher-short-experience {
+        font-style: italic;
       }
 
       .vertical-slash {

@@ -1138,10 +1138,9 @@ body.application {
 
   .social {
     a {
-      display: block;
+      display: inline-block;
       line-height: 30px;
       background: $white-color;
-      float: left;
       width: 30px;
       height: 30px;
       text-align: center;
@@ -1590,7 +1589,7 @@ body.application {
     }
     &+.right-content {
       margin-left: 303px;
-      width: 837px;
+      width: 967px;
     }
   }
 }

@@ -1,6 +1,7 @@
 import React from 'react'
 import defaultAvatar from '../../../../../images/default_avatar.png'
-import ReadMoreText from 'components/ReadMore/ReadMoreText'
+import cssModules from 'react-css-modules';
+import styles from '../TeacherDetail.module.scss';
 
 
 class TeacherProfileHeader  extends React.Component {
@@ -18,8 +19,14 @@ class TeacherProfileHeader  extends React.Component {
             <h3>{teacher.user.name}</h3>
           </div>
           <div className="profile-box">
-            <span className="teacher-sub-title">{teacher.country}</span>
-            <span className={`teacher-sub-title${teacher.country ? ' vertical-slash': ''}`}>{teacher.title}</span>
+            <span>{teacher.country}</span>
+            <span className={`${teacher.country ? ' vertical-slash': ''}`}>{teacher.title}</span>
+          </div>
+          <hr className={styles.hr}/>
+          <div className="profile-box">
+            <div className="teacher-short-experience">
+              {teacher.short_experience}
+            </div>
           </div>
           <div className="profile-box">
               {!teacher.twitter && !teacher.linkedIn && this.context.t('content_is_updating')}
@@ -52,7 +59,6 @@ class TeacherCategories extends React.Component {
     super(props)
     this.state = { showMore: true}
   }
-
 
   toggleShowMore() {
     this.setState({showMore: !this.state.showMore})
@@ -92,4 +98,4 @@ TeacherCategories.contextTypes = {
   t: React.PropTypes.func.isRequired
 }
 
-export default TeacherProfileHeader
+export default cssModules(TeacherProfileHeader, styles)
