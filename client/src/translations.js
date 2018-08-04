@@ -12,6 +12,8 @@ export const translations = {
     "signout": "Đăng xuất",
     "dashboard": "Trang cá nhân",
     "with_your_account": "với tài khoản",
+    'login_with_facebook': 'Đăng nhập bằng facebook',
+    'login_with_google': 'Đăng nhập bằng google',
     "register": "Đăng ký",
     "register_now": "Đăng Ký",
     "new_account": "tài khoản mới",

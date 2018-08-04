@@ -1643,6 +1643,32 @@ body.application {
   left: 0;
 }
 
+.facebook-login-btn {
+  background-color: #4267b2;
+  color: white;
+  border: none;
+  border-radius: 2px;
+  padding: 9px 20px;
+  width: 100%;
+  i.fa-facebook-square {
+    margin-right: 10px;
+    font-size: 17px;
+  }
+}
+
+.google-login-btn {
+  background-color: rgb(209, 72, 54);
+  color: white;
+  border: none;
+  border-radius: 2px;
+  padding: 9px 20px;
+  width: 100%;
+  margin-top: 10px;
+  i.fa-google-plus-square {
+    font-size: 17px;
+    margin-right: 10px;
+  }
+}
 .section-view-icon {
   margin-right: 10px;
   margin-top: 3px;
