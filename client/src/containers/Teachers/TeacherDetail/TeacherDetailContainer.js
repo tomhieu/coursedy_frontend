@@ -150,7 +150,7 @@ const TeacherBriefCourses = props => {
         {teacher.courses.data.slice(0, 3).map(course => {
           return (
             <div key={course.id} className="related-course-item">
-              <LinkContainer to={`/course/ + ${course.id}`}
+              <LinkContainer to={`/course/${course.id}`}
                              className="link-tag">
                 <div className="pb-5 pt-5 clearfix">
                   <div className="image">
