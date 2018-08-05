@@ -1,7 +1,7 @@
 import React from 'react';
 import {Provider} from 'react-redux';
-import store from '../store/store';
-import App from '../components/App';
+import store from 'store/store';
+import App from 'components/App';
 import * as Pages from '../pages/';
 import ReduxToastr from 'react-redux-toastr';
 import {Route, Router, Switch} from 'react-router-dom'
@@ -9,13 +9,13 @@ import {globalHistory} from "utils/globalHistory";
 import TeacherListContainer from 'containers/Teachers/TeacherList/TeacherListContainer';
 import TeacherDetailContainer from 'containers/Teachers/TeacherDetail/TeacherDetailContainer';
 import PrivateRoute from "containers/PrivateRoute/PrivateRoute";
-import {UserRole} from "../constants/UserRole";
-import AboutUsContainer from '../containers/Others/AboutUsContainer'
-import HelpCenterContainer from '../containers/Others/HelpCenterContainer'
-import BecomeTeacherContainer from '../containers/Others/BecomeTeacherContainer'
-import TermsContainer from '../containers/Others/TermsContainer'
-import PrivacyContainer from '../containers/Others/PrivacyContainer'
-import LessonEvaluationContainer from "../containers/Courses/Lesson/LessonEvaluationContainer";
+import {UserRole} from "constants/UserRole";
+import AboutUsContainer from 'containers/Others/AboutUsContainer'
+import HelpCenterContainer from 'containers/Others/HelpCenterContainer'
+import BecomeTeacherContainer from 'containers/Others/BecomeTeacherContainer'
+import TermsContainer from 'containers/Others/TermsContainer'
+import PrivacyContainer from 'containers/Others/PrivacyContainer'
+import LessonEvaluationContainer from "containers/Courses/Lesson/LessonEvaluationContainer";
 
 const router = (
   <Provider store={store}>

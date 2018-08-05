@@ -1138,10 +1138,9 @@ body.application {
 
   .social {
     a {
-      display: block;
+      display: inline-block;
       line-height: 30px;
       background: $white-color;
-      float: left;
       width: 30px;
       height: 30px;
       text-align: center;
@@ -1601,7 +1600,7 @@ body.application {
     }
     &+.right-content {
       margin-left: 303px;
-      width: 837px;
+      width: 967px;
     }
   }
 }
@@ -1641,6 +1640,16 @@ body.application {
   position: absolute;
   top: 0;
   left: 0;
+}
+
+.clearfix {
+  &:before {
+    display: table;
+    content: " ";
+  }
+  &:after {
+    clear: both;
+  }
 }
 
 .facebook-login-btn {
@@ -1685,4 +1694,9 @@ body.application {
 
 .no-enrolled-student {
   padding: 10px;
+}
+
+.small-date {
+  font-size: 11px;
+  color: $color-black-two;
 }

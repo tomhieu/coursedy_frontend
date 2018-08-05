@@ -122,4 +122,8 @@ import {SERVER_NAME} from "./CommonConstant";
    };
  };
 
+ export const getQueryParam = (name, qString) => {
+   return queryString.parse(qString)[name]
+ }
+
  export default Network;

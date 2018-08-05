@@ -1,121 +1,56 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
-import {reduxForm, reset} from "redux-form";
-import {Button} from 'react-bootstrap';
-import FormField from "../../../../components/Core/FormField";
-import {validate} from "../../../../validations/CommentFormValidation";
-import * as Actions from "../../../../actions/TeacherActionCreators";
-import SimpleDialogComponent from "../../../../components/Core/SimpleDialogComponent"
-import {globalHistory} from '../../../../utils/globalHistory'
+import {reduxForm} from "redux-form";
+import FormField from "components/Core/FormField";
+import {validate} from "validations/CommentFormValidation";
+import * as Actions from "actions/TeacherActionCreators";
+import PrimaryButton from 'components/Core/PrimaryButton/PrimaryButton'
+import { openConfirmationPopup } from 'actions/MainActionCreator'
+import { TT } from 'utils/locale'
+import { withRouter } from 'react-router-dom'
 
 
 class ReviewTeacherForm extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      showRequireLoginModal: false,
-      showCommentStatusModal: false
-    }
-  }
-
   submitComment({content}) {
     if (!this.props.user) {
-      this.showRequireLoginModal()
+      this.props.showWarningPopup(this.context.t('require_login'),
+        this.context.t('course_submit_comment_require_login_message'),
+        this.redirectToLogin.bind(this));
     } else {
       //Submit comment
-      // if (this.props.user.id !== this.props.teacher.user_id)
-      this.props.dispatch(Actions.submitTeacherComment({content, teacherId: this.props.teacher.user_id, user_id: this.props.user.id}));
-      //Show comment status
-      this.showSubmitCommentStatusModal();
+      this.props.reset();
+      this.props.onSubmitComment(content, this.props.teacher.user_id, this.props.user.id);
     }
-  }
-
-  hideRequireLoginModal() {
-    this.setState({
-      showRequireLoginModal: false
-    })
-  }
-
-  showRequireLoginModal() {
-    this.setState({
-      showRequireLoginModal: true
-    })
   }
 
   redirectToLogin() {
-    this.hideRequireLoginModal()
-    globalHistory.push(`/login?next=${encodeURIComponent(`/teachers/${this.props.teacher.user_id}`)}`)
-  }
-
-  hideSubmitCommentStatusModal() {
-    this.props.dispatch(reset('ReviewTeacherForm'))
-    
-    this.setState({
-      showCommentStatusModal: false
-    })
-  }
-
-  showSubmitCommentStatusModal() {
-    this.setState({
-      showCommentStatusModal: true
+    const teacherId = this.props.teacher.user_id || this.props.match.params.id
+    this.props.history.push({
+      pathname: '/login',
+      search: `?next=/teachers/${teacherId}#comment-form-section`
     })
   }
 
   render() {
-    if (!this.props.user) {
+    if (this.props.user && this.props.teacher.user_id === this.props.user.id) {
       return null
     }
 
-    const { handleSubmit, pristine, submitting } = this.props
-    let submitCommentMessage = null;
-    const {showRequireLoginModal, showCommentStatusModal} = this.state
-    if (this.props.submitCommentSuccess) {
-      submitCommentMessage = <div>
-        {this.context.t('submit_comment_success')}
-      </div>
-    } else if (this.props.submitCommentFail) {
-      submitCommentMessage = <div>
-        {this.context.t('submit_comment_fail')}
-      </div>
-    }
-
+    const {handleSubmit, pristine, submitting} = this.props;
     return (
-      <div className="mt-30" id="comment-form-section">
+      <div className="course-detail-comment-form" id="comment-form-section">
         <form onSubmit={handleSubmit(this.submitComment.bind(this))} className='inline-form ml-0 mr-0'>
-          <FormField fieldId={'comment_content'}
-                     formGroupId={'content'}
-                     formLabel={this.context.t('comment_content')}
-                     placeholder={this.context.t('comment_content')}
-                     isMandatoryField={true}
-                     formControlName={'content'}
-                     typeField={'custom_textarea'}>
-          </FormField>
-          <Button type="submit" disabled={pristine || submitting} className="btn-primary">
-            {this.context.t('sent')}
-          </Button>
+          <FormField fieldId={'course_comment_content'} formGroupId={'content'} formLabel={this.context.t('course_comment_content')}
+                     placeholder={this.context.t('course_comment_content')} isMandatoryField={true}
+                     formControlName={'content'} typeField={'custom_textarea'}></FormField>
+          <div className="d-flex justify-content-right">
+            <PrimaryButton type="submit"
+                           customClasses="btn"
+                           title={this.context.t("send")} line={false}
+                           disabled={pristine || submitting}>
+            </PrimaryButton>
+          </div>
         </form>
-        {/* Require login modal */}
-        <SimpleDialogComponent
-          title={this.context.t('require_login')}
-          show={showRequireLoginModal}
-          acceptLabel={this.context.t('ok')}
-          cancelLabel={this.context.t('close')}
-          cancelCallback={this.hideRequireLoginModal.bind(this)}
-          acceptCallback={this.redirectToLogin.bind(this)}
-        >
-          {this.context.t('submit_comment_require_login_message')}
-        </SimpleDialogComponent>
-
-        {/* Submit enroll course message */}
-        <SimpleDialogComponent
-          title={this.context.t('submit_comment_status')}
-          show={showCommentStatusModal}
-          cancelLabel={this.context.t('close')}
-          cancelCallback={this.hideSubmitCommentStatusModal.bind(this)}
-        >
-          {submitCommentMessage}
-        </SimpleDialogComponent>
-
       </div>
     )
   }
@@ -125,24 +60,31 @@ ReviewTeacherForm.contextTypes = {
   t: React.PropTypes.func.isRequired
 }
 
-ReviewTeacherForm.propTypes = {
-};
 
 const mapStateToProps = (state) => {
   return {
     user: state.session.currentUser,
-    teacher: state.TeacherDetail,
-    submitCommentSuccess: state.TeacherDetail.submitCommentSuccess,
-    submitCommentFail: state.TeacherDetail.submitCommentFail,
+    teacher: state.TeacherDetail
   }
 }
 
+const mapDispatchToProps = (dispatch) => ({
+  showWarningPopup: (title, message, callback) => dispatch(openConfirmationPopup(title, message, callback)),
+  onSubmitComment: (content, teacherId, userId) => {
+    dispatch((Actions.submitTeacherComment({content, teacherId, userId}))).then(({value, action}) => {
+      dispatch(openConfirmationPopup(TT.t('submit_comment_status'), TT.t('submit_comment_success')))
+    }, (err) => {
+      dispatch(openConfirmationPopup(TT.t('submit_comment_status'), TT.t('submit_comment_fail')))
+    });
+  }
+});
 
 export default connect(
-  mapStateToProps
+  mapStateToProps,
+  mapDispatchToProps
 )(reduxForm({
   form: 'ReviewTeacherForm',
   fields: ['content'],
   validate,
   enableReinitialize: true
-})(ReviewTeacherForm));
+})(withRouter(ReviewTeacherForm)));

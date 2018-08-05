@@ -1,17 +1,17 @@
-import * as types from '../constants/Session'
-import {globalHistory} from '../utils/globalHistory'
+import * as types from 'constants/Session'
+import {globalHistory} from 'utils/globalHistory'
 import queryString from 'query-string'
 import Network from '../utils/network'
 import {LOGIN} from "./AsyncActionCreator";
-import * as WebConstants from "constants/WebConstants";
 import * as asyncActions from "actions/AsyncActionCreator";
 import {LOGIN_FAILED} from "constants/LoginComponent";
 import {TT} from "utils/locale";
 import {UserRole} from "constants/UserRole";
 import {REMOVE_CURRENT_USER, SET_CURRENT_USER} from "constants/Session";
-import {CourseStatus} from "../constants/CourseStatus";
+import {CourseStatus} from "constants/CourseStatus";
 import {SecurityUtils} from "utils/SecurityUtils";
 import * as thirdPartyLoginActions from 'constants/ThirdPartyLoginConstants'
+
 
 export const fetchCurrentUser = () => {
   return {
@@ -86,9 +86,13 @@ export const autoLogin = (token, clientId, uid) => {
   }
 }
 
-export const setCurrentUser = () => {
+
+export const setCurrentUser = (nextUrl) => {
   return dispatch => {
     dispatch(fetchCurrentUser()).then(({value, action}) => {
+      if (typeof nextUrl !== 'undefined' && nextUrl !== 'undefined') {
+        return globalHistory.push(nextUrl);
+      }
       return dispatch(redirectToDashboard(value))
     })
   };
@@ -122,14 +126,14 @@ export const fetchActiveCourses = (user) => {
   }
 }
 
-export const loginUser = (email, password) => {
+export const loginUser = (email, password, nextUrl) => {
   return dispatch => {
     return dispatch({
       type: LOGIN,
       payload: Network().post('auth/sign_in', {email, password}),
       meta: 'loginPlaceholder'
     }).then(() => {
-      dispatch(setCurrentUser())
+      dispatch(setCurrentUser(nextUrl))
     }, ({value, action}) => {
       dispatch({
         type: LOGIN_FAILED,

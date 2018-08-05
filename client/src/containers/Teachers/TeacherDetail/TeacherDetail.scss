@@ -22,14 +22,12 @@
   }
 
   &__content {
-    margin-top: 15px;
     @media only screen and (max-width: 767.98px) {
       margin-top: 15px;
     }
 
     &__background, &__courses, &__review {
       background-color: $white-background;
-      border: 1px solid $border-color;
       padding: 15px;
       margin-bottom: 15px;
       box-shadow: 0 3px 8px 0 $color-light-box-shadow;
@@ -43,16 +41,13 @@
 
   h3 {
     font-size: 20px;
+    color: $gray-dark;
   }
 
   h4 {
     font-size: 20px;
     margin: 0 0 15px;
     text-transform: uppercase;
-  }
-
-  h6 {
-    font-weight: 700;
   }
 
   .head-title {
@@ -62,7 +57,7 @@
       display: inline-block;
       border: solid 1px $white-color;
       line-height: 36px;
-      font-size: 20px;
+      font-size: 30px;
       margin-right: 15px;
     }
     h4 {
@@ -97,17 +92,60 @@
     padding-bottom: 25px;
     margin-bottom: 25px;
   }
+
+  .teacher-profile-sidebar {
+    h3 {
+      font-size: 18px;
+    }
+    padding-bottom: 15px;
+    @media (max-width: $md-lower) {
+      padding: 15px;
+    }
+  };
+
+  .related-course-item {
+    border-bottom: 1px solid $border-color;
+    padding: 15px 0;
+    -o-transition: all 0.3s ease;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+
+    .image {
+      width: 75px;
+      height: 75px;
+      float: left;
+    }
+
+    .content {
+      margin-left: 85px;
+    }
+
+    .price {
+      font-size: 15px;
+      display: block;
+      color: $primary-text-color;
+    }
+
+    &:hover {
+      border-color: $color-orange;
+    }
+  }
+
+  .teacher-degree {
+    img {
+      height: 200px;
+    }
+  }
 }
 
 .teacher-detail-profile-header {
-  border: solid 1px #e5e5e5;
-  padding: 15px;
-  text-align: center;
+  padding-top: 25px;
   .profile-picture {
     img {
       border-radius: 50%;
-      height: 115px;
-      width: 115px;
+      height: 116px;
+      width: 116px;
       cursor: pointer;
       transition: all 0.2s ease-in-out;
       padding: 1px;
@@ -115,21 +153,41 @@
   }
 
   .profile-summary {
+    font-size: 12px;
+    .profile-box {
+      color: $gray-pale;
+      margin-top: 10px;
+      margin-bottom: 10px;
+
+      h3 {
+        color: $gray-dark;
+        font-size: 18px;
+      }
+
+      .teacher-short-experience {
+        font-style: italic;
+      }
+
+      .vertical-slash {
+        &:before {
+          content: ' | ';
+        }
+      }
+    }
+
     .categories {
       display: flex;
       flex-wrap: wrap;
       .category {
-        border: 1px solid $md-color-pink;
+        margin: 0 5px 5px 0;
+        color: $color-orange;
+        border: 1px solid $color-orange;
+        font-size: 13px;
+        letter-spacing: 1.5px;
         line-height: 1;
+        display: inline-block;
         padding: 3px 8px;
         border-radius: 2px;
-        margin: 0 5px 5px 0;
-        font-size: 12px;
-
-        &:hover {
-          background: $md-color-pink;
-          color: $white-color;
-        }
       }
     }
 
@@ -146,6 +204,11 @@
         top: 5px;
         left: 0;
       }
+    }
+
+    .see-more {
+      color: $color-blue-dark;
+      cursor: pointer;
     }
 
     @media only screen and (max-width: 991px) {
@@ -174,6 +237,16 @@ ul.review-list > li:last-child {
 }
 
 .review-content-list {
+  .review-info {
+    h6 {
+      font-weight: 500;
+      color: $color-black-one;
+      line-height: 1.2;
+      margin: 0 0 4px;
+      padding-top: 3px;
+      padding-right: 10px;
+    }
+  }
   > .review-info:last-child {
     border-bottom: 0;
     padding-bottom: 0;
@@ -200,4 +273,10 @@ ul.review-list > li:last-child {
   .btn.collapsed {
     display: block;
   }
+}
+
+.left-sidebar {
+  top: calc(60px + 15px);
+  overflow-y: scroll;
+  height: calc(100vh - 60px - 15px);
 }

@@ -43,6 +43,8 @@ class AsyncLoader extends Component {
           return <UserAccountPlaceholder numOfline={3}></UserAccountPlaceholder>;
         case WebContants.TEACHER_DETAIL_PROFILE_PLACEHOLDER:
           return <TeacherDetailProfilePlaceholder numOfline={4}></TeacherDetailProfilePlaceholder>
+        case WebContants.TEACHER_DETAIL_SHORT_COURSES_PLACEHOLDER:
+          return <TeacherDetailShortCoursesPlaceholder repeatTime={repeatTime}></TeacherDetailShortCoursesPlaceholder>
       }
     } else {
       return null;
@@ -205,6 +207,35 @@ const CourseItemPlaceholder = () => {
   )
 }
 
+const ShortCourseItemPlaceholder = () => {
+  return (
+    <div className="row">
+      <div className="col-xss-12 col-xs-3 col-lg-3 col-sm-4 col-md-4">
+        <div className="background-masker image-placeholder"></div>
+      </div>
+      <div className="col-xss-12 col-xs-9 col-lg-9 col-sm-8 col-md-8">
+        <div className="d-flex flex-column flex-auto">
+          <div className="background-masker sm-text-placeholder"></div>
+          <div className="background-masker sm-text-placeholder"></div>
+          <div className="background-masker sm-text-placeholder"></div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+const ShortCoursesPlaceholder = () => {
+  return (
+    <div className="animated-background">
+      <ShortCourseItemPlaceholder />
+      <hr className="mt-15 mb-15"/>
+      <ShortCourseItemPlaceholder />
+      <hr className="mt-15 mb-15"/>
+      <ShortCourseItemPlaceholder />
+    </div>
+  )
+}
+
 const CourseItemsPlaceholder = (props) => {
   const {repeatTime} = props;
   const placeholders = [];
@@ -291,6 +322,14 @@ const TeacherDetailProfilePlaceholder = (props) => {
         <div style={{width: '100%'}}>
           {placeholders}
         </div>
+    </div>
+  )
+}
+
+const TeacherDetailShortCoursesPlaceholder = () => {
+  return (
+    <div className="timeline-item">
+      <ShortCoursesPlaceholder />
     </div>
   )
 }

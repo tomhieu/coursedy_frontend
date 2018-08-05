@@ -1,8 +1,6 @@
 import * as types from '../constants/Courses'
 import * as asyncActs from "./AsyncActionCreator.js"
-import * as sessionTypes from '../constants/Session'
 import Network from '../utils/network'
-import {globalHistory} from '../utils/globalHistory'
 import {TT} from '../utils/locale'
 import * as PublicCourseConstants from "../constants/PublicCourseConstants"
 
@@ -83,16 +81,6 @@ export const submitEnrollCourse = (courseId) => {
           message: "Không đủ số dư"
         }]}
       })      
-    })
-  }
-}
-
-export const redirectAfterLogin = (pageForSuccess, pageForFail = '/') => {
-  return dispatch => {
-    globalHistory.push('/login');
-    dispatch({
-      type: sessionTypes.SET_REDIRECT_PAGE,
-      payload: pageForSuccess
     })
   }
 }
