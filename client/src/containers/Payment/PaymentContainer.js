@@ -13,12 +13,14 @@ import {
 } from "../../actions/AsyncActionCreator"
 import "../../../styles/global_style.scss"
 import { banks } from "../../constants/Banks"
+import FormField from "../../components/Core/FormField"
 
 class PaymentContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
       selectMethod: '',
+      step: 1,
       selectBank: {
         id: 0,
         name: '',
@@ -40,7 +42,8 @@ class PaymentContainer extends Component {
 
   changePaymentMethods(method) {
     this.setState({
-      selectMethod: method
+      selectMethod: method,
+      step: 2
     })
   }
 
@@ -58,7 +61,8 @@ class PaymentContainer extends Component {
         selectBank: {
           ...bank[0],
           fullName: bankProfile[0].name
-        }
+        },
+        step: 3
       })
     }
   }
@@ -71,7 +75,9 @@ class PaymentContainer extends Component {
     } = this.props
     return (
       <div className="payment-container">
-        <div className="row">
+
+        {/*Step 1: Choose payment method*/}
+        <div className="row container-fluid">
           <div className="col-md-6 no-pad">
             <div className="col-md-12 no-pad">
               <p><b>Hình thức thanh toán</b></p>
@@ -79,49 +85,48 @@ class PaymentContainer extends Component {
             {
               paymentSettings.manual ?
               <div className="col-md-12 no-pad">
-                <div className="form-check">
-                  <label className="form-check-label">
-                    <input 
-                      type="radio" 
-                      class="form-check-input" 
-                      name="payment-method" 
-                      onClick={this.changePaymentMethods.bind(this, 'manual')} 
-                    />
-                    Tại quầy
-                  </label>
-                </div>
+                <label className="col-md mr-10" for="role-0">
+                  <input 
+                    type="radio" 
+                    name="payment-method" 
+                    value="teacher" 
+                    onClick={this.changePaymentMethods.bind(this, 'manual')}
+                  />
+                  <span className="pl-10">{this.context.t('admin_payment_methods_manual')}</span>
+                </label>
               </div>
               : null
             }
             {
               paymentSettings.transfer ?
               <div className="col-md-12 no-pad">
-                <div className="form-check">
-                  <label className="form-check-label">
-                    <input 
-                      type="radio" 
-                      class="form-check-input" 
-                      name="payment-method" 
-                      onClick={this.changePaymentMethods.bind(this, 'transfer')} 
-                    />
-                    Chuyển khoản
-                  </label>
-                </div>
+                <label className="col-md mr-10" for="role-0">
+                  <input 
+                    type="radio" 
+                    name="payment-method" 
+                    value="teacher" 
+                    onClick={this.changePaymentMethods.bind(this, 'transfer')}
+                  />
+                  <span className="pl-10">{this.context.t('admin_payment_methods_transfer')}</span>
+                </label>
               </div>
               : null
             }
           </div>
           <div className="col-md-6 payment-instruct">
+            <div className="col-md-12 no-pad">
+              <p><b>Hướng dẫn thanh toán</b></p>
+            </div>
             {
               this.state.selectMethod == 'manual' ? 
-                <div className="col-md-12">
+                <div className="col-md-12 no-pad">
                   {paymentInstructions.manual_instruct}  
                 </div>
                 : null
             }
             {
               this.state.selectMethod == 'transfer' ?
-                <div className="col-md-12">
+                <div className="col-md-12 no-pad">
                   {paymentInstructions.transfer_instruct}
                 </div>
                 : null
@@ -129,13 +134,18 @@ class PaymentContainer extends Component {
           </div>
         </div>
 
-        <div className="divider-payment clearfix"></div>
-        <div className="row">
-          <div className="col-md-12 no-pad">
-            <p><i>Thank toán bằng cách chuyển khoản vào 1 trong các tài khoản sau</i></p>
-          </div>
-          {
-            this.state.selectMethod == 'transfer' ?
+        {/*Step 2: Choose bank*/}
+        {
+          this.state.step >= 2 && this.state.selectMethod == 'transfer' ?
+            <div className="divider-payment clearfix"></div>
+            : null
+        }
+        {
+          this.state.step >= 2 && this.state.selectMethod == 'transfer' ?
+            <div className="row container-fluid">
+              <div className="col-md-12 no-pad">
+                <p><i>Thank toán bằng cách chuyển khoản vào 1 trong các tài khoản sau</i></p>
+              </div>
               <div className="col-md-12 no-pad">
                 {
                   bankAccounts.map((item) => (
@@ -149,38 +159,47 @@ class PaymentContainer extends Component {
                   ))
                 }
               </div>
-            : null
-          }
-        </div>
+            </div> : null
+        }
 
-        <div className="divider-payment clearfix"></div>
-        <div className="row">
-          <div className="col-md-12 no-pad">
-            <p><i>Thông tin tài khoản</i></p>
-          </div>
-          <div className="col-md-12 no-pad">
-            <table className="table table-responsive">
-              <tbody>
-                <tr>
-                  <td><b>Ngân hàng</b></td>
-                  <td>{this.state.selectBank.fullName}</td>
-                </tr>
-                <tr>
-                  <td><b>Chủ tài khoản</b></td>
-                  <td>{this.state.selectBank.bankAccount.accountName}</td>
-                </tr>
-                <tr>
-                  <td><b>Số tài khoản</b></td>
-                  <td>{this.state.selectBank.bankAccount.accountNumber}</td>
-                </tr>
-                <tr>
-                  <td><b>Chi nhánh</b></td>
-                  <td>{this.state.selectBank.bankAccount.accountOffice}</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
+        {/*Step 3: Show bank account*/}
+        {
+          this.state.step >= 3 && this.state.selectMethod == 'transfer'?
+            <div className="divider-payment clearfix"></div>
+            : null
+        }
+        {
+          this.state.step >= 3 && this.state.selectMethod == 'transfer'?
+            <div className="row container-fluid">
+              <div className="col-md-12 no-pad">
+                <p><i>Thông tin tài khoản</i></p>
+              </div>
+              <div className="col-md-12 no-pad">
+                <table className="table table-responsive">
+                  <tbody>
+                    <tr>
+                      <td><b>Ngân hàng</b></td>
+                      <td>{this.state.selectBank.fullName}</td>
+                    </tr>
+                    <tr>
+                      <td><b>Chủ tài khoản</b></td>
+                      <td>{this.state.selectBank.bankAccount.accountName}</td>
+                    </tr>
+                    <tr>
+                      <td><b>Số tài khoản</b></td>
+                      <td>{this.state.selectBank.bankAccount.accountNumber}</td>
+                    </tr>
+                    <tr>
+                      <td><b>Chi nhánh</b></td>
+                      <td>{this.state.selectBank.bankAccount.accountOffice}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div> : null
+        }
+
+       
         
 
 

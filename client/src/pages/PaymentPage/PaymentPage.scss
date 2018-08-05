@@ -1,3 +1,15 @@
+@import "../../../styles/global_style";
+
 .payment-page {
   padding-top: 68px;
-}
+  padding-bottom: 68px;
+  background-color: $color-bg-neutral;
+
+  .payment-box {
+    width: 100%;
+    max-width: 644px;
+    margin: auto;
+    padding: 25px 15px;
+    background-color: $white-background;
+  }
+} 

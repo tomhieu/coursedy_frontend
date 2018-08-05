@@ -3,6 +3,7 @@ import {ControlLabel, FormGroup} from "react-bootstrap";
 import {Field} from "redux-form";
 import {
   renderCheckBoxField,
+  renderRadioField,
   renderDatePicker, renderField, renderMultiSelect, renderSelect, renderSingleFileInput,
   renderTextAreaField,
 } from "./CustomComponents";
@@ -49,6 +50,14 @@ class FormField extends Component {
         fieldComponent = <Field name={formControlName} placeholder={placeholder}
                                 type={type} disabled={this.props.disabled}
                                 component={renderField} onChange={this.props.onChange}
+                                customClassName={customClassName}/>;
+        break;
+      }
+      case "radio": {
+        fieldComponent = <Field name={formControlName} placeholder={placeholder}
+                                type="checkbox" disabled={this.props.disabled}
+                                label={this.props.fieldLabel}
+                                component={renderRadioField} onChange={this.props.onChange}
                                 customClassName={customClassName}/>;
         break;
       }
