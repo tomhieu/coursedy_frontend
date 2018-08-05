@@ -173,11 +173,11 @@ const TeacherBriefCourses = props => {
             </div>
           )
         })}
-        <div className="link-tag mt-15">
+        <div className="link-tag mt-30">
           <PrimaryAnchor
             href="#more-his-courses"
             title={TT.t('view_more')}
-            customClasses="full-width"
+            customClasses={styles.primaryAnchor}
           />
         </div>
       </div>
@@ -242,7 +242,7 @@ const TeacherTaughtCourses = props => {
           <CourseListInGridMode
             {...{
               courses: teacher.courses.data,
-              itemClass: 'col-12 col-sm-12 col-md-6 col-lg-4 mb-15 mt-15'
+              itemClass: 'col-12 col-sm-12 col-md-6 col-lg-6 mb-15 mt-15'
             }}
           />
 
