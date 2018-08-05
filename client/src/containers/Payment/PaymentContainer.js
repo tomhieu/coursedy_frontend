@@ -78,7 +78,7 @@ class PaymentContainer extends Component {
 
         {/*Step 1: Choose payment method*/}
         <div className="row container-fluid">
-          <div className="col-md-6 no-pad">
+          <div className="col-sm-12 col-md-4 no-pad">
             <div className="col-md-12 no-pad">
               <p><b>Hình thức thanh toán</b></p>
             </div>
@@ -113,22 +113,24 @@ class PaymentContainer extends Component {
               : null
             }
           </div>
-          <div className="col-md-6 payment-instruct">
+          <div className="col-sm-12 col-md-8 payment-instruct">
             <div className="col-md-12 no-pad">
               <p><b>Hướng dẫn thanh toán</b></p>
             </div>
             {
               this.state.selectMethod == 'manual' ? 
-                <div className="col-md-12 no-pad">
-                  {paymentInstructions.manual_instruct}  
-                </div>
+                <div 
+                  className="col-md-12 no-pad" 
+                  dangerouslySetInnerHTML={{ __html: this.context.t('admin_payment_methods_manual_instruct_content') }}
+                />
                 : null
             }
             {
               this.state.selectMethod == 'transfer' ?
-                <div className="col-md-12 no-pad">
-                  {paymentInstructions.transfer_instruct}
-                </div>
+                <div 
+                  className="col-md-12 no-pad" 
+                  dangerouslySetInnerHTML={{ __html: this.context.t('admin_payment_methods_transfer_instruct_content') }}
+                />
                 : null
             }
           </div>
