@@ -10,6 +10,7 @@ import {globalHistory} from '../../utils/globalHistory'
 import Notification from "./Notification";
 import UserNavigation from "./UserNavigation";
 import LangNavigation from "./LangNavigation";
+import { Link } from 'react-router-dom'
 
 class Header extends Component {
   constructor(props) {
@@ -66,7 +67,7 @@ class Header extends Component {
         className={`header-nav navbar navbar-expand-lg navbar-light navbar-default ${customHeaderClass} ` + (showDarkHeader ? "dark-header" : "bg-light")}
         ref={el => this.header = el}>
         <div className="container">
-          <a className="navbar-brand" href="#"><img src="/coursedy-logo-2.png" className="logo" alt="logo"/></a>
+          <Link className="navbar-brand" to="/"><img src="/coursedy-logo-2.png" className="logo" alt="logo"/></Link>
           <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
                   aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
