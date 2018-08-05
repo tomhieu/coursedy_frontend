@@ -10,6 +10,7 @@ import {UserRole} from "constants/UserRole";
 import {REMOVE_CURRENT_USER, SET_CURRENT_USER} from "constants/Session";
 import {CourseStatus} from "constants/CourseStatus";
 import {SecurityUtils} from "utils/SecurityUtils";
+import * as thirdPartyLoginActions from 'constants/ThirdPartyLoginConstants'
 
 
 export const fetchCurrentUser = () => {
@@ -56,9 +57,19 @@ export const editPassword = () => {
   }
 }
 
-export const loginFacebook = (facebookToken, facebookId) => {
+export const loginFacebook = (facebookToken, facebookId, role= null) => {
   return dispatch => {
-    Network().post('/users/connect_facebook', {token: facebookToken, app_user_id: facebookId}).then((response) => {
+    Network().post('users/connect_facebook', {token: facebookToken, app_user_id: facebookId, role: role}).then((response) => {
+      dispatch(autoLogin(response.token, response.client_id, response.uid)).then(({value, action}) => {
+        dispatch(redirectToDashboard(value))
+      })
+    })
+  }
+}
+
+export const loginGoogle = (idToken, role= null) => {
+  return dispatch => {
+    Network().post('users/connect_google', {token: idToken, role: role}).then((response) => {
       dispatch(autoLogin(response.token, response.client_id, response.uid)).then(({value, action}) => {
         dispatch(redirectToDashboard(value))
       })
