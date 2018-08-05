@@ -90,7 +90,7 @@ export const autoLogin = (token, clientId, uid) => {
 export const setCurrentUser = (nextUrl) => {
   return dispatch => {
     dispatch(fetchCurrentUser()).then(({value, action}) => {
-      if (typeof nextUrl !== 'undefined') {
+      if (typeof nextUrl !== 'undefined' && nextUrl !== 'undefined') {
         return globalHistory.push(nextUrl);
       }
       return dispatch(redirectToDashboard(value))
