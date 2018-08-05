@@ -64,16 +64,10 @@ class CourseDetailComments extends Component {
                               />
                             </div>
                             <div className="content">
-                              <div className="row">
-                                <div className="col-md-12">
-                                  <h6>{item.user.name}</h6>
-                                  <div className="rating-wrapper">
-                                    <div className="rating-item">
-                                    </div>
-                                  </div>
-                                </div>
-                                <div className="col-md-12 d-flex justify-content-left">
-                                  <p className="review-date">{DateUtils.dateTimeFromNow(item.created_at)}</p>
+                              <div className="gap-20 mb-0">
+                                <div className="d-flex">
+                                  <strong className="pr-10">{item.user.name}</strong>
+                                  <span>{DateUtils.dateTimeFromNow(item.created_at)}</span>
                                 </div>
                               </div>
                               <div className="review-text">

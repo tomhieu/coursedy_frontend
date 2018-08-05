@@ -29,11 +29,9 @@ class ReviewContent extends Component {
 const ReviewHeader = ({ review }) => {
   return (
     <div className="gap-20 mb-0">
-      <div>
-        <h6>{review.user.name}</h6>
-      </div>
-      <div className="d-flex justify-content-left">
-        <p className="review-date small-date">{DateUtils.dateTimeFromNow(review.created_at)}</p>
+      <div className="d-flex">
+        <strong className="pr-10">{review.user.name}</strong>
+        <span>{DateUtils.dateTimeFromNow(review.created_at)}</span>
       </div>
     </div>
   );

@@ -20,7 +20,7 @@ class TeacherProfileHeader  extends React.Component {
           </div>
           <div className="profile-box">
             <span>{teacher.country}</span>
-            <span className={`${teacher.country ? ' vertical-slash': ''}`}>{teacher.title}</span>
+            <span className={`${teacher.country ? ' vertical-slash': ''}`}>{teacher.title || this.context.t('teacher_job_title_is_updating')}</span>
           </div>
           <hr className={styles.hr}/>
           <div className="profile-box">
@@ -41,7 +41,7 @@ class TeacherProfileHeader  extends React.Component {
             {
               teacher.categories && teacher.categories.length ?
                 <TeacherCategories categories={teacher.categories}/>
-                : <div>{this.context.t('content_is_updating')}</div>
+                : <div>{this.context.t('specializes_is_updating')}</div>
             }
           </div>
         </div>

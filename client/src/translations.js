@@ -478,6 +478,8 @@ export const translations = {
     "enter_review": "Nội dung bình luận",
     "review_cancel_button": "Huỷ",
     "content_is_updating": "Thông tin đang cập nhật",
+    "specializes_is_updating": "Thông tin chuyên môn đang cập nhật",
+    "teacher_job_title_is_updating": "Thông tin nghề nghiệp đang cập nhật",
     "see_more": "Xem thêm",
     "see_less": "Rút gọn",
     "submit_comment_require_login_message": "Bạn cần đăng nhập để đăng phản hồi",

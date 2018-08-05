@@ -37,8 +37,7 @@ LoginFormContainer.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  LoginComponent: state.LoginComponent,
-  redirectPage: state.session.redirectPage
+  LoginComponent: state.LoginComponent
 });
 
 const mapDispatchToProps = (dispatch) => ({
