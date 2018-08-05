@@ -45,6 +45,7 @@ class ReviewTeacherForm extends Component {
                      formControlName={'content'} typeField={'custom_textarea'}></FormField>
           <div className="d-flex justify-content-right">
             <PrimaryButton type="submit"
+                           customClasses="btn"
                            title={this.context.t("send")} line={false}
                            disabled={pristine || submitting}>
             </PrimaryButton>

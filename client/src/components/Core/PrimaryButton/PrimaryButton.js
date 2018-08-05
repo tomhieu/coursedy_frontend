@@ -1,6 +1,5 @@
 import styles from "./PrimaryButton.module.scss";
-import {Component} from "react";
-import * as React from "react";
+import React, {Component} from "react";
 import cssModules from 'react-css-modules';
 
 class PrimaryButton extends Component {

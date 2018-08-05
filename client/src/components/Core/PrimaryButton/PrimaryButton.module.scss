@@ -24,7 +24,6 @@
     cursor: not-allowed !important;
   }
 
-
   &.filled {
     &.primary {
       background-color: $color-organe;
@@ -33,6 +32,11 @@
         border: 1px solid $color-organe;
         color: $color-organe;
         background-color: transparent;
+        &:disabled {
+          border: none;
+          color: $white-color;
+          background-color: $color-organe;
+        }
       }
     }
 
@@ -43,6 +47,11 @@
         border: 1px solid $secondary-color;
         color: $secondary-color;
         background-color: transparent;
+        &:disabled {
+          border: none;
+          color: $white-color;
+          background-color: $secondary-color;
+        }
       }
     }
   }
@@ -56,6 +65,10 @@
       &:hover {
         background-color: $color-orange;
         color: $white-color;
+        &:disabled {
+          color: $color-organe;
+          background-color: transparent;
+        }
       }
     }
 
@@ -67,6 +80,10 @@
       &:hover {
         background-color: $secondary-color;
         color: $white-color;
+        &:disabled {
+          color: $secondary-color;
+          background-color: transparent;
+        }
       }
     }
   }
