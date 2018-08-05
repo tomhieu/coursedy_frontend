@@ -27,7 +27,11 @@ class CommentFormContainer extends Component {
   }
 
   redirectToLogin() {
-    this.props.redirectToLogin(this.props.course.id);
+    const courseId = this.props.course.id || this.props.match.params.id
+    this.props.history.push({
+      pathname: '/login',
+      search: `?next=/course/${courseId}#comment-form-section`
+    })
   }
 
   render() {
@@ -73,8 +77,7 @@ const mapDispatchToProps = (dispatch) => ({
     }, (err) => {
       dispatch(openConfirmationPopup(TT.t('course_submit_comment_status'), TT.t('course_submit_comment_fail')))
     });
-  },
-  redirectToLogin: (courseId) => dispatch(Actions.redirectAfterLogin('course/'+ courseId +'#comment-section'))
+  }
 });
 
 

@@ -8,12 +8,14 @@ import {asyncValidate, validate} from 'validations/SignInFormValidation';
 import {loginUser} from "actions/SessionActionCreator";
 import FacebookLogin from 'react-facebook-login';
 import GoogleLogin from 'react-google-login';
-import {loginFacebook} from "../../actions/SessionActionCreator";
+import {loginFacebook} from "actions/SessionActionCreator"
+import { getQueryParam } from 'utils/network'
 
 
 class LoginFormContainer extends Component {
   loginUser({email, password}) {
-    this.props.login(email, password);
+    const nextUrl = getQueryParam('next', this.props.location.search) + this.props.location.hash
+    this.props.login(email, password, nextUrl);
   }
 
   handleFacebookResponse(response) {
@@ -76,7 +78,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  login: (email, password) => dispatch(loginUser(email,  password))
+  login: (email, password, nextUrl) => dispatch(loginUser(email,  password, nextUrl))
 })
 
 const StyledComponent = cssModules(LoginFormContainer, styles);

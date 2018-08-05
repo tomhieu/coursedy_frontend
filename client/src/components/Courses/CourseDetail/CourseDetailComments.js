@@ -73,7 +73,7 @@ class CourseDetailComments extends Component {
                                   </div>
                                 </div>
                                 <div className="col-md-12 d-flex justify-content-left">
-                                  <p className="review-date">{DateUtils.formatDate(item.created_at)}</p>
+                                  <p className="review-date">{DateUtils.dateTimeFromNow(item.created_at)}</p>
                                 </div>
                               </div>
                               <div className="review-text">

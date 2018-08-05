@@ -64,10 +64,10 @@ export const fetchTeacherCourses = ({teacherId, meta, query}) => {
   };
 }
 
-export const submitTeacherComment = ({content, teacherId, user_id}) => {
+export const submitTeacherComment = ({content, teacherId, userId}) => {
   const params = {
     content,
-    user_id
+    user_id: userId
   }
 
   return {
