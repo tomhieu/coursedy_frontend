@@ -16,7 +16,7 @@ import {
 import ThirdPartyLoginReducer from "../../reducers/ThirdPartyLoginReducer";
 import {TT} from "../../utils/locale";
 import Modal from "react-bootstrap4-modal";
-import PrimaryButton from "components/core/PrimaryButton/PrimaryButton";
+import PrimaryButton from "../../components/Core/PrimaryButton/PrimaryButton";
 import {renderRadioFields} from "../../components/Core/CustomComponents";
 import {ROLES} from "../../constants/Roles";
 import {validate} from "../../validations/SignUpFormValidation";
