@@ -1,8 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import cssModules from 'react-css-modules';
 import styles from './Header.module.scss';
-import defaultAvatar from '../../../images/default_avatar.png'
-import CoursedyDropDown from "../Core/CoursedyDropdown/CoursedyDropDown";
+import CoursedyDropDown from "../../../components/Core/CoursedyDropdown/CoursedyDropDown";
 
 class LangNavigation extends Component {
   constructor(props) {

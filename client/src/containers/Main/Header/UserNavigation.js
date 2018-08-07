@@ -1,9 +1,9 @@
 import React, {Component, PropTypes} from 'react';
 import cssModules from 'react-css-modules';
 import styles from './Header.module.scss';
-import defaultAvatar from '../../../images/default_avatar.png'
-import CoursedyDropDown from "../Core/CoursedyDropdown/CoursedyDropDown";
+import defaultAvatar from '../../../../images/default_avatar.png'
 import {SecurityUtils} from "utils/SecurityUtils";
+import CoursedyDropDown from "../../../components/Core/CoursedyMultiStep/CoursedyDropDown";
 
 class UserNavigation extends Component {
   constructor(props) {

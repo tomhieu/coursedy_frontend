@@ -1,13 +1,19 @@
 import React, { Component } from 'react';
 import cssModules from 'react-css-modules';
 import styles from './Footer.module.scss';
-import FooterAside from "../Layout/SubFooter/FooterAside";
-import FooterMain from "../Layout/SubFooter/FooterMain";
-import FooterEnd from "../Layout/SubFooter/FooterEnd";
+import {connect} from "react-redux";
+import FooterAside from "../../../components/Layout/SubFooter/FooterAside";
+import FooterMain from "../../../components/Layout/SubFooter/FooterMain";
+import FooterEnd from "../../../components/Layout/SubFooter/FooterEnd";
 
 
 class Footer extends Component {
   render() {
+    const {showFooter} = this.props;
+    if (!showFooter) {
+        return null;
+    }
+
     return (
       <footer className="footer">
         <div className="footer__top">
@@ -28,5 +34,10 @@ class Footer extends Component {
   }
 }
 
+const mapStateToProps = (state) => {
+    return { showFooter: state.main.showFooter };
+}
 
-export default cssModules(Footer, styles);
+export default connect(
+    mapStateToProps
+)(cssModules(Footer, styles));
