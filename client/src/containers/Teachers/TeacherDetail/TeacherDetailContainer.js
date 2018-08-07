@@ -173,11 +173,10 @@ const TeacherBriefCourses = props => {
             </div>
           )
         })}
-        <div className="link-tag mt-30">
+        <div className="d-flex justify-content-center link-tag mt-20">
           <PrimaryAnchor
             href="#more-his-courses"
             title={TT.t('view_more')}
-            customClasses={styles.primaryAnchor}
           />
         </div>
       </div>
