@@ -1,8 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import cssModules from 'react-css-modules';
 import styles from './Header.module.scss';
-import CoursedyDropDown from "../Core/CoursedyDropdown/CoursedyDropDown";
-import session from "../../reducers/Session";
+import CoursedyDropDown from "../../../components/Core/CoursedyDropdown/CoursedyDropDown";
 
 class Notification extends Component {
   constructor(props) {
@@ -25,12 +24,12 @@ class Notification extends Component {
   }
 
   render() {
-    const {session, whiteIcon} = this.props;
+    const {session, main} = this.props;
 
     const dropdownContainerClassList = [styles.notificationContainer];
 
     let fillColor = '#B3BDBC';
-    if (whiteIcon) {
+    if (main.darkHeader) {
       fillColor = '#FFFFFF';
       dropdownContainerClassList.push(styles.homepage);
     }
@@ -84,7 +83,7 @@ Notification.contextTypes = {
 
 Notification.propTypes = {
   session: PropTypes.object,
-  whiteIcon: PropTypes.bool
+  main: PropTypes.object
 };
 
 export default cssModules(Notification, styles);

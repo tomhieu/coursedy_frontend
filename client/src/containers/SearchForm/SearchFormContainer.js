@@ -13,7 +13,7 @@ import * as CourseFilterActions from "../../actions/CourseFilterActionCreator";
 
 class SearchFormContainer extends Component {
   componentWillMount() {
-    this.props.showDarkHeader();
+    this.props.showDarkHeader()
   }
   componentWillUnmount() {
     this.props.showWhiteHeader();

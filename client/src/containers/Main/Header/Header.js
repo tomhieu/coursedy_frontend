@@ -3,26 +3,21 @@ import {NavbarToggler, NavLink} from 'react-bootstrap'
 import cssModules from 'react-css-modules';
 import styles from './Header.module.scss';
 import {LinkContainer} from 'react-router-bootstrap'
-import {SecurityUtils} from "utils/SecurityUtils";
-import {TRIGGER_STICKY_HEADER_AT} from "constants/Layout";
-import PrimaryButton from "../Core/PrimaryButton/PrimaryButton";
-import {globalHistory} from '../../utils/globalHistory'
 import Notification from "./Notification";
 import UserNavigation from "./UserNavigation";
 import LangNavigation from "./LangNavigation";
-import { Link } from 'react-router-dom'
+import {Link} from 'react-router-dom'
+import {connect} from "react-redux";
+import PrimaryButton from "../../../components/Core/PrimaryButton/PrimaryButton";
+import {globalHistory} from "utils/globalHistory";
+import * as sessionActions from "../../../actions/SessionActionCreator";
+import {TRIGGER_STICKY_HEADER_AT} from "../../../constants/Layout";
+import {SecurityUtils} from "../../../utils/SecurityUtils";
 
 class Header extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      normalNotification: !props.main.darkHeader
-    }
     this.onScroll = this.handleScroll.bind(this);
-  }
-
-  componentWillReceiveProps(nextProps) {
-    this.setState({normalNotification: !nextProps.main.darkHeader});
   }
 
   componentWillMount() {
@@ -44,10 +39,8 @@ class Header extends Component {
     const top = window.pageYOffset || document.documentElement.scrollTop
     if (triggerPosition < top) {
       this.header.classList.add('navbar-sticky', 'fixed-top')
-      this.setState({normalNotification: true})
     } else {
       this.header.classList.remove('navbar-sticky', 'fixed-top')
-      this.setState({normalNotification: !this.props.main.darkHeader})
     }
   }
 
@@ -60,11 +53,10 @@ class Header extends Component {
   }
 
   render() {
-    const showDarkHeader = this.props.main.darkHeader;
-    const {customHeaderClass} = this.props.main;
+    const {customHeaderClass, darkHeader} = this.props.main;
     return (
       <nav
-        className={`header-nav navbar navbar-expand-lg navbar-light navbar-default ${customHeaderClass} ` + (showDarkHeader ? "dark-header" : "bg-light")}
+        className={`header-nav navbar navbar-expand-lg navbar-light navbar-default ${customHeaderClass} ` + (darkHeader ? "dark-header" : "bg-light")}
         ref={el => this.header = el}>
         <div className="container">
           <Link className="navbar-brand" to="/"><img src="/coursedy-logo-2.png" className="logo" alt="logo"/></Link>
@@ -95,7 +87,7 @@ class Header extends Component {
               {
                 this.isAuthenticated() ? (
                   <li className="nav-item">
-                    <Notification whiteIcon={!this.state.normalNotification}
+                    <Notification main={this.props.main}
                                   session={this.props.session}></Notification>
                   </li>
                 ) : null
@@ -103,7 +95,7 @@ class Header extends Component {
               {
                 this.isAuthenticated() ? (
                   <li className="nav-item">
-                    <UserNavigation session={this.props.session} signOut={this.props.signOut}></UserNavigation>
+                    <UserNavigation session={this.props.session} lang={this.props.lang} signOut={this.props.signOut}></UserNavigation>
                   </li>
                 ) : (
                   <li className="nav-item">
@@ -133,4 +125,17 @@ Header.propTypes = {
   session: PropTypes.object.isRequired,
 };
 
-export default cssModules(Header, styles);
+const mapStateToProps = (state) => {
+  const {main, session} = state;
+  return {main, session, lang: state.i18nState.lang};
+}
+
+const mapDispatchToProps = (dispatch) => ({
+  fetchUser: () => dispatch(sessionActions.fetchCurrentUser()).then((user) => {
+    dispatch(sessionActions.fetchActiveCourses(user.value));
+  }),
+  signOut: () => dispatch(sessionActions.signOutUser()),
+})
+export default connect(
+  mapStateToProps, mapDispatchToProps
+)(cssModules(Header, styles));
