@@ -29,7 +29,7 @@ const TeacherDetail = (state = {
         error: null, isFetching: false
       }
     case asyncActs.FETCH_TEACHER_DETAIL + asyncActs.REJECTED:
-      return {...state, error: action.error, isFetching: false}
+      return {...state, error: action.payload, isFetching: false}
 
     case asyncActs.FETCH_TEACHER_EDUCATIONS + asyncActs.FULFILLED:
       return {...state, educations: action.payload}
