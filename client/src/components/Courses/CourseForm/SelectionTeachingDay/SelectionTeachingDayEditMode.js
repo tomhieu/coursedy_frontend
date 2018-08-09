@@ -28,7 +28,7 @@ class SelectionTeachingDayEditMode extends Component {
                     </FormField>
                 </div>
                 <div className="col-sm-12 col-md-12">
-                    <FormField fieldId="is_same_period_id"
+                    <FormField fieldId="is_same_period"
                                showLabel={false}
                                fieldLabel={this.context.t("teaching_period_per_day_similar")}
                                formControlName={"is_same_period"}

@@ -4,6 +4,10 @@ import moment from 'moment'
 export const validate = (values) => {
   const errors = {}
 
+  if (!values) {
+    return errors;
+  }
+
   if (!values.title) {
     errors.title = TT.t('course_title_required')
   }
@@ -66,7 +70,7 @@ export const validate = (values) => {
       errors.start_time_id = TT.t('start_time_error');
       errors.end_time_id = TT.t('end_time_error');
     }
-  } else {
+  } else if (Array.isArray(values.course_days) && values.course_days.length > 0) {
     values.course_days.map(day => {
       const day_key = day.split('_')[0];
       if (!values[day_key + '_start_time']) {

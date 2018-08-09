@@ -13,7 +13,7 @@ class CourseFeeEditMode extends Component {
           <div className="row">
             <div className="col-md-6">
               <div className='lg-field'>
-                <FormField fieldId="tuition_fee_Id"
+                <FormField fieldId="tuition_fee"
                            fieldLabel={this.context.t("tuition_fee")}
                            placeholder={this.context.t("tuition_fee")}
                            isMandatory={true}
@@ -25,7 +25,7 @@ class CourseFeeEditMode extends Component {
             </div>
             <div className="col-md-6">
               <div className='ml-10 currency-field'>
-                <FormField fieldId="currency_Id"
+                <FormField fieldId="currency"
                            fieldLabel={this.context.t("tuition_currency")}
                            isMandatory={true}
                            formControlName="currency"

@@ -9,7 +9,7 @@ class CourseCategoryViewMode extends Component {
       <div className="row">
         <div className='col-sm-12 col-md-6 col-lg-6'>
           <div>
-            <CourseFormItem editMode={editMode} fieldId="categoryId"
+            <CourseFormItem editMode={editMode} fieldId="category_id"
                             fieldLabel={this.context.t("course_category")}
                             placeholder={this.context.t("course_category")}
                             isMandatory={true}
@@ -28,7 +28,7 @@ class CourseCategoryViewMode extends Component {
           courseSpecializes.length > 0 ?
             <div className='col-sm-12 col-md-6 col-lg-6'>
               <div>
-                <CourseFormItem editMode={editMode} fieldId="course_specialize_id"
+                <CourseFormItem editMode={editMode} fieldId="course_specialize"
                                 fieldLabel={this.context.t("course_specialize")}
                                 isMandatory={true}
                                 fieldName="course_specialize_id"

@@ -71,7 +71,7 @@ const courseDetails = (state = {
         courseData: {cover_image: null},
         editMode: false, isFetching: false,
         listSection: [], showSectionPopup: false,
-        activatedField: null,
+        activatedField: [],
         createCourseSucess: false
       });
     case asyncActions.CREATE_NEW_COURSE + asyncActions.FULFILLED:
@@ -80,7 +80,7 @@ const courseDetails = (state = {
         isFetching: false,
         listSection: [],
         showSectionPopup: false,
-        activatedField: null,
+        activatedField: [],
         createCourseSucess: true
       });
     /**
@@ -100,7 +100,10 @@ const courseDetails = (state = {
           editTeachingDay: true,
           editCourseCategory: false,
           editCourseFee: false,
-          activatedField: ['selectedDay']
+          activatedField: ['start_time', 'end_time',
+            'monday_start_time', 'monday_end_time', 'tuesday_start_time', 'tuesday_end_time',
+            'wednesday_start_time', 'wednesday_end_time', 'thursday_start_time', 'thursday_end_time',
+            'friday_start_time', 'friday_end_time', 'saturday_start_time', 'saturday_end_time', 'sunday_start_time', 'sunday_end_time']
         });
       }
     }
@@ -119,7 +122,7 @@ const courseDetails = (state = {
           editCourseCategory: true,
           editTeachingDay: false,
           editCourseFee: false,
-          activatedField: []
+          activatedField: ['category_id', 'course_specialize']
         });
       }
     }
@@ -138,7 +141,7 @@ const courseDetails = (state = {
           editCourseFee: true,
           editCourseCategory: false,
           editTeachingDay: false,
-          activatedField: []
+          activatedField: ['tuition_fee', 'currency']
         });
       }
     }

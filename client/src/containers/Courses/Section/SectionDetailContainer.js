@@ -38,10 +38,18 @@ SectionDetailContainer.contextTypes = {
     router: React.PropTypes.object
 };
 
+const isActivatedFieldOfSection = (activatedFields, section) => {
+  if (!Array.isArray(activatedFields) || activatedFields.length === 0) {
+    return false;
+  }
+  return activatedFields.filter((field) => field.indexOf("sectionTitleId_" + section.id) >= 0).length > 0;
+}
+
 const mapStateToProps = (state, props) => {
     const {courseDetails} = state;
     const {editMode} = courseDetails;
-    return {editMode, initialValues: {title: props.section.title}};
+    const hasActivatedField = isActivatedFieldOfSection(props.activatedField, props.section);
+    return {editMode, initialValues: hasActivatedField === true ? props.section : {}};
 };
 
 export default connect(
