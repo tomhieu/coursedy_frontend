@@ -206,12 +206,10 @@ const mapStateToProps = (state) => {
     }
   });
 
-  const isSamePeriod = courseFormValues != null && courseFormValues.is_same_period
-    ? ObjectUtils.isTrue(courseFormValues.is_same_period) :
+  const isSamePeriod = courseFormValues != null ? ObjectUtils.isTrue(courseFormValues.is_same_period) :
     courseData != null ? ObjectUtils.isTrue(courseData.is_same_period) : true;
 
-  const isFree = courseFormValues != null && courseFormValues.is_free
-    ? ObjectUtils.isTrue(courseFormValues.is_free) :
+  const isFree = courseFormValues != null ? ObjectUtils.isTrue(courseFormValues.is_free) :
     courseData != null ? ObjectUtils.isTrue(courseData.is_free) : false;
 
   if (editMode && courseData != null) {
@@ -233,11 +231,8 @@ const mapStateToProps = (state) => {
 
   const initializedValue = editMode && courseData != null ? initializeCourseDetail(courseData) : {is_same_period: true};
   if (editMode && courseData.is_same_period) {
-    Object.defineProperty(initializedValue, 'start_time_id', {
-      value: courseData.course_days[0].start_time,
-      writable: true
-    });
-    Object.defineProperty(initializedValue, 'end_time_id', {value: courseData.course_days[0].end_time, writable: true});
+    initializedValue.start_time = courseData.course_days[0].start_time;
+    initializedValue.end_time = courseData.course_days[0].end_time;
   } else if (editMode) {
     courseData.course_days.forEach(d => {
       Object.defineProperty(initializedValue, d.day + '_start_time', {value: d.start_time, writable: true});

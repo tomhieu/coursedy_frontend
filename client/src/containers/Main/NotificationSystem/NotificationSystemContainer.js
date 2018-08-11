@@ -1,15 +1,17 @@
-import {Component} from "react";
 import * as React from "react";
+import {Component} from "react";
 import Notifications from "react-notification-system-redux";
 import {Link} from "react-router-dom";
 import DateUtils from "utils/DateUtils";
 import {connect} from "react-redux";
 import UpcommingCourseNotificationPopup from "../../../components/Layout/UpcommingCoursePopup/UpcommingCourseNotificationPopup";
 import {
-  CLOSE_POPUP_JOIN_UPCOMMING_CLASS, LEAVED_JOINING_CLASS,
+  CLOSE_POPUP_JOIN_UPCOMMING_CLASS,
+  LEAVED_JOINING_CLASS,
   STARTED_JOINING_ACTIVE_CLASS
 } from "../../../actions/AsyncActionCreator";
 import * as courseActions from "../../../actions/ListTutorCourseActionCreator";
+import {UserRole} from "../../../constants/UserRole";
 
 class NotificationSystemContainer extends Component {
 
