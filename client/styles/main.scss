@@ -575,15 +575,12 @@ body.application {
       }
     }
     .dashboard-footer {
-      position: fixed;
+      position: static;
       bottom: 0;
-      width: calc(100% - 235px);
+      width: 100%;
       background-color: #364247;
       color: $white-color;
       padding: 20px 0;
-      &.expanded {
-        width: calc(100% - 65px);
-      }
     }
   }
 
