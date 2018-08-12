@@ -54,7 +54,7 @@ class Header extends Component {
   }
 
   isAuthenticated() {
-    return this.props.session.currentUser !== null || SecurityUtils.isAuthenticated();
+    return this.props.session.currentUser !== null
   }
 
   render() {
