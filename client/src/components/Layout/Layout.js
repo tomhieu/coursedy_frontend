@@ -9,6 +9,10 @@ import ScrollToTop from 'utils/ScrollToTop'
 import UserConfirmationContainer from "../../containers/Main/UserConfirmationAction/UserConfirmationContainer";
 import NotificationSystemContainer from "../../containers/Main/NotificationSystem/NotificationSystemContainer";
 
+const mainBodyStyle = {
+  minHeight: '55vh'
+}
+
 class Layout extends Component {
 
   render() {
@@ -17,7 +21,7 @@ class Layout extends Component {
         <ScrollToTop>
           <div className="main-content">
             <Header />
-            <main className='container'>
+            <main className='container' style={mainBodyStyle}>
               {this.props.children}
             </main>
             <Footer/>
