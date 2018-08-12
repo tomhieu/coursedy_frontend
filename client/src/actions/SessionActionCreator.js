@@ -16,7 +16,8 @@ import * as thirdPartyLoginActions from 'constants/ThirdPartyLoginConstants'
 export const fetchCurrentUser = () => {
   return {
     type: types.FETCH_CURRENT_USER,
-    payload: Network().get('current_user')
+    payload: Network().get('current_user'),
+    meta: 'ezylearningFullLoader'
   }
 };
 
@@ -59,8 +60,12 @@ export const editPassword = () => {
 
 export const loginFacebook = (facebookToken, facebookId, role= null) => {
   return dispatch => {
-    Network().post('users/connect_facebook', {token: facebookToken, app_user_id: facebookId, role: role}).then((response) => {
-      dispatch(autoLogin(response.token, response.client_id, response.uid)).then(({value, action}) => {
+    dispatch({
+      type: 'NO_ACTION',
+      payload: Network().post('users/connect_facebook', {token: facebookToken, app_user_id: facebookId, role: role}),
+      meta: 'ezylearningFullLoader'
+    }).then(({value, action}) => {
+      dispatch(autoLogin(value.token, value.client_id, value.uid)).then(({value, action}) => {
         dispatch(redirectToDashboard(value))
       })
     })
@@ -69,8 +74,12 @@ export const loginFacebook = (facebookToken, facebookId, role= null) => {
 
 export const loginGoogle = (idToken, role= null) => {
   return dispatch => {
-    Network().post('users/connect_google', {token: idToken, role: role}).then((response) => {
-      dispatch(autoLogin(response.token, response.client_id, response.uid)).then(({value, action}) => {
+    dispatch({
+      type: 'NO_ACTION',
+      payload: Network().post('users/connect_google', {token: idToken, role: role}),
+      meta: 'ezylearningFullLoader'
+    }).then(({value, action}) => {
+      dispatch(autoLogin(value.token, value.client_id, value.uid)).then(({value, action}) => {
         dispatch(redirectToDashboard(value))
       })
     })
