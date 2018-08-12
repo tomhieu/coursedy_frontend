@@ -1,16 +1,14 @@
 .leftPanel {
-  width: 267px;
-  max-width: 267px;
-  min-width: 267px;
+  width: 235px;
+  max-width: 235px;
+  min-width: 235px;
   position: fixed;
   top: 60px;
   height: 100%;
-}
-
-@media (max-width: 830px) {
-  .leftPanel {
-    width: 85px;
-    max-width: 85px;
-    min-width: 85px;
+  z-index: 999;
+  &.collapsed {
+    width: 65px;
+    max-width: 65px;
+    min-width: 65px;
   }
 }

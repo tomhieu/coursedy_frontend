@@ -80,6 +80,9 @@ body.application {
     }
     &.bg-light, &.dark-header.fixed-top {
       background: $primary-color !important;
+      .navbar-brand g {
+        fill: $md-color-pink;
+      }
     }
 
     &.dark-header {
@@ -266,7 +269,7 @@ body.application {
     .navbar-collapse {
       &.show, &.collapsing {
         position: absolute;
-        top: 64px;
+        top: 45px;
         right: 15px;
         border: 1px solid $border-color;
         display: flex;
@@ -280,8 +283,8 @@ body.application {
 
         &:before {
           position: absolute;
-          top: -16px;
-          right: 30px;
+          top: -14px;
+          right: 12px;
           font-size: 20px;
           color: $md-color-pink;
           content: '\f0d8';
@@ -405,7 +408,8 @@ body.application {
 
   .dashboard-menu {
     border: none;
-    background: $color-bg-dashboard-menu;
+    background: $white-color;
+    color: #444;
     margin-bottom: 15px;
     height: 100%;
   }
@@ -452,13 +456,15 @@ body.application {
   }
 
   .dashboard-profile {
-    padding: 15px 65px;
-    border-bottom: 1px solid $color-active-dashboard-menu;
-    color: $color-bg-neutral;
+    padding: 10px 10px 20px 10px;
 
     .media-team .media-object {
       width: 69px;
       height: 69px;
+    }
+
+    .user-name, .sub-title {
+      margin-left: -4px;
     }
 
     h4 {
@@ -552,13 +558,10 @@ body.application {
   }
 
   .main-content {
-    .dashboard-section {
-      border-bottom: 1px solid $border-color;
-    }
     background-color: $gray-background;
     .daskboard-container {
       background-color: transparent;
-      padding: 10px 30px;
+      padding: 10px 30px 65px 30px;
       border: none;
       .title {
         font-size: 22px;
@@ -569,6 +572,17 @@ body.application {
       }
       .course-details-container {
         padding: 0 10%;
+      }
+    }
+    .dashboard-footer {
+      position: fixed;
+      bottom: 0;
+      width: calc(100% - 235px);
+      background-color: #364247;
+      color: $white-color;
+      padding: 20px 0;
+      &.expanded {
+        width: calc(100% - 65px);
       }
     }
   }
@@ -817,9 +831,8 @@ body.application {
   .dashboard-links {
     padding-left: 0;
     li {
-      border-bottom: 1px solid $color-active-dashboard-menu;
       position: relative;
-      padding: 10px 15px;
+      padding: 17px 15px;
       &:before {
         display: none;
       }
@@ -1210,8 +1223,12 @@ body.application {
     }
   }
 
-  .navbar-toggler{
-    .expand-search-bar{
+  .navbar-toggler {
+    position: absolute;
+    right: 20px;
+    border: none;
+    outline: none;
+    .expand-search-bar {
       font-size: 17px;
       &:before {
         content: '\f107';
@@ -1510,9 +1527,13 @@ body.application {
   }
 
   .dashboard-content {
-    margin-left: 267px;
+    margin-left: 235px;
     height: auto;
     min-height: calc(100vh - 60px);
+    background-color: #eaeef3;
+    &.expanded {
+      margin-left: 65px;
+    }
   }
 
   @media (max-width: 830px) {
@@ -1522,7 +1543,10 @@ body.application {
   }
 
   .start-course-btn {
-    min-width: 120px;
+    min-width: 70px;
+    font-size: 11px;
+    padding: 0 5px;
+    height: 25px;
   }
 
   .pb-10px {
@@ -1560,6 +1584,12 @@ body.application {
   }
   .evaluation-lesson-button {
     width: 175px;
+  }
+
+  .dashboard-links .sub-dashboard-item {
+    li {
+      padding: 8px 15px 8px 23px;
+    }
   }
 }
 
@@ -1711,4 +1741,65 @@ body.application {
 
 .time-picker-field {
   min-width: 80px;
+}
+
+.dashboard-logo {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 235px;
+  height: 60px;
+  background-color: $md-color-pink;
+  .logo-image {
+    width: 100%;
+    margin-left: 35px;
+  }
+  .collapse-dashboard-icon {
+    margin-left: 75px;
+  }
+  &.collapsed {
+    width: 65px;
+    .logo-image {
+      width: 100%;
+      margin-left: 15px;
+    }
+    .collapse-dashboard-icon {
+      margin-left: 40px;
+    }
+  }
+}
+
+.dashboard-menu.collapsed {
+  .dashboard-profile {
+    display: none;
+  }
+  .dashboard-item-name {
+    position: absolute;
+    top: 0;
+    left: 65px;
+    margin-left: 0;
+    padding: 17px 15px;
+    min-width: 170px;
+    display: none;
+    background-color: #F4F6F9;
+  }
+  .dashboard-parent-tab:after {
+    content: '';
+  }
+  .sub-dashboard-item {
+    position: absolute;
+    top: 58px;
+    left: 65px;
+    min-width: 170px;
+    background-color: #F4F6F9;
+    display: none;
+  }
+  .dashbard-item-container {
+    cursor: pointer;
+    &:hover {
+      .dashboard-item-name, .sub-dashboard-item {
+        display: block;
+      }
+    }
+  }
 }

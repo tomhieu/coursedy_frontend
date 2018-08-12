@@ -22,7 +22,7 @@
 body {
   text-rendering: optimizeLegibility !important;
   -webkit-font-smoothing: antialiased !important;
-  font-family: 'Lato', sans-serif;
+  font-family: 'Poppins', sans-serif;
   color: #000000;
   font-weight: 400;
   background-color: #fdfdfd; }

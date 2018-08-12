@@ -6,7 +6,7 @@
 body {
   text-rendering: optimizeLegibility !important;
   -webkit-font-smoothing: antialiased !important;
-  font-family: 'Lato', sans-serif;
+  font-family: 'Poppins', sans-serif;
   color: $black-color;
   font-weight: 400;
   background-color: $color-default-bg;
@@ -2487,16 +2487,16 @@ ul.no-margin,
   padding: 15px;
 }
 
-.section-title.collapsed:after{
+.section-title.collapsed:after, .dashboard-parent-tab.collapsed::after {
   content: '\F105';
   color: #b9b9b9;
 }
 
-.section-title:after {
+.section-title:after, .dashboard-parent-tab::after {
   content: '\F107';
   color: $md-color-pink;
   font: normal normal normal 14px/1 FontAwesome;
-  font-size: 20px;
+  font-size: 16px;
   margin-top: 6px;
   cursor: pointer;
 }

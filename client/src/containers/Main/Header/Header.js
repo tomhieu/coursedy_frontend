@@ -13,6 +13,11 @@ import {globalHistory} from "utils/globalHistory";
 import * as sessionActions from "../../../actions/SessionActionCreator";
 import {TRIGGER_STICKY_HEADER_AT} from "../../../constants/Layout";
 import {SecurityUtils} from "../../../utils/SecurityUtils";
+import DetailsIcon from "../../../components/Core/Icons/DetailsIcon";
+import {COLLAPSE_DARKBOARD} from "../../../constants/WebConstants";
+import MoreVertIcon from "../../../components/Core/Icons/MoreVertIcon";
+import CoursedyLogo from "../../../components/Core/Icons/CoursedyLogo";
+import CoursedyShortIcon from "../../../components/Core/Icons/CoursedyShortIcon";
 
 class Header extends Component {
   constructor(props) {
@@ -53,16 +58,32 @@ class Header extends Component {
   }
 
   render() {
-    const {customHeaderClass, darkHeader} = this.props.main;
+    const {customHeaderClass, darkHeader, dashboardHeader} = this.props.main;
+    const {isCollapseDashboard} = this.props;
     return (
       <nav
         className={`header-nav navbar navbar-expand-lg navbar-light navbar-default ${customHeaderClass} ` + (darkHeader ? "dark-header" : "bg-light")}
         ref={el => this.header = el}>
         <div className="container">
-          <Link className="navbar-brand" to="/"><img src="/coursedy-logo-2.png" className="logo" alt="logo"/></Link>
+          {
+            dashboardHeader ?
+              <div className={isCollapseDashboard ? "dashboard-logo collapsed" : "dashboard-logo"}>
+                <div className="d-flex flex-row align-items-center full-height">
+                  {
+                    isCollapseDashboard ? <Link className="logo-image" to="/"><CoursedyShortIcon width={30} height={30} fillColor="#FFFFFF"/></Link>
+                      : <Link className="logo-image" to="/"><CoursedyLogo width={150} height={30} fillColor="#FFFFFF"/></Link>
+                  }
+                  <a className="collapse-dashboard-icon" onClick={this.props.collapseDashboard.bind(this)}>
+                    <DetailsIcon fillColor="#444444"/>
+                  </a>
+                </div>
+              </div> :
+              <Link className="navbar-brand" to="/"><CoursedyLogo width={150} height={30} fillColor={darkHeader ? "#FFFFFF" : "#1CABA0"}/></Link>
+          }
+
           <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
                   aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span className="navbar-toggler-icon"></span>
+            <MoreVertIcon/>
           </button>
           <div className="collapse navbar-collapse justify-content-right" id="navbarNav">
             <ul className="navbar-nav">
@@ -126,8 +147,9 @@ Header.propTypes = {
 };
 
 const mapStateToProps = (state) => {
-  const {main, session} = state;
-  return {main, session, lang: state.i18nState.lang};
+  const {main, session, DashboardMenu} = state;
+  const {isCollapseDashboard} = DashboardMenu;
+  return {main, session, lang: state.i18nState.lang, isCollapseDashboard };
 }
 
 const mapDispatchToProps = (dispatch) => ({
@@ -135,6 +157,9 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(sessionActions.fetchActiveCourses(user.value));
   }),
   signOut: () => dispatch(sessionActions.signOutUser()),
+  collapseDashboard: () => dispatch({
+    type: COLLAPSE_DARKBOARD
+  })
 })
 export default connect(
   mapStateToProps, mapDispatchToProps

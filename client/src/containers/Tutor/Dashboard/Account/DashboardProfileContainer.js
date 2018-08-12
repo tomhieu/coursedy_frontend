@@ -43,9 +43,9 @@ class DashboardProfileContainer extends Component {
                      normalPlaceholder={false}
                      facebookPlaceholder={true}
                      loaderType="USER_DETAILS_PLACEHOLDER">
-          <div className="dashboard-profile text-center">
+          <div className="dashboard-profile">
             <div className="row">
-              <div className="col-md-12">
+              <div className="col-md-4">
                 <CoursedyUploadImage uploadCourseCoverImage={this.uploadAvatar.bind(this)}
                                      closePopupToSelectImage={this.hideEditAvatarForm.bind(this)}
                                      editImageLabel={this.context.t('update_avatar')}
@@ -59,12 +59,16 @@ class DashboardProfileContainer extends Component {
                                      isUserAvatar={true}
                                      {...this.props} />
               </div>
-              <div className="col-sm-12 user-name">
-                <h4>{user.name}</h4>
+              <div className="col-md-8">
+                <div className="row">
+                  <div className="col-sm-12 user-name">
+                    <h4>{user.name}</h4>
+                  </div>
+                  <div className='col-sm-12 sub-title'>
+                    <p>{this.context.t('my_balance')}: <strong>{ObjectUtils.currencyFormat(userBalance)}</strong></p></div>
+                </div>
+                </div>
               </div>
-              <div className='col-sm-12 sub-title'>
-                <p>{this.context.t('my_balance')}: <strong>{ObjectUtils.currencyFormat(userBalance)}</strong></p></div>
-            </div>
           </div>
         </LoadingMask>: null
     )

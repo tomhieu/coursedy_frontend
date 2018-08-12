@@ -39,18 +39,20 @@ class DashboardProfileContainer extends Component {
                      loaderType="USER_DETAILS_PLACEHOLDER">
           <div className="dashboard-profile text-center">
             <div className="row">
-              <CoursedyUploadImage uploadCourseCoverImage={this.uploadAvatar.bind(this)}
-                                   closePopupToSelectImage={this.hideEditAvatarForm.bind(this)}
-                                   editImageLabel={this.context.t('update_avatar')}
-                                   onDeselectNewImage={this.avatarDeselected.bind(this)}
-                                   onSelectedNewImage={this.avatarSelected.bind(this)}
-                                   isSelectedNewImage={avatarSelected}
-                                   openPopupToSelectImage={this.showEditAvatarForm.bind(this)}
-                                   showPopupChangeImage={editAvatarMode}
-                                   fieldId="adminAvatarId"
-                                   isUserAvatar={true}
-                                   previewImage={user.avatar ? user.avatar : defaultAvatar} />
-              <div className="col-sm-12">
+              <div className="col-md-4">
+                <CoursedyUploadImage uploadCourseCoverImage={this.uploadAvatar.bind(this)}
+                                     closePopupToSelectImage={this.hideEditAvatarForm.bind(this)}
+                                     editImageLabel={this.context.t('update_avatar')}
+                                     onDeselectNewImage={this.avatarDeselected.bind(this)}
+                                     onSelectedNewImage={this.avatarSelected.bind(this)}
+                                     isSelectedNewImage={avatarSelected}
+                                     openPopupToSelectImage={this.showEditAvatarForm.bind(this)}
+                                     showPopupChangeImage={editAvatarMode}
+                                     fieldId="adminAvatarId"
+                                     isUserAvatar={true}
+                                     previewImage={user.avatar ? user.avatar : defaultAvatar} />
+              </div>
+              <div className="col-md-8">
                 <h4>{user.name}</h4>
               </div>
             </div>

@@ -296,8 +296,8 @@ export const translations = {
     /*
         Public course detail
     */
-    "course_list": "Danh sách khóa học",
-    "course_active_list": "Danh sách khóa học đang học",
+    "course_list": "Khóa học đang mở",
+    "course_active_list": "Khóa học đang dạy",
     "course_info": "Thông tin khóa học",
     "course_detail": "Chi tiết khóa học",
     "tutor_info": "Thông tin giáo viên",
@@ -495,6 +495,7 @@ export const translations = {
     "my_account": "Tài khoản",
     "my_profile": "Thông tin người dùng",
     "account_setting": "Thiết lập tài khoản",
+    "course_management": "Quản lý khoá học",
     "my_balance": "Số dư tài khoản",
 
     "my_courses": "Khóa học",
