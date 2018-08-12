@@ -5,9 +5,12 @@ import {fetchTutor} from "actions/Tutor/Account/TutorAccountActionCreator";
 import {UPDATE_CURRENT_USER} from "../constants/Session";
 
 export const updatePassword = (data) => {
-  return {
-    type: ACCOUNT.complete_updating_password,
-    payload: Network().update('auth', data)
+  return dispatch => {
+    dispatch({
+      type: ACCOUNT.complete_updating_password,
+      payload: Network().update('auth', data),
+      meta: 'ezylearningFullLoader'
+    })
   }
 }
 
