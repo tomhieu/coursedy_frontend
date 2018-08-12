@@ -1,8 +1,30 @@
 @import "../../../../styles/global_style";
 
 .teacher-detail {
+  color: $color-black-six;
+
+  h4 {
+    color: $color-black-three;
+    font-size: 20px;
+    margin: 0 0 15px;
+    text-transform: uppercase;
+  }
+
+  h6 {
+    font-size: 15px;
+    font-weight: 700;
+  }
+
+  p {
+    margin: 0;
+  }
+
   &__header {
     border-bottom: 1px solid $border-color;
+    h4 {
+      text-transform: none;
+    }
+
     &._fixed {
       position: fixed;
       left: 0;
@@ -39,19 +61,7 @@
     border-radius: 5px;
   }
 
-  h3 {
-    font-size: 20px;
-    color: $gray-dark;
-  }
-
-  h4 {
-    font-size: 20px;
-    margin: 0 0 15px;
-    text-transform: uppercase;
-  }
-
   .head-title {
-    color: $dark-text-color;
     i {
       border-radius: 50%;
       display: inline-block;
@@ -60,9 +70,14 @@
       font-size: 30px;
       margin-right: 15px;
     }
+
     h4 {
       display: inline-block;
     }
+  }
+
+  .dd-mm-yy {
+    color: $color-black-two;
   }
 
   .profile-list-item {
@@ -79,6 +94,10 @@
       left: 0;
       top: -1px;
     }
+  }
+
+  .course-title {
+    line-height: 22px;
   }
 
   .review-form-wrapper {
@@ -155,13 +174,18 @@
   .profile-summary {
     font-size: 12px;
     .profile-box {
-      color: $gray-pale;
+      color: $color-black-five;
       margin-top: 10px;
       margin-bottom: 10px;
 
       h3 {
         color: $gray-dark;
         font-size: 18px;
+      }
+
+      .profile-usertitle-name {
+        font-size: 20px;
+        color: $color-black-four;
       }
 
       .teacher-short-experience {
@@ -180,8 +204,8 @@
       flex-wrap: wrap;
       .category {
         margin: 0 5px 5px 0;
-        color: $color-orange;
-        border: 1px solid $color-orange;
+        color: $color-orange-two;
+        border: 1px solid $color-orange-two;
         font-size: 13px;
         line-height: 1;
         display: inline-block;

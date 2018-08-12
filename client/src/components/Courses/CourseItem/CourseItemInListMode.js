@@ -73,7 +73,7 @@ class CourseItemInListMode extends Component {
                   </div>
                 </div>
               </div>
-              <p className={styles.courseListItemDesc}>{description}</p>
+              <p className={styles.courseListItemDesc} dangerouslySetInnerHTML={{__html: description}}/>
               <ul className={styles.metaList + " clearfix"}>
                 <li>
                   <i className="fa fa-folder-open-o"></i>

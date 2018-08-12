@@ -133,8 +133,8 @@ const EducationItem = ({ education }) => {
     <li key={education.id}>
       <h6>{education.title}</h6>
       <span className="block mb-10">
-        <span className="text-primary">{education.graduated_from}</span> -{" "}
-        <span className="font-italic"> {education.end_date}</span>
+        <span className="yellow-color">{education.graduated_from}</span> -{" "}
+        <span className="font-italic dd-mm-yy"> {education.end_date}</span>
       </span>
       <p dangerouslySetInnerHTML={{__html: education.description}} />
     </li>
@@ -157,8 +157,8 @@ const WorkExperienceItem = ({ experience }) => {
     <li key={experience.id}>
       <h6>{experience.title}</h6>
       <span className="block mb-10">
-        <span className="text-primary">{experience.company}</span> -{" "}
-        <span className="font-italic">
+        <span className="yellow-color">{experience.company}</span> -{" "}
+        <span className="font-italic dd-mm-yy">
           {" "}
           {experience.start_date}- {experience.end_date}
         </span>
