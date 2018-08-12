@@ -7,7 +7,7 @@ class ReadOnlyField extends Component {
     return (
       <div className={displayStyle + ' inline-field d-flex flex-horizontal'}>
         {showLabel && fieldLabel !== undefined && fieldLabel !== '' ? (<label className="control-label">{fieldLabel}: </label>) : ''}
-        <label className='pre-wrap'>{this.props.content}</label>
+        <label className='pre-wrap' dangerouslySetInnerHTML={{__html: this.props.content}}/>
         <span className='inline-edit' onClick={showEditFormField.bind(this, activatedFields)}>
               <i className="fa fa-pencil"></i>
             </span>

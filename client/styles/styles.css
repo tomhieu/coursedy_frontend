@@ -2354,6 +2354,10 @@ ul.no-margin,
   font-size: 13px;
   height: 32px; }
 
+.quill-form-control {
+  height: 250px;
+}
+
 .form-control:focus {
   border-color: #ffffff;
   outline: 0;

@@ -17,7 +17,7 @@ class TutorEducationItem extends Component {
           <div style={{fontSize: '16px'}}><b>{education.title}</b></div>
           <div><span className='yellow-color'>{education.graduated_from}</span>
             <span> - {education.start_date} - {education.end_date} </span></div>
-          <div>{education.description}</div>
+          <div dangerouslySetInnerHTML={{__html: education.description}}/>
         </div>
         <div className='col-sm-2 text-right'>
           <span className='mr-10 inline-edit' onClick={(e) => {this.props.showEditEducationForm(education.id)}}><i className='fa fa-pencil'></i></span>

@@ -30,7 +30,7 @@ class UserConfirmationContainer extends Component {
 const mapStateToProps = (state) => {
     const {main} = state;
     const {showConfirmationPopup, confirmationTitle, confirmCallback, confirmationMessage} =  main;
-    return { showConfirmationPopup, confirmationTitle, confirmCallback, confirmCallback, confirmationMessage };
+    return { showConfirmationPopup, confirmationTitle, confirmCallback, confirmationMessage };
 }
 
 const mapDispatchToProps = (dispatch) => ({

@@ -2,19 +2,19 @@ import * as React from "react";
 import {Component} from "react";
 import FormField from "../../../components/Core/FormField";
 import styles from "./TutorForm.module.scss";
-import {reduxForm} from "redux-form";
+import { reduxForm } from 'redux-form';
 import {connect} from "react-redux";
 import cssModules from "react-css-modules";
 import {TutorAccountActions} from '../../../actions/index'
 import {validate} from '../../../validations/TutorFormValidation'
 import PrimaryButton from "../../../components/Core/PrimaryButton/PrimaryButton";
 
+
 class TutorForm extends Component {
   constructor(props) {
     super(props);
     this.updateEducation.bind(this);
   }
-
 
   updateEducation(data) {
     this.props.dispatch(TutorAccountActions.updateTutorEducation(this.props.tutor.id, data));
@@ -38,8 +38,14 @@ class TutorForm extends Component {
                          isMandatoryField={true} formControlName="place_of_work" typeField="custom_input"/>
             </div>
             <div>
-              <FormField fieldId="descriptionId" fieldLabel={this.context.t("account.tutor.edu.description")}
-                         isMandatoryField={true} formControlName="description" typeField="custom_textarea"/>
+              <FormField fieldId="descriptionId"
+                         fieldLabel={this.context.t("account.tutor.edu.description")}
+                         placeholder={this.context.t("account.tutor.edu.description_placeholder")}
+                         isMandatoryField={true}
+                         formControlName="description"
+                         typeField="rich_text_editor"
+                         customClassName="quill-form-control"
+              />
             </div>
 
             <div>
@@ -77,7 +83,8 @@ const mapStateToProps = state => {
   const {EducationData, addNewDocumentFile} = state;
   const {degrees, skillSet} = EducationData;
   const {uploadFiles} = addNewDocumentFile;
-  const tutor = state.TutorAccountReducer.tutor
+  const tutor = state.TutorAccountReducer.tutor;
+
   const skills = tutor.categories.map((t) => {
     return t.id
   })

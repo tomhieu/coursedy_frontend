@@ -160,7 +160,8 @@ class CourseForm extends Component {
                           fieldLabel={this.context.t("course_description")}
                           isMandatory={true}
                           fieldName="description"
-                          typeField="custom_textarea"
+                          typeField="rich_text_editor"
+                          customClassName="quill-form-control"
                           content={editMode ? courseData.description : ""}
                           disabled={false}
                           {...this.props}>

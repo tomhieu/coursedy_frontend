@@ -45,9 +45,7 @@ class CourseDetailIntro extends Component {
           </div>
         </div>
         <h5 className="text-uppercase font700">{this.context.t('course_about')}</h5>
-        <div className="course-about-content">
-          {course.description}
-        </div>
+        <div className="course-about-content" dangerouslySetInnerHTML={{__html: course.description}} />
       </div>
     )
   }

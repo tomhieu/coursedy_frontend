@@ -35,8 +35,8 @@ const PublicCourseDetail = (state = {
       return {...state, course: {} }
     case courseTypes.FETCH_PUBLIC_COURSE + asyncActs.FULFILLED:
       return {...state, course: action.payload }
-    case courseTypes.FETCH_PUBLIC_COURSE_FAIL:
-      return {...state, course: null}
+    case courseTypes.FETCH_PUBLIC_COURSE + asyncActs.REJECTED:
+      return {...state, course: {error: action.payload}}
     case courseTypes.FETCH_PUBLIC_COURSE_SECTIONS + asyncActs.FULFILLED:
       return {...state, course_sections: action.payload }
     case courseTypes.FETCH_PUBLIC_COURSE_SECTIONS + asyncActs.REJECTED:

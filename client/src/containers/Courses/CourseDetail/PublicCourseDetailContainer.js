@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import * as WebConstants from "constants/WebConstants";
 import {openConfirmationPopup} from "../../../actions/MainActionCreator";
 import {TT} from "../../../utils/locale";
+import PageContainer from '../../../utils/PageContainer';
 
 class PublicCourseDetailContainer extends Component {
 
@@ -53,11 +54,13 @@ class PublicCourseDetailContainer extends Component {
 
   render() {
     return (
-      <CourseDetail
-        {...this.props}
-        loadMoreCommentsHdl={this.loadMoreComments.bind(this)}
-        changeActiveMenu={this.changeActiveMenu.bind(this)}
-      />
+      <PageContainer error={this.props.course.error}>
+        <CourseDetail
+          {...this.props}
+          loadMoreCommentsHdl={this.loadMoreComments.bind(this)}
+          changeActiveMenu={this.changeActiveMenu.bind(this)}
+        />
+      </PageContainer>
     )
   }
 }

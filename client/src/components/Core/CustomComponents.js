@@ -9,6 +9,7 @@ import ObjectUtils from "../../utils/ObjectUtils";
 import Cropper from 'react-cropper'
 import 'cropperjs/dist/cropper.css';
 import { Field } from 'redux-form'
+import ReactQuill from 'react-quill';
 
 export const renderField = ({input, label, placeholder, type = 'text', disabled = false, customClassName, meta: {touched, error, warning}}) => (
   <div className='full-width-input-wrapper'>
@@ -276,4 +277,49 @@ class avatarInput extends renderFileInput {
   }
 }
 
-export const cropImageInput = avatarInput
+export const cropImageInput = avatarInput;
+
+export const renderRichTextEditor = ({input, label, placeholder, type, disabled = false, className, meta: {touched, error, warning}}) => {
+  const modules = {
+    toolbar: [
+      [{ 'header': '1'}, {'header': '2'}],
+      [{size: []}],
+      ['bold', 'italic', 'underline', 'strike', 'blockquote'],
+      [{'list': 'ordered'}, {'list': 'bullet'},
+        {'indent': '-1'}, {'indent': '+1'}],
+    ],
+    clipboard: {
+      // toggle to add extra line breaks when pasting HTML:
+      matchVisual: false
+    }
+  };
+
+  const formats = [
+    'header', 'size',
+    'bold', 'italic', 'underline', 'strike', 'blockquote',
+    'list', 'bullet', 'indent'
+  ];
+
+  return (
+    <div className='full-width-input-wrapper'>
+      {
+        <ReactQuill {...input}
+                    modules={modules}
+                    formats={formats}
+                    placeholder={placeholder ? placeholder : ''}
+                    type={type} disabled={disabled}
+                    className={`${className}${touched && error ? ' error' : ''}`}
+                    onChange={(newValue, delta, source, quill) => {
+                      if (source === 'user') {
+                        input.onChange(newValue);
+                      }
+                    }}
+                    onBlur={(range, source, quill) => {
+                      input.onBlur(quill.getHTML());
+                    }}
+        />
+      }
+      {touched && ((error && <span className='input-errors'>{error}</span>) || (warning && <span>{warning}</span>))}
+    </div>
+  )
+}

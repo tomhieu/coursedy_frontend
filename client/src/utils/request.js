@@ -7,7 +7,8 @@
  * @returns {promise}
  */
 
-import {clearAuthenticationData} from "../actions/SessionActionCreator";
+import { clearAuthenticationData } from '../actions/SessionActionCreator';
+import { isObject } from 'utils/commonUtils';
 
 export default function request(url, options) {
   return new Promise((resolve, reject) => {
@@ -18,14 +19,14 @@ export default function request(url, options) {
       .then(response => {
         if (response.ok) {
           // update token, uid and client_id in browser storage
-          let uid = response.headers.get('uid')
-          let accessToken = response.headers.get('access-token')
-          let client = response.headers.get('client')
+          let uid = response.headers.get('uid');
+          let accessToken = response.headers.get('access-token');
+          let client = response.headers.get('client');
 
-          if (accessToken){
-            localStorage.setItem('ezyLearningToken', accessToken)
-            localStorage.setItem('ezyLearningClient', client)
-            localStorage.setItem('ezyLearningUid', uid)
+          if (accessToken) {
+            localStorage.setItem('ezyLearningToken', accessToken);
+            localStorage.setItem('ezyLearningClient', client);
+            localStorage.setItem('ezyLearningUid', uid);
           }
 
           let xPage = response.headers.get('X-Page');
@@ -36,29 +37,30 @@ export default function request(url, options) {
             return response.json().then(r => {
               resolve({
                 headers: {
-                  xPage,
-                  xPerPage,
-                  xTotal
-                },
-                body: r
-              } )
-            })
+                  xPage, xPerPage, xTotal
+                }, body: r
+              });
+            });
           }
           response.json().then(r => {
-            resolve(r)
-          })
+            resolve(r);
+          });
         } else {
           switch (response.status) {
             case 401:
               clearAuthenticationData();
           }
           response.json().then((r) => {
-            reject(r)
-          })
+            const error = isObject(r) ? {
+              ...r,
+              status: response.status
+            } : { errors: [r], status: response.status };
+            reject(error);
+          });
         }
       })
       .catch(err => {
         reject(err);
-      })
+      });
   });
 }
