@@ -301,5 +301,8 @@ ul.review-list > li:last-child {
 .left-sidebar {
   top: calc(60px + 15px);
   overflow-y: scroll;
-  height: calc(100vh - 60px - 15px);
+
+  @media (min-width: $md-lower) {
+    height: calc(100vh - 60px - 15px);
+  }
 }

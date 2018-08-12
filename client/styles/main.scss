@@ -1621,9 +1621,14 @@ body.application {
       background-color: transparent;
       border: none;
     }
+
     &+.right-content {
       margin-left: calc(0.20 * 100vw + #{$box-gap});
       width: calc(100% - 0.20 * 100vw - #{$box-gap});
+    }
+
+    &+.page-content {
+      margin-left: calc(0.20 * 100vw + #{$box-gap});
     }
   }
 
@@ -1631,9 +1636,14 @@ body.application {
     & {
       width: 288px;
     }
+
     &+.right-content {
       margin-left: 303px;
       width: 967px;
+    }
+
+    &+.page-content {
+      margin-left: 303px;
     }
   }
 }

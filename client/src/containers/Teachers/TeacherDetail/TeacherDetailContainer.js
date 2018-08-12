@@ -91,7 +91,7 @@ class TeacherDetail extends Component {
                   </div>
                 </FixedSideBar>
 
-                <RightContent>
+                <div className="page-content">
                   <div className={`${styles.mainContent || ''} d-flex flex-row`}>
                     <div className={styles.mainSide}>
                       <TeacherBackground
@@ -123,7 +123,7 @@ class TeacherDetail extends Component {
                         <TeacherBriefCourses {...this.props} />
                       </div> : null}
                   </div>
-                </RightContent>
+                </div>
               </section>
             </div>
           </div>
