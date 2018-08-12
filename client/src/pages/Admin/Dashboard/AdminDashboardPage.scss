@@ -1,8 +1,14 @@
 .left-panel {
-  width: 267px;
-  max-width: 267px;
-  min-width: 267px;
+  width: 235px;
+  max-width: 235px;
+  min-width: 235px;
   position: fixed;
   top: 60px;
   height: 100%;
+  z-index: 999;
+  &.collapsed {
+    width: 65px;
+    max-width: 65px;
+    min-width: 65px;
+  }
 }
