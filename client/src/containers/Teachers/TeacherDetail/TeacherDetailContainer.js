@@ -148,7 +148,7 @@ const TeacherBriefCourses = props => {
     >
       <div className="full-width">
         <div className="teacher-detail__content__courses__header">
-          <h3>{TT.t('teacher_taught_courses')}</h3>
+          <h5>{TT.t('teacher_taught_courses')}</h5>
         </div>
         {teacher.courses.data.slice(0, 3).map(course => {
           return (
@@ -160,7 +160,7 @@ const TeacherBriefCourses = props => {
                     <img className="full-width" src={course.cover_image}/>
                   </div>
                   <div className="content">
-                    <h6>{course.title}</h6>
+                    <h6 className="course-title">{course.title}</h6>
                     <div>
                       <RatingItem
                         num_stars={course.rating_count === 0 ? 0 : parseFloat(course.rating_points) / course.rating_count}
@@ -213,7 +213,7 @@ const ReviewHeader = props => {
         </div>
         <div className="border-left col-xs-12 col-sm-6 col-md-6">
           <div className="text-left mb-20">
-            <h3>{props.context.t('teacher_comments')}</h3>
+            <h5>{props.context.t('teacher_comments')}</h5>
             <span> ({props.teacher.reviews.data.length} {props.context.t('teacher_comments')})</span>
           </div>
         </div>

@@ -21,7 +21,7 @@ body.application {
 
   .navbar-light .navbar-nav .nav-link,
   .navbar-light.dark-header.fixed-top .navbar-nav .nav-link {
-    color: $dark-text-color;
+    color: $color-black-three;
     font-size: 14px;
     font-weight: 600;
     padding: 5px 0;
@@ -393,6 +393,10 @@ body.application {
     width: 100%;
     .block-title {
       color: $black-text-color;
+    }
+
+    p {
+      margin: 0;
     }
   }
 
@@ -1033,7 +1037,9 @@ body.application {
       }
       h3 {
         font-size: 16px;
+        font-weight: 700;
         color: $black-text-color;
+        line-height: 22px;
       }
       .rating-wrapper {
         margin: 0 0 5px;

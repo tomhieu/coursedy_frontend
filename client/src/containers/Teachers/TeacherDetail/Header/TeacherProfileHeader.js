@@ -16,7 +16,7 @@ class TeacherProfileHeader  extends React.Component {
         </div>
         <div className="profile-summary">
           <div className="profile-box">
-            <h3>{teacher.user.name}</h3>
+            <div className="profile-usertitle-name">{teacher.user.name}</div>
           </div>
           <div className="profile-box">
             <span>{teacher.country}</span>
