@@ -983,9 +983,8 @@ Accordation Styling #About Us Page >>Frequently Asked Questions
 .comment-form .btn-link-dark {
   margin-top: 60px;
   border-radius: 5px;
-  color: #ffffff;
+  color: $white-color;
   background-color: $md-color-pink;
-  color: #ffffff;
   font-size: 14px;
   font-weight: 400;
   padding: 8px 22px;
@@ -2554,6 +2553,12 @@ ul.no-margin,
   outline: 0;
   -webkit-box-shadow: none;
   box-shadow: none;
+}
+
+.quill-form-control {
+  .ql-container.ql-snow {
+    height: 250px;
+  }
 }
 
 input:not([type]), input[type="email"], input[type="number"], input[type="password"], input[type="tel"],

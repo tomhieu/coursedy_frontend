@@ -28,12 +28,10 @@ const TeacherShortIntroduce = props => {
           <i className="fa fa-user" />
           <h4>{props.context.t("teacher_short_introduce")}</h4>
         </div>
-
-        <p>
-          {props.teacher.description || (
-            <i>{props.context.t("content_is_updating")}</i>
-          )}
-        </p>
+        <p dangerouslySetInnerHTML={{__html: props.teacher.description}}/>
+        {!props.teacher.description && (
+          <i>{props.context.t("content_is_updating")}</i>
+        )}
       </div>
     </LoadingMask>
   );
@@ -80,15 +78,17 @@ const TeacherDegrees = props => {
           <i className="fa fa-briefcase" />
           <h4>{props.context.t("teacher_degrees")}</h4>
         </div>
-        <div className="row mb-10">
-          {degrees && degrees.length ? (
-            degrees.map(degree => (
-              <DegreeItem degree={degree} key={degree.id} />
-            ))
-          ) : (
-            <i>{props.context.t("content_is_updating")}</i>
-          )}
-        </div>
+        {degrees && degrees.length ? (
+          <div className="row mb-10">
+            {
+              degrees.map(degree => (
+                <DegreeItem degree={degree} key={degree.id} />
+              ))
+            }
+          </div>
+        ) : (
+          <i>{props.context.t("content_is_updating")}</i>
+        )}
       </div>
     </LoadingMask>
   );
@@ -136,7 +136,7 @@ const EducationItem = ({ education }) => {
         <span className="text-primary">{education.graduated_from}</span> -{" "}
         <span className="font-italic"> {education.end_date}</span>
       </span>
-      <p>{education.description}</p>
+      <p dangerouslySetInnerHTML={{__html: education.description}} />
     </li>
   );
 };
@@ -163,7 +163,7 @@ const WorkExperienceItem = ({ experience }) => {
           {experience.start_date}- {experience.end_date}
         </span>
       </span>
-      <p>{experience.description}</p>
+      <p dangerouslySetInnerHTML={{__html: experience.description}}/>
     </li>
   );
 };

@@ -41,7 +41,7 @@ class TutorAccount extends Component {
 
   render() {
     const {tutor} = this.props
-    const {editEducationMode} = this.props
+    const {editEducationMode} = this.props;
     return (
       <div className="row">
         <div className="col-sm-12 col-md-12">
@@ -128,7 +128,6 @@ const mapDispatchToProps = (dispatch) => ({
   showEducationEditForm: () => dispatch(TutorAccountActions.showEducationEditForm()),
   hideAccountEditForm: () => dispatch(AccountActions.hideAccountEditForm()),
   hideEducationEditForm: () => dispatch(TutorAccountActions.hideEducationEditForm()),
-  showEducationEditForm: () => dispatch(TutorAccountActions.showEducationEditForm()),
   hideEmailChangedPopup: () => dispatch(AccountActions.hideEmailChangedPopup()),
   showEmailChangedPopup: () => dispatch(AccountActions.showEmailChangedPopup()),
   activateTab: (tabId) => dispatch(dashboardActions.activateTab(tabId))

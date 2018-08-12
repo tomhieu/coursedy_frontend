@@ -2,10 +2,9 @@ import React, {Component} from "react";
 import {ControlLabel, FormGroup} from "react-bootstrap";
 import {Field} from "redux-form";
 import {
-  renderCheckBoxField,
-  renderDatePicker, renderField, renderMultiSelect, renderSelect, renderSingleFileInput,
-  renderTextAreaField,
-} from "./CustomComponents";
+  renderCheckBoxField, renderDatePicker, renderField, renderMultiSelect,
+  renderSelect, renderSingleFileInput, renderTextAreaField, renderRichTextEditor
+} from './CustomComponents';
 import styles from "./FormField.module.scss";
 import cssModules from "react-css-modules";
 import {cropImageInput} from "components/Core/CustomComponents";
@@ -95,6 +94,15 @@ class FormField extends Component {
         fieldComponent = <Field name={formControlName} placeholder={placeholder}
                                 rows={rows} disabled={this.props.disabled}
                                 component={renderTextAreaField} className={customClassName}/>
+        break;
+      }
+      case "rich_text_editor": {
+        fieldComponent = <Field name={formControlName}
+                                placeholder={placeholder}
+                                disabled={this.props.disabled}
+                                component={renderRichTextEditor}
+                                className={customClassName}
+                          />
         break;
       }
       default: {

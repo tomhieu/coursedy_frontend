@@ -213,6 +213,7 @@ export const translations = {
     "account.tutot.edu.ocupation": "Chức vụ hiện tại",
     "account.tutot.edu.place_of_work": "Nơi làm việc hiện tại",
     "account.tutor.edu.description": "Giới thiệu",
+    "account.tutor.edu.description_placeholder": "Nội dung giới thiệu",
     "account.tutor.edu.specialty": "Kĩnh vực giảng dạy",
     "account.tutot.edu.degree.title": "Chứng chỉ/Bằng cấp",
     "account.tutot.edu.degree.field_label": "Upload chứng chỉ/bằng Cấp",
