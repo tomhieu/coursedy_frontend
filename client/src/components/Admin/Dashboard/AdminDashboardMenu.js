@@ -52,14 +52,14 @@ class AdminDashboardMenu extends Component {
                       aria-labelledby="courseChildTab" data-parent="#accordion">
                     <li className={activatedTab === 'admin_courses_list' ? styles.dashboardItem + ' ' + styles.active : styles.dashboardItem}
                         onClick={this.onClickDashboardLink.bind(this, '/admin/dashboard/courses/list', 'admin_courses_list')}>
-                      <a className={styles.itemName + ' dashboard-item-name'}>{this.context.t('admin_courses_list')}</a>
+                      <a className={styles.itemName}>{this.context.t('admin_courses_list')}</a>
                     </li>
                     <li className={activatedTab === 'admin_courses_new' ? styles.dashboardItem + ' ' + styles.active : styles.dashboardItem}
                         onClick={this.onClickDashboardLink.bind(this, '/admin/dashboard/courses/new', 'admin_courses_new')}>
-                      <a className={styles.itemName + ' dashboard-item-name'}>{this.context.t('admin_courses_new')}</a>
+                      <a className={styles.itemName}>{this.context.t('admin_courses_new')}</a>
                     </li>
                     <li className={activatedTab === 'admin_course_edit' ? styles.dashboardItem + ' ' + styles.active : styles.dashboardItem}>
-                      <a className={styles.itemName + ' dashboard-item-name'}>{this.context.t('admin_course_edit')}</a>
+                      <a className={styles.itemName}>{this.context.t('admin_course_edit')}</a>
                     </li>
                   </ul>
                 </div>
@@ -78,14 +78,14 @@ class AdminDashboardMenu extends Component {
                       aria-labelledby="courseChildTab" data-parent="#accordion">
                     <li className={activatedTab === 'admin_teachers_list' ? styles.dashboardItem + ' ' + styles.active : styles.dashboardItem}
                         onClick={this.onClickDashboardLink.bind(this, '/admin/dashboard/courses/list', 'admin_courses_list')}>
-                      <a className={styles.itemName + ' dashboard-item-name'}>{this.context.t('admin_teachers_list')}</a>
+                      <a className={styles.itemName}>{this.context.t('admin_teachers_list')}</a>
                     </li>
                     <li className={activatedTab === 'admin_teachers_new' ? styles.dashboardItem + ' ' + styles.active : styles.dashboardItem}
                         onClick={this.onClickDashboardLink.bind(this, '/admin/dashboard/courses/new', 'admin_courses_new')}>
-                      <a className={styles.itemName + ' dashboard-item-name'}>{this.context.t('admin_teachers_new')}</a>
+                      <a className={styles.itemName}>{this.context.t('admin_teachers_new')}</a>
                     </li>
                     <li className={activatedTab === 'admin_teachers_edit' ? styles.dashboardItem + ' ' + styles.active : styles.dashboardItem}>
-                      <a className={styles.itemName + ' dashboard-item-name'}>{this.context.t('admin_teachers_edit')}</a>
+                      <a className={styles.itemName}>{this.context.t('admin_teachers_edit')}</a>
                     </li>
                   </ul>
                 </div>
@@ -104,14 +104,14 @@ class AdminDashboardMenu extends Component {
                       aria-labelledby="courseChildTab" data-parent="#accordion">
                     <li className={activatedTab === 'admin_courses_list' ? styles.dashboardItem + ' ' + styles.active : styles.dashboardItem}
                         onClick={this.onClickDashboardLink.bind(this, '/admin/dashboard/courses/list', 'admin_students_list')}>
-                      <a className={styles.itemName + ' dashboard-item-name'}>{this.context.t('admin_students_list')}</a>
+                      <a className={styles.itemName}>{this.context.t('admin_students_list')}</a>
                     </li>
                     <li className={activatedTab === 'admin_courses_new' ? styles.dashboardItem + ' ' + styles.active : styles.dashboardItem}
                         onClick={this.onClickDashboardLink.bind(this, '/admin/dashboard/courses/new', 'admin_students_new')}>
-                      <a className={styles.itemName + ' dashboard-item-name'}>{this.context.t('admin_students_new')}</a>
+                      <a className={styles.itemName}>{this.context.t('admin_students_new')}</a>
                     </li>
                     <li className={activatedTab === 'admin_student_edit' ? styles.dashboardItem + ' ' + styles.active : styles.dashboardItem}>
-                      <a className={styles.itemName + ' dashboard-item-name'}>{this.context.t('admin_student_edit')}</a>
+                      <a className={styles.itemName}>{this.context.t('admin_student_edit')}</a>
                     </li>
                   </ul>
                 </div>
