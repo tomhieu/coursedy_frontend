@@ -17,7 +17,6 @@ import LoadingMask from 'components/LoadingMask/LoadingMask'
 import * as WebConstants from 'constants/WebConstants'
 import ReviewTeacherForm from './Content/ReviewTeacherForm'
 import FixedSideBar from 'components/Common/FixedSideBar'
-import RightContent from 'components/Common/RightContent'
 import { TT } from 'utils/locale'
 import { LinkContainer } from 'react-router-bootstrap'
 import PrimaryAnchor from 'components/Core/PrimaryAnchor/PrimaryAnchor'
@@ -109,7 +108,7 @@ class TeacherDetail extends Component {
                           handlePageChange={this.fetchTeacherReviewsWithPageNumber.bind(this)}
                           context={this.context}
                         />
-                        <ReviewTeacherForm/>
+                        <ReviewTeacherForm />
                       </div>
 
                       <TeacherTaughtCourses

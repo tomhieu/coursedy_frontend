@@ -235,6 +235,7 @@ export const translations = {
     "speciality": "Chuyên môn",
     "save": "Lưu",
     "send": "Gửi",
+    "send_comment": "Gửi bình luận",
     "cancel": "Huỷ",
     "select": "Chọn",
     'male': 'Nam',

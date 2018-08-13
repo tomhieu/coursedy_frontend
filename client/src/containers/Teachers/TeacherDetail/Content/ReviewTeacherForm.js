@@ -8,6 +8,7 @@ import PrimaryButton from 'components/Core/PrimaryButton/PrimaryButton'
 import { openConfirmationPopup } from 'actions/MainActionCreator'
 import { TT } from 'utils/locale'
 import { withRouter } from 'react-router-dom'
+import { fetchTeacherReviews } from '../../../../actions/TeacherActionCreators';
 
 
 class ReviewTeacherForm extends Component {
@@ -46,7 +47,7 @@ class ReviewTeacherForm extends Component {
           <div className="d-flex justify-content-right">
             <PrimaryButton type="submit"
                            customClasses="btn"
-                           title={this.context.t("send")} line={false}
+                           title={this.context.t("send_comment")} line={false}
                            disabled={pristine || submitting}>
             </PrimaryButton>
           </div>
@@ -73,6 +74,11 @@ const mapDispatchToProps = (dispatch) => ({
   onSubmitComment: (content, teacherId, userId) => {
     dispatch((Actions.submitTeacherComment({content, teacherId, userId}))).then(({value, action}) => {
       dispatch(openConfirmationPopup(TT.t('submit_comment_status'), TT.t('submit_comment_success')))
+      dispatch(fetchTeacherReviews({
+        teacherId: parseInt(teacherId),
+        meta: 'userAccountPlaceholder',
+        query: {sort_order: 'desc'}
+      }));
     }, (err) => {
       dispatch(openConfirmationPopup(TT.t('submit_comment_status'), TT.t('submit_comment_fail')))
     });
