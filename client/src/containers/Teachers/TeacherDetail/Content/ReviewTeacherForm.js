@@ -39,7 +39,7 @@ class ReviewTeacherForm extends Component {
 
     const {handleSubmit, pristine, submitting} = this.props;
     return (
-      <div className="course-detail-comment-form" id="comment-form-section">
+      <div className="course-detail-comment-form mt-15" id="comment-form-section">
         <form onSubmit={handleSubmit(this.submitComment.bind(this))} className='inline-form ml-0 mr-0'>
           <FormField fieldId={'course_comment_content'} formGroupId={'content'} formLabel={this.context.t('course_comment_content')}
                      placeholder={this.context.t('course_comment_content')} isMandatoryField={true}
