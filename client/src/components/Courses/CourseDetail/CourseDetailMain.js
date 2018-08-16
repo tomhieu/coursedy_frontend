@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import CourseDetailLeftSide from './CourseDetailLeftSide'
 import CourseDetailRightSide from './CourseDetailRightSide'
 import './CourseDetailMain.scss'
 

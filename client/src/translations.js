@@ -332,7 +332,7 @@ export const translations = {
     "header_teacher_name": "Khoá học được giảng dạy bởi: {teacherName}",
     "header_number_lesson": "Tổng số bài học: {numberLesson}",
     "header_period_lesson": "Thời lượng bài học: {periodLesson} phút",
-    "header_last_update": "Mới cập nhập lúc: {lastUpdate}",
+    "header_last_update": "Mới cập nhập: {lastUpdate}",
     "course_include": "Khoá học bao gồm:",
     "account_access_to_course_room": "Tài khoản để học trực tuyến",
     "course_material": "Tất cả tài liệu, bài tập",

@@ -92,8 +92,20 @@ const getCourseLevel = (categories, course) => {
   return null
 }
 
+const getCourse = (course, courseSections) => {
+    course = {...course};
+    let totalPeriod = 0;
+    courseSections.forEach((section) => {
+      section.lessons.forEach((lesson) => {
+        totalPeriod += lesson.period;
+      });
+    });
+    course.totalPeriod = totalPeriod;
+    return course;
+};
+
 const mapStateToProps = (state) => {
-  const categories = state.referenceData.courseCategories
+  const categories = state.referenceData.courseCategories;
   const { 
     course, 
     relatedCourses, 
@@ -107,9 +119,13 @@ const mapStateToProps = (state) => {
     course_category: getCourseCategory(categories, course),
     course_level: getCourseLevel(categories, course),
     user: state.session.currentUser,
-    categories, course, relatedCourses,
-    course_tutor, course_sections,
-    course_comments, course_comments_page,
+    categories,
+    course: getCourse(course, course_sections),
+    relatedCourses,
+    course_tutor,
+    course_sections,
+    course_comments,
+    course_comments_page,
     sectionPositions
   }
 }

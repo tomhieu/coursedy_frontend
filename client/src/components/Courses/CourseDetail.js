@@ -3,7 +3,6 @@ import CourseDetailHeader from './CourseDetail/CourseDetailHeader';
 import CourseDetailMain from './CourseDetail/CourseDetailMain';
 import './CourseDetail.scss';
 import {PUBLIC_COURSE_MAX_NUMBER_COMMENTS_PER_LOAD} from '../../constants/Courses';
-import {CHECK_ACTIVE_MENU_OFFSET} from "../../constants/WebConstants.js"
 import CourseDetailAction from "./CourseDetail/CourseDetailAction";
 
 /**

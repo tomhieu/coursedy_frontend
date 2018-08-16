@@ -20,12 +20,12 @@ class ReviewTeacherForm extends Component {
     } else {
       //Submit comment
       this.props.reset();
-      this.props.onSubmitComment(content, this.props.teacher.user_id, this.props.user.id);
+      this.props.onSubmitComment(content, this.props.teacher.id, this.props.user.id);
     }
   }
 
   redirectToLogin() {
-    const teacherId = this.props.teacher.user_id || this.props.match.params.id
+    const teacherId = this.props.teacher.id || this.props.match.params.id
     this.props.history.push({
       pathname: '/login',
       search: `?next=/teachers/${teacherId}#comment-form-section`
@@ -33,7 +33,7 @@ class ReviewTeacherForm extends Component {
   }
 
   render() {
-    if (this.props.user && this.props.teacher.user_id === this.props.user.id) {
+    if (this.props.user && this.props.teacher.id === this.props.user.id) {
       return null
     }
 

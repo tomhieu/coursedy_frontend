@@ -1,5 +1,6 @@
 import * as courseTypes from '../../constants/Courses';
 import * as asyncActs from '../../actions/AsyncActionCreator';
+import { TT } from '../../utils/locale';
 
 const PublicCourseDetail = (state = {
     course: {},
@@ -42,7 +43,12 @@ const PublicCourseDetail = (state = {
     case courseTypes.FETCH_PUBLIC_COURSE_SECTIONS + asyncActs.REJECTED:
       return {...state, course_sections: []}
     case courseTypes.FETCH_PUBLIC_COURSE_TUTOR + asyncActs.FULFILLED:
-      return {...state, course_tutor: action.payload}
+      const {
+        twitter=TT.t('twitter_link'),
+        linkedIn=TT.t('linkedIn_link'),
+        facebook=TT.t('facebook_link'),
+      } = action.payload;
+      return {...state, course_tutor: {twitter, linkedIn, facebook, ...action.payload}}
     case courseTypes.FETCH_PUBLIC_COURSE_TUTOR + asyncActs.REJECTED:
       return {...state, course_tutor: null}
 

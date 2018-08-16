@@ -35,15 +35,22 @@ class CommentFormContainer extends Component {
   }
 
   render() {
-    const {handleSubmit, valid} = this.props;
+    const { handleSubmit, pristine, submitting } = this.props;
     return (
       <div className="course-detail-comment-form" id="comment-form-section">
         <form onSubmit={handleSubmit(this.submitComment.bind(this))} className='inline-form ml-0 mr-0'>
           <FormField fieldId={'course_comment_content'} formGroupId={'content'} formLabel={this.context.t('course_comment_content')}
                    placeholder={this.context.t('course_comment_content')} isMandatoryField={true}
                    formControlName={'content'} typeField={'custom_textarea'}></FormField>
-          <PrimaryButton type="submit" customClasses="save-comment" line={false} disabled={!valid} title={this.context.t('save')}>
-          </PrimaryButton>
+          <div className="d-flex justify-content-right">
+            <PrimaryButton
+              type="submit"
+              line={false}
+              customClasses="btn"
+              title={this.context.t("send_comment")}
+              disabled={pristine || submitting}
+            />
+          </div>
         </form>
       </div>
     )

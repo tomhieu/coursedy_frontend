@@ -19,8 +19,9 @@ class CourseDetailComments extends Component {
   }
 
   render() {
-    const {course_comments, loadMoreCommentsHdl, activeMenu} = this.props
-    const active = activeMenu === PUBLIC_COURSE_DETAIL_MENU_COMMENTS
+    const {course_comments, loadMoreCommentsHdl, activeMenu, course} = this.props
+    const active = activeMenu === PUBLIC_COURSE_DETAIL_MENU_COMMENTS;
+    const  ratingOverall = course.rating_count === 0 ? 0 : parseFloat(course.rating_points)/course.rating_count;
     return (
       <div id="courses-detail-comments" className="course-detail-section">
         <div className="row review-wrapper">
@@ -33,9 +34,12 @@ class CourseDetailComments extends Component {
               </div>
               <div className="col-xs-12 col-sm-12 col-md-12">
                 <div className="review-overall">
-                  <p className="review-overall-point"><span>4.6</span></p>
+                  <p className="review-overall-point"><span>{ratingOverall}</span></p>
                   <div className="rating-wrapper">
-                    <RatingItem num_stars={4.6} num_reviews={5}/>
+                    <RatingItem
+                      num_stars={ratingOverall}
+                      num_reviews={course.rating_count}
+                    />
                   </div>
                 </div>
               </div>

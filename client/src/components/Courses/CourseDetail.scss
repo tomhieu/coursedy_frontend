@@ -1,8 +1,12 @@
 @import "../../../styles/global_style.scss";
 
+p {
+  margin: 0;
+}
+
 .course-detail {
   width: 100%;
-  background-color: #fff;
+  background-color: $white-background;
 }
 
 .course-details-action {
@@ -44,6 +48,7 @@
     background-color: $color-bg-gray-form;
     width: 100%;
   }
+
   .white-mask-scrolled {
     position: fixed;
     height: calc(#{$box-gap} + 70px + #{$box-gap});
@@ -53,4 +58,3 @@
     width: 100%;
   }
 }
-
