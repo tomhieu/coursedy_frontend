@@ -46,7 +46,7 @@ class CourseItemInGridMode extends Component {
         </div>
         <LinkContainer to={isPublic ? '/courses/' + item.id : '/dashboard/courses/detail/' + item.id} className='course-detail-lnk flex-auto'>
           <div className="d-flex flex-column justify-content-right course-item-content">
-            <RatingItem num_stars={item.rating_count == 0 ? 0 : parseFloat(item.rating_points)/item.rating_count} num_reviews={item.rating_count}/>
+            <RatingItem num_stars={item.rating_count === 0 ? 0 : parseFloat(item.rating_points)/item.rating_count} num_reviews={item.rating_count}/>
             <h3>{item.title}</h3>
             <div className={styles.courseItemPrice}>
               {

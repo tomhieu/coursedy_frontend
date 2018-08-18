@@ -31,7 +31,6 @@ class CourseItemInListMode extends Component {
     } = this.props;
     const {id, onlyTutor, cover_image: coverImage, noComments, category, period, schedule, title, description, user} = item;
     const {id: userId, name, avatar} = user;
-    const noAvatarImage = 'http://placehold.it/75x75';
     return (
       <div className={styles.courseListItem} onClick={() => this.navigateToCourseDetails(onlyTutor, id)}>
         <div className="row gap-25">
