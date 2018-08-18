@@ -306,8 +306,16 @@ body.application {
     &.dark-header {
       border: none;
     }
+
     &.bg-light, &.dark-header.fixed-top {
       border-bottom: solid 1px $border-color;
+    }
+
+    ul {
+      list-style-type: none;
+      margin-top: 0;
+      margin-bottom: 0;
+      padding-left: 0;
     }
   }
 
@@ -416,6 +424,13 @@ body.application {
     color: #444;
     margin-bottom: 15px;
     height: 100%;
+
+    ul {
+      list-style-type: none;
+      margin-top: 0;
+      margin-bottom: 0;
+      padding-left: 0;
+    }
   }
 
   .dashboard-menu .panel-heading {
