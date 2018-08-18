@@ -30,7 +30,7 @@ class CommentFormContainer extends Component {
     const courseId = this.props.course.id || this.props.match.params.id
     this.props.history.push({
       pathname: '/login',
-      search: `?next=/course/${courseId}#comment-form-section`
+      search: `?next=/courses/${courseId}#comment-form-section`
     })
   }
 

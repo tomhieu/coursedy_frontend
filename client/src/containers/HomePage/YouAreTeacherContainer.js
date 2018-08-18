@@ -59,9 +59,6 @@ export default class YouAreTeacher extends Component {
               <h2 className="course__teacher-guide__heading__title heading">{this.context.t('section_title')}</h2>
               <div className="d-flex flex-column">
                 <span className="course__teacher-guide__heading__description">{this.context.t('section_sub_title')}</span>
-                <span className="course__teacher-guide__heading__description">{this.context.t('section_sub_title_2',
-                  {link_register: <Link to={'/register'}>{this.context.t('regiter_new_teacher')}</Link>})
-                }</span>
               </div>
             </div>
 

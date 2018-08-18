@@ -26,7 +26,7 @@ class CourseItemInGridMode extends Component {
 
     return (
       <div className="course-item d-flex flex-column">
-        <LinkContainer to={isPublic ? '/course/' + item.id : '/dashboard/courses/detail/' + item.id} className='course-detail-lnk'>
+        <LinkContainer to={isPublic ? '/courses/' + item.id : '/dashboard/courses/detail/' + item.id} className='course-detail-lnk'>
           <div className="course-item-image">
             <Image src={item.cover_image} width={200} height={150} alt={'comming soon'} className="full-width-img"
                    noLazyLoad={true}/>
@@ -44,7 +44,7 @@ class CourseItemInGridMode extends Component {
             </div>
           </LinkContainer>
         </div>
-        <LinkContainer to={isPublic ? '/course/' + item.id : '/dashboard/courses/detail/' + item.id} className='course-detail-lnk flex-auto'>
+        <LinkContainer to={isPublic ? '/courses/' + item.id : '/dashboard/courses/detail/' + item.id} className='course-detail-lnk flex-auto'>
           <div className="d-flex flex-column justify-content-right course-item-content">
             <RatingItem num_stars={item.rating_count == 0 ? 0 : parseFloat(item.rating_points)/item.rating_count} num_reviews={item.rating_count}/>
             <h3>{item.title}</h3>

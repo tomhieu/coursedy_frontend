@@ -48,7 +48,7 @@ const mapDispatchToProps = (dispatch) => ({
   fetchEnrollingCourseList: () => dispatch(StudentCourseActions.fetchListStudentEnrollCourses()),
   finishCourse: (courseId) => dispatch(StudentCourseActions.finishCourse(courseId)),
   openCourseDetails: (courseId) => {
-    globalHistory.push(`/course/${courseId}`)
+    globalHistory.push(`/courses/${courseId}`)
   },
   activateTab: (tabId) => dispatch(dashboardActions.activateTab(tabId))
 })

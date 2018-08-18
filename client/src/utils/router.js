@@ -36,11 +36,11 @@ const router = (
             <Route path="/passwords/edit" component={Pages.EditPasswordPage} />
             <Route path="/recover-password" component={Pages.RecoverPasswordPage} />
             <Route path="/confirm_account" component={Pages.ConfirmationPage} />
-            <Route path="/courses" component={Pages.PublicCourseListPage} />
-            <Route path="/course/:courseId/evaluate/lesson/:bbbRoom" component={LessonEvaluationContainer} />
-            <Route path="/course/:id" component={Pages.PublicCourseDetailPage}/>
-            <Route path="/teachers/:id" component={TeacherDetailContainer} />
-            <Route path="/teachers" component={TeacherListContainer} />
+            <Route exact path="/courses" component={Pages.PublicCourseListPage} />
+            <Route exact path="/courses/:courseId/evaluate/lesson/:bbbRoom" component={LessonEvaluationContainer} />
+            <Route exact path="/courses/:id" component={Pages.PublicCourseDetailPage}/>
+            <Route exact path="/teachers/:id" component={TeacherDetailContainer} />
+            <Route exact path="/teachers" component={TeacherListContainer} />
 
             <PrivateRoute path="/dashboard" roles={[UserRole.TEACHER]} component={Pages.TutorDashboard} />
             <PrivateRoute path="/student/dashboard" roles={[UserRole.STUDENT]} component={Pages.StudentDashboard} />
