@@ -44,19 +44,15 @@ class CourseDetail extends Component {
     const {course, course_sections} = this.props;
     return (
       <div className="d-flex flex-auto flex-vertical full-width-in-container">
-        <div className="row">
-          <div className="col-md-12">
-            <CourseDetailHeader
-                {...this.props}
-            />
-          </div>
-        </div>
+        <CourseDetailHeader
+          {...this.props}
+        />
         <div className="row">
           <div className="col-md-8">
             <CourseDetailMain
-                {...this.props}
-                activeMenu={activeMenu}
-                currentScrollPosition={currentScrollPosition}
+              {...this.props}
+              activeMenu={activeMenu}
+              currentScrollPosition={currentScrollPosition}
             />
           </div>
           <div className="col-md-4 course-details-action">
