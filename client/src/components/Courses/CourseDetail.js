@@ -3,7 +3,6 @@ import CourseDetailHeader from './CourseDetail/CourseDetailHeader';
 import CourseDetailMain from './CourseDetail/CourseDetailMain';
 import './CourseDetail.scss';
 import {PUBLIC_COURSE_MAX_NUMBER_COMMENTS_PER_LOAD} from '../../constants/Courses';
-import {CHECK_ACTIVE_MENU_OFFSET} from "../../constants/WebConstants.js"
 import CourseDetailAction from "./CourseDetail/CourseDetailAction";
 
 /**
@@ -45,19 +44,15 @@ class CourseDetail extends Component {
     const {course, course_sections} = this.props;
     return (
       <div className="d-flex flex-auto flex-vertical full-width-in-container">
-        <div className="row">
-          <div className="col-md-12">
-            <CourseDetailHeader
-                {...this.props}
-            />
-          </div>
-        </div>
+        <CourseDetailHeader
+          {...this.props}
+        />
         <div className="row">
           <div className="col-md-8">
             <CourseDetailMain
-                {...this.props}
-                activeMenu={activeMenu}
-                currentScrollPosition={currentScrollPosition}
+              {...this.props}
+              activeMenu={activeMenu}
+              currentScrollPosition={currentScrollPosition}
             />
           </div>
           <div className="col-md-4 course-details-action">

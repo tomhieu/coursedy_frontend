@@ -60,9 +60,12 @@ class CourseDetailAction extends Component {
           <div className={styles.courseCoverImage}>
             <img src={course.cover_image ? course.cover_image : "http://placehold.it/1366x768"} alt="" />
           </div>
-          <div className={styles.courseFee}>
-            {ObjectUtils.currencyFormat(course.tuition_fee, course.currency)}
-          </div>
+          {
+            course.tuition_fee ?
+              <div className={styles.courseFee}>
+                {ObjectUtils.currencyFormat(course.tuition_fee, course.currency)}
+              </div>: null
+          }
           <div className={styles.courseActionButtons}>
             <PrimaryButton round={true}
                            line={false}

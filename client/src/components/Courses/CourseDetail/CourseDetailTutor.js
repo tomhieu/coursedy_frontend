@@ -30,14 +30,27 @@ class CourseDetailTutor extends Component {
                   </Link>
                 </div>
                 <div className="clear"></div>
-                
-                <ul className="user-action">
-                  <li><a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Facebook"><i className="fa fa-facebook"></i></a></li>
-                  <li><a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Twitter"><i className="fa fa-twitter"></i></a></li>
-                  <li><a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Pinterest"><i className="fa fa-pinterest"></i></a></li>
-                  <li><a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Google Plus"><i className="fa fa-google-plus"></i></a></li>
-                </ul>
-                    
+
+                {course_tutor && (course_tutor.twitter || course_tutor.linkedIn) ?
+                  <div className="social mt-10">
+                  {course_tutor.twitter ?
+                    <a href={course_tutor.twitter}
+                       className="twitter"
+                       data-toggle="tooltip" data-placement="top"
+                       title="" data-original-title="Twitter"
+                    >
+                      <i className="fa fa-twitter"></i>
+                    </a> : null}
+                  {course_tutor.linkedIn ?
+                    <a href={course_tutor.linkedIn}
+                       className="linked"
+                       data-toggle="tooltip" data-placement="top"
+                       title=""
+                       data-original-title="LinkedIn"
+                    >
+                      <i className="fa fa-linkedin"></i>
+                    </a> : null}
+                </div> : null}
               </div>
               
               <div className="col-xs-12 col-sm-9 col-md-10">

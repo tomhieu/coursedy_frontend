@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import cssModules from 'react-css-modules';
 import styles from './Footer.module.scss';
+import './Footer.scss';
 import {connect} from "react-redux";
 import FooterAside from "../../../components/Layout/SubFooter/FooterAside";
 import FooterMain from "../../../components/Layout/SubFooter/FooterMain";

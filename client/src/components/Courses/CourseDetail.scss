@@ -1,10 +1,22 @@
 @import "../../../styles/global_style.scss";
 
-.course-detail {
-  width: 100%;
-  background-color: #fff;
+p {
+  margin: 0;
 }
 
+.course-detail {
+  width: 100%;
+  background-color: $white-background;
+}
+
+.course-detail-main {
+  .review-list {
+    list-style-type: none;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-left: 0;
+  }
+}
 .course-details-action {
   position: relative;
 }
@@ -44,6 +56,7 @@
     background-color: $color-bg-gray-form;
     width: 100%;
   }
+
   .white-mask-scrolled {
     position: fixed;
     height: calc(#{$box-gap} + 70px + #{$box-gap});
@@ -53,4 +66,3 @@
     width: 100%;
   }
 }
-

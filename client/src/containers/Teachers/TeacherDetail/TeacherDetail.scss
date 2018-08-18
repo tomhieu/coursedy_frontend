@@ -19,6 +19,13 @@
     margin: 0;
   }
 
+  ul {
+    list-style-type: none;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-left: 0;
+  }
+
   &__header {
     border-bottom: 1px solid $border-color;
     h4 {
@@ -301,5 +308,8 @@ ul.review-list > li:last-child {
 .left-sidebar {
   top: calc(60px + 15px);
   overflow-y: scroll;
-  height: calc(100vh - 60px - 15px);
+
+  @media (min-width: $md-lower) {
+    height: calc(100vh - 60px - 15px);
+  }
 }

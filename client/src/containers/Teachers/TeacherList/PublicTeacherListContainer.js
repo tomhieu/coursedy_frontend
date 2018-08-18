@@ -70,7 +70,7 @@ const mapStateToProps = (state) => {
   const {data, headers} = state.Teachers;
 
   return {
-    teachers: data.filter(tutor => tutor.user != null),
+    teachers: data.filter(tutor => tutor.user !== null),
     headers: {
       currentPage: headers && parseInt(headers.xPage) || 0,
       perPage: headers && parseInt(headers.xPerPage) || 0,

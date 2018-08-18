@@ -46,7 +46,6 @@ const router = (
             <PrivateRoute path="/student/dashboard" roles={[UserRole.STUDENT]} component={Pages.StudentDashboard} />
             <PrivateRoute path="/admin/dashboard" roles={[UserRole.ADMIN]} component={Pages.AdminDashboardPage} />
 
-
             <Route path="/payment" component={Pages.PaymentPage} />
             <Route path="/about" component={AboutUsContainer} />
             <Route path="/help" component={HelpCenterContainer} />

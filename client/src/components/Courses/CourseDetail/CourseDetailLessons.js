@@ -22,7 +22,7 @@ class CourseDetailLessons extends Component {
         <div className="course-lession-wrapper-2">
           {
             course_sections.map((course_section, index) => (
-              <SectionDetails section={course_section}></SectionDetails>
+              <SectionDetails section={course_section} key={index}></SectionDetails>
             ))
           }
         </div>

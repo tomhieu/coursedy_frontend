@@ -1,15 +1,21 @@
+@import "../../../../styles/global_style";
+
 .mainSide {
   padding-top: 15px;
   width: 100%;
 }
 
 .rightSide {
-  min-width: 303px;
+  width: 288px;
   padding-left: 15px;
   padding-top: 15px;
 
-  @media (max-width: 992px) {
-   display: none;
+  @media (max-width: $md-lower) {
+    width: 20%;
+  }
+
+  @media (max-width: $lg-lower) {
+    display: none;
   }
 }
 

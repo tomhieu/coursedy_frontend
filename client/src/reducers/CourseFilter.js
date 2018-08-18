@@ -23,12 +23,12 @@ const CourseFilter = (state = {
     case courseActionTypes.FETCH_COURSES + asyncActs.PENDING:
       return {...state, isFetching: true}
     case courseActionTypes.FETCH_COURSES + asyncActs.FULFILLED:
-      return {...state, courses: action.payload, isFetching: false}
-    case courseActionTypes.FETCH_COURSES + asyncActs.HEADERS:
       return {
-        ...state, 
-        totalResult: parseInt(action.payload.xTotal),
-        currentPage: parseInt(action.payload.xPage)
+        ...state,
+        courses: action.payload,
+        totalResult: parseInt(action.headers.xTotal),
+        currentPage: parseInt(action.headers.xPage),
+        isFetching: false
       }
     case asyncActs.CHANGE_DISPLAY_MODE:
       return {...state, displayMode: action.payload}

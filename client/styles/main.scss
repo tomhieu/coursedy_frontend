@@ -306,8 +306,16 @@ body.application {
     &.dark-header {
       border: none;
     }
+
     &.bg-light, &.dark-header.fixed-top {
       border-bottom: solid 1px $border-color;
+    }
+
+    ul {
+      list-style-type: none;
+      margin-top: 0;
+      margin-bottom: 0;
+      padding-left: 0;
     }
   }
 
@@ -416,6 +424,13 @@ body.application {
     color: #444;
     margin-bottom: 15px;
     height: 100%;
+
+    ul {
+      list-style-type: none;
+      margin-top: 0;
+      margin-bottom: 0;
+      padding-left: 0;
+    }
   }
 
   .dashboard-menu .panel-heading {
@@ -1621,9 +1636,14 @@ body.application {
       background-color: transparent;
       border: none;
     }
+
     &+.right-content {
       margin-left: calc(0.20 * 100vw + #{$box-gap});
       width: calc(100% - 0.20 * 100vw - #{$box-gap});
+    }
+
+    &+.page-content {
+      margin-left: calc(0.20 * 100vw + #{$box-gap});
     }
   }
 
@@ -1631,9 +1651,14 @@ body.application {
     & {
       width: 288px;
     }
+
     &+.right-content {
       margin-left: 303px;
       width: 967px;
+    }
+
+    &+.page-content {
+      margin-left: 303px;
     }
   }
 }

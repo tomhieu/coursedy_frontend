@@ -8,6 +8,7 @@ import PrimaryButton from 'components/Core/PrimaryButton/PrimaryButton'
 import { openConfirmationPopup } from 'actions/MainActionCreator'
 import { TT } from 'utils/locale'
 import { withRouter } from 'react-router-dom'
+import { fetchTeacherReviews } from '../../../../actions/TeacherActionCreators';
 
 
 class ReviewTeacherForm extends Component {
@@ -19,12 +20,12 @@ class ReviewTeacherForm extends Component {
     } else {
       //Submit comment
       this.props.reset();
-      this.props.onSubmitComment(content, this.props.teacher.user_id, this.props.user.id);
+      this.props.onSubmitComment(content, this.props.teacher.id, this.props.user.id);
     }
   }
 
   redirectToLogin() {
-    const teacherId = this.props.teacher.user_id || this.props.match.params.id
+    const teacherId = this.props.teacher.id || this.props.match.params.id
     this.props.history.push({
       pathname: '/login',
       search: `?next=/teachers/${teacherId}#comment-form-section`
@@ -32,13 +33,13 @@ class ReviewTeacherForm extends Component {
   }
 
   render() {
-    if (this.props.user && this.props.teacher.user_id === this.props.user.id) {
+    if (this.props.user && this.props.teacher.id === this.props.user.id) {
       return null
     }
 
     const {handleSubmit, pristine, submitting} = this.props;
     return (
-      <div className="course-detail-comment-form" id="comment-form-section">
+      <div className="course-detail-comment-form mt-15" id="comment-form-section">
         <form onSubmit={handleSubmit(this.submitComment.bind(this))} className='inline-form ml-0 mr-0'>
           <FormField fieldId={'course_comment_content'} formGroupId={'content'} formLabel={this.context.t('course_comment_content')}
                      placeholder={this.context.t('course_comment_content')} isMandatoryField={true}
@@ -46,7 +47,7 @@ class ReviewTeacherForm extends Component {
           <div className="d-flex justify-content-right">
             <PrimaryButton type="submit"
                            customClasses="btn"
-                           title={this.context.t("send")} line={false}
+                           title={this.context.t("send_comment")} line={false}
                            disabled={pristine || submitting}>
             </PrimaryButton>
           </div>
@@ -73,6 +74,11 @@ const mapDispatchToProps = (dispatch) => ({
   onSubmitComment: (content, teacherId, userId) => {
     dispatch((Actions.submitTeacherComment({content, teacherId, userId}))).then(({value, action}) => {
       dispatch(openConfirmationPopup(TT.t('submit_comment_status'), TT.t('submit_comment_success')))
+      dispatch(fetchTeacherReviews({
+        teacherId: parseInt(teacherId),
+        meta: 'userAccountPlaceholder',
+        query: {sort_order: 'desc'}
+      }));
     }, (err) => {
       dispatch(openConfirmationPopup(TT.t('submit_comment_status'), TT.t('submit_comment_fail')))
     });

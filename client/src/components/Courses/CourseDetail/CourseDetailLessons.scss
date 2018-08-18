@@ -1,51 +1,11 @@
 @import "../../../../styles/global_style";
 .course-lession-wrapper-2 {
   margin-bottom: -10px;
-}
-.course-lession-item-2 {
-  color: #777;
-  text-decoration: none;
-  outline: none;
-  display: block;
-  border: 1px solid #E5E5E5;
-  padding: 25px;
-  margin: 0 0 25px;
-
-
-  h4,
-  h5 {
-    line-height: 1.2;
-    letter-spacing: 1px;
-    font-weight: 400;
-    margin: 10px 0 15px;
-  }
-
-  .meta {
-    color: #9a9a9a;
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.5px;
-  }
-
-  .lebal-lesson {
-    display: inline-block;
-    vertical-align: middle;
-    background: #E6E6E6;
-    color: $md-color-pink;
-    font-weight: 700;
-    line-height: 1;
-    padding: 5px 7px;
-    margin-right: 5px;
-  }
-
-  .label {
-    display: inline-block;
-    vertical-align: middle;
-  }
-
+  border-top: 1px solid $border-color;
+  border-right: 1px solid $border-color;
+  border-left: 1px solid $border-color;
 }
 
-.course-lession-item-2:hover {
-    background: #FAFAFA;
+.card {
+  border: none;
 }
-
