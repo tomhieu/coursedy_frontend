@@ -13,7 +13,7 @@ class EmptyResultWarning extends Component {
       <div className={`${styles} row justify-content-center`}>
         <div className="d-flex flex-auto align-items-center">
           <div className="d-flex flex-vertical flex-auto">
-            <div className="empty-result-message">{TT.t("search_empty_result", {type: TT.t(searchType)})}</div>
+            <div className="empty-result-message">{this.context.t("search_empty_result", {type: <strong>{this.context.t(searchType)}</strong>})}</div>
             <div className="list-option">
               <ul className="empty-result-option">
                 <li>{TT.t("search_empty_result_header")}</li>
