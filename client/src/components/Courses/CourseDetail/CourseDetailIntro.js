@@ -1,10 +1,32 @@
 import React, { Component } from 'react'
 import './CourseDetailIntro.scss'
 import DateUtils from "../../../utils/DateUtils"
-import {SERVER_NAME} from "../../../utils/CommonConstant";
 import { PUBLIC_COURSE_DETAIL_MENU_INTRO } from "../../../constants/WebConstants.js"
 
 class CourseDetailIntro extends Component {
+  constructor() {
+    super();
+    this.state = {
+      isViewMore: false
+    }
+  }
+
+  componentDidMount() {
+    if (this.courseRefDes && this.courseRefDes.clientHeight > 200) {
+      this.toggleViewMore();
+    }
+  }
+
+  handleViewMore(e) {
+    e.stopPropagation();
+    this.toggleViewMore();
+  }
+
+  toggleViewMore() {
+    this.setState({isViewMore: !this.state.isViewMore});
+  }
+
+
   render() {
     const {course, course_sections, activeMenu} = this.props
     const active = activeMenu === PUBLIC_COURSE_DETAIL_MENU_INTRO
@@ -44,9 +66,24 @@ class CourseDetailIntro extends Component {
             </ul>
           </div>
         </div>
-        <h5 className="text-uppercase font700">{this.context.t('course_about')}</h5>
-        <div className="course-about-content" dangerouslySetInnerHTML={{__html: course.description}} />
-      </div>
+        <h5 className="course-about-heading text-uppercase font700 mb-20">{this.context.t('course_about')}</h5>
+        <div className="course-about-content">
+          <div
+            ref={ (ref) => { this.courseRefDes = ref } }
+            className={`course-about-content ${this.state.isViewMore ? 'course-des-view-less' : 'course-des-view-more'}`}
+            dangerouslySetInnerHTML={{__html: course.description}}
+          />
+          {this.state.isViewMore ?
+            <div
+              className="course-des-view-more-btn"
+              onClick={this.handleViewMore.bind(this)}
+            >
+              {this.context.t('see_more')}
+            </div>
+            : null
+          }
+        </div>
+        </div>
     )
   }
 }

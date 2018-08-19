@@ -27,7 +27,7 @@ class CourseList extends Component {
       return (
         <div className="d-flex flex-auto">
           {
-            isFetching ? <div></div> : this.props.displayMode === 'grid'
+            isFetching ? <div/> : this.props.displayMode === 'grid'
                 ? <CourseListInGridMode {...this.props} />
                 : <CourseListInListMode {...this.props} />
           }

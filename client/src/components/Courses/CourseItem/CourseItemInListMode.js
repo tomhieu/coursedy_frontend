@@ -15,6 +15,24 @@ import {globalHistory} from "utils/globalHistory";
 class CourseItemInListMode extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      isViewMore: false
+    }
+  }
+
+  componentDidMount() {
+    if (this.courseRefDes && this.courseRefDes.clientHeight > 80) {
+      this.toggleViewMore();
+    }
+  }
+
+  handleViewMore(e) {
+    e.stopPropagation();
+    this.toggleViewMore();
+  }
+
+  toggleViewMore() {
+    this.setState({isViewMore: !this.state.isViewMore});
   }
 
   navigateToCourseDetails(onlyTutor, courseId) {
@@ -56,7 +74,7 @@ class CourseItemInListMode extends Component {
                   </div>
                   <div className="col-xss-12 col-xs-12 col-lg-2 col-md-3">
                     <div className={styles.ratingWrapper}>
-                      <RatingItem num_stars={item.rating_count == 0 ? 0 : parseFloat(item.rating_points)/item.rating_count} num_reviews={item.rating_count}/>
+                      <RatingItem num_stars={item.rating_count === 0 ? 0 : parseFloat(item.rating_points)/item.rating_count} num_reviews={item.rating_count}/>
                       <div>{noComments > 0 ? TT.t('number_of_comment', {numOfComment: noComments}) : TT.t('no_comment')}</div>
                     </div>
                   </div>
@@ -72,7 +90,19 @@ class CourseItemInListMode extends Component {
                   </div>
                 </div>
               </div>
-              <p className={styles.courseListItemDesc} dangerouslySetInnerHTML={{__html: description}}/>
+              <p ref={(ref) => {this.courseRefDes = ref}}
+                className={`${styles.courseListItemDesc} ${this.state.isViewMore ? styles.courseDesViewLess : styles.courseDesViewMore}`}
+                dangerouslySetInnerHTML={{__html: description}}
+              />
+              {this.state.isViewMore ?
+                <div
+                  className={styles.courseDesViewMoreBtn}
+                  onClick={this.handleViewMore.bind(this)}
+                >
+                  {this.context.t('see_more')}
+                </div>
+                : null
+              }
               <ul className={styles.metaList + " clearfix"}>
                 <li>
                   <i className="fa fa-folder-open-o"></i>
