@@ -22,12 +22,12 @@
   }
 
   .course-des-view-more {
-    height: 140px;
-    overflow: hidden;
+    height: auto;
   }
 
   .course-des-view-less {
-    height: auto;
+    height: 200px;
+    overflow: hidden;
   }
 }
 
