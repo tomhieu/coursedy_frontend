@@ -75,7 +75,7 @@ class NotificationSystemContainer extends Component {
   }
 
   getCourseDetailsUrl(courseId) {
-    return `/course/${courseId}`;
+    return `/courses/${courseId}`;
   }
 
   render() {

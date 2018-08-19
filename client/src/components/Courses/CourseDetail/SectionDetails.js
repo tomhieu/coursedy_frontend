@@ -48,7 +48,7 @@ class SectionDetails extends Component {
             <div className="col-md-12 col-sm-12">
               {
                 section.lessons.map((lesson, index) => (
-                  <LessonDetails lesson={lesson} index={index}></LessonDetails>
+                  <LessonDetails lesson={lesson} index={index} key={index}></LessonDetails>
                 ))
               }
             </div>

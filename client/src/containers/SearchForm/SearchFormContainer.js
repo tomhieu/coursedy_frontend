@@ -30,7 +30,7 @@ class SearchFormContainer extends Component {
 
   onSelectSuggestion(id) {
     this.props.closeSuggestion();
-    this.context.router.history.push('/course/' + id);
+    this.context.router.history.push('/courses/' + id);
   }
 
   onSearchMoreCourse(searchForm) {

@@ -10,7 +10,7 @@ class CoursedySlider extends Component {
     let {numOfSlideToShow, items, isLimit = true} = this.props;
 
     if (!numOfSlideToShow) {
-      numOfSlideToShow = items.length > 6 ? 6 : items.length;
+      numOfSlideToShow = items.length > 5 ? 5 : items.length;
     }
 
     const settings = {
@@ -18,7 +18,7 @@ class CoursedySlider extends Component {
       infinite: true,
       speed: 300,
       slidesToShow: numOfSlideToShow,
-      slidesToScroll: 6,
+      slidesToScroll: 5,
       className: 'coursedy-slider',
       responsive: [
         {

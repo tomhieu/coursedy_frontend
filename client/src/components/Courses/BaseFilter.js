@@ -5,7 +5,6 @@ import AdvanceFilterComponent from "./CourseFilter/AdvanceFilterComponent";
 import BasicFilterComponent from "./CourseFilter/BasicFilterComponent";
 import Select2 from "react-select2-wrapper";
 import FlatButton from "../Core/FlatButton/FlatButton";
-import {TRIGGER_STICKY_HEADER_AT} from "constants/Layout";
 
 
 class BaseFilter extends Component {
