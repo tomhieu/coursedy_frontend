@@ -16,12 +16,10 @@ class PublicCourseListContainer extends Component {
 
   componentDidMount() {
     this.props.search(this.props);
-    this.props.hideFooter();
     this.props.stretchFull();
   }
 
   componentWillUnmount() {
-    this.props.showFooter();
     this.props.stretchAuto();
   }
 
@@ -47,7 +45,7 @@ class PublicCourseListContainer extends Component {
                    loaderType="COURSE_ITEM_PLACEHOLDER"
                    repeatTime={4}>
         <div className={styles.publicCourseList}>
-          <div className="container-fluid mt-15 mb-15">
+          <div className="mt-15 mb-15">
             <CourseList
               {...this.props}
               itemClass='col-xs-12 col-sm-6 col-md-3 col-lg-3 mb-15'

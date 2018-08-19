@@ -58,30 +58,9 @@ export const submitFollowCourse = (courses = []) => {
 }
 
 export const submitEnrollCourse = (courseId) => {
-  return dispatch => {
-    Network().post('courses/'+courseId+'/enroll', {}).then((response) => {
-      dispatch({
-        type: types.PUBLIC_COURSE_DETAIL_SUBMIT_ENROLL_SUCCESSFULLY,
-        payload: response
-      })
-    }, (errors) => {
-      const error_messages = (errors && errors.constructor == Array && errors.length > 0) ?
-        errors : {errors: [{status_code: 1, message: TT.t('submit_enroll_fail')}]}
-      //FIXME: Comment for dummy data
-      // dispatch({
-      //   type: asyncActs.PUBLIC_COURSE_DETAIL_SUBMIT_ENROLL_FAILL,
-      //   payload: {errors: error_messages}
-      // })
-
-      //FIXME: Remove me
-      dispatch({
-        type: types.PUBLIC_COURSE_DETAIL_SUBMIT_ENROLL_FAILL,
-        payload: {errors: [{
-          status_code: 2,
-          message: "Không đủ số dư"
-        }]}
-      })      
-    })
+  return {
+    type: types.PUBLIC_COURSE_DETAIL_SUBMIT_ENROLL,
+    payload: Network().post(`courses/${courseId}/enroll`, {})
   }
 }
 

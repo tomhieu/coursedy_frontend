@@ -112,9 +112,9 @@ class BaseFilter extends Component {
           {/* Result Block */}
           <div className={"d-flex flex-auto moving-sort-bar " + styles.filterResultBlock}>
             <div className="d-flex flex-horizontal justify-content-end flex-auto container">
-              <div className={styles.orderDisplayResult + " d-flex flex-horizontal align-items-center justify-content-end"}>
+              <div className={styles.orderDisplayResult + " d-flex flex-horizontal align-items-center"}>
                 <div className={styles.totalCoursesBox}>
-                    <span className={styles.textTotalResult + " d-flex justify-content-end"}>
+                    <span className={styles.textTotalResult + " d-flex"}>
                       {
                         courseFilterMode ? this.context.t("total_result_course", {total: totalResult !== undefined ? totalResult : 0})
                           : this.context.t("total_result_teacher", {total: totalResult !== undefined ? totalResult : 0})

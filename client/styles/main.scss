@@ -271,7 +271,7 @@ body.application {
         position: absolute;
         top: 45px;
         right: 15px;
-        border: 1px solid $border-color;
+        border: 1px solid $white-color;
         display: flex;
         ul.navbar-nav {
           align-items: flex-end;
@@ -286,7 +286,7 @@ body.application {
           top: -14px;
           right: 12px;
           font-size: 20px;
-          color: $md-color-pink;
+          color: $white-color;
           content: '\f0d8';
           font-family: $font-awesome;
         }
@@ -583,6 +583,7 @@ body.application {
       background-color: transparent;
       padding: 10px 30px 65px 30px;
       border: none;
+      min-height: calc(100vh - 120px);
       .title {
         font-size: 22px;
         color: $color-darker-text;
@@ -1838,4 +1839,16 @@ body.application {
       }
     }
   }
+}
+
+.enroll-popup {
+  .modal-dialog {
+    width: 650px;
+    max-width: 650px;
+  }
+}
+
+.highlight-term {
+  font-weight: 700;
+  color: $md-color-pink;
 }

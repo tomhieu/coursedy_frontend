@@ -1,14 +1,10 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {PaymentActions} from '../../../../actions/index'
 import ObjectUtils from '../../../../utils/ObjectUtils'
 
 class StudentProfileContainer extends Component {
-  componentWillMount() {
-    this.props.dispatch(PaymentActions.fetchUserBalance())
-  }
   render() {
-    const { currentUser, userBalance } = this.props
+    const { currentUser } = this.props
     return (
       <div className="dashboard-profile">
         <div className="media media-team">
@@ -23,7 +19,7 @@ class StudentProfileContainer extends Component {
           </div>
           <div className="media-body">
             <h4>{ currentUser.name }</h4>
-            <p>{this.context.t('my_balance')}: <strong>{ ObjectUtils.currencyFormat(userBalance) }</strong></p>
+            <p>{this.context.t('my_balance')}: <strong>{ ObjectUtils.currencyFormat(currentUser.balance) }</strong></p>
           </div>
         </div>
       </div>
@@ -33,7 +29,6 @@ class StudentProfileContainer extends Component {
 
 const mapStateToProps = (state) => ({
   currentUser: state.session.currentUser,
-  userBalance: state.session.userBalance
 })
 
 StudentProfileContainer.contextTypes = {
