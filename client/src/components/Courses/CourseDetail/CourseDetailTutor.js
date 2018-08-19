@@ -63,7 +63,7 @@ class CourseDetailTutor extends Component {
                   </p>
                   {
                     course_tutor && course_tutor.description ?
-                      <p className="short-info" dangerouslySetInnerHTML={{__html: course_tutor.description}} /> : this.context.t('unknown')
+                      <p className="short-info" dangerouslySetInnerHTML={{__html: course_tutor.description}} /> : <p>{this.context.t('unknown')}</p>
                   }
                   <PrimaryButton callback={() => {globalHistory.push(`/teachers/${course.user.id}`)}}
                                  title={this.context.t('read_more')} isSmallButton={true} isPrimary={true} >
