@@ -773,7 +773,25 @@ export const translations = {
           description: "Nếu bạn muốn nâng tầm kĩ năng truyền đạt, hay kĩ năng quản lý và chăm sóc khách hàng. Bằng việc trở thành giáo viên bạn có thể bắt gặp các học viên từ nền văn hoá nước khác… Kỹ năng truyền đạt của bạn sẽ phải đa dạng và phong phú hơn. Ngoài ra đến một lúc nào đó, lượng học viên của bạn đủ lớn để thành cộng đồng trên mạng xã hội. Khi đó bạn cần phải quản lý và chăm sóc khách hàng một cách ngày càng chuyên nghiệp, hiệu quả hơn."
         }
       ]
-    }
+    },
+    "enroll_course_title": "Đăng ký khoá học",
+    "enroll_course_button": "Đăng ký ngay",
+    "enroll_course_message": "Một số lưu ý trước khi bạn tham gia khoá học {courseTitle} như sau:",
+    "enroll_course_term_1": "Khoá học sẽ dạy online. Bạn sẽ được cấp quyền truy cập vào khoá học",
+    "enroll_course_sub_term_1": "Bạn sẽ được tham giá hoc trực tiếp với giáo viên trên hệ thông Coursedy, được cung cấp tất cả tài liệu, bài tập liên quan đến khoá học.",
+    "enroll_course_term_2": "Huỷ khoá hoc bất kỳ lúc nào",
+    "enroll_course_sub_term_2": "Sau khi tham gia nếu cảm thấy khoa học không đáp ứng yêu cầu bạn có thể huỷ bất kỳ lúc nào. Không bị trừ bất cứ khoản phí nào.",
+    "enroll_course_term_3": "Học phí khoá học là {courseFee} VND.",
+    "enroll_course_sub_term_3": "Tài khoản của bạn phải đủ trước khi đăng ký khoá học. Bạn chỉ bị {chargeFee} khi hoàn thành khoá học",
+    "enroll_course_charge_fee": "trừ tiền",
+    "enroll_course_term_4": "Ngày bắt đầu khoá học hiện tại là dự định. Chúng tôi sẽ thông báo ngày bắt đầu chính thức sau khi giáo viên thông báo.",
+    "enroll_course_sub_term_4": "Sau khi số lượng học viên đăng ký đủ hoặc giáo viên hoàn tất mọi tài liệu cho khoá hoc. Giáo viên sẽ thông báo ngày học chính thức. Chúng tôi sẽ thông báo đến bạn ngay sau khi nhận thông tin. Hoặc bạn có thể chat với giáo viên để nắm rõ hơn.",
+    "enroll_course_term_5": "Một số buổi có thể được bổ sung hoặc sửa đổi bởi giáo viên",
+    "enroll_course_sub_term_5": "Coursedy sẽ thông báo khi có sự thay đổi về nội dung các buổi học của khoá học từ giáo viên.",
+    "enroll_course_success_title": "Đăng ký thành công",
+    "enroll_course_success_button": "Về khoá học",
+    "enroll_course_success_message": "Chào mứng bạn đến với khoá học {courseTitle}.",
+    "enroll_course_success_message_2": "Khoá học sẽ bắt đầu sớm. Bạn hãy chuẩn bị sẵn sàng cho khoá học ngay hôm nay."
   },
   "en": {
     ...payment_translation.en,

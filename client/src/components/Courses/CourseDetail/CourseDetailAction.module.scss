@@ -28,17 +28,20 @@
   }
   .courseShortIntroduce {
     padding: 10px 30px;
+    .listItem {
+      padding-left: 15px;
+      .itemInclude {
+        display: flex;
+        flex-direction: row;
+        padding: 5px 0;
+        .itemIcon {
+          margin-right: 10px;
+        }
+      }
+    }
     .itemTitle {
       font-weight: 700;
       margin-bottom: 8px;
-    }
-    .itemInclude {
-      display: flex;
-      flex-direction: row;
-      padding: 5px 0;
-      .itemIcon {
-        margin-right: 10px;
-      }
     }
   }
 

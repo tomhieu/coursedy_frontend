@@ -63,9 +63,9 @@ const PublicCourseDetail = (state = {
 
 
     //Handle enroll actions
-    case courseTypes.PUBLIC_COURSE_DETAIL_SUBMIT_ENROLL_SUCCESSFULLY:
+    case courseTypes.PUBLIC_COURSE_DETAIL_SUBMIT_ENROLL + asyncActs.FULFILLED:
       return {...state, submit_enroll_success: true}
-    case courseTypes.PUBLIC_COURSE_DETAIL_SUBMIT_ENROLL_FAILL:
+    case courseTypes.PUBLIC_COURSE_DETAIL_SUBMIT_ENROLL + asyncActs.REJECTED:
       return {...state, submit_enroll_fail: true, submit_enroll_errors: action.payload.errors}
       
     case courseTypes.PUBLIC_COURSE_SHOW_ENROLL_STATUS_MODAL:

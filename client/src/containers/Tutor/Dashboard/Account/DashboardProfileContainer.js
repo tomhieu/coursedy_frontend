@@ -5,13 +5,9 @@ import * as AccountActionCreator from 'actions/AccountActionCreator'
 import {reduxForm} from "redux-form";
 import defaultAvatar from '../../../../../images/default_avatar.png'
 import LoadingMask from "../../../../components/LoadingMask/LoadingMask";
-import {FETCH_USER_BALANCE} from "../../../../actions/AsyncActionCreator";
 import CoursedyUploadImage from "../../../../components/Core/CoursedyUploadImage/CoursedyUploadImage";
 
 class DashboardProfileContainer extends Component {
-  componentWillMount() {
-    this.props.fetchUserBalance();
-  }
 
   showEditAvatarForm() {
     this.props.showAvatarEditForm();
@@ -65,7 +61,7 @@ class DashboardProfileContainer extends Component {
                     <h4>{user.name}</h4>
                   </div>
                   <div className='col-sm-12 sub-title'>
-                    <p>{this.context.t('my_balance')}: <strong>{ObjectUtils.currencyFormat(userBalance)}</strong></p></div>
+                    <p>{this.context.t('my_balance')}: <strong>{ObjectUtils.currencyFormat(user.balance)}</strong></p></div>
                 </div>
                 </div>
               </div>
@@ -83,11 +79,6 @@ const mapStateToProps = (state) => ({
 })
 
 const mapStateToDispatch = (dispatch) => ({
-  fetchUserBalance: () => dispatch({
-    type: FETCH_USER_BALANCE,
-    payload: 0,
-    meta: 'userDetailsPlaceholder'
-  }),
   updateAvatar: (avatar) => dispatch(AccountActionCreator.updateAvatar(avatar)),
   showAvatarEditForm: () => dispatch(AccountActionCreator.showAvatarEditForm()),
   hideAvatarEditForm: () => dispatch(AccountActionCreator.hideAvatarEditForm()),

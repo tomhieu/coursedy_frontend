@@ -7,6 +7,7 @@ import * as WebConstants from "constants/WebConstants";
 import {openConfirmationPopup} from "../../../actions/MainActionCreator";
 import {TT} from "../../../utils/locale";
 import PageContainer from '../../../utils/PageContainer';
+import * as sessionActions from "../../../actions/SessionActionCreator";
 
 class PublicCourseDetailContainer extends Component {
 
@@ -114,7 +115,9 @@ const mapStateToProps = (state) => {
     course_comments,
     course_comments_page,
     sectionPositions
-  } = state.PublicCourseDetail
+  } = state.PublicCourseDetail;
+  const { newStartedCourses } = state.session;
+  const isEnrolled = newStartedCourses.findIndex(c => c.id === course.id) >= 0;
   return {
     course_category: getCourseCategory(categories, course),
     course_level: getCourseLevel(categories, course),
@@ -126,7 +129,8 @@ const mapStateToProps = (state) => {
     course_sections,
     course_comments,
     course_comments_page,
-    sectionPositions
+    sectionPositions,
+    isEnrolled
   }
 }
 
@@ -141,15 +145,10 @@ const mapDispatchToProps = (dispatch) => ({
   getPublicCourse: (courseId) => dispatch(PublicCourseActions.fetchPublicCourse(courseId)),
   getCourseComments: (courseId, page) => dispatch(PublicCourseActions.fetchCourseComments(courseId, page)),
   getRelatedCourses: (courseId, page, perPage) => dispatch(PublicCourseActions.fetchRelatedCourses({courseId, page, perPage})),
-  enrollCourse: (courseId) => {
-    dispatch(PublicCourseActions.submitEnrollCourse(courseId)).then(() => {
-      dispatch(openConfirmationPopup(openConfirmationPopup(TT.t('course_enroll_status'), TT.t('course_enroll_success'))));
-    }, () => {
-      dispatch(openConfirmationPopup(openConfirmationPopup(TT.t('course_enroll_status'), TT.t('course_enroll_fail'))));
-    })
-  },
+  enrollCourse: (courseId) => dispatch(PublicCourseActions.submitEnrollCourse(courseId)),
   changeActiveMenu: (payload) => dispatch(PublicCourseActions.changeActiveMenu(payload)),
   showWarningPopup: (title, message, callback) => dispatch(openConfirmationPopup(title, message, callback)),
+  fetchEnrolledCourseList: (user) => dispatch(sessionActions.fetchActiveCourses(user))
 });
 
 export default connect(

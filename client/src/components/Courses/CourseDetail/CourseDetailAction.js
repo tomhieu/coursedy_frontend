@@ -14,6 +14,7 @@ import GooglePlusShareButton from "react-share/es/GooglePlusShareButton";
 import GooglePlusIcon from "../../Core/Icons/GooglePlusIcon";
 import LinkedinShareButton from "react-share/es/LinkedinShareButton";
 import LinkinIcon from "../../Core/Icons/LinkinIcon";
+import {SecurityUtils} from "../../../utils/SecurityUtils";
 
 
 class CourseDetailAction extends Component {
@@ -27,11 +28,15 @@ class CourseDetailAction extends Component {
   }
 
   submitEnrollCourse() {
+    // do nothing if course is already enrolled
+    if (this.props.isEnrolled) {
+      return;
+    }
     if (!this.props.user) {
       //Show require login modal
       this.showRequireLoginModal();
     } else {
-      this.props.enrollCourse(this.props.course.id);
+      this.props.openEnrollCoursePopup();
     }
   }
 
@@ -52,7 +57,7 @@ class CourseDetailAction extends Component {
   }
 
   render() {
-    const { categories, course, course_tutor, course_sections, course_comments } = this.props;
+    const { course, user, course_sections, isEnrolled } = this.props;
     const courseDetailsFullUrl = window.location.href;
     return (
       <div className={styles.courseDetailAction}>
@@ -68,6 +73,7 @@ class CourseDetailAction extends Component {
           }
           <div className={styles.courseActionButtons}>
             <PrimaryButton round={true}
+                           disabled={isEnrolled || SecurityUtils.isTeacher(user)}
                            line={false}
                            customClasses="full-width"
                            callback={this.submitEnrollCourse.bind(this)}
@@ -76,7 +82,7 @@ class CourseDetailAction extends Component {
           </div>
           <div className={styles.courseShortIntroduce}>
             <div className={styles.itemTitle}>{this.context.t('course_include')}</div>
-            <ul>
+            <ul className={styles.listItem}>
               <li className={styles.itemInclude}>
                 <div className={styles.itemIcon}><CourseAccessIcon width={15} height={15}></CourseAccessIcon></div>
                 <div>{this.context.t('account_access_to_course_room')}</div>
@@ -123,6 +129,8 @@ CourseDetailAction.contextTypes = {
 }
 
 CourseDetailAction.propTypes = {
+  openEnrollCoursePopup: React.PropTypes.func.isRequired,
+  isEnrolled: React.PropTypes.bool.isRequired
 };
 
 export default cssModules(CourseDetailAction, styles);
