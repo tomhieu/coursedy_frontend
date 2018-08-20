@@ -250,7 +250,8 @@ const TeacherTaughtCourses = props => {
           {teacher.courses.data.length ? (
             <div className="pager-wrappper">
               <Pagination
-                innerClass="pagination mt-8"
+                hideFirstLastPages
+                innerClass="d-flex justify-content-end mt-8 pagination"
                 activePage={headers.currentPage}
                 itemsCountPerPage={headers.perPage}
                 totalItemsCount={headers.total}

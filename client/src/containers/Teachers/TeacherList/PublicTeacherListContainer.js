@@ -46,6 +46,7 @@ class PublicTeacherListContainer extends Component {
                   nextPageText={<PaginationArrowIcon />}
                   linkClassPrev="prev-page-icon"
                   linkClassNext="next-page-icon"
+                  innerClass="d-flex justify-content-end mt-8 pagination"
                   activePage={headers.currentPage}
                   itemsCountPerPage={headers.perPage}
                   totalItemsCount={headers.total}

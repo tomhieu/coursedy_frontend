@@ -2832,6 +2832,7 @@ div[data-reactroot] {
 
 .pagination>li {
   display: inline;
+  padding: 6px 0 6px;
 }
 
 .pagination>li>a, .pagination>li>span {
@@ -2840,6 +2841,8 @@ div[data-reactroot] {
   text-decoration: none;
   margin: 0 3px;
   border: 0;
+  background-color: $border-color;
+  border-radius: 3px;
   display: block;
   height: 32px;
   width: 32px;
@@ -2852,7 +2855,6 @@ div[data-reactroot] {
 .pagination>li:last-child>a {
   &.prev-page-icon, &.next-page-icon {
     padding-top: 3px;
-    width: 20px;
     &:hover {
       background-color: transparent;
       svg use {
@@ -2877,20 +2879,15 @@ div[data-reactroot] {
 }
 
 .pagination>.disabled>a, .pagination>.disabled>a:focus, .pagination>.disabled>a:hover, .pagination>.disabled>span, .pagination>.disabled>span:focus, .pagination>.disabled>span:hover {
-  color: $primary-text-color;
   cursor: not-allowed;
-  background-color: $white-background;
-  border-color: $border-color;
 }
 
 .pagination>li:first-child>a, .pagination>li:first-child>span {
   margin-left: 0;
-  width: auto;
 }
 
 .pagination>li:last-child>a, .pagination>li:last-child>span {
   margin-right: 0;
-  width: auto;
 }
 
 .course-filter-form.inline-form {

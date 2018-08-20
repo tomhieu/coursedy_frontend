@@ -28,7 +28,8 @@ class TeacherReviewList extends Component {
             <div className="row">
               <div className="col-xs-12 col-sm-12">
                 <Pagination
-                  innerClass="pagination mt-8"
+                  hideFirstLastPages
+                  innerClass="d-flex justify-content-end mt-8 pagination"
                   activePage={headers.currentPage}
                   itemsCountPerPage={headers.perPage}
                   totalItemsCount={headers.total}
