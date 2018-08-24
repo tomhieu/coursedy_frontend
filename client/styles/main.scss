@@ -296,6 +296,8 @@ body.application {
 
   .fixed-top-search-bar {
     position: static;
+    background-color: $white-color;
+    border-bottom: solid 1px $border-color;
   }
 
   .moving-sort-bar {
@@ -322,8 +324,6 @@ body.application {
   @media only screen and (min-width: 993px) {
     .fixed-top-search-bar {
       width: 100%;
-      background-color: $white-color;
-      border-bottom: solid 1px $border-color;
     }
 
     .navbar-sticky.fixed-top+main.container {
@@ -506,15 +506,6 @@ body.application {
         width: 69px;
         height: 69px;
         border-radius: 50%;
-      }
-    }
-  }
-
-  @media (max-width: 830px) {
-    .dashboard-profile {
-      padding: 15px;
-      .user-name, .sub-title {
-        display: none;
       }
     }
   }
@@ -861,12 +852,6 @@ body.application {
         display: inline-block;
         margin-left: 20px;
         width: 100%;
-      }
-
-      @media (max-width: 830px) {
-        a {
-          display: none;
-        }
       }
     }
 
@@ -1262,7 +1247,7 @@ body.application {
     ul {
       list-style-type: none;
       padding-left: 0;
-      margin-top: 0;
+      margin-top: 5px;
       margin-bottom: 0;
     }
   }
@@ -1563,12 +1548,6 @@ body.application {
     }
   }
 
-  @media (max-width: 830px) {
-    .dashboard-content {
-      margin-left: 85px;
-    }
-  }
-
   .start-course-btn {
     min-width: 70px;
     font-size: 11px;
@@ -1690,7 +1669,7 @@ body.application {
 
 @media (min-width: 1440px) {
   .container {
-    max-width: 1300px;
+    max-width: 1412px;
   }
 }
 
@@ -1851,4 +1830,21 @@ body.application {
 .highlight-term {
   font-weight: 700;
   color: $md-color-pink;
+}
+
+.currency-field-wrapper {
+  border: 1px solid rgba(48, 51, 57, 0.15);
+  &.error {
+    border: 1px solid $error-color;
+  }
+  .form-control {
+    border: none;
+  }
+  .currency-text {
+    padding-top: 6px;
+    padding-left: 6px;
+    margin-bottom: 0;
+    padding-right: 6px;
+    background-color: rgba(48, 51, 57, 0.15);
+  }
 }

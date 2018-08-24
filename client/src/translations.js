@@ -198,6 +198,8 @@ export const translations = {
     "account.person.info.birth.date": "Ngày sinh",
     "account.person.info.gender": "Giới tính",
     "account.person.info.address": "Địa chỉ",
+    "account.person.info.country": "Quốc gia",
+    "account.person.info.currency": "Tiền tệ",
     "account.person.info.save.btn": "Lưu",
     "account_tutor_edu_title": "Chuyên môn",
     "account.tutot.edu.level.title": "Giáo dục",

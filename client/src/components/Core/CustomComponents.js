@@ -14,10 +14,27 @@ import ReactQuill from 'react-quill';
 export const renderField = ({input, label, placeholder, type = 'text', disabled = false, customClassName, meta: {touched, error, warning}}) => (
   <div className='full-width-input-wrapper'>
     {
-      touched && error ? <input {...input} placeholder={placeholder ? placeholder : ''} type={type} disabled={disabled}
+        touched && error ? <input {...input} placeholder={placeholder ? placeholder : ''} type={type} disabled={disabled}
                                 className={customClassName + ' error'}/> :
         <input {...input} placeholder={placeholder ? placeholder : ''} type={type} disabled={disabled}
                className={customClassName}/>
+    }
+    {touched && ((error && <span className='input-errors'>{error}</span>) || (warning && <span>{warning}</span>))}
+  </div>
+)
+
+export const renderCurrencyField = ({input, label, placeholder, type = 'text', disabled = false, customClassName, meta: {touched, error, warning}}) => (
+  <div className='full-width-input-wrapper'>
+    {
+      touched && error ? <div className="d-flex flex-horizontal currency-field-wrapper error">
+        <input {...input} placeholder={placeholder ? placeholder : ''} type={type} disabled={disabled}
+               className={customClassName}/>
+        <label className="currency-text">VND</label>
+      </div> : <div className="d-flex flex-horizontal currency-field-wrapper">
+        <input {...input} placeholder={placeholder ? placeholder : ''} type={type} disabled={disabled}
+               className={customClassName}/>
+        <label className="currency-text">VND</label>
+      </div>
     }
     {touched && ((error && <span className='input-errors'>{error}</span>) || (warning && <span>{warning}</span>))}
   </div>

@@ -164,6 +164,7 @@ class CourseForm extends Component {
                           customClassName="quill-form-control"
                           content={editMode ? courseData.description : ""}
                           disabled={false}
+                          isRichTextField={true}
                           {...this.props}>
           </CourseFormItem>
 

@@ -21,7 +21,7 @@ class CourseFeeViewMode extends Component {
                           {...this.props}>
           </CourseFormItem>
         </div>
-        <div className="col-sm-12 col-md-6 col-lg-6">
+        <div className="col-sm-12 col-md-6 col-lg-6" style={{display: 'none'}}>
           <CourseFormItem editMode={editMode} fieldId="currency"
                           fieldLabel={this.context.t("tuition_currency")}
                           placeholder={this.context.t("tuition_currency")}

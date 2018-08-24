@@ -11,8 +11,8 @@ class CourseDetailHeader extends Component {
     return (
       <div className={styles.courseDetailHeader}>
         <div className="container">
-          <div className={styles.courseTitle + " content mb-15"}>
-            <h2>{
+          <div className="content mb-15">
+            <h2 className={styles.courseTitle}>{
               course && course.title ?
                 course.title : this.context.t('unknown')
             }</h2>

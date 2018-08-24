@@ -5,8 +5,8 @@ import './CourseDetailMain.scss'
 class CourseDetailMain extends Component {
   render() {
     return (
-      <div className="course-detail-main">
-        <div className="container no-pad">
+      <div className="course-content-wrapper">
+        <div className="d-flex flex-auto no-pad">
           <CourseDetailRightSide 
             {...this.props}
           />

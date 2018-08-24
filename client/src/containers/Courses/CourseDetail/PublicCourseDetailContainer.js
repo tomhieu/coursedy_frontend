@@ -20,22 +20,16 @@ class PublicCourseDetailContainer extends Component {
     this.props.stretchFull();
     this.props.noShadowHeader();
     this.props.getCourseCategories();
-    if (this.props.courseId) {
+    const {courseId, course_comments_page} = this.props;
+    if (courseId) {
       //Fetch course
-      this.props.getPublicCourse(this.props.courseId);
+      this.props.getPublicCourse(courseId);
 
       //Fetch comments
-      this.props.getCourseComments(
-        this.props.courseId, 
-        this.props.course_comments_page
-      );
+      this.props.getCourseComments( courseId, course_comments_page );
 
       //Fetch related courses
-      this.props.getRelatedCourses({
-        course_id: this.props.courseId,
-        page: 1,
-        per_page: 4
-      });
+      this.props.getRelatedCourses( courseId, WebConstants.START_PAGE_INDEX, WebConstants.RELATED_COURSE_PER_PAGE);
     }
   }
 

@@ -18,13 +18,13 @@ class CourseFeeEditMode extends Component {
                            placeholder={this.context.t("tuition_fee")}
                            isMandatory={true}
                            formControlName="tuition_fee"
-                           typeField="custom_input"
+                           typeField="currency_input"
                            {...this.props}>
                 </FormField>
               </div>
             </div>
             <div className="col-md-6">
-              <div className='ml-10 currency-field'>
+              <div className='ml-10 currency-field' style={{display: 'none'}}>
                 <FormField fieldId="currency"
                            fieldLabel={this.context.t("tuition_currency")}
                            isMandatory={true}

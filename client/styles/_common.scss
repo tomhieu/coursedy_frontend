@@ -2802,7 +2802,7 @@ div[data-reactroot] {
   ul {
     list-style-type: none;
     padding-left: 0;
-    margin-top: 0;
+    margin-top: 5px;
     margin-bottom: 0;
   }
 }
@@ -2841,9 +2841,9 @@ div[data-reactroot] {
   margin: 0 3px;
   border: 0;
   display: block;
-  height: 32px;
-  width: 32px;
-  line-height: 32px;
+  height: 25px;
+  width: 25px;
+  line-height: 25px;
   text-align: center;
   color: $primary-text-color;
 }

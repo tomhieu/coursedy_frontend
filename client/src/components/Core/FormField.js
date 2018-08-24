@@ -3,7 +3,7 @@ import {ControlLabel, FormGroup} from "react-bootstrap";
 import {Field} from "redux-form";
 import {
   renderCheckBoxField, renderDatePicker, renderField, renderMultiSelect,
-  renderSelect, renderSingleFileInput, renderTextAreaField, renderRichTextEditor
+  renderSelect, renderSingleFileInput, renderTextAreaField, renderRichTextEditor, renderCurrencyField
 } from './CustomComponents';
 import styles from "./FormField.module.scss";
 import cssModules from "react-css-modules";
@@ -104,6 +104,13 @@ class FormField extends Component {
                                 component={renderRichTextEditor}
                                 className={customClassName}
                           />
+        break;
+      }
+      case "currency_input": {
+        fieldComponent = <Field name={formControlName} placeholder={placeholder}
+                                type={type} disabled={this.props.disabled}
+                                component={renderCurrencyField} onChange={this.props.onChange}
+                                customClassName={fieldClasses}/>
         break;
       }
       default: {

@@ -23,7 +23,7 @@ class CourseDetailTutor extends Component {
         <div className="teacher-item-list-02-wrapper">
           <div className="teacher-item-list-02 clearfix">
             <div className="row gap-20">
-              <div className="col-xs-12 col-sm-3 col-md-2">
+              <div className="col-xs-12 col-md-6 col-lg-4 col-xl-3">
                 <div className="image">
                   <Link to={course.user ? `/teachers/${course.user.id}` : '#'}>
                     <img src={ course.user && course.user.avatar ? course.user.avatar : "http://placehold.it/100x100"} alt="Image" />
@@ -53,7 +53,7 @@ class CourseDetailTutor extends Component {
                 </div> : null}
               </div>
               
-              <div className="col-xs-12 col-sm-9 col-md-10">
+              <div className="col-xs-12 col-md-6 col-lg-8 col-xl-9">
                 <div className="content">
                   <h3>
                     <span>{course.user ? course.user.name : this.context.t('unknown')}</span>
