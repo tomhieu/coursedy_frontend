@@ -2823,45 +2823,29 @@ div[data-reactroot] {
   height: 200px;
 }
 
-.pagination {
-  display: inline-block;
-  padding-left: 0;
-  border-radius: 4px;
-  margin: 9px 0 2px;
-}
-
-.pagination>li {
-  display: inline;
-  padding: 6px 0 6px;
-}
-
 .pagination>li>a, .pagination>li>span {
-  position: relative;
-  float: left;
-  text-decoration: none;
-  margin: 0 3px;
-  border: 0;
-  background-color: $border-color;
-  border-radius: 3px;
-  display: block;
-  height: 32px;
-  width: 32px;
-  line-height: 32px;
+  width: 44px;
+  height: 44px;
+  line-height: 44px;
   text-align: center;
+  padding: 0;
   color: $primary-text-color;
+  font-size: 1.25rem;
+  @media (max-width: $sm-lower) {
+    width: 38px;
+    height: 38px;
+    line-height: 38px;
+    font-size: 1rem;
+  }
 }
 
-.pagination>li:first-child>a,
-.pagination>li:last-child>a {
-  &.prev-page-icon, &.next-page-icon {
-    padding-top: 3px;
-    &:hover {
-      background-color: transparent;
-      svg use {
-        fill: $primary-text-color;
-      }
-    }
-  }
+.page-item.active .page-link {
+  z-index: 1;
+  cursor: default;
+  pointer-events: none;
+  background-color: $primary-text-color;
+  color: $white-color;
+  border-color: $primary-text-color;
 }
 
 .pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover, .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover {
@@ -2870,24 +2854,11 @@ div[data-reactroot] {
   pointer-events: none;
   background-color: $primary-text-color;
   color: $white-color;
-  font-weight: 700;
 }
 
-.pagination > li > a:hover, .pagination > li > span:hover, .pagination > li > a:focus, .pagination > li > span:focus {
-  color: $white-color;
-  background-color: $primary-text-color;
-}
-
-.pagination>.disabled>a, .pagination>.disabled>a:focus, .pagination>.disabled>a:hover, .pagination>.disabled>span, .pagination>.disabled>span:focus, .pagination>.disabled>span:hover {
-  cursor: not-allowed;
-}
-
-.pagination>li:first-child>a, .pagination>li:first-child>span {
-  margin-left: 0;
-}
-
-.pagination>li:last-child>a, .pagination>li:last-child>span {
-  margin-right: 0;
+.page-link:hover {
+  background-color: $color-light-color;
+  color: $primary-text-color;
 }
 
 .course-filter-form.inline-form {

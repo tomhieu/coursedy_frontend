@@ -444,7 +444,7 @@ export const translations = {
     "select_a_course_content": "Sau khi tìm thấy khoá học mong muốn, đọc kỹ thông tin chi tiết của khoá học để đảm bảo khoá học đáp ứng yêu cầu của bạn.",
     "apply_a_course_title": "Đăng ký học",
     "apply_a_course_content": "Sau khi bạn đọc và hiểu rõ khoá học. Đăng ký tham gia khoá học với Coursedy.",
-    "receive_course_info_title": "Nhân thông báo khoá học",
+    "receive_course_info_title": "Nhận thông báo khoá học",
     "receive_course_info_content": "Coursedy sẽ gửi thông tin đăng ký của bạn đến giáo viên. Sau khi đăng ký, bạn sẽ nhận được mọi thông tin liên quan đến khoá học.",
     "get_course_timeline_title": "Nhận thông báo lịch học",
     "get_course_timeline_content": "Sau khi khoá học đã đủ học viên tham gia, giáo viên sẽ bắt đầu dạy khoá học. Chúng tôi sẽ gửi thông báo lịch học để bạn sắp xếp thời gian và đọc trước tài liệu.",

@@ -57,14 +57,16 @@ class PublicCourseListContainer extends Component {
           </div>
           {
             !isFetching && courses.length > 0 ? (
-              <div className="container-fluid mb-15">
+              <div className="d-flex justify-content-center mb-15">
                 <Pagination
                   hideFirstLastPages
                   prevPageText={<PaginationArrowIcon isLeftArrow={true} />}
                   nextPageText={<PaginationArrowIcon />}
-                  innerClass="d-flex justify-content-center mt-8 pagination"
+                  innerClass="mt-8 pagination"
                   linkClassPrev="prev-page-icon"
                   linkClassNext="next-page-icon"
+                  itemClass="page-item"
+                  linkClass="page-link"
                   activePage={this.props.currentPage}
                   itemsCountPerPage={this.props.perPage}
                   totalItemsCount={this.props.totalResult}

@@ -39,14 +39,16 @@ class PublicTeacherListContainer extends Component {
           </div>
           {
             !isFetching && teachers.length > 0 ? (
-              <div className="container-fluid mb-15">
+              <div className="d-flex justify-content-center mb-10 mt-10">
                 <Pagination
                   hideFirstLastPages
                   prevPageText={<PaginationArrowIcon isLeftArrow={true} />}
                   nextPageText={<PaginationArrowIcon />}
+                  innerClass="mt-8 pagination"
                   linkClassPrev="prev-page-icon"
                   linkClassNext="next-page-icon"
-                  innerClass="d-flex justify-content-center mt-8 pagination"
+                  itemClass="page-item"
+                  linkClass="page-link"
                   activePage={headers.currentPage}
                   itemsCountPerPage={headers.perPage}
                   totalItemsCount={headers.total}

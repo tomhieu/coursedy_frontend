@@ -25,6 +25,7 @@ import ObjectUtils from 'utils/ObjectUtils'
 import cssModules from 'react-css-modules'
 import styles from './TeacherDetail.module.scss'
 import PageContainer from '../../../utils/PageContainer';
+import PaginationArrowIcon from '../../../components/Core/Icons/PaginationArrowIcon';
 
 
 class TeacherDetail extends Component {
@@ -248,18 +249,26 @@ const TeacherTaughtCourses = props => {
           />
 
           {teacher.courses.data.length ? (
-            <div className="pager-wrappper">
-              <Pagination
-                hideFirstLastPages
-                innerClass="d-flex justify-content-center mt-8 pagination"
-                activePage={headers.currentPage}
-                itemsCountPerPage={headers.perPage}
-                totalItemsCount={headers.total}
-                pageRangeDisplayed={5}
-                onChange={pageNumber => {
-                  props.handlePageChange(pageNumber, headers.perPage)
-                }}
-              />
+            <div className="mt-30">
+              <div className="d-flex justify-content-center">
+                <Pagination
+                  hideFirstLastPages
+                  prevPageText={<PaginationArrowIcon isLeftArrow={true} />}
+                  nextPageText={<PaginationArrowIcon />}
+                  innerClass="mt-8 pagination"
+                  linkClassPrev="prev-page-icon"
+                  linkClassNext="next-page-icon"
+                  itemClass="page-item"
+                  linkClass="page-link"
+                  activePage={headers.currentPage}
+                  itemsCountPerPage={headers.perPage}
+                  totalItemsCount={headers.total}
+                  pageRangeDisplayed={5}
+                  onChange={pageNumber => {
+                    props.handlePageChange(pageNumber, headers.perPage)
+                  }}
+                />
+              </div>
             </div>
           ) : null}
         </div>
