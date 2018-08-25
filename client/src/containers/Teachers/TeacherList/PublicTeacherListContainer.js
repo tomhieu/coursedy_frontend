@@ -72,9 +72,10 @@ PublicTeacherListContainer.contextTypes = {
 };
 
 const mapStateToProps = (state) => {
-  const { data, headers } = state.Teachers;
+  const { isFetching, data, headers } = state.Teachers;
 
   return {
+    isFetching,
     teachers: data.filter(tutor => tutor.user !== null),
     headers: {
       currentPage: headers && parseInt(headers.xPage) || 0,

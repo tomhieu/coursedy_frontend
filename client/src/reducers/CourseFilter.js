@@ -3,6 +3,7 @@ import * as asyncActs from '../actions/AsyncActionCreator';
 import * as courseActionTypes from '../constants/Courses';
 import { PUBLIC_COURSE_LIST_MAX_ITEM_PER_PAGE } from '../constants/WebConstants';
 
+
 const CourseFilter = (state = {
   isFetching: true,
   courses: [],
@@ -44,11 +45,19 @@ const CourseFilter = (state = {
     case asyncActs.CHANGE_SORT_BY:
       return { ...state, sortBy: action.payload };
     case asyncActs.SELECT_COURSE:
-      return { ...state, selectedCourses: [...state.selectedCourses, action.payload] };
+      return {
+        ...state, selectedCourses: [...state.selectedCourses, action.payload]
+      };
     case asyncActs.SELECT_ALL_COURSES:
-      return { ...state, selectedCourses: state.courses.map((course) => { return course.id; }) };
+      return {
+        ...state,
+        selectedCourses: state.courses.map((course) => { return course.id; })
+      };
     case asyncActs.REMOVE_COURSE:
-      return { ...state, selectedCourses: state.selectedCourses.filter((courseId) => { return courseId != action.payload; }) };
+      return {
+        ...state,
+        selectedCourses: state.selectedCourses.filter((courseId) => { return courseId != action.payload; })
+      };
     case asyncActs.REMOVE_ALL_COURSES:
       return { ...state, selectedCourses: [] };
     /**
@@ -56,7 +65,10 @@ const CourseFilter = (state = {
      */
     case asyncActs.LOAD_SUGGESTION + asyncActs.FULFILLED:
       return {
-        ...state, sugestions: action.payload, loadingSuggestion: false, showSuggestion: true
+        ...state,
+        sugestions: action.payload,
+        loadingSuggestion: false,
+        showSuggestion: true
       };
     case asyncActs.LOAD_SUGGESTION + asyncActs.PENDING:
       return {
@@ -65,11 +77,18 @@ const CourseFilter = (state = {
     case asyncActs.LOAD_SUGGESTION + asyncActs.REJECTED:
     case asyncActs.CLOSE_COURSE_FILTER_SUGGESTION:
       return {
-        ...state, sugestions: [], showSuggestion: false, loadingSuggestion: false
+        ...state,
+        sugestions: [],
+        showSuggestion: false,
+        loadingSuggestion: false
       };
     case asyncActs.CLEAR_SUGGESTION:
       return {
-        ...state, filters: { ...state.filters, term: '' }, sugestions: [], showSuggestion: false, loadingSuggestion: false
+        ...state,
+        filters: { ...state.filters, term: '' },
+        sugestions: [],
+        showSuggestion: false,
+        loadingSuggestion: false
       };
     case asyncActs.UPDATE_FILTER_CRITERIA:
       const rawFilters = JSON.parse(JSON.stringify(action.data));
@@ -77,10 +96,10 @@ const CourseFilter = (state = {
         selectedWeekDays: rawFilters.selectedWeekDays || [],
         selectedLocations: rawFilters.selectedLocations || [],
         selectedCategories: rawFilters.selectedCategories || [],
-        selectedSpecializes: rawFilters.selectedSpecializes || [],
+        selectedSpecializes: rawFilters.selectedSpecializes || []
       });
 
-      return Object.assign({}, state, { filters: Object.assign({}, newFilters, ) });
+      return Object.assign({}, state, { filters: Object.assign({}, newFilters) });
     case RESET_COURSE_FILTER:
       return Object.assign({}, state, {
         filters: {

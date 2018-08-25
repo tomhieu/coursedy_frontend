@@ -17,6 +17,7 @@ class TutorList extends Component {
     return (
       <div className="row">
         {
+          isFetching ? <div/> :
           teachers.map((tutor) => {
             return (
               <div className="col-md-3 col-sm-6" key={tutor.id}>
