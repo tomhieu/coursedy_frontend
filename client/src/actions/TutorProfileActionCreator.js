@@ -2,21 +2,6 @@ import * as types from '../constants/TutorProfile';
 import Network from '../utils/network'
 import {TT} from '../utils/locale'
 
-export const fetchTutor = () => {
-  return dispatch => {
-    Network().get('tutors/current_tutor').then((response) => {
-      dispatch({
-        type: types.FETCH_TUTOR_SUCCESS,
-        payload: response
-      })
-    }, (errors) => {
-      dispatch({
-        type: types.FETCH_TUTOR_FAILED,
-        payload: {errors: 'error_messages'}
-      })
-    })
-  }
-}
 
 export const updateTutor = (id, formData, onSuccess, onError) => {
   return dispatch => {

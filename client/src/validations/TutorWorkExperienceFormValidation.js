@@ -17,13 +17,9 @@ export const validate = (values) => {
     errors.start_date = TT.t('tutor_experience_start_date_required')
   }
 
-  if (!values.end_date) {
-    errors.end_date = TT.t('tutor_experience_end_date_required')
-  }
-
-  if (moment(values.end_date, 'DD/MM/YYYYY') < moment(values.start_date, 'DD/MM/YYYYY')) {
+  if (values.end_date && moment(values.end_date, 'DD/MM/YYYYY') < moment(values.start_date, 'DD/MM/YYYYY')) {
     errors.end_date = TT.t('tutor_experience_start_and_end_date')
   }
-
+  
   return errors
 }

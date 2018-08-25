@@ -27,22 +27,12 @@ export const createWorkExperience = (tutorId, params) => {
   }
 }
 
-export const loadWorkExperienceList = () => {
+export const loadWorkExperienceList = (tutorId) => {
   return dispatch => {
-    let response = Network().get('tutors/current_tutor').then(data=> data)
-
     dispatch({
-      type: FETCH_TUTOR_DATA,
-      payload: response,
+      type: actionTypes.FETCH_WORK_EXPERIENCE_LIST,
+      payload: Network().get(`tutors/${tutorId}/tutor_work_experiences`),
       meta: 'userAccountPlaceholder'
-    })
-
-    response.then((tutor) => {
-      dispatch({
-        type: actionTypes.FETCH_WORK_EXPERIENCE_LIST,
-        payload: Network().get(`tutors/${tutor.id}/tutor_work_experiences`),
-        meta: 'userAccountPlaceholder'
-      })
     })
   }
 }

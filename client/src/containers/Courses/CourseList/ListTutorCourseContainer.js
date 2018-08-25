@@ -64,7 +64,7 @@ class ListTutorCourseContainer extends Component {
                 <div className={styles.noCourseWarning}>
                   <span>{this.getNoCourseWarningMessage(status)}</span>
                   {
-                    status === CourseStatus.NOT_STARTED ? <a onClick={this.openCourseCreation.bind(this)}>{this.context.t('search_more_course_link')}</a> : null
+                    status === CourseStatus.NOT_STARTED ? <a className="active-link ml-5" href="#" onClick={this.openCourseCreation.bind(this)}>{this.context.t('search_more_course_link')}</a> : null
                   }
                 </div>: null
             }

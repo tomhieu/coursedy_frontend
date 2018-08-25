@@ -33,7 +33,6 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   activateTab: (tabId) => dispatch(dashboardActions.activateTab(tabId)),
-  fetchDetailsTutor: () => dispatch(Actions.fetchTutor()),
   updateDetailsTutor: (tutorId, formData, onSuccess, onError) => dispatch(Actions.updateTutor(tutorId, formData, onSuccess, onError)),
   showAccountEditForm: () => dispatch(AccountActions.showAccountEditForm()),
   hideAccountEditForm: () => dispatch(AccountActions.hideAccountEditForm()),

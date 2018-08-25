@@ -102,7 +102,7 @@ class Header extends Component {
                   <span>{this.context.t('find_courses')}</span>
                 </LinkContainer>
               </li>
-              <li className="nav-item">
+              <li className="nav-item border-left">
                 <LangNavigation {...this.props}></LangNavigation>
               </li>
               {
@@ -155,6 +155,9 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => ({
   fetchUser: () => dispatch(sessionActions.fetchCurrentUser()).then((user) => {
     dispatch(sessionActions.fetchActiveCourses(user.value));
+    if (SecurityUtils.isTeacher(user.value)) {
+      dispatch(sessionActions.fetchCurrentTutor());
+    }
   }),
   signOut: () => dispatch(sessionActions.signOutUser()),
   collapseDashboard: () => dispatch({

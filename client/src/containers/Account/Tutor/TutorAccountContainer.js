@@ -42,6 +42,9 @@ class TutorAccount extends Component {
   render() {
     const {tutor} = this.props
     const {editEducationMode} = this.props;
+    if (!tutor.id) {
+      return null;
+    }
     return (
       <div className="row">
         <div className="col-sm-12 col-md-12">

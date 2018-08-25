@@ -10,7 +10,8 @@ import PrimaryButton from "../../../../components/Core/PrimaryButton/PrimaryButt
 
 class TutorEducationListContainer extends Component {
   componentWillMount() {
-    this.props.loadEducationList()
+    const {tutor} = this.props;
+    this.props.loadEducationList(tutor.id);
   }
 
   showNewEducationForm() {
@@ -69,13 +70,14 @@ TutorEducationListContainer.contextTypes = {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  loadEducationList: () => dispatch(actions.loadEducationList()),
+  loadEducationList: (tutorId) => dispatch(actions.loadEducationList(tutorId)),
   showNewEducationForm: () => dispatch(actions.showDashboardTutorNewEducationForm()),
   deleteItem: (tutorId, id) => dispatch(actions.deleteEducation(tutorId, id)),
   showEditEducationForm: (educationId) => dispatch(actions.showEditEducationForm(educationId))
 })
 
 const mapStateToProps = (state) => ({
+  tutor: state.TutorAccountReducer.tutor,
   educations: state.DashboardTutorEducationList.educations,
   currentEducation: state.DashboardTutorEducationList.currentEducation,
   showNewTutorEducationForm: state.DashboardTutorEducationList.showNewTutorEducationForm

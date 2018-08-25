@@ -36,7 +36,7 @@ class CoursedyMultiStep extends Component {
   }
 
   render() {
-    const {items, isOpen, closeDropDown, bgColor, width, emptyMessage} = this.props;
+    const {items, isOpen, icon, bgColor, width, emptyMessage} = this.props;
 
     if (!isOpen) {
       return null;
@@ -63,9 +63,13 @@ class CoursedyMultiStep extends Component {
             {
               items.length > 0 ?
               items.map((item) => {
-                return item.link ?
-                  <li key={item.id + 'option'} className={styles.option}><a onClick={this.onSelectOption.bind(this, item.link)}>{item.text}</a></li> :
-                  <li key={item.id + 'option'} className={styles.option}><a onClick={this.onSelectOption.bind(this, undefined, item.callback)}>{item.text}</a></li>
+                return (
+                <li key={item.id + 'option'} className={styles.option}>
+                  <div className="d-flex flex-horizontal align-items-center">
+                    {item.icon ? item.icon : null}
+                    <a className={item.icon ? styles.linkWithIcon : styles.linkWithoutIcon} onClick={this.onSelectOption.bind(this, item.link, item.callback)}>{item.text}</a>
+                  </div>
+                </li> )
               }) : <span>{emptyMessage}</span>
             }
           </ul>
@@ -86,7 +90,8 @@ CoursedyMultiStep.propTypes = {
   closeDropDown: React.PropTypes.func.isRequired,
   bgColor: React.PropTypes.string,
   width: React.PropTypes.number,
-  emptyMessage: React.PropTypes.string
+  emptyMessage: React.PropTypes.string,
+  icon: React.PropTypes.element
 };
 
 export default cssModules(CoursedyMultiStep, styles);

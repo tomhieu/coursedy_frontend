@@ -9,12 +9,6 @@ import {UserRole} from "constants/UserRole";
 
 
 class TutorProfileDetails extends Component {
-  componentWillMount() {
-    if (this.props.user && this.props.user.roles.indexOf(UserRole.TEACHER) >= 0) {
-      this.props.fetchDetailsTutor()
-    }
-  }
-
   hideProfileEditForm(){
     this.props.hideAccountEditForm();
   }
