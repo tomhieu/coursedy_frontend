@@ -6,7 +6,7 @@ export const payment_translation = {
     "public_payment_instruct": "Hướng dẫn nạp tiền",
     "public_payment_method": "Hình thức thanh toán",
     "public_paymnet_method_info": "Thông tin tài khoản",
-    "public_payment_method_bank_name": "Tên ngân hàng",
+    "public_payment_method_bank_name": "Ngân hàng",
     "public_payment_method_account_name": "Chủ tài khoản",
     "public_payment_method_account_number": "Số tài khoản",
     "public_payment_method_account_office": "Chi nhánh",

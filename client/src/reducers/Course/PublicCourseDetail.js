@@ -30,7 +30,8 @@ const PublicCourseDetail = (state = {
       'course-detail-comments': 0,
       'course-detail-related': 0,
     },
-    cart: []
+    cart: [],
+    cartTotal: 0
   }, action) => {
   switch (action.type) {
     case courseTypes.FETCH_PUBLIC_COURSE + asyncActs.PENDING:
@@ -72,10 +73,20 @@ const PublicCourseDetail = (state = {
     //Handle add course to cart
     case courseTypes.PUBLIC_COURSE_DETAIL_ADD_COURSE_TO_CART: 
       return {
-        ...state, cart: [
+        ...state, 
+        cart: [
           ...state.cart,
           action.payload
-        ]
+        ],
+        cartTotal: state.cartTotal + parseInt(action.payload.tuition_fee)
+      }
+    case courseTypes.PUBLIC_COURSE_DETAIL_REMOVE_COURSE_FROM_CART:
+      return {
+        ...state,
+        cart: state.cart.filter((item) => {
+          return item.id != action.payload.id
+        }),
+        cartTotal: state.cartTotal - parseInt(action.payload.tuition_fee)
       }
 
 

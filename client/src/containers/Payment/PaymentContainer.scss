@@ -5,6 +5,24 @@
   margin: auto;
   padding: 35px 25px;
 
+  .nav-tabs {
+    .nav-link {
+      background-color: transparent;
+      border: none;
+      padding-left: 0;
+      padding-right: 0;
+      margin-right: 15px;
+    }
+    .nav-link.active  {
+      background-color: transparent;
+      border: none;
+      border-bottom: 3px solid $color-orange;
+    }
+    .nav-link:hover {
+      border-bottom: 3px solid $color-orange;
+    }
+  }
+
   .payment-container {
     .divider-payment {
       border-bottom: 3px dashed $color-orange;
@@ -24,6 +42,9 @@
       border-radius: 3px;
       margin-left: 5px;
       cursor: pointer;
+      &:first-child {
+        margin-left: 0;
+      }
       &:hover {
         border: 1px solid $md-color-pink;
       }
@@ -35,13 +56,72 @@
       font-weight: 600;
       padding: 10px 15px;
     }
+
+    .card {
+      background-color: transparent;
+      .info-row {
+        margin-top: 30px;
+        margin-bottom: 30px;
+      }
+      .info-box {
+        font-weight: bold;
+        padding: 15px;
+        border: 1px dashed $color-orange;
+      }
+    }
   }
 
   .payment-step {
+    margin-bottom: 5px;
     .payment-step-icon {
       margin-right: 3px;
       color: $color-organe;
     }
+  }
+
+  .cart-container {
+    min-height: 100px;
+    background-color: $white-color;
+    border: 1px solid $border-color;
+    box-shadow: 1px 1px 1px $border-color;
+
+    .cart-header {
+      padding: 0.75rem;
+    }
+
+    .cover-image {
+      height: 50px;
+    }
+
+    .course-tuition-fee {
+      height: 50px;
+    }
+
+    .course-link {
+      cursor: pointer;
+    }
+
+    .table {
+      margin-bottom: 0;
+    }
+
+    .custom-close {
+      cursor: pointer;
+      color: green;
+      &:before {
+        content:"\f00c"
+      }
+    }
+    .custom-close:hover {
+      color: red;
+      &:before {
+        content:"\f00d"
+      }
+    }
+  }
+
+  .no-pad-left {
+    padding-left: 0 !important;
   }
 }
 

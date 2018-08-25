@@ -11,14 +11,20 @@ import {
   FETCH_ADMIN_PAYMENT_INSTRUCTIONS,
   FETCH_ADMIN_BANK_ACCOUNTS,
 } from "../../actions/AsyncActionCreator"
-import "../../../styles/global_style.scss"
+import {
+  PUBLIC_COURSE_DETAIL_REMOVE_COURSE_FROM_CART
+} from "../../constants/Courses"
 import { banks } from "../../constants/Banks"
 import FormField from "../../components/Core/FormField"
+import ObjectUtils from "utils/ObjectUtils"
+import {LinkContainer} from 'react-router-bootstrap'
+
 
 class PaymentContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      activeTab: 'manual',
       selectMethod: '',
       step: 1,
       selectBank: {
@@ -40,11 +46,22 @@ class PaymentContainer extends Component {
     this.props.fetchBankAccounts(this.props)
   }
 
-  changePaymentMethods(method) {
+  // changePaymentMethods(method) {
+  //   this.setState({
+  //     selectMethod: method,
+  //     step: 2
+  //   })
+  // }
+  changeActiveTab(activeTab) {
     this.setState({
-      selectMethod: method,
-      step: 2
+      activeTab: activeTab
     })
+  }
+
+  removeCourseFromCart(course) {
+    // console.log('Remove course from cart ')
+    // console.log(course)
+    this.props.removeCourseFromCart(course)
   }
 
   changeBank(bankId) {
@@ -69,128 +86,212 @@ class PaymentContainer extends Component {
 
   render() {
     const {
+      selectBank,
+      activeTab
+    } = this.state
+    const {
       paymentSettings,
       paymentInstructions,
-      bankAccounts
+      bankAccounts,
+      cart,
+      cartTotal
     } = this.props
     return (
       <div className="payment-box">
         <h2 className="text-center">{this.context.t('public_payment_instruct')}</h2>
         <div className="divider"></div>
-        <div className="payment-container">
-          <div className="card mb-15">
-            <div className="card-header">
-              {this.context.t('admin_payment_methods_manual')}
-            </div>
-            <div className="card-body no-pad">
-              <div className="row container-fluid">
-                <div className="col-md-12 payment-step">
-                  <p>
-                    <i className="fa fa-chevron-circle-right payment-step-icon"></i>
-                    <strong>Bước 1:</strong>
-                    <span> Thông tin mang theo để nạp tiền gồm có</span>
-                  </p>
-                  <p>
-                    <span>Email: tinhuynh0992gmail.com</span>
-                  </p>
-                </div>
-                <div className="col-md-12 payment-step">
-                  <p>
-                    <i className="fa fa-chevron-circle-right payment-step-icon"></i>
-                    <strong>Bước 2:</strong>
-                    <span> Vui lòng nạp tiền tại văn phòng theo địa chỉ:</span>
-                  </p>
-                </div>
-                <div className="col-sm-12 col-md-7">
-                  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.737426598377!2d106.6580743143502!3d10.7547083923363!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752ef11488a397%3A0x49680a6fa438017b!2sCheese+Coffee!5e0!3m2!1sen!2s!4v1534047689794" 
-                    width="100%" 
-                    height="300" 
-                    frameBorder="0" 
-                    style={{border:0}}
-                    allowFullScreen
-                  ></iframe>
+        
+        <div className="container-fluid row">
+          {/*Payment method*/}
+          <div className="col-md-8 col-sm-12">
+            <ul className="nav nav-tabs">
+              <li className="nav-item">
+                <a
+                  className={activeTab == "manual" ? "nav-link active" : "nav-link"} 
+                  onClick={this.changeActiveTab.bind(this, 'manual')}
+                >
+                  {this.context.t('admin_payment_methods_manual')}
+                </a>
+              </li>
+              <li className="nav-item">
+                <a 
+                  className={activeTab == "transfer" ? "nav-link active" : "nav-link"} 
+                  onClick={this.changeActiveTab.bind(this, 'transfer')}
+                >
+                  {this.context.t('admin_payment_methods_transfer')}
+                </a>
+              </li>
+            </ul>
+            <div className="payment-container">
+              {/*Manual payment*/}
+              {
+              activeTab == 'manual' ? 
+                <div className="card">
+                  <div className="card-body no-pad">
+                    <div className="row container-fluid">
+                      <div className="col-md-12 no-pad payment-step">
+                        <p>
+                          <i className="fa fa-chevron-circle-right payment-step-icon"></i>
+                          <strong>Bước 1:</strong>
+                          <span> Thông tin mang theo để nạp tiền gồm có</span>
+                        </p>
+                        <p className="text-center info-row">
+                          <span className="info-box">Email: tinhuynh0992gmail.com</span>
+                        </p>
+                      </div>
+                      <div className="col-md-12 no-pad payment-step">
+                        <p>
+                          <i className="fa fa-chevron-circle-right payment-step-icon"></i>
+                          <strong>Bước 2:</strong>
+                          <span> Vui lòng nạp tiền tại văn phòng theo địa chỉ:</span>
+                        </p>
+                      </div>
+                      <div className="col-sm-12 no-pad-left col-md-7">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.737426598377!2d106.6580743143502!3d10.7547083923363!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752ef11488a397%3A0x49680a6fa438017b!2sCheese+Coffee!5e0!3m2!1sen!2s!4v1534047689794" 
+                          width="100%" 
+                          height="300" 
+                          frameBorder="0" 
+                          style={{border:0}}
+                          allowFullScreen
+                        ></iframe>
+                      </div>
+                      <div className="col-sm-12 no-pad col-md-5">
+                        <ul className="list-unstyled">
+                          <li className="mb-5"><i>Mọi chi tiết vui lòng liên hệ</i></li>
+                          <li className="mb-5">Hotline: 0123.456.789</li>
+                          <li>Hoặc E-mail: support@coursedy.com</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div> : null
+              }
+              
 
-                </div>
-                <div className="col-sm-12 col-md-5">
-                  <ul>
-                    <li><i>Mọi chi tiết vui lòng liên hệ</i></li>
-                    <li>Hotline: 0123.456.789</li>
-                    <li>Hoặc E-mail: support@coursedy.com</li>
-                  </ul>
-                </div>
-              </div>
+              {/*Transfer payment*/}
+              {
+              activeTab == 'transfer' ?
+                <div className="card">
+                  <div className="card-body no-pad">
+                    <div className="row container-fluid">
+                      <div className="col-md-12 no-pad payment-step">
+                        <p className="mb-15">
+                          <i className="fa fa-chevron-circle-right payment-step-icon"></i>
+                          <strong>Bước 1:</strong>
+                          <span> 
+                            Bên dưới là danh sách ngân hàng <strong>Coursedy</strong> hỗ trợ. 
+                            Vui lòng chọn ngân hàng để nhận thông tin chuyển khoản:
+                          </span>
+                        </p>
+                        <div className="row">
+                          <div className="col-sm-12 col-md-6">
+                          {
+                            bankAccounts.map((item) => (
+                              <div 
+                                className="bank-logo pull-left text-center" 
+                                key={item.name}
+                                onClick={this.changeBank.bind(this, item.id)}
+                              >
+                                <img src={'/banks/'+item.name.toUpperCase()+'.png'} />
+                              </div>
+                            ))
+                          }
+                          </div>
+                          <div className="col-sm-12 no-pad col-md-6">
+                          {
+                            selectBank.id != 0 ?
+                            <table className="table table-responsive">
+                              <tbody>
+                                <tr>
+                                  <td><b>{this.context.t('public_payment_method_bank_name')}</b></td>
+                                  <td>{selectBank.fullName}</td>
+                                </tr>
+                                <tr>
+                                  <td><b>{this.context.t('public_payment_method_account_name')}</b></td>
+                                  <td>{selectBank.bankAccount.accountName}</td>
+                                </tr>
+                                <tr>
+                                  <td><b>{this.context.t('public_payment_method_account_number')}</b></td>
+                                  <td>{selectBank.bankAccount.accountNumber}</td>
+                                </tr>
+                                <tr>
+                                  <td><b>{this.context.t('public_payment_method_account_office')}</b></td>
+                                  <td>{selectBank.bankAccount.accountOffice}</td>
+                                </tr>
+                              </tbody>
+                            </table> : null
+                          }
+                          </div>
+                        </div>
+                      </div>
+                      <div className="col-md-12 no-pad payment-step">
+                        <p>
+                          <i className="fa fa-chevron-circle-right payment-step-icon"></i>
+                          <strong>Bước 2:</strong>
+                          <span> Thực hiện chuyển khoản cho <strong>Coursedy</strong> với cú pháp:</span>
+                        </p>
+                        <div className="text-center">
+                          <p className="text-center info-row">
+                            <span className="info-box">NAP TIEN <span className="badge badge-info" alt="Đăng nhập để lấy mã">???</span> tinhuynh0992@gmail.com</span>
+                          </p>
+                          
+                        </div>
+
+                      </div>
+
+                    </div>
+                  </div>
+                </div> : null
+              }
             </div>
           </div>
-
-          <div className="card">
-            <div className="card-header">
-              {this.context.t('admin_payment_methods_transfer')}
-            </div>
-            <div className="card-body">
-              <div className="row container-fluid">
-                <div className="col-md-12 payment-step">
-                  <p>
-                    <i className="fa fa-chevron-circle-right payment-step-icon"></i>
-                    <strong>Bước 1:</strong>
-                    <span> 
-                      Bên dưới là danh sách ngân hàng <strong>Coursedy</strong> hỗ trợ. 
-                      Vui lòng chọn ngân hàng để nhận thông tin chuyển khoản:
-                    </span>
-                  </p>
-                  <div className="row">
-                    <div className="col-sm-12 col-md-7">
-                    {
-                      bankAccounts.map((item) => (
-                        <div 
-                          className="bank-logo pull-left" 
-                          key={item.name}
-                          onClick={this.changeBank.bind(this, item.id)}
-                        >
-                          <img src={'/banks/'+item.name.toUpperCase()+'.png'} />
+          {/*Cart detail*/}
+          <div className="col-md-4 col-sm-12">
+            <div className="cart-container">
+              <p className="cart-header"><strong>Khóa học đã chọn</strong></p>
+            {
+              cart.length !== 0 ?
+              <table className="table">
+                <tbody>
+                {
+                  cart.map((course) => (
+                    <tr>
+                      <td className="">
+                        <LinkContainer to={'/courses/' + course.id}>
+                          <div className="course-link">
+                            <img className="cover-image" src={course.cover_image} alt=""/><br/>
+                            { course.title }
+                          </div>
+                        </LinkContainer>
+                       
+                      </td>
+                      <td className="text-right">
+                        <div className="course-tuition-fee">
+                          <span>{ObjectUtils.currencyFormat(course.tuition_fee)}</span>
                         </div>
-                      ))
-                    }
-                    </div>
-                    <div className="col-sm-12 col-md-5">
-                      <table className="table table-responsive">
-                        <tbody>
-                          <tr>
-                            <td><b>{this.context.t('public_payment_method_bank_name')}</b></td>
-                            <td>{this.state.selectBank.fullName}</td>
-                          </tr>
-                          <tr>
-                            <td><b>{this.context.t('public_payment_method_account_name')}</b></td>
-                            <td>{this.state.selectBank.bankAccount.accountName}</td>
-                          </tr>
-                          <tr>
-                            <td><b>{this.context.t('public_payment_method_account_number')}</b></td>
-                            <td>{this.state.selectBank.bankAccount.accountNumber}</td>
-                          </tr>
-                          <tr>
-                            <td><b>{this.context.t('public_payment_method_account_office')}</b></td>
-                            <td>{this.state.selectBank.bankAccount.accountOffice}</td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-md-12 payment-step">
-                  <p>
-                    <i className="fa fa-chevron-circle-right payment-step-icon"></i>
-                    <strong>Bước 2:</strong>
-                    <span> Thực hiện chuyển khoản cho <strong>Coursedy</strong> với cú pháp:</span>
-                  </p>
-                  <div className="text-center">
-                    <span>NAP TIEN <span className="badge badge-info" alt="Đăng nhập để lấy mã">???</span> tinhuynh0992@gmail.com</span>
-                  </div>
-
-                </div>
-
+                        <i className="fa fa-1x custom-close" onClick={this.removeCourseFromCart.bind(this, course)}></i>
+                      </td>
+                    </tr>
+                  ))
+                  
+                }
+                </tbody>
+                <tfoot>
+                  <tr>
+                    <td className=""><strong>Tổng:</strong></td>
+                    <td className="text-right">{ObjectUtils.currencyFormat(cartTotal)}</td>
+                  </tr>
+                </tfoot>
+              </table> : 
+              <div className="text-center">
+                Không có sản phẩm trong giỏ hàng
               </div>
+            }
+              
             </div>
           </div>
         </div>
+
       </div>
       
     )
@@ -210,10 +311,12 @@ const mapStateToProps = (state) => ({
   paymentSettings: state.AdminPaymentMethodsReducer.paymentSettings,
   paymentInstructions: state.AdminPaymentMethodsReducer.paymentInstructions,
   bankAccounts: state.AdminPaymentMethodsReducer.bankAccounts,
+  cart: state.PublicCourseDetail.cart,
+  cartTotal: state.PublicCourseDetail.cartTotal
 })
 
 const mapDispatchToProps = (dispatch) => ({
-    fetchPaymentSettings: (props) => dispatch({
+  fetchPaymentSettings: (props) => dispatch({
     type: FETCH_ADMIN_PAYMENT_SETTINGS,
     // payload: Network().get('payment-settings'),
     payload: new Promise((resolve, reject) => {
@@ -281,6 +384,10 @@ const mapDispatchToProps = (dispatch) => ({
       }, 250)
     })
   }),
+  removeCourseFromCart: (props) => dispatch({
+    type: PUBLIC_COURSE_DETAIL_REMOVE_COURSE_FROM_CART,
+    payload: props
+  })
 })
 
 
