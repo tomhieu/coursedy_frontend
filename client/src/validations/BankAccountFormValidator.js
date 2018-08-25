@@ -1,4 +1,4 @@
 export const validate = (values) => {
-    const errors = {}
-    return errors
-}
+  const errors = {};
+  return errors;
+};

@@ -1,4 +1,4 @@
-import * as actionTypes from "actions/AsyncActionCreator";
+import * as actionTypes from 'actions/AsyncActionCreator';
 
 const EnrolledStudentList = (state = {
   enrolledStudents: [],
@@ -7,19 +7,19 @@ const EnrolledStudentList = (state = {
 }, action) => {
   switch (action.type) {
     case actionTypes.FETCH_ENROLLED_STUDENT + actionTypes.PENDING:
-      return {...state, isFetching: true}
+      return { ...state, isFetching: true };
     case actionTypes.FETCH_ENROLLED_STUDENT + actionTypes.FULFILLED:
-      return {...state, enrolledStudents: action.payload, isFetching: false}
+      return { ...state, enrolledStudents: action.payload, isFetching: false };
     case actionTypes.SHOW_ENROLLED_STUDENT_LIST:
       const newActiveCourseId = action.data;
       if (newActiveCourseId === state.activeCourseId) {
-        return {...state, activeCourseId: undefined};
-      } else {
-        return {...state, activeCourseId: newActiveCourseId}
+        return { ...state, activeCourseId: undefined };
       }
-    default:
-      return state
-  }
-}
+      return { ...state, activeCourseId: newActiveCourseId };
 
-export default EnrolledStudentList
+    default:
+      return state;
+  }
+};
+
+export default EnrolledStudentList;

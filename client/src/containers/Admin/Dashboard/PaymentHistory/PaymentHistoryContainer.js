@@ -1,15 +1,15 @@
-import React, { Component } from 'react'
-import {connect} from "react-redux";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import cssModules from 'react-css-modules';
 import styles from './PaymentHistoryContainer.module.scss';
 import {
-} from "../../../../actions/AsyncActionCreator"
+} from '../../../../actions/AsyncActionCreator';
 import {
-} from "../../../../components/Admin"
+} from '../../../../components/Admin';
 
 class PaymentHistoryContainer extends Component {
   componentDidMount() {
-    this.props.fetchPaymentHistory()
+    this.props.fetchPaymentHistory();
   }
 
   render() {
@@ -22,24 +22,24 @@ class PaymentHistoryContainer extends Component {
           </div>
         </div>
       </div>
-    )
+    );
   }
 }
 
 PaymentHistoryContainer.contextTypes = {
   t: React.PropTypes.func.isRequired,
   router: React.PropTypes.object
-}
+};
 
-const mapStateToProps = (state) => ({
-})
+const mapStateToProps = state => ({
+});
 
-const mapDispatchToProps = (dispatch) => ({
-  fetchPaymentHistory: (props) => dispatch({
+const mapDispatchToProps = dispatch => ({
+  fetchPaymentHistory: props => dispatch({
 
   })
-})
+});
 
 export default connect(
   mapStateToProps, mapDispatchToProps
-)(cssModules(PaymentHistoryContainer, styles))
+)(cssModules(PaymentHistoryContainer, styles));

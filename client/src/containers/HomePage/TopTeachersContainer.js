@@ -4,8 +4,8 @@ import { connect } from 'react-redux';
 import * as TeacherActions from 'actions/HomePageActionCreator';
 import { bindActionCreators } from 'redux';
 import { Slider } from '../../components/Slider/CoursedySlider';
-import LoadingMask from "../../components/LoadingMask/LoadingMask";
-import CoursedySlider from "../../components/Slider/CoursedySlider";
+import LoadingMask from '../../components/LoadingMask/LoadingMask';
+import CoursedySlider from '../../components/Slider/CoursedySlider';
 
 
 const Item = ({ item }) => {
@@ -14,7 +14,7 @@ const Item = ({ item }) => {
       <div className="row">
         <div className="col-lg-12 col-xs-12 col-md-12 col-sm-12 user">
           <div className="user__avatar-left">
-            <img src={item.avatar}/>
+            <img src={item.avatar} />
           </div>
           <div className="user__info-right">
             <div className="user__fullname">{item.full_name}</div>
@@ -48,7 +48,7 @@ class TopTeachers extends Component {
 
   render() {
     if (!this.props.topTeachers.length) {
-      return null
+      return null;
     }
 
     return (
@@ -59,7 +59,17 @@ class TopTeachers extends Component {
               <div className="course__top-teacher__heading">
                 <div className="container">
                   <h2>
-                    {this.context.t('top_teacher_pre')} {this.props.totalTeachers} {this.context.t('top_teacher_post')} {this.context.t('course_num_pre')} {this.props.totalCourses} {this.context.t('course_num_post')}
+                    {this.context.t('top_teacher_pre')}
+                    {' '}
+                    {this.props.totalTeachers}
+                    {' '}
+                    {this.context.t('top_teacher_post')}
+                    {' '}
+                    {this.context.t('course_num_pre')}
+                    {' '}
+                    {this.props.totalCourses}
+                    {' '}
+                    {this.context.t('course_num_post')}
                   </h2>
                 </div>
               </div>
@@ -67,14 +77,17 @@ class TopTeachers extends Component {
                 <div className="container">
                   <div className="row">
                     <div className="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                      <h3 className="course__top-teacher__body__heading"
-                          dangerouslySetInnerHTML={{ __html: this.context.t('top_teacher_month') }}/>
+                      <h3
+                        className="course__top-teacher__body__heading"
+                        dangerouslySetInnerHTML={{ __html: this.context.t('top_teacher_month') }}
+                      />
                     </div>
                     <div className="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                      {<CoursedySlider settings={{ slidesToShow: 3, slidesToScroll: 3 }}
-                               items={this.props.topTeachers.map((item, index) => {
-                                 return <Item item={item} key={index}/>;
-                               })}
+                      {<CoursedySlider
+                        settings={{ slidesToShow: 3, slidesToScroll: 3 }}
+                        items={this.props.topTeachers.map((item, index) => {
+                          return <Item item={item} key={index} />;
+                        })}
                       />
                       }
                     </div>

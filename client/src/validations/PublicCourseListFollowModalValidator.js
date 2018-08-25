@@ -1,13 +1,13 @@
-import {TT} from '../utils/locale'
-import {validateEmail} from "./CommonValidator";
+import { TT } from '../utils/locale';
+import { validateEmail } from './CommonValidator';
 
 
 export const validate = (values) => {
-  const errors = {}
+  const errors = {};
   if (!values.email) {
-    errors.start_date = TT.t('email_required')
+    errors.start_date = TT.t('email_required');
   } else {
     validateEmail('email', values.email, errors);
   }
-  return errors
-}
+  return errors;
+};

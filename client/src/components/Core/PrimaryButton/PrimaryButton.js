@@ -1,11 +1,13 @@
-import styles from "./PrimaryButton.module.scss";
-import React, {Component} from "react";
+import React, { Component } from 'react';
 import cssModules from 'react-css-modules';
+import styles from './PrimaryButton.module.scss';
 
 class PrimaryButton extends Component {
   render() {
-    const {type, callback, title, isPrimary = true, round = false,
-           disabled = false, line = true, customClasses, iconButton = false, isSmallButton = false} = this.props;
+    const {
+      type, callback, title, isPrimary = true, round = false,
+      disabled = false, line = true, customClasses, iconButton = false, isSmallButton = false
+    } = this.props;
     // build list classes
     const classNames = [styles.button];
     if (isPrimary) {
@@ -36,20 +38,24 @@ class PrimaryButton extends Component {
     }
 
     return (
-      type === 'submit' ?
-      <button type='submit' className={classNames.join(" ")} disabled={disabled} >
-        {
+      type === 'submit'
+        ? (
+          <button type="submit" className={classNames.join(' ')} disabled={disabled}>
+            {
           iconButton ? this.props.children : null
         }
-        {title}
-      </button> :
-        <button type='button' className={classNames.join(" ")} onClick={callback} disabled={disabled}>
-          {
+            {title}
+          </button>
+        )
+        : (
+          <button type="button" className={classNames.join(' ')} onClick={callback} disabled={disabled}>
+            {
             iconButton ? this.props.children : null
           }
-          {title}
-        </button>
-    )
+            {title}
+          </button>
+        )
+    );
   }
 }
 
@@ -64,6 +70,6 @@ PrimaryButton.propTypes = {
   iconButton: React.PropTypes.bool,
   disabled: React.PropTypes.bool,
   isSmallButton: React.PropTypes.bool
-}
+};
 
 export default cssModules(PrimaryButton, styles);

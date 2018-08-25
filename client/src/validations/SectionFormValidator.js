@@ -1,11 +1,11 @@
-import {TT} from "utils/locale";
+import { TT } from 'utils/locale';
 
 export const validate = (values) => {
-  const errors = {}
+  const errors = {};
 
   if (!values.title) {
-    errors.title = TT.t('section_title_required')
+    errors.title = TT.t('section_title_required');
   }
 
   return errors;
-}
+};

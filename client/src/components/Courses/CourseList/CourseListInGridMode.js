@@ -1,4 +1,4 @@
-import React, { Component} from 'react';
+import React, { Component } from 'react';
 import cssModules from 'react-css-modules';
 import styles from '../Course.module.scss';
 import { CourseItem } from '../../index';
@@ -11,6 +11,7 @@ class CourseListInGridMode extends Component {
   constructor(props) {
     super(props);
   }
+
   render() {
     const {
       displayMode,
@@ -19,30 +20,31 @@ class CourseListInGridMode extends Component {
 
     return (
       <div className="row flex-auto">
-      {
+        {
         this.props.courses.map((item, index) => (
-          <div className={itemClass} key={'course-' +index}>
-            <CourseItem item={item}
-                        displayMode={displayMode}
-                        isPublic={isPublic}
-                        courseStatus={courseStatus}
+          <div className={itemClass} key={`course-${index}`}>
+            <CourseItem
+              item={item}
+              displayMode={displayMode}
+              isPublic={isPublic}
+              courseStatus={courseStatus}
             />
           </div>
         ))
       }
       </div>
-    )
+    );
   }
 }
 
 CourseListInGridMode.contextTypes = {
   t: React.PropTypes.func.isRequired
-}
+};
 
 CourseListInGridMode.defaultProps = {
   displayMode: 'grid',
   isPublic: false
-}
+};
 
 CourseListInGridMode.propTypes = {
   displayMode: React.PropTypes.string.isRequired,

@@ -1,12 +1,14 @@
-import styles from "./PrimaryAnchor.module.scss";
-import {Component} from "react";
-import * as React from "react";
+import { Component } from 'react';
+import * as React from 'react';
 import cssModules from 'react-css-modules';
+import styles from './PrimaryAnchor.module.scss';
 
 class PrimaryAnchor extends Component {
   render() {
-    const {title, isPrimary = true, round = false,
-           line = true, customClasses, iconAnchor = false, isSmallAnchor = false} = this.props;
+    const {
+      title, isPrimary = true, round = false,
+      line = true, customClasses, iconAnchor = false, isSmallAnchor = false
+    } = this.props;
     // build list classes
     const classNames = [styles.anchor];
     if (isPrimary) {
@@ -37,13 +39,13 @@ class PrimaryAnchor extends Component {
     }
 
     return (
-      <a className={classNames.join(" ")} href={this.props.href} >
+      <a className={classNames.join(' ')} href={this.props.href}>
         {
           iconAnchor ? this.props.children : null
         }
         {title}
       </a>
-    )
+    );
   }
 }
 
@@ -55,6 +57,6 @@ PrimaryAnchor.propTypes = {
   customClasses: React.PropTypes.string,
   iconAnchor: React.PropTypes.bool,
   isSmallAnchor: React.PropTypes.bool
-}
+};
 
 export default cssModules(PrimaryAnchor, styles);

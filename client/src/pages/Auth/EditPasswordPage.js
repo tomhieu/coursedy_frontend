@@ -1,9 +1,9 @@
-import React from 'react'
-import EditPasswordFormContainer from 'containers/Auth/EditPasswordFormContainer'
-import LoadingMask from 'components/LoadingMask/LoadingMask'
+import React from 'react';
+import EditPasswordFormContainer from 'containers/Auth/EditPasswordFormContainer';
+import LoadingMask from 'components/LoadingMask/LoadingMask';
 
 
-const EditPasswordPage = (props) => (
+const EditPasswordPage = props => (
   <div className="mt-50 mb-50">
     <LoadingMask placeholderId="editPasswordPlaceholder">
       <EditPasswordFormContainer {...props} />
@@ -11,4 +11,4 @@ const EditPasswordPage = (props) => (
   </div>
 );
 
-export default EditPasswordPage
+export default EditPasswordPage;

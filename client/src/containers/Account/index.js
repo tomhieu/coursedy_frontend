@@ -1,5 +1,5 @@
-import PersonInfoContainer from './PersonInfoContainer'
+import PersonInfoContainer from './PersonInfoContainer';
 
 export {
   PersonInfoContainer
-}
+};

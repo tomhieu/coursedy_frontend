@@ -11,14 +11,14 @@ class UserAvatar extends Component {
 
     if (url) {
       return (
-        <img src={SERVER_NAME + url}/>
+        <img src={SERVER_NAME + url} />
       );
     }
 
     const color = generateRandomColorFromUsername(username);
 
     return (
-      <div className={this.props.classNames} style={{background: color}}>
+      <div className={this.props.classNames} style={{ background: color }}>
         {username ? generateShortName(username) : ''}
       </div>
     );

@@ -1,11 +1,11 @@
-import styles from "./FlatButton.module.scss";
-import {Component} from "react";
-import * as React from "react";
+import { Component } from 'react';
+import * as React from 'react';
 import cssModules from 'react-css-modules';
+import styles from './FlatButton.module.scss';
 
 class FlatButton extends Component {
   render() {
-    const {label, secondary, onClick} = this.props;
+    const { label, secondary, onClick } = this.props;
     return (
       <button className={styles.flatBtn} type="button" onClick={onClick}>
         <div className={secondary ? styles.secondary : styles.primary}>
@@ -15,7 +15,7 @@ class FlatButton extends Component {
           }
         </div>
       </button>
-    )
+    );
   }
 }
 
@@ -23,6 +23,6 @@ FlatButton.propTypes = {
   label: React.PropTypes.string,
   secondary: React.PropTypes.bool,
   onClick: React.PropTypes.func
-}
+};
 
 export default cssModules(FlatButton, styles);

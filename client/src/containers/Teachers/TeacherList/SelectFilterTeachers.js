@@ -5,36 +5,39 @@ const SelectFilterTeachers = (
   {
     categories, selectedCategories, selectedSpecializes,
     listSpecializes, doSelectFilter,
-  }, context) => {
+  }, context
+) => {
   return (
     <div className="col-md-3 col-sm-3">
       <div
-        className="d-flex flex-horizontal align-items-center flex-nowrap full-height">
-          <FilterOption
-            label={context.t('course_category_title')}
-            options={categories.map((x) => {
-              return { name: x.name, id: x.id };
-            })}
-            selectedOptions={selectedCategories}
-            onSelectFilter={doSelectFilter}
-            type="multi-select"
-            name="selectedCategories">
-          </FilterOption>
-          <FilterOption label={context.t('level')}
-                        onSelectFilter={doSelectFilter}
-                        options={listSpecializes}
-                        isGroupOption={true}
-                        selectedOptions={selectedSpecializes}
-                        type="group-select"
-                        name="selectedSpecializes">
-          </FilterOption>
+        className="d-flex flex-horizontal align-items-center flex-nowrap full-height"
+      >
+        <FilterOption
+          label={context.t('course_category_title')}
+          options={categories.map((x) => {
+            return { name: x.name, id: x.id };
+          })}
+          selectedOptions={selectedCategories}
+          onSelectFilter={doSelectFilter}
+          type="multi-select"
+          name="selectedCategories"
+        />
+        <FilterOption
+          label={context.t('level')}
+          onSelectFilter={doSelectFilter}
+          options={listSpecializes}
+          isGroupOption
+          selectedOptions={selectedSpecializes}
+          type="group-select"
+          name="selectedSpecializes"
+        />
       </div>
     </div>
-  )
-}
+  );
+};
 
 SelectFilterTeachers.contextTypes = {
   t: React.PropTypes.func.isRequired
-}
+};
 
 export default SelectFilterTeachers;

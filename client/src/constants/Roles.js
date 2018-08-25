@@ -1,1 +1,1 @@
-export const ROLES = ["teacher", "student"]
+export const ROLES = ['teacher', 'student'];
