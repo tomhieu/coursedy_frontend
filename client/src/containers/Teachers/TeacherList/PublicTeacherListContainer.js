@@ -11,12 +11,10 @@ import PaginationArrowIcon from '../../../components/Core/Icons/PaginationArrowI
 class PublicTeacherListContainer extends Component {
   componentDidMount() {
     this.props.fetchTeacherList();
-    this.props.hideFooter();
     this.props.stretchFull();
   }
 
   componentWillUnmount() {
-    this.props.showFooter();
     this.props.stretchAuto();
   }
 
@@ -88,8 +86,6 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = dispatch => ({
   fetchTeacherList: props => dispatch(searchTeachers({})),
   searchTeachers: query => dispatch(searchTeachers(query)),
-  showFooter: () => dispatch({ type: WebConstants.SHOW_FOOTER }),
-  hideFooter: () => dispatch({ type: WebConstants.HIDE_FOOTER }),
   stretchFull: () => dispatch({ type: WebConstants.STETCH_FULL }),
   stretchAuto: () => dispatch({ type: WebConstants.STETCH_AUTO }),
 });
