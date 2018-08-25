@@ -84,6 +84,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => ({
   fetchTeacherList: (props) => dispatch(searchTeachers({})),
+  searchTeachers: (query) => dispatch(searchTeachers(query)),
   showFooter: () => dispatch({ type: WebConstants.SHOW_FOOTER }),
   hideFooter: () => dispatch({ type: WebConstants.HIDE_FOOTER }),
   stretchFull: () => dispatch({ type: WebConstants.STETCH_FULL }),
