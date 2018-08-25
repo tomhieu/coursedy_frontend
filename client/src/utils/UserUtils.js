@@ -1,34 +1,34 @@
-export const generateRandomColorFromUsername = username => {
+export const generateRandomColorFromUsername = (username) => {
   if (!username) {
-    return null
+    return null;
   }
 
-  let charCode = '#'
+  let charCode = '#';
 
-  for (let c of username) {
-    charCode += String(c.charCodeAt(0))
+  for (const c of username) {
+    charCode += String(c.charCodeAt(0));
   }
 
-  return charCode.slice(0, 7)
-}
+  return charCode.slice(0, 7);
+};
 
-export const generateShortName = username => {
+export const generateShortName = (username) => {
   if (!username) {
-    return ''
+    return '';
   }
   // Get uppercase letter
-  let uppercaseLetters = username.match(/[A-Z]/g)
+  const uppercaseLetters = username.match(/[A-Z]/g);
 
   if (uppercaseLetters) {
-    return uppercaseLetters.join('').slice(0, 2)
+    return uppercaseLetters.join('').slice(0, 2);
   }
 
   // Filter non-letter characters
-  let data = username.replace(/((?![a-z0-9]).)/g, '')
+  const data = username.replace(/((?![a-z0-9]).)/g, '');
 
   if (!data[0]) {
-    return ''
+    return '';
   }
 
-  return data[0].toUpperCase()
-}
+  return data[0].toUpperCase();
+};

@@ -1,7 +1,7 @@
-import React from 'react'
-import Layout from './Layout/Layout'
+import React from 'react';
+import Layout from './Layout/Layout';
 
-const Main = (props) => (
+const Main = props => (
   <Layout {...props}>
     { props.children }
   </Layout>

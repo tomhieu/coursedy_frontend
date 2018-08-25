@@ -1,23 +1,23 @@
-import React, {Component, PropTypes} from 'react';
-import {NavbarToggler, NavLink} from 'react-bootstrap'
+import React, { Component, PropTypes } from 'react';
+import { NavbarToggler, NavLink } from 'react-bootstrap';
 import cssModules from 'react-css-modules';
+import { LinkContainer } from 'react-router-bootstrap';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { globalHistory } from 'utils/globalHistory';
 import styles from './Header.module.scss';
-import {LinkContainer} from 'react-router-bootstrap'
-import Notification from "./Notification";
-import UserNavigation from "./UserNavigation";
-import LangNavigation from "./LangNavigation";
-import {Link} from 'react-router-dom'
-import {connect} from "react-redux";
-import PrimaryButton from "../../../components/Core/PrimaryButton/PrimaryButton";
-import {globalHistory} from "utils/globalHistory";
-import * as sessionActions from "../../../actions/SessionActionCreator";
-import {TRIGGER_STICKY_HEADER_AT} from "../../../constants/Layout";
-import {SecurityUtils} from "../../../utils/SecurityUtils";
-import DetailsIcon from "../../../components/Core/Icons/DetailsIcon";
-import {COLLAPSE_DARKBOARD} from "../../../constants/WebConstants";
-import MoreVertIcon from "../../../components/Core/Icons/MoreVertIcon";
-import CoursedyLogo from "../../../components/Core/Icons/CoursedyLogo";
-import CoursedyShortIcon from "../../../components/Core/Icons/CoursedyShortIcon";
+import Notification from './Notification';
+import UserNavigation from './UserNavigation';
+import LangNavigation from './LangNavigation';
+import PrimaryButton from '../../../components/Core/PrimaryButton/PrimaryButton';
+import * as sessionActions from '../../../actions/SessionActionCreator';
+import { TRIGGER_STICKY_HEADER_AT } from '../../../constants/Layout';
+import { SecurityUtils } from '../../../utils/SecurityUtils';
+import DetailsIcon from '../../../components/Core/Icons/DetailsIcon';
+import { COLLAPSE_DARKBOARD } from '../../../constants/WebConstants';
+import MoreVertIcon from '../../../components/Core/Icons/MoreVertIcon';
+import CoursedyLogo from '../../../components/Core/Icons/CoursedyLogo';
+import CoursedyShortIcon from '../../../components/Core/Icons/CoursedyShortIcon';
 
 class Header extends Component {
   constructor(props) {
@@ -32,20 +32,20 @@ class Header extends Component {
   }
 
   componentDidMount() {
-    window.addEventListener('scroll', this.onScroll)
+    window.addEventListener('scroll', this.onScroll);
   }
 
   componentWillUnmount() {
-    window.removeEventListener('scroll', this.onScroll)
+    window.removeEventListener('scroll', this.onScroll);
   }
 
   handleScroll(event) {
-    const triggerPosition = TRIGGER_STICKY_HEADER_AT
-    const top = window.pageYOffset || document.documentElement.scrollTop
+    const triggerPosition = TRIGGER_STICKY_HEADER_AT;
+    const top = window.pageYOffset || document.documentElement.scrollTop;
     if (triggerPosition < top) {
-      this.header.classList.add('navbar-sticky', 'fixed-top')
+      this.header.classList.add('navbar-sticky', 'fixed-top');
     } else {
-      this.header.classList.remove('navbar-sticky', 'fixed-top')
+      this.header.classList.remove('navbar-sticky', 'fixed-top');
     }
   }
 
@@ -54,36 +54,46 @@ class Header extends Component {
   }
 
   isAuthenticated() {
-    return this.props.session.currentUser !== null
+    return this.props.session.currentUser !== null;
   }
 
   render() {
-    const {customHeaderClass, darkHeader, dashboardHeader} = this.props.main;
-    const {isCollapseDashboard} = this.props;
+    const { customHeaderClass, darkHeader, dashboardHeader } = this.props.main;
+    const { isCollapseDashboard } = this.props;
     return (
       <nav
-        className={`header-nav navbar navbar-expand-lg navbar-light navbar-default ${customHeaderClass} ` + (darkHeader ? "dark-header" : "bg-light")}
-        ref={el => this.header = el}>
+        className={`header-nav navbar navbar-expand-lg navbar-light navbar-default ${customHeaderClass} ${darkHeader ? 'dark-header' : 'bg-light'}`}
+        ref={el => this.header = el}
+      >
         <div className="container">
           {
-            dashboardHeader ?
-              <div className={isCollapseDashboard ? "dashboard-logo collapsed" : "dashboard-logo"}>
-                <div className="d-flex flex-row align-items-center full-height">
-                  {
-                    isCollapseDashboard ? <Link className="logo-image" to="/"><CoursedyShortIcon width={30} height={30} fillColor="#FFFFFF"/></Link>
-                      : <Link className="logo-image" to="/"><CoursedyLogo width={150} height={30} fillColor="#FFFFFF"/></Link>
+            dashboardHeader
+              ? (
+                <div className={isCollapseDashboard ? 'dashboard-logo collapsed' : 'dashboard-logo'}>
+                  <div className="d-flex flex-row align-items-center full-height">
+                    {
+                    isCollapseDashboard ? <Link className="logo-image" to="/"><CoursedyShortIcon width={30} height={30} fillColor="#FFFFFF" /></Link>
+                      : <Link className="logo-image" to="/"><CoursedyLogo width={150} height={30} fillColor="#FFFFFF" /></Link>
                   }
-                  <a className="collapse-dashboard-icon" onClick={this.props.collapseDashboard.bind(this)}>
-                    <DetailsIcon fillColor="#444444"/>
-                  </a>
+                    <a className="collapse-dashboard-icon" onClick={this.props.collapseDashboard.bind(this)}>
+                      <DetailsIcon fillColor="#444444" />
+                    </a>
+                  </div>
                 </div>
-              </div> :
-              <Link className="navbar-brand" to="/"><CoursedyLogo width={150} height={30} fillColor={darkHeader ? "#FFFFFF" : "#1CABA0"}/></Link>
+              )
+              : <Link className="navbar-brand" to="/"><CoursedyLogo width={150} height={30} fillColor={darkHeader ? '#FFFFFF' : '#1CABA0'} /></Link>
           }
 
-          <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-                  aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <MoreVertIcon/>
+          <button
+            className="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <MoreVertIcon />
           </button>
           <div className="collapse navbar-collapse justify-content-right" id="navbarNav">
             <ul className="navbar-nav">
@@ -108,23 +118,37 @@ class Header extends Component {
               {
                 this.isAuthenticated() ? (
                   <li className="nav-item">
-                    <Notification main={this.props.main}
-                                  session={this.props.session}></Notification>
+                    <Notification
+                      main={this.props.main}
+                      session={this.props.session}
+                    />
                   </li>
                 ) : null
               }
               {
                 this.isAuthenticated() ? (
                   <li className="nav-item">
-                    <UserNavigation session={this.props.session} lang={this.props.lang} signOut={this.props.signOut}></UserNavigation>
+                    <UserNavigation session={this.props.session} lang={this.props.lang} signOut={this.props.signOut} />
                   </li>
                 ) : (
                   <li className="nav-item">
-                    <PrimaryButton callback={this.login.bind(this)}
-                                   round={true}
-                                   title={this.context.t('login')}>
-                      <span className="nav-btn"> <i className="fa  fa-sign-in"></i> &nbsp;
-                        <span className="hidden-navbtn"> | {this.context.t('register')} </span>
+                    <PrimaryButton
+                      callback={this.login.bind(this)}
+                      round
+                      title={this.context.t('login')}
+                    >
+                      <span className="nav-btn">
+                        {' '}
+                        <i className="fa  fa-sign-in" />
+                        {' '}
+&nbsp;
+                        <span className="hidden-navbtn">
+                          {' '}
+|
+                          {this.context.t('register')}
+                          {' '}
+
+                        </span>
                       </span>
                     </PrimaryButton>
                   </li>
@@ -134,25 +158,27 @@ class Header extends Component {
           </div>
         </div>
       </nav>
-    )
+    );
   }
 }
 
 Header.contextTypes = {
   t: React.PropTypes.func.isRequired
-}
+};
 
 Header.propTypes = {
   session: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => {
-  const {main, session, DashboardMenu} = state;
-  const {isCollapseDashboard} = DashboardMenu;
-  return {main, session, lang: state.i18nState.lang, isCollapseDashboard };
-}
+  const { main, session, DashboardMenu } = state;
+  const { isCollapseDashboard } = DashboardMenu;
+  return {
+    main, session, lang: state.i18nState.lang, isCollapseDashboard
+  };
+};
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = dispatch => ({
   fetchUser: () => dispatch(sessionActions.fetchCurrentUser()).then((user) => {
     dispatch(sessionActions.fetchActiveCourses(user.value));
     if (SecurityUtils.isTeacher(user.value)) {
@@ -163,7 +189,7 @@ const mapDispatchToProps = (dispatch) => ({
   collapseDashboard: () => dispatch({
     type: COLLAPSE_DARKBOARD
   })
-})
+});
 export default connect(
   mapStateToProps, mapDispatchToProps
 )(cssModules(Header, styles));

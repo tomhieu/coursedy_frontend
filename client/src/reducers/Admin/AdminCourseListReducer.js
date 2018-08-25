@@ -1,8 +1,9 @@
-import * as asyncActs from "../../actions/AsyncActionCreator";
-import {TT} from "utils/locale";
+import { TT } from 'utils/locale';
+import * as asyncActs from '../../actions/AsyncActionCreator';
 import {
   ADMIN_UNAPPROVED_COURSE_LIST_MAX_ITEM_PER_PAGE
-} from "../../constants/WebConstants.js"
+} from '../../constants/WebConstants.js';
+
 const AdminCourseListReducer = (state = {
   unapprovedCourses: [],
   isLoading: false,
@@ -14,31 +15,31 @@ const AdminCourseListReducer = (state = {
   switch (action.type) {
     case asyncActs.FETCH_ADMIN_UNAPPROVED_COURSES + asyncActs.HEADERS:
       return {
-        ...state, 
+        ...state,
         totalResult: parseInt(action.payload.xTotal),
         perPage: parseInt(action.payload.xPerPage),
         currentPage: parseInt(action.payload.xPage)
-      }
+      };
     case asyncActs.FETCH_ADMIN_UNAPPROVED_COURSES + asyncActs.PENDING:
-      return {...state, isLoading: true}
+      return { ...state, isLoading: true };
     case asyncActs.FETCH_ADMIN_UNAPPROVED_COURSES + asyncActs.FULFILLED:
       return {
-        ...state, 
+        ...state,
         unapprovedCourses: action.payload,
         isLoading: false
-      }
+      };
     case asyncActs.FETCH_ADMIN_UNAPPROVED_COURSES + asyncActs.REJECTED:
-      const enrollErrorMessages = (action.payload && Array.isArray(action.payload) && action.payload.length > 0) ?
-        errors : [TT.t('fetch_course_fail')];
+      const enrollErrorMessages = (action.payload && Array.isArray(action.payload) && action.payload.length > 0)
+        ? errors : [TT.t('fetch_course_fail')];
       return {
-        ...state, 
-        unapprovedCourses: [], 
+        ...state,
+        unapprovedCourses: [],
         errors: enrollErrorMessages,
         isLoading: false
-      }
+      };
     default:
       return state;
-    }
+  }
 };
 
 export default AdminCourseListReducer;

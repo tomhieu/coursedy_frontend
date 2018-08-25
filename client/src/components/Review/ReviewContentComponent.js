@@ -1,6 +1,6 @@
-import React, { Component } from "react";
-import "./ReviewContent.scss";
-import DateUtils from "utils/DateUtils";
+import React, { Component } from 'react';
+import './ReviewContent.scss';
+import DateUtils from 'utils/DateUtils';
 
 class ReviewContent extends Component {
   render() {

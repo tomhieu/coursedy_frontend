@@ -7,8 +7,8 @@
  * @returns {promise}
  */
 
-import { clearAuthenticationData } from '../actions/SessionActionCreator';
 import { isObject } from 'utils/commonUtils';
+import { clearAuthenticationData } from '../actions/SessionActionCreator';
 
 export default function request(url, options) {
   return new Promise((resolve, reject) => {
@@ -16,12 +16,12 @@ export default function request(url, options) {
     if (!options) reject(new Error('Options parameter required'));
 
     fetch(url, options)
-      .then(response => {
+      .then((response) => {
         if (response.ok) {
           // update token, uid and client_id in browser storage
-          let uid = response.headers.get('uid');
-          let accessToken = response.headers.get('access-token');
-          let client = response.headers.get('client');
+          const uid = response.headers.get('uid');
+          const accessToken = response.headers.get('access-token');
+          const client = response.headers.get('client');
 
           if (accessToken) {
             localStorage.setItem('ezyLearningToken', accessToken);
@@ -29,20 +29,21 @@ export default function request(url, options) {
             localStorage.setItem('ezyLearningUid', uid);
           }
 
-          let xPage = response.headers.get('X-Page');
-          let xPerPage = response.headers.get('X-Per-Page');
-          let xTotal = response.headers.get('X-Total');
+          const xPage = response.headers.get('X-Page');
+          const xPerPage = response.headers.get('X-Per-Page');
+          const xTotal = response.headers.get('X-Total');
 
           if (xPage && xPerPage && xTotal) {
-            return response.json().then(r => {
+            return response.json().then((r) => {
               resolve({
                 headers: {
                   xPage, xPerPage, xTotal
-                }, body: r
+                },
+                body: r
               });
             });
           }
-          response.json().then(r => {
+          response.json().then((r) => {
             resolve(r);
           });
         } else {
@@ -59,7 +60,7 @@ export default function request(url, options) {
           });
         }
       })
-      .catch(err => {
+      .catch((err) => {
         reject(err);
       });
   });

@@ -1,11 +1,11 @@
-import React from 'react'
-import ForgotPasswordFormContainer from 'containers/Auth/ForgotPasswordFormContainer'
-import LoadingMask from 'components/LoadingMask/LoadingMask'
+import React from 'react';
+import ForgotPasswordFormContainer from 'containers/Auth/ForgotPasswordFormContainer';
+import LoadingMask from 'components/LoadingMask/LoadingMask';
 
 
-const ForgotPassword = (props) => (
+const ForgotPassword = props => (
   <div className="mt-40">
-    <div className='mb-50'>
+    <div className="mb-50">
       <LoadingMask placeholderId="forgotPasswordPlaceholder">
         <ForgotPasswordFormContainer {...props} />
       </LoadingMask>
@@ -13,4 +13,4 @@ const ForgotPassword = (props) => (
   </div>
 );
 
-export default ForgotPassword
+export default ForgotPassword;

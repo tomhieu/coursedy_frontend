@@ -1,7 +1,7 @@
-import React, {Component} from 'react'
-import PropTypes from 'prop-types'
-import PrimaryButton from "../../Core/PrimaryButton/PrimaryButton";
-import {globalHistory} from "utils/globalHistory";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { globalHistory } from 'utils/globalHistory';
+import PrimaryButton from '../../Core/PrimaryButton/PrimaryButton';
 
 
 export default class CourseGroupFooter extends Component {
@@ -18,11 +18,15 @@ export default class CourseGroupFooter extends Component {
     return (
       <div className="row align-items-center justify-content-center mt-4">
         <div className="col-sm-4 course__footer">
-          <PrimaryButton type="button" isPrimary={true} round={true}
-                         callback={this.gotoSearchCourseList.bind(this)} title={this.props.btnName}>
-          </PrimaryButton>
+          <PrimaryButton
+            type="button"
+            isPrimary
+            round
+            callback={this.gotoSearchCourseList.bind(this)}
+            title={this.props.btnName}
+          />
         </div>
       </div>
-    )
+    );
   }
 }

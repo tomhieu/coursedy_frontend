@@ -1,58 +1,66 @@
-import React, { Component } from 'react'
-import Pagination from 'react-js-pagination'
-import ReviewTeacherForm from './ReviewTeacherForm'
-import ReviewContent from '../../../../components/Review/ReviewContentComponent'
-import PaginationArrowIcon from "../../../../components/Core/Icons/PaginationArrowIcon";
+import React, { Component } from 'react';
+import Pagination from 'react-js-pagination';
+import ReviewTeacherForm from './ReviewTeacherForm';
+import ReviewContent from '../../../../components/Review/ReviewContentComponent';
+import PaginationArrowIcon from '../../../../components/Core/Icons/PaginationArrowIcon';
 
 
 class TeacherReviewList extends Component {
   render() {
-    const { teacher } = this.props
-    if (!teacher.reviews || !teacher.reviews.data.length) { return null }
+    const { teacher } = this.props;
+    if (!teacher.reviews || !teacher.reviews.data.length) { return null; }
 
-    const headers =  {
+    const headers = {
       currentPage: parseInt(teacher.reviews.headers.xPage) || 0,
-        perPage: parseInt(teacher.reviews.headers.xPerPage) || 0,
-        total: parseInt(teacher.reviews.headers.xTotal) || 0
-    }
+      perPage: parseInt(teacher.reviews.headers.xPerPage) || 0,
+      total: parseInt(teacher.reviews.headers.xTotal) || 0
+    };
 
     return (
       <div className="teacher-detail__content__review__content">
         <div className="review-content-list">
           { teacher.reviews.data.map((review, index) => {
-            return <ReviewContent review={review} key={index} />
+            return <ReviewContent review={review} key={index} />;
           })}
         </div>
 
-        <div className="review-pager pager-wrappper">
-          {teacher.reviews.data.length ?
-            <div className="row">
-              <div className="col-xs-12 col-sm-12">
-                <Pagination
-                  hideFirstLastPages
-                  prevPageText={<PaginationArrowIcon isLeftArrow={true} />}
-                  nextPageText={<PaginationArrowIcon />}
-                  linkClassPrev="prev-page-icon"
-                  linkClassNext="next-page-icon"
-                  activePage={headers.currentPage}
-                  itemsCountPerPage={headers.perPage}
-                  totalItemsCount={headers.total}
-                  pageRangeDisplayed={5}
-                  activeClass={'active'}
-                  onChange={(pageNumber) => this.props.handlePageChange(pageNumber, headers.perPage)}
-                />
+        <div className="mt-30">
+          {teacher.reviews.data.length
+            ? (
+              <div className="row">
+                <div className="col-xs-12 col-sm-12">
+                  <div className="d-flex justify-content-center">
+                    <Pagination
+                      hideFirstLastPages
+                      prevPageText={<PaginationArrowIcon isLeftArrow />}
+                      nextPageText={<PaginationArrowIcon />}
+                      innerClass="mt-8 pagination"
+                      linkClassPrev="prev-page-icon"
+                      linkClassNext="next-page-icon"
+                      itemClass="page-item"
+                      linkClass="page-link"
+                      activePage={headers.currentPage}
+                      itemsCountPerPage={headers.perPage}
+                      totalItemsCount={headers.total}
+                      pageRangeDisplayed={5}
+                      onChange={(pageNumber) => {
+                        this.props.handlePageChange(pageNumber, headers.perPage);
+                      }}
+                    />
+                  </div>
+                </div>
               </div>
-            </div> : null
+            ) : null
           }
         </div>
       </div>
-    )
+    );
   }
 }
 
 
 TeacherReviewList.contextTypes = {
   t: React.PropTypes.func.isRequired
-}
+};
 
-export default TeacherReviewList
+export default TeacherReviewList;

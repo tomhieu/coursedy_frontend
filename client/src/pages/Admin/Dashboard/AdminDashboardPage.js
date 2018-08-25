@@ -1,12 +1,12 @@
-import React from 'react'
-import './AdminDashboardPage.scss'
-import {Route} from 'react-router-dom'
-import {connect} from 'react-redux';
-import {AdminComponents, RoleAuthorization,} from '../../../components/index';
-import {AdminContainers} from '../../../containers/'
-import * as sessionActions from '../../../actions/SessionActionCreator'
-import * as WebConstants from '../../../constants/WebConstants.js'
-import {TT} from "../../../utils/locale";
+import React from 'react';
+import './AdminDashboardPage.scss';
+import { Route } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { AdminComponents, RoleAuthorization } from '../../../components/index';
+import { AdminContainers } from '../../../containers';
+import * as sessionActions from '../../../actions/SessionActionCreator';
+import * as WebConstants from '../../../constants/WebConstants.js';
+import { TT } from '../../../utils/locale';
 
 class AdminDashboardPage extends RoleAuthorization {
   componentDidMount() {
@@ -16,51 +16,64 @@ class AdminDashboardPage extends RoleAuthorization {
   componentWillUnmount() {
     this.props.closeDashboardHeader();
   }
+
   signOut(e) {
-    e.preventDefault()
-    this.props.signOut()
+    e.preventDefault();
+    this.props.signOut();
   }
 
   render() {
-    const {currentUser, isCollapseDashboard} = this.props;
-    let dashboardMenuClasses = "panel-group dashboard-menu";
-    let dashboardContentClasses = "d-flex flex-column flex-auto dashboard-content";
-    let dashboardFooterClasses = "dashboard-footer d-flex justify-content-center";
-    let leftMenuClasses = ["left-panel"];
+    const { currentUser, isCollapseDashboard } = this.props;
+    let dashboardMenuClasses = 'panel-group dashboard-menu';
+    let dashboardContentClasses = 'd-flex flex-column flex-auto dashboard-content';
+    let dashboardFooterClasses = 'dashboard-footer d-flex justify-content-center';
+    const leftMenuClasses = ['left-panel'];
     if (isCollapseDashboard) {
-      dashboardMenuClasses += " collapsed";
-      leftMenuClasses.push("collapsed");
-      dashboardContentClasses += " expanded";
-      dashboardFooterClasses += " expanded";
+      dashboardMenuClasses += ' collapsed';
+      leftMenuClasses.push('collapsed');
+      dashboardContentClasses += ' expanded';
+      dashboardFooterClasses += ' expanded';
     }
     return (
       <div className="dashboard-section full-width-in-container">
         <div className="d-flex flex-row flex-auto">
-          <div className={leftMenuClasses.join(" ")} id="sidebar">
+          <div className={leftMenuClasses.join(' ')} id="sidebar">
             <div className={dashboardMenuClasses} id="accordion">
-              <AdminContainers.DashboardProfileContainer/>
-              <AdminComponents.AdminDashboardMenu {...this.props}/>
+              <AdminContainers.DashboardProfileContainer />
+              <AdminComponents.AdminDashboardMenu {...this.props} />
             </div>
           </div>
           <div className={dashboardContentClasses}>
             <div className="full-width daskboard-container container">
               <switch>
-                <Route exact path="/admin/dashboard/account" 
+                <Route
+                  exact
+                  path="/admin/dashboard/account"
                   component={AdminContainers.AccountProfileContainer}
                 />
-                <Route exact path="/admin/dashboard/courses" 
+                <Route
+                  exact
+                  path="/admin/dashboard/courses"
                   component={AdminContainers.CourseListContainer}
                 />
-                <Route exact path="/admin/dashboard/teachers"
+                <Route
+                  exact
+                  path="/admin/dashboard/teachers"
                   component={AdminContainers.TeacherListContainer}
                 />
-                <Route exact path="/admin/dashboard/students"
+                <Route
+                  exact
+                  path="/admin/dashboard/students"
                   component={AdminContainers.StudentListContainer}
                 />
-                <Route exact path="/admin/dashboard/payment-methods"
+                <Route
+                  exact
+                  path="/admin/dashboard/payment-methods"
                   component={AdminContainers.PaymentMethodsContainer}
                 />
-                <Route exact path="/admin/dashboard/payment-history"
+                <Route
+                  exact
+                  path="/admin/dashboard/payment-history"
                   component={AdminContainers.PaymentHistoryContainer}
                 />
               </switch>
@@ -71,21 +84,21 @@ class AdminDashboardPage extends RoleAuthorization {
           </div>
         </div>
       </div>
-    )
+    );
   }
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   currentUser: state.session.currentUser,
   fetchingUser: state.session.fetchingUser,
   activatedTab: state.DashboardMenu.activatedTab,
   isCollapseDashboard: state.DashboardMenu.isCollapseDashboard
-})
+});
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = dispatch => ({
   signOut: () => dispatch(sessionActions.signOutUser()),
   showDashboardHeader: () => dispatch({ type: WebConstants.SHOW_DARKBOARD_HEADER }),
   closeDashboardHeader: () => dispatch({ type: WebConstants.CLOSE_DARKBOARD_HEADER }),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(AdminDashboardPage)
+export default connect(mapStateToProps, mapDispatchToProps)(AdminDashboardPage);

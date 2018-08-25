@@ -1,9 +1,9 @@
-import * as React from "react";
-import {Component} from "react";
-import {submit} from 'redux-form';
-import {connect} from "react-redux";
-import Modal from "react-bootstrap4-modal";
-import PrimaryButton from "../../components/Core/PrimaryButton/PrimaryButton";
+import * as React from 'react';
+import { Component } from 'react';
+import { submit } from 'redux-form';
+import { connect } from 'react-redux';
+import Modal from 'react-bootstrap4-modal';
+import PrimaryButton from '../../components/Core/PrimaryButton/PrimaryButton';
 
 class FormDialogContainer extends Component {
   constructor(props) {
@@ -26,13 +26,14 @@ class FormDialogContainer extends Component {
   }
 
   render() {
-    const { show, title, cancelCallback,
-            cancelLabel = this.context.t('close'),
-            acceptLabel = this.context.t('ok'),
-            customCancelButtonStyling = "button cancel-button",
-            customAcceptButtonStyling = "button accept-button",
-            isProcessing = false
-      } = this.props;
+    const {
+      show, title, cancelCallback,
+      cancelLabel = this.context.t('close'),
+      acceptLabel = this.context.t('ok'),
+      customCancelButtonStyling = 'button cancel-button',
+      customAcceptButtonStyling = 'button accept-button',
+      isProcessing = false
+    } = this.props;
 
     return (
       <Modal visible={show} onClickBackdrop={cancelCallback}>
@@ -43,25 +44,28 @@ class FormDialogContainer extends Component {
           {this.props.children}
         </div>
         <div className="modal-footer">
-          <PrimaryButton type="button" line={false}
-                         isPrimary={true}
-                         callback={this.onSubmitPopup.bind(this)}
-                         customClasses={customAcceptButtonStyling}
-                         isSmallButton={true}
-                         disabled={isProcessing}
-                         title={acceptLabel}>
-          </PrimaryButton>
-          <PrimaryButton type="button"
-                         callback={this.cancelPopup.bind(this)}
-                         isPrimary={false}
-                         customClasses={customCancelButtonStyling}
-                         isSmallButton={true}
-                         disabled={isProcessing}
-                         title={cancelLabel}>
-          </PrimaryButton>
+          <PrimaryButton
+            type="button"
+            line={false}
+            isPrimary
+            callback={this.onSubmitPopup.bind(this)}
+            customClasses={customAcceptButtonStyling}
+            isSmallButton
+            disabled={isProcessing}
+            title={acceptLabel}
+          />
+          <PrimaryButton
+            type="button"
+            callback={this.cancelPopup.bind(this)}
+            isPrimary={false}
+            customClasses={customCancelButtonStyling}
+            isSmallButton
+            disabled={isProcessing}
+            title={cancelLabel}
+          />
         </div>
       </Modal>
-    )
+    );
   }
 }
 
@@ -79,6 +83,6 @@ FormDialogContainer.propTypes = {
   customCancelButtonStyling: React.PropTypes.string,
   customAcceptButtonStyling: React.PropTypes.string,
   isProcessing: React.PropTypes.bool
-}
+};
 
 export default connect()(FormDialogContainer);

@@ -1,10 +1,10 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import cssModules from 'react-css-modules';
 // import styles from '../Course.module.scss';
-import {Button, Modal} from 'react-bootstrap';
-import {validate} from "../../../validations/CommonValidator";
-import * as Actions from "../../../actions/PublicCourseActionCreator";
-import PrimaryButton from "../Core/PrimaryButton/PrimaryButton";
+import { Button, Modal } from 'react-bootstrap';
+import { validate } from '../../../validations/CommonValidator';
+import * as Actions from '../../../actions/PublicCourseActionCreator';
+import PrimaryButton from '../Core/PrimaryButton/PrimaryButton';
 
 
 /**
@@ -17,20 +17,20 @@ class RequireLoginModal extends Component {
   }
 
   hideRequireLoginModal() {
-      this.props.dispatch(Actions.closePublicRequireLoginModal())
+    this.props.dispatch(Actions.closePublicRequireLoginModal());
   }
 
   showRequireLoginModal() {
-    this.props.dispatch(Actions.showPublicRequireLoginModal())
+    this.props.dispatch(Actions.showPublicRequireLoginModal());
   }
 
   redirectToLogin() {
-    this.hideRequireLoginModal()
-    this.props.dispatch(Actions.redirectAfterLogin('course/'+this.props.course.id+'#comment-section'))
+    this.hideRequireLoginModal();
+    this.props.dispatch(Actions.redirectAfterLogin(`course/${this.props.course.id}#comment-section`));
   }
 
   render() {
-    const {handleSubmit, valid} = this.props;
+    const { handleSubmit, valid } = this.props;
     return (
       <Modal show={this.props.show_require_login_modal} onHide={this.hideRequireLoginModal.bind(this)}>
         <Modal.Header>
@@ -40,26 +40,30 @@ class RequireLoginModal extends Component {
           {this.context.t('course_enroll_require_login_message')}
         </Modal.Body>
         <Modal.Footer>
-          <PrimaryButton type="button" customClasses="button accept-button"
-                         callback={this.redirectToLogin.bind(this)}
-                         title={this.context.t('ok')}>
-          </PrimaryButton>
-          <PrimaryButton type="button" customClasses="button accept-button"
-                         callback={this.hideRequireLoginModal.bind(this)}
-                         title={this.context.t('close')}>
-          </PrimaryButton>
+          <PrimaryButton
+            type="button"
+            customClasses="button accept-button"
+            callback={this.redirectToLogin.bind(this)}
+            title={this.context.t('ok')}
+          />
+          <PrimaryButton
+            type="button"
+            customClasses="button accept-button"
+            callback={this.hideRequireLoginModal.bind(this)}
+            title={this.context.t('close')}
+          />
         </Modal.Footer>
       </Modal>
-    )
+    );
   }
 }
 
 
 RequireLoginModal.contextTypes = {
   t: React.PropTypes.func.isRequired
-}
+};
 
 RequireLoginModal.propTypes = {
-}
+};
 
 export default cssModules(RequireLoginModal, styles);

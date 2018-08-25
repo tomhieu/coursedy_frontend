@@ -1,10 +1,10 @@
-import React, { Component} from 'react';
+import React, { Component } from 'react';
 import cssModules from 'react-css-modules';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import * as HomePageActions from 'actions/HomePageActionCreator';
+import { CourseGroup } from '../../index';
 import styles from './CourseGroupList.module.scss';
-import { CourseGroup } from '../../index'
-import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
-import * as HomePageActions from 'actions/HomePageActionCreator'
 
 
 /**
@@ -13,7 +13,7 @@ import * as HomePageActions from 'actions/HomePageActionCreator'
   */
 class CourseGroupList extends Component {
   componentDidMount() {
-    this.props.fetchPopularCourses()
+    this.props.fetchPopularCourses();
   }
 
   render() {
@@ -29,8 +29,8 @@ class CourseGroupList extends Component {
             {
               this.props.courses.map((course, index) => {
                 return (
-                  <CourseGroup course={course} key={index}/>
-                )
+                  <CourseGroup course={course} key={index} />
+                );
               })
             }
             <div className="row">
@@ -43,13 +43,13 @@ class CourseGroupList extends Component {
           </div>
         </div>
       </section>
-    )
+    );
   }
 }
 
 CourseGroupList.contextTypes = {
   t: React.PropTypes.func.isRequired
-}
+};
 
 CourseGroupList.propTypes = {
 };
@@ -57,11 +57,11 @@ CourseGroupList.propTypes = {
 const mapStateToProps = (state) => {
   return {
     courses: state.HomePage.popularCourses
-  }
+  };
 };
 
 const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators(HomePageActions, dispatch)
+  return bindActionCreators(HomePageActions, dispatch);
 };
 
 

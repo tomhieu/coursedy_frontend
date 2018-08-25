@@ -1,21 +1,21 @@
-import React, {Component} from 'react'
-import HelpCenterFQA from '../../components/Layout/SubHelpCenter/HelpCenterFQA'
-import './HelpCenter.scss'
+import React, { Component } from 'react';
+import HelpCenterFQA from '../../components/Layout/SubHelpCenter/HelpCenterFQA';
+import './HelpCenter.scss';
 
 class HelpCenterContainer extends Component {
   render() {
     return (
       <div className="help-center full-width-in-container">
         <div className="container">
-          <HelpCenterFQA/>
+          <HelpCenterFQA />
         </div>
       </div>
-    )
+    );
   }
 }
 
 HelpCenterContainer.contextTypes = {
   t: React.PropTypes.func.isRequired
-}
+};
 
-export default HelpCenterContainer
+export default HelpCenterContainer;

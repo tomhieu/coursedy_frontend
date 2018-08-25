@@ -1,10 +1,10 @@
-import {Component} from "react";
-import * as React from "react";
+import { Component } from 'react';
+import * as React from 'react';
 import cssModules from 'react-css-modules';
+import { Link } from 'react-router-dom';
+import * as ReactDOM from 'react-dom';
 import styles from './CoursedyDropDown.module.scss';
-import {Link} from "react-router-dom";
-import * as ReactDOM from "react-dom";
-import {globalHistory} from '../../../utils/globalHistory'
+import { globalHistory } from '../../../utils/globalHistory';
 
 class CoursedyMultiStep extends Component {
   constructor(props) {
@@ -56,9 +56,9 @@ class CoursedyMultiStep extends Component {
 
     return (
       <div className={styles.dropDownContainer}>
-        <div className={styles.dropDownArrow_w}></div>
-        <div className={styles.dropDownArrow_v}></div>
-        <div ref="dropDownContainer" className={dropDownClasses.join(" ")} style={customStyles} >
+        <div className={styles.dropDownArrow_w} />
+        <div className={styles.dropDownArrow_v} />
+        <div ref="dropDownContainer" className={dropDownClasses.join(' ')} style={customStyles}>
           <ul>
             {
               items.length > 0 ?
@@ -75,14 +75,14 @@ class CoursedyMultiStep extends Component {
           </ul>
         </div>
       </div>
-    )
+    );
   }
 }
 
 
 CoursedyMultiStep.contextTypes = {
   t: React.PropTypes.func.isRequired
-}
+};
 
 CoursedyMultiStep.propTypes = {
   items: React.PropTypes.array.isRequired,

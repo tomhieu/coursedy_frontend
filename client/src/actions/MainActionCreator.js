@@ -1,4 +1,4 @@
-import * as WebConstant from "../constants/WebConstants";
+import * as WebConstant from '../constants/WebConstants';
 
 export const openConfirmationPopup = (title, message, callback) => {
   return {

@@ -1,14 +1,14 @@
-import { StudentAccountTypes } from '../../constants/index'
+import { StudentAccountTypes } from '../../constants/index';
 
 const StudentAccountReducer = (state = {
   student: {}
 }, action) => {
   switch (action.type) {
     case StudentAccountTypes.SET_ACCOUNT_STUDENT:
-      return {...state, tutor: action.payload}
+      return { ...state, tutor: action.payload };
     default:
-      return state
+      return state;
   }
-}
+};
 
-export default StudentAccountReducer
+export default StudentAccountReducer;

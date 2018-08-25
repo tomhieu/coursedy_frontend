@@ -1,8 +1,7 @@
-import React, { Component} from 'react';
+import React, { Component } from 'react';
 import cssModules from 'react-css-modules';
+import { LinkContainer } from 'react-router-bootstrap';
 import styles from './CourseGroup.module.scss';
-import { LinkContainer } from 'react-router-bootstrap'
-
 
 
 /**
@@ -13,59 +12,76 @@ class CourseGroup2 extends Component {
   constructor(props) {
     super(props);
   }
+
   render() {
     return (
       <div className="col-xs-12">
         <div className="col-xs-12">
           <div className="course-thumb">
-            <LinkContainer to={ '/courses/' + this.props.item.id } className={styles.fullWidth + ' img-responsive'}>
+            <LinkContainer to={`/courses/${this.props.item.id}`} className={`${styles.fullWidth} img-responsive`}>
               <img src={this.props.item.thumb} alt="" />
             </LinkContainer>
           </div>
-        </div>{/* End course thumb */}
+        </div>
+        {/* End course thumb */}
 
-        <div className="clearfix"></div>
+        <div className="clearfix" />
         <div className="col-xs-12">
-          <ul className={styles.courseRating + ' list-unstyled'}>
-            <li><div className="" data-score="4"></div></li>
-            <li><div className={styles.text}>{this.props.item.no_comments} nhận xét</div></li>
+          <ul className={`${styles.courseRating} list-unstyled`}>
+            <li><div className="" data-score="4" /></li>
+            <li>
+              <div className={styles.text}>
+                {this.props.item.no_comments}
+                {' '}
+nhận xét
+              </div>
+            </li>
           </ul>
-        </div>{/* End course rating */}
+        </div>
+        {/* End course rating */}
 
-        <div className="clearfix"></div>
+        <div className="clearfix" />
         <div className="col-xs-12">
           <div className="col-xs-12 col-sm-12 col-md-8 course-info no-pad">
             <h3 className={styles.courseTitle}>
-              <LinkContainer to={ '/courses/' + this.props.item.id }><span>{this.props.item.name}</span></LinkContainer>
+              <LinkContainer to={`/courses/${this.props.item.id}`}><span>{this.props.item.name}</span></LinkContainer>
             </h3>
-            <div className={styles.text + " col-xs-12 col-sm-12 col-md-5 no-pad"}>Số buổi: {this.props.item.duration}</div>
-            <div className={styles.text + " col-xs-12 col-sm-12 col-md-7 no-pad"}>Thời gian: {this.props.item.schedule}</div>
+            <div className={`${styles.text} col-xs-12 col-sm-12 col-md-5 no-pad`}>
+Số buổi:
+              {this.props.item.duration}
+            </div>
+            <div className={`${styles.text} col-xs-12 col-sm-12 col-md-7 no-pad`}>
+Thời gian:
+              {this.props.item.schedule}
+            </div>
             <div className="col-xs-12 col-sm-12 col-md-12 no-pad">
-              <br/>
+              <br />
               <button className="btn btn-primary">Xem chi tiết</button>
             </div>
-          </div>{/* End course info */}
+          </div>
+          {/* End course info */}
           <div className="col-xs-12 col-sm-12 col-md-4 course-tutor-info">
             <div className={styles.courseTutorAvatar}>
-              <LinkContainer to={ '/tutor/' + this.props.item.tutor.id }>
-                <img src={this.props.item.tutor.avatar} alt="" className={styles.courseTutorAvatar + ' img-responsive img-circle'} />
+              <LinkContainer to={`/tutor/${this.props.item.tutor.id}`}>
+                <img src={this.props.item.tutor.avatar} alt="" className={`${styles.courseTutorAvatar} img-responsive img-circle`} />
               </LinkContainer>
             </div>
-            <br/>
+            <br />
             <p className={styles.courseTutorName}>
               <a href="#"> Berit Jaleiah</a>
             </p>
-          </div>{/* End tutor avatar */}
+          </div>
+          {/* End tutor avatar */}
         </div>
       </div>
 
-    )
+    );
   }
 }
 
 CourseGroup2.contextTypes = {
   t: React.PropTypes.func.isRequired
-}
+};
 
 CourseGroup2.propTypes = {
 };

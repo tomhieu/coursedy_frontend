@@ -1,7 +1,7 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
-import { Link } from 'react-router-dom'
-import './CourseGroup.scss'
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
+import './CourseGroup.scss';
 
 
 class CourseGroup extends Component {
@@ -14,22 +14,25 @@ class CourseGroup extends Component {
   }
 
   render() {
-    let { course } = this.props
+    const { course } = this.props;
 
     return (
-      <div className="slick-slide_item course-group"
-           key={course.id}>
-        <Link to={'#'} title={course.title} className="course-group__content">
-          <img className="course-group__content__img" src={course.cover_image}
-               alt={course.title}/>
+      <div
+        className="slick-slide_item course-group"
+        key={course.id}
+      >
+        <Link to="#" title={course.title} className="course-group__content">
+          <img
+            className="course-group__content__img"
+            src={course.cover_image}
+            alt={course.title}
+          />
           <span className="course-group__content__title" title={course.title}>{course.title}</span>
-          <div className="d-flex flex-colum">
-
-          </div>
+          <div className="d-flex flex-colum" />
         </Link>
       </div>
-    )
+    );
   }
 }
 
-export default CourseGroup
+export default CourseGroup;

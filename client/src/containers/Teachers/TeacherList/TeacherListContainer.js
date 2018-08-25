@@ -9,8 +9,8 @@ class TeacherListContainer extends Component {
   render() {
     return (
       <div className="d-flex flex-auto flex-vertical full-width-in-container course-filter-container">
-        <TeacherFilterContainer/>
-        <PublicTeacherListContainer/>
+        <TeacherFilterContainer />
+        <PublicTeacherListContainer />
       </div>
     );
   }

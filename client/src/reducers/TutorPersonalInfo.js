@@ -1,6 +1,6 @@
 import {
   TutorAccountTypes
-} from "../constants/index";
+} from '../constants/index';
 
 const loadPersonData = (state = {}, action) => {
   switch (action.type) {
@@ -14,10 +14,10 @@ const loadPersonData = (state = {}, action) => {
           address: action.data.address,
           birthDate: action.data.birthDate
         }
-      }
+      };
     default:
       return state;
   }
-}
+};
 
 export default loadPersonData;
