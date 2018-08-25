@@ -26,12 +26,11 @@ export const fetchUser = () => {
   };
 };
 
-export const savePersonData = (name, email, date_of_birth, address, gender, emailChanged) => {
-  const body = {
-    name, email, date_of_birth, address, gender
-  };
-  return (dispatch) => {
-    const response = dispatch({
+
+export const savePersonData = (name, email, date_of_birth, address, gender, emailChanged, country, currency) => {
+  let body = {name, email, date_of_birth, address, gender, country, currency}
+  return dispatch => {
+    let response = dispatch({
       type: UPDATE_CURRENT_USER,
       payload: Network().update('/auth', body)
     });

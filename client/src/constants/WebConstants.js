@@ -24,6 +24,8 @@ export const PAYMENT_HISTORY_PAGINATION_MAX_NUMBER_DISPLAY_PAGE = 5; // Default:
 
 // Public course list
 export const PUBLIC_COURSE_LIST_MAX_ITEM_PER_PAGE = 24;
+export const RELATED_COURSE_PER_PAGE = 4;
+export const START_PAGE_INDEX = 1;
 
 //
 export const PUBLIC_COURSE_MAX_NUMBER_COMMENTS_PER_LOAD = 10;

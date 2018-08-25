@@ -24,20 +24,18 @@ class CourseFeeViewMode extends Component {
             {...this.props}
           />
         </div>
-        <div className="col-sm-12 col-md-6 col-lg-6">
-          <CourseFormItem
-            editMode={editMode}
-            fieldId="currency"
-            fieldLabel={this.context.t('tuition_currency')}
-            placeholder={this.context.t('tuition_currency')}
-            isMandatory
-            fieldName="currency"
-            typeField="custom_select"
-            content={editMode && currency ? currency : ''}
-            options={concurrency}
-            styleCustomField="inline-form-control"
-            {...this.props}
-          />
+        <div className="col-sm-12 col-md-6 col-lg-6" style={{display: 'none'}}>
+          <CourseFormItem editMode={editMode} fieldId="currency"
+                          fieldLabel={this.context.t("tuition_currency")}
+                          placeholder={this.context.t("tuition_currency")}
+                          isMandatory={true}
+                          fieldName="currency"
+                          typeField="custom_select"
+                          content={editMode && currency ? currency : ""}
+                          options={concurrency}
+                          styleCustomField="inline-form-control"
+                          {...this.props}>
+          </CourseFormItem>
         </div>
       </div>
     );

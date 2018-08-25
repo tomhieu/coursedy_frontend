@@ -61,6 +61,24 @@ class UserInfo extends Component {
               <span>{user.address}</span>
             </div>
           </div>
+
+          <div className='row'>
+            <div className='col-sm-4'>
+              <label className='control-label'>{this.context.t("account.person.info.country")}</label>
+            </div>
+            <div className='col-sm-8'>
+              <span>{user.country}</span>
+            </div>
+          </div>
+
+          <div className='row'>
+            <div className='col-sm-4'>
+              <label className='control-label'>{this.context.t("account.person.info.currency")}</label>
+            </div>
+            <div className='col-sm-8'>
+              <span>{user.currency}</span>
+            </div>
+          </div>
         </div>
       </div>
     );

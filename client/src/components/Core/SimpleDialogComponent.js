@@ -9,11 +9,12 @@ class SimpleDialogComponent extends Component {
   }
 
   render() {
-    const {
-      show, title, acceptCallback, acceptLabel = 'OK', cancelCallback, cancelLabel = 'Cancel'
-    } = this.props;
+    const {show, title, acceptCallback, cancelCallback,
+      acceptLabel = this.context.t('ok'),
+      cancelLabel = this.context.t('cancel'),
+      customClass} = this.props;
     return (
-      <Modal visible={show} onClickBackdrop={cancelCallback}>
+      <Modal visible={show} onClickBackdrop={cancelCallback} className={customClass}>
         <div className="modal-header">
           <h5 className="modal-title">{title}</h5>
         </div>
@@ -22,34 +23,26 @@ class SimpleDialogComponent extends Component {
         </div>
         <div className="modal-footer">
           {
-              acceptCallback && acceptLabel
-                ? (
-                  <PrimaryButton
-                    type="button"
-                    line={false}
-                    isPrimary
-                    callback={acceptCallback}
-                    isSmallButton
-                    title={acceptLabel}
-                  />
-                ) : null
-            }
+            acceptCallback && acceptLabel ?
+              <PrimaryButton type="button" line={false}
+                             isPrimary={true}
+                             callback={acceptCallback}
+                             isSmallButton={true}
+                             title={acceptLabel}>
+              </PrimaryButton> : null
+          }
           {
-              cancelCallback && cancelLabel
-                ? (
-                  <PrimaryButton
-                    type="button"
-                    line
-                    callback={cancelCallback}
-                    isPrimary={false}
-                    isSmallButton
-                    title={cancelLabel}
-                  />
-                ) : null
-            }
+            cancelCallback && cancelLabel ?
+              <PrimaryButton type="button" line={true}
+                             callback={cancelCallback}
+                             isPrimary={false}
+                             isSmallButton={true}
+                             title={cancelLabel}>
+              </PrimaryButton> : null
+          }
         </div>
       </Modal>
-    );
+    )
   }
 }
 
@@ -64,6 +57,7 @@ SimpleDialogComponent.propTypes = {
   acceptLabel: React.PropTypes.string,
   cancelLabel: React.PropTypes.string,
   acceptCallback: React.PropTypes.func,
-};
+  customClass: React.PropTypes.string,
+}
 
 export default SimpleDialogComponent;

@@ -2802,7 +2802,7 @@ div[data-reactroot] {
   ul {
     list-style-type: none;
     padding-left: 0;
-    margin-top: 0;
+    margin-top: 5px;
     margin-bottom: 0;
   }
 }
@@ -2948,7 +2948,7 @@ button {
   min-width: 25px;
   height: 25px;
   min-height: 25px;
-  margin: 0 15px;
+  margin: 0 15px 0 0;
 }
 
 .seperate-filter-line {
@@ -3338,6 +3338,14 @@ a.clear-filter {
 .teacher-list {
   width: 100%;
   background-color: $white-color;
+}
+
+@media (max-width: 1440px) {
+  .teacher-list {
+    .container {
+      width: 1170px;
+    }
+  }
 }
 
 .login-register {

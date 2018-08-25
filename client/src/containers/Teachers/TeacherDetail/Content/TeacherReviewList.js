@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
-import Pagination from 'react-js-pagination';
-import ReviewTeacherForm from './ReviewTeacherForm';
-import ReviewContent from '../../../../components/Review/ReviewContentComponent';
-import PaginationArrowIcon from '../../../../components/Core/Icons/PaginationArrowIcon';
+import React, { Component } from 'react'
+import Pagination from 'react-js-pagination'
+import ReviewTeacherForm from './ReviewTeacherForm'
+import ReviewContent from '../../../../components/Review/ReviewContentComponent'
+import PaginationArrowIcon from "../../../../components/Core/Icons/PaginationArrowIcon";
 
 
 class TeacherReviewList extends Component {

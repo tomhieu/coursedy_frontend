@@ -5,29 +5,26 @@ import FormField from '../../Core/FormField';
 
 class CourseFormItem extends Component {
   render() {
-    const {
-      editMode = false, showLabel = true, placeholder,
-      fieldLabel, fieldId, isMandatory, fieldName, activatedField = []
-    } = this.props;
+    const {editMode = false, showLabel = true, placeholder,
+           fieldLabel, fieldId, isMandatory, fieldName, activatedField = [], isRichTextField = false} = this.props;
     if (editMode) {
       return (
-        <InlineEditFormField
-          activated={activatedField.indexOf(fieldId) >= 0}
-          placeholder={placeholder || fieldLabel}
-          showLabel={showLabel}
-          isMandatoryField={isMandatory}
-          formControlName={fieldName}
-          {...this.props}
-        />
-      );
+        <InlineEditFormField activated={activatedField.indexOf(fieldId) >= 0}
+                             placeholder={placeholder || fieldLabel}
+                             showLabel={showLabel}
+                             isMandatoryField={isMandatory}
+                             formControlName={fieldName}
+                             isRichTextField={isRichTextField}
+                             {...this.props}>
+        </InlineEditFormField>
+      )
     }
+
     return (
-      <FormField
-        isMandatoryField={isMandatory}
-        formControlName={fieldName}
-        {...this.props}
-      />
-    );
+      <FormField isMandatoryField={isMandatory}
+                 formControlName={fieldName} {...this.props}>
+      </FormField>
+    )
   }
 }
 
@@ -45,7 +42,8 @@ CourseFormItem.propTypes = {
   options: React.PropTypes.array,
   displayStyle: React.PropTypes.string,
   styleCustomField: React.PropTypes.string,
-  activatedField: React.PropTypes.array
+  activatedField: React.PropTypes.array,
+  isRichTextField: React.PropTypes.bool
 };
 
 export default CourseFormItem;

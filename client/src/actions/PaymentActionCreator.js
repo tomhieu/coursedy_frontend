@@ -1,10 +1,5 @@
-import Network from 'utils/network';
-import {
-  FETCH_USER_BALANCE,
-  FETCH_PAYMENT_HISTORY
-} from './AsyncActionCreator';
-
 export const FETCH_SUPPORTED_BANK_LIST_COMPLETE = 'FETCH_SUPPORTED_BANK_LIST_COMPLETE';
+
 const domesticBankList = [
   {
     id: 1,
@@ -22,16 +17,6 @@ export const loadDomesticBankList = () => {
     dispatch({
       type: FETCH_SUPPORTED_BANK_LIST_COMPLETE,
       data: domesticBankList
-    });
-  };
-};
-
-
-export const fetchUserBalance = () => {
-  return (dispatch) => {
-    dispatch({
-      type: FETCH_USER_BALANCE,
-      payload: Network().get('users/balance')
     });
   };
 };

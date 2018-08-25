@@ -271,7 +271,7 @@ body.application {
         position: absolute;
         top: 45px;
         right: 15px;
-        border: 1px solid $border-color;
+        border: 1px solid $white-color;
         display: flex;
         ul.navbar-nav {
           align-items: flex-end;
@@ -286,7 +286,7 @@ body.application {
           top: -14px;
           right: 12px;
           font-size: 20px;
-          color: $md-color-pink;
+          color: $white-color;
           content: '\f0d8';
           font-family: $font-awesome;
         }
@@ -296,6 +296,8 @@ body.application {
 
   .fixed-top-search-bar {
     position: static;
+    background-color: $white-color;
+    border-bottom: solid 1px $border-color;
   }
 
   .moving-sort-bar {
@@ -322,8 +324,6 @@ body.application {
   @media only screen and (min-width: 993px) {
     .fixed-top-search-bar {
       width: 100%;
-      background-color: $white-color;
-      border-bottom: solid 1px $border-color;
     }
 
     .navbar-sticky.fixed-top+main.container {
@@ -510,15 +510,6 @@ body.application {
     }
   }
 
-  @media (max-width: 830px) {
-    .dashboard-profile {
-      padding: 15px;
-      .user-name, .sub-title {
-        display: none;
-      }
-    }
-  }
-
   .dashboard-link {
     margin: 2px 0;
   }
@@ -583,6 +574,7 @@ body.application {
       background-color: transparent;
       padding: 10px 30px 65px 30px;
       border: none;
+      min-height: calc(100vh - 120px);
       .title {
         font-size: 22px;
         color: $color-darker-text;
@@ -860,12 +852,6 @@ body.application {
         display: inline-block;
         margin-left: 20px;
         width: 100%;
-      }
-
-      @media (max-width: 830px) {
-        a {
-          display: none;
-        }
       }
     }
 
@@ -1261,7 +1247,7 @@ body.application {
     ul {
       list-style-type: none;
       padding-left: 0;
-      margin-top: 0;
+      margin-top: 5px;
       margin-bottom: 0;
     }
   }
@@ -1306,7 +1292,8 @@ body.application {
     &__end {
       flex: 0 0 100%;
       max-width: 100%;
-      padding-top: 15px;
+      padding-top: 10px;
+      padding-bottom: 10px;
       @media (max-width: 767px) and (min-width: 320px) {
         .flexbox {
           flex-flow: column wrap;
@@ -1397,11 +1384,16 @@ body.application {
       }
     }
 
+    &__logo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
     &__page-link {
       flex: 0 0 50%;
       max-width: 50%;
       text-align: right;
-      margin-top: 5px;
       @media (max-width: 767px) and (min-width: 320px) {
         max-width: none;
         text-align: center;
@@ -1486,7 +1478,6 @@ body.application {
     }
 
     .coursedy-copyright {
-      margin-top: 5px;
       margin-left: 10px;
     }
   }
@@ -1559,12 +1550,6 @@ body.application {
     background-color: #eaeef3;
     &.expanded {
       margin-left: 65px;
-    }
-  }
-
-  @media (max-width: 830px) {
-    .dashboard-content {
-      margin-left: 85px;
     }
   }
 
@@ -1689,7 +1674,7 @@ body.application {
 
 @media (min-width: 1440px) {
   .container {
-    max-width: 1300px;
+    max-width: 1412px;
   }
 }
 
@@ -1838,4 +1823,40 @@ body.application {
       }
     }
   }
+}
+
+.enroll-popup {
+  .modal-dialog {
+    width: 650px;
+    max-width: 650px;
+  }
+}
+
+.highlight-term {
+  font-weight: 700;
+  color: $md-color-pink;
+}
+
+.currency-field-wrapper {
+  border: 1px solid rgba(48, 51, 57, 0.15);
+  &.error {
+    border: 1px solid $error-color;
+  }
+  .form-control {
+    border: none;
+  }
+  .currency-text {
+    padding-top: 6px;
+    padding-left: 6px;
+    margin-bottom: 0;
+    padding-right: 6px;
+    background-color: rgba(48, 51, 57, 0.15);
+  }
+}
+
+.hint-text {
+  margin-bottom: 5px;
+  font-size: 12px;
+  color: $grey-light-text-color;
+  font-style: italic;
 }

@@ -31,11 +31,9 @@ class InlineEditFormField extends FormField {
   }
 
   render() {
-    const {
-      submitting, pristine, showLabel = true, displayStyle = 'default-field',
-      activatedFieldIds = [this.props.fieldId],
-      onlyShowWhenEdit = false, fieldLabel
-    } = this.props;
+    const { submitting, pristine, showLabel = true, displayStyle = "default-field",
+          activatedFieldIds = [this.props.fieldId],
+          isRichTextField = false, fieldLabel } = this.props;
     {
       if (this.state.editMode) {
         return (
@@ -59,7 +57,18 @@ class InlineEditFormField extends FormField {
               />
             </FormGroup>
           </div>
-        );
+        )
+      } else {
+        return (
+          <ReadOnlyField fieldLabel={fieldLabel}
+                         showLabel={showLabel}
+                         activatedFields={activatedFieldIds}
+                         displayStyle={displayStyle}
+                         content={this.props.content}
+                         isRichTextField={isRichTextField}
+                         showEditFormField={this.showEditForm.bind(this)}/>
+
+        )
       }
       return (
         <ReadOnlyField
@@ -84,7 +93,8 @@ InlineEditFormField.propTypes = {
   content: React.PropTypes.string.isRequired,
   fieldId: React.PropTypes.string.isRequired,
   fieldLabel: React.PropTypes.string.isRequired,
-  activatedFieldIds: React.PropTypes.array
-};
+  activatedFieldIds: React.PropTypes.array,
+  isRichTextField: React.PropTypes.bool
+}
 
 export default InlineEditFormField;

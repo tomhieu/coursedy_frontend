@@ -14,10 +14,6 @@ class CourseDetailComments extends Component {
     super(props);
   }
 
-  scrollToCommentForm() {
-
-  }
-
   render() {
     const {
       course_comments, loadMoreCommentsHdl, activeMenu, course
@@ -94,14 +90,11 @@ class CourseDetailComments extends Component {
                           </li>
                         ))
                       }
-                      </ul>
-                    )
-                    : (
-                      <div className="d-flex flex-column flex-auto">
-                        <span>{this.context.t('no_comment_about_course')}</span>
-                        <a className="active-link" href="#" onClick={this.scrollToCommentForm.bind(this)}>{this.context.t('course_comments_no_comment')}</a>
-                      </div>
-                    )
+                    </ul>) :
+                    <div className="d-flex flex-column flex-auto">
+                      <span>{this.context.t('no_comment_about_course')}</span>
+                      <span>{this.context.t('course_comments_no_comment')}</span>
+                    </div>
                 }
               </div>
             </div>

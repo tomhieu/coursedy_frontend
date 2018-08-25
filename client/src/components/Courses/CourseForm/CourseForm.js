@@ -171,19 +171,17 @@ class CourseForm extends Component {
             ) : (<div />)
           }
 
-          <CourseFormItem
-            editMode={editMode}
-            fieldId="description"
-            fieldLabel={this.context.t('course_description')}
-            isMandatory
-            fieldName="description"
-            typeField="rich_text_editor"
-            customClassName="quill-form-control"
-            content={editMode ? courseData.description : ''}
-            disabled={false}
-            {...this.props}
-          />
-
+          <CourseFormItem editMode={editMode} fieldId="description"
+                          fieldLabel={this.context.t("course_description")}
+                          isMandatory={true}
+                          fieldName="description"
+                          typeField="rich_text_editor"
+                          customClassName="quill-form-control"
+                          content={editMode ? courseData.description : ""}
+                          disabled={false}
+                          isRichTextField={true}
+                          {...this.props}>
+          </CourseFormItem>
           {
             !editMode ? (
               <div className="row">

@@ -17,11 +17,11 @@ import TutorProfileDetailsContainer from '../../containers/Tutor/Profile/TutorPr
 
 class StudentDashboard extends RoleAuthorization {
   componentDidMount() {
-    this.props.hideFooter();
+    this.props.showDashboardHeader();
   }
 
   componentWillUnmount() {
-    this.props.showFooter();
+    this.props.closeDashboardHeader();
   }
 
   render() {
@@ -61,8 +61,8 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   activateTab: tabId => dispatch(dashboardActions.activateTab(tabId)),
   signOut: () => dispatch(sessionActions.signOutUser()),
-  showFooter: () => dispatch({ type: WebConstants.SHOW_FOOTER }),
-  hideFooter: () => dispatch({ type: WebConstants.HIDE_FOOTER }),
+  showDashboardHeader: () => dispatch({ type: WebConstants.SHOW_DARKBOARD_HEADER }),
+  closeDashboardHeader: () => dispatch({ type: WebConstants.CLOSE_DARKBOARD_HEADER }),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(styleComponent);
