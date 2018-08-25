@@ -34,7 +34,8 @@ class BaseFilter extends Component {
       onSelectFilter,
       closeSuggestion,
       courseFilterMode,
-      displayMode
+      displayMode,
+      placeholder
     } = this.props;
 
     const {
@@ -74,6 +75,7 @@ class BaseFilter extends Component {
                   suggestions={suggestions}
                   closeSuggestion={closeSuggestion}
                   term={term}
+                  placeholder={placeholder}
                 />
               </div>
               <div className="seperate-filter-line" />
@@ -186,7 +188,8 @@ BaseFilter.propTypes = {
   search: React.PropTypes.func,
   closeSuggestion: React.PropTypes.func,
   courseFilterMode: React.PropTypes.bool,
-  displayMode: React.PropTypes.string
+  displayMode: React.PropTypes.string,
+  placeholder: React.PropTypes.string.isRequired
 };
 
 export default cssModules(BaseFilter, styles);

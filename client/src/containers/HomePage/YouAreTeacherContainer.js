@@ -56,9 +56,9 @@ export default class YouAreTeacher extends Component {
         <div className="container course__teacher-guide__content-wrap">
           <div className="section-content-wrapper">
             <div className="course__teacher-guide__heading">
-              <h2 className="course__teacher-guide__heading__title heading">{this.context.t('section_title')}</h2>
+              <h2 className="course__teacher-guide__heading__title heading">{this.context.t('your_are_teacher_section_title')}</h2>
               <div className="d-flex flex-column">
-                <span className="course__teacher-guide__heading__description">{this.context.t('section_sub_title')}</span>
+                <span className="course__teacher-guide__heading__description">{this.context.t('your_are_teacher_section_sub_title')}</span>
               </div>
             </div>
 

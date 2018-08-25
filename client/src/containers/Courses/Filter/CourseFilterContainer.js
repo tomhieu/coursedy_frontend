@@ -127,6 +127,7 @@ class CourseFilterContainer extends AbstractFilter {
         onSelectSuggestion={this.autoCompleteSearchCourse.bind(this)}
         closeSuggestion={this.props.closeSuggestion}
         courseFilterMode
+        placeholder={this.context.t('search_course')}
       />
     );
   }
