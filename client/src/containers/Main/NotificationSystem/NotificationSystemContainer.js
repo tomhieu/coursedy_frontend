@@ -9,10 +9,10 @@ import {
   CLOSE_POPUP_JOIN_UPCOMMING_CLASS,
   LEAVED_JOINING_CLASS,
   STARTED_JOINING_ACTIVE_CLASS
-} from "../../../actions/AsyncActionCreator";
-import * as courseActions from "../../../actions/ListTutorCourseActionCreator";
-import {UserRole} from "../../../constants/UserRole";
-import {joinToClassRoom} from "../../../actions/ListTutorCourseActionCreator";
+} from '../../../actions/AsyncActionCreator';
+import * as courseActions from '../../../actions/ListTutorCourseActionCreator';
+import { UserRole } from '../../../constants/UserRole';
+import { joinToClassRoom } from '../../../actions/ListTutorCourseActionCreator';
 
 class NotificationSystemContainer extends Component {
   componentWillReceiveProps(nextProps) {

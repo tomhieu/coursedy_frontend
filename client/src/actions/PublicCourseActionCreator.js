@@ -61,8 +61,8 @@ export const submitEnrollCourse = (courseId) => {
   return {
     type: types.PUBLIC_COURSE_DETAIL_SUBMIT_ENROLL,
     payload: Network().post(`courses/${courseId}/enroll`, {})
-  }
-}
+  };
+};
 
 export const clearError = () => {
   return (dispatch) => {

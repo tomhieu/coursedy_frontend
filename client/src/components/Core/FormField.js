@@ -175,11 +175,18 @@ class FormField extends Component {
         );
         break;
       }
-      case "currency_input": {
-        fieldComponent = <Field name={formControlName} placeholder={placeholder}
-                                type={type} disabled={this.props.disabled}
-                                component={renderCurrencyField} onChange={this.props.onChange}
-                                customClassName={fieldClasses}/>
+      case 'currency_input': {
+        fieldComponent = (
+          <Field
+            name={formControlName}
+            placeholder={placeholder}
+            type={type}
+            disabled={this.props.disabled}
+            component={renderCurrencyField}
+            onChange={this.props.onChange}
+            customClassName={fieldClasses}
+          />
+        );
         break;
       }
       default: {

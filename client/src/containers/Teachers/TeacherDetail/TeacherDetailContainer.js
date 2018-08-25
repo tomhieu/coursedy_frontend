@@ -25,7 +25,7 @@ import TeacherReviewList from './Content/TeacherReviewList';
 import TeacherBackground from './Content/TeacherBackground';
 import styles from './TeacherDetail.module.scss';
 import PageContainer from '../../../utils/PageContainer';
-import PaginationArrowIcon from "../../../components/Core/Icons/PaginationArrowIcon";
+import PaginationArrowIcon from '../../../components/Core/Icons/PaginationArrowIcon';
 
 
 class TeacherDetail extends Component {

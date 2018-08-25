@@ -7,7 +7,7 @@ import * as ReferActions from '../../../actions/ReferenceActions/ReferenceDataAc
 import { openConfirmationPopup } from '../../../actions/MainActionCreator';
 import { TT } from '../../../utils/locale';
 import PageContainer from '../../../utils/PageContainer';
-import * as sessionActions from "../../../actions/SessionActionCreator";
+import * as sessionActions from '../../../actions/SessionActionCreator';
 
 class PublicCourseDetailContainer extends Component {
   constructor(props) {
@@ -19,16 +19,16 @@ class PublicCourseDetailContainer extends Component {
     this.props.stretchFull();
     this.props.noShadowHeader();
     this.props.getCourseCategories();
-    const {courseId, course_comments_page} = this.props;
+    const { courseId, course_comments_page } = this.props;
     if (courseId) {
-      //Fetch course
+      // Fetch course
       this.props.getPublicCourse(courseId);
 
-      //Fetch comments
-      this.props.getCourseComments( courseId, course_comments_page );
+      // Fetch comments
+      this.props.getCourseComments(courseId, course_comments_page);
 
-      //Fetch related courses
-      this.props.getRelatedCourses( courseId, WebConstants.START_PAGE_INDEX, WebConstants.RELATED_COURSE_PER_PAGE);
+      // Fetch related courses
+      this.props.getRelatedCourses(courseId, WebConstants.START_PAGE_INDEX, WebConstants.RELATED_COURSE_PER_PAGE);
     }
   }
 
@@ -124,8 +124,8 @@ const mapStateToProps = (state) => {
     course_comments_page,
     sectionPositions,
     isEnrolled
-  }
-}
+  };
+};
 
 const mapDispatchToProps = dispatch => ({
   showFooter: () => dispatch({ type: WebConstants.SHOW_FOOTER }),
@@ -137,11 +137,11 @@ const mapDispatchToProps = dispatch => ({
   getCourseCategories: () => dispatch(ReferActions.fetchCourseCategories()),
   getPublicCourse: courseId => dispatch(PublicCourseActions.fetchPublicCourse(courseId)),
   getCourseComments: (courseId, page) => dispatch(PublicCourseActions.fetchCourseComments(courseId, page)),
-  getRelatedCourses: (courseId, page, perPage) => dispatch(PublicCourseActions.fetchRelatedCourses({courseId, page, perPage})),
-  enrollCourse: (courseId) => dispatch(PublicCourseActions.submitEnrollCourse(courseId)),
-  changeActiveMenu: (payload) => dispatch(PublicCourseActions.changeActiveMenu(payload)),
+  getRelatedCourses: (courseId, page, perPage) => dispatch(PublicCourseActions.fetchRelatedCourses({ courseId, page, perPage })),
+  enrollCourse: courseId => dispatch(PublicCourseActions.submitEnrollCourse(courseId)),
+  changeActiveMenu: payload => dispatch(PublicCourseActions.changeActiveMenu(payload)),
   showWarningPopup: (title, message, callback) => dispatch(openConfirmationPopup(title, message, callback)),
-  fetchEnrolledCourseList: (user) => dispatch(sessionActions.fetchActiveCourses(user))
+  fetchEnrolledCourseList: user => dispatch(sessionActions.fetchActiveCourses(user))
 });
 
 export default connect(

@@ -90,11 +90,13 @@ class CourseDetailComments extends Component {
                           </li>
                         ))
                       }
-                    </ul>) :
-                    <div className="d-flex flex-column flex-auto">
-                      <span>{this.context.t('no_comment_about_course')}</span>
-                      <span>{this.context.t('course_comments_no_comment')}</span>
-                    </div>
+                      </ul>)
+                    : (
+                      <div className="d-flex flex-column flex-auto">
+                        <span>{this.context.t('no_comment_about_course')}</span>
+                        <span>{this.context.t('course_comments_no_comment')}</span>
+                      </div>
+                    )
                 }
               </div>
             </div>

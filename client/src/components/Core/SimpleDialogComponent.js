@@ -9,10 +9,12 @@ class SimpleDialogComponent extends Component {
   }
 
   render() {
-    const {show, title, acceptCallback, cancelCallback,
+    const {
+      show, title, acceptCallback, cancelCallback,
       acceptLabel = this.context.t('ok'),
       cancelLabel = this.context.t('cancel'),
-      customClass} = this.props;
+      customClass
+    } = this.props;
     return (
       <Modal visible={show} onClickBackdrop={cancelCallback} className={customClass}>
         <div className="modal-header">
@@ -23,26 +25,34 @@ class SimpleDialogComponent extends Component {
         </div>
         <div className="modal-footer">
           {
-            acceptCallback && acceptLabel ?
-              <PrimaryButton type="button" line={false}
-                             isPrimary={true}
-                             callback={acceptCallback}
-                             isSmallButton={true}
-                             title={acceptLabel}>
-              </PrimaryButton> : null
+            acceptCallback && acceptLabel
+              ? (
+                <PrimaryButton
+                  type="button"
+                  line={false}
+                  isPrimary
+                  callback={acceptCallback}
+                  isSmallButton
+                  title={acceptLabel}
+                />
+              ) : null
           }
           {
-            cancelCallback && cancelLabel ?
-              <PrimaryButton type="button" line={true}
-                             callback={cancelCallback}
-                             isPrimary={false}
-                             isSmallButton={true}
-                             title={cancelLabel}>
-              </PrimaryButton> : null
+            cancelCallback && cancelLabel
+              ? (
+                <PrimaryButton
+                  type="button"
+                  line
+                  callback={cancelCallback}
+                  isPrimary={false}
+                  isSmallButton
+                  title={cancelLabel}
+                />
+              ) : null
           }
         </div>
       </Modal>
-    )
+    );
   }
 }
 
@@ -58,6 +68,6 @@ SimpleDialogComponent.propTypes = {
   cancelLabel: React.PropTypes.string,
   acceptCallback: React.PropTypes.func,
   customClass: React.PropTypes.string,
-}
+};
 
 export default SimpleDialogComponent;

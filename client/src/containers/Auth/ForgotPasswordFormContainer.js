@@ -12,10 +12,10 @@ import { openConfirmationPopup } from '../../actions/MainActionCreator';
 import { TT } from '../../utils/locale';
 
 class ForgotPasswordFormContainer extends Component {
-  submit({email}) {
+  submit({ email }) {
     this.props.requestToChangePassword(email, this.context.t('check_email_description', {
       email: <strong>{email}</strong>,
-      breakNewLine: <br></br>
+      breakNewLine: <br />
     }));
   }
 
@@ -46,16 +46,16 @@ const mapStateToProps = state => ({
   forgotPassword: state.forgotPassword
 });
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = dispatch => ({
   requestToChangePassword: (email, successMessage) => {
     dispatch({
       type: asyncAction.RESET_PASSWORD,
       payload: Network().post('change_password_requests', { email }),
       meta: 'forgotPasswordPlaceholder'
     }).then((value, action) => {
-      dispatch(openConfirmationPopup(TT.t('please_check_your_email'), successMessage))
-      dispatch(reset('forgotPassword'))
-    })
+      dispatch(openConfirmationPopup(TT.t('please_check_your_email'), successMessage));
+      dispatch(reset('forgotPassword'));
+    });
   },
   clearForgotPasswordError: () => dispatch(Actions.clearError())
 });

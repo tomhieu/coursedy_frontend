@@ -12,10 +12,12 @@ class CourseDetailHeader extends Component {
       <div className={styles.courseDetailHeader}>
         <div className="container">
           <div className="content mb-15">
-            <h2 className={styles.courseTitle}>{
-              course && course.title ?
-                course.title : this.context.t('unknown')
-            }</h2>
+            <h2 className={styles.courseTitle}>
+              {
+              course && course.title
+                ? course.title : this.context.t('unknown')
+            }
+            </h2>
           </div>
 
           <div className="d-flex flex-column">

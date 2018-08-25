@@ -3,21 +3,21 @@ import * as React from 'react';
 import FormField from '../../Core/FormField';
 import { TutorAccountConstants } from '../../../constants/index';
 import PrimaryButton from '../../Core/PrimaryButton/PrimaryButton';
-import {CURRENCIES} from "../../../constants/Courses";
-import {countries} from "../../../constants/Countries";
+import { CURRENCIES } from '../../../constants/Courses';
+import { countries } from '../../../constants/Countries';
 
 export class PersonalInfoForm extends Component {
   render() {
-    const {handleSubmit} = this.props;
+    const { handleSubmit } = this.props;
     const concurrencies = CURRENCIES.map((type) => {
-      return {text: type, id: type};
+      return { text: type, id: type };
     });
 
     const countryList = countries.map(country => ({
       id: country.code,
       text: country.name
-    }))
-    let self = this;
+    }));
+    const self = this;
 
     return (
       <form onSubmit={handleSubmit(this.props.onSubmit)}>
@@ -73,28 +73,40 @@ export class PersonalInfoForm extends Component {
           />
         </div>
         <div>
-          <FormField fieldId="countryId" fieldLabel={this.context.t("account.person.info.country")}
-                     placeholder={this.context.t("account.person.info.country")}
-                     options = {countryList}
-                     formControlName="country" typeField="custom_select"/>
+          <FormField
+            fieldId="countryId"
+            fieldLabel={this.context.t('account.person.info.country')}
+            placeholder={this.context.t('account.person.info.country')}
+            options={countryList}
+            formControlName="country"
+            typeField="custom_select"
+          />
         </div>
         <div>
-          <FormField fieldId="addressId" fieldLabel={this.context.t("account.person.info.currency")}
-                     placeholder={this.context.t("account.person.info.currency")}
-                     options = {concurrencies}
-                     formControlName="currency" typeField="custom_select"/>
+          <FormField
+            fieldId="addressId"
+            fieldLabel={this.context.t('account.person.info.currency')}
+            placeholder={this.context.t('account.person.info.currency')}
+            options={concurrencies}
+            formControlName="currency"
+            typeField="custom_select"
+          />
         </div>
-        <div className='form-group'>
-          <PrimaryButton isPrimary={true} line={false}
-                         type="submit"
-                         title={this.context.t("save")}>
-          </PrimaryButton>
-          <PrimaryButton isPrimary={false} line={true}
-                         type="button"
-                         customClasses="ml-15"
-                         callback={this.props.cancel}
-                         title={this.context.t("cancel")}>
-          </PrimaryButton>
+        <div className="form-group">
+          <PrimaryButton
+            isPrimary
+            line={false}
+            type="submit"
+            title={this.context.t('save')}
+          />
+          <PrimaryButton
+            isPrimary={false}
+            line
+            type="button"
+            customClasses="ml-15"
+            callback={this.props.cancel}
+            title={this.context.t('cancel')}
+          />
         </div>
       </form>
     );

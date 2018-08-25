@@ -10,8 +10,10 @@ import { AccountActions } from '../../actions/index';
 import { validate } from '../../validations/PersonFormValidator';
 
 class PersonInfoContainer extends Component {
-  savePersonInfo({name, email, date_of_birth, address, gender, country, currency}) {
-    this.props.dispatch(AccountActions.savePersonData(name, email, date_of_birth, address, gender, this.props.initialValues.email != email,  country, currency));
+  savePersonInfo({
+    name, email, date_of_birth, address, gender, country, currency
+  }) {
+    this.props.dispatch(AccountActions.savePersonData(name, email, date_of_birth, address, gender, this.props.initialValues.email != email, country, currency));
   }
 
 

@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import cssModules from 'react-css-modules';
 import { globalHistory } from 'utils/globalHistory';
 import styles from './StudentDashboardMenu.module.scss';
-import UserProfileIcon from "../../Core/Icons/UserProfileIcon";
-import ActiveCourseListIcon from "../../Core/Icons/ActiveCourseListIcon";
-import CourseHistoryIcon from "../../Core/Icons/CourseHistoryIcon";
-import CourseFollowIcon from "../../Core/Icons/CourseFollowIcon";
+import UserProfileIcon from '../../Core/Icons/UserProfileIcon';
+import ActiveCourseListIcon from '../../Core/Icons/ActiveCourseListIcon';
+import CourseHistoryIcon from '../../Core/Icons/CourseHistoryIcon';
+import CourseFollowIcon from '../../Core/Icons/CourseFollowIcon';
 
 class StudentDashboardMenu extends Component {
   onClickDashboardLink(urlNavigation, activeTab) {
@@ -35,7 +35,7 @@ class StudentDashboardMenu extends Component {
                 onClick={this.onClickDashboardLink.bind(this, '/student/dashboard/courses/enrolled', 'enrolled_course_list')}
               >
                 {
-                  activatedTab === 'enrolled_course_list' ? <CourseHistoryIcon fillColor="#1CABA0"/> : <CourseHistoryIcon/>
+                  activatedTab === 'enrolled_course_list' ? <CourseHistoryIcon fillColor="#1CABA0" /> : <CourseHistoryIcon />
                 }
                 <a className={styles.itemName}>{this.context.t('enrolled_courses')}</a>
               </li>
@@ -53,7 +53,7 @@ class StudentDashboardMenu extends Component {
                 onClick={this.onClickDashboardLink.bind(this, '/student/dashboard/courses/follow', 'following_course_list')}
               >
                 {
-                  activatedTab === 'following_course_list' ? <CourseFollowIcon fillColor="#1CABA0"/> : <CourseFollowIcon/>
+                  activatedTab === 'following_course_list' ? <CourseFollowIcon fillColor="#1CABA0" /> : <CourseFollowIcon />
                 }
                 <a className={styles.itemName}>{this.context.t('followed_courses')}</a>
               </li>

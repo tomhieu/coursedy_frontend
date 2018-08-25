@@ -55,25 +55,26 @@ class BaseFilter extends Component {
       listIconButtonClasses.push('primary');
     }
     return (
-      <form onSubmit={handleSubmit(this.props.onSubmit)} className='course-filter-form inline-form' multiple={true}>
-        <div className={"d-flex flex-vertical"}>
-          <div className={"d-flex flex-auto fixed-top-search-bar " + styles.filterActionBlock}>
+      <form onSubmit={handleSubmit(this.props.onSubmit)} className="course-filter-form inline-form" multiple>
+        <div className="d-flex flex-vertical">
+          <div className={`d-flex flex-auto fixed-top-search-bar ${styles.filterActionBlock}`}>
             <div className="container d-flex flex-wrap flex-auto">
-              <div className={"d-flex flex-nowrap " + (courseFilterMode ? styles.filterCourseContainer : styles.filterTeachContainer)}>
-                <BasicFilterComponent selectedWeekDays={selectedWeekDays}
-                                      selectedSpecializes={selectedSpecializes}
-                                      selectedCategories={selectedCategories}
-                                      selectedLocations={selectedLocations}
-                                      loadSuggestions={loadSuggestions}
-                                      loadingSuggestion={loadingSuggestion}
-                                      showSuggestion={showSuggestion}
-                                      formfieldValues={formfieldValues}
-                                      onRemoveFilter={onRemoveFilter}
-                                      onSelectSuggestion={onSelectSuggestion}
-                                      suggestions={suggestions}
-                                      closeSuggestion={closeSuggestion}
-                                      term={term}>
-                </BasicFilterComponent>
+              <div className={`d-flex flex-nowrap ${courseFilterMode ? styles.filterCourseContainer : styles.filterTeachContainer}`}>
+                <BasicFilterComponent
+                  selectedWeekDays={selectedWeekDays}
+                  selectedSpecializes={selectedSpecializes}
+                  selectedCategories={selectedCategories}
+                  selectedLocations={selectedLocations}
+                  loadSuggestions={loadSuggestions}
+                  loadingSuggestion={loadingSuggestion}
+                  showSuggestion={showSuggestion}
+                  formfieldValues={formfieldValues}
+                  onRemoveFilter={onRemoveFilter}
+                  onSelectSuggestion={onSelectSuggestion}
+                  suggestions={suggestions}
+                  closeSuggestion={closeSuggestion}
+                  term={term}
+                />
               </div>
               <div className="seperate-filter-line" />
               <div className="st-border-left advanced-filter-block">
@@ -121,12 +122,12 @@ class BaseFilter extends Component {
           {/* Result Block */}
           <div className={`d-flex flex-auto moving-sort-bar ${styles.filterResultBlock}`}>
             <div className="d-flex flex-horizontal justify-content-end flex-auto container">
-              <div className={styles.orderDisplayResult + " d-flex flex-horizontal align-items-center"}>
+              <div className={`${styles.orderDisplayResult} d-flex flex-horizontal align-items-center`}>
                 <div className={styles.totalCoursesBox}>
-                    <span className={styles.textTotalResult + " d-flex"}>
-                      {
-                        courseFilterMode ? this.context.t("total_result_course", {total: totalResult !== undefined ? totalResult : 0})
-                          : this.context.t("total_result_teacher", {total: totalResult !== undefined ? totalResult : 0})
+                  <span className={`${styles.textTotalResult} d-flex`}>
+                    {
+                        courseFilterMode ? this.context.t('total_result_course', { total: totalResult !== undefined ? totalResult : 0 })
+                          : this.context.t('total_result_teacher', { total: totalResult !== undefined ? totalResult : 0 })
                       }
                   </span>
                 </div>

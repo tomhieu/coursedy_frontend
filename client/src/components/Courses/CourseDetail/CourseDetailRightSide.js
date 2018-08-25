@@ -20,16 +20,16 @@ class CourseDetailRightSide extends Component {
     return (
       <div className="course-summary">
         <div className="detail-content-wrapper">
-          <CourseDetailIntro {...this.props}/>
+          <CourseDetailIntro {...this.props} />
           {
-            course_sections.length ?
-              <CourseDetailLessons {...this.props}/> : null
+            course_sections.length
+              ? <CourseDetailLessons {...this.props} /> : null
           }
-          <CourseDetailTutor {...this.props}/>
-          <CourseDetailComments {...this.props}/>
+          <CourseDetailTutor {...this.props} />
+          <CourseDetailComments {...this.props} />
           {
-            relatedCourses.length ?
-              <CourseDetailRelated {...this.props} /> : null
+            relatedCourses.length
+              ? <CourseDetailRelated {...this.props} /> : null
           }
         </div>
       </div>

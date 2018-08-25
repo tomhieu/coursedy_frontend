@@ -74,7 +74,7 @@ class StudentCourseItem extends Component {
     return (
       <div className="row">
         <div className="col-md-12">
-          <div className={"row flex-auto align-items-center " + styles.courseTutorContainer}>
+          <div className={`row flex-auto align-items-center ${styles.courseTutorContainer}`}>
             <div className="col-md-5 col-sm-12">
               <div className="row">
                 <div className="col-xl-9 col-sm-12">

@@ -1,10 +1,10 @@
-import React, {Component} from 'react'
-import {connect} from 'react-redux'
-import ObjectUtils from '../../../../utils/ObjectUtils'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import ObjectUtils from '../../../../utils/ObjectUtils';
 
 class StudentProfileContainer extends Component {
   render() {
-    const { currentUser } = this.props
+    const { currentUser } = this.props;
     return (
       <div className="dashboard-profile">
         <div className="media media-team">
@@ -20,7 +20,12 @@ class StudentProfileContainer extends Component {
           </div>
           <div className="media-body">
             <h4>{ currentUser.name }</h4>
-            <p>{this.context.t('my_balance')}: <strong>{ ObjectUtils.currencyFormat(currentUser.balance) }</strong></p>
+            <p>
+              {this.context.t('my_balance')}
+:
+              {' '}
+              <strong>{ ObjectUtils.currencyFormat(currentUser.balance) }</strong>
+            </p>
           </div>
         </div>
       </div>
@@ -30,7 +35,7 @@ class StudentProfileContainer extends Component {
 
 const mapStateToProps = state => ({
   currentUser: state.session.currentUser,
-})
+});
 
 StudentProfileContainer.contextTypes = {
   t: React.PropTypes.func.isRequired

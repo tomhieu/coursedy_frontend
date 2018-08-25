@@ -5,16 +5,16 @@ import FacebookShareButton from 'react-share/es/FacebookShareButton';
 import GooglePlusShareButton from 'react-share/es/GooglePlusShareButton';
 import LinkedinShareButton from 'react-share/es/LinkedinShareButton';
 import styles from './CourseDetailAction.module.scss';
-import PrimaryButton from "../../Core/PrimaryButton/PrimaryButton";
-import CourseAccessIcon from "../../Core/Icons/CourseAccessIcon";
-import CourseMaterialIcon from "../../Core/Icons/CourseMaterialIcon";
-import CourseLessonlIcon from "../../Core/Icons/CourseLessonlIcon";
-import ObjectUtils from "../../../utils/ObjectUtils";
-import {globalHistory} from "../../../utils/globalHistory";
-import FacebookIcon from "../../Core/Icons/FacebookIcon";
-import GooglePlusIcon from "../../Core/Icons/GooglePlusIcon";
-import LinkinIcon from "../../Core/Icons/LinkinIcon";
-import {SecurityUtils} from "../../../utils/SecurityUtils";
+import PrimaryButton from '../../Core/PrimaryButton/PrimaryButton';
+import CourseAccessIcon from '../../Core/Icons/CourseAccessIcon';
+import CourseMaterialIcon from '../../Core/Icons/CourseMaterialIcon';
+import CourseLessonlIcon from '../../Core/Icons/CourseLessonlIcon';
+import ObjectUtils from '../../../utils/ObjectUtils';
+import { globalHistory } from '../../../utils/globalHistory';
+import FacebookIcon from '../../Core/Icons/FacebookIcon';
+import GooglePlusIcon from '../../Core/Icons/GooglePlusIcon';
+import LinkinIcon from '../../Core/Icons/LinkinIcon';
+import { SecurityUtils } from '../../../utils/SecurityUtils';
 
 
 class CourseDetailAction extends Component {
@@ -56,7 +56,9 @@ class CourseDetailAction extends Component {
   }
 
   render() {
-    const { course, user, course_sections, isEnrolled } = this.props;
+    const {
+      course, user, course_sections, isEnrolled
+    } = this.props;
     const courseDetailsFullUrl = window.location.href;
     return (
       <div className={styles.courseDetailAction}>
@@ -73,13 +75,14 @@ class CourseDetailAction extends Component {
               ) : null
           }
           <div className={styles.courseActionButtons}>
-            <PrimaryButton round={true}
-                           disabled={isEnrolled || SecurityUtils.isTeacher(user)}
-                           line={false}
-                           customClasses="full-width"
-                           callback={this.submitEnrollCourse.bind(this)}
-                           title={this.context.t('course_enroll')}>
-            </PrimaryButton>
+            <PrimaryButton
+              round
+              disabled={isEnrolled || SecurityUtils.isTeacher(user)}
+              line={false}
+              customClasses="full-width"
+              callback={this.submitEnrollCourse.bind(this)}
+              title={this.context.t('course_enroll')}
+            />
           </div>
           <div className={styles.courseShortIntroduce}>
             <div className={styles.itemTitle}>{this.context.t('course_include')}</div>

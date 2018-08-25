@@ -27,9 +27,9 @@ const session = (state = {
     case types.SIGN_OUT + asyncActs.FULFILLED:
       return { ...state, currentUser: null };
     case types.FETCH_CURRENT_USER + asyncActs.PENDING:
-      return {...state, fetchingUser: true};
+      return { ...state, fetchingUser: true };
     case types.UPDATE_CURRENT_USER + asyncActs.FULFILLED:
-      return {...state, currentUser: action.payload, fetchingUser: false}
+      return { ...state, currentUser: action.payload, fetchingUser: false };
     case types.FETCH_NOTIFICATION_USER + asyncActs.FULFILLED:
       return { ...state, notifications: action.payload };
     case asyncActs.FETCH_TUTOR_ACTIVE_COURSES + asyncActs.FULFILLED:
