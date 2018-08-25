@@ -37,25 +37,6 @@ class PublicTeacherListContainer extends Component {
               isPublic={true}
             />
           </div>
-          {
-            !isFetching && teachers.length > 0 ? (
-              <div className="container-fluid course-pagination mb-15">
-                <Pagination
-                  hideFirstLastPages
-                  prevPageText={<PaginationArrowIcon isLeftArrow={true} />}
-                  nextPageText={<PaginationArrowIcon />}
-                  linkClassPrev="prev-page-icon"
-                  linkClassNext="next-page-icon"
-                  activePage={headers.currentPage}
-                  itemsCountPerPage={headers.perPage}
-                  totalItemsCount={headers.total}
-                  pageRangeDisplayed={5}
-                  activeClass={'active'}
-                  onChange={this.handlePageChange.bind(this)}
-                />
-              </div>
-            ) : null
-          }
         </div>
       </LoadingMask>
     )

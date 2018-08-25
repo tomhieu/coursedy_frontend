@@ -12,6 +12,7 @@ import {
 } from "../../../actions/AsyncActionCreator";
 import * as courseActions from "../../../actions/ListTutorCourseActionCreator";
 import {UserRole} from "../../../constants/UserRole";
+import {joinToClassRoom} from "../../../actions/ListTutorCourseActionCreator";
 
 class NotificationSystemContainer extends Component {
 
