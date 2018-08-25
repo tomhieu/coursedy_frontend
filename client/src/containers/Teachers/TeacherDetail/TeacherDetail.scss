@@ -1,5 +1,6 @@
 @import "../../../../styles/global_style";
 
+// begin teacher-detail selector
 .teacher-detail {
   color: $color-black-six;
 
@@ -163,7 +164,13 @@
       height: 200px;
     }
   }
+
+  .file-name {
+    color: $color-blue-dark;
+  }
 }
+
+// end teacher-detail selector
 
 .teacher-detail-profile-header {
   padding-top: 25px;

@@ -1,5 +1,5 @@
-import moment from 'moment';
 import { TT } from 'utils/locale';
+import { momentCustom } from '../components/Layout/Layout';
 
 class DateUtils {
   static formatDate(dateValue, locale = 'vn') {
@@ -15,7 +15,7 @@ class DateUtils {
   }
 
   static dateTimeFromNow(dateValue) {
-    return moment(dateValue).fromNow();
+    return momentCustom(dateValue).fromNow();
   }
 
   static normalizeTime = (time) => {

@@ -8,6 +8,9 @@ import Footer from '../../containers/Main/Footer/Footer';
 import Header from '../../containers/Main/Header/Header';
 import UserConfirmationContainer from '../../containers/Main/UserConfirmationAction/UserConfirmationContainer';
 import NotificationSystemContainer from '../../containers/Main/NotificationSystem/NotificationSystemContainer';
+import moment from 'moment';
+
+export const momentCustom = moment;
 
 const mainBodyStyle = {
   minHeight: '55vh'
@@ -15,6 +18,8 @@ const mainBodyStyle = {
 
 class Layout extends Component {
   render() {
+    const { lang } = this.props;
+    momentCustom.locale(lang === 'vn' ? 'vi' : lang);
     return (
       <I18n translations={translations} initialLang={TT.locale}>
         <ScrollToTop>
