@@ -1,24 +1,49 @@
 @import "../../../styles/global_style";
 
-.payment-container {
+.payment-box {
+  width: 100%;
+  margin: auto;
+  padding: 35px 25px;
 
-  .divider-payment {
-    border-bottom: 3px dashed $color-orange;
-    width: 80%;
-    height: 6px;
-    margin: 20px auto 20px;
+  .payment-container {
+    .divider-payment {
+      border-bottom: 3px dashed $color-orange;
+      width: 80%;
+      height: 6px;
+      margin: 20px auto 20px;
+
+      .card-body {
+        padding-bottom: 0;
+      }
+    }
+    .bank-logo {
+      text-align: center;
+      width: 125px;
+      padding: 5px 0;
+      border: 1px solid $light-dark-text-color;
+      border-radius: 3px;
+      margin-left: 5px;
+      cursor: pointer;
+      &:hover {
+        border: 1px solid $md-color-pink;
+      }
+    }
+    .card-header {
+      background-color: $color-orange;
+      color: $white-color;
+      font-size: 18px;
+      font-weight: 600;
+      padding: 10px 15px;
+    }
   }
-  .bank-logo {
-    text-align: center;
-    width: 125px;
-    padding: 5px 0;
-    border: 1px solid $light-dark-text-color;
-    border-radius: 3px;
-    margin-left: 5px;
-    cursor: pointer;
-    &:hover {
-      border: 1px solid $md-color-pink;
+
+  .payment-step {
+    .payment-step-icon {
+      margin-right: 3px;
+      color: $color-organe;
     }
   }
 }
+
+
 

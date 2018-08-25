@@ -74,138 +74,125 @@ class PaymentContainer extends Component {
       bankAccounts
     } = this.props
     return (
-      <div className="payment-container">
+      <div className="payment-box">
+        <h2 className="text-center">{this.context.t('public_payment_instruct')}</h2>
+        <div className="divider"></div>
+        <div className="payment-container">
+          <div className="card mb-15">
+            <div className="card-header">
+              {this.context.t('admin_payment_methods_manual')}
+            </div>
+            <div className="card-body no-pad">
+              <div className="row container-fluid">
+                <div className="col-md-12 payment-step">
+                  <p>
+                    <i className="fa fa-chevron-circle-right payment-step-icon"></i>
+                    <strong>Bước 1:</strong>
+                    <span> Thông tin mang theo để nạp tiền gồm có</span>
+                  </p>
+                  <p>
+                    <span>Email: tinhuynh0992gmail.com</span>
+                  </p>
+                </div>
+                <div className="col-md-12 payment-step">
+                  <p>
+                    <i className="fa fa-chevron-circle-right payment-step-icon"></i>
+                    <strong>Bước 2:</strong>
+                    <span> Vui lòng nạp tiền tại văn phòng theo địa chỉ:</span>
+                  </p>
+                </div>
+                <div className="col-sm-12 col-md-7">
+                  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.737426598377!2d106.6580743143502!3d10.7547083923363!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752ef11488a397%3A0x49680a6fa438017b!2sCheese+Coffee!5e0!3m2!1sen!2s!4v1534047689794" 
+                    width="100%" 
+                    height="300" 
+                    frameBorder="0" 
+                    style={{border:0}}
+                    allowFullScreen
+                  ></iframe>
 
-        {/*Step 1: Choose payment method*/}
-        <div className="row container-fluid">
-          <div className="col-sm-12 col-md-4 no-pad">
-            <div className="col-md-12 no-pad">
-              <p><b>Hình thức thanh toán</b></p>
+                </div>
+                <div className="col-sm-12 col-md-5">
+                  <ul>
+                    <li><i>Mọi chi tiết vui lòng liên hệ</i></li>
+                    <li>Hotline: 0123.456.789</li>
+                    <li>Hoặc E-mail: support@coursedy.com</li>
+                  </ul>
+                </div>
+              </div>
             </div>
-            {
-              paymentSettings.manual ?
-              <div className="col-md-12 no-pad">
-                <label className="col-md mr-10" for="role-0">
-                  <input 
-                    type="radio" 
-                    name="payment-method" 
-                    value="teacher" 
-                    onClick={this.changePaymentMethods.bind(this, 'manual')}
-                  />
-                  <span className="pl-10">{this.context.t('admin_payment_methods_manual')}</span>
-                </label>
-              </div>
-              : null
-            }
-            {
-              paymentSettings.transfer ?
-              <div className="col-md-12 no-pad">
-                <label className="col-md mr-10" for="role-0">
-                  <input 
-                    type="radio" 
-                    name="payment-method" 
-                    value="teacher" 
-                    onClick={this.changePaymentMethods.bind(this, 'transfer')}
-                  />
-                  <span className="pl-10">{this.context.t('admin_payment_methods_transfer')}</span>
-                </label>
-              </div>
-              : null
-            }
           </div>
-          <div className="col-sm-12 col-md-8 payment-instruct">
-            <div className="col-md-12 no-pad">
-              <p><b>Hướng dẫn thanh toán</b></p>
+
+          <div className="card">
+            <div className="card-header">
+              {this.context.t('admin_payment_methods_transfer')}
             </div>
-            {
-              this.state.selectMethod == 'manual' ? 
-                <div 
-                  className="col-md-12 no-pad" 
-                  dangerouslySetInnerHTML={{ __html: this.context.t('admin_payment_methods_manual_instruct_content') }}
-                />
-                : null
-            }
-            {
-              this.state.selectMethod == 'transfer' ?
-                <div 
-                  className="col-md-12 no-pad" 
-                  dangerouslySetInnerHTML={{ __html: this.context.t('admin_payment_methods_transfer_instruct_content') }}
-                />
-                : null
-            }
+            <div className="card-body">
+              <div className="row container-fluid">
+                <div className="col-md-12 payment-step">
+                  <p>
+                    <i className="fa fa-chevron-circle-right payment-step-icon"></i>
+                    <strong>Bước 1:</strong>
+                    <span> 
+                      Bên dưới là danh sách ngân hàng <strong>Coursedy</strong> hỗ trợ. 
+                      Vui lòng chọn ngân hàng để nhận thông tin chuyển khoản:
+                    </span>
+                  </p>
+                  <div className="row">
+                    <div className="col-sm-12 col-md-7">
+                    {
+                      bankAccounts.map((item) => (
+                        <div 
+                          className="bank-logo pull-left" 
+                          key={item.name}
+                          onClick={this.changeBank.bind(this, item.id)}
+                        >
+                          <img src={'/banks/'+item.name.toUpperCase()+'.png'} />
+                        </div>
+                      ))
+                    }
+                    </div>
+                    <div className="col-sm-12 col-md-5">
+                      <table className="table table-responsive">
+                        <tbody>
+                          <tr>
+                            <td><b>{this.context.t('public_payment_method_bank_name')}</b></td>
+                            <td>{this.state.selectBank.fullName}</td>
+                          </tr>
+                          <tr>
+                            <td><b>{this.context.t('public_payment_method_account_name')}</b></td>
+                            <td>{this.state.selectBank.bankAccount.accountName}</td>
+                          </tr>
+                          <tr>
+                            <td><b>{this.context.t('public_payment_method_account_number')}</b></td>
+                            <td>{this.state.selectBank.bankAccount.accountNumber}</td>
+                          </tr>
+                          <tr>
+                            <td><b>{this.context.t('public_payment_method_account_office')}</b></td>
+                            <td>{this.state.selectBank.bankAccount.accountOffice}</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+                <div className="col-md-12 payment-step">
+                  <p>
+                    <i className="fa fa-chevron-circle-right payment-step-icon"></i>
+                    <strong>Bước 2:</strong>
+                    <span> Thực hiện chuyển khoản cho <strong>Coursedy</strong> với cú pháp:</span>
+                  </p>
+                  <div className="text-center">
+                    <span>NAP TIEN <span className="badge badge-info" alt="Đăng nhập để lấy mã">???</span> tinhuynh0992@gmail.com</span>
+                  </div>
+
+                </div>
+
+              </div>
+            </div>
           </div>
         </div>
-
-        {/*Step 2: Choose bank*/}
-        {
-          this.state.step >= 2 && this.state.selectMethod == 'transfer' ?
-            <div className="divider-payment clearfix"></div>
-            : null
-        }
-        {
-          this.state.step >= 2 && this.state.selectMethod == 'transfer' ?
-            <div className="row container-fluid">
-              <div className="col-md-12 no-pad">
-                <p><i>Thank toán bằng cách chuyển khoản vào 1 trong các tài khoản sau</i></p>
-              </div>
-              <div className="col-md-12 no-pad">
-                {
-                  bankAccounts.map((item) => (
-                    <div 
-                      className="bank-logo pull-left" 
-                      key={item.name}
-                      onClick={this.changeBank.bind(this, item.id)}
-                    >
-                      <img src={'/banks/'+item.name.toUpperCase()+'.png'} />
-                    </div>
-                  ))
-                }
-              </div>
-            </div> : null
-        }
-
-        {/*Step 3: Show bank account*/}
-        {
-          this.state.step >= 3 && this.state.selectMethod == 'transfer'?
-            <div className="divider-payment clearfix"></div>
-            : null
-        }
-        {
-          this.state.step >= 3 && this.state.selectMethod == 'transfer'?
-            <div className="row container-fluid">
-              <div className="col-md-12 no-pad">
-                <p><i>Thông tin tài khoản</i></p>
-              </div>
-              <div className="col-md-12 no-pad">
-                <table className="table table-responsive">
-                  <tbody>
-                    <tr>
-                      <td><b>Ngân hàng</b></td>
-                      <td>{this.state.selectBank.fullName}</td>
-                    </tr>
-                    <tr>
-                      <td><b>Chủ tài khoản</b></td>
-                      <td>{this.state.selectBank.bankAccount.accountName}</td>
-                    </tr>
-                    <tr>
-                      <td><b>Số tài khoản</b></td>
-                      <td>{this.state.selectBank.bankAccount.accountNumber}</td>
-                    </tr>
-                    <tr>
-                      <td><b>Chi nhánh</b></td>
-                      <td>{this.state.selectBank.bankAccount.accountOffice}</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div> : null
-        }
-
-       
-        
-
-
       </div>
+      
     )
   }
 

@@ -3,8 +3,17 @@
 */
 export const payment_translation = {
   "vn": {
+    "public_payment_instruct": "Hướng dẫn nạp tiền",
+    "public_payment_method": "Hình thức thanh toán",
+    "public_paymnet_method_info": "Thông tin tài khoản",
+    "public_payment_method_bank_name": "Tên ngân hàng",
+    "public_payment_method_account_name": "Chủ tài khoản",
+    "public_payment_method_account_number": "Số tài khoản",
+    "public_payment_method_account_office": "Chi nhánh",
+
+
     "admin_payment_methods": "Phương thức thanh toán",
-    "admin_payment_methods_manual": "Thanh toán tại quầy",
+    "admin_payment_methods_manual": "Nạp tiền tại quầy",
     "admin_payment_methods_transfer": "Chuyển khoản",
     "admin_payment_methods_paypal": "Paypal",
     "admin_payment_methods_visa": "Visa / MasterCard",
@@ -23,6 +32,14 @@ export const payment_translation = {
     "admin_payment_history": "Lịch sử thanh toán"
   },
   "en": {
+    "public_payment_instruct": "Payment instructions",
+    "public_payment_method": "Payment method",
+    "public_paymnet_method_info": "Account info",
+    "public_payment_method_bank_name": "Bank name",
+    "public_payment_method_account_name": "Account owner",
+    "public_payment_method_account_number": "Account number",
+    "public_payment_method_account_office": "Branch",
+
     "admin_payment_methods": "Payment methods",
     "admin_payment_methods_manual": "At counter",
     "admin_payment_methods_manual": "Direct transfer",

@@ -6,14 +6,9 @@ import PaymentContainer from "../../containers/Payment/PaymentContainer";
 
 const PaymentPage = (props) => {
   return (
-    <div className="payment-page full-width-in-container">
-        <div className="payment-box">
-          <h2 className="text-center">Thanh toán</h2>
-          <div className="divider"></div>
-          <PaymentContainer />
-        </div>
+    <div className="payment-page">
+      <PaymentContainer />
     </div>
-
   );
 };
 
