@@ -57,9 +57,10 @@ export const renderRadioFields = ({options, input, meta: {touched, error, warnin
       )
     };
     return (
-      <div className="row">
-        {options &&
-        Object.keys(options).map(renderRadioButtons)}
+      <div className="d-flex flex-vertical">
+        <div className="row">
+          {options && Object.keys(options).map(renderRadioButtons)}
+        </div>
         {touched && ((error && <div className='input-errors'>{error}</div>) || (warning && <div>{warning}</div>))}
       </div>
     );

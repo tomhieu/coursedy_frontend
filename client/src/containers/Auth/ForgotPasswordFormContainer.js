@@ -13,7 +13,10 @@ import {TT} from "../../utils/locale";
 
 class ForgotPasswordFormContainer extends Component {
   submit({email}) {
-    this.props.requestToChangePassword(email);
+    this.props.requestToChangePassword(email, this.context.t('check_email_description', {
+      email: <strong>{email}</strong>,
+      breakNewLine: <br></br>
+    }));
   }
 
   render() {
@@ -42,13 +45,13 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  requestToChangePassword: (email) => {
+  requestToChangePassword: (email, successMessage) => {
     dispatch({
       type: asyncAction.RESET_PASSWORD,
       payload: Network().post('change_password_requests', {email}),
       meta: 'forgotPasswordPlaceholder'
     }).then((value, action) => {
-      dispatch(openConfirmationPopup(TT.t('please_check_your_email'), TT.t('check_email_description', {email: email})))
+      dispatch(openConfirmationPopup(TT.t('please_check_your_email'), successMessage))
       dispatch(reset('forgotPassword'))
     })
   },

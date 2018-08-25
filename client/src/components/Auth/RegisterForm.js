@@ -12,8 +12,10 @@ import {
 import PrimaryButton from "../Core/PrimaryButton/PrimaryButton"
 import './LoginRegisterForm.scss'
 import { Link } from 'react-router-dom'
+import normalizePhone from "./normalizePhoneNumber";
 
 class RegisterForm extends Component {
+
   render() {
     const {handleSubmit} = this.props
     return (
@@ -74,13 +76,17 @@ class RegisterForm extends Component {
         </FormGroup>
 
         <FormGroup>
-          <ControlLabel> {this.context.t("phone_number")}</ControlLabel>
+          <div className="d-flex flex-vertical">
+            <ControlLabel> {this.context.t("phone_number")}</ControlLabel>
+            <span className="hint-text">{this.context.t("phone_number_hint")}</span>
+          </div>
           <Field
             name="phone_number"
             component={renderField}
             type="text"
             placeholder={this.context.t("phone_number")}
             className="form-control"
+            normalize={normalizePhone}
           />
         </FormGroup>
 
