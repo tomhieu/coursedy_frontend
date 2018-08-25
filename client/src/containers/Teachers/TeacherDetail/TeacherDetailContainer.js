@@ -256,7 +256,7 @@ const TeacherTaughtCourses = (props) => {
           <CourseListInGridMode
             {...{
               courses: teacher.courses.data,
-              itemClass: 'col-12 col-sm-12 col-md-6 col-lg-6 mb-15 mt-15'
+              itemClass: 'col-xs-12 col-sm-6 col-md-6 col-lg-6 col-xl-4 mb-15 mt-15'
             }}
           />
 
