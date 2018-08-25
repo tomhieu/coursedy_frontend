@@ -1,0 +1,11 @@
+@import "../../../styles/global_style";
+
+.display-text-group {
+  position: relative;
+  max-height: 220px;
+  overflow-y: scroll;
+  .read-more-button {
+    color: $md-color-pink;
+    cursor: pointer;
+  }
+}

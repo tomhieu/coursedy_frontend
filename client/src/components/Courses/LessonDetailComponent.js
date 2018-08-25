@@ -24,7 +24,10 @@ export class LessonDetailComponent extends Component {
           </div>
           <div>
             <FormField fieldId="lessonDesciptionId" fieldLabel={this.context.t("lesson_desc")}
-                       isMandatoryField={true} formControlName="description" typeField="custom_textarea"/>
+                       isMandatoryField={true} formControlName="description"
+                       typeField="rich_text_editor"
+                       customClassName="quill-form-control"
+            />
           </div>
         </div>
       </form>

@@ -50,7 +50,6 @@ const loadingHandler = store => next => action => {
         action: action.meta
       })
     }, 200);
-
   }
   return next(action);
 }

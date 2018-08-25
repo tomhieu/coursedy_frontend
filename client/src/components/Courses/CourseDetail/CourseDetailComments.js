@@ -14,13 +14,10 @@ class CourseDetailComments extends Component {
     super(props);
   }
 
-  scrollToCommentForm() {
-
-  }
-
   render() {
-    const {course_comments, loadMoreCommentsHdl, activeMenu} = this.props
-    const active = activeMenu === PUBLIC_COURSE_DETAIL_MENU_COMMENTS
+    const {course_comments, loadMoreCommentsHdl, activeMenu, course} = this.props
+    const active = activeMenu === PUBLIC_COURSE_DETAIL_MENU_COMMENTS;
+    const  ratingOverall = course.rating_count === 0 ? 0 : parseFloat(course.rating_points)/course.rating_count;
     return (
       <div id="courses-detail-comments" className="course-detail-section">
         <div className="row review-wrapper">
@@ -33,9 +30,12 @@ class CourseDetailComments extends Component {
               </div>
               <div className="col-xs-12 col-sm-12 col-md-12">
                 <div className="review-overall">
-                  <p className="review-overall-point"><span>4.6</span></p>
+                  <p className="review-overall-point"><span>{ratingOverall}</span></p>
                   <div className="rating-wrapper">
-                    <RatingItem num_stars={4.6} num_reviews={5}/>
+                    <RatingItem
+                      num_stars={ratingOverall}
+                      num_reviews={course.rating_count}
+                    />
                   </div>
                 </div>
               </div>
@@ -64,16 +64,10 @@ class CourseDetailComments extends Component {
                               />
                             </div>
                             <div className="content">
-                              <div className="row">
-                                <div className="col-md-12">
-                                  <h6>{item.user.name}</h6>
-                                  <div className="rating-wrapper">
-                                    <div className="rating-item">
-                                    </div>
-                                  </div>
-                                </div>
-                                <div className="col-md-12 d-flex justify-content-left">
-                                  <p className="review-date">{DateUtils.formatDate(item.created_at)}</p>
+                              <div className="gap-20 mb-0">
+                                <div className="d-flex">
+                                  <strong className="pr-10">{item.user.name}</strong>
+                                  <span>{DateUtils.dateTimeFromNow(item.created_at)}</span>
                                 </div>
                               </div>
                               <div className="review-text">
@@ -90,7 +84,7 @@ class CourseDetailComments extends Component {
                     </ul> :
                     <div className="d-flex flex-column flex-auto">
                       <span>{this.context.t('no_comment_about_course')}</span>
-                      <a className="active-link" href="#" onClick={this.scrollToCommentForm.bind(this)}>{this.context.t('course_comments_no_comment')}</a>
+                      <span>{this.context.t('course_comments_no_comment')}</span>
                     </div>
                 }
               </div>

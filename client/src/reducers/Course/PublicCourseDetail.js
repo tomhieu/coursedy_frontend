@@ -1,5 +1,6 @@
 import * as courseTypes from '../../constants/Courses';
 import * as asyncActs from '../../actions/AsyncActionCreator';
+import { TT } from '../../utils/locale';
 
 const PublicCourseDetail = (state = {
     course: {},
@@ -28,21 +29,27 @@ const PublicCourseDetail = (state = {
       'course-detail-tutor': 0,
       'course-detail-comments': 0,
       'course-detail-related': 0,
-    }
+    },
+    cart: []
   }, action) => {
   switch (action.type) {
     case courseTypes.FETCH_PUBLIC_COURSE + asyncActs.PENDING:
       return {...state, course: {} }
     case courseTypes.FETCH_PUBLIC_COURSE + asyncActs.FULFILLED:
       return {...state, course: action.payload }
-    case courseTypes.FETCH_PUBLIC_COURSE_FAIL:
-      return {...state, course: null}
+    case courseTypes.FETCH_PUBLIC_COURSE + asyncActs.REJECTED:
+      return {...state, course: {error: action.payload}}
     case courseTypes.FETCH_PUBLIC_COURSE_SECTIONS + asyncActs.FULFILLED:
       return {...state, course_sections: action.payload }
     case courseTypes.FETCH_PUBLIC_COURSE_SECTIONS + asyncActs.REJECTED:
       return {...state, course_sections: []}
     case courseTypes.FETCH_PUBLIC_COURSE_TUTOR + asyncActs.FULFILLED:
-      return {...state, course_tutor: action.payload}
+      const {
+        twitter=TT.t('twitter_link'),
+        linkedIn=TT.t('linkedIn_link'),
+        facebook=TT.t('facebook_link'),
+      } = action.payload;
+      return {...state, course_tutor: {twitter, linkedIn, facebook, ...action.payload}}
     case courseTypes.FETCH_PUBLIC_COURSE_TUTOR + asyncActs.REJECTED:
       return {...state, course_tutor: null}
 
@@ -57,11 +64,21 @@ const PublicCourseDetail = (state = {
 
 
     //Handle enroll actions
-    case courseTypes.PUBLIC_COURSE_DETAIL_SUBMIT_ENROLL_SUCCESSFULLY:
+    case courseTypes.PUBLIC_COURSE_DETAIL_SUBMIT_ENROLL + asyncActs.FULFILLED:
       return {...state, submit_enroll_success: true}
-    case courseTypes.PUBLIC_COURSE_DETAIL_SUBMIT_ENROLL_FAILL:
+    case courseTypes.PUBLIC_COURSE_DETAIL_SUBMIT_ENROLL + asyncActs.REJECTED:
       return {...state, submit_enroll_fail: true, submit_enroll_errors: action.payload.errors}
-      
+    
+    //Handle add course to cart
+    case courseTypes.PUBLIC_COURSE_DETAIL_ADD_COURSE_TO_CART: 
+      return {
+        ...state, cart: [
+          ...state.cart,
+          action.payload
+        ]
+      }
+
+
     case courseTypes.PUBLIC_COURSE_SHOW_ENROLL_STATUS_MODAL:
       return {...state, show_enroll_status_modal: true}
     case courseTypes.PUBLIC_COURSE_CLOSE_ENROLL_STATUS_MODAL:

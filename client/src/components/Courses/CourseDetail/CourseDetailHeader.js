@@ -7,12 +7,12 @@ import DateUtils from "../../../utils/DateUtils";
 
 class CourseDetailHeader extends Component {
   render() {
-    const { categories, course, course_tutor, course_sections, course_comments } = this.props;
+    const { categories, course, course_sections } = this.props;
     return (
       <div className={styles.courseDetailHeader}>
         <div className="container">
-          <div className={styles.courseTitle + " content mb-15"}>
-            <h2>{
+          <div className="content mb-15">
+            <h2 className={styles.courseTitle}>{
               course && course.title ?
                 course.title : this.context.t('unknown')
             }</h2>
@@ -30,17 +30,28 @@ class CourseDetailHeader extends Component {
                   {this.context.t('header_teacher_name', {teacherName: course && course.user ? course.user.name : this.context.t('unknown')})}
                 </div>
                 <div className={styles.lastUpdate}>
-                  {this.context.t('header_last_update', {lastUpdate: course && course.updated_date ? DateUtils.formatDate(course.updated_date) : this.context.t('unknown')})}
+                  {this.context.t('header_last_update', {lastUpdate: course && course.updated_at ? DateUtils.dateTimeFromNow(course.updated_at) : this.context.t('unknown')})}
                 </div>
               </div>
             </div>
             <div className={styles.courseRatingInfo}>
-              <RatingItem num_stars={4} num_reviews={100}/>
+              <RatingItem
+                num_stars={course.rating_count === 0 ? 0 : parseFloat(course.rating_points)/course.rating_count}
+                num_reviews={course.rating_count}
+              />
             </div>
             <div className={styles.courseSummaryInfo}>
               <div className="d-flex flex-row">
-                <div className={styles.numberLesson}>{this.context.t('header_number_lesson', {numberLesson: course_sections.length})}</div>
-                <div className={styles.periodLesson}>{this.context.t('header_period_lesson', {periodLesson: 45})}</div>
+                {
+                  course_sections.length ?
+                    <div className={styles.numberLesson}>{this.context.t('header_number_lesson', {numberLesson: course_sections.length})}</div>
+                  : null
+                }
+                {
+                  course.totalPeriod > 0 ?
+                    <div className={styles.periodLesson}>{this.context.t('header_period_lesson', {periodLesson: course.totalPeriod})}</div>
+                  : null
+                }
               </div>
             </div>
           </div>

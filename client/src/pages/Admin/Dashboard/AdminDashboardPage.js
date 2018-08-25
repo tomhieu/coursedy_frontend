@@ -6,14 +6,15 @@ import {AdminComponents, RoleAuthorization,} from '../../../components/index';
 import {AdminContainers} from '../../../containers/'
 import * as sessionActions from '../../../actions/SessionActionCreator'
 import * as WebConstants from '../../../constants/WebConstants.js'
+import {TT} from "../../../utils/locale";
 
 class AdminDashboardPage extends RoleAuthorization {
   componentDidMount() {
-    this.props.hideFooter();
+    this.props.showDashboardHeader();
   }
 
   componentWillUnmount() {
-    this.props.showFooter();
+    this.props.closeDashboardHeader();
   }
   signOut(e) {
     e.preventDefault()
@@ -21,16 +22,27 @@ class AdminDashboardPage extends RoleAuthorization {
   }
 
   render() {
+    const {currentUser, isCollapseDashboard} = this.props;
+    let dashboardMenuClasses = "panel-group dashboard-menu";
+    let dashboardContentClasses = "d-flex flex-column flex-auto dashboard-content";
+    let dashboardFooterClasses = "dashboard-footer d-flex justify-content-center";
+    let leftMenuClasses = ["left-panel"];
+    if (isCollapseDashboard) {
+      dashboardMenuClasses += " collapsed";
+      leftMenuClasses.push("collapsed");
+      dashboardContentClasses += " expanded";
+      dashboardFooterClasses += " expanded";
+    }
     return (
       <div className="dashboard-section full-width-in-container">
         <div className="d-flex flex-row flex-auto">
-          <div className="left-panel" id="sidebar">
-            <div className="panel-group dashboard-menu" id="accordion">
+          <div className={leftMenuClasses.join(" ")} id="sidebar">
+            <div className={dashboardMenuClasses} id="accordion">
               <AdminContainers.DashboardProfileContainer/>
               <AdminComponents.AdminDashboardMenu {...this.props}/>
             </div>
           </div>
-          <div className="d-flex flex-auto dashboard-content">
+          <div className={dashboardContentClasses}>
             <div className="full-width daskboard-container container">
               <switch>
                 <Route exact path="/admin/dashboard/account" 
@@ -53,6 +65,9 @@ class AdminDashboardPage extends RoleAuthorization {
                 />
               </switch>
             </div>
+            <div className={dashboardFooterClasses}>
+              <span className="coursedy-copyright">{TT.t('product_copyright')}</span>
+            </div>
           </div>
         </div>
       </div>
@@ -63,13 +78,14 @@ class AdminDashboardPage extends RoleAuthorization {
 const mapStateToProps = (state) => ({
   currentUser: state.session.currentUser,
   fetchingUser: state.session.fetchingUser,
-  activatedTab: state.DashboardMenu.activatedTab
+  activatedTab: state.DashboardMenu.activatedTab,
+  isCollapseDashboard: state.DashboardMenu.isCollapseDashboard
 })
 
 const mapDispatchToProps = (dispatch) => ({
   signOut: () => dispatch(sessionActions.signOutUser()),
-  showFooter: () => dispatch({ type: WebConstants.SHOW_FOOTER }),
-  hideFooter: () => dispatch({ type: WebConstants.HIDE_FOOTER }),
+  showDashboardHeader: () => dispatch({ type: WebConstants.SHOW_DARKBOARD_HEADER }),
+  closeDashboardHeader: () => dispatch({ type: WebConstants.CLOSE_DARKBOARD_HEADER }),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(AdminDashboardPage)

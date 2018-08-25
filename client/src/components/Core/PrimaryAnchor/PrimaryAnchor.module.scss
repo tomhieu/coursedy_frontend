@@ -1,0 +1,76 @@
+@import '/../../../../styles/global_style.scss';
+
+.anchor {
+  height: $height-button;
+  display: block;
+  line-height: $height-button;
+  text-align: center;
+  min-width: 100px;
+  color: $white-color;
+  font-weight: 600;
+  font-size: 14px;
+  transition: width 2s;
+  padding: 0 20px;
+  &.small {
+    height: $height-small-button;
+    padding: 0 17px;
+  }
+  &.round {
+    border-radius: 100px;
+  }
+
+  &.radius {
+    border-radius: 3px;
+  }
+
+  &:disabled {
+    cursor: not-allowed !important;
+  }
+
+
+  &.filled {
+    &.primary {
+      background-color: $color-organe;
+
+      &:hover {
+        border: 1px solid $color-organe;
+        color: $color-organe;
+        background-color: transparent;
+      }
+    }
+
+    &.secondary {
+      background-color: $secondary-color;
+
+      &:hover {
+        border: 1px solid $secondary-color;
+        color: $secondary-color;
+        background-color: transparent;
+      }
+    }
+  }
+
+  &.line {
+    &.primary {
+      border: 1px solid $color-organe;
+      color: $color-organe;
+      background-color: transparent;
+
+      &:hover {
+        background-color: $color-orange;
+        color: $white-color;
+      }
+    }
+
+    &.secondary {
+      border: 1px solid $secondary-color;
+      color: $secondary-color;
+      background-color: transparent;
+
+      &:hover {
+        background-color: $secondary-color;
+        color: $white-color;
+      }
+    }
+  }
+}

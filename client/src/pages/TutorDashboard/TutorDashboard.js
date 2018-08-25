@@ -3,9 +3,7 @@ import cssModules from 'react-css-modules';
 import styles from './TutorDashboard.module.scss';
 import {Route} from 'react-router-dom'
 import {RoleAuthorization, TutorDashboardMenu} from '../../components/index';
-import {
-  TutorContainers
-} from '../../containers/'
+import {TutorContainers} from '../../containers/'
 import CourseFormContainer from '../../containers/Courses/CourseForm/CourseFormContainer';
 import TutorProfileDetailsContainer from '../../containers/Tutor/Profile/TutorProfileDetailsContainer';
 import {connect} from 'react-redux';
@@ -20,39 +18,47 @@ import {UserRole} from "constants/UserRole";
 import PrivateRoute from "containers/PrivateRoute/PrivateRoute";
 import {SecurityUtils} from "utils/SecurityUtils";
 import StudentDashboardMenu from "../../components/Student/Dashboard/StudentDashboardMenu";
-import StudentDashboardProfile from "../../components/Student/Dashboard/StudentDashboardProfile";
-import StudentCoursesEnrolledContainer from "../../containers/Student/Dashboard/Courses/StudentCoursesEnrolledContainer";
-import StudentCoursesEnrollingContainer from "../../containers/Student/Dashboard/Courses/StudentCoursesEnrollingContainer";
-import StudentCoursesFollowContainer from "../../containers/Student/Dashboard/Courses/StudentCoursesFollowContainer";
+import {TT} from "../../utils/locale";
 
 class TutorDashboard extends RoleAuthorization {
   componentDidMount() {
-    this.props.hideFooter();
+    this.props.showDashboardHeader();
   }
 
   componentWillUnmount() {
-    this.props.showFooter();
+    this.props.closeDashboardHeader();
   }
   render() {
-    const {currentUser} = this.props;
+    const {currentUser, isCollapseDashboard} = this.props;
+    let dashboardMenuClasses = "panel-group dashboard-menu";
+    let dashboardContentClasses = "d-flex flex-column flex-auto dashboard-content";
+    let dashboardFooterClasses = "dashboard-footer d-flex justify-content-center"
+    let leftMenuClasses = [styles.leftPanel];
+    if (isCollapseDashboard) {
+      dashboardMenuClasses += " collapsed";
+      leftMenuClasses.push(styles.collapsed);
+      dashboardContentClasses += " expanded";
+      dashboardFooterClasses += " expanded";
+    }
+
     return (
       <div className="dashboard-section full-width-in-container">
         <div className="d-flex flex-row flex-auto">
-          <div className={styles.leftPanel} id="sidebar">
+          <div className={leftMenuClasses.join(' ')} id="sidebar">
             {
               SecurityUtils.isTeacher(currentUser) ?
-                <div className="panel-group dashboard-menu" id="accordion">
+                <div className={dashboardMenuClasses} id="accordion">
                   <TutorContainers.DashboardProfileContainer/>
                   <TutorDashboardMenu {...this.props} />
                 </div> :
-                <div className="panel-group dashboard-menu" id="accordion">
+                <div className={dashboardMenuClasses} id="accordion">
                   <TutorContainers.DashboardProfileContainer/>
                   <StudentDashboardMenu {...this.props} />
                 </div>
             }
 
           </div>
-          <div className="d-flex flex-auto dashboard-content">
+          <div className={dashboardContentClasses}>
             <div className="full-width daskboard-container container">
               <switch>
                 <Route exact path="/dashboard/profile" component={TutorProfileDetailsContainer}/>
@@ -63,6 +69,9 @@ class TutorDashboard extends RoleAuthorization {
                 <Route exact path="/dashboard/courses/detail/:id" component={CourseFormContainer}/>
                 <PrivateRoute exact path="/dashboard/account" roles={[UserRole.TEACHER]} component={TutorAccount}/>
               </switch>
+            </div>
+            <div className={dashboardFooterClasses}>
+              <span className="coursedy-copyright">{TT.t('product_copyright')}</span>
             </div>
           </div>
         </div>
@@ -76,14 +85,16 @@ const styleComponent = cssModules(TutorDashboard, styles);
 const mapStateToProps = (state) => ({
   currentUser: state.session.currentUser,
   fetchingUser: state.session.fetchingUser,
-  activatedTab: state.DashboardMenu.activatedTab
+  activatedTab: state.DashboardMenu.activatedTab,
+  isCollapseDashboard: state.DashboardMenu.isCollapseDashboard
+
 })
 
 const mapDispatchToProps = (dispatch) => ({
   activateTab: (tabId) => dispatch(dashboardActions.activateTab(tabId)),
   signOut: () => dispatch(sessionActions.signOutUser()),
-  showFooter: () => dispatch({ type: WebConstants.SHOW_FOOTER }),
-  hideFooter: () => dispatch({ type: WebConstants.HIDE_FOOTER }),
+  showDashboardHeader: () => dispatch({ type: WebConstants.SHOW_DARKBOARD_HEADER }),
+  closeDashboardHeader: () => dispatch({ type: WebConstants.CLOSE_DARKBOARD_HEADER }),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(styleComponent)

@@ -23,17 +23,17 @@ class CourseList extends Component {
           <EmptyResultWarning styles={styles.courseListContainer} searchType="search_course" {...this.props}/>
         </div>
       )
-    } else {
-      return (
-        <div className="d-flex flex-auto">
-          {
-            isFetching ? <div></div> : this.props.displayMode === 'grid'
-                ? <CourseListInGridMode {...this.props} />
-                : <CourseListInListMode {...this.props} />
-          }
-        </div>
-      )
     }
+
+    return (
+      <div className="d-flex flex-auto">
+        {
+          isFetching ? <div/> : this.props.displayMode === 'grid'
+              ? <CourseListInGridMode {...this.props} />
+              : <CourseListInListMode {...this.props} />
+        }
+      </div>
+    )
   }
 }
 

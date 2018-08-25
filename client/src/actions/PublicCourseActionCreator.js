@@ -1,8 +1,6 @@
 import * as types from '../constants/Courses'
 import * as asyncActs from "./AsyncActionCreator.js"
-import * as sessionTypes from '../constants/Session'
 import Network from '../utils/network'
-import {globalHistory} from '../utils/globalHistory'
 import {TT} from '../utils/locale'
 import * as PublicCourseConstants from "../constants/PublicCourseConstants"
 
@@ -60,40 +58,16 @@ export const submitFollowCourse = (courses = []) => {
 }
 
 export const submitEnrollCourse = (courseId) => {
-  return dispatch => {
-    Network().post('courses/'+courseId+'/enroll', {}).then((response) => {
-      dispatch({
-        type: types.PUBLIC_COURSE_DETAIL_SUBMIT_ENROLL_SUCCESSFULLY,
-        payload: response
-      })
-    }, (errors) => {
-      const error_messages = (errors && errors.constructor == Array && errors.length > 0) ?
-        errors : {errors: [{status_code: 1, message: TT.t('submit_enroll_fail')}]}
-      //FIXME: Comment for dummy data
-      // dispatch({
-      //   type: asyncActs.PUBLIC_COURSE_DETAIL_SUBMIT_ENROLL_FAILL,
-      //   payload: {errors: error_messages}
-      // })
-
-      //FIXME: Remove me
-      dispatch({
-        type: types.PUBLIC_COURSE_DETAIL_SUBMIT_ENROLL_FAILL,
-        payload: {errors: [{
-          status_code: 2,
-          message: "Không đủ số dư"
-        }]}
-      })      
-    })
+  return {
+    type: types.PUBLIC_COURSE_DETAIL_SUBMIT_ENROLL,
+    payload: Network().post(`courses/${courseId}/enroll`, {})
   }
 }
 
-export const redirectAfterLogin = (pageForSuccess, pageForFail = '/') => {
-  return dispatch => {
-    globalHistory.push('/login');
-    dispatch({
-      type: sessionTypes.SET_REDIRECT_PAGE,
-      payload: pageForSuccess
-    })
+export const addCourseToCart = (course) => {
+  return {
+    type: types.PUBLIC_COURSE_DETAIL_ADD_COURSE_TO_CART,
+    payload: course
   }
 }
 

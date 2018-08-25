@@ -17,7 +17,7 @@ class TutorWorkExperienceItem extends Component {
           <div style={{fontSize: '16px'}}><b>{workExperience.title}</b></div>
           <div><span className='yellow-color'>{workExperience.company}</span>
             <span> - {workExperience.start_date} - {workExperience.end_date} </span></div>
-          <div>{workExperience.description}</div>
+          <div dangerouslySetInnerHTML={{__html: workExperience.description}} />
         </div>
         <div className='col-sm-2 text-right'>
           <span className='mr-10 inline-edit' onClick={(e) => {this.props.showEditWorkExperienceForm(workExperience.id)}}><i className='fa fa-pencil'></i></span>

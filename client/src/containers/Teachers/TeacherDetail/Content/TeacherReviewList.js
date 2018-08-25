@@ -28,6 +28,7 @@ class TeacherReviewList extends Component {
             <div className="row">
               <div className="col-xs-12 col-sm-12">
                 <Pagination
+                  innerClass="pagination mt-8"
                   activePage={headers.currentPage}
                   itemsCountPerPage={headers.perPage}
                   totalItemsCount={headers.total}
@@ -35,7 +36,6 @@ class TeacherReviewList extends Component {
                   onChange={(pageNumber) => {
                     this.props.handlePageChange(pageNumber, headers.perPage)
                   }}
-                  innerClass="pagination mt-15"
                 />
               </div>
             </div> : null

@@ -91,9 +91,13 @@ class LessonDetailFormContainer extends Component {
                   activated={this.props.activatedField.indexOf("lessonDescId" + sectionUniqueKey) >= 0}
                   fieldId={"lessonDescId" + sectionUniqueKey}
                   fieldLabel={this.context.t("lesson_desc")}
-                  isMandatoryField={true} formControlName="description" typeField="custom_textarea"
+                  isMandatoryField={true}
+                  formControlName="description"
+                  typeField="rich_text_editor"
+                  customClassName="quill-form-control"
                   onClosedField={this.onClosedField.bind(this)}
-                  content={lesson.description} displayStyle="default-field" {...this.props}
+                  content={lesson.description}
+                  displayStyle="default-field" {...this.props}
                 ></InlineEditFormField>
               </div>
             </div>

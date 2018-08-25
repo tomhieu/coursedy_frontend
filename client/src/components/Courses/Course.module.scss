@@ -89,7 +89,7 @@
 }
 
 .textTotalResult {
-  margin: 3px 15px;
+  margin: 3px 15px 3px 0;
 }
 
 .checkAllBtn {
@@ -180,10 +180,6 @@
 .filterTeachContainer {
   position: relative;
   flex: 7;
-}
-
-.courseGridTitleContainer {
-  height: 30px;
 }
 
 .courseItemPrice {

@@ -37,7 +37,7 @@ class TutorDetail extends Component {
               <label className='control-label'>{this.context.t("account.tutor.edu.description")}</label>
             </div>
             <div className='col-sm-8'>
-              <span>{tutor.description}</span>
+              <span dangerouslySetInnerHTML={{__html: tutor.description}} />
             </div>
           </div>
           <hr/>

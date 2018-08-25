@@ -3,25 +3,26 @@ import {NavbarToggler, NavLink} from 'react-bootstrap'
 import cssModules from 'react-css-modules';
 import styles from './Header.module.scss';
 import {LinkContainer} from 'react-router-bootstrap'
-import {SecurityUtils} from "utils/SecurityUtils";
-import {TRIGGER_STICKY_HEADER_AT} from "constants/Layout";
-import PrimaryButton from "../Core/PrimaryButton/PrimaryButton";
-import {globalHistory} from '../../utils/globalHistory'
 import Notification from "./Notification";
 import UserNavigation from "./UserNavigation";
 import LangNavigation from "./LangNavigation";
+import {Link} from 'react-router-dom'
+import {connect} from "react-redux";
+import PrimaryButton from "../../../components/Core/PrimaryButton/PrimaryButton";
+import {globalHistory} from "utils/globalHistory";
+import * as sessionActions from "../../../actions/SessionActionCreator";
+import {TRIGGER_STICKY_HEADER_AT} from "../../../constants/Layout";
+import {SecurityUtils} from "../../../utils/SecurityUtils";
+import DetailsIcon from "../../../components/Core/Icons/DetailsIcon";
+import {COLLAPSE_DARKBOARD} from "../../../constants/WebConstants";
+import MoreVertIcon from "../../../components/Core/Icons/MoreVertIcon";
+import CoursedyLogo from "../../../components/Core/Icons/CoursedyLogo";
+import CoursedyShortIcon from "../../../components/Core/Icons/CoursedyShortIcon";
 
 class Header extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      normalNotification: !props.main.darkHeader
-    }
     this.onScroll = this.handleScroll.bind(this);
-  }
-
-  componentWillReceiveProps(nextProps) {
-    this.setState({normalNotification: !nextProps.main.darkHeader});
   }
 
   componentWillMount() {
@@ -43,10 +44,8 @@ class Header extends Component {
     const top = window.pageYOffset || document.documentElement.scrollTop
     if (triggerPosition < top) {
       this.header.classList.add('navbar-sticky', 'fixed-top')
-      this.setState({normalNotification: true})
     } else {
       this.header.classList.remove('navbar-sticky', 'fixed-top')
-      this.setState({normalNotification: !this.props.main.darkHeader})
     }
   }
 
@@ -55,21 +54,36 @@ class Header extends Component {
   }
 
   isAuthenticated() {
-    return this.props.session.currentUser !== null || SecurityUtils.isAuthenticated();
+    return this.props.session.currentUser !== null
   }
 
   render() {
-    const showDarkHeader = this.props.main.darkHeader;
-    const {customHeaderClass} = this.props.main;
+    const {customHeaderClass, darkHeader, dashboardHeader} = this.props.main;
+    const {isCollapseDashboard} = this.props;
     return (
       <nav
-        className={`header-nav navbar navbar-expand-lg navbar-light navbar-default ${customHeaderClass} ` + (showDarkHeader ? "dark-header" : "bg-light")}
+        className={`header-nav navbar navbar-expand-lg navbar-light navbar-default ${customHeaderClass} ` + (darkHeader ? "dark-header" : "bg-light")}
         ref={el => this.header = el}>
         <div className="container">
-          <a className="navbar-brand" href="#"><img src="/coursedy-logo-2.png" className="logo" alt="logo"/></a>
+          {
+            dashboardHeader ?
+              <div className={isCollapseDashboard ? "dashboard-logo collapsed" : "dashboard-logo"}>
+                <div className="d-flex flex-row align-items-center full-height">
+                  {
+                    isCollapseDashboard ? <Link className="logo-image" to="/"><CoursedyShortIcon width={30} height={30} fillColor="#FFFFFF"/></Link>
+                      : <Link className="logo-image" to="/"><CoursedyLogo width={150} height={30} fillColor="#FFFFFF"/></Link>
+                  }
+                  <a className="collapse-dashboard-icon" onClick={this.props.collapseDashboard.bind(this)}>
+                    <DetailsIcon fillColor="#444444"/>
+                  </a>
+                </div>
+              </div> :
+              <Link className="navbar-brand" to="/"><CoursedyLogo width={150} height={30} fillColor={darkHeader ? "#FFFFFF" : "#1CABA0"}/></Link>
+          }
+
           <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
                   aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span className="navbar-toggler-icon"></span>
+            <MoreVertIcon/>
           </button>
           <div className="collapse navbar-collapse justify-content-right" id="navbarNav">
             <ul className="navbar-nav">
@@ -94,7 +108,7 @@ class Header extends Component {
               {
                 this.isAuthenticated() ? (
                   <li className="nav-item">
-                    <Notification whiteIcon={!this.state.normalNotification}
+                    <Notification main={this.props.main}
                                   session={this.props.session}></Notification>
                   </li>
                 ) : null
@@ -102,7 +116,7 @@ class Header extends Component {
               {
                 this.isAuthenticated() ? (
                   <li className="nav-item">
-                    <UserNavigation session={this.props.session} signOut={this.props.signOut}></UserNavigation>
+                    <UserNavigation session={this.props.session} lang={this.props.lang} signOut={this.props.signOut}></UserNavigation>
                   </li>
                 ) : (
                   <li className="nav-item">
@@ -132,4 +146,21 @@ Header.propTypes = {
   session: PropTypes.object.isRequired,
 };
 
-export default cssModules(Header, styles);
+const mapStateToProps = (state) => {
+  const {main, session, DashboardMenu} = state;
+  const {isCollapseDashboard} = DashboardMenu;
+  return {main, session, lang: state.i18nState.lang, isCollapseDashboard };
+}
+
+const mapDispatchToProps = (dispatch) => ({
+  fetchUser: () => dispatch(sessionActions.fetchCurrentUser()).then((user) => {
+    dispatch(sessionActions.fetchActiveCourses(user.value));
+  }),
+  signOut: () => dispatch(sessionActions.signOutUser()),
+  collapseDashboard: () => dispatch({
+    type: COLLAPSE_DARKBOARD
+  })
+})
+export default connect(
+  mapStateToProps, mapDispatchToProps
+)(cssModules(Header, styles));

@@ -27,19 +27,30 @@ class CommentFormContainer extends Component {
   }
 
   redirectToLogin() {
-    this.props.redirectToLogin(this.props.course.id);
+    const courseId = this.props.course.id || this.props.match.params.id
+    this.props.history.push({
+      pathname: '/login',
+      search: `?next=/courses/${courseId}#comment-form-section`
+    })
   }
 
   render() {
-    const {handleSubmit, valid} = this.props;
+    const { handleSubmit, pristine, submitting } = this.props;
     return (
       <div className="course-detail-comment-form" id="comment-form-section">
         <form onSubmit={handleSubmit(this.submitComment.bind(this))} className='inline-form ml-0 mr-0'>
           <FormField fieldId={'course_comment_content'} formGroupId={'content'} formLabel={this.context.t('course_comment_content')}
                    placeholder={this.context.t('course_comment_content')} isMandatoryField={true}
                    formControlName={'content'} typeField={'custom_textarea'}></FormField>
-          <PrimaryButton type="submit" customClasses="save-comment" line={false} disabled={!valid} title={this.context.t('save')}>
-          </PrimaryButton>
+          <div className="d-flex justify-content-right">
+            <PrimaryButton
+              type="submit"
+              line={false}
+              customClasses="btn"
+              title={this.context.t("send_comment")}
+              disabled={pristine || submitting}
+            />
+          </div>
         </form>
       </div>
     )
@@ -73,8 +84,7 @@ const mapDispatchToProps = (dispatch) => ({
     }, (err) => {
       dispatch(openConfirmationPopup(TT.t('course_submit_comment_status'), TT.t('course_submit_comment_fail')))
     });
-  },
-  redirectToLogin: (courseId) => dispatch(Actions.redirectAfterLogin('course/'+ courseId +'#comment-section'))
+  }
 });
 
 

@@ -4,7 +4,7 @@ import LoadingMask from 'components/LoadingMask/LoadingMask'
 
 
 const ForgotPassword = (props) => (
-  <div className="mt-20">
+  <div className="mt-40">
     <div className='mb-50'>
       <LoadingMask placeholderId="forgotPasswordPlaceholder">
         <ForgotPasswordFormContainer {...props} />

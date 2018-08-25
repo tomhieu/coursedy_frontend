@@ -3,11 +3,21 @@ import FormField from "../../Core/FormField";
 import * as React from "react";
 import {TutorAccountConstants} from '../../../constants/index'
 import PrimaryButton from "../../Core/PrimaryButton/PrimaryButton";
+import {CURRENCIES} from "../../../constants/Courses";
+import {countries} from "../../../constants/Countries";
 
 export class PersonalInfoForm extends Component {
 
   render() {
     const {handleSubmit} = this.props;
+    const concurrencies = CURRENCIES.map((type) => {
+      return {text: type, id: type};
+    });
+
+    const countryList = countries.map(country => ({
+      id: country.code,
+      text: country.name
+    }))
     let self = this;
 
     return (
@@ -41,6 +51,18 @@ export class PersonalInfoForm extends Component {
           <FormField fieldId="addressId" fieldLabel={this.context.t("account.person.info.address")}
                      placeholder={this.context.t("account.person.info.address")}
                      formControlName="address" typeField="custom_input"/>
+        </div>
+        <div>
+          <FormField fieldId="countryId" fieldLabel={this.context.t("account.person.info.country")}
+                     placeholder={this.context.t("account.person.info.country")}
+                     options = {countryList}
+                     formControlName="country" typeField="custom_select"/>
+        </div>
+        <div>
+          <FormField fieldId="addressId" fieldLabel={this.context.t("account.person.info.currency")}
+                     placeholder={this.context.t("account.person.info.currency")}
+                     options = {concurrencies}
+                     formControlName="currency" typeField="custom_select"/>
         </div>
         <div className='form-group'>
           <PrimaryButton isPrimary={true} line={false}

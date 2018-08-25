@@ -23,24 +23,37 @@ class CourseDetailTutor extends Component {
         <div className="teacher-item-list-02-wrapper">
           <div className="teacher-item-list-02 clearfix">
             <div className="row gap-20">
-              <div className="col-xs-12 col-sm-3 col-md-2">
+              <div className="col-xs-12 col-md-6 col-lg-4 col-xl-3">
                 <div className="image">
                   <Link to={course.user ? `/teachers/${course.user.id}` : '#'}>
                     <img src={ course.user && course.user.avatar ? course.user.avatar : "http://placehold.it/100x100"} alt="Image" />
                   </Link>
                 </div>
                 <div className="clear"></div>
-                
-                <ul className="user-action">
-                  <li><a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Facebook"><i className="fa fa-facebook"></i></a></li>
-                  <li><a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Twitter"><i className="fa fa-twitter"></i></a></li>
-                  <li><a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Pinterest"><i className="fa fa-pinterest"></i></a></li>
-                  <li><a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Google Plus"><i className="fa fa-google-plus"></i></a></li>
-                </ul>
-                    
+
+                {course_tutor && (course_tutor.twitter || course_tutor.linkedIn) ?
+                  <div className="social mt-10">
+                  {course_tutor.twitter ?
+                    <a href={course_tutor.twitter}
+                       className="twitter"
+                       data-toggle="tooltip" data-placement="top"
+                       title="" data-original-title="Twitter"
+                    >
+                      <i className="fa fa-twitter"></i>
+                    </a> : null}
+                  {course_tutor.linkedIn ?
+                    <a href={course_tutor.linkedIn}
+                       className="linked"
+                       data-toggle="tooltip" data-placement="top"
+                       title=""
+                       data-original-title="LinkedIn"
+                    >
+                      <i className="fa fa-linkedin"></i>
+                    </a> : null}
+                </div> : null}
               </div>
               
-              <div className="col-xs-12 col-sm-9 col-md-10">
+              <div className="col-xs-12 col-md-6 col-lg-8 col-xl-9">
                 <div className="content">
                   <h3>
                     <span>{course.user ? course.user.name : this.context.t('unknown')}</span>
@@ -48,12 +61,10 @@ class CourseDetailTutor extends Component {
                   <p className="labeling">
                     { course_tutor ? this.buildTeacherTitle(course_tutor) : this.context.t('unknown') }
                   </p>
-                  <p className="short-info">
-                    {
-                      course_tutor && course_tutor.description 
-                        ? course_tutor.description : this.context.t('unknown')
-                    }
-                  </p>
+                  {
+                    course_tutor && course_tutor.description ?
+                      <p className="short-info" dangerouslySetInnerHTML={{__html: course_tutor.description}} /> : <p>{this.context.t('unknown')}</p>
+                  }
                   <PrimaryButton callback={() => {globalHistory.push(`/teachers/${course.user.id}`)}}
                                  title={this.context.t('read_more')} isSmallButton={true} isPrimary={true} >
                   </PrimaryButton>

@@ -28,7 +28,7 @@ class SelectionTeachingDayEditMode extends Component {
                     </FormField>
                 </div>
                 <div className="col-sm-12 col-md-12">
-                    <FormField fieldId="is_same_period_id"
+                    <FormField fieldId="is_same_period"
                                showLabel={false}
                                fieldLabel={this.context.t("teaching_period_per_day_similar")}
                                formControlName={"is_same_period"}
@@ -44,12 +44,13 @@ class SelectionTeachingDayEditMode extends Component {
                                         <div className="d-flex flex-vertical">
                                             <span>{day.text}</span>
                                             <div>
-                                                <FormField editMode={editable} fieldId={day.name + "_start_time_id"}
+                                                <FormField editMode={editable} fieldId={day.name + "_start_time"}
                                                            fieldLabel={this.context.t("start_time")}
                                                            isMandatory={true}
                                                            formControlName={day.name + "_start_time"}
                                                            typeField="custom_select"
                                                            options={HOURS_IN_DAY}
+                                                           customClassName="time-picker-field"
                                                            {...this.props}>
                                                 </FormField>
                                             </div>
@@ -57,11 +58,12 @@ class SelectionTeachingDayEditMode extends Component {
                                                 editable ? TT.t('to') : null
                                             }
                                             <div>
-                                                <FormField editMode={editable} fieldId={day.name + "_end_time_id"}
+                                                <FormField editMode={editable} fieldId={day.name + "_end_time"}
                                                            fieldLabel={this.context.t("end_time")}
                                                            isMandatory={true}
                                                            formControlName={day.name + "_end_time"}
                                                            typeField="custom_select"
+                                                           customClassName="time-picker-field"
                                                            options={HOURS_IN_DAY}
                                                            {...this.props}>
                                                 </FormField>
@@ -72,11 +74,12 @@ class SelectionTeachingDayEditMode extends Component {
                                 <div className={styles.timePickerBox + " d-flex"}>
                                     <div className="d-flex flex-vertical">
                                         <div>
-                                            <FormField editMode={editable} fieldId="start_time_id"
+                                            <FormField editMode={editable} fieldId="start_time"
                                                        fieldLabel={this.context.t("start_time")}
                                                        isMandatory={true}
-                                                       formControlName="start_time_id"
+                                                       formControlName="start_time"
                                                        typeField="custom_select"
+                                                       customClassName="time-picker-field"
                                                        options={HOURS_IN_DAY}
                                                        {...this.props}>
                                             </FormField>
@@ -85,11 +88,12 @@ class SelectionTeachingDayEditMode extends Component {
                                             editable ? TT.t('to') : null
                                         }
                                         <div>
-                                            <FormField editMode={editable} fieldId="end_time_id"
+                                            <FormField editMode={editable} fieldId="end_time"
                                                        fieldLabel={this.context.t("end_time")}
                                                        isMandatory={true}
-                                                       formControlName="end_time_id"
+                                                       formControlName="end_time"
                                                        typeField="custom_select"
+                                                       customClassName="time-picker-field"
                                                        options={HOURS_IN_DAY}
                                                        {...this.props}>
                                             </FormField>

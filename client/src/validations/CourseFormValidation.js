@@ -4,6 +4,10 @@ import moment from 'moment'
 export const validate = (values) => {
   const errors = {}
 
+  if (!values) {
+    return errors;
+  }
+
   if (!values.title) {
     errors.title = TT.t('course_title_required')
   }
@@ -54,19 +58,19 @@ export const validate = (values) => {
   }
 
   if (values.is_same_period) {
-    if (!values.start_time_id) {
-      errors.start_time_id = TT.t('teaching_start_time_per_week_madatory')
+    if (!values.start_time) {
+      errors.start_time = TT.t('teaching_start_time_per_week_madatory')
     }
 
-    if (!values.end_time_id) {
-      errors.end_time_id = TT.t('teaching_end_time_per_week_madatory')
+    if (!values.end_time) {
+      errors.end_time = TT.t('teaching_end_time_per_week_madatory')
     }
 
-    if (values.start_time_id && values.end_time_id && values.start_time_id > values.end_time_id) {
-      errors.start_time_id = TT.t('start_time_error');
-      errors.end_time_id = TT.t('end_time_error');
+    if (values.start_time && values.end_time && values.start_time > values.end_time) {
+      errors.start_time = TT.t('start_time_error');
+      errors.end_time = TT.t('end_time_error');
     }
-  } else {
+  } else if (Array.isArray(values.course_days) && values.course_days.length > 0) {
     values.course_days.map(day => {
       const day_key = day.split('_')[0];
       if (!values[day_key + '_start_time']) {

@@ -4,12 +4,10 @@ import LoadingMask from 'components/LoadingMask/LoadingMask'
 
 
 const EditPasswordPage = (props) => (
-  <div className="mt-20">
-    <div className='mb-50'>
-      <LoadingMask placeholderId="editPasswordPlaceholder">
-        <EditPasswordFormContainer {...props} />
-      </LoadingMask>
-    </div>
+  <div className="mt-50 mb-50">
+    <LoadingMask placeholderId="editPasswordPlaceholder">
+      <EditPasswordFormContainer {...props} />
+    </LoadingMask>
   </div>
 );
 

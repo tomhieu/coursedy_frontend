@@ -16,26 +16,29 @@
   margin-bottom: 20px;
 }
 
+.content {
+  position: relative;
+}
 
 .courseListItem .content .contentInner {
   background: $white-color;
   padding: 5px 10px;
   padding-right: 0;
-  -webkit-box-shadow: 0px 0px 5px 0px $color-light-box-shadow;
-  -moz-box-shadow: 0px 0px 5px 0px $color-light-box-shadow;
-  box-shadow: 0px 0px 5px 0px $color-light-box-shadow;
+  -webkit-box-shadow: 0 0 5px 0 $color-light-box-shadow;
+  -moz-box-shadow: 0 0 5px 0 $color-light-box-shadow;
+  box-shadow: 0 0 5px 0 $color-light-box-shadow;
   margin-right: -20px;
 }
 
 .courseListItem .courseInstructor .image {
   width: 44px;
   height: 44px;
-  border: 2px solid #FFF;
+  border: 2px solid $white-background;
   border-radius: 50%;
   margin-right: 5px;
-  -webkit-box-shadow: 0px 0px 3px 0px $color-box-shadow;
-  -moz-box-shadow: 0px 0px 3px 0px $color-box-shadow;
-  box-shadow: 0px 0px 3px 0px $color-box-shadow;
+  -webkit-box-shadow: 0 0 3px 0 $color-box-shadow;
+  -moz-box-shadow: 0 0 3px 0 $color-box-shadow;
+  box-shadow: 0 0 3px 0 $color-box-shadow;
   display: inline-block;
   vertical-align: middle;
 }
@@ -52,9 +55,29 @@
   margin: 15px 0;
 }
 
+.courseDesViewMore {
+  height: auto;
+}
+
+.courseDesViewLess {
+  height: 80px;
+  overflow: hidden;
+}
+
+.courseDesViewMoreBtn {
+  background: linear-gradient(hsla(0,0%,100%,0),hsla(0,0%,100%,.95), $white-background);
+  bottom: 30px;
+  color: $color-blue-dark;
+  display: block;
+  padding-top: 30px;
+  position: absolute;
+  width: 100%;
+}
+
+
 .courseListItem:hover {
   cursor: pointer;
-  box-shadow: 0px 0px 12px -1px rgba(0, 0, 0, 0.29);
+  box-shadow: 0 0 12px -1px rgba(0, 0, 0, 0.29);
 }
 
 .ratingWrapper {
@@ -69,7 +92,7 @@
 
 .courseListItem .price {
   background: $md-color-pink;
-  color: #FFF;
+  color: $white-background;
   float: right;
   margin-top: 10px;
   margin-right: -10px;
@@ -118,8 +141,8 @@
     display: inline-block;
     position: absolute;
     overflow: hidden;
-    left: 0px;
-    right: 0px;
+    left: 0;
+    right: 0;
     width: auto;
   }
 }

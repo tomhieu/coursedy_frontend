@@ -1,7 +1,7 @@
 @import "../../../../styles/global_style.scss";
-.content-wrapper {
-  background-color: #fff;
-  padding: $box-gap;
+.course-summary {
+  width: 100%;
+  padding: $box-gap 0;
   .section-title:after {
     content: '';
   }

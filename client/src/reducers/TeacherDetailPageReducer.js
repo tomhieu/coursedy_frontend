@@ -1,5 +1,5 @@
 import * as asyncActs from 'actions/AsyncActionCreator';
-
+import { TT } from '../utils/locale'
 
 const TeacherDetail = (state = {
   isFetching: false,
@@ -15,9 +15,21 @@ const TeacherDetail = (state = {
     case asyncActs.FETCH_TEACHER_DETAIL + asyncActs.PENDING:
       return {...state, isFetching: true, error: null}
     case asyncActs.FETCH_TEACHER_DETAIL + asyncActs.FULFILLED:
-      return {...state, ...action.payload, error: null, isFetching: false}
+      const {
+        twitter=TT.t('twitter_link'),
+        linkedIn=TT.t('linkedIn_link'),
+        facebook=TT.t('facebook_link'),
+        country=TT.t('default_country'),
+        short_experience=TT.t('short_experience')
+      } = action.payload
+      return {
+        ...state, ...action.payload,
+        twitter, linkedIn, facebook,
+        country, short_experience,
+        error: null, isFetching: false
+      }
     case asyncActs.FETCH_TEACHER_DETAIL + asyncActs.REJECTED:
-      return {...state, error: action.error, isFetching: false}
+      return {...state, error: action.payload, isFetching: false}
 
     case asyncActs.FETCH_TEACHER_EDUCATIONS + asyncActs.FULFILLED:
       return {...state, educations: action.payload}

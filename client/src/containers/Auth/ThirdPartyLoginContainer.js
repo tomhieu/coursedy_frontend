@@ -32,11 +32,11 @@ class ThirdPartyLoginContainer extends Component {
   }
 
   handleLogin({role}) {
-    if (this.props.google.tokenId) {
+    if (this.props.google && this.props.google.tokenId) {
       let {tokenId} = this.props.google
       this.props.loginGoogle(tokenId, role)
-    } else if (this.props.facebook.accessToken) {
-      let {accessToken, id} = this.pros.facebook
+    } else if (this.props.facebook && this.props.facebook.accessToken) {
+      let {accessToken, id} = this.props.facebook
       this.props.loginFacebook(accessToken, id, role)
     } else {
       this.props.setErrors(TT.t('third_pary_login_error'))
@@ -63,7 +63,7 @@ class ThirdPartyLoginContainer extends Component {
           <div className='error alert alert-danger mb-15'> {this.props.errors[0]} </div>) : null}
         <FacebookLogin
           appId="1054559741372976"
-          autoLoad={true}
+          autoLoad={false}
           fields="name,email,picture"
           callback={this.handleFacebookResponse.bind(this)}
           icon="fa-facebook-square"
@@ -72,7 +72,7 @@ class ThirdPartyLoginContainer extends Component {
         />
 
         <GoogleLogin
-          clientId="864253356921-6pdh77qqvaf5nn7kip6mbf8ptevoov90.apps.googleusercontent.com"
+          clientId="710028753575-ipk46hg778tqetbtohdft9trv9eup3eh.apps.googleusercontent.com"
           buttonText={this.context.t('login_with_google')}
           onSuccess={this.handleGoogleResponse.bind(this)}
           onFailure={this.handleGoogleResponse.bind(this)}

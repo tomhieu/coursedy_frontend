@@ -4,8 +4,8 @@ import {Field} from "redux-form";
 import {
   renderCheckBoxField,
   renderRadioField,
-  renderDatePicker, renderField, renderMultiSelect, renderSelect, renderSingleFileInput,
-  renderTextAreaField,
+  renderDatePicker, renderField, renderMultiSelect,
+  renderSelect, renderSingleFileInput, renderTextAreaField, renderRichTextEditor, renderCurrencyField
 } from "./CustomComponents";
 import styles from "./FormField.module.scss";
 import cssModules from "react-css-modules";
@@ -20,7 +20,7 @@ class FormField extends Component {
     const {
       formControlName, fieldLabel, showLabel = true, placeholder, isMandatoryField = false,
       typeField, type, zoneHeight = "auto", internalPreview = false, previewUrl, onUpload, rows, options,
-      selectedValues, customClassName = "form-control", checked, chosenValue, onCheck, toggled, onToggle, onFileRemoved
+      selectedValues, customClassName, checked, chosenValue, onCheck, toggled, onToggle, onFileRemoved
     } = this.props;
 
     let fieldComponent = this.buildFieldRender(formControlName, placeholder, typeField, type,
@@ -31,7 +31,7 @@ class FormField extends Component {
           showLabel && fieldLabel !== undefined && fieldLabel !== '' ? (
             <ControlLabel> {fieldLabel} {isMandatoryField && <span className="red">*</span>} </ControlLabel>) : ''
         }
-        <div className="dark-picker dark-picker-bright">
+        <div className={"dark-picker dark-picker-bright " + customClassName}>
           {fieldComponent}
         </div>
       </FormGroup>
@@ -40,6 +40,7 @@ class FormField extends Component {
 
   buildFieldRender(formControlName, placeholder, typeField, type, zoneHeight, internalPreview, previewUrl, onUpload, rows, options, selectedValues, customClassName, checked, chosenValue, onCheck, toggled, onToggle, onFileRemoved) {
     let fieldComponent;
+    let fieldClasses = 'form-control';
 
     switch (typeField) {
       case "hidden": {
@@ -50,7 +51,7 @@ class FormField extends Component {
         fieldComponent = <Field name={formControlName} placeholder={placeholder}
                                 type={type} disabled={this.props.disabled}
                                 component={renderField} onChange={this.props.onChange}
-                                customClassName={customClassName}/>;
+                                customClassName={fieldClasses}/>;
         break;
       }
       case "radio": {
@@ -66,17 +67,17 @@ class FormField extends Component {
                                 type="checkbox" disabled={this.props.disabled}
                                 label={this.props.fieldLabel}
                                 component={renderCheckBoxField} onChange={this.props.onChange}
-                                customClassName={customClassName}/>;
+                                customClassName={fieldClasses}/>;
         break;
       }
       case "custom_select": {
         fieldComponent = <Field name={formControlName} placeholder={placeholder} disabled={this.props.disabled}
-                                component={renderSelect(options)} onChange={this.props.onChange} className={customClassName}/>;
+                                component={renderSelect(options)} onChange={this.props.onChange} className={fieldClasses}/>;
         break;
       }
       case "datepicker": {
         fieldComponent = <Field name={formControlName} placeholder={placeholder} component={renderDatePicker}
-                                className={customClassName} disabled={this.props.disabled} />;
+                                className={fieldClasses} disabled={this.props.disabled} />;
         break;
       }
       case "upload_file": {
@@ -97,19 +98,35 @@ class FormField extends Component {
         fieldComponent = <Field name={formControlName} placeholder={placeholder}
                                 disabled={this.props.disabled}
                                 component={renderMultiSelect(options, selectedValues)}
-                                className={customClassName}/>
+                                className={fieldClasses}/>
         break;
       }
       case "custom_textarea": {
         fieldComponent = <Field name={formControlName} placeholder={placeholder}
                                 rows={rows} disabled={this.props.disabled}
-                                component={renderTextAreaField} className={customClassName}/>
+                                component={renderTextAreaField} className={fieldClasses}/>
+        break;
+      }
+      case "rich_text_editor": {
+        fieldComponent = <Field name={formControlName}
+                                placeholder={placeholder}
+                                disabled={this.props.disabled}
+                                component={renderRichTextEditor}
+                                className={customClassName}
+                          />
+        break;
+      }
+      case "currency_input": {
+        fieldComponent = <Field name={formControlName} placeholder={placeholder}
+                                type={type} disabled={this.props.disabled}
+                                component={renderCurrencyField} onChange={this.props.onChange}
+                                customClassName={fieldClasses}/>
         break;
       }
       default: {
         fieldComponent = <Field name={formControlName} placeholder={placeholder}
                                 component={typeField} disabled={this.props.disabled}
-                                className={customClassName}/>;
+                                className={fieldClasses}/>;
       }
     }
     return fieldComponent;
@@ -126,6 +143,7 @@ FormField.propTypes = {
   onChange: React.PropTypes.func,
   onFileRemoved: React.PropTypes.func,
   isMandatoryField: React.PropTypes.bool,
+  customClassName: React.PropTypes.string
 };
 
 export default cssModules(FormField, styles);

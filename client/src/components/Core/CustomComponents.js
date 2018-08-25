@@ -9,14 +9,32 @@ import ObjectUtils from "../../utils/ObjectUtils";
 import Cropper from 'react-cropper'
 import 'cropperjs/dist/cropper.css';
 import { Field } from 'redux-form'
+import ReactQuill from 'react-quill';
 
 export const renderField = ({input, label, placeholder, type = 'text', disabled = false, customClassName, meta: {touched, error, warning}}) => (
   <div className='full-width-input-wrapper'>
     {
-      touched && error ? <input {...input} placeholder={placeholder ? placeholder : ''} type={type} disabled={disabled}
+        touched && error ? <input {...input} placeholder={placeholder ? placeholder : ''} type={type} disabled={disabled}
                                 className={customClassName + ' error'}/> :
         <input {...input} placeholder={placeholder ? placeholder : ''} type={type} disabled={disabled}
                className={customClassName}/>
+    }
+    {touched && ((error && <span className='input-errors'>{error}</span>) || (warning && <span>{warning}</span>))}
+  </div>
+)
+
+export const renderCurrencyField = ({input, label, placeholder, type = 'text', disabled = false, customClassName, meta: {touched, error, warning}}) => (
+  <div className='full-width-input-wrapper'>
+    {
+      touched && error ? <div className="d-flex flex-horizontal currency-field-wrapper error">
+        <input {...input} placeholder={placeholder ? placeholder : ''} type={type} disabled={disabled}
+               className={customClassName}/>
+        <label className="currency-text">VND</label>
+      </div> : <div className="d-flex flex-horizontal currency-field-wrapper">
+        <input {...input} placeholder={placeholder ? placeholder : ''} type={type} disabled={disabled}
+               className={customClassName}/>
+        <label className="currency-text">VND</label>
+      </div>
     }
     {touched && ((error && <span className='input-errors'>{error}</span>) || (warning && <span>{warning}</span>))}
   </div>
@@ -86,9 +104,9 @@ export const renderDatePicker = ({input, label, type, disabled = false, meta: {t
 }
 
 export const renderSelect = (selectOptions) => {
-  return ({input, label, type, disabled = false, meta: {touched, error, warning}}) => (
+  return ({input, label, type, className, disabled = false, meta: {touched, error, warning}}) => (
     <div>
-      <Select2 {...input} disabled={disabled} data={selectOptions}/>
+      <Select2 {...input} className={className} disabled={disabled} data={selectOptions}/>
       {touched && ((error && <span className='input-errors'>{error}</span>) || (warning &&
         <span>{warning}</span>))}
     </div>
@@ -276,4 +294,49 @@ class avatarInput extends renderFileInput {
   }
 }
 
-export const cropImageInput = avatarInput
+export const cropImageInput = avatarInput;
+
+export const renderRichTextEditor = ({input, label, placeholder, type, disabled = false, className, meta: {touched, error, warning}}) => {
+  const modules = {
+    toolbar: [
+      [{ 'header': '1'}, {'header': '2'}],
+      [{size: []}],
+      ['bold', 'italic', 'underline', 'strike', 'blockquote'],
+      [{'list': 'ordered'}, {'list': 'bullet'},
+        {'indent': '-1'}, {'indent': '+1'}],
+    ],
+    clipboard: {
+      // toggle to add extra line breaks when pasting HTML:
+      matchVisual: false
+    }
+  };
+
+  const formats = [
+    'header', 'size',
+    'bold', 'italic', 'underline', 'strike', 'blockquote',
+    'list', 'bullet', 'indent'
+  ];
+
+  return (
+    <div className='full-width-input-wrapper'>
+      {
+        <ReactQuill {...input}
+                    modules={modules}
+                    formats={formats}
+                    placeholder={placeholder ? placeholder : ''}
+                    type={type} disabled={disabled}
+                    className={`${className}${touched && error ? ' error' : ''}`}
+                    onChange={(newValue, delta, source, quill) => {
+                      if (source === 'user') {
+                        input.onChange(newValue);
+                      }
+                    }}
+                    onBlur={(range, source, quill) => {
+                      input.onBlur(quill.getHTML());
+                    }}
+        />
+      }
+      {touched && ((error && <span className='input-errors'>{error}</span>) || (warning && <span>{warning}</span>))}
+    </div>
+  )
+}

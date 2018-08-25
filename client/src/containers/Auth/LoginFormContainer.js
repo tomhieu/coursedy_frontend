@@ -6,11 +6,13 @@ import {connect} from 'react-redux';
 import {reduxForm} from 'redux-form';
 import {asyncValidate, validate} from 'validations/SignInFormValidation';
 import {loginUser} from "actions/SessionActionCreator";
+import { getQueryParam } from 'utils/network'
 import ThirdPartyLoginContainer from './ThirdPartyLoginContainer';
 
 class LoginFormContainer extends Component {
   loginUser({email, password}) {
-    this.props.login(email, password);
+    const nextUrl = getQueryParam('next', this.props.location.search) + this.props.location.hash
+    this.props.login(email, password, nextUrl);
   }
 
   render() {
@@ -35,12 +37,11 @@ LoginFormContainer.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  LoginComponent: state.LoginComponent,
-  redirectPage: state.session.redirectPage
+  LoginComponent: state.LoginComponent
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  login: (email, password) => dispatch(loginUser(email,  password))
+  login: (email, password, nextUrl) => dispatch(loginUser(email,  password, nextUrl))
 })
 
 const StyledComponent = cssModules(LoginFormContainer, styles);

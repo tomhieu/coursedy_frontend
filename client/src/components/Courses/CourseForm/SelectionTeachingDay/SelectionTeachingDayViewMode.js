@@ -10,10 +10,11 @@ import FormField from "../../../Core/FormField";
 class SelectionTeachingDayViewMode extends Component {
   render() {
     const {editable, courseData, isSamePeriod, selectedDays} = this.props;
+    console.log('number of selected days: ' + selectedDays.length);
     return (
       <div className="row">
         <div className='col-sm col-md'>
-          <CourseFormItem editMode={editable} fieldId="course_days_id"
+          <CourseFormItem editMode={editable} fieldId="course_days"
                           fieldLabel={this.context.t("date_in_week_course")}
                           placeholder={this.context.t("teaching_period_per_day")}
                           isMandatory={true}
@@ -29,7 +30,7 @@ class SelectionTeachingDayViewMode extends Component {
         {
           !editable ?
             <div className="col-sm-12 col-md-12">
-              <FormField fieldId="is_same_period_id"
+              <FormField fieldId="is_same_period"
                          showLabel={false}
                          fieldLabel={this.context.t("teaching_period_per_day_similar")}
                          formControlName={"is_same_period"}
@@ -46,7 +47,7 @@ class SelectionTeachingDayViewMode extends Component {
                     <div className="d-flex flex-vertical">
                       <span>{day.text}</span>
                       <div>
-                        <CourseFormItem editMode={editable} fieldId={day.name + "_start_time_id"}
+                        <CourseFormItem editMode={editable} fieldId={day.name + "_start_time"}
                                         fieldLabel={this.context.t("start_time")}
                                         isMandatory={true}
                                         fieldName={day.name + "_start_time"}
@@ -60,7 +61,7 @@ class SelectionTeachingDayViewMode extends Component {
                         editable ? TT.t('to') : null
                       }
                       <div>
-                        <CourseFormItem editMode={editable} fieldId={day.name + "_end_time_id"}
+                        <CourseFormItem editMode={editable} fieldId={day.name + "_end_time"}
                                         fieldLabel={this.context.t("end_time")}
                                         isMandatory={true}
                                         fieldName={day.name + "_end_time"}
@@ -76,10 +77,10 @@ class SelectionTeachingDayViewMode extends Component {
                 <div className={styles.timePickerBox + " d-flex"}>
                   <div className="d-flex flex-vertical">
                     <div>
-                      <CourseFormItem editMode={editable} fieldId="start_time_id"
+                      <CourseFormItem editMode={editable} fieldId="start_time"
                                       fieldLabel={this.context.t("start_time")}
                                       isMandatory={true}
-                                      fieldName="start_time_id"
+                                      fieldName="start_time"
                                       typeField="custom_select"
                                       options={HOURS_IN_DAY}
                                       content={editable ? DateUtils.retrieveStartTimeOfDay(courseData.course_days, null) : ""}
@@ -90,10 +91,10 @@ class SelectionTeachingDayViewMode extends Component {
                       editable ? TT.t('to') : null
                     }
                     <div>
-                      <CourseFormItem editMode={editable} fieldId="end_time_id"
+                      <CourseFormItem editMode={editable} fieldId="end_time"
                                       fieldLabel={this.context.t("end_time")}
                                       isMandatory={true}
-                                      fieldName="end_time_id"
+                                      fieldName="end_time"
                                       typeField="custom_select"
                                       options={HOURS_IN_DAY}
                                       content={editable ? DateUtils.retrieveEndTimeOfDay(courseData.course_days, null) : ""}

@@ -4,6 +4,8 @@ const MainReducer = (state = {
   showFooter: true,
   stetchAuto: true,
   darkHeader: false,
+  dashboardHeader: false,
+  isCollapseDashboard: false,
   customHeaderClass: '',
   showConfirmationPopup: false,
   confirmationTitle: '',
@@ -25,6 +27,10 @@ const MainReducer = (state = {
       return {...state, stetchAuto: false};
     case types.SHOW_DARK_HEADER:
       return {...state, darkHeader: true};
+    case types.SHOW_DARKBOARD_HEADER:
+      return {...state, dashboardHeader: true, showFooter: false};
+    case types.CLOSE_DARKBOARD_HEADER:
+      return {...state, dashboardHeader: false, showFooter: true};
     case types.SHOW_WHITE_HEADER:
       return {...state, darkHeader: false};
     case types.OPEN_CONFIRMATION_POPUP:

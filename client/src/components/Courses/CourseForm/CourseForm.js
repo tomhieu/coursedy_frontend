@@ -10,6 +10,13 @@ import CourseCoverImageContainer from "../../../containers/Courses/CourseForm/Co
 
 class CourseForm extends Component {
 
+  static fields = ['title', 'description', 'start_date', 'period',
+    'number_of_students', 'tuition_fee', 'currency', 'is_free', 'course_days', 'is_same_period', 'start_time', 'end_time',
+    'monday_start_time', 'monday_end_time', 'tuesday_start_time', 'tuesday_end_time',
+    'wednesday_start_time', 'wednesday_end_time', 'thursday_start_time', 'thursday_end_time',
+    'friday_start_time', 'friday_end_time', 'saturday_start_time', 'saturday_end_time', 'sunday_start_time', 'sunday_end_time',
+    'cover_image', 'category_id', 'course_specialize'];
+
   constructor() {
     super();
     this.state = {
@@ -67,7 +74,7 @@ class CourseForm extends Component {
           <div className="row">
             <div className="col-md-12 col-sm-12">
               <div className={editMode ? styles.courseLargeTitle + ' course-large-title d-flex align-items-center justify-content-center course-title' : 'creation-course-title'}>
-                <CourseFormItem editMode={editMode} fieldId="titleId"
+                <CourseFormItem editMode={editMode} fieldId="title"
                                 fieldLabel={editMode ? "" : this.context.t("course_title")}
                                 placeholder={this.context.t("sample_course_title")}
                                 isMandatory={true}
@@ -91,7 +98,7 @@ class CourseForm extends Component {
           <div className='row'>
             <div className='col-sm-12 col-md-6'>
               <div >
-                <CourseFormItem editMode={editMode} fieldId="start_date_Id"
+                <CourseFormItem editMode={editMode} fieldId="start_date"
                                 fieldLabel={this.context.t("start_date")}
                                 isMandatory={true}
                                 fieldName="start_date"
@@ -103,7 +110,7 @@ class CourseForm extends Component {
             </div>
             <div className='col-md-6 col-sm-12'>
               <div >
-                <CourseFormItem editMode={editMode} fieldId="period_Id"
+                <CourseFormItem editMode={editMode} fieldId="period"
                                 fieldLabel={this.context.t("period")}
                                 isMandatory={true}
                                 fieldName="period"
@@ -149,13 +156,15 @@ class CourseForm extends Component {
             ) : (<div></div>)
           }
 
-          <CourseFormItem editMode={editMode} fieldId="description_Id"
+          <CourseFormItem editMode={editMode} fieldId="description"
                           fieldLabel={this.context.t("course_description")}
                           isMandatory={true}
                           fieldName="description"
-                          typeField="custom_textarea"
+                          typeField="rich_text_editor"
+                          customClassName="quill-form-control"
                           content={editMode ? courseData.description : ""}
                           disabled={false}
+                          isRichTextField={true}
                           {...this.props}>
           </CourseFormItem>
 

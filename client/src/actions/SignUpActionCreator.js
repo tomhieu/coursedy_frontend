@@ -19,7 +19,7 @@ export const signUpUser =  (email, password, password_confirmation, name, phone_
         payload: response
       })
       dispatch(reset('signUp'));
-    }, (errors) => {
+    }, ({errors}) => {
       dispatch({
         type: types.SIGNUP_FAILED,
         payload: errors.full_messages[0]

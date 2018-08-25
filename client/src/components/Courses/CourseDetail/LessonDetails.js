@@ -24,7 +24,7 @@ class LessonDetails extends Component {
           </div>
         </div>
         <div id={"collapseLesson" + lesson.id} className="collapse" aria-labelledby="headingOne" data-parent="#accordion">
-          <p className={styles.descriptionContent}>{lesson.description}</p>
+          <p className={styles.descriptionContent} dangerouslySetInnerHTML={{__html: lesson.description}}/>
         </div>
       </div>
     )

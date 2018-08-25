@@ -13,7 +13,7 @@ import * as CourseFilterActions from "../../actions/CourseFilterActionCreator";
 
 class SearchFormContainer extends Component {
   componentWillMount() {
-    this.props.showDarkHeader();
+    this.props.showDarkHeader()
   }
   componentWillUnmount() {
     this.props.showWhiteHeader();
@@ -30,7 +30,7 @@ class SearchFormContainer extends Component {
 
   onSelectSuggestion(id) {
     this.props.closeSuggestion();
-    this.context.router.history.push('/course/' + id);
+    this.context.router.history.push('/courses/' + id);
   }
 
   onSearchMoreCourse(searchForm) {

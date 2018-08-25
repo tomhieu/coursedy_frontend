@@ -57,7 +57,7 @@ class CourseDetailContainer extends Component {
 
   getStartTime(course, name_day) {
     let start_time = !course.is_same_period ? Object.getOwnPropertyDescriptor(course, name_day + '_start_time') :
-      Object.getOwnPropertyDescriptor(course, 'start_time_id');
+      Object.getOwnPropertyDescriptor(course, 'start_time');
 
     if (start_time === undefined) {
       // in case update course, load course time from week_day_schedules
@@ -71,7 +71,7 @@ class CourseDetailContainer extends Component {
 
   getEndTime(course, name_day) {
     const end_time = !course.is_same_period ? Object.getOwnPropertyDescriptor(course, name_day + '_end_time') :
-      Object.getOwnPropertyDescriptor(course, 'end_time_id');
+      Object.getOwnPropertyDescriptor(course, 'end_time');
 
     if (end_time === undefined) {
       // in case update course, load course time from week_day_schedules
@@ -182,12 +182,13 @@ const initializeCourseDetail = (courseData) => {
 const mapStateToProps = (state) => {
   const {courseDetails, referenceData, form} = state
   let courseFormValues = form.courseCreationForm && form.courseCreationForm.values ? form.courseCreationForm.values : null
-  const {editMode, editTeachingDay, editCourseCategory, editCourseFee} = courseDetails
+  const {editMode, editTeachingDay, editCourseCategory, editCourseFee, activatedField} = courseDetails
   const {courseCategories} = referenceData
 
   let course_specializes = [];
   let course_levels = [];
   let courseData = null;
+  let selectedDays = [];
 
   if (editMode && courseDetails.courseData != null) {
     courseData = courseDetails.courseData;
@@ -195,10 +196,21 @@ const mapStateToProps = (state) => {
     courseData = courseFormValues;
   }
 
-  const selectedDays = courseFormValues != null && courseFormValues.course_days ?
-    DAYS_IN_WEEK.filter((day) => courseFormValues.course_days.indexOf(day.name + "_" + day.id) >= 0) : []
-  const isSamePeriod = courseFormValues != null ? ObjectUtils.isTrue(courseFormValues.is_same_period) : true
-  const isFree = courseFormValues != null ? ObjectUtils.isTrue(courseFormValues.is_free) : false
+  selectedDays = DAYS_IN_WEEK.filter((day) => {
+    if (courseFormValues != null && courseFormValues.course_days) {
+      return courseFormValues.course_days.indexOf(day.name + "_" + day.id) >= 0;
+    } else if (courseDetails.courseData && courseDetails.courseData.course_days) {
+      return courseDetails.courseData.course_days.findIndex(d => d.day === day.name) >= 0;
+    } else {
+      return false;
+    }
+  });
+
+  const isSamePeriod = courseFormValues != null ? ObjectUtils.isTrue(courseFormValues.is_same_period) :
+    courseData != null ? ObjectUtils.isTrue(courseData.is_same_period) : true;
+
+  const isFree = courseFormValues != null ? ObjectUtils.isTrue(courseFormValues.is_free) :
+    courseData != null ? ObjectUtils.isTrue(courseData.is_free) : false;
 
   if (editMode && courseData != null) {
     const courseCategory = updateCourseCategoryAndSpecialize(courseCategories, courseData);
@@ -219,24 +231,23 @@ const mapStateToProps = (state) => {
 
   const initializedValue = editMode && courseData != null ? initializeCourseDetail(courseData) : {is_same_period: true};
   if (editMode && courseData.is_same_period) {
-    Object.defineProperty(initializedValue, 'start_time_id', {
-      value: courseData.course_days[0].start_time,
-      writable: true
-    });
-    Object.defineProperty(initializedValue, 'end_time_id', {value: courseData.course_days[0].end_time, writable: true});
+    initializedValue.start_time = courseData.course_days[0].start_time;
+    initializedValue.end_time = courseData.course_days[0].end_time;
   } else if (editMode) {
     courseData.course_days.forEach(d => {
       Object.defineProperty(initializedValue, d.day + '_start_time', {value: d.start_time, writable: true});
       Object.defineProperty(initializedValue, d.day + '_end_time', {value: d.end_time, writable: true});
     });
   }
+
+  const hasActiveField = CourseForm.fields.filter(field => activatedField.indexOf(field) >= 0).length > 0;
   return {
     courseData, editMode, isSamePeriod, isFree, selectedDays, editTeachingDay, editCourseCategory, editCourseFee,
     categories: courseCategories,
     cover_image: !courseData ? null : courseData.cover_image,
     courseSpecializes: course_specializes,
     course_levels: course_levels,
-    initialValues: initializedValue
+    initialValues: hasActiveField ? initializedValue : {}
   }
 }
 
@@ -262,12 +273,7 @@ export default connect(
   mapStateToProps, mapDispatchToProps
 )(reduxForm({
   form: 'courseCreationForm',
-  fields: ['title', 'description', 'start_date', 'period',
-    'number_of_students', 'tuition_fee', 'currency', 'is_free', 'course_days', 'is_same_period', 'start_time', 'end_time',
-    'monday_start_time', 'monday_end_time', 'tuesday_start_time', 'tuesday_end_time',
-    'wednesday_start_time', 'wednesday_end_time', 'thursday_start_time', 'thursday_end_time',
-    'friday_start_time', 'friday_end_time', 'saturday_start_time', 'saturday_end_time', 'sunday_start_time', 'sunday_end_time',
-    'cover_image', 'category_id', 'course_specialize'],
+  fields: CourseForm.fields,
   validate,
   enableReinitialize: true
 })(CourseDetailContainer));

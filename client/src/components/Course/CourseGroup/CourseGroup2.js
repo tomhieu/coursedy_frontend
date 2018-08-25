@@ -18,7 +18,7 @@ class CourseGroup2 extends Component {
       <div className="col-xs-12">
         <div className="col-xs-12">
           <div className="course-thumb">
-            <LinkContainer to={ '/course/' + this.props.item.id } className={styles.fullWidth + ' img-responsive'}>
+            <LinkContainer to={ '/courses/' + this.props.item.id } className={styles.fullWidth + ' img-responsive'}>
               <img src={this.props.item.thumb} alt="" />
             </LinkContainer>
           </div>
@@ -36,7 +36,7 @@ class CourseGroup2 extends Component {
         <div className="col-xs-12">
           <div className="col-xs-12 col-sm-12 col-md-8 course-info no-pad">
             <h3 className={styles.courseTitle}>
-              <LinkContainer to={ '/course/' + this.props.item.id }><span>{this.props.item.name}</span></LinkContainer>
+              <LinkContainer to={ '/courses/' + this.props.item.id }><span>{this.props.item.name}</span></LinkContainer>
             </h3>
             <div className={styles.text + " col-xs-12 col-sm-12 col-md-5 no-pad"}>Số buổi: {this.props.item.duration}</div>
             <div className={styles.text + " col-xs-12 col-sm-12 col-md-7 no-pad"}>Thời gian: {this.props.item.schedule}</div>
