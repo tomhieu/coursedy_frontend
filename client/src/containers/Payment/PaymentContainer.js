@@ -18,7 +18,7 @@ import { banks } from "../../constants/Banks"
 import FormField from "../../components/Core/FormField"
 import ObjectUtils from "utils/ObjectUtils"
 import {LinkContainer} from 'react-router-bootstrap'
-
+import TrashIcon from "../../components/Core/Icons/TrashIcon"
 
 class PaymentContainer extends Component {
   constructor(props) {
@@ -178,17 +178,16 @@ class PaymentContainer extends Component {
                         <p className="mb-15">
                           <i className="fa fa-chevron-circle-right payment-step-icon"></i>
                           <strong>Bước 1:</strong>
-                          <span> 
-                            Bên dưới là danh sách ngân hàng <strong>Coursedy</strong> hỗ trợ. 
+                          <span> Bên dưới là danh sách ngân hàng <strong>Coursedy</strong> hỗ trợ. 
                             Vui lòng chọn ngân hàng để nhận thông tin chuyển khoản:
                           </span>
                         </p>
                         <div className="row">
-                          <div className="col-sm-12 col-md-6">
+                          <div className="col-sm-12 col-md-3">
                           {
                             bankAccounts.map((item) => (
                               <div 
-                                className="bank-logo pull-left text-center" 
+                                className="bank-logo text-center" 
                                 key={item.name}
                                 onClick={this.changeBank.bind(this, item.id)}
                               >
@@ -197,13 +196,13 @@ class PaymentContainer extends Component {
                             ))
                           }
                           </div>
-                          <div className="col-sm-12 no-pad col-md-6">
+                          <div className="col-sm-12 no-pad col-md-9">
                           {
                             selectBank.id != 0 ?
-                            <table className="table table-responsive">
+                            <table className="table bank-account-table">
                               <tbody>
                                 <tr>
-                                  <td><b>{this.context.t('public_payment_method_bank_name')}</b></td>
+                                  <td className="first-col"><b>{this.context.t('public_payment_method_bank_name')}</b></td>
                                   <td>{selectBank.fullName}</td>
                                 </tr>
                                 <tr>
@@ -251,40 +250,44 @@ class PaymentContainer extends Component {
               <p className="cart-header"><strong>Khóa học đã chọn</strong></p>
             {
               cart.length !== 0 ?
-              <table className="table">
-                <tbody>
+              <div className="cart-content container">
                 {
                   cart.map((course) => (
-                    <tr>
-                      <td className="">
+                    <div className="course-table-row row">
+                      <div className="course-divider"></div>
+                      <div className="col-md-8 no-pad-right">
                         <LinkContainer to={'/courses/' + course.id}>
                           <div className="course-link">
-                            <img className="cover-image" src={course.cover_image} alt=""/><br/>
-                            { course.title }
+                            <p>
+                              <img className="cover-image" src={course.cover_image} alt=""/>
+                            </p>
+                            <div className="course-title">
+                              <span >{ course.title }</span>
+                            </div>
                           </div>
                         </LinkContainer>
-                       
-                      </td>
-                      <td className="text-right">
+                      </div>
+                      <div className="col-md-4 text-right">
                         <div className="course-tuition-fee">
                           <span>{ObjectUtils.currencyFormat(course.tuition_fee)}</span>
                         </div>
-                        <i className="fa fa-1x custom-close" onClick={this.removeCourseFromCart.bind(this, course)}></i>
-                      </td>
-                    </tr>
+                        <a className="remove-course" onClick={this.removeCourseFromCart.bind(this, course)}>
+                          <TrashIcon width={14} height={14}></TrashIcon>
+                        </a>
+                      </div>
+                    </div>
                   ))
-                  
                 }
-                </tbody>
-                <tfoot>
-                  <tr>
-                    <td className=""><strong>Tổng:</strong></td>
-                    <td className="text-right">{ObjectUtils.currencyFormat(cartTotal)}</td>
-                  </tr>
-                </tfoot>
-              </table> : 
+                <div className="course-table-row row">
+                  <div className="course-divider"></div>
+                  <div className="col-md-7 pad"><strong>Tổng:</strong></div>
+                  <div className="col-md-5 pad text-right"><strong>{ObjectUtils.currencyFormat(cartTotal)}</strong></div>
+                </div>
+                
+              </div> : 
               <div className="text-center">
-                Không có sản phẩm trong giỏ hàng
+                <div className="course-divider"></div>
+                <p>Không có khóa học được chọn</p>
               </div>
             }
               

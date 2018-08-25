@@ -40,13 +40,24 @@
       padding: 5px 0;
       border: 1px solid $light-dark-text-color;
       border-radius: 3px;
-      margin-left: 5px;
+      margin: 10px auto 10px 0;
       cursor: pointer;
       &:first-child {
-        margin-left: 0;
+        margin-top: 0;
       }
       &:hover {
         border: 1px solid $md-color-pink;
+      }
+    }
+
+    .bank-account-table {
+      border: 1px solid $border-color;
+      td.first-col {
+        width: 30%;
+      }
+      td, th {
+        border-top: 1px solid $border-color;
+        vertical-align: middle;
       }
     }
     .card-header {
@@ -85,43 +96,48 @@
     border: 1px solid $border-color;
     box-shadow: 1px 1px 1px $border-color;
 
-    .cart-header {
-      padding: 0.75rem;
-    }
 
+    .cart-header {
+      padding: 1rem 0.75rem 0 0.75rem;
+    }
+    .course-divider {
+      border: 1px solid $border-color;
+      width: calc(100% - 1.5rem);
+      margin: 1rem auto;
+    }
+    .cart-content {
+      .course-table-row {
+        .pad {
+          padding: 0 0.75rem 1rem 0.75rem;
+        }
+      }
+    }
     .cover-image {
       height: 50px;
     }
+    .course-title {
+      padding-top: 2px;
+    }
 
     .course-tuition-fee {
-      height: 50px;
+      height: 55px;
     }
 
     .course-link {
       cursor: pointer;
     }
 
-    .table {
-      margin-bottom: 0;
+    .remove-course:hover {
+      color: red;
     }
 
-    .custom-close {
-      cursor: pointer;
-      color: green;
-      &:before {
-        content:"\f00c"
-      }
-    }
-    .custom-close:hover {
-      color: red;
-      &:before {
-        content:"\f00d"
-      }
-    }
   }
 
   .no-pad-left {
     padding-left: 0 !important;
+  }
+  .no-pad-right {
+    padding-right: 0 !important;
   }
 }
 
