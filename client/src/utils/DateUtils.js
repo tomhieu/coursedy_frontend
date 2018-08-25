@@ -1,17 +1,16 @@
-import moment from "moment";
-import { TT } from "utils/locale";
+import moment from 'moment';
+import { TT } from 'utils/locale';
 
 class DateUtils {
-  static formatDate(dateValue, locale = "vn") {
+  static formatDate(dateValue, locale = 'vn') {
     if (dateValue === undefined) {
-      return "";
+      return '';
     }
-    const l10nEN = new Intl.DateTimeFormat("en-US");
-    const l10nVN = new Intl.DateTimeFormat("vi-VN");
-    const formatedDate =
-      locale === "vn"
-        ? l10nVN.format(new Date(dateValue))
-        : l10nEN.format(new Date(dateValue));
+    const l10nEN = new Intl.DateTimeFormat('en-US');
+    const l10nVN = new Intl.DateTimeFormat('vi-VN');
+    const formatedDate = locale === 'vn'
+      ? l10nVN.format(new Date(dateValue))
+      : l10nEN.format(new Date(dateValue));
     return formatedDate;
   }
 
@@ -19,38 +18,38 @@ class DateUtils {
     return moment(dateValue).fromNow();
   }
 
-  static normalizeTime = time => {
+  static normalizeTime = (time) => {
     return time.substr(0, time.length - 3);
   };
 
   static retrieveStartTimeOfDay = (courseDays, day) => {
     if (!Array.isArray(courseDays) || courseDays.length === 0) {
-      return "";
+      return '';
     }
     if (day == null) {
       return DateUtils.normalizeTime(courseDays[0].start_time);
     }
     const [selectedDay] = courseDays.filter(d => d.day === day);
-    return selectedDay ? DateUtils.normalizeTime(selectedDay.start_time) : "";
+    return selectedDay ? DateUtils.normalizeTime(selectedDay.start_time) : '';
   };
 
   static retrieveEndTimeOfDay = (courseDays, day) => {
     if (!Array.isArray(courseDays) || courseDays.length === 0) {
-      return "";
+      return '';
     }
 
     if (day == null) {
       return DateUtils.normalizeTime(courseDays[0].end_time);
     }
     const [selectedDay] = courseDays.filter(d => d.day === day);
-    return selectedDay ? DateUtils.normalizeTime(selectedDay.end_time) : "";
+    return selectedDay ? DateUtils.normalizeTime(selectedDay.end_time) : '';
   };
 
   static getDayInWeekOfCourse(week_day_schedules) {
-    const days = week_day_schedules.map(day => {
+    const days = week_day_schedules.map((day) => {
       return TT.t(day.day);
     });
-    return days ? days.join(", ") : "";
+    return days ? days.join(', ') : '';
   }
 }
 

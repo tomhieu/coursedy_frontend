@@ -1,31 +1,33 @@
-import React, { Component } from 'react'
-import {connect} from "react-redux";
-import ObjectUtils from "../../../../utils/ObjectUtils"
-import ReactTable from 'react-table'
-import "react-table/react-table.css";
-import Network from "utils/network";
-import DateUtils from "utils/DateUtils"
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import ReactTable from 'react-table';
+import 'react-table/react-table.css';
+import Network from 'utils/network';
+import DateUtils from 'utils/DateUtils';
+import ObjectUtils from '../../../../utils/ObjectUtils';
 import {
   FETCH_ADMIN_UNAPPROVED_TEACHERS
-} from "../../../../actions/AsyncActionCreator"
+} from '../../../../actions/AsyncActionCreator';
 import * as dashboardActions from '../../../../actions/DashboardMenuActionCreator';
 
 class TeacherListContainer extends Component {
   componentDidMount() {
-    this.props.fetchUnapprovedTeachers(this.props)
-    this.props.activateTab('admin_teachers')
+    this.props.fetchUnapprovedTeachers(this.props);
+    this.props.activateTab('admin_teachers');
   }
 
   fetchData(state, instance) {
     this.props.fetchUnapprovedTeachers({
-      ...this.props, 
+      ...this.props,
       currentPage: state.page + 1,
       perPage: state.pageSize,
-    })
+    });
   }
 
   render() {
-    const { teachers, totalResult, perPage, isLoading } = this.props;
+    const {
+      teachers, totalResult, perPage, isLoading
+    } = this.props;
     return (
       <div className="row">
         <div className="col-xs-12 col-sm-12 col-md-12 mb-15">
@@ -41,13 +43,13 @@ class TeacherListContainer extends Component {
                   filterable
                   columns={[
                     {
-                      Header: "Họ và tên",
-                      id: "teacher_name",
+                      Header: 'Họ và tên',
+                      id: 'teacher_name',
                       accessor: d => d.user.name,
                     },
                     {
-                      Header: "Chuyên môn",
-                      accessor: "title",
+                      Header: 'Chuyên môn',
+                      accessor: 'title',
                       filterable: false
                     },
                   ]}
@@ -73,41 +75,41 @@ class TeacherListContainer extends Component {
           </div>
         </div>
       </div>
-    )
+    );
   }
 }
 
 TeacherListContainer.contextTypes = {
   t: React.PropTypes.func.isRequired,
   router: React.PropTypes.object
-}
+};
 
 const buildQuery = (props) => {
   return {
     page: props.currentPage,
     per_page: props.perPage
-  }
-}
+  };
+};
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   teachers: state.AdminTeacherListReducer.unapprovedTeachers,
   isLoading: state.AdminTeacherListReducer.isLoading,
   totalResult: state.AdminTeacherListReducer.totalResult,
   perPage: state.AdminTeacherListReducer.perPage,
-})
+});
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = dispatch => ({
   // fetchUnapprovedTeachers: (props) => dispatch({
   //   type: FETCH_ADMIN_UNAPPROVED_TEACHERS,
   //   payload: Network().get('courses/unapproved', buildQuery(props)),
   // }),
-  fetchUnapprovedTeachers: (props) => dispatch({
+  fetchUnapprovedTeachers: props => dispatch({
     type: FETCH_ADMIN_UNAPPROVED_TEACHERS,
     payload: Network().get('tutors/search', buildQuery(props)),
   }),
-  activateTab: (tabId) => dispatch(dashboardActions.activateTab(tabId))
+  activateTab: tabId => dispatch(dashboardActions.activateTab(tabId))
 });
 
 export default connect(
   mapStateToProps, mapDispatchToProps
-)(TeacherListContainer)
+)(TeacherListContainer);

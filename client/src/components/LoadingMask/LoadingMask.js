@@ -1,30 +1,35 @@
-import React, {Component} from "react";
-import cssModules from "react-css-modules";
-import styles from "./LoadingMask.module.scss";
-import {Auth} from "j-toker";
-import {connect} from "react-redux";
-import AsyncLoader from "./AsyncLoader";
+import React, { Component } from 'react';
+import cssModules from 'react-css-modules';
+import { Auth } from 'j-toker';
+import { connect } from 'react-redux';
+import styles from './LoadingMask.module.scss';
+import AsyncLoader from './AsyncLoader';
 
 class LoadingMask extends Component {
   render() {
-    const {placeholderId, activatingPlaceholders,
+    const {
+      placeholderId, activatingPlaceholders,
       isFullLoading = false, normalPlaceholder = true, facebookPlaceholder = false, sectionPlaceholder = false,
-      loaderType, repeatTime, innerClass="loading-mask-container d-flex flex-stretch"} = this.props;
+      loaderType, repeatTime, innerClass = 'loading-mask-container d-flex flex-stretch'
+    } = this.props;
     const isProcessing = activatingPlaceholders.findIndex(holder => placeholderId === holder) >= 0;
     return (
       <div className={innerClass}>
         {
-          isProcessing ? <AsyncLoader isFullLoading={isFullLoading}
-                                      normalPlaceholder={normalPlaceholder}
-                                      facebookPlaceholder={facebookPlaceholder}
-                                      sectionPlaceholder={sectionPlaceholder}
-                                      loaderType={loaderType}
-                                      repeatTime={repeatTime}>
-                         </AsyncLoader> : null
+          isProcessing ? (
+            <AsyncLoader
+              isFullLoading={isFullLoading}
+              normalPlaceholder={normalPlaceholder}
+              facebookPlaceholder={facebookPlaceholder}
+              sectionPlaceholder={sectionPlaceholder}
+              loaderType={loaderType}
+              repeatTime={repeatTime}
+            />
+          ) : null
         }
         {facebookPlaceholder && isProcessing ? null : this.props.children}
       </div>
-    )
+    );
   }
 }
 
@@ -40,10 +45,10 @@ LoadingMask.propTypes = {
   innerClass: React.PropTypes.string,
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   activatingPlaceholders: state.LoadingMask.activatingPlaceholders
 });
 
 export default connect(
-    mapStateToProps
+  mapStateToProps
 )(cssModules(LoadingMask, styles));

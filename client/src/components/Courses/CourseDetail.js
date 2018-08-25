@@ -1,9 +1,9 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import CourseDetailHeader from './CourseDetail/CourseDetailHeader';
 import CourseDetailMain from './CourseDetail/CourseDetailMain';
 import './CourseDetail.scss';
-import {PUBLIC_COURSE_MAX_NUMBER_COMMENTS_PER_LOAD} from '../../constants/Courses';
-import CourseDetailAction from "./CourseDetail/CourseDetailAction";
+import { PUBLIC_COURSE_MAX_NUMBER_COMMENTS_PER_LOAD } from '../../constants/Courses';
+import CourseDetailAction from './CourseDetail/CourseDetailAction';
 
 /**
   * @Course group template 2
@@ -11,37 +11,37 @@ import CourseDetailAction from "./CourseDetail/CourseDetailAction";
   */
 class CourseDetail extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       displayFixedSidebar: false,
       currentScrollPosition: 0,
       activeMenu: 'course-detail-intro'
-    }
-    this.onScroll = this.handleScroll.bind(this)
+    };
+    this.onScroll = this.handleScroll.bind(this);
   }
 
   componentDidMount() {
-    window.addEventListener('scroll', this.onScroll)
-    window.scrollTo(0,0)
+    window.addEventListener('scroll', this.onScroll);
+    window.scrollTo(0, 0);
   }
 
   componentWillUnmount() {
-    window.removeEventListener('scroll', this.onScroll)
+    window.removeEventListener('scroll', this.onScroll);
   }
 
   handleScroll(event) {
     const triggerPosition = 200;
-    const top = window.pageYOffset || document.documentElement.scrollTop
+    const top = window.pageYOffset || document.documentElement.scrollTop;
     if (triggerPosition < top) {
-      this.courseActionBar.classList.add('fixed-action-bar')
+      this.courseActionBar.classList.add('fixed-action-bar');
     } else {
-      this.courseActionBar.classList.remove('fixed-action-bar')
+      this.courseActionBar.classList.remove('fixed-action-bar');
     }
   }
 
   render() {
     const { activeMenu, currentScrollPosition } = this.state;
-    const {course, course_sections} = this.props;
+    const { course, course_sections } = this.props;
     return (
       <div className="d-flex flex-auto flex-vertical full-width-in-container">
         <CourseDetailHeader
@@ -57,18 +57,18 @@ class CourseDetail extends Component {
           </div>
           <div className="col-md-4 course-details-action">
             <div ref={el => this.courseActionBar = el} className="course-action-container">
-              <CourseDetailAction course={course} course_sections={course_sections} {...this.props}></CourseDetailAction>
+              <CourseDetailAction course={course} course_sections={course_sections} {...this.props} />
             </div>
           </div>
         </div>
       </div>
-    )
+    );
   }
 }
 
 CourseDetail.contextTypes = {
   t: React.PropTypes.func.isRequired
-}
+};
 
 CourseDetail.propTypes = {
 };

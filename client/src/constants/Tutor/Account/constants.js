@@ -1,1 +1,1 @@
-export const genders = [['M', 'male'], ['F', 'female']]
+export const genders = [['M', 'male'], ['F', 'female']];

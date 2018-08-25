@@ -1,10 +1,10 @@
-import {StripeProvider} from "react-stripe-elements";
-import {TT} from "utils/locale";
-import * as React from "react";
-import PaymentContainer from "../../containers/Payment/PaymentContainer";
+import { StripeProvider } from 'react-stripe-elements';
+import { TT } from 'utils/locale';
+import * as React from 'react';
+import PaymentContainer from '../../containers/Payment/PaymentContainer';
 
 const PaymentPage = (props) => {
-  const {course, totalAmount, currency} = props;
+  const { course, totalAmount, currency } = props;
   return (
     <div className="container">
       <div className="row">
@@ -28,7 +28,7 @@ const PaymentPage = (props) => {
         </div>
         <div className="col-md-7 col-sm-7">
           <StripeProvider apiKey="pk_test_6pRNASCoBOKtIshFeQd4XMUh">
-            <PaymentContainer courseId={props.match.params.id}/>
+            <PaymentContainer courseId={props.match.params.id} />
           </StripeProvider>
         </div>
       </div>

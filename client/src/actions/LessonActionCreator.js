@@ -1,4 +1,4 @@
-import {ADD_MORE_LESSON_FOR_SECTION, HIDE_LESSON_POPUP_EDIT} from "actions/AsyncActionCreator";
+import { ADD_MORE_LESSON_FOR_SECTION, HIDE_LESSON_POPUP_EDIT } from 'actions/AsyncActionCreator';
 
 export const addLesson = (sectionId) => {
   return {

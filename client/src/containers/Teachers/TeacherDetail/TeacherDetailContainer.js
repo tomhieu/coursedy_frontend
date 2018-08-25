@@ -1,72 +1,72 @@
-import React, { Component } from 'react'
-import './TeacherDetail.scss'
-import { connect } from 'react-redux'
-import CourseListInGridMode from 'components/Courses/CourseList/CourseListInGridMode'
-import Pagination from 'react-js-pagination'
-import TeacherBackground from './Content/TeacherBackground'
-import TeacherReviewList from './Content/TeacherReviewList'
-import TeacherProfileHeader from './Header/TeacherProfileHeader'
+import React, { Component } from 'react';
+import './TeacherDetail.scss';
+import { connect } from 'react-redux';
+import CourseListInGridMode from 'components/Courses/CourseList/CourseListInGridMode';
+import Pagination from 'react-js-pagination';
 import {
   fetchTeacherDetail,
   fetchTeacherEducations,
   fetchTeacherWorkExperiences,
   fetchTeacherCourses,
   fetchTeacherReviews
-} from 'actions/TeacherActionCreators'
-import LoadingMask from 'components/LoadingMask/LoadingMask'
-import * as WebConstants from 'constants/WebConstants'
-import ReviewTeacherForm from './Content/ReviewTeacherForm'
-import FixedSideBar from 'components/Common/FixedSideBar'
-import { TT } from 'utils/locale'
-import { LinkContainer } from 'react-router-bootstrap'
-import PrimaryAnchor from 'components/Core/PrimaryAnchor/PrimaryAnchor'
-import RatingItem from 'components/Rating/index'
-import ObjectUtils from 'utils/ObjectUtils'
-import cssModules from 'react-css-modules'
-import styles from './TeacherDetail.module.scss'
+} from 'actions/TeacherActionCreators';
+import LoadingMask from 'components/LoadingMask/LoadingMask';
+import * as WebConstants from 'constants/WebConstants';
+import FixedSideBar from 'components/Common/FixedSideBar';
+import { TT } from 'utils/locale';
+import { LinkContainer } from 'react-router-bootstrap';
+import PrimaryAnchor from 'components/Core/PrimaryAnchor/PrimaryAnchor';
+import RatingItem from 'components/Rating/index';
+import ObjectUtils from 'utils/ObjectUtils';
+import cssModules from 'react-css-modules';
+import ReviewTeacherForm from './Content/ReviewTeacherForm';
+import TeacherProfileHeader from './Header/TeacherProfileHeader';
+import TeacherReviewList from './Content/TeacherReviewList';
+import TeacherBackground from './Content/TeacherBackground';
+import styles from './TeacherDetail.module.scss';
 import PageContainer from '../../../utils/PageContainer';
 import PaginationArrowIcon from '../../../components/Core/Icons/PaginationArrowIcon';
 
 
 class TeacherDetail extends Component {
   componentDidMount() {
-    this.props.hideFooter()
+    this.props.hideFooter();
     this.props.fetchTeacherDetail({
       teacherId: parseInt(this.props.match.params.id),
       meta: 'teacherDetailProfilePlaceholder'
-    })
+    });
     this.props.fetchTeacherEducations({
       teacherId: parseInt(this.props.match.params.id),
       meta: 'userAccountPlaceholder'
-    })
+    });
     this.props.fetchTeacherWorkExperiences({
       teacherId: parseInt(this.props.match.params.id),
       meta: 'userAccountPlaceholder'
-    })
+    });
     this.props.fetchTeacherReviews({
       teacherId: parseInt(this.props.match.params.id),
       meta: 'userAccountPlaceholder'
-    })
+    });
     this.props.fetchTeacherCourses({
       teacherId: parseInt(this.props.match.params.id),
       meta: 'teacherCoursesPlaceholder'
-    })
+    });
   }
 
   fetchTeacherCoursesWithPageNumber(page, per_page) {
     this.props.fetchTeacherCourses({
       teacherId: parseInt(this.props.match.params.id), query: { page, per_page }
-    })
+    });
   }
 
   fetchTeacherReviewsWithPageNumber(page, per_page) {
     this.props.fetchTeacherReviews({
       teacherId: parseInt(this.props.match.params.id), query: { page, per_page }
-    })
+    });
   }
 
   componentWillUnmount() {
-    this.props.showFooter()
+    this.props.showFooter();
   }
 
   render() {
@@ -81,7 +81,7 @@ class TeacherDetail extends Component {
                     <LoadingMask
                       placeholderId="teacherDetailProfilePlaceholder"
                       normalPlaceholder={false}
-                      facebookPlaceholder={true}
+                      facebookPlaceholder
                       loaderType={WebConstants.TEACHER_DETAIL_PROFILE_PLACEHOLDER}
                     >
                       <div className="full-width">
@@ -100,10 +100,11 @@ class TeacherDetail extends Component {
                       />
                       <div className="teacher-detail__content__review">
                         <div
-                          className="teacher-detail__content__review__header mb-30">
+                          className="teacher-detail__content__review__header mb-30"
+                        >
                           <h4>{this.context.t('teacher_review')}</h4>
                         </div>
-                        <ReviewHeader {...this.props} context={this.context}/>
+                        <ReviewHeader {...this.props} context={this.context} />
                         <TeacherReviewList
                           {...this.props}
                           handlePageChange={this.fetchTeacherReviewsWithPageNumber.bind(this)}
@@ -118,10 +119,12 @@ class TeacherDetail extends Component {
                         context={this.context}
                       />
                     </div>
-                    {this.props.teacher.courses && this.props.teacher.courses.data.length ?
-                      <div className={styles.rightSide}>
-                        <TeacherBriefCourses {...this.props} />
-                      </div> : null}
+                    {this.props.teacher.courses && this.props.teacher.courses.data.length
+                      ? (
+                        <div className={styles.rightSide}>
+                          <TeacherBriefCourses {...this.props} />
+                        </div>
+                      ) : null}
                   </div>
                 </div>
               </section>
@@ -129,35 +132,37 @@ class TeacherDetail extends Component {
           </div>
         </div>
       </PageContainer>
-    )
+    );
   }
 }
 
-const TeacherBriefCourses = props => {
-  const { teacher } = props
+const TeacherBriefCourses = (props) => {
+  const { teacher } = props;
   if (!teacher.courses || !teacher.courses.data.length) {
-    return null
+    return null;
   }
 
   return (
     <LoadingMask
       placeholderId="teacherCoursesPlaceholder"
       normalPlaceholder={false}
-      facebookPlaceholder={true}
+      facebookPlaceholder
       loaderType={WebConstants.TEACHER_DETAIL_SHORT_COURSES_PLACEHOLDER}
     >
       <div className="full-width">
         <div className="teacher-detail__content__courses__header">
           <h5>{TT.t('teacher_taught_courses')}</h5>
         </div>
-        {teacher.courses.data.slice(0, 3).map(course => {
+        {teacher.courses.data.slice(0, 3).map((course) => {
           return (
             <div key={course.id} className="related-course-item">
-              <LinkContainer to={`/courses/${course.id}`}
-                             className="link-tag">
+              <LinkContainer
+                to={`/courses/${course.id}`}
+                className="link-tag"
+              >
                 <div className="pb-5 pt-5 clearfix">
                   <div className="image">
-                    <img className="full-width" src={course.cover_image}/>
+                    <img className="full-width" src={course.cover_image} />
                   </div>
                   <div className="content">
                     <h6 className="course-title">{course.title}</h6>
@@ -168,13 +173,13 @@ const TeacherBriefCourses = props => {
                       />
                     </div>
                     <span className="price">
-                    {course.is_free ? TT.t('free') : ObjectUtils.currencyFormat(course.tuition_fee || 0, course.currency || 'VND')}
-                  </span>
+                      {course.is_free ? TT.t('free') : ObjectUtils.currencyFormat(course.tuition_fee || 0, course.currency || 'VND')}
+                    </span>
                   </div>
                 </div>
               </LinkContainer>
             </div>
-          )
+          );
         })}
         <div className="d-flex justify-content-center link-tag mt-20">
           <PrimaryAnchor
@@ -184,13 +189,13 @@ const TeacherBriefCourses = props => {
         </div>
       </div>
     </LoadingMask>
-  )
-}
+  );
+};
 
-const ReviewHeader = props => {
-  const { teacher } = props
+const ReviewHeader = (props) => {
+  const { teacher } = props;
   if (!teacher.user) {
-    return null
+    return null;
   }
   return (
     <div className="teacher-detail-review-header">
@@ -214,25 +219,32 @@ const ReviewHeader = props => {
         <div className="border-left col-xs-12 col-sm-6 col-md-6">
           <div className="text-left mb-20">
             <h5>{props.context.t('teacher_comments')}</h5>
-            <span> ({props.teacher.reviews.data.length} {props.context.t('teacher_comments')})</span>
+            <span>
+              {' '}
+(
+              {props.teacher.reviews.data.length}
+              {' '}
+              {props.context.t('teacher_comments')}
+)
+            </span>
           </div>
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-const TeacherTaughtCourses = props => {
-  const { teacher } = props
+const TeacherTaughtCourses = (props) => {
+  const { teacher } = props;
   if (!teacher.courses || !teacher.courses.data.length) {
-    return null
+    return null;
   }
 
   const headers = {
     currentPage: parseInt(teacher.courses.headers.xPage) || 0,
     perPage: parseInt(teacher.courses.headers.xPerPage) || 0,
     total: parseInt(teacher.courses.headers.xTotal) || 0
-  }
+  };
 
   return (
     <div className="row">
@@ -253,7 +265,7 @@ const TeacherTaughtCourses = props => {
               <div className="d-flex justify-content-center">
                 <Pagination
                   hideFirstLastPages
-                  prevPageText={<PaginationArrowIcon isLeftArrow={true} />}
+                  prevPageText={<PaginationArrowIcon isLeftArrow />}
                   nextPageText={<PaginationArrowIcon />}
                   innerClass="mt-8 pagination"
                   linkClassPrev="prev-page-icon"
@@ -264,8 +276,8 @@ const TeacherTaughtCourses = props => {
                   itemsCountPerPage={headers.perPage}
                   totalItemsCount={headers.total}
                   pageRangeDisplayed={5}
-                  onChange={pageNumber => {
-                    props.handlePageChange(pageNumber, headers.perPage)
+                  onChange={(pageNumber) => {
+                    props.handlePageChange(pageNumber, headers.perPage);
                   }}
                 />
               </div>
@@ -274,14 +286,14 @@ const TeacherTaughtCourses = props => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
 TeacherDetail.contextTypes = {
   t: React.PropTypes.func.isRequired
-}
+};
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = dispatch => ({
   fetchTeacherDetail: query => dispatch(fetchTeacherDetail(query)),
   fetchTeacherEducations: query => dispatch(fetchTeacherEducations(query)),
   fetchTeacherWorkExperiences: query => dispatch(fetchTeacherWorkExperiences(query)),
@@ -289,12 +301,12 @@ const mapDispatchToProps = (dispatch) => ({
   fetchTeacherCourses: query => dispatch(fetchTeacherCourses(query)),
   showFooter: () => dispatch({ type: WebConstants.SHOW_FOOTER }),
   hideFooter: () => dispatch({ type: WebConstants.HIDE_FOOTER })
-})
+});
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     teacher: state.TeacherDetail
-  }
-}
+  };
+};
 
-export default connect(mapStateToProps, mapDispatchToProps)(cssModules(TeacherDetail, styles))
+export default connect(mapStateToProps, mapDispatchToProps)(cssModules(TeacherDetail, styles));

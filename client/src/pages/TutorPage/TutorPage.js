@@ -3,10 +3,10 @@ import cssModules from 'react-css-modules';
 import styles from './TutorPage.module.scss';
 import { TutorSearchForm, TutorList } from '../../components/index';
 
-const TutorPage = (props) => (
+const TutorPage = props => (
   <div className="container">
-    <TutorSearchForm/>
-    <TutorList/>
+    <TutorSearchForm />
+    <TutorList />
   </div>
 );
 

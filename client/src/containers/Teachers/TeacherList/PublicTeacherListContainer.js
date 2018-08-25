@@ -1,11 +1,11 @@
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
-import {searchTeachers} from 'actions/TeacherActionCreators';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { searchTeachers } from 'actions/TeacherActionCreators';
 import Pagination from 'react-js-pagination';
 import LoadingMask from 'components/LoadingMask/LoadingMask';
-import TutorList from "../../../components/Tutor/TutorList/TutorList";
-import * as WebConstants from "../../../constants/WebConstants";
-import PaginationArrowIcon from "../../../components/Core/Icons/PaginationArrowIcon";
+import TutorList from '../../../components/Tutor/TutorList/TutorList';
+import * as WebConstants from '../../../constants/WebConstants';
+import PaginationArrowIcon from '../../../components/Core/Icons/PaginationArrowIcon';
 
 
 class PublicTeacherListContainer extends Component {
@@ -21,20 +21,22 @@ class PublicTeacherListContainer extends Component {
   }
 
   handlePageChange(pageNumber) {
-    this.props.searchTeachers({page: pageNumber, per_page: this.props.headers.perPage});
+    this.props.searchTeachers({ page: pageNumber, per_page: this.props.headers.perPage });
   }
 
   render() {
-    const {teachers, isFetching, headers} = this.props;
+    const { teachers, isFetching, headers } = this.props;
     return (
-      <LoadingMask placeholderId="publicTeacherListPlaceholder"
-                   loaderType="COURSE_ITEM_PLACEHOLDER"
-                   repeatTime={4}>
+      <LoadingMask
+        placeholderId="publicTeacherListPlaceholder"
+        loaderType="COURSE_ITEM_PLACEHOLDER"
+        repeatTime={4}
+      >
         <div className="teacher-list">
           <div className="container mt-15 mb-15">
             <TutorList
               {...this.props}
-              isPublic={true}
+              isPublic
             />
           </div>
           {
@@ -42,7 +44,7 @@ class PublicTeacherListContainer extends Component {
               <div className="d-flex justify-content-center mb-10 mt-10">
                 <Pagination
                   hideFirstLastPages
-                  prevPageText={<PaginationArrowIcon isLeftArrow={true} />}
+                  prevPageText={<PaginationArrowIcon isLeftArrow />}
                   nextPageText={<PaginationArrowIcon />}
                   innerClass="mt-8 pagination"
                   linkClassPrev="prev-page-icon"
@@ -53,7 +55,7 @@ class PublicTeacherListContainer extends Component {
                   itemsCountPerPage={headers.perPage}
                   totalItemsCount={headers.total}
                   pageRangeDisplayed={5}
-                  activeClass={'active'}
+                  activeClass="active"
                   onChange={this.handlePageChange.bind(this)}
                 />
               </div>
@@ -61,8 +63,8 @@ class PublicTeacherListContainer extends Component {
           }
         </div>
       </LoadingMask>
-    )
-  };
+    );
+  }
 }
 
 PublicTeacherListContainer.contextTypes = {
@@ -70,7 +72,7 @@ PublicTeacherListContainer.contextTypes = {
 };
 
 const mapStateToProps = (state) => {
-  const {data, headers} = state.Teachers;
+  const { data, headers } = state.Teachers;
 
   return {
     teachers: data.filter(tutor => tutor.user !== null),
@@ -82,9 +84,9 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapDispatchToProps = (dispatch) => ({
-  fetchTeacherList: (props) => dispatch(searchTeachers({})),
-  searchTeachers: (query) => dispatch(searchTeachers(query)),
+const mapDispatchToProps = dispatch => ({
+  fetchTeacherList: props => dispatch(searchTeachers({})),
+  searchTeachers: query => dispatch(searchTeachers(query)),
   showFooter: () => dispatch({ type: WebConstants.SHOW_FOOTER }),
   hideFooter: () => dispatch({ type: WebConstants.HIDE_FOOTER }),
   stretchFull: () => dispatch({ type: WebConstants.STETCH_FULL }),

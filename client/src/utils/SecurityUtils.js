@@ -1,5 +1,5 @@
-import * as WebConstants from "constants/WebConstants";
-import {UserRole} from "../constants/UserRole";
+import * as WebConstants from 'constants/WebConstants';
+import { UserRole } from '../constants/UserRole';
 
 export class SecurityUtils {
   static isAuthenticated() {

@@ -1,9 +1,9 @@
-import React, {Component} from 'react';
-import './CourseDetailComments.scss'
-import {PUBLIC_COURSE_DETAIL_MENU_COMMENTS} from "../../../constants/WebConstants.js"
-import {CommentFormContainer} from '../../../containers/index'
-import RatingItem from "../../Rating/index";
-import DateUtils from "../../../utils/DateUtils";
+import React, { Component } from 'react';
+import './CourseDetailComments.scss';
+import { PUBLIC_COURSE_DETAIL_MENU_COMMENTS } from '../../../constants/WebConstants.js';
+import { CommentFormContainer } from '../../../containers/index';
+import RatingItem from '../../Rating/index';
+import DateUtils from '../../../utils/DateUtils';
 
 /**
   * @Course group template 2
@@ -19,9 +19,11 @@ class CourseDetailComments extends Component {
   }
 
   render() {
-    const {course_comments, loadMoreCommentsHdl, activeMenu, course} = this.props
+    const {
+      course_comments, loadMoreCommentsHdl, activeMenu, course
+    } = this.props;
     const active = activeMenu === PUBLIC_COURSE_DETAIL_MENU_COMMENTS;
-    const  ratingOverall = course.rating_count === 0 ? 0 : parseFloat(course.rating_points)/course.rating_count;
+    const ratingOverall = course.rating_count === 0 ? 0 : parseFloat(course.rating_points) / course.rating_count;
     return (
       <div id="courses-detail-comments" className="course-detail-section">
         <div className="row review-wrapper">
@@ -45,25 +47,33 @@ class CourseDetailComments extends Component {
               </div>
             </div>
           </div>
-          
+
           <div className="col-md-8 review-content">
             <div className="d-flex flex-row">
-              <div className="seperate-comment-line"></div>
+              <div className="seperate-comment-line" />
               <div className="d-flex flex-column flex-auto">
                 <div className="section-title text-left mb-20">
                   <h3>{this.context.t('course_comments')}</h3>
-                  <span> ({course_comments.length} {this.context.t('course_comments')})</span>
+                  <span>
+                    {' '}
+(
+                    {course_comments.length}
+                    {' '}
+                    {this.context.t('course_comments')}
+)
+                  </span>
                 </div>
                 {
-                  course_comments.length > 0 ?
-                    <ul className="review-list">
-                      {
+                  course_comments.length > 0
+                    ? (
+                      <ul className="review-list">
+                        {
                         course_comments.map((item, index) => (
-                          <li className="clearfix" key={'course-detail-comments-' + index}>
+                          <li className="clearfix" key={`course-detail-comments-${index}`}>
                             <div className="image img-circle">
                               <img
                                 className="rounded-circle full-width"
-                                src={item.user.avatar ? item.user.avatar : "http://placehold.it/46x46"}
+                                src={item.user.avatar ? item.user.avatar : 'http://placehold.it/46x46'}
                                 alt={this.context.t('course_comments')}
                               />
                             </div>
@@ -78,18 +88,20 @@ class CourseDetailComments extends Component {
                                 {item.content}
                               </div>
                               <div className="review-other">
-                                <div className="row gap-20 mb-0">
-                                </div>
+                                <div className="row gap-20 mb-0" />
                               </div>
                             </div>
                           </li>
                         ))
                       }
-                    </ul> :
-                    <div className="d-flex flex-column flex-auto">
-                      <span>{this.context.t('no_comment_about_course')}</span>
-                      <a className="active-link" href="#" onClick={this.scrollToCommentForm.bind(this)}>{this.context.t('course_comments_no_comment')}</a>
-                    </div>
+                      </ul>
+                    )
+                    : (
+                      <div className="d-flex flex-column flex-auto">
+                        <span>{this.context.t('no_comment_about_course')}</span>
+                        <a className="active-link" href="#" onClick={this.scrollToCommentForm.bind(this)}>{this.context.t('course_comments_no_comment')}</a>
+                      </div>
+                    )
                 }
               </div>
             </div>
@@ -99,16 +111,16 @@ class CourseDetailComments extends Component {
         <div className="mt-30 mb-10 text-right">
           &nbsp;&nbsp;
         </div>
-        
-        <CommentFormContainer></CommentFormContainer>
+
+        <CommentFormContainer />
       </div>
-    )
+    );
   }
 }
 
 CourseDetailComments.contextTypes = {
   t: React.PropTypes.func.isRequired
-}
+};
 
 CourseDetailComments.propTypes = {
 };

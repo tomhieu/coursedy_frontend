@@ -1,6 +1,6 @@
-import React, { Component } from "react";
-import LoadingMask from "components/LoadingMask/LoadingMask";
-import * as webConstants from "constants/WebConstants";
+import React, { Component } from 'react';
+import LoadingMask from 'components/LoadingMask/LoadingMask';
+import * as webConstants from 'constants/WebConstants';
 
 class TeacherBackground extends Component {
   render() {
@@ -15,68 +15,68 @@ class TeacherBackground extends Component {
   }
 }
 
-const TeacherShortIntroduce = props => {
+const TeacherShortIntroduce = (props) => {
   return (
     <LoadingMask
       placeholderId="userAccountPlaceholder"
       normalPlaceholder={false}
-      facebookPlaceholder={true}
+      facebookPlaceholder
       loaderType={webConstants.USER_ACCOUNT_PLACEHOLDER}
     >
       <div className="profile-list-item">
         <div className="head-title">
           <i className="fa fa-user" />
-          <h4>{props.context.t("teacher_short_introduce")}</h4>
+          <h4>{props.context.t('teacher_short_introduce')}</h4>
         </div>
-        <p dangerouslySetInnerHTML={{__html: props.teacher.description}}/>
+        <p dangerouslySetInnerHTML={{ __html: props.teacher.description }} />
         {!props.teacher.description && (
-          <i>{props.context.t("content_is_updating")}</i>
+          <i>{props.context.t('content_is_updating')}</i>
         )}
       </div>
     </LoadingMask>
   );
 };
 
-const TeacherEducation = props => {
+const TeacherEducation = (props) => {
   return (
     <LoadingMask
       placeholderId="userAccountPlaceholder"
       normalPlaceholder={false}
-      facebookPlaceholder={true}
+      facebookPlaceholder
       loaderType={webConstants.USER_ACCOUNT_PLACEHOLDER}
     >
       <div className="profile-list-item">
         <div className="head-title">
           <i className="fa fa-graduation-cap" />
-          <h4>{props.context.t("teacher_education")}</h4>
+          <h4>{props.context.t('teacher_education')}</h4>
         </div>
         {props.teacher.educations && props.teacher.educations.length ? (
           <ul className="the-list">
-            {props.teacher.educations.map(education => {
+            {props.teacher.educations.map((education) => {
               return <EducationItem education={education} key={education.id} />;
             })}
           </ul>
         ) : (
-          <i>{props.context.t("content_is_updating")}</i>
+          <i>{props.context.t('content_is_updating')}</i>
         )}
       </div>
     </LoadingMask>
   );
 };
 
-const TeacherDegrees = props => {
+const TeacherDegrees = (props) => {
   const { degrees } = props.teacher;
   return (
     <LoadingMask
       placeholderId="userAccountPlaceholder"
       normalPlaceholder={false}
-      facebookPlaceholder={true}
+      facebookPlaceholder
       loaderType={webConstants.USER_ACCOUNT_PLACEHOLDER}
     >
       <div className="profile-list-item">
         <div className="head-title">
           <i className="fa fa-briefcase" />
-          <h4>{props.context.t("teacher_degrees")}</h4>
+          <h4>{props.context.t('teacher_degrees')}</h4>
         </div>
         {degrees && degrees.length ? (
           <div className="row mb-10">
@@ -87,31 +87,31 @@ const TeacherDegrees = props => {
             }
           </div>
         ) : (
-          <i>{props.context.t("content_is_updating")}</i>
+          <i>{props.context.t('content_is_updating')}</i>
         )}
       </div>
     </LoadingMask>
   );
 };
 
-const TeacherWorkExperience = props => {
+const TeacherWorkExperience = (props) => {
   const { workExperiences } = props.teacher;
   return (
     <LoadingMask
       placeholderId="userAccountPlaceholder"
       normalPlaceholder={false}
-      facebookPlaceholder={true}
+      facebookPlaceholder
       loaderType={webConstants.USER_ACCOUNT_PLACEHOLDER}
     >
       <div className="profile-list-item">
         <div className="head-title">
           <i className="fa fa-briefcase" />
-          <h4>{props.context.t("teacher_experience")}</h4>
+          <h4>{props.context.t('teacher_experience')}</h4>
         </div>
 
         {workExperiences && workExperiences.length ? (
           <ul className="the-list">
-            {workExperiences.map(experience => {
+            {workExperiences.map((experience) => {
               return (
                 <WorkExperienceItem
                   experience={experience}
@@ -121,7 +121,7 @@ const TeacherWorkExperience = props => {
             })}
           </ul>
         ) : (
-          <i>{props.context.t("content_is_updating")}</i>
+          <i>{props.context.t('content_is_updating')}</i>
         )}
       </div>
     </LoadingMask>
@@ -133,10 +133,16 @@ const EducationItem = ({ education }) => {
     <li key={education.id}>
       <h6>{education.title}</h6>
       <span className="block mb-10">
-        <span className="yellow-color">{education.graduated_from}</span> -{" "}
-        <span className="font-italic dd-mm-yy"> {education.end_date}</span>
+        <span className="yellow-color">{education.graduated_from}</span>
+        {' '}
+-
+        {' '}
+        <span className="font-italic dd-mm-yy">
+          {' '}
+          {education.end_date}
+        </span>
       </span>
-      <p dangerouslySetInnerHTML={{__html: education.description}} />
+      <p dangerouslySetInnerHTML={{ __html: education.description }} />
     </li>
   );
 };
@@ -157,13 +163,18 @@ const WorkExperienceItem = ({ experience }) => {
     <li key={experience.id}>
       <h6>{experience.title}</h6>
       <span className="block mb-10">
-        <span className="yellow-color">{experience.company}</span> -{" "}
+        <span className="yellow-color">{experience.company}</span>
+        {' '}
+-
+        {' '}
         <span className="font-italic dd-mm-yy">
-          {" "}
-          {experience.start_date}- {experience.end_date}
+          {' '}
+          {experience.start_date}
+-
+          {experience.end_date}
         </span>
       </span>
-      <p dangerouslySetInnerHTML={{__html: experience.description}}/>
+      <p dangerouslySetInnerHTML={{ __html: experience.description }} />
     </li>
   );
 };
@@ -176,7 +187,7 @@ TeacherBackground.defaultProps = {
   qualifications: [],
   experiences: [],
   awards: [],
-  interest: ""
+  interest: ''
 };
 
 TeacherBackground.propTypes = {

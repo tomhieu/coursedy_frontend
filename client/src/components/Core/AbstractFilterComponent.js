@@ -22,7 +22,7 @@ export default class AbstractFilter extends Component {
   addFilterCriteria(currentFilters, filterValue, filterType) {
     // handle for multiple select filter options
     if (Array.isArray(currentFilters[filterType])) {
-      let selectedFilters = JSON.parse(JSON.stringify(currentFilters[filterType]));
+      const selectedFilters = JSON.parse(JSON.stringify(currentFilters[filterType]));
       selectedFilters.push(filterValue);
       currentFilters[filterType] = selectedFilters;
     } else {

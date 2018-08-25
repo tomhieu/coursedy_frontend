@@ -27,4 +27,4 @@ export const defaultSettings = {
       slidesToScroll: 1
     }
   }]
-}
+};

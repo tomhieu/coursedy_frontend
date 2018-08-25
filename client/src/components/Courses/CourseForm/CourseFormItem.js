@@ -1,29 +1,33 @@
-import * as React from "react";
-import {Component} from "react";
-import InlineEditFormField from "../../Core/InlineEditFormField";
-import FormField from "../../Core/FormField";
+import * as React from 'react';
+import { Component } from 'react';
+import InlineEditFormField from '../../Core/InlineEditFormField';
+import FormField from '../../Core/FormField';
 
 class CourseFormItem extends Component {
   render() {
-    const {editMode = false, showLabel = true, placeholder,
-           fieldLabel, fieldId, isMandatory, fieldName, activatedField = []} = this.props;
+    const {
+      editMode = false, showLabel = true, placeholder,
+      fieldLabel, fieldId, isMandatory, fieldName, activatedField = []
+    } = this.props;
     if (editMode) {
       return (
-        <InlineEditFormField activated={activatedField.indexOf(fieldId) >= 0}
-                             placeholder={placeholder || fieldLabel}
-                             showLabel={showLabel}
-                             isMandatoryField={isMandatory}
-                             formControlName={fieldName}
-                             {...this.props}>
-        </InlineEditFormField>
-      )
-    } else {
-      return (
-        <FormField isMandatoryField={isMandatory}
-                   formControlName={fieldName} {...this.props}>
-        </FormField>
-      )
+        <InlineEditFormField
+          activated={activatedField.indexOf(fieldId) >= 0}
+          placeholder={placeholder || fieldLabel}
+          showLabel={showLabel}
+          isMandatoryField={isMandatory}
+          formControlName={fieldName}
+          {...this.props}
+        />
+      );
     }
+    return (
+      <FormField
+        isMandatoryField={isMandatory}
+        formControlName={fieldName}
+        {...this.props}
+      />
+    );
   }
 }
 

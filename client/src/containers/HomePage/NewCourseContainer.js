@@ -1,6 +1,6 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
-import { Link } from 'react-router-dom'
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 
 export default class NewCourse extends Component {
@@ -13,17 +13,22 @@ export default class NewCourse extends Component {
   }
 
   render() {
-    let { course } = this.props
+    const { course } = this.props;
 
     return (
-      <div className="slick-slide_item course-group"
-           key={course.id}>
-        <Link className="course-group__content" to={'#'} title={course.title}>
-          <img className="course-group__content__img" src={course.cover_image}
-               alt={course.title}/>
+      <div
+        className="slick-slide_item course-group"
+        key={course.id}
+      >
+        <Link className="course-group__content" to="#" title={course.title}>
+          <img
+            className="course-group__content__img"
+            src={course.cover_image}
+            alt={course.title}
+          />
           <span className="course-group__content__title">{course.title}</span>
         </Link>
       </div>
-    )
+    );
   }
 }

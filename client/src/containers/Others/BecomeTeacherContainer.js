@@ -1,8 +1,8 @@
-import React, {Component} from 'react'
-import {TT} from 'utils/locale'
-import './BeComeTeacher.scss'
-import { Link } from 'react-router-dom'
-import PrimaryButton from '../../components/Core/PrimaryButton/PrimaryButton'
+import React, { Component } from 'react';
+import { TT } from 'utils/locale';
+import './BeComeTeacher.scss';
+import { Link } from 'react-router-dom';
+import PrimaryButton from '../../components/Core/PrimaryButton/PrimaryButton';
 
 class BecomeTeacherContainer extends Component {
   render() {
@@ -13,13 +13,13 @@ class BecomeTeacherContainer extends Component {
         <BecomeTeacherReasons />
         <BecomeTeacherButton />
       </div>
-    )
+    );
   }
 }
 
 BecomeTeacherContainer.contextTypes = {
   t: React.PropTypes.func.isRequired
-}
+};
 
 const BecomeTeacherBanner = () => {
   return (
@@ -31,11 +31,11 @@ const BecomeTeacherBanner = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
 const BecomeTeacherIntroduction = () => {
-  const beComeTeacherIntro = TT.t('become-a-teacher-introduction')
+  const beComeTeacherIntro = TT.t('become-a-teacher-introduction');
   return (
     <div className="become-teacher-introduction">
       <div className="become-teacher-introduction__picture">
@@ -46,17 +46,17 @@ const BecomeTeacherIntroduction = () => {
         <p>{beComeTeacherIntro.description}</p>
       </div>
     </div>
-  )
-}
+  );
+};
 
 const BecomeTeacherReasons = () => {
-  const beComeTeacherReasons = TT.t('become-a-teacher-reasons')
+  const beComeTeacherReasons = TT.t('become-a-teacher-reasons');
   return (
     <div className="become-teacher-reason">
       <h2>{beComeTeacherReasons.title}</h2>
       <div className="become-teacher-reason__items">
         {beComeTeacherReasons.reasons.map((reason, index) => (
-          <div className="become-teacher-reason__item" key={'reason-become-'+index}>
+          <div className="become-teacher-reason__item" key={`reason-become-${index}`}>
             <div className="become-teacher-reason__item__picture">
               <img src={reason.picture} />
             </div>
@@ -68,18 +68,17 @@ const BecomeTeacherReasons = () => {
         ))}
       </div>
     </div>
-  )
-}
+  );
+};
 
 const BecomeTeacherButton = () => {
   return (
     <div className="d-flex align-items-center justify-content-center">
-      <Link to={'/register'} className="mt-4 mb-50">
-        <PrimaryButton type="button" isPrimary={true} round={true} line={false} title={TT.t('homepage_search_become_teacher')}>
-        </PrimaryButton>
+      <Link to="/register" className="mt-4 mb-50">
+        <PrimaryButton type="button" isPrimary round line={false} title={TT.t('homepage_search_become_teacher')} />
       </Link>
     </div>
-  )
-}
+  );
+};
 
-export default BecomeTeacherContainer
+export default BecomeTeacherContainer;

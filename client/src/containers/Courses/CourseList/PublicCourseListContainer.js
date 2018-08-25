@@ -1,19 +1,18 @@
-import React, {Component} from 'react';
-import {CourseList} from '../../../components/index';
-import * as Actions from '../../../actions/CourseFilterActionCreator'
-import {connect} from 'react-redux';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import Pagination from 'react-js-pagination';
-import LoadingMask from "../../../components/LoadingMask/LoadingMask";
-import {FETCH_COURSES, RESET_COURSE_FILTER} from "constants/Courses";
-import {withRouter} from 'react-router'
-import * as WebConstants from "constants/WebConstants";
-import styles from './PublicCourseList.module.scss'
-import Network from "utils/network";
-import cssModules from "react-css-modules";
-import PaginationArrowIcon from "../../../components/Core/Icons/PaginationArrowIcon";
+import { FETCH_COURSES, RESET_COURSE_FILTER } from 'constants/Courses';
+import { withRouter } from 'react-router';
+import * as WebConstants from 'constants/WebConstants';
+import Network from 'utils/network';
+import cssModules from 'react-css-modules';
+import styles from './PublicCourseList.module.scss';
+import LoadingMask from '../../../components/LoadingMask/LoadingMask';
+import * as Actions from '../../../actions/CourseFilterActionCreator';
+import { CourseList } from '../../../components/index';
+import PaginationArrowIcon from '../../../components/Core/Icons/PaginationArrowIcon';
 
 class PublicCourseListContainer extends Component {
-
   componentDidMount() {
     this.props.search(this.props);
     this.props.hideFooter();
@@ -27,7 +26,7 @@ class PublicCourseListContainer extends Component {
 
 
   handlePageChange(currentPage) {
-    this.props.search(Object.assign({}, this.props, {currentPage: currentPage}))
+    this.props.search(Object.assign({}, this.props, { currentPage }));
   }
 
   selectCourseHdl(courseId) {
@@ -39,20 +38,22 @@ class PublicCourseListContainer extends Component {
   }
 
   render() {
-    const {courses, isFetching, displayMode} = this.props;
+    const { courses, isFetching, displayMode } = this.props;
     return (
-      <LoadingMask placeholderId="publicCourseListPlaceholder"
-                   normalPlaceholder={displayMode === 'grid'}
-                   facebookPlaceholder={displayMode !== 'grid'}
-                   loaderType="COURSE_ITEM_PLACEHOLDER"
-                   repeatTime={4}>
+      <LoadingMask
+        placeholderId="publicCourseListPlaceholder"
+        normalPlaceholder={displayMode === 'grid'}
+        facebookPlaceholder={displayMode !== 'grid'}
+        loaderType="COURSE_ITEM_PLACEHOLDER"
+        repeatTime={4}
+      >
         <div className={styles.publicCourseList}>
           <div className="container-fluid mt-15 mb-15">
             <CourseList
               {...this.props}
-              itemClass='col-xs-12 col-sm-6 col-md-3 col-lg-3 mb-15'
+              itemClass="col-xs-12 col-sm-6 col-md-3 col-lg-3 mb-15"
               selectCourseHdl={this.selectCourseHdl.bind(this)}
-              isPublic={true}
+              isPublic
             />
           </div>
           {
@@ -60,7 +61,7 @@ class PublicCourseListContainer extends Component {
               <div className="d-flex justify-content-center mb-15">
                 <Pagination
                   hideFirstLastPages
-                  prevPageText={<PaginationArrowIcon isLeftArrow={true} />}
+                  prevPageText={<PaginationArrowIcon isLeftArrow />}
                   nextPageText={<PaginationArrowIcon />}
                   innerClass="mt-8 pagination"
                   linkClassPrev="prev-page-icon"
@@ -71,7 +72,7 @@ class PublicCourseListContainer extends Component {
                   itemsCountPerPage={this.props.perPage}
                   totalItemsCount={this.props.totalResult}
                   pageRangeDisplayed={5}
-                  activeClass={'active'}
+                  activeClass="active"
                   onChange={this.handlePageChange.bind(this)}
                 />
               </div>
@@ -79,20 +80,20 @@ class PublicCourseListContainer extends Component {
           }
         </div>
       </LoadingMask>
-    )
+    );
   }
 }
 
 PublicCourseListContainer.contextTypes = {
   t: React.PropTypes.func.isRequired
-}
+};
 
 PublicCourseListContainer.propTypes = {
   courses: React.PropTypes.array.isRequired,
   isFetching: React.PropTypes.bool.isRequired
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   keyWord: state.CourseFilter.keyWord,
   startTime: state.CourseFilter.startTime,
   endTime: state.CourseFilter.endTime,
@@ -129,18 +130,18 @@ const buildQuery = (props) => {
     sort_by: props.sortBy,
     sort_order: props.sortOrder,
     per_page: props.perPage
-  }
-}
+  };
+};
 
-const mapDispatchToProps = (dispatch) => ({
-  search: (props) => dispatch({
+const mapDispatchToProps = dispatch => ({
+  search: props => dispatch({
     type: FETCH_COURSES,
     payload: Network().get('courses/search', buildQuery(props)),
     meta: 'publicCourseListPlaceholder'
   }),
   resetFilter: () => dispatch({ type: RESET_COURSE_FILTER }),
-  selectCourse: (courseId) => dispatch(Actions.selectCourse(courseId)),
-  removeCourse: (courseId) => dispatch(Actions.removeCourse(courseId)),
+  selectCourse: courseId => dispatch(Actions.selectCourse(courseId)),
+  removeCourse: courseId => dispatch(Actions.removeCourse(courseId)),
   showFooter: () => dispatch({ type: WebConstants.SHOW_FOOTER }),
   hideFooter: () => dispatch({ type: WebConstants.HIDE_FOOTER }),
   stretchFull: () => dispatch({ type: WebConstants.STETCH_FULL }),

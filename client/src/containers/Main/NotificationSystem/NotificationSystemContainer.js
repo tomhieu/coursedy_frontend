@@ -1,22 +1,21 @@
-import * as React from "react";
-import {Component} from "react";
-import Notifications from "react-notification-system-redux";
-import {Link} from "react-router-dom";
-import DateUtils from "utils/DateUtils";
-import {connect} from "react-redux";
-import UpcommingCourseNotificationPopup from "../../../components/Layout/UpcommingCoursePopup/UpcommingCourseNotificationPopup";
+import * as React from 'react';
+import { Component } from 'react';
+import Notifications from 'react-notification-system-redux';
+import { Link } from 'react-router-dom';
+import DateUtils from 'utils/DateUtils';
+import { connect } from 'react-redux';
+import UpcommingCourseNotificationPopup from '../../../components/Layout/UpcommingCoursePopup/UpcommingCourseNotificationPopup';
 import {
   CLOSE_POPUP_JOIN_UPCOMMING_CLASS,
   LEAVED_JOINING_CLASS,
   STARTED_JOINING_ACTIVE_CLASS
-} from "../../../actions/AsyncActionCreator";
-import * as courseActions from "../../../actions/ListTutorCourseActionCreator";
-import {UserRole} from "../../../constants/UserRole";
+} from '../../../actions/AsyncActionCreator';
+import * as courseActions from '../../../actions/ListTutorCourseActionCreator';
+import { UserRole } from '../../../constants/UserRole';
 
 class NotificationSystemContainer extends Component {
-
   componentWillReceiveProps(nextProps) {
-    const {hasActiveCourseToLearn, isJoiningActiveClass, currentUser} = nextProps.session;
+    const { hasActiveCourseToLearn, isJoiningActiveClass, currentUser } = nextProps.session;
     if (hasActiveCourseToLearn && currentUser && !isJoiningActiveClass) {
       this.startPoll(currentUser);
     } else {
@@ -25,7 +24,7 @@ class NotificationSystemContainer extends Component {
   }
 
   componentDidMount() {
-    const {session} = this.props;
+    const { session } = this.props;
     if (!session.hasActiveCourseToLearn) {
       return;
     }
@@ -64,7 +63,7 @@ class NotificationSystemContainer extends Component {
 
   showNotification(notification, timeout) {
     setTimeout(() => {
-      this.props.showInfoNotification(notification)
+      this.props.showInfoNotification(notification);
     }, timeout);
   }
 
@@ -79,10 +78,10 @@ class NotificationSystemContainer extends Component {
   }
 
   render() {
-    const {main, session, notifications} = this.props;
+    const { main, session, notifications } = this.props;
 
     // get new started courses
-    const {newStartedCourses} = session;
+    const { newStartedCourses } = session;
 
     const teachingCourseTeacherName = session.teachingCourse !== null ? session.teachingCourse.user.name : '';
     const teachingCourseName = session.teachingCourse !== null ? session.teachingCourse.title : '';
@@ -91,33 +90,39 @@ class NotificationSystemContainer extends Component {
 
     // show notification about the new started course
     if (newStartedCourses.length > 0) {
-      const newStartedCourseNotification = newStartedCourses.map((course) => ({
+      const newStartedCourseNotification = newStartedCourses.map(course => ({
         title: this.context.t('new_started_course_notification_title'),
         message: this.context.t('new_started_course_notification_message', {
-          courseName: <Link to={this.getCourseDetailsUrl(course.id)}
-                            className="link-course-details">{course.title}</Link>,
+          courseName: <Link
+            to={this.getCourseDetailsUrl(course.id)}
+            className="link-course-details"
+          >
+            {course.title}
+          </Link>,
           firstDayLearning: <strong>{DateUtils.formatDate(course.start_date)}</strong>
         }),
         position: 'tr',
         autoDismiss: 0
-      }))
+      }));
       this.notifyNewStartedCourse(newStartedCourseNotification);
     }
     return (
       <div>
         <div className="join-course">
-          <UpcommingCourseNotificationPopup teacherName={teachingCourseTeacherName}
-                                            currentUser={session.currentUser}
-                                            courseName={teachingCourseName}
-                                            courseId={teachingCourseId} isShowPopup={session.teachingCourse !== null}
-                                            classRoomId={classRoomId}
-                                            acceptJoinToClassRoom={this.acceptJoinToClassRoom.bind(this)}
-                                            closePopupJoinUpcomingClass={this.props.closePopupJoinUpcomingClass.bind(this)}>
-          </UpcommingCourseNotificationPopup>
+          <UpcommingCourseNotificationPopup
+            teacherName={teachingCourseTeacherName}
+            currentUser={session.currentUser}
+            courseName={teachingCourseName}
+            courseId={teachingCourseId}
+            isShowPopup={session.teachingCourse !== null}
+            classRoomId={classRoomId}
+            acceptJoinToClassRoom={this.acceptJoinToClassRoom.bind(this)}
+            closePopupJoinUpcomingClass={this.props.closePopupJoinUpcomingClass.bind(this)}
+          />
         </div>
-        <Notifications notifications={notifications}/>
+        <Notifications notifications={notifications} />
       </div>
-    )
+    );
   }
 }
 
@@ -132,18 +137,18 @@ NotificationSystemContainer.contextTypes = {
 };
 
 const mapStateToProps = (state) => {
-  const {main, session, notifications} = state;
+  const { main, session, notifications } = state;
 
-  return {main, session, notifications};
-}
+  return { main, session, notifications };
+};
 
-const mapDispatchToProps = (dispatch) => ({
-  closePopupJoinUpcomingClass: () => dispatch({type: CLOSE_POPUP_JOIN_UPCOMMING_CLASS}),
+const mapDispatchToProps = dispatch => ({
+  closePopupJoinUpcomingClass: () => dispatch({ type: CLOSE_POPUP_JOIN_UPCOMMING_CLASS }),
   fetchUpCommingTeacherCourse: () => dispatch(courseActions.fetchUpcomingTutorCourse()),
   fetchUpCommingStudentCourse: () => dispatch(courseActions.fetchUpcomingStudentCourse()),
-  afterJoinUpcomingClass: () => dispatch({type: STARTED_JOINING_ACTIVE_CLASS}),
-  afterLeavedActiveClass: () => dispatch({type: LEAVED_JOINING_CLASS})
-})
+  afterJoinUpcomingClass: () => dispatch({ type: STARTED_JOINING_ACTIVE_CLASS }),
+  afterLeavedActiveClass: () => dispatch({ type: LEAVED_JOINING_CLASS })
+});
 export default connect(
   mapStateToProps, mapDispatchToProps
 )(NotificationSystemContainer);

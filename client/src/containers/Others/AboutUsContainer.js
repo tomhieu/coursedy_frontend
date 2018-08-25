@@ -1,7 +1,7 @@
-import React, {Component} from 'react'
-import AboutTop from '../../components/Layout/SubAbout/AboutTop'
-import './AboutUs.scss'
-import AboutCenter from '../../components/Layout/SubAbout/AboutCenter'
+import React, { Component } from 'react';
+import AboutTop from '../../components/Layout/SubAbout/AboutTop';
+import './AboutUs.scss';
+import AboutCenter from '../../components/Layout/SubAbout/AboutCenter';
 
 class AboutUsContainer extends Component {
   render() {
@@ -10,12 +10,12 @@ class AboutUsContainer extends Component {
         <AboutTop />
         <AboutCenter />
       </div>
-    )
+    );
   }
 }
 
 AboutUsContainer.contextTypes = {
   t: React.PropTypes.func.isRequired
-}
+};
 
-export default AboutUsContainer
+export default AboutUsContainer;
