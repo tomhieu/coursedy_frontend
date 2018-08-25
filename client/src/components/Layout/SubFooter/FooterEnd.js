@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import { Link } from 'react-router-dom'
+import CoursedyLogo from "../../Core/Icons/CoursedyLogo";
 
 class FooterEnd extends Component {
   render() {
@@ -9,7 +10,7 @@ class FooterEnd extends Component {
           <div className="footer__copyright">
             <div className="d-flex flex-row">
               <div className="footer__logo">
-                <img src="/coursedy-logo-2.png" width="100px" />
+                <CoursedyLogo width={100} height={20} fillColor="#FFFFFF"/>
               </div>
               <span className="coursedy-copyright">{this.context.t('product_copyright')}</span>
             </div>

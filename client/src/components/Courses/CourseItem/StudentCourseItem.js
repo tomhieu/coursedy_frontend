@@ -76,9 +76,9 @@ class StudentCourseItem extends Component {
       <div className="row">
         <div className="col-md-12">
           <div className={"row flex-auto align-items-center " + styles.courseTutorContainer}>
-            <div className="col-xl-5 col-sm-12">
+            <div className="col-md-5 col-sm-12">
               <div className="row">
-                <div className="col-md-9 col-sm-12">
+                <div className="col-xl-9 col-sm-12">
                   <div className="d-flex flex-row align-items-center">
                     <a className={styles.courseAvatarImage}><img src={course.cover_image} /></a>
                     <div className="d-flex flex-column">
@@ -87,7 +87,7 @@ class StudentCourseItem extends Component {
                     </div>
                   </div>
                 </div>
-                <div className="col-md-3 col-sm-12 d-flex align-items-center">
+                <div className="col-xl-3 col-sm-12 d-flex align-items-center course-fee-col">
                   <div className="d-flex flex-row align-items-center">
                     <div className={styles.leftSeperateLine}></div>
                     <div className={styles.courseNumberData + ' ' + styles.fee}>
@@ -97,27 +97,27 @@ class StudentCourseItem extends Component {
                 </div>
               </div>
             </div>
-            <div className="col-xl-7 col-sm-12">
+            <div className="col-md-7 col-sm-12">
               <div className="row align-items-center">
-                <div className="col-md-2 col-sm-4">
+                <div className="col-xl-2 col-lg-2 col-md-2 col-sm-4">
                   <div className="d-flex flex-row align-items-center">
                     <div className={styles.leftSeperateLine}></div>
                     <div className={styles.courseNumberData}>{DateUtils.formatDate(course.start_date)}</div>
                   </div>
                 </div>
-                <div className="col-md-2 col-sm-4">
+                <div className="col-xl-2 col-lg-2 col-md-2 col-sm-4 max-student-col">
                   <div className="d-flex flex-row align-items-center">
                     <div className={styles.leftSeperateLine}></div>
                     <div className={styles.courseNumberData}>{course.lesson_count}</div>
                   </div>
                 </div>
-                <div className="col-md-2 col-sm-4">
+                <div className="col-xl-2 num-lesson-col">
                   <div className="d-flex flex-row align-items-center">
                     <div className={styles.leftSeperateLine}></div>
                     <div className={styles.courseNumberData}>{course.lesson_count}</div>
                   </div>
                 </div>
-                <div className="col-md-3 col-sm-4">
+                <div className="col-xl-3 col-lg-4 col-md-4 col-sm-4 course-status-col">
                   <div className="d-flex flex-row align-items-center">
                     <div className={styles.leftSeperateLine}></div>
                     {
@@ -129,7 +129,7 @@ class StudentCourseItem extends Component {
                     }
                   </div>
                 </div>
-                <div className="col-md-3 col-sm-4">
+                <div className="col-xl-3 col-lg-4 col-md-6 col-sm-4">
                   <div className="d-flex flex-row align-items-center justify-content-right">
                     <div className={styles.leftSeperateLine}></div>
                     {

@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Pagination from 'react-js-pagination'
 import ReviewTeacherForm from './ReviewTeacherForm'
 import ReviewContent from '../../../../components/Review/ReviewContentComponent'
+import PaginationArrowIcon from "../../../../components/Core/Icons/PaginationArrowIcon";
 
 
 class TeacherReviewList extends Component {
@@ -28,14 +29,17 @@ class TeacherReviewList extends Component {
             <div className="row">
               <div className="col-xs-12 col-sm-12">
                 <Pagination
-                  innerClass="pagination mt-8"
+                  hideFirstLastPages
+                  prevPageText={<PaginationArrowIcon isLeftArrow={true} />}
+                  nextPageText={<PaginationArrowIcon />}
+                  linkClassPrev="prev-page-icon"
+                  linkClassNext="next-page-icon"
                   activePage={headers.currentPage}
                   itemsCountPerPage={headers.perPage}
                   totalItemsCount={headers.total}
                   pageRangeDisplayed={5}
-                  onChange={(pageNumber) => {
-                    this.props.handlePageChange(pageNumber, headers.perPage)
-                  }}
+                  activeClass={'active'}
+                  onChange={(pageNumber) => this.props.handlePageChange(pageNumber, headers.perPage)}
                 />
               </div>
             </div> : null

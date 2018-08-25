@@ -1292,7 +1292,8 @@ body.application {
     &__end {
       flex: 0 0 100%;
       max-width: 100%;
-      padding-top: 15px;
+      padding-top: 10px;
+      padding-bottom: 10px;
       @media (max-width: 767px) and (min-width: 320px) {
         .flexbox {
           flex-flow: column wrap;
@@ -1383,11 +1384,16 @@ body.application {
       }
     }
 
+    &__logo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
     &__page-link {
       flex: 0 0 50%;
       max-width: 50%;
       text-align: right;
-      margin-top: 5px;
       @media (max-width: 767px) and (min-width: 320px) {
         max-width: none;
         text-align: center;
@@ -1472,7 +1478,6 @@ body.application {
     }
 
     .coursedy-copyright {
-      margin-top: 5px;
       margin-left: 10px;
     }
   }
@@ -1847,4 +1852,11 @@ body.application {
     padding-right: 6px;
     background-color: rgba(48, 51, 57, 0.15);
   }
+}
+
+.hint-text {
+  margin-bottom: 5px;
+  font-size: 12px;
+  color: $grey-light-text-color;
+  font-style: italic;
 }
