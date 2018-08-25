@@ -1,11 +1,9 @@
 import * as asyncActs from 'actions/AsyncActionCreator';
 
 
-const Teachers = (state = {
+export const initialState = {
   total: 0,
   data: [],
-  nextPage: null,
-  previousPage: null,
   isFetching: true,
   error: null,
   suggestions: [],
@@ -13,13 +11,19 @@ const Teachers = (state = {
   showSuggestion: false,
   loadingSuggestion: false,
   headers: null
-}, action) => {
+};
+
+export const Teachers = (state = initialState, action) => {
   switch (action.type) {
     case asyncActs.FETCH_TEACHERS + asyncActs.PENDING:
       return { ...state, isFetching: true, error: null };
     case asyncActs.FETCH_TEACHERS + asyncActs.FULFILLED:
       return {
-        ...state, data: action.payload, headers: action.headers, isFetching: false, error: null
+        ...state,
+        data: action.payload,
+        headers: action.headers,
+        isFetching: false,
+        error: null
       };
 
     case asyncActs.FETCH_TEACHERS + asyncActs.REJECTED:
@@ -31,7 +35,10 @@ const Teachers = (state = {
      */
     case asyncActs.LOAD_SUGGESTION_TEACHERS + asyncActs.FULFILLED:
       return {
-        ...state, suggestions: action.payload, showSuggestion: true, loadingSuggestion: false
+        ...state,
+        suggestions: action.payload,
+        showSuggestion: true,
+        loadingSuggestion: false
       };
     case asyncActs.LOAD_SUGGESTION_TEACHERS + asyncActs.PENDING:
       return {
@@ -39,11 +46,19 @@ const Teachers = (state = {
       };
     case asyncActs.LOAD_SUGGESTION_TEACHERS + asyncActs.REJECTED:
       return {
-        ...state, suggestions: [], error: action.error, showSuggestion: false, loadingSuggestion: false
+        ...state,
+        suggestions: [],
+        error: action.error,
+        showSuggestion: false,
+        loadingSuggestion: false
       };
     case asyncActs.CLEAR_SUGGESTION:
       return {
-        ...state, filters: { ...state.filters, term: '' }, suggestions: [], showSuggestion: false, loadingSuggestion: false
+        ...state,
+        filters: { ...state.filters, term: '' },
+        suggestions: [],
+        showSuggestion: false,
+        loadingSuggestion: false
       };
     case asyncActs.UPDATE_FILTER_CRITERIA_TEACHERS:
       return Object.assign({}, state, { filters: action.data });
