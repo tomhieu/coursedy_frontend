@@ -2,6 +2,8 @@ import React, { Component, PropTypes } from 'react';
 import cssModules from 'react-css-modules';
 import styles from './Header.module.scss';
 import CoursedyDropDown from '../../../components/Core/CoursedyDropdown/CoursedyDropDown';
+import { connect } from 'react-redux';
+import { setLanguage } from 'redux-i18n';
 
 class LangNavigation extends Component {
   constructor(props) {
@@ -81,4 +83,8 @@ LangNavigation.propTypes = {
   session: PropTypes.object.isRequired,
 };
 
-export default cssModules(LangNavigation, styles);
+const mapDispatchToProps = (dispatch) => ({
+  switchLang: (lang) => dispatch(setLanguage(lang))
+});
+
+export default connect(null, mapDispatchToProps)(cssModules(LangNavigation, styles));
