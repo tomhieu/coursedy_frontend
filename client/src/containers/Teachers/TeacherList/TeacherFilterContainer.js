@@ -70,18 +70,21 @@ class TeacherFilterContainer extends AbstractFilter {
 
   render() {
     return (
-      <BaseFilter
-        {...this.props}
-        onSubmit={this.search.bind(this)}
-        search={this.search.bind(this)}
-        selectAllCoursesHdl={this.selectAllCourses}
-        loadSuggestions={this.loadSuggestionsTeacher.bind(this)}
-        onSelectFilter={this.doSelectFilter.bind(this)}
-        onRemoveFilter={this.doRemoveFilter.bind(this)}
-        onSelectSuggestion={this.onSelectTeacher.bind(this)}
-        closeSuggestion={this.props.closeSuggestion}
-        courseFilterMode={false}
-      />
+      <div className="d-flex flex-auto course-filter-container">
+        <BaseFilter
+          {...this.props}
+          onSubmit={this.search.bind(this)}
+          search={this.search.bind(this)}
+          selectAllCoursesHdl={this.selectAllCourses}
+          loadSuggestions={this.loadSuggestionsTeacher.bind(this)}
+          onSelectFilter={this.doSelectFilter.bind(this)}
+          onRemoveFilter={this.doRemoveFilter.bind(this)}
+          onSelectSuggestion={this.onSelectTeacher.bind(this)}
+          closeSuggestion={this.props.closeSuggestion}
+          courseFilterMode={false}
+          placeholder={this.context.t('search_teacher')}
+        />
+      </div>
     );
   }
 }

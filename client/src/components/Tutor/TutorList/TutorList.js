@@ -10,7 +10,7 @@ class TutorList extends Component {
     if (!isFetching && teachers.length === 0) {
       return (
         <div className="d-flex flex-auto justify-content-center">
-          <EmptyResultWarning searchType="search_teachers" {...this.props} />
+          <EmptyResultWarning searchType="search_teacher" {...this.props} />
         </div>
       );
     }
@@ -20,7 +20,7 @@ class TutorList extends Component {
           isFetching ? <div />
             : teachers.map((tutor) => {
               return (
-                <div className="col-md-3 col-sm-6" key={tutor.id}>
+                <div className="col-xs-12 col-sm-6 col-md-4 col-lg-3 col-xl-2" key={tutor.id}>
                   <TutorItem tutor={tutor} />
                 </div>
               );

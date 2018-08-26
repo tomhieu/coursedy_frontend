@@ -26,6 +26,7 @@ import TeacherBackground from './Content/TeacherBackground';
 import styles from './TeacherDetail.module.scss';
 import PageContainer from '../../../utils/PageContainer';
 import PaginationArrowIcon from '../../../components/Core/Icons/PaginationArrowIcon';
+import { PAGE_RANGE_DISPLAYED } from '../../../constants/Layout';
 
 
 class TeacherDetail extends Component {
@@ -258,11 +259,11 @@ const TeacherTaughtCourses = (props) => {
           <CourseListInGridMode
             {...{
               courses: teacher.courses.data,
-              itemClass: 'col-12 col-sm-12 col-md-6 col-lg-6 mb-15 mt-15'
+              itemClass: 'col-xs-12 col-sm-6 col-md-6 col-lg-6 col-xl-4 mb-15 mt-15'
             }}
           />
 
-          {teacher.courses.data.length ? (
+          {teacher.courses.data.length && headers.total > headers.perPage ? (
             <div className="mt-30">
               <div className="d-flex justify-content-center">
                 <Pagination
@@ -277,7 +278,7 @@ const TeacherTaughtCourses = (props) => {
                   activePage={headers.currentPage}
                   itemsCountPerPage={headers.perPage}
                   totalItemsCount={headers.total}
-                  pageRangeDisplayed={5}
+                  pageRangeDisplayed={PAGE_RANGE_DISPLAYED}
                   onChange={(pageNumber) => {
                     props.handlePageChange(pageNumber, headers.perPage);
                   }}

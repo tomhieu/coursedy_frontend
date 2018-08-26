@@ -3,6 +3,7 @@ import Pagination from 'react-js-pagination';
 import ReviewTeacherForm from './ReviewTeacherForm';
 import ReviewContent from '../../../../components/Review/ReviewContentComponent';
 import PaginationArrowIcon from '../../../../components/Core/Icons/PaginationArrowIcon';
+import { PAGE_RANGE_DISPLAYED } from '../../../../constants/Layout';
 
 
 class TeacherReviewList extends Component {
@@ -25,7 +26,7 @@ class TeacherReviewList extends Component {
         </div>
 
         <div className="mt-30">
-          {teacher.reviews.data.length
+          {teacher.reviews.data.length && headers.total > headers.perPage
             ? (
               <div className="row">
                 <div className="col-xs-12 col-sm-12">
@@ -42,7 +43,7 @@ class TeacherReviewList extends Component {
                       activePage={headers.currentPage}
                       itemsCountPerPage={headers.perPage}
                       totalItemsCount={headers.total}
-                      pageRangeDisplayed={5}
+                      pageRangeDisplayed={PAGE_RANGE_DISPLAYED}
                       onChange={(pageNumber) => {
                         this.props.handlePageChange(pageNumber, headers.perPage);
                       }}
