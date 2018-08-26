@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 
 export default class CourseGroupHeading extends Component {
@@ -14,6 +14,6 @@ export default class CourseGroupHeading extends Component {
   render() {
     return (
       <h2 className="heading">{this.props.title}</h2>
-    )
+    );
   }
 }

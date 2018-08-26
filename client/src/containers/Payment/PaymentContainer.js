@@ -100,22 +100,22 @@ class PaymentContainer extends Component {
       <div className="payment-box">
         <h2 className="text-center">{this.context.t('public_payment_instruct')}</h2>
         <div className="divider"></div>
-        
+
         <div className="container-fluid row">
           {/*Payment method*/}
           <div className="col-md-8 col-sm-12">
             <ul className="nav nav-tabs">
               <li className="nav-item">
                 <a
-                  className={activeTab == "manual" ? "nav-link active" : "nav-link"} 
+                  className={activeTab == "manual" ? "nav-link active" : "nav-link"}
                   onClick={this.changeActiveTab.bind(this, 'manual')}
                 >
                   {this.context.t('admin_payment_methods_manual')}
                 </a>
               </li>
               <li className="nav-item">
-                <a 
-                  className={activeTab == "transfer" ? "nav-link active" : "nav-link"} 
+                <a
+                  className={activeTab == "transfer" ? "nav-link active" : "nav-link"}
                   onClick={this.changeActiveTab.bind(this, 'transfer')}
                 >
                   {this.context.t('admin_payment_methods_transfer')}
@@ -125,7 +125,7 @@ class PaymentContainer extends Component {
             <div className="payment-container">
               {/*Manual payment*/}
               {
-              activeTab == 'manual' ? 
+              activeTab == 'manual' ?
                 <div className="card">
                   <div className="card-body no-pad">
                     <div className="row container-fluid">
@@ -140,33 +140,37 @@ class PaymentContainer extends Component {
                         </p>
                       </div>
                       <div className="col-md-12 no-pad payment-step">
-                        <p>
+                        <p className="mb-5">
                           <i className="fa fa-chevron-circle-right payment-step-icon"></i>
                           <strong>Bước 2:</strong>
-                          <span> Vui lòng nạp tiền tại văn phòng theo địa chỉ:</span>
+                          <span> Vui lòng nạp tiền tại văn phòng</span>
+                        </p>
+                        <p>
+                          Địa chỉ: <i>307 Hồng Bàng, Phường 11, Quận 5, Hồ Chí Minh.</i>
                         </p>
                       </div>
                       <div className="col-sm-12 no-pad-left col-md-7">
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.737426598377!2d106.6580743143502!3d10.7547083923363!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752ef11488a397%3A0x49680a6fa438017b!2sCheese+Coffee!5e0!3m2!1sen!2s!4v1534047689794" 
-                          width="100%" 
-                          height="300" 
-                          frameBorder="0" 
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.737426598377!2d106.6580743143502!3d10.7547083923363!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752ef11488a397%3A0x49680a6fa438017b!2sCheese+Coffee!5e0!3m2!1sen!2s!4v1534047689794"
+                          width="100%"
+                          height="300"
+                          frameBorder="0"
                           style={{border:0}}
                           allowFullScreen
                         ></iframe>
                       </div>
                       <div className="col-sm-12 no-pad col-md-5">
                         <ul className="list-unstyled">
-                          <li className="mb-5"><i>Mọi chi tiết vui lòng liên hệ</i></li>
-                          <li className="mb-5">Hotline: 0123.456.789</li>
-                          <li>Hoặc E-mail: support@coursedy.com</li>
+                          <li className="mb-5">
+                            <a href="#">Coursedy</a> trực tuyến <span className="badge badge-success">24/7</span> để hỗ trợ các bạn.
+                            Hãy liên hệ với chúng tôi tại <a href="#" target="_blank">đây</a>.
+                          </li>
                         </ul>
                       </div>
                     </div>
                   </div>
                 </div> : null
               }
-              
+
 
               {/*Transfer payment*/}
               {
@@ -178,7 +182,7 @@ class PaymentContainer extends Component {
                         <p className="mb-15">
                           <i className="fa fa-chevron-circle-right payment-step-icon"></i>
                           <strong>Bước 1:</strong>
-                          <span> Bên dưới là danh sách ngân hàng <strong>Coursedy</strong> hỗ trợ. 
+                          <span> Bên dưới là danh sách ngân hàng <strong>Coursedy</strong> hỗ trợ.
                             Vui lòng chọn ngân hàng để nhận thông tin chuyển khoản:
                           </span>
                         </p>
@@ -186,8 +190,8 @@ class PaymentContainer extends Component {
                           <div className="col-sm-12 col-md-3">
                           {
                             bankAccounts.map((item) => (
-                              <div 
-                                className="bank-logo text-center" 
+                              <div
+                                className="bank-logo text-center"
                                 key={item.name}
                                 onClick={this.changeBank.bind(this, item.id)}
                               >
@@ -233,7 +237,7 @@ class PaymentContainer extends Component {
                           <p className="text-center info-row">
                             <span className="info-box">NAP TIEN <span className="badge badge-info" alt="Đăng nhập để lấy mã">???</span> tinhuynh0992@gmail.com</span>
                           </p>
-                          
+
                         </div>
 
                       </div>
@@ -283,28 +287,27 @@ class PaymentContainer extends Component {
                   <div className="col-md-7 pad"><strong>Tổng:</strong></div>
                   <div className="col-md-5 pad text-right"><strong>{ObjectUtils.currencyFormat(cartTotal)}</strong></div>
                 </div>
-                
-              </div> : 
+
+              </div> :
               <div className="text-center">
                 <div className="course-divider"></div>
                 <p>Không có khóa học được chọn</p>
               </div>
             }
-              
+
             </div>
           </div>
         </div>
 
       </div>
-      
+
     )
   }
-
 }
 
 PaymentContainer.contextTypes = {
   t: React.PropTypes.func.isRequired
-}
+};
 
 PaymentContainer.propTypes = {
 

@@ -16,14 +16,23 @@ class EmptyResultWarning extends Component {
         <div className="d-flex flex-auto align-items-center">
           <div className="d-flex flex-vertical flex-auto">
             <div
-              className="empty-result-message">{this.context.t('search_empty_result', {
-              type: <strong>{this.context.t(searchType)}</strong>
-            })}</div>
+              className="empty-result-message"
+            >
+              {this.context.t('search_empty_result', {
+                type: <strong>{this.context.t(searchType)}</strong>
+              })}
+            </div>
             <div className="list-option">
               <ul className="empty-result-option">
                 <li>{TT.t('search_empty_result_header')}</li>
-                <li><a className="clear-filter" tabIndex={1}
-                       onClick={this.resetFilter.bind(this)}>{TT.t('search_empty_result_reset')}</a>
+                <li>
+                  <a
+                    className="clear-filter"
+                    tabIndex={1}
+                    onClick={this.resetFilter.bind(this)}
+                  >
+                    {TT.t('search_empty_result_reset')}
+                  </a>
                 </li>
               </ul>
             </div>

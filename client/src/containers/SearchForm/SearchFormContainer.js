@@ -1,20 +1,21 @@
-import React, {Component} from 'react';
-import {SearchForm} from '../../components/index';
-import styles from './SearchFormContainer.module.scss';
+import React, { Component } from 'react';
 import cssModules from 'react-css-modules';
-import {connect} from 'react-redux';
-import * as WebConstants from "../../constants/WebConstants";
-import {FETCH_COURSES} from "../../constants/Courses";
-import {TT} from "utils/locale";
-import {CLOSE_COURSE_FILTER_SUGGESTION, LOAD_SUGGESTION} from "../../actions/AsyncActionCreator";
-import {reduxForm} from "redux-form";
-import Network from "utils/network";
-import * as CourseFilterActions from "../../actions/CourseFilterActionCreator";
+import { connect } from 'react-redux';
+import { TT } from 'utils/locale';
+import { reduxForm } from 'redux-form';
+import Network from 'utils/network';
+import { SearchForm } from '../../components/index';
+import styles from './SearchFormContainer.module.scss';
+import * as WebConstants from '../../constants/WebConstants';
+import { FETCH_COURSES } from '../../constants/Courses';
+import { CLOSE_COURSE_FILTER_SUGGESTION, LOAD_SUGGESTION } from '../../actions/AsyncActionCreator';
+import * as CourseFilterActions from '../../actions/CourseFilterActionCreator';
 
 class SearchFormContainer extends Component {
   componentWillMount() {
-    this.props.showDarkHeader()
+    this.props.showDarkHeader();
   }
+
   componentWillUnmount() {
     this.props.showWhiteHeader();
   }
@@ -25,21 +26,23 @@ class SearchFormContainer extends Component {
       return;
     }
 
-    this.props.loadSuggestions({q: event.target.value});
+    this.props.loadSuggestions({ q: event.target.value });
   }
 
   onSelectSuggestion(id) {
     this.props.closeSuggestion();
-    this.context.router.history.push('/courses/' + id);
+    this.context.router.history.push(`/courses/${id}`);
   }
 
   onSearchMoreCourse(searchForm) {
-    this.props.updateFilter({term: searchForm.key_word})
-    this.context.router.history.push('/courses?q=' + searchForm.key_word);
+    this.props.updateFilter({ term: searchForm.key_word });
+    this.context.router.history.push(`/courses?q=${searchForm.key_word}`);
   }
 
   render() {
-    const {suggestions, showSuggestion, loadingSuggestion, searchCourseSuggestion, loadSuggestions} = this.props;
+    const {
+      suggestions, showSuggestion, loadingSuggestion, searchCourseSuggestion, loadSuggestions
+    } = this.props;
     return (
       <section className="header-homepage d-flex align-items-center">
         <div className="container">
@@ -49,13 +52,15 @@ class SearchFormContainer extends Component {
               <p className="hero-tag">{this.context.t('product_tag')}</p>
             </div>
             <div className="col-sm-12">
-              <SearchForm suggestions={suggestions}
-                          onSelectSuggestion={this.onSelectSuggestion.bind(this)}
-                          showSuggestion={showSuggestion}
-                          loadingSuggestion={loadingSuggestion}
-                          loadSuggestions={this.fetchSearchSuggestion.bind(this)}
-                          onSubmit={this.onSearchMoreCourse.bind(this)}
-                          {...this.props}/>
+              <SearchForm
+                suggestions={suggestions}
+                onSelectSuggestion={this.onSelectSuggestion.bind(this)}
+                showSuggestion={showSuggestion}
+                loadingSuggestion={loadingSuggestion}
+                loadSuggestions={this.fetchSearchSuggestion.bind(this)}
+                onSubmit={this.onSearchMoreCourse.bind(this)}
+                {...this.props}
+              />
             </div>
           </div>
         </div>
@@ -67,33 +72,37 @@ class SearchFormContainer extends Component {
 SearchFormContainer.contextTypes = {
   t: React.PropTypes.func.isRequired,
   router: React.PropTypes.object
-}
+};
 
 SearchFormContainer.propTypes = {};
 
 const mapStateToProps = (state) => {
-  const {CourseFilter} = state;
-  const {sugestions, showSuggestion, loadingSuggestion, filters} = CourseFilter;
+  const { CourseFilter } = state;
+  const {
+    sugestions, showSuggestion, loadingSuggestion, filters
+  } = CourseFilter;
   return {
     showSuggestion,
-    suggestions: sugestions.map((sug) => ({
-      id: sug.id, avatar: sug.cover_image, title: sug.title,
-        sub_title: TT.t('teacher_info_suggestion', {teacher: sug.user.name})
+    suggestions: sugestions.map(sug => ({
+      id: sug.id,
+      avatar: sug.cover_image,
+      title: sug.title,
+      sub_title: TT.t('teacher_info_suggestion', { teacher: sug.user.name })
     })),
     loadingSuggestion
   };
-}
+};
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = dispatch => ({
   showDarkHeader: () => dispatch({ type: WebConstants.SHOW_DARK_HEADER }),
   showWhiteHeader: () => dispatch({ type: WebConstants.SHOW_WHITE_HEADER }),
-  updateFilter: (filters) => dispatch(CourseFilterActions.updateFilter(filters)),
-  loadSuggestions: (query) => dispatch({
+  updateFilter: filters => dispatch(CourseFilterActions.updateFilter(filters)),
+  loadSuggestions: query => dispatch({
     type: LOAD_SUGGESTION,
     payload: Network().get('courses/search', query),
     meta: 'courseSuggestionPlaceholder'
   }),
-  closeSuggestion: () => dispatch({type: CLOSE_COURSE_FILTER_SUGGESTION})
+  closeSuggestion: () => dispatch({ type: CLOSE_COURSE_FILTER_SUGGESTION })
 });
 
 

@@ -1,21 +1,21 @@
 import React from 'react';
-import {Provider} from 'react-redux';
+import { Provider } from 'react-redux';
 import store from 'store/store';
 import App from 'components/App';
-import * as Pages from '../pages/';
 import ReduxToastr from 'react-redux-toastr';
-import {Route, Router, Switch} from 'react-router-dom'
-import {globalHistory} from "utils/globalHistory";
+import { Route, Router, Switch } from 'react-router-dom';
+import { globalHistory } from 'utils/globalHistory';
 import TeacherListContainer from 'containers/Teachers/TeacherList/TeacherListContainer';
 import TeacherDetailContainer from 'containers/Teachers/TeacherDetail/TeacherDetailContainer';
-import PrivateRoute from "containers/PrivateRoute/PrivateRoute";
-import {UserRole} from "constants/UserRole";
-import AboutUsContainer from 'containers/Others/AboutUsContainer'
-import HelpCenterContainer from 'containers/Others/HelpCenterContainer'
-import BecomeTeacherContainer from 'containers/Others/BecomeTeacherContainer'
-import TermsContainer from 'containers/Others/TermsContainer'
-import PrivacyContainer from 'containers/Others/PrivacyContainer'
-import LessonEvaluationContainer from "containers/Courses/Lesson/LessonEvaluationContainer";
+import PrivateRoute from 'containers/PrivateRoute/PrivateRoute';
+import { UserRole } from 'constants/UserRole';
+import AboutUsContainer from 'containers/Others/AboutUsContainer';
+import HelpCenterContainer from 'containers/Others/HelpCenterContainer';
+import BecomeTeacherContainer from 'containers/Others/BecomeTeacherContainer';
+import TermsContainer from 'containers/Others/TermsContainer';
+import PrivacyContainer from 'containers/Others/PrivacyContainer';
+import LessonEvaluationContainer from 'containers/Courses/Lesson/LessonEvaluationContainer';
+import * as Pages from '../pages';
 
 const router = (
   <Provider store={store}>
@@ -28,8 +28,8 @@ const router = (
       <Router history={globalHistory}>
         <App>
           <Switch>
-            <Route exact path="/" component={Pages.LandingPage}/>
-            <Route path="/home" component={Pages.LandingPage}/>
+            <Route exact path="/" component={Pages.LandingPage} />
+            <Route path="/home" component={Pages.LandingPage} />
             <Route path="/login" component={Pages.LoginRegisterPage} />
             <Route path="/register" component={Pages.RegisterPage} />
             <Route path="/forgot-password" component={Pages.ForgotPasswordPage} />
@@ -38,7 +38,7 @@ const router = (
             <Route path="/confirm_account" component={Pages.ConfirmationPage} />
             <Route exact path="/courses" component={Pages.PublicCourseListPage} />
             <Route exact path="/courses/:courseId/evaluate/lesson/:bbbRoom" component={LessonEvaluationContainer} />
-            <Route exact path="/courses/:id" component={Pages.PublicCourseDetailPage}/>
+            <Route exact path="/courses/:id" component={Pages.PublicCourseDetailPage} />
             <Route exact path="/teachers/:id" component={TeacherDetailContainer} />
             <Route exact path="/teachers" component={TeacherListContainer} />
 

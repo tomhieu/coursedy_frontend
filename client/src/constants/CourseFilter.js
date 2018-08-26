@@ -34,12 +34,11 @@ export const timeSlots = [
   [22.5, '10:30 PM'],
   [23.0, '11:00 PM'],
   [23.5, '11:30 PM']
-]
+];
 
 export const tuitionFees = [
-    {id: 0, text: 'Dưới 1tr'},
-    {id: 1000000, text: '1tr - 5tr'},
-    {id: 5000000, text: '5tr - 10tr'},
-    {id: 10000000, text: 'Trên 10tr'}
-]
-
+  { id: 0, text: 'Dưới 1tr' },
+  { id: 1000000, text: '1tr - 5tr' },
+  { id: 5000000, text: '5tr - 10tr' },
+  { id: 10000000, text: 'Trên 10tr' }
+];

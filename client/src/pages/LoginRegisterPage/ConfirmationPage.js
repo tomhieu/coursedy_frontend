@@ -1,10 +1,10 @@
 import React from 'react';
-import LoadingMask from "../../components/LoadingMask/LoadingMask";
-import ConfirmationContainer from '../../containers/Auth/ConfirmationContainer'
+import LoadingMask from '../../components/LoadingMask/LoadingMask';
+import ConfirmationContainer from '../../containers/Auth/ConfirmationContainer';
 
-const ConfirmationPage = (props) => (
-  <div className='row'>
-    <div className='col-sm-12 mt-20' style={{height: '100vh'}}>
+const ConfirmationPage = props => (
+  <div className="row">
+    <div className="col-sm-12 mt-20" style={{ height: '100vh' }}>
       <LoadingMask placeholderId="loginPlaceholder" isFullLoading={true}>
         <ConfirmationContainer {...props} />
       </LoadingMask>

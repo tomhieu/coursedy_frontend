@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import CourseDetailHeader from './CourseDetail/CourseDetailHeader';
 import CourseDetailMain from './CourseDetail/CourseDetailMain';
 import './CourseDetail.scss';
@@ -16,33 +16,33 @@ import {
   */
 class CourseDetail extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       displayFixedSidebar: false,
       currentScrollPosition: 0,
       activeMenu: 'course-detail-intro',
       showEnrollPopup: false,
       showEnrollSuccessPopup: false
-    }
-    this.onScroll = this.handleScroll.bind(this)
+    };
+    this.onScroll = this.handleScroll.bind(this);
   }
 
   componentDidMount() {
-    window.addEventListener('scroll', this.onScroll)
-    window.scrollTo(0,0)
+    window.addEventListener('scroll', this.onScroll);
+    window.scrollTo(0, 0);
   }
 
   componentWillUnmount() {
-    window.removeEventListener('scroll', this.onScroll)
+    window.removeEventListener('scroll', this.onScroll);
   }
 
   handleScroll(event) {
     const triggerPosition = 200;
-    const top = window.pageYOffset || document.documentElement.scrollTop
+    const top = window.pageYOffset || document.documentElement.scrollTop;
     if (triggerPosition < top) {
-      this.courseActionBar.classList.add('fixed-action-bar')
+      this.courseActionBar.classList.add('fixed-action-bar');
     } else {
-      this.courseActionBar.classList.remove('fixed-action-bar')
+      this.courseActionBar.classList.remove('fixed-action-bar');
     }
   }
 
@@ -54,33 +54,30 @@ class CourseDetail extends Component {
     res.then(() => {
       this.props.fetchEnrolledCourseList(user);
       this.closeEnrollPopup();
-      this.setState({showEnrollSuccessPopup: true})
+      this.setState({ showEnrollSuccessPopup: true });
     }, (error) => {
       let { errors } = error
-      console.log('DEBUG enrollToCourse')
-      console.log(errors)
       if (errors.indexOf(COUSES_ENROLL_ERROR_NOT_ENOUGH_BALANCE) >= 0) {
-        console.log('DEBUG Submit Enroll Fail')
         globalHistory.push('/payment');
       }
     })
   }
 
   openEnrollPopup() {
-    this.setState({showEnrollPopup: true})
+    this.setState({ showEnrollPopup: true });
   }
 
   closeEnrollPopup() {
-    this.setState({showEnrollPopup: false});
+    this.setState({ showEnrollPopup: false });
   }
 
   closeEnrollSuccessPopup() {
-    this.setState({showEnrollSuccessPopup: false});
+    this.setState({ showEnrollSuccessPopup: false });
   }
 
   render() {
     const { activeMenu, currentScrollPosition } = this.state;
-    const {course, course_sections, user} = this.props;
+    const { course, course_sections, user } = this.props;
     return (
       <div className="d-flex flex-auto flex-vertical full-width-in-container public-course-details">
         <CourseDetailHeader
@@ -89,10 +86,12 @@ class CourseDetail extends Component {
         <div className="d-flex flex-auto course-details-container">
           <div className="d-flex flex-auto course-details-wrapper container">
             <div className="course-action-mobile-view">
-              <CourseDetailAction course={course}
-                                  course_sections={course_sections}
-                                  openEnrollCoursePopup={this.openEnrollPopup.bind(this)}
-                                  {...this.props}></CourseDetailAction>
+              <CourseDetailAction
+                course={course}
+                course_sections={course_sections}
+                openEnrollCoursePopup={this.openEnrollPopup.bind(this)}
+                {...this.props}
+              />
             </div>
             <div className="d-flex flex-auto course-content">
               <CourseDetailMain
@@ -103,31 +102,35 @@ class CourseDetail extends Component {
             </div>
             <div className="d-flex course-action">
               <div ref={el => this.courseActionBar = el} className="course-action-container">
-                <CourseDetailAction course={course}
-                                    course_sections={course_sections}
-                                    openEnrollCoursePopup={this.openEnrollPopup.bind(this)}
-                                    {...this.props}></CourseDetailAction>
-                <EnrollCoursePopup show={this.state.showEnrollPopup}
-                                   course={course}
-                                   acceptCallback={this.enrollToCourse.bind(this, course, user)}
-                                   cancelCallback={this.closeEnrollPopup.bind(this)} >
-                </EnrollCoursePopup>
-                <EnrollCourseSuccessPopup show={this.state.showEnrollSuccessPopup}
-                                          course={course}
-                                          cancelCallback={this.closeEnrollSuccessPopup.bind(this)}>
-                </EnrollCourseSuccessPopup>
+                <CourseDetailAction
+                  course={course}
+                  course_sections={course_sections}
+                  openEnrollCoursePopup={this.openEnrollPopup.bind(this)}
+                  {...this.props}
+                />
+                <EnrollCoursePopup
+                  show={this.state.showEnrollPopup}
+                  course={course}
+                  acceptCallback={this.enrollToCourse.bind(this, course, user)}
+                  cancelCallback={this.closeEnrollPopup.bind(this)}
+                />
+                <EnrollCourseSuccessPopup
+                  show={this.state.showEnrollSuccessPopup}
+                  course={course}
+                  cancelCallback={this.closeEnrollSuccessPopup.bind(this)}
+                />
               </div>
             </div>
           </div>
         </div>
       </div>
-    )
+    );
   }
 }
 
 CourseDetail.contextTypes = {
   t: React.PropTypes.func.isRequired
-}
+};
 
 CourseDetail.propTypes = {
   enrollCourse: React.PropTypes.func.isRequired,

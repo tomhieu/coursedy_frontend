@@ -1,10 +1,9 @@
-import * as React from "react";
-import {Component} from "react";
-import './Checkout.module.scss'
-import {CardElement, injectStripe} from "react-stripe-elements";
+import * as React from 'react';
+import { Component } from 'react';
+import './Checkout.module.scss';
+import { CardElement, injectStripe } from 'react-stripe-elements';
 
 class _CheckoutForm extends Component {
-
   handleSubmit = (ev) => {
     // We don't want to let default form submission happen here, which would refresh the page.
     ev.preventDefault();
@@ -16,15 +15,19 @@ class _CheckoutForm extends Component {
   handleBlur = () => {
     console.log('[blur]');
   };
-  handleChange = change => {
+
+  handleChange = (change) => {
     console.log('[change]', change);
   };
+
   handleClick = () => {
     console.log('[click]');
   };
+
   handleFocus = () => {
     console.log('[focus]');
   };
+
   handleReady = () => {
     console.log('[ready]');
   };
@@ -63,7 +66,7 @@ class _CheckoutForm extends Component {
         </label>
         <button>Pay</button>
       </form>
-    )
+    );
   }
 }
 

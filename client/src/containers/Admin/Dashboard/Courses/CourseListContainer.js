@@ -1,32 +1,34 @@
-import React, { Component } from 'react'
-import {connect} from "react-redux";
-import ObjectUtils from "../../../../utils/ObjectUtils"
-import ReactTable from 'react-table'
-import "react-table/react-table.css";
-import Network from "utils/network";
-import DateUtils from "utils/DateUtils"
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import ReactTable from 'react-table';
+import 'react-table/react-table.css';
+import Network from 'utils/network';
+import DateUtils from 'utils/DateUtils';
+import ObjectUtils from '../../../../utils/ObjectUtils';
 import {
   FETCH_ADMIN_UNAPPROVED_COURSES
-} from "../../../../actions/AsyncActionCreator"
+} from '../../../../actions/AsyncActionCreator';
 import * as dashboardActions from '../../../../actions/DashboardMenuActionCreator';
 
 class CourseListContainer extends Component {
   componentDidMount() {
-    this.props.fetchUnapprovedCourses(this.props)
-    this.props.activateTab('admin_courses')
+    this.props.fetchUnapprovedCourses(this.props);
+    this.props.activateTab('admin_courses');
   }
 
   fetchData(state, instance) {
     this.props.fetchUnapprovedCourses({
-      ...this.props, 
+      ...this.props,
       keyWord: state.filtered,
       currentPage: state.page + 1,
       perPage: state.pageSize,
-    })
+    });
   }
 
   render() {
-    const { courses, totalResult, perPage, isLoading, currentPage } = this.props;
+    const {
+      courses, totalResult, perPage, isLoading, currentPage
+    } = this.props;
     return (
       <div className="row">
         <div className="col-xs-12 col-sm-12 col-md-12 mb-15">
@@ -42,18 +44,18 @@ class CourseListContainer extends Component {
                   filterable
                   columns={[
                     {
-                      Header: "Tên khóa học",
-                      accessor: "title",
+                      Header: 'Tên khóa học',
+                      accessor: 'title',
                     },
                     {
-                      Header: "Giáo viên",
-                      id: "teacher_name",
+                      Header: 'Giáo viên',
+                      id: 'teacher_name',
                       accessor: d => d.user.name,
                       filterable: false
                     },
                     {
-                      Header: "Ngày bắt đầu",
-                      id: "start_date",
+                      Header: 'Ngày bắt đầu',
+                      id: 'start_date',
                       accessor: d => DateUtils.formatDate(d.start_date),
                       filterable: false
                     },
@@ -80,43 +82,43 @@ class CourseListContainer extends Component {
           </div>
         </div>
       </div>
-    )
+    );
   }
 }
 
 CourseListContainer.contextTypes = {
   t: React.PropTypes.func.isRequired,
   router: React.PropTypes.object
-}
+};
 
 const buildQuery = (props) => {
   return {
     q: props.keyWord,
     page: props.currentPage,
     per_page: props.perPage
-  }
-}
+  };
+};
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   courses: state.AdminCourseListReducer.unapprovedCourses,
   isLoading: state.AdminCourseListReducer.isLoading,
   totalResult: state.AdminCourseListReducer.totalResult,
   perPage: state.AdminCourseListReducer.perPage,
   currentPage: state.AdminCourseListReducer.currentPage
-})
+});
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = dispatch => ({
   // fetchUnapprovedCourses: (props) => dispatch({
   //   type: FETCH_ADMIN_UNAPPROVED_COURSES,
   //   payload: Network().get('courses/unapproved', buildQuery(props)),
   // }),
-  fetchUnapprovedCourses: (props) => dispatch({
+  fetchUnapprovedCourses: props => dispatch({
     type: FETCH_ADMIN_UNAPPROVED_COURSES,
     payload: Network().get('courses/search', buildQuery(props)),
   }),
-  activateTab: (tabId) => dispatch(dashboardActions.activateTab(tabId)),
+  activateTab: tabId => dispatch(dashboardActions.activateTab(tabId)),
 });
 
 export default connect(
   mapStateToProps, mapDispatchToProps
-)(CourseListContainer)
+)(CourseListContainer);

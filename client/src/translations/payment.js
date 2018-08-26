@@ -29,7 +29,7 @@ export const payment_translation = {
     "admin_payment_methods_save": "Lưu",
     "admin_payment_methods_cancel": "Hủy",
 
-    "admin_payment_history": "Lịch sử thanh toán"
+    admin_payment_history: 'Lịch sử thanh toán'
   },
   "en": {
     "public_payment_instruct": "Payment instructions",
@@ -57,7 +57,7 @@ export const payment_translation = {
     "admin_payment_methods_save": "Save",
     "admin_payment_methods_cancel": "Cancel",
 
-    "admin_payment_history": "Payment History"
+    admin_payment_history: 'Payment History'
 
   }
-}
+};

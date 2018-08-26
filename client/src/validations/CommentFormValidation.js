@@ -1,8 +1,8 @@
-import { validateCommentContent } from './CommonValidator'
+import { validateCommentContent } from './CommonValidator';
 
 
 export const validate = (values) => {
-  const errors = {}
+  const errors = {};
   validateCommentContent(values.content, errors);
-  return errors
-}
+  return errors;
+};

@@ -1,8 +1,8 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import cssModules from 'react-css-modules';
-import styles from './../Course.module.scss';
-import CourseItemInGridMode from "./CourseItemInGridMode";
-import CourseItemInListMode from "./CourseItemInListMode";
+import styles from '../Course.module.scss';
+import CourseItemInGridMode from './CourseItemInGridMode';
+import CourseItemInListMode from './CourseItemInListMode';
 
 /**
   * @Course group item template 2
@@ -15,15 +15,15 @@ class CourseItem extends Component {
 
   render() {
     return (
-      this.props.displayMode === 'grid' ?
-        <CourseItemInGridMode {...this.props} /> :
-        <CourseItemInListMode {...this.props} />
-    )
+      this.props.displayMode === 'grid'
+        ? <CourseItemInGridMode {...this.props} />
+        : <CourseItemInListMode {...this.props} />
+    );
   }
 }
 
 CourseItem.contextTypes = {
   t: React.PropTypes.func.isRequired
-}
+};
 
 export default cssModules(CourseItem, styles);

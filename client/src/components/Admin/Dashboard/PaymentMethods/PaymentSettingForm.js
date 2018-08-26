@@ -1,12 +1,12 @@
-import {Component} from "react";
-import * as React from "react";
-import FormField from "../../../Core/FormField"
-import PrimaryButton from "../../../Core/PrimaryButton/PrimaryButton"
+import { Component } from 'react';
+import * as React from 'react';
+import FormField from '../../../Core/FormField';
+import PrimaryButton from '../../../Core/PrimaryButton/PrimaryButton';
 
 
 export default class PaymentSettingForm extends Component {
   render() {
-    const {handleSubmit} = this.props
+    const { handleSubmit } = this.props;
 
     return (
       <form onSubmit={handleSubmit(this.props.onSubmit)}>
@@ -37,14 +37,14 @@ export default class PaymentSettingForm extends Component {
                 formControlName="visa" typeField="checkbox"/>
         </div>*/}
       </form>
-    )
+    );
   }
 }
 
 PaymentSettingForm.contextTypes = {
   t: React.PropTypes.func.isRequired
-}
+};
 
 PaymentSettingForm.propTypes = {
   onSubmit: React.PropTypes.func.isRequired,
-}
+};

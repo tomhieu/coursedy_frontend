@@ -390,6 +390,10 @@ body.application {
     align-items: center;
     .nav-item {
       margin: 0 10px;
+      &.border-left {
+        border-left: 1px solid #B3BDBC;
+        padding-left: 10px;
+      }
     }
   }
 
@@ -1601,6 +1605,12 @@ body.application {
     li {
       padding: 8px 15px 8px 23px;
     }
+  }
+
+  .flag-country-icon {
+    width: 18px;
+    height: 12px;
+    cursor: pointer;
   }
 }
 

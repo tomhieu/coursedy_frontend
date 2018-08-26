@@ -1,4 +1,4 @@
-import {ACTIVATE_DASHBOARD_MENU_TAB} from "./AsyncActionCreator";
+import { ACTIVATE_DASHBOARD_MENU_TAB } from './AsyncActionCreator';
 
 export const activateTab = (tabId) => {
   return {

@@ -1,22 +1,22 @@
-import React, {Component} from 'react'
-import FQAItemList from './FQAItemList'
-import FQAContact from './FQAContact'
+import React, { Component } from 'react';
+import FQAItemList from './FQAItemList';
+import FQAContact from './FQAContact';
 
 class HelpCenterFQA extends Component {
   render() {
     return (
       <div className="fqa">
         <h1 className="fqa__header">{this.context.t('coursedy_fqa')}</h1>
-        <div className="divider"></div>
+        <div className="divider" />
         <FQAItemList />
         <FQAContact />
       </div>
-    )
+    );
   }
 }
 
 HelpCenterFQA.contextTypes = {
   t: React.PropTypes.func.isRequired
-}
+};
 
-export default HelpCenterFQA
+export default HelpCenterFQA;

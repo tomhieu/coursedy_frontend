@@ -1,15 +1,15 @@
-import {applyMiddleware, compose, createStore} from 'redux';
-import {syncHistoryWithStore} from 'react-router-redux';
+import { applyMiddleware, compose, createStore } from 'redux';
+import { syncHistoryWithStore } from 'react-router-redux';
 import thunk from 'redux-thunk';
-import {createBrowserHistory} from 'history';
+import { createBrowserHistory } from 'history';
 import promiseMiddleware from 'redux-promise-middleware';
+import { createLogger } from 'redux-logger';
+import * as asyncActions from 'actions/AsyncActionCreator';
 import rootReducer from '../reducers/index';
 import initialState from './initialState';
-import {createLogger} from 'redux-logger'
-import * as asyncActions from "actions/AsyncActionCreator";
 
 /* Commonly used middlewares and enhancers */
-/* See: http://redux.js.org/docs/advanced/Middleware.html*/
+/* See: http://redux.js.org/docs/advanced/Middleware.html */
 const middlewares = [thunk, promiseMiddleware()];
 
 /* Everyone should use redux dev tools */
@@ -21,19 +21,19 @@ if (typeof devToolsExtension === 'function') {
   enhancers.push(devToolsExtension());
 }
 
-const drivingResponseHandler = store => next => action => {
+const drivingResponseHandler = store => next => (action) => {
   const fulfillIndex = action.type.indexOf(asyncActions.FULFILLED);
   if (fulfillIndex >= 0) {
-    let headers = action.payload.headers;
+    const headers = action.payload.headers;
     if (headers) {
-      action.payload = action.payload.body
-      action.headers = headers
+      action.payload = action.payload.body;
+      action.headers = headers;
     }
   }
-  return next(action)
-}
+  return next(action);
+};
 
-const loadingHandler = store => next => action => {
+const loadingHandler = store => next => (action) => {
   const pendingIndex = action.type.indexOf(asyncActions.PENDING);
   const fulfillIndex = action.type.indexOf(asyncActions.FULFILLED);
   const rejectIndex = action.type.indexOf(asyncActions.REJECTED);
@@ -48,11 +48,11 @@ const loadingHandler = store => next => action => {
       store.dispatch({
         type: asyncActions.REMOVE_ASYNC_ACTION,
         action: action.meta
-      })
+      });
     }, 200);
   }
   return next(action);
-}
+};
 
 const composedEnhancers = compose(
   applyMiddleware(...middlewares, createLogger(), drivingResponseHandler, loadingHandler),
