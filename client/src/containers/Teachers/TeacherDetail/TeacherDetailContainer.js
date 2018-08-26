@@ -73,62 +73,64 @@ class TeacherDetail extends Component {
   render() {
     return (
       <PageContainer error={this.props.teacher.error}>
-        <div className="row">
-          <div className="col-md-12">
-            <div className="teacher-detail">
-              <section className="teacher-detail__content">
-                <FixedSideBar onScrollTopMargin={0}>
-                  <div className="teacher-profile-sidebar">
-                    <LoadingMask
-                      placeholderId="teacherDetailProfilePlaceholder"
-                      normalPlaceholder={false}
-                      facebookPlaceholder={true}
-                      loaderType={WebConstants.TEACHER_DETAIL_PROFILE_PLACEHOLDER}
-                    >
-                      <div className="full-width">
-                        <TeacherProfileHeader {...this.props} />
-                      </div>
-                    </LoadingMask>
-                  </div>
-                </FixedSideBar>
-
-                <div className="page-content">
-                  <div className={`${styles.mainContent || ''} d-flex flex-row`}>
-                    <div className={styles.mainSide}>
-                      <TeacherBackground
-                        context={this.context}
-                        teacher={this.props.teacher}
-                      />
-                      <div className="teacher-detail__content__review">
-                        <div
-                          className="teacher-detail__content__review__header mb-30"
-                        >
-                          <h4>{this.context.t('teacher_review')}</h4>
+        <div className="container">
+          <div className="row">
+            <div className="col-md-12">
+              <div className="teacher-detail">
+                <section className="teacher-detail__content">
+                  <FixedSideBar onScrollTopMargin={0}>
+                    <div className="teacher-profile-sidebar">
+                      <LoadingMask
+                        placeholderId="teacherDetailProfilePlaceholder"
+                        normalPlaceholder={false}
+                        facebookPlaceholder={true}
+                        loaderType={WebConstants.TEACHER_DETAIL_PROFILE_PLACEHOLDER}
+                      >
+                        <div className="full-width">
+                          <TeacherProfileHeader {...this.props} />
                         </div>
-                        <ReviewHeader {...this.props} context={this.context} />
-                        <TeacherReviewList
+                      </LoadingMask>
+                    </div>
+                  </FixedSideBar>
+
+                  <div className="page-content">
+                    <div className={`${styles.mainContent || ''} d-flex flex-row`}>
+                      <div className={styles.mainSide}>
+                        <TeacherBackground
+                          context={this.context}
+                          teacher={this.props.teacher}
+                        />
+                        <div className="teacher-detail__content__review">
+                          <div
+                            className="teacher-detail__content__review__header mb-30"
+                          >
+                            <h4>{this.context.t('teacher_review')}</h4>
+                          </div>
+                          <ReviewHeader {...this.props} context={this.context} />
+                          <TeacherReviewList
+                            {...this.props}
+                            handlePageChange={this.fetchTeacherReviewsWithPageNumber.bind(this)}
+                            context={this.context}
+                          />
+                          <ReviewTeacherForm />
+                        </div>
+
+                        <TeacherTaughtCourses
                           {...this.props}
-                          handlePageChange={this.fetchTeacherReviewsWithPageNumber.bind(this)}
+                          handlePageChange={this.fetchTeacherCoursesWithPageNumber.bind(this)}
                           context={this.context}
                         />
-                        <ReviewTeacherForm />
                       </div>
-
-                      <TeacherTaughtCourses
-                        {...this.props}
-                        handlePageChange={this.fetchTeacherCoursesWithPageNumber.bind(this)}
-                        context={this.context}
-                      />
+                      {this.props.teacher.courses && this.props.teacher.courses.data.length
+                        ? (
+                          <div className={styles.rightSide}>
+                            <TeacherBriefCourses {...this.props} />
+                          </div>
+                        ) : null}
                     </div>
-                    {this.props.teacher.courses && this.props.teacher.courses.data.length
-                      ? (
-                        <div className={styles.rightSide}>
-                          <TeacherBriefCourses {...this.props} />
-                        </div>
-                      ) : null}
                   </div>
-                </div>
-              </section>
+                </section>
+              </div>
             </div>
           </div>
         </div>

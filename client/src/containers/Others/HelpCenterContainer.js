@@ -5,7 +5,7 @@ import './HelpCenter.scss';
 class HelpCenterContainer extends Component {
   render() {
     return (
-      <div className="help-center full-width-in-container">
+      <div className="help-center">
         <div className="container">
           <HelpCenterFQA />
         </div>

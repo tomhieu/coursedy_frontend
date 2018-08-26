@@ -7,7 +7,7 @@ import PrimaryButton from '../../components/Core/PrimaryButton/PrimaryButton';
 class BecomeTeacherContainer extends Component {
   render() {
     return (
-      <div className="become-teacher full-width-in-container">
+      <div className="become-teacher">
         <BecomeTeacherBanner />
         <BecomeTeacherIntroduction />
         <BecomeTeacherReasons />

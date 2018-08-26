@@ -6,7 +6,7 @@ import { TT } from 'utils/locale';
 class TermsContainer extends Component {
   render() {
     return (
-      <div className="terms-of-use full-width-in-container">
+      <div className="terms-of-use">
         <div className="container">
           <TermOfUseTop />
           <TermOfUseCenter />
