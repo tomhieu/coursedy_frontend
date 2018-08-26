@@ -2824,9 +2824,9 @@ div[data-reactroot] {
 }
 
 .pagination>li>a, .pagination>li>span {
-  width: 40px;
-  height: 40px;
-  line-height: 40px;
+  width: 36px;
+  height: 36px;
+  line-height: 36px;
   text-align: center;
   padding: 0;
   color: $primary-text-color;
@@ -2835,7 +2835,7 @@ div[data-reactroot] {
     width: 38px;
     height: 38px;
     line-height: 38px;
-    font-size: 1rem;
+    font-size: 16px;
   }
 }
 

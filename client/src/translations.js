@@ -766,9 +766,9 @@ export const translations = {
           description: 'Với kiến thức sẵn có của bạn, tất cả bạn cần là tự tin và giảng dạy tốt là bạn có thể tiếp xúc với tất cả mọi người trên thế giới.'
         },
         {
-          title: 'Nâng cao kĩ năng mềm',
+          title: 'Dạy ở bất kì nơi đâu bạn thích',
           picture: 'https://inspitrip.imgix.net/static/assets/images/svg-images/make-skills.svg',
-          description: 'Nếu bạn muốn nâng tầm kĩ năng truyền đạt, hay kĩ năng quản lý và chăm sóc khách hàng. Bằng việc trở thành giáo viên bạn có thể bắt gặp các học viên từ nền văn hoá nước khác… Kỹ năng truyền đạt của bạn sẽ phải đa dạng và phong phú hơn. Ngoài ra đến một lúc nào đó, lượng học viên của bạn đủ lớn để thành cộng đồng trên mạng xã hội. Khi đó bạn cần phải quản lý và chăm sóc khách hàng một cách ngày càng chuyên nghiệp, hiệu quả hơn.'
+          description: 'Bất kì nơi nào bạn thích, dù thời tiết có ra sao, chỉ cần laptop và kết nối mạng internet.'
         }
       ]
     },
