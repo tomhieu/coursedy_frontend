@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import I18n from 'redux-i18n';
-import { translations } from 'translations';
-import { TT } from 'utils/locale';
+import {translations} from 'translations';
+import {TT} from 'utils/locale';
 import ScrollToTop from 'utils/ScrollToTop';
 import moment from 'moment';
 import LoadingMask from '../LoadingMask/LoadingMask';
@@ -25,7 +25,7 @@ class Layout extends Component {
         <ScrollToTop>
           <div className="main-content">
             <Header />
-            <main className="container" style={mainBodyStyle}>
+            <main className="main-container" style={mainBodyStyle}>
               {this.props.children}
             </main>
             <Footer />

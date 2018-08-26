@@ -19,8 +19,12 @@ import { CourseStatus } from '../../constants/CourseStatus';
 import * as WebConstants from '../../constants/WebConstants';
 import StudentDashboardMenu from '../../components/Student/Dashboard/StudentDashboardMenu';
 import { TT } from '../../utils/locale';
+import {stretchFullWidthMainContainer} from "../../actions/MainActionCreator";
 
 class TutorDashboard extends RoleAuthorization {
+  componentWillMount() {
+    stretchFullWidthMainContainer();
+  }
   componentDidMount() {
     this.props.showDashboardHeader();
   }
@@ -43,7 +47,7 @@ class TutorDashboard extends RoleAuthorization {
     }
 
     return (
-      <div className="dashboard-section full-width-in-container">
+      <div className="dashboard-section">
         <div className="d-flex flex-row flex-auto">
           <div className={leftMenuClasses.join(' ')} id="sidebar">
             {

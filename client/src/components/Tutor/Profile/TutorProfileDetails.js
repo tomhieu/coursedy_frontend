@@ -21,13 +21,13 @@ class TutorProfileDetails extends Component {
     const { editProfileMode, user } = this.props;
 
     return (
-      <div className="row">
-        <div className="col-md-12 col-xs-12 col-sm-12 ">
+      <div className="d-flex flex-vertical flex-auto">
+        <div className="d-flex">
           <div className="title">
             {this.context.t('my_profile')}
           </div>
         </div>
-        <div className="col-md-12 col-xs-12 col-sm-12 ">
+        <div className="d-flex flex-auto">
           <LoadingMask
             placeholderId="userAccountPlaceholder"
             normalPlaceholder={false}
@@ -43,7 +43,7 @@ class TutorProfileDetails extends Component {
             </div>
           </LoadingMask>
         </div>
-        <div className="col-md-12 col-xs-12 col-sm-12">
+        <div className="d-flex flex-auto">
           <div className="dashboard-content-section">
             <ChangePasswordContainer />
           </div>

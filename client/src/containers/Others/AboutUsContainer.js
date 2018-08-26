@@ -6,7 +6,7 @@ import AboutCenter from '../../components/Layout/SubAbout/AboutCenter';
 class AboutUsContainer extends Component {
   render() {
     return (
-      <div className="about-us full-width-in-container">
+      <div className="about-us">
         <AboutTop />
         <AboutCenter />
       </div>

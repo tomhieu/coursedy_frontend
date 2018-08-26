@@ -13,7 +13,7 @@ import 'containers/HomePage/Hompage.scss';
 
 
 const LandingPage = props => (
-  <div className="full-width-in-container">
+  <div>
     <SearchFormContainer />
     <Introduces />
     <PopularCourseList />

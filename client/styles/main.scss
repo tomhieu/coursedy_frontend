@@ -613,12 +613,9 @@ body.application {
       }
     }
   }
-
-  .full-width-in-container {
-    margin-left: calc(-50vw + 50%);
-    margin-right: calc(-50vw + 50%);
+  .full-container, main-container {
+    width: 100%;
   }
-
   .img-circle {
     border-radius: 50%;
   }
@@ -1516,6 +1513,7 @@ body.application {
     -ms-transition: all .2s ease-in-out;
     -o-transition: all .2s ease-in-out;
     transition: all .2s ease-in-out;
+    outline: none;
 
     &.button-border-blue {
       background-color: transparent;

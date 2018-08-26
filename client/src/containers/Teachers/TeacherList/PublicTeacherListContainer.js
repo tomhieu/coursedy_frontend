@@ -39,7 +39,7 @@ class PublicTeacherListContainer extends Component {
           </div>
           {
             !isFetching && teachers.length > 0 ? (
-              <div className="d-flex justify-content-center mb-10 mt-10">
+              <div className="container d-flex justify-content-center mb-10 mt-10">
                 <Pagination
                   hideFirstLastPages
                   prevPageText={<PaginationArrowIcon isLeftArrow />}

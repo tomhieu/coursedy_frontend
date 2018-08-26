@@ -35,7 +35,7 @@ class AdminDashboardPage extends RoleAuthorization {
       dashboardFooterClasses += ' expanded';
     }
     return (
-      <div className="dashboard-section full-width-in-container">
+      <div className="dashboard-section">
         <div className="d-flex flex-row flex-auto">
           <div className={leftMenuClasses.join(' ')} id="sidebar">
             <div className={dashboardMenuClasses} id="accordion">

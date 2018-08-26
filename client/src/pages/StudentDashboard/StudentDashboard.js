@@ -26,7 +26,7 @@ class StudentDashboard extends RoleAuthorization {
 
   render() {
     return (
-      <div className="dashboard-section full-width-in-container">
+      <div className="dashboard-section">
         <div className="d-flex flex-row flex-auto">
           <div className={styles.leftPanel} id="sidebar">
             <div className="panel-group dashboard-menu" id="accordion">

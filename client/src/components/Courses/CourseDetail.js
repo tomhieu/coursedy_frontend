@@ -71,7 +71,7 @@ class CourseDetail extends Component {
     const { activeMenu, currentScrollPosition } = this.state;
     const { course, course_sections, user } = this.props;
     return (
-      <div className="d-flex flex-auto flex-vertical full-width-in-container public-course-details">
+      <div className="d-flex flex-auto flex-vertical public-course-details">
         <CourseDetailHeader
           {...this.props}
         />

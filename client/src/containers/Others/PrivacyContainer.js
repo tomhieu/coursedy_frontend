@@ -7,7 +7,7 @@ import { Blocks } from './TermsContainer';
 class PrivacyContainer extends Component {
   render() {
     return (
-      <div className="terms-privacy full-width-in-container">
+      <div className="terms-privacy">
         <div className="container">
           <PrivacyTop />
           <PrivacyCenter />
