@@ -241,7 +241,8 @@ BasicFilterComponent.propTypes = {
   showSuggestion: React.PropTypes.bool,
   loadingSuggestion: React.PropTypes.bool,
   closeSuggestion: React.PropTypes.func,
-  term: React.PropTypes.string
+  term: React.PropTypes.string,
+  search: React.PropTypes.func.isRequired
 };
 
 export default cssModules(BasicFilterComponent, styles);

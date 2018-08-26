@@ -40,24 +40,25 @@ class TeacherFilterContainer extends AbstractFilter {
   }
 
   search(e) {
-    this.props.searchTeachers(this.searchQuery(this.props.filters));
+    this.props.updateFilter({ term: e.key_word.trim() });
+    this.props.searchTeachers(this.searchQuery(this.props.filters, e.key_word.trim()));
   }
 
   doRemoveFilter(filterId, typeFilter) {
     const removedFilters = this.removeFilterCriteria(this.props.filters, filterId, typeFilter);
-    this.props.dispatch(TeacherActions.updateFilterTeacher(removedFilters));
+    this.props.updateFilter(removedFilters);
     this.props.searchTeachers(this.searchQuery(removedFilters));
   }
 
   doSelectFilter(filter, category) {
     const nextFilters = this.addFilterCriteria(this.props.filters, filter, category);
-    this.props.dispatch(TeacherActions.updateFilterTeacher(nextFilters));
+    this.props.updateFilter(nextFilters);
     this.props.searchTeachers(this.searchQuery(nextFilters));
   }
 
-  searchQuery(filters) {
+  searchQuery(filters, key_word) {
     return {
-      q: filters.term,
+      q: (typeof key_word !== 'undefined' && key_word) ? key_word : filters.term,
       categories: filters.selectedCategories.map(category => category.id),
       specializes: filters.selectedSpecializes.map(spec => spec.id)
     };
@@ -124,7 +125,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = dispatch => ({
   searchTeachers: filters => dispatch(TeacherActions.searchTeachers(filters)),
-  clearSuggestion: () => dispatch({ type: asyncActions.CLEAR_SUGGESTION }),
+  clearSuggestion: () => dispatch({ type: asyncActions.CLEAR_SUGGESTION_TEACHERS }),
   loadSuggestions: query => dispatch({
     type: asyncActions.LOAD_SUGGESTION_TEACHERS,
     payload: Network().get('courses/search', query),
@@ -141,7 +142,7 @@ const mapDispatchToProps = dispatch => ({
     payload: Network().get('locations'),
     meta: 'publicTeacherListPlaceholder'
   }),
-  closeSuggestion: () => dispatch({ type: asyncActions.CLEAR_SUGGESTION })
+  closeSuggestion: () => dispatch({ type: asyncActions.CLEAR_SUGGESTION_TEACHERS })
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(reduxForm({

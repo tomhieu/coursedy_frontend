@@ -44,7 +44,7 @@ class AutoComplete extends Component {
 
   onKeyPress(e) {
     if (e.key === 'Enter') {
-      this.props.handleAddCriteria(e.target.value);
+      this.props.search({key_word: e.target.value});
       this.props.reset();
     }
   }
@@ -117,7 +117,8 @@ AutoComplete.propTypes = {
   loadSuggestions: React.PropTypes.func.isRequired,
   onBlur: React.PropTypes.func,
   onFocus: React.PropTypes.func,
-  closeSuggestion: React.PropTypes.func
+  closeSuggestion: React.PropTypes.func,
+  search: React.PropTypes.func.isRequired
 };
 
 export default cssModules(AutoComplete, styles);

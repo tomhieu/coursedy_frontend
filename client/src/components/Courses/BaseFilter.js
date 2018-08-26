@@ -75,6 +75,7 @@ class BaseFilter extends Component {
                   suggestions={suggestions}
                   closeSuggestion={closeSuggestion}
                   term={term}
+                  search={search}
                   placeholder={placeholder}
                 />
               </div>

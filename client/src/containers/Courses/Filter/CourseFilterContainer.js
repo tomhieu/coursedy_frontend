@@ -75,17 +75,25 @@ class CourseFilterContainer extends AbstractFilter {
   }
 
   search(e) {
-    this.props.updateFilter({ term: e.key_word });
+    this.props.updateFilter({ term: e.key_word.trim() });
     this.props.reset();
     const {
-      selectedMinFee, selectedMaxFee, order_by, display_mode
+      selectedMinFee, selectedMaxFee,
+      order_by, display_mode,
     } = this.props.formfieldValues;
-    this.props.searchCourse(this.buildQuery(this.props.filters, selectedMinFee, selectedMaxFee, order_by, display_mode));
+    this.props.searchCourse(this.buildQuery(
+      this.props.filters,
+      selectedMinFee,
+      selectedMaxFee,
+      order_by,
+      display_mode,
+      e.key_word.trim()
+    ));
   }
 
-  buildQuery(filters, selectedMinFee, selectedMaxFee, order_by, display_mode) {
+  buildQuery(filters, selectedMinFee, selectedMaxFee, order_by, display_mode, key_word) {
     return {
-      q: filters.term,
+      q: (typeof key_word !== 'undefined' && key_word) ? key_word : filters.term,
       categories: filters.selectedCategories.map(category => category.id),
       locations: filters.selectedLocations.map(loc => loc.id),
       specializes: filters.selectedSpecializes.map(spec => spec.id),
