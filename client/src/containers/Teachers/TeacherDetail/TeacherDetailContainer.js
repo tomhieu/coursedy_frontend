@@ -26,6 +26,7 @@ import TeacherBackground from './Content/TeacherBackground';
 import styles from './TeacherDetail.module.scss';
 import PageContainer from '../../../utils/PageContainer';
 import PaginationArrowIcon from '../../../components/Core/Icons/PaginationArrowIcon';
+import { PAGE_RANGE_DISPLAYED } from '../../../constants/Layout';
 
 
 class TeacherDetail extends Component {
@@ -260,7 +261,7 @@ const TeacherTaughtCourses = (props) => {
             }}
           />
 
-          {teacher.courses.data.length ? (
+          {teacher.courses.data.length && headers.total > headers.perPage ? (
             <div className="mt-30">
               <div className="d-flex justify-content-center">
                 <Pagination
@@ -275,7 +276,7 @@ const TeacherTaughtCourses = (props) => {
                   activePage={headers.currentPage}
                   itemsCountPerPage={headers.perPage}
                   totalItemsCount={headers.total}
-                  pageRangeDisplayed={5}
+                  pageRangeDisplayed={PAGE_RANGE_DISPLAYED}
                   onChange={(pageNumber) => {
                     props.handlePageChange(pageNumber, headers.perPage);
                   }}

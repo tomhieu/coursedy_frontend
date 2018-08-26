@@ -11,6 +11,7 @@ import LoadingMask from '../../../components/LoadingMask/LoadingMask';
 import * as Actions from '../../../actions/CourseFilterActionCreator';
 import { CourseList } from '../../../components/index';
 import PaginationArrowIcon from '../../../components/Core/Icons/PaginationArrowIcon';
+import { PAGE_RANGE_DISPLAYED } from '../../../constants/Layout';
 
 class PublicCourseListContainer extends Component {
   componentDidMount() {
@@ -36,7 +37,11 @@ class PublicCourseListContainer extends Component {
   }
 
   render() {
-    const { courses, isFetching, displayMode } = this.props;
+    const {
+      courses, isFetching, displayMode,
+      currentPage, perPage, totalResult
+    } = this.props;
+
     return (
       <LoadingMask
         placeholderId="publicCourseListPlaceholder"
@@ -55,7 +60,7 @@ class PublicCourseListContainer extends Component {
             />
           </div>
           {
-            !isFetching && courses.length > 0 ? (
+            !isFetching && courses.length > 0 && totalResult > perPage ? (
               <div className="d-flex justify-content-center mb-15">
                 <Pagination
                   hideFirstLastPages
@@ -66,10 +71,10 @@ class PublicCourseListContainer extends Component {
                   linkClassNext="next-page-icon"
                   itemClass="page-item"
                   linkClass="page-link"
-                  activePage={this.props.currentPage}
-                  itemsCountPerPage={this.props.perPage}
-                  totalItemsCount={this.props.totalResult}
-                  pageRangeDisplayed={5}
+                  activePage={currentPage}
+                  itemsCountPerPage={perPage}
+                  totalItemsCount={totalResult}
+                  pageRangeDisplayed={PAGE_RANGE_DISPLAYED}
                   activeClass="active"
                   onChange={this.handlePageChange.bind(this)}
                 />

@@ -6,6 +6,7 @@ import LoadingMask from 'components/LoadingMask/LoadingMask';
 import TutorList from '../../../components/Tutor/TutorList/TutorList';
 import * as WebConstants from '../../../constants/WebConstants';
 import PaginationArrowIcon from '../../../components/Core/Icons/PaginationArrowIcon';
+import { PAGE_RANGE_DISPLAYED } from '../../../constants/Layout';
 
 
 class PublicTeacherListContainer extends Component {
@@ -38,7 +39,7 @@ class PublicTeacherListContainer extends Component {
             />
           </div>
           {
-            !isFetching && teachers.length > 0 ? (
+            !isFetching && teachers.length > 0 && headers.total > headers.perPage ? (
               <div className="d-flex justify-content-center mb-10 mt-10">
                 <Pagination
                   hideFirstLastPages
@@ -52,7 +53,7 @@ class PublicTeacherListContainer extends Component {
                   activePage={headers.currentPage}
                   itemsCountPerPage={headers.perPage}
                   totalItemsCount={headers.total}
-                  pageRangeDisplayed={5}
+                  pageRangeDisplayed={PAGE_RANGE_DISPLAYED}
                   activeClass="active"
                   onChange={this.handlePageChange.bind(this)}
                 />
