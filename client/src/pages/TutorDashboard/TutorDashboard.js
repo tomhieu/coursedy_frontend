@@ -1,13 +1,13 @@
 import React from 'react';
 import cssModules from 'react-css-modules';
-import { Route } from 'react-router-dom';
-import { connect } from 'react-redux';
-import { UserRole } from 'constants/UserRole';
+import {Route} from 'react-router-dom';
+import {connect} from 'react-redux';
+import {UserRole} from 'constants/UserRole';
 import PrivateRoute from 'containers/PrivateRoute/PrivateRoute';
-import { SecurityUtils } from 'utils/SecurityUtils';
+import {SecurityUtils} from 'utils/SecurityUtils';
 import styles from './TutorDashboard.module.scss';
-import { RoleAuthorization, TutorDashboardMenu } from '../../components/index';
-import { TutorContainers } from '../../containers';
+import {RoleAuthorization, TutorDashboardMenu} from '../../components/index';
+import {TutorContainers} from '../../containers';
 import CourseFormContainer from '../../containers/Courses/CourseForm/CourseFormContainer';
 import TutorProfileDetailsContainer from '../../containers/Tutor/Profile/TutorProfileDetailsContainer';
 import ListLessonContainer from '../../containers/Courses/Lesson/ListLessonContainer';
@@ -15,16 +15,12 @@ import ListTutorCourseContainer from '../../containers/Courses/CourseList/ListTu
 import TutorAccount from '../../containers/Account/Tutor/TutorAccountContainer';
 import * as sessionActions from '../../actions/SessionActionCreator';
 import * as dashboardActions from '../../actions/DashboardMenuActionCreator';
-import { CourseStatus } from '../../constants/CourseStatus';
+import {CourseStatus} from '../../constants/CourseStatus';
 import * as WebConstants from '../../constants/WebConstants';
 import StudentDashboardMenu from '../../components/Student/Dashboard/StudentDashboardMenu';
-import { TT } from '../../utils/locale';
-import {stretchFullWidthMainContainer} from "../../actions/MainActionCreator";
+import {TT} from '../../utils/locale';
 
 class TutorDashboard extends RoleAuthorization {
-  componentWillMount() {
-    stretchFullWidthMainContainer();
-  }
   componentDidMount() {
     this.props.showDashboardHeader();
   }
