@@ -27,25 +27,15 @@ export const createEducation = (tutorId, params) => {
   };
 };
 
-export const loadEducationList = () => {
-  return (dispatch) => {
-    const response = Network().get('tutors/current_tutor').then(data => data);
-
+export const loadEducationList = (tutorId) => {
+  return dispatch => {
     dispatch({
-      type: FETCH_TUTOR_DATA,
-      payload: response,
+      type: actionTypes.FETCH_EDUCATION_LIST,
+      payload: Network().get(`tutors/${tutorId}/tutor_educations`),
       meta: 'userAccountPlaceholder'
-    });
-
-    response.then((tutor) => {
-      dispatch({
-        type: actionTypes.FETCH_EDUCATION_LIST,
-        payload: Network().get(`tutors/${tutor.id}/tutor_educations`),
-        meta: 'userAccountPlaceholder'
-      });
-    });
-  };
-};
+    })
+  }
+}
 
 export const deleteEducation = (tutorId, id) => {
   return (dispatch) => {

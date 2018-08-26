@@ -26,6 +26,14 @@ class LangNavigation extends Component {
     this.props.switchLang(lang);
   }
 
+  findFlagByLang(lang) {
+    if (lang === 'vn') {
+      return '/flags/vn.png';
+    } else {
+      return '/flags/en.png';
+    }
+  }
+
   render() {
     const dropdownOptions = [
       {
@@ -51,7 +59,7 @@ class LangNavigation extends Component {
       <div className="d-flex flex-column">
         <div className="d-flex flex-row">
           <div>
-            <span className="nav-link" onClick={this.onClickArrow.bind(this)}>{this.props.lang.toUpperCase()}</span>
+            <img className="flag-country-icon" src={this.findFlagByLang(this.props.lang)} onClick={this.onClickArrow.bind(this)} />
           </div>
         </div>
         <CoursedyDropDown

@@ -81,7 +81,7 @@ class TeacherDetail extends Component {
                     <LoadingMask
                       placeholderId="teacherDetailProfilePlaceholder"
                       normalPlaceholder={false}
-                      facebookPlaceholder
+                      facebookPlaceholder={true}
                       loaderType={WebConstants.TEACHER_DETAIL_PROFILE_PLACEHOLDER}
                     >
                       <div className="full-width">

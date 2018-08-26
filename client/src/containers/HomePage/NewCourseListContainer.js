@@ -22,8 +22,8 @@ class NewCourseList extends Component {
     courses: []
   }
 
-  componentDidMount() {
-    this.props.fetchNewCourses();
+  componentWillMount() {
+    this.props.fetchNewCourses()
   }
 
   render() {

@@ -46,7 +46,7 @@ class ReviewTeacherForm extends Component {
             formGroupId="content"
             formLabel={this.context.t('course_comment_content')}
             placeholder={this.context.t('course_comment_content')}
-            isMandatoryField
+            isMandatoryField={true}
             formControlName="content"
             typeField="custom_textarea"
           />

@@ -34,7 +34,7 @@ class PublicTeacherListContainer extends Component {
           <div className="container-fluid mt-15 mb-15">
             <TutorList
               {...this.props}
-              isPublic
+              isPublic={true}
             />
           </div>
           {

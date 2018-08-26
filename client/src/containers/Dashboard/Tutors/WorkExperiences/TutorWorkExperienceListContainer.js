@@ -8,7 +8,8 @@ import PrimaryButton from '../../../../components/Core/PrimaryButton/PrimaryButt
 
 class TutorWorkExperienceListContainer extends Component {
   componentWillMount() {
-    this.props.loadWorkExperienceList();
+    const {tutor} = this.props;
+    this.props.loadWorkExperienceList(tutor.id);
   }
 
   showNewWorkExperienceForm() {
@@ -76,14 +77,15 @@ TutorWorkExperienceListContainer.contextTypes = {
   t: React.PropTypes.func.isRequired
 };
 
-const mapDispatchToProps = dispatch => ({
-  loadWorkExperienceList: () => dispatch(actions.loadWorkExperienceList()),
+const mapDispatchToProps = (dispatch) => ({
+  loadWorkExperienceList: (tutorId) => dispatch(actions.loadWorkExperienceList(tutorId)),
   showNewWorkExperienceForm: () => dispatch(actions.showDashboardTutorNewWorkExperienceForm()),
   deleteItem: (tutorId, id) => dispatch(actions.deleteWorkExperience(tutorId, id)),
   showEditWorkExperienceForm: workExperienceId => dispatch(actions.showEditWorkExperienceForm(workExperienceId))
 });
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
+  tutor: state.TutorAccountReducer.tutor,
   workExperiences: state.DashboardTutorWorkExperienceList.workExperiences,
   currentWorkExperience: state.DashboardTutorWorkExperienceList.currentWorkExperience,
   showNewTutorWorkExperienceForm: state.DashboardTutorWorkExperienceList.showNewTutorWorkExperienceForm

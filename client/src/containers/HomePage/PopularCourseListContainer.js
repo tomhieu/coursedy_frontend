@@ -23,7 +23,7 @@ class PopularCourseList extends Component {
     courses: []
   };
 
-  componentDidMount() {
+  componentWillMount() {
     this.props.fetchPopularCourses();
   }
 

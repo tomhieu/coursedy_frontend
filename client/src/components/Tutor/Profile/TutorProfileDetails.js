@@ -9,13 +9,7 @@ import LoadingMask from '../../LoadingMask/LoadingMask';
 
 
 class TutorProfileDetails extends Component {
-  componentWillMount() {
-    if (this.props.user && this.props.user.roles.indexOf(UserRole.TEACHER) >= 0) {
-      this.props.fetchDetailsTutor();
-    }
-  }
-
-  hideProfileEditForm() {
+  hideProfileEditForm(){
     this.props.hideAccountEditForm();
   }
 

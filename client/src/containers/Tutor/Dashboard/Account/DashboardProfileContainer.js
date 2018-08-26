@@ -39,7 +39,7 @@ class DashboardProfileContainer extends Component {
         <LoadingMask
           placeholderId="userDetailsPlaceholder"
           normalPlaceholder={false}
-          facebookPlaceholder
+          facebookPlaceholder={true}
           loaderType="USER_DETAILS_PLACEHOLDER"
         >
           <div className="dashboard-profile">
@@ -56,7 +56,7 @@ class DashboardProfileContainer extends Component {
                   showPopupChangeImage={editAvatarMode}
                   previewImage={user.avatar ? user.avatar : defaultAvatar}
                   fieldId="tutor_avatar"
-                  isUserAvatar
+                  isUserAvatar={true}
                   {...this.props}
                 />
               </div>
@@ -72,21 +72,6 @@ class DashboardProfileContainer extends Component {
                       {' '}
                       <strong>{ObjectUtils.currencyFormat(user.balance)}</strong>
                     </p>
-                  </div>
-                </div>
-                <div className="col-md-8">
-                  <div className="row">
-                    <div className="col-sm-12 user-name">
-                      <h4>{user.name}</h4>
-                    </div>
-                    <div className="col-sm-12 sub-title">
-                      <p>
-                        {this.context.t('my_balance')}
-:
-                        {' '}
-                        <strong>{ObjectUtils.currencyFormat(userBalance)}</strong>
-                      </p>
-                    </div>
                   </div>
                 </div>
               </div>

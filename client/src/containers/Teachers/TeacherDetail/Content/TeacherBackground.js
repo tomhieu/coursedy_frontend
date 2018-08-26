@@ -20,7 +20,7 @@ const TeacherShortIntroduce = (props) => {
     <LoadingMask
       placeholderId="userAccountPlaceholder"
       normalPlaceholder={false}
-      facebookPlaceholder
+      facebookPlaceholder={true}
       loaderType={webConstants.USER_ACCOUNT_PLACEHOLDER}
     >
       <div className="profile-list-item">

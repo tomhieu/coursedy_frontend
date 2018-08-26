@@ -26,6 +26,17 @@
   }
 }
 
+.userName {
+  max-width: 60px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  margin-left: 4px;
+  margin-top: 2px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
 .notificationContainer {
   position: relative;
   cursor: pointer;
