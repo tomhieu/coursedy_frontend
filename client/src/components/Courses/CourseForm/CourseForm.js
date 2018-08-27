@@ -10,7 +10,7 @@ import CourseCoverImageContainer from '../../../containers/Courses/CourseForm/Co
 
 class CourseForm extends Component {
   static fields = ['title', 'description', 'start_date', 'period',
-    'number_of_students', 'tuition_fee', 'currency', 'is_free', 'course_days', 'is_same_period', 'start_time', 'end_time',
+    'number_of_students', 'tuition_fee', 'is_free', 'course_days', 'is_same_period', 'start_time', 'end_time',
     'monday_start_time', 'monday_end_time', 'tuesday_start_time', 'tuesday_end_time',
     'wednesday_start_time', 'wednesday_end_time', 'thursday_start_time', 'thursday_end_time',
     'friday_start_time', 'friday_end_time', 'saturday_start_time', 'saturday_end_time', 'sunday_start_time', 'sunday_end_time',
@@ -165,6 +165,7 @@ class CourseForm extends Component {
                   showPopupChangeCoverImage={this.state.showPoupChangeCoverImage}
                   onDeselectNewCoverImage={this.onDeselectNewCoverImage.bind(this)}
                   onSelectedNewCoverImage={this.onSelectNewCoverImage.bind(this)}
+                  uploadImageLabel={this.context.t('add_cover_image')}
                   selectedNewCoverImage={this.state.selectedNewCoverImage}
                 />
               </div>

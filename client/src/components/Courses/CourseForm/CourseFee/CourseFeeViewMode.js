@@ -18,23 +18,8 @@ class CourseFeeViewMode extends Component {
             placeholder={this.context.t('tuition_fee')}
             isMandatory
             fieldName="tuition_fee"
-            typeField="custom_input"
+            typeField="currency_input"
             content={editMode && tuitionFee ? ObjectUtils.currencyFormat(tuitionFee, currency) : ''}
-            styleCustomField="inline-form-control"
-            {...this.props}
-          />
-        </div>
-        <div className="col-sm-12 col-md-6 col-lg-6" style={{ display: 'none' }}>
-          <CourseFormItem
-            editMode={editMode}
-            fieldId="currency"
-            fieldLabel={this.context.t('tuition_currency')}
-            placeholder={this.context.t('tuition_currency')}
-            isMandatory
-            fieldName="currency"
-            typeField="custom_select"
-            content={editMode && currency ? currency : ''}
-            options={concurrency}
             styleCustomField="inline-form-control"
             {...this.props}
           />

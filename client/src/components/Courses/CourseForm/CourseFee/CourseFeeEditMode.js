@@ -26,20 +26,6 @@ class CourseFeeEditMode extends Component {
                 />
               </div>
             </div>
-            <div className="col-md-6">
-              <div className="ml-10 currency-field" style={{ display: 'none' }}>
-                <FormField
-                  fieldId="currency"
-                  fieldLabel={this.context.t('tuition_currency')}
-                  isMandatory
-                  formControlName="currency"
-                  typeField="custom_select"
-                  options={concurrency}
-                  styleCustomField="inline-form-control"
-                  {...this.props}
-                />
-              </div>
-            </div>
           </div>
         </div>
         <div className="col-md-12">
