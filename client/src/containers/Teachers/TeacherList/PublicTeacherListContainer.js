@@ -32,7 +32,7 @@ class PublicTeacherListContainer extends Component {
         repeatTime={4}
       >
         <div className="teacher-list">
-          <div className="container-fluid mt-15 mb-15">
+          <div className="container mt-15 mb-15">
             <TutorList
               {...this.props}
               isPublic={true}
@@ -40,7 +40,7 @@ class PublicTeacherListContainer extends Component {
           </div>
           {
             !isFetching && teachers.length > 0 && headers.total > headers.perPage ? (
-              <div className="d-flex justify-content-center mb-10 mt-10">
+              <div className="container d-flex justify-content-center mb-10 mt-10">
                 <Pagination
                   hideFirstLastPages
                   prevPageText={<PaginationArrowIcon isLeftArrow />}
