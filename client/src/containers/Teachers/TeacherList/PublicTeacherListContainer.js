@@ -31,7 +31,7 @@ class PublicTeacherListContainer extends Component {
         loaderType="COURSE_ITEM_PLACEHOLDER"
         repeatTime={4}
       >
-        <div className="teacher-list">
+        <div className="public-teacher-list d-flex flex-column flex-stretch">
           <div className="container mt-15 mb-15">
             <TutorList
               {...this.props}
