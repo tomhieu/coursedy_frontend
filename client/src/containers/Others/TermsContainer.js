@@ -6,12 +6,14 @@ import { TT } from 'utils/locale';
 class TermsContainer extends Component {
   render() {
     return (
-      <div className="terms-of-use">
-        <div className="container">
-          <TermOfUseTop />
-          <TermOfUseCenter />
+      <PageContainer>
+        <div className="terms-of-use">
+          <div className="container">
+            <TermOfUseTop />
+            <TermOfUseCenter />
+          </div>
         </div>
-      </div>
+      </PageContainer>
     );
   }
 }

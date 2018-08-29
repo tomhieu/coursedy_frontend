@@ -9,6 +9,7 @@ import Footer from '../../containers/Main/Footer/Footer';
 import Header from '../../containers/Main/Header/Header';
 import UserConfirmationContainer from '../../containers/Main/UserConfirmationAction/UserConfirmationContainer';
 import NotificationSystemContainer from '../../containers/Main/NotificationSystem/NotificationSystemContainer';
+import CoursedyHelmet from '../CoursedyHelmet';
 
 export const momentCustom = moment;
 
@@ -24,6 +25,7 @@ class Layout extends Component {
       <I18n translations={translations} initialLang={TT.locale}>
         <ScrollToTop>
           <div className="main-content">
+            <CoursedyHelmet />
             <Header />
             <main className="main-container" style={mainBodyStyle}>
               {this.props.children}

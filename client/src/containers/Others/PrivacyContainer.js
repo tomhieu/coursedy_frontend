@@ -7,12 +7,14 @@ import { Blocks } from './TermsContainer';
 class PrivacyContainer extends Component {
   render() {
     return (
-      <div className="terms-privacy">
-        <div className="container">
-          <PrivacyTop />
-          <PrivacyCenter />
+      <PageContainer>
+        <div className="terms-privacy">
+          <div className="container">
+            <PrivacyTop />
+            <PrivacyCenter />
+          </div>
         </div>
-      </div>
+      </PageContainer>
     );
   }
 }
