@@ -6,7 +6,9 @@ import PageContainer from '../../utils/PageContainer';
 class HelpCenterContainer extends Component {
   render() {
     return (
-      <PageContainer>
+      <PageContainer
+        meta={{ title: this.context.t('help_page') }}
+      >
         <div className="help-center">
           <div className="container">
             <HelpCenterFQA />

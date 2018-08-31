@@ -3,11 +3,14 @@ import { TT } from 'utils/locale';
 import './BeComeTeacher.scss';
 import { Link } from 'react-router-dom';
 import PrimaryButton from '../../components/Core/PrimaryButton/PrimaryButton';
+import PageContainer from '../../utils/PageContainer';
 
 class BecomeTeacherContainer extends Component {
   render() {
     return (
-      <PageContainer>
+      <PageContainer
+        meta={{ title: this.context.t('become_teacher_page') }}
+      >
         <div className="become-teacher">
           <BecomeTeacherBanner />
           <BecomeTeacherIntroduction />

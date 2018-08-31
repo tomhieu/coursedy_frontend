@@ -72,7 +72,10 @@ class TeacherDetail extends Component {
 
   render() {
     return (
-      <PageContainer error={this.props.teacher.error}>
+      <PageContainer
+        error={this.props.teacher.error}
+        meta={{ title: this.context.t('teacher_detail_page', { title: this.props.teacher.title || '' }) }}
+      >
         <div className="container">
           <div className="row">
             <div className="col-md-12">

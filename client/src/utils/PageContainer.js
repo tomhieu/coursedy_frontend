@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import NotFoundPage from '../pages/NotFoundPage/NotFoundPage';
-import CoursedyHelmet from '../components/CoursedyHelmet';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
+import NotFoundPage from '../pages/NotFoundPage/NotFoundPage';
+import CoursedyHelmet from '../components/CoursedyHelmet';
 
 
 class PageContainer extends Component {
   static propTypes = {
+    error: PropTypes.object,
+    children: PropTypes.object.isRequired,
     meta: PropTypes.object,
     req: PropTypes.object,
     status: PropTypes.number,
@@ -19,18 +21,21 @@ class PageContainer extends Component {
     meta: {}
   };
 
+  static contextTypes = {
+    t: PropTypes.func.isRequired
+  }
+
   render() {
-    const { req, location, error = {} } = this.props;
-    const { status } = error;
-    const meta = this.props.meta || {};
+    const {
+      req, location, error = {}, meta = {}, children
+    } = this.props;
+    const { status } = error || {};
 
     return (
       <div>
         <CoursedyHelmet
-          schema={meta.schema || "WebPage"}
-          title={`${meta.title || ""}${
-            meta.page ? " - Page " : ""
-            }${meta.page || ""}`}
+          schema={meta.schema || 'WebPage'}
+          title={`${meta.title || ''}${meta.page ? ` - ${this.context.t('page')} ` : ''}${meta.page || ''}`}
           keywords={meta.keywords}
           description={meta.description}
           url={`${req.protocol}://${req.host}${location.pathname}`}
@@ -38,20 +43,13 @@ class PageContainer extends Component {
         />
         {
           status === 404 || status === 410 ? (
-            <NotFoundPage />) : (
-            this.props.children
-          )
+            <NotFoundPage />) : children
         }
       </div>
     );
   }
 }
 
-
-PageContainer.propTypes = {
-  error: PropTypes.object,
-  children: PropTypes.object.isRequired
-};
 
 export default connect(
   state => ({ req: state.requestInfo }),

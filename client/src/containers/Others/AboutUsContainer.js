@@ -7,7 +7,9 @@ import PageContainer from '../../utils/PageContainer';
 class AboutUsContainer extends Component {
   render() {
     return (
-      <PageContainer>
+      <PageContainer
+        meta={{ title: this.context.t('about_page') }}
+      >
         <div className="about-us">
           <AboutTop />
           <AboutCenter />

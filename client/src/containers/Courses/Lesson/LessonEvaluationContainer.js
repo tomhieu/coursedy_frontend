@@ -30,7 +30,9 @@ class LessonEvaluationContainer extends Component {
   render() {
     const { lesson, isEvaluating } = this.props;
     return (
-      <PageContainer>
+      <PageContainer
+        meta={{ title: this.context.t('lesson_evaluation_page', { title: '' }) }}
+      >
         <div>
           {
             lesson !== null

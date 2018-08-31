@@ -2,11 +2,14 @@ import React, { Component } from 'react';
 import './TermOfUse.scss';
 import './Items.scss';
 import { TT } from 'utils/locale';
+import PageContainer from '../../utils/PageContainer';
 
 class TermsContainer extends Component {
   render() {
     return (
-      <PageContainer>
+      <PageContainer
+        meta={{ title: this.context.t('terms_page') }}
+      >
         <div className="terms-of-use">
           <div className="container">
             <TermOfUseTop />

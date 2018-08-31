@@ -45,4 +45,8 @@ class Layout extends Component {
   }
 }
 
+Layout.propTypes = {
+  lang: React.PropTypes.string
+};
+
 export default Layout;
