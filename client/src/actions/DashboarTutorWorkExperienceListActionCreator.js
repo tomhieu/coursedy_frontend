@@ -28,14 +28,14 @@ export const createWorkExperience = (tutorId, params) => {
 };
 
 export const loadWorkExperienceList = (tutorId) => {
-  return dispatch => {
+  return (dispatch) => {
     dispatch({
       type: actionTypes.FETCH_WORK_EXPERIENCE_LIST,
       payload: Network().get(`tutors/${tutorId}/tutor_work_experiences`),
       meta: 'userAccountPlaceholder'
-    })
-  }
-}
+    });
+  };
+};
 
 export const deleteWorkExperience = (tutorId, id) => {
   return (dispatch) => {

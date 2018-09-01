@@ -10,11 +10,10 @@ import StudentComments from '../../containers/HomePage/StudentCommentsContainer'
 import TopTeachers from '../../containers/HomePage/TopTeachersContainer';
 import YouAreTeacher from '../../containers/HomePage/YouAreTeacherContainer';
 import 'containers/HomePage/Hompage.scss';
-import PageContainer from '../../utils/PageContainer';
 
 
 const LandingPage = props => (
-  <PageContainer>
+  <div>
     <SearchFormContainer />
     <Introduces />
     <PopularCourseList />
@@ -23,7 +22,7 @@ const LandingPage = props => (
     <StudentComments />
     <TopTeachers />
     <YouAreTeacher />
-  </PageContainer>
+  </div>
 );
 
 export default cssModules(LandingPage, styles);

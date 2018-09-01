@@ -1,4 +1,4 @@
-import {payment_translation} from './translations/payment';
+import { payment_translation } from './translations/payment';
 
 export const translations = {
   vn: {

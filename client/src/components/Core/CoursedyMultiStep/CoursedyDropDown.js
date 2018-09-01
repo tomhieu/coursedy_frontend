@@ -36,7 +36,9 @@ class CoursedyMultiStep extends Component {
   }
 
   render() {
-    const {items, isOpen, icon, bgColor, width, emptyMessage} = this.props;
+    const {
+      items, isOpen, icon, bgColor, width, emptyMessage
+    } = this.props;
 
     if (!isOpen) {
       return null;
@@ -61,16 +63,16 @@ class CoursedyMultiStep extends Component {
         <div ref="dropDownContainer" className={dropDownClasses.join(' ')} style={customStyles}>
           <ul>
             {
-              items.length > 0 ?
-              items.map((item) => {
-                return (
-                <li key={item.id + 'option'} className={styles.option}>
-                  <div className="d-flex flex-horizontal align-items-center">
-                    {item.icon ? item.icon : null}
-                    <a className={item.icon ? styles.linkWithIcon : styles.linkWithoutIcon} onClick={this.onSelectOption.bind(this, item.link, item.callback)}>{item.text}</a>
-                  </div>
-                </li> )
-              }) : <span>{emptyMessage}</span>
+              items.length > 0
+                ? items.map((item) => {
+                  return (
+                    <li key={`${item.id}option`} className={styles.option}>
+                      <div className="d-flex flex-horizontal align-items-center">
+                        {item.icon ? item.icon : null}
+                        <a className={item.icon ? styles.linkWithIcon : styles.linkWithoutIcon} onClick={this.onSelectOption.bind(this, item.link, item.callback)}>{item.text}</a>
+                      </div>
+                    </li>);
+                }) : <span>{emptyMessage}</span>
             }
           </ul>
         </div>

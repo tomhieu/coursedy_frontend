@@ -9,7 +9,7 @@ import LoadingMask from '../../LoadingMask/LoadingMask';
 
 
 class TutorProfileDetails extends Component {
-  hideProfileEditForm(){
+  hideProfileEditForm() {
     this.props.hideAccountEditForm();
   }
 

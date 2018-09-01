@@ -27,5 +27,5 @@ class RegisterPage extends Component {
 
 RegisterPage.contextTypes = {
   t: React.PropTypes.func.isRequired
-}
+};
 export default cssModules(RegisterPage, styles);

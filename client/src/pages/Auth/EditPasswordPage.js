@@ -22,5 +22,5 @@ class EditPasswordPage extends Component {
 
 EditPasswordPage.contextTypes = {
   t: React.PropTypes.func.isRequired
-}
+};
 export default EditPasswordPage;

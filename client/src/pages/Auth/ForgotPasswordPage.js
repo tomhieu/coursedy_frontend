@@ -24,5 +24,5 @@ class ForgotPasswordPage extends Component {
 
 ForgotPasswordPage.contextTypes = {
   t: React.PropTypes.func.isRequired
-}
+};
 export default ForgotPasswordPage;

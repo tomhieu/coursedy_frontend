@@ -13,7 +13,7 @@ class LoginRegisterPage extends Component {
       >
         <div className="login-register">
           <div className="mb-50">
-            <LoadingMask placeholderId="loginPlaceholder" isFullLoading={true}>
+            <LoadingMask placeholderId="loginPlaceholder" isFullLoading>
               <LoginFormContainer {...this.props} />
             </LoadingMask>
           </div>
@@ -26,6 +26,6 @@ class LoginRegisterPage extends Component {
 
 LoginRegisterPage.contextTypes = {
   t: React.PropTypes.func.isRequired
-}
+};
 
 export default cssModules(LoginRegisterPage, styles);

@@ -11,7 +11,7 @@ class ConfirmationPage extends React.Component {
       >
         <div className="row">
           <div className="col-sm-12 mt-20" style={{ height: '100vh' }}>
-            <LoadingMask placeholderId="loginPlaceholder" isFullLoading={true}>
+            <LoadingMask placeholderId="loginPlaceholder" isFullLoading>
               <ConfirmationContainer {...this.props} />
             </LoadingMask>
           </div>
@@ -24,5 +24,5 @@ class ConfirmationPage extends React.Component {
 
 ConfirmationPage.contextTypes = {
   t: React.PropTypes.func.isRequired
-}
+};
 export default ConfirmationPage;

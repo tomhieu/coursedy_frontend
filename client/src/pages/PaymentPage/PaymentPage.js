@@ -10,7 +10,7 @@ class PaymentPage extends React.Component {
     const { course, totalAmount, currency } = this.props;
     return (
       <PageContainer
-        meta={{ title: this.context.t('payment_page')}}
+        meta={{ title: this.context.t('payment_page') }}
       >
         <div className="container">
           <div className="row">
@@ -47,5 +47,5 @@ class PaymentPage extends React.Component {
 
 PaymentPage.contextTypes = {
   t: React.PropTypes.func.isRequired
-}
+};
 export default PaymentPage;
