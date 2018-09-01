@@ -52,7 +52,6 @@ const router = (
             <Route path="/become-a-teacher" component={BecomeTeacherContainer} />
             <Route path="/terms" component={TermsContainer} />
             <Route path="/privacy" component={PrivacyContainer} />
-            <Route path="/404" component={Pages.NotFoundPage} />
             <Route path="*" component={Pages.NotFoundPage} />
           </Switch>
         </App>
