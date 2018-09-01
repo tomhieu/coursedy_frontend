@@ -24,5 +24,5 @@ class RecoverPasswordPage extends React.Component {
 
 RecoverPasswordPage.contextTypes = {
   t: React.PropTypes.func.isRequired
-}
+};
 export default RecoverPasswordPage;

@@ -13,8 +13,6 @@ import TutorDashboard from './TutorDashboard/TutorDashboard';
 import StudentDashboard from './StudentDashboard/StudentDashboard';
 import PaymentPage from './PaymentPage/PaymentPage';
 
-import AdminDashboardPage from './Admin/Dashboard/AdminDashboardPage';
-
 export {
   NotFoundPage,
   LandingPage,
@@ -29,7 +27,5 @@ export {
   StudentDashboard,
   PaymentPage,
   ConfirmationPage,
-  EditPasswordPage,
-
-  AdminDashboardPage
+  EditPasswordPage
 };

@@ -23,7 +23,7 @@ class NewCourseList extends Component {
   }
 
   componentWillMount() {
-    this.props.fetchNewCourses()
+    this.props.fetchNewCourses();
   }
 
   render() {

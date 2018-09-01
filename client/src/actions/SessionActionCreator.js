@@ -11,7 +11,7 @@ import { SecurityUtils } from 'utils/SecurityUtils';
 import * as thirdPartyLoginActions from 'constants/ThirdPartyLoginConstants';
 import { LOGIN } from './AsyncActionCreator';
 import Network from '../utils/network';
-import {FETCH_TUTOR_DATA} from "../constants/Session";
+import { FETCH_TUTOR_DATA } from '../constants/Session';
 
 
 export const fetchCurrentUser = () => {
@@ -109,22 +109,22 @@ export const setCurrentUser = (nextUrl) => {
         const fetchTutor = dispatch(fetchCurrentTutor());
 
         fetchTutor.then(() => {
-          return dispatch(redirectToDashboard(value))
-        })
+          return dispatch(redirectToDashboard(value));
+        });
       } else {
-        return dispatch(redirectToDashboard(value))
+        return dispatch(redirectToDashboard(value));
       }
-    })
+    });
   };
-}
+};
 
-export const fetchCurrentTutor = () => dispatch => {
+export const fetchCurrentTutor = () => (dispatch) => {
   return dispatch({
     type: FETCH_TUTOR_DATA,
     payload: Network().get('tutors/current_tutor'),
     meta: 'ezylearningFullLoader'
   });
-}
+};
 
 export const redirectToDashboard = user => (dispatch) => {
   if (user.roles.indexOf(UserRole.ADMIN) >= 0) {

@@ -39,7 +39,7 @@ class DashboardProfileContainer extends Component {
         <LoadingMask
           placeholderId="userDetailsPlaceholder"
           normalPlaceholder={false}
-          facebookPlaceholder={true}
+          facebookPlaceholder
           loaderType="USER_DETAILS_PLACEHOLDER"
         >
           <div className="dashboard-profile">
@@ -56,7 +56,7 @@ class DashboardProfileContainer extends Component {
                   showPopupChangeImage={editAvatarMode}
                   previewImage={user.avatar ? user.avatar : defaultAvatar}
                   fieldId="tutor_avatar"
-                  isUserAvatar={true}
+                  isUserAvatar
                   {...this.props}
                 />
               </div>

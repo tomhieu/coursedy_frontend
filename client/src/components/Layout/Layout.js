@@ -1,7 +1,7 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import I18n from 'redux-i18n';
-import {translations} from 'translations';
-import {TT} from 'utils/locale';
+import { translations } from 'translations';
+import { TT } from 'utils/locale';
 import ScrollToTop from 'utils/ScrollToTop';
 import moment from 'moment';
 import LoadingMask from '../LoadingMask/LoadingMask';

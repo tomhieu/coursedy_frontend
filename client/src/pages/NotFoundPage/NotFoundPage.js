@@ -19,6 +19,6 @@ class NotFound extends React.Component {
 
 NotFound.contextTypes = {
   t: React.PropTypes.func.isRequired
-}
+};
 
 export default CSSModules(NotFound, styles);

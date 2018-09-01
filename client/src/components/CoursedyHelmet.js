@@ -117,6 +117,6 @@ CoursedyHelmet.propTypes = {
 
 CoursedyHelmet.contextTypes = {
   t: PropTypes.func.isRequired
-}
+};
 
 export default CoursedyHelmet;

@@ -26,5 +26,5 @@ class PublicCourseListPage extends React.Component {
 
 PublicCourseListPage.contextTypes = {
   t: React.PropTypes.func.isRequired
-}
+};
 export default PublicCourseListPage;

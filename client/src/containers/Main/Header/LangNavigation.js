@@ -1,9 +1,9 @@
 import React, { Component, PropTypes } from 'react';
 import cssModules from 'react-css-modules';
-import styles from './Header.module.scss';
-import CoursedyDropDown from '../../../components/Core/CoursedyDropdown/CoursedyDropDown';
 import { connect } from 'react-redux';
 import { setLanguage } from 'redux-i18n';
+import styles from './Header.module.scss';
+import CoursedyDropDown from '../../../components/Core/CoursedyDropdown/CoursedyDropDown';
 
 class LangNavigation extends Component {
   constructor(props) {
@@ -29,9 +29,8 @@ class LangNavigation extends Component {
   findFlagByLang(lang) {
     if (lang === 'vn') {
       return '/flags/vn.png';
-    } else {
-      return '/flags/en.png';
     }
+    return '/flags/en.png';
   }
 
   render() {
@@ -83,8 +82,8 @@ LangNavigation.propTypes = {
   session: PropTypes.object.isRequired,
 };
 
-const mapDispatchToProps = (dispatch) => ({
-  switchLang: (lang) => dispatch(setLanguage(lang))
+const mapDispatchToProps = dispatch => ({
+  switchLang: lang => dispatch(setLanguage(lang))
 });
 
 export default connect(null, mapDispatchToProps)(cssModules(LangNavigation, styles));
