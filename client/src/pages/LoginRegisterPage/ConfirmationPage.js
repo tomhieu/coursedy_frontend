@@ -9,11 +9,13 @@ class ConfirmationPage extends React.Component {
       <PageContainer
         meta={{ title: this.context.t('confirmation_page') }}
       >
-        <div className="row">
-          <div className="col-sm-12 mt-20" style={{ height: '100vh' }}>
-            <LoadingMask placeholderId="loginPlaceholder" isFullLoading>
-              <ConfirmationContainer {...this.props} />
-            </LoadingMask>
+        <div className="container">
+          <div className="row">
+            <div className="col-sm-12 mt-20" style={{ height: '60vh' }}>
+              <LoadingMask placeholderId="loginPlaceholder" isFullLoading>
+                <ConfirmationContainer {...this.props} />
+              </LoadingMask>
+            </div>
           </div>
         </div>
       </PageContainer>
