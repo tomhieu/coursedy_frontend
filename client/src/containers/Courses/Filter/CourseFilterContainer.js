@@ -26,11 +26,6 @@ class CourseFilterContainer extends AbstractFilter {
     this.props.changeDisplayMode(mode);
   }
 
-  search(filters, selectedMinFee, selectedMaxFee, order_by, display_mode) {
-    this.props.searchCourse(this.buildQuery(filters, selectedMinFee, selectedMaxFee, order_by, display_mode));
-  }
-
-
   loadSuggestions(event) {
     if (event.target.value === '') {
       this.props.clearSuggestion();
@@ -69,10 +64,11 @@ class CourseFilterContainer extends AbstractFilter {
   }
 
   search(e) {
-    const { key_word } = e;
-    if (key_word && key_word.trim()) {
-      this.props.updateFilter({ term: key_word.trim() });
-      this.props.reset();
+    let { key_word } = e;
+    key_word = key_word ? key_word.trim() : '';
+    if (key_word) {
+      this.props.updateFilter({ term: key_word });
+
       const {
         selectedMinFee, selectedMaxFee,
         order_by, display_mode,
@@ -83,8 +79,11 @@ class CourseFilterContainer extends AbstractFilter {
         selectedMaxFee,
         order_by,
         display_mode,
-        key_word.trim()
-      ));
+        key_word
+      )).finally(() => {
+        this.props.reset();
+        this.props.closeSuggestion();
+      });
     }
   }
 
@@ -235,7 +234,6 @@ export default connect(
   mapStateToProps, mapDispatchToProps
 )(reduxForm({
   form: 'courseFilterForm',
-  enableReinitialize: true,
   updateUnregisteredFields: true,
   fields: ['key_word', 'selectedMinFee', 'selectedMaxFee', 'sort_by', 'display_mode']
 })(CourseFilterContainer));

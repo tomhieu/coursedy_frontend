@@ -55,7 +55,7 @@ export const Teachers = (state = initialState, action) => {
     case asyncActs.CLEAR_SUGGESTION_TEACHERS:
       return {
         ...state,
-        filters: { ...state.filters, term: '' },
+        filters: { ...state.filters },
         suggestions: [],
         showSuggestion: false,
         loadingSuggestion: false

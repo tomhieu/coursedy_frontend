@@ -40,10 +40,14 @@ class TeacherFilterContainer extends AbstractFilter {
   }
 
   search(e) {
-    const { key_word } = e;
-    if (key_word && key_word.trim()) {
-      this.props.updateFilter({ term: key_word.trim() });
-      this.props.searchTeachers(this.searchQuery(this.props.filters, key_word.trim()));
+    let { key_word } = e;
+    key_word = key_word ? key_word.trim() : '';
+    if (key_word) {
+      this.props.updateFilter({ term: key_word });
+      this.props.searchTeachers(this.searchQuery(this.props.filters, key_word)).finally(() => {
+        this.props.reset();
+        this.props.clearSuggestion();
+      });
     }
   }
 

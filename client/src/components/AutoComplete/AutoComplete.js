@@ -45,7 +45,6 @@ class AutoComplete extends Component {
   onKeyPress(e) {
     if (e.key === 'Enter') {
       this.props.search({ key_word: e.target.value });
-      this.props.reset();
     }
   }
 
