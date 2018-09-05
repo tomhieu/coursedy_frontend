@@ -1,6 +1,5 @@
 import ForgotPasswordPage from 'pages/Auth/ForgotPasswordPage';
 import EditPasswordPage from 'pages/Auth/EditPasswordPage';
-import RecoverPasswordPage from 'pages/Auth/RecoverPasswordPage';
 import NotFoundPage from './NotFoundPage/NotFoundPage';
 import LandingPage from './LandingPage/LandingPage';
 import LoginRegisterPage from './LoginRegisterPage/LoginRegisterPage';
@@ -21,7 +20,6 @@ export {
   ForgotPasswordPage,
   PublicCourseListPage,
   PublicCourseDetailPage,
-  RecoverPasswordPage,
   TutorPage,
   TutorDashboard,
   StudentDashboard,
