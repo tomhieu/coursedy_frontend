@@ -171,7 +171,7 @@ export const loadListSection = (courseId) => {
 export const publishCourse = (courseId) => {
   return {
     type: PUBLISH_COURSE,
-    payload: Network().post('courses/publish', courseId)
+    payload: Network().update(`courses/${courseId}`, {id: courseId, is_public: true})
   };
 };
 

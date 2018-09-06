@@ -291,6 +291,8 @@ export const translations = {
     save_favorite: 'Lưu vào khóa học ưu thích',
     order_list: 'Sắp xếp:',
     order_by_time: 'Mới nhất',
+    order_by_price_desc: 'Học phí tăng dần',
+    order_by_price_asc: 'Học phí giảm dần',
     order_by_view: 'Xem nhiều nhất',
     order_by_register: 'Đăng ký nhiều nhất',
     display_mode: 'Hiển thị:',
