@@ -72,7 +72,6 @@ class CourseFilterContainer extends AbstractFilter {
       orderBy = e.target.value;
     }
 
-    this.props.reset();
     const { selectedMinFee, selectedMaxFee, display_mode } = this.props.formfieldValues;
     this.props.searchCourse(this.buildQuery(
       this.props.filters,
@@ -162,7 +161,8 @@ const mapStateToProps = (state) => {
 
   const {
     courses = [], selectedCourses = [], displayMode,
-    totalResult = 0, currentPage, perPage, sugestions, filters, showSuggestion, loadingSuggestion
+    totalResult = 0, currentPage, perPage, orderBy,
+    sugestions, filters, showSuggestion, loadingSuggestion
   } = CourseFilter;
   const { courseFilterForm = {} } = form;
   const filterSuggestions = [];
@@ -190,6 +190,7 @@ const mapStateToProps = (state) => {
     totalResult,
     currentPage,
     perPage,
+    orderBy,
     filters,
     showSuggestion,
     suggestions: filterSuggestions,

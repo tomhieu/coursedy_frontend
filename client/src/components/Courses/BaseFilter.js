@@ -35,7 +35,8 @@ class BaseFilter extends Component {
       closeSuggestion,
       courseFilterMode,
       displayMode,
-      placeholder
+      placeholder,
+      orderBy
     } = this.props;
 
     const {
@@ -137,7 +138,11 @@ class BaseFilter extends Component {
                 {
                   courseFilterMode ?
                     <div className={styles.orderBtn}>
-                      <Select2 onSelect={e => search(e)} data={orderList} />
+                      <Select2
+                        onSelect={e => search(e)}
+                        data={orderList}
+                        defaultValue={orderBy}
+                      />
                     </div> : null
                 }
 
