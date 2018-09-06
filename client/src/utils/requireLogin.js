@@ -30,14 +30,18 @@ export default function requireLogin(Component) {
     }
 
     render() {
-      const { user, fetchingUser } = this.props;
+      const { user, fetchingUser, location } = this.props;
       const isAuthenticated = SecurityUtils.isAuthenticated();
       if (isAuthenticated && !user) {
         return fetchingUser ? (
           <div>LOADING</div>
         ) : (
           <Redirect
-            to={{ pathname: '/login', state: { from: this.props.location } }}
+            to={{
+              pathname: '/login',
+              state: { from: location },
+              search: `?next=${location.pathname}`
+            }}
           />
         );
       }
@@ -46,7 +50,7 @@ export default function requireLogin(Component) {
         <div>
           {!isAuthenticated || !this.hasAuthorization() ? (
             <Redirect
-              to={{ pathname: '/login', state: { from: this.props.location } }}
+              to={{ pathname: '/login', state: { from: location }, search: `?next=${location.pathname}` }}
             />
           ) : (
             <Component {...this.props} />
