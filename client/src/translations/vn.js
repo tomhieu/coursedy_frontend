@@ -445,7 +445,7 @@ export default {
   select_a_course_content: 'Sau khi tìm thấy khoá học mong muốn, đọc kỹ thông tin chi tiết của khoá học để đảm bảo khoá học đáp ứng yêu cầu của bạn.',
   apply_a_course_title: 'Đăng ký học',
   apply_a_course_content: 'Sau khi bạn đọc và hiểu rõ khoá học. Đăng ký tham gia khoá học với Coursedy.',
-  receive_course_info_title: 'Nhân thông báo khoá học',
+  receive_course_info_title: 'Nhận thông báo khoá học',
   receive_course_info_content: 'Coursedy sẽ gửi thông tin đăng ký của bạn đến giáo viên. Sau khi đăng ký, bạn sẽ nhận được mọi thông tin liên quan đến khoá học.',
   get_course_timeline_title: 'Nhận thông báo lịch học',
   get_course_timeline_content: 'Sau khi khoá học đã đủ học viên tham gia, giáo viên sẽ bắt đầu dạy khoá học. Chúng tôi sẽ gửi thông báo lịch học để bạn sắp xếp thời gian và đọc trước tài liệu.',
@@ -780,8 +780,8 @@ export default {
   enroll_course_button: 'Đăng ký ngay',
   enroll_course_message: 'Một số lưu ý trước khi bạn tham gia khoá học {courseTitle} như sau:',
   enroll_course_term_1: 'Khoá học sẽ dạy online. Bạn sẽ được cấp quyền truy cập vào khoá học',
-  enroll_course_sub_term_1: 'Bạn sẽ được tham giá hoc trực tiếp với giáo viên trên hệ thông Coursedy, được cung cấp tất cả tài liệu, bài tập liên quan đến khoá học.',
-  enroll_course_term_2: 'Huỷ khoá hoc bất kỳ lúc nào',
+  enroll_course_sub_term_1: 'Bạn sẽ được tham giá học trực tiếp với giáo viên trên hệ thông Coursedy, được cung cấp tất cả tài liệu, bài tập liên quan đến khoá học.',
+  enroll_course_term_2: 'Huỷ khoá học bất kỳ lúc nào',
   enroll_course_sub_term_2: 'Sau khi tham gia nếu cảm thấy khoa học không đáp ứng yêu cầu bạn có thể huỷ bất kỳ lúc nào. Không bị trừ bất cứ khoản phí nào.',
   enroll_course_term_3: 'Học phí khoá học là {courseFee} VND.',
   enroll_course_sub_term_3: 'Tài khoản của bạn phải đủ trước khi đăng ký khoá học. Bạn chỉ bị {chargeFee} khi hoàn thành khoá học',
@@ -792,7 +792,7 @@ export default {
   enroll_course_sub_term_5: 'Coursedy sẽ thông báo khi có sự thay đổi về nội dung các buổi học của khoá học từ giáo viên.',
   enroll_course_success_title: 'Đăng ký thành công',
   enroll_course_success_button: 'Về khoá học',
-  enroll_course_success_message: 'Chào mứng bạn đến với khoá học {courseTitle}.',
+  enroll_course_success_message: 'Chào mừng bạn đến với khoá học {courseTitle}.',
   enroll_course_success_message_2: 'Khoá học sẽ bắt đầu sớm. Bạn hãy chuẩn bị sẵn sàng cho khoá học ngay hôm nay.',
 
   //  SEO meta
