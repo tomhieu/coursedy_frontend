@@ -1,7 +1,7 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import I18n from 'redux-i18n';
-import {translations} from 'translations';
-import {TT} from 'utils/locale';
+import { translations } from 'translations';
+import { TT } from 'utils/locale';
 import ScrollToTop from 'utils/ScrollToTop';
 import moment from 'moment';
 import LoadingMask from '../LoadingMask/LoadingMask';
@@ -9,6 +9,7 @@ import Footer from '../../containers/Main/Footer/Footer';
 import Header from '../../containers/Main/Header/Header';
 import UserConfirmationContainer from '../../containers/Main/UserConfirmationAction/UserConfirmationContainer';
 import NotificationSystemContainer from '../../containers/Main/NotificationSystem/NotificationSystemContainer';
+import CoursedyHelmet from '../CoursedyHelmet';
 
 export const momentCustom = moment;
 
@@ -24,6 +25,7 @@ class Layout extends Component {
       <I18n translations={translations} initialLang={TT.locale}>
         <ScrollToTop>
           <div className="main-content">
+            <CoursedyHelmet />
             <Header />
             <main className="main-container" style={mainBodyStyle}>
               {this.props.children}
@@ -42,5 +44,9 @@ class Layout extends Component {
     );
   }
 }
+
+Layout.propTypes = {
+  lang: React.PropTypes.string
+};
 
 export default Layout;

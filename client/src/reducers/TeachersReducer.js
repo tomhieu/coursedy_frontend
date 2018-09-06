@@ -55,13 +55,13 @@ export const Teachers = (state = initialState, action) => {
     case asyncActs.CLEAR_SUGGESTION_TEACHERS:
       return {
         ...state,
-        filters: { ...state.filters, term: '' },
+        filters: { ...state.filters },
         suggestions: [],
         showSuggestion: false,
         loadingSuggestion: false
       };
     case asyncActs.UPDATE_FILTER_CRITERIA_TEACHERS:
-      return Object.assign({}, state, { filters: {...state.filters, ...action.data} });
+      return Object.assign({}, state, { filters: { ...state.filters, ...action.data } });
     default:
       return state;
   }

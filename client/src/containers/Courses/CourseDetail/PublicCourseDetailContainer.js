@@ -48,7 +48,10 @@ class PublicCourseDetailContainer extends Component {
 
   render() {
     return (
-      <PageContainer error={this.props.course.error}>
+      <PageContainer
+        error={this.props.course.error}
+        meta={{ title: this.context.t('course_detail_page', { title: this.props.course.title || '' }) }}
+      >
         <CourseDetail
           {...this.props}
           loadMoreCommentsHdl={this.loadMoreComments.bind(this)}

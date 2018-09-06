@@ -1,4 +1,4 @@
-import {payment_translation} from './translations/payment';
+import { payment_translation } from './translations/payment';
 
 export const translations = {
   vn: {
@@ -553,8 +553,6 @@ export const translations = {
     signup_term: 'Bằng cách nhấp vào Đăng ký, bạn đồng ý với {term} và {privacy} của chúng tôi. Bạn có thể nhận được thông báo của chúng tôi qua SMS và hủy nhận bất kỳ lúc nào.',
     term: 'Điều khoản',
     privacy: 'Chính sách dữ liệu',
-    recover_password: 'Đặt lại mật khẩu',
-    token_invalid_or_expired: 'Token không hợp lệ hoặc quá hạn sử dụng',
     your_new_password: 'Mật khẩu mới',
     your_new_password_: 'Xác nhận mật khẩu mới',
     new_password: 'Nhập mật khẩu mới',
@@ -792,11 +790,46 @@ export const translations = {
     enroll_course_success_title: 'Đăng ký thành công',
     enroll_course_success_button: 'Về khoá học',
     enroll_course_success_message: 'Chào mứng bạn đến với khoá học {courseTitle}.',
-    enroll_course_success_message_2: 'Khoá học sẽ bắt đầu sớm. Bạn hãy chuẩn bị sẵn sàng cho khoá học ngay hôm nay.'
+    enroll_course_success_message_2: 'Khoá học sẽ bắt đầu sớm. Bạn hãy chuẩn bị sẵn sàng cho khoá học ngay hôm nay.',
+
+    //  SEO meta
+    meta_tags: {
+      default_title: 'Học tập trực tuyến, tương tác trực tiếp - Coursedy.com',
+      suffix_title: 'Coursedy',
+      description: 'Nền tảng học tập trực tuyến có tính tương tác trực tiếp giữa người dạy và người học đầu tiên tại Việt Nam với công nghệ video streaming hiện đại.',
+      keywords: 'Học tập trực tuyến, Dạy học online, E-Learning, video conferencing, video conference, online learning, screen share',
+      contentType: 'website',
+      creator: '@COURSEDY',
+      fb_app_id: 1054559741372976,
+      site_name: 'Coursedy',
+      twitter_card: 'summary_large_image',
+      image: 'https://api.coursedy.com/uploads/course/cover_image/67/5e1ef1d180cacf9afaa0f22d47bc791089a7115a.png',
+      schema: 'WebSite',
+      url: 'https://coursedy.com/',
+      lang: 'vi',
+      theme_color: '#1CABA0'
+    },
+    page: 'trang',
+    login_page: 'Trang đăng nhập',
+    register_page: 'Trang đăng ký',
+    forgot_password_page: 'Trang quên mật khẩu',
+    edit_password_page: 'Trang sửa mật khẩu',
+    confirmation_page: 'Trang xác nhận',
+    public_course_list_page: 'Trang tìm lớp học',
+    lesson_evaluation_page: 'Đánh giá bài học - {title}',
+    course_detail_page: 'Chi tiết khoá học - {title}',
+    teacher_detail_page: 'Chi tiết giáo viên - {title}',
+    not_found_page: 'Trang không tồn tại',
+    privacy_page: 'Trang chính sách bảo mật',
+    terms_page: 'Trang quy định',
+    about_page: 'Trang giới thiệu',
+    help_page: 'Trang câu hỏi có thể bạn có',
+    become_teacher_page: 'Trang trở thành giáo viên',
+    payment_page: 'Trang hướng dẫn thanh ',
   },
   en: {
     ...payment_translation.en,
-    lang: 'Tiếng Việt',
+    lang: 'English',
     home_page: 'Home page',
     find_tutors: 'Find tutors',
     find_teachers: 'Find teachers',
@@ -1016,7 +1049,6 @@ export const translations = {
     female: 'Female',
     'gender.M': 'Male',
     'gender.F': 'Female',
-    search_course: 'Search keywords',
     view_details_lesson: 'Lesson detail',
     update_password: 'Update password',
     update_password_success: 'Update password successfully',
@@ -1375,5 +1407,38 @@ export const translations = {
         description: 'Chúng tôi hoan nghênh ý kiến đóng góp hoặc câu hỏi của bạn liên quan đến chính sách bảo mật của chúng tôi. Nếu bạn muốn liên lạc với Coursedy về Chính Sách Bảo Mật này, vui lòng liên hệ với chúng tôi bằng cách gửi email cho chúng tôi tại contact@coursedy.com'
       }
     ],
+    meta_tags: {
+      default_title: 'Online learning, direct interaction - Coursedy.com',
+      suffix_title: 'Coursedy',
+      description: 'Nền tảng học tập trực tuyến có tính tương tác trực tiếp giữa người dạy và người học đầu tiên tại Việt Nam với công nghệ video streaming hiện đại.',
+      keywords: 'Học tập trực tuyến, Dạy học online, E-Learning, video conferencing, video conference, online learning, screen share',
+      contentType: 'website',
+      creator: '@COURSEDY',
+      fb_app_id: 1054559741372976,
+      site_name: 'COURSEDY',
+      twitter_card: 'summary_large_image',
+      image: 'https://api.coursedy.com/uploads/course/cover_image/67/5e1ef1d180cacf9afaa0f22d47bc791089a7115a.png',
+      schema: 'WebSite',
+      url: 'https://coursedy.com/',
+      lang: 'vi',
+      theme_color: '#1CABA0'
+    },
+    page: 'page',
+    login_page: 'Login page',
+    register_page: 'Register page',
+    forgot_password_page: 'Forgot password page',
+    edit_password_page: 'Edit password page',
+    confirmation_page: 'Confirmation page',
+    public_course_list_page: 'Search course page',
+    lesson_evaluation_page: 'Lesson evaluation - {title}',
+    course_detail_page: 'Course detail - {title}',
+    teacher_detail_page: 'Teacher detail - {title}',
+    not_found_page: 'Not found page',
+    privacy_page: 'Privacy page',
+    terms_page: 'Terms page',
+    about_page: 'About page',
+    help_page: 'About page',
+    become_teacher_page: 'Become teacher page',
+    payment_page: 'Payment guidelines page',
   }
 };

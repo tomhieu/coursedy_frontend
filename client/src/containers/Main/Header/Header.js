@@ -113,7 +113,7 @@ class Header extends Component {
                 </LinkContainer>
               </li>
               <li className="nav-item border-left">
-                <LangNavigation {...this.props}></LangNavigation>
+                <LangNavigation {...this.props} />
               </li>
               {
                 this.isAuthenticated() ? (

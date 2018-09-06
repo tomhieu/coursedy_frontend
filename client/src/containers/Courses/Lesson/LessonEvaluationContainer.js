@@ -9,6 +9,7 @@ import { EVALUATE_AND_TERMINATE_LESSON } from '../../../actions/AsyncActionCreat
 import { fetchCourseToEvaluate } from '../../../actions/StudentActionCreator';
 import LessonEvaluationFormContainer from './LessonEvaluationFormContainer';
 import { joinToClassRoom } from '../../../actions/ListTutorCourseActionCreator';
+import PageContainer from '../../../utils/PageContainer';
 
 class LessonEvaluationContainer extends Component {
   constructor(props) {
@@ -29,20 +30,24 @@ class LessonEvaluationContainer extends Component {
   render() {
     const { lesson, isEvaluating } = this.props;
     return (
-      <div>
-        {
-          lesson !== null
-            ? (
-              <LessonEvaluationFormContainer
-                lesson={lesson}
-                bbbClassRoomSlug={this.bbbRoomSlug}
-                onSubmit={this.doEvaluateLesson.bind(this)}
-                isEvaluating={isEvaluating}
-                {...this.props}
-              />
-            ) : null
-        }
-      </div>
+      <PageContainer
+        meta={{ title: this.context.t('lesson_evaluation_page', { title: '' }) }}
+      >
+        <div>
+          {
+            lesson !== null
+              ? (
+                <LessonEvaluationFormContainer
+                  lesson={lesson}
+                  bbbClassRoomSlug={this.bbbRoomSlug}
+                  onSubmit={this.doEvaluateLesson.bind(this)}
+                  isEvaluating={isEvaluating}
+                  {...this.props}
+                />
+              ) : null
+          }
+        </div>
+      </PageContainer>
     );
   }
 }

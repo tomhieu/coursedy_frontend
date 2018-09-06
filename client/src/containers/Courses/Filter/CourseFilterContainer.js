@@ -7,12 +7,6 @@ import Network from 'utils/network';
 import * as WebConstants from 'constants/WebConstants';
 import * as CourseFilterActions from '../../../actions/CourseFilterActionCreator';
 import * as asyncActions from '../../../actions/AsyncActionCreator';
-import {
-  CLOSE_COURSE_FILTER_SUGGESTION,
-  FETCH_CATEGORIES,
-  FETCH_LOCATIONS,
-  LOAD_SUGGESTION
-} from '../../../actions/AsyncActionCreator';
 import AbstractFilter from '../../../components/Core/AbstractFilterComponent';
 import { FETCH_COURSES } from '../../../constants/Courses';
 import BaseFilter from '../../../components/Courses/BaseFilter';
@@ -32,18 +26,13 @@ class CourseFilterContainer extends AbstractFilter {
     this.props.changeDisplayMode(mode);
   }
 
-  search(filters, selectedMinFee, selectedMaxFee, order_by, display_mode) {
-    this.props.searchCourse(this.buildQuery(filters, selectedMinFee, selectedMaxFee, order_by, display_mode));
-  }
-
-
   loadSuggestions(event) {
     if (event.target.value === '') {
       this.props.clearSuggestion();
       return;
     }
 
-    const filters = this.props.filters;
+    const { filters } = this.props;
     const query = {
       q: event.target.value,
       categories: filters.selectedCategories.map(category => category.id),
@@ -92,7 +81,10 @@ class CourseFilterContainer extends AbstractFilter {
       orderBy,
       display_mode,
       keyWord
-    ));
+    )).finally(() => {
+      this.props.reset();
+      this.props.closeSuggestion();
+    });
   }
 
   buildQuery(filters, selectedMinFee, selectedMaxFee, order_by, display_mode, key_word) {
@@ -158,11 +150,9 @@ export const getSelectedSpecializesFromCategory = (categories, selectedCategorie
     return sc.id;
   });
   const selectCategoryList = categories.filter(category => selectedCategoryIds.indexOf(category.id) >= 0);
-  const selectSpecializes = [];
-  selectCategoryList.map((sc) => {
-    selectSpecializes.push({ name: sc.name, id: sc.id, options: sc.children });
+  return selectCategoryList.map((sc) => {
+    return ({ name: sc.name, id: sc.id, options: sc.children });
   });
-  return selectSpecializes;
 };
 
 const mapStateToProps = (state) => {
@@ -219,24 +209,24 @@ const mapDispatchToProps = dispatch => ({
   changeDisplayMode: mode => dispatch(CourseFilterActions.changeDisplayMode(mode)),
   clearSuggestion: () => dispatch({ type: asyncActions.CLEAR_SUGGESTION }),
   loadSuggestions: query => dispatch({
-    type: LOAD_SUGGESTION,
+    type: asyncActions.LOAD_SUGGESTION,
     payload: Network().get('courses/search', query),
     meta: 'courseSuggestionPlaceholder'
   }),
   updateFilter: filters => dispatch(CourseFilterActions.updateFilter(filters)),
   fetchCategories: () => dispatch({
-    type: FETCH_CATEGORIES,
+    type: asyncActions.FETCH_CATEGORIES,
     payload: Network().get('categories'),
     meta: 'publicCourseListPlaceholder'
   }),
   fetchLocations: () => dispatch({
-    type: FETCH_LOCATIONS,
+    type: asyncActions.FETCH_LOCATIONS,
     payload: Network().get('locations'),
     meta: 'publicCourseListPlaceholder'
   }),
   noShadowHeader: () => dispatch({ type: WebConstants.ADD_HEADER_CLASS, payload: 'no-shadow' }),
   shadowHeader: () => dispatch({ type: WebConstants.REMOVE_HEADER_CLASS }),
-  closeSuggestion: () => dispatch({ type: CLOSE_COURSE_FILTER_SUGGESTION })
+  closeSuggestion: () => dispatch({ type: asyncActions.CLOSE_COURSE_FILTER_SUGGESTION })
 });
 
 
@@ -244,7 +234,6 @@ export default connect(
   mapStateToProps, mapDispatchToProps
 )(reduxForm({
   form: 'courseFilterForm',
-  enableReinitialize: true,
   updateUnregisteredFields: true,
   fields: ['key_word', 'selectedMinFee', 'selectedMaxFee', 'sort_by', 'display_mode']
 })(CourseFilterContainer));

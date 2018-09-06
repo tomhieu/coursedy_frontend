@@ -77,7 +77,11 @@ class CourseDetailComments extends Component {
                               <div className="gap-20 mb-0">
                                 <div className="d-flex">
                                   <strong className="pr-10">{item.user.name}</strong>
-                                  <span className="date"> · {DateUtils.dateTimeFromNow(item.created_at)}</span>
+                                  <span className="date">
+                                    {' '}
+·
+                                    {DateUtils.dateTimeFromNow(item.created_at)}
+                                  </span>
                                 </div>
                               </div>
                               <div className="review-text">

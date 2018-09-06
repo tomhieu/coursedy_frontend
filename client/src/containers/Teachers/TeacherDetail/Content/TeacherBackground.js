@@ -20,7 +20,7 @@ const TeacherShortIntroduce = (props) => {
     <LoadingMask
       placeholderId="userAccountPlaceholder"
       normalPlaceholder={false}
-      facebookPlaceholder={true}
+      facebookPlaceholder
       loaderType={webConstants.USER_ACCOUNT_PLACEHOLDER}
     >
       <div className="profile-list-item">
@@ -163,7 +163,10 @@ const WorkExperienceItem = ({ experience }) => {
         <span className="yellow-color">{experience.company}</span>
         {' · '}
         <span className="font-italic dd-mm-yy">
-          {experience.start_date} - {experience.end_date}
+          {experience.start_date}
+          {' '}
+-
+          {experience.end_date}
         </span>
       </span>
       <p dangerouslySetInnerHTML={{ __html: experience.description }} />

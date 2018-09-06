@@ -40,8 +40,8 @@ class TutorAccount extends Component {
   }
 
   render() {
-    const {tutor} = this.props;
-    const {editEducationMode} = this.props;
+    const { tutor } = this.props;
+    const { editEducationMode } = this.props;
     if (!tutor.id) {
       return null;
     }

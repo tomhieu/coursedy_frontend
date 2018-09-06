@@ -40,8 +40,15 @@ class TeacherFilterContainer extends AbstractFilter {
   }
 
   search(e) {
-    this.props.updateFilter({ term: e.key_word.trim() });
-    this.props.searchTeachers(this.searchQuery(this.props.filters, e.key_word.trim()));
+    let { key_word } = e;
+    key_word = key_word ? key_word.trim() : '';
+    if (key_word) {
+      this.props.updateFilter({ term: key_word });
+      this.props.searchTeachers(this.searchQuery(this.props.filters, key_word)).finally(() => {
+        this.props.reset();
+        this.props.clearSuggestion();
+      });
+    }
   }
 
   doRemoveFilter(filterId, typeFilter) {
@@ -117,7 +124,7 @@ const mapStateToProps = (state) => {
     filters,
     showSuggestion,
     loadingSuggestion,
-    totalResult: headers != null ? headers.xTotal : 0,
+    totalResult: headers !== null ? headers.xTotal : 0,
     formfieldValues: teacherFilterForm.values ? teacherFilterForm.values : {},
     listSpecializes: getSelectedSpecializesFromCategory(categories, filters.selectedCategories),
   };
