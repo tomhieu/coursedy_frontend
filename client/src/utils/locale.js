@@ -2,7 +2,7 @@ import { translations } from '../translations';
 
 export const TT = {
   locale: 'vn',
-  changeLocale: (locale) => {
+  changeLocale: (locale = 'vn') => {
     const newTT = TT
     TT.locale = locale
     return newTT

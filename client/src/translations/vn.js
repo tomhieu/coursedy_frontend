@@ -570,7 +570,7 @@ export default {
   'whatwedo-label': 'What we do?',
   'whatwedo-description': 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex.',
 
-  coursedy_fqa: 'Câu hỏi bạn có thể có',
+  coursedy_fqa: 'Có phải bạn đang tìm',
   fqa_still_looking_for: 'Nếu bạn vẫn chưa tìm thấy điều bạn muốn',
   contact_the_team: 'Liên hệ chúng tôi',
   fqa: [

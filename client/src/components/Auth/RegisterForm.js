@@ -24,7 +24,7 @@ class RegisterForm extends Component {
             {' '}
             {this.context.t('register_as')}
             {' '}
-&nbsp;
+            &nbsp;
             <font color="red">*</font>
             {' '}
           </ControlLabel>
@@ -32,7 +32,7 @@ class RegisterForm extends Component {
             name="role"
             component={renderRadioFields}
             options={ROLES.reduce((acc, curr) => {
-              acc[curr] = TT.t(curr);
+              acc[curr] = TT.changeLocale(this.props.lang).t(curr);
               return acc;
             }, {})}
           />
@@ -42,7 +42,7 @@ class RegisterForm extends Component {
           <ControlLabel>
             {' '}
             {this.context.t('full_name')}
-&nbsp;
+            &nbsp;
             <font color="red">*</font>
             {' '}
           </ControlLabel>

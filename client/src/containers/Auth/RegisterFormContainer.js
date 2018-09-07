@@ -66,7 +66,8 @@ RegisterFormContainer.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  SignUpComponent: state.SignUpComponent
+  SignUpComponent: state.SignUpComponent,
+  lang: state.i18nState.lang
 });
 
 const StyledComponent = cssModules(RegisterFormContainer, styles);
