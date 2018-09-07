@@ -20,7 +20,7 @@ class AdvanceFilterComponent extends Component {
               <div className="flex-col-3">
                 <FilterOption
                   label={this.context.t('day_of_week')}
-                  options={DAYS_IN_WEEK.map((e) => {
+                  options={DAYS_IN_WEEK(this.props.lang).map((e) => {
                     return { id: e.id, name: e.text };
                   })}
                   selectedOptions={selectedWeekDays}

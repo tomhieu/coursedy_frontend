@@ -2,6 +2,11 @@ import { translations } from '../translations';
 
 export const TT = {
   locale: 'vn',
+  changeLocale: (locale) => {
+    const newTT = TT
+    TT.locale = locale
+    return newTT
+  },
   t: (keys) => {
     const values = keys.split('.');
     values.unshift(translations[TT.locale]);

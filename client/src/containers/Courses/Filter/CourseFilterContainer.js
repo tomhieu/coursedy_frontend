@@ -159,7 +159,7 @@ const mapStateToProps = (state) => {
   const { CourseFilter, form = {}, referenceData } = state;
   const categories = referenceData.courseCategories || [];
   const locations = referenceData.locations || [];
-
+  const lang = state.i18nState.lang;
   const {
     courses = [], selectedCourses = [], displayMode,
     totalResult = 0, currentPage, perPage, sugestions, filters, showSuggestion, loadingSuggestion
@@ -186,6 +186,7 @@ const mapStateToProps = (state) => {
     courses,
     selectedCourses,
     locations,
+    lang,
     displayMode,
     totalResult,
     currentPage,
