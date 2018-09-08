@@ -4,11 +4,10 @@ import {Field} from 'redux-form';
 import cssModules from 'react-css-modules';
 import {cropImageInput} from 'components/Core/CustomComponents';
 import {
-  renderCheckBoxField,
+  renderCheckBoxField, renderCurrencyField,
   renderDatePicker,
   renderField,
-  renderMultiSelect,
-  renderRadioField,
+  renderMultiSelect, renderRichTextEditor,
   renderSelect,
   renderSingleFileInput,
   renderTextAreaField,
