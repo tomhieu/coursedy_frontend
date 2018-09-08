@@ -17,8 +17,7 @@ import { FETCH_TUTOR_DATA } from '../constants/Session';
 export const fetchCurrentUser = () => {
   return {
     type: types.FETCH_CURRENT_USER,
-    payload: Network().get('current_user'),
-    meta: 'ezylearningFullLoader'
+    payload: Network().get('current_user')
   };
 };
 

@@ -64,6 +64,42 @@ class TutorForm extends Component {
             <div>
               <FormField
                 fieldId="skillsId"
+                fieldLabel={this.context.t('account_facebook_title')}
+                formControlName="facebook"
+                typeField="custom_input"
+              />
+            </div>
+
+            <div>
+              <FormField
+                fieldId="skillsId"
+                fieldLabel={this.context.t('account_linkin_title')}
+                formControlName="linkedin"
+                typeField="custom_input"
+              />
+            </div>
+
+            <div>
+              <FormField
+                fieldId="skillsId"
+                fieldLabel={this.context.t('account_google_plus_title')}
+                formControlName="google_plus"
+                typeField="custom_input"
+              />
+            </div>
+
+            <div>
+              <FormField
+                fieldId="skillsId"
+                fieldLabel={this.context.t('account_tweater_title')}
+                formControlName="tweater"
+                typeField="custom_input"
+              />
+            </div>
+
+            <div>
+              <FormField
+                fieldId="skillsId"
                 fieldLabel={this.context.t('account_tutor_skill_title')}
                 options={skillSet}
                 formControlName="categories"
@@ -121,7 +157,7 @@ const mapStateToProps = (state) => {
 
 export default connect(mapStateToProps)(reduxForm({
   form: 'tutorEducation',
-  fields: ['title', 'description', 'categories'],
+  fields: ['title', 'description', 'categories', 'linkedin', 'facebook', 'tweeter', 'google_plus'],
   enableReinitialize: true,
   onSubmit: TutorAccountActions.updateTutorEducation(),
   validate

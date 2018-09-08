@@ -11,9 +11,9 @@ import { validate } from '../../validations/PersonFormValidator';
 
 class PersonInfoContainer extends Component {
   savePersonInfo({
-    name, email, date_of_birth, address, gender, country, currency
+    name, email, date_of_birth, address, gender, country_code, currency
   }) {
-    this.props.dispatch(AccountActions.savePersonData(name, email, date_of_birth, address, gender, this.props.initialValues.email != email, country, currency));
+    this.props.dispatch(AccountActions.savePersonData(name, email, date_of_birth, address, gender, this.props.initialValues.email != email, country_code, currency));
   }
 
 
@@ -39,6 +39,6 @@ export default connect(state => ({
   initialValues: state.session.currentUser
 }))(reduxForm({
   form: 'personInfo',
-  fields: ['name', 'email', 'address', 'date_of_birth', 'country', 'currency'],
+  fields: ['name', 'email', 'address', 'date_of_birth', 'country_code', 'gender'],
   validate
 })(cssModules(PersonInfoContainer, styles)));

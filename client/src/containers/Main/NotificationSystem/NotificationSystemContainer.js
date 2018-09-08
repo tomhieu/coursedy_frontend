@@ -1,9 +1,9 @@
 import * as React from 'react';
-import { Component } from 'react';
-import Notifications from 'react-notification-system-redux';
-import { Link } from 'react-router-dom';
+import {Component} from 'react';
+import Notifications, {success} from 'react-notification-system-redux';
+import {Link} from 'react-router-dom';
 import DateUtils from 'utils/DateUtils';
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
 import UpcommingCourseNotificationPopup from '../../../components/Layout/UpcommingCoursePopup/UpcommingCourseNotificationPopup';
 import {
   CLOSE_POPUP_JOIN_UPCOMMING_CLASS,
@@ -11,8 +11,8 @@ import {
   STARTED_JOINING_ACTIVE_CLASS
 } from '../../../actions/AsyncActionCreator';
 import * as courseActions from '../../../actions/ListTutorCourseActionCreator';
-import { UserRole } from '../../../constants/UserRole';
-import { joinToClassRoom } from '../../../actions/ListTutorCourseActionCreator';
+import {joinToClassRoom} from '../../../actions/ListTutorCourseActionCreator';
+import {UserRole} from '../../../constants/UserRole';
 
 class NotificationSystemContainer extends Component {
   componentWillReceiveProps(nextProps) {
@@ -70,7 +70,7 @@ class NotificationSystemContainer extends Component {
 
   notifyNewStartedCourse(notificationOpts) {
     notificationOpts.map((notification, index) => {
-      this.showNotification(notification, 250 + index * 20);
+      // this.showNotification(notification, 250 + index * 20);
     });
   }
 
@@ -148,7 +148,8 @@ const mapDispatchToProps = dispatch => ({
   fetchUpCommingTeacherCourse: () => dispatch(courseActions.fetchUpcomingTutorCourse()),
   fetchUpCommingStudentCourse: () => dispatch(courseActions.fetchUpcomingStudentCourse()),
   afterJoinUpcomingClass: () => dispatch({ type: STARTED_JOINING_ACTIVE_CLASS }),
-  afterLeavedActiveClass: () => dispatch({ type: LEAVED_JOINING_CLASS })
+  afterLeavedActiveClass: () => dispatch({ type: LEAVED_JOINING_CLASS }),
+  showInfoNotification: (notification) => dispatch(success(notification)),
 });
 export default connect(
   mapStateToProps, mapDispatchToProps

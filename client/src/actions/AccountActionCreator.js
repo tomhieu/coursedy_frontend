@@ -27,9 +27,9 @@ export const fetchUser = () => {
 };
 
 
-export const savePersonData = (name, email, date_of_birth, address, gender, emailChanged, country, currency) => {
+export const savePersonData = (name, email, date_of_birth, address, gender, emailChanged, country_code, currency) => {
   const body = {
-    name, email, date_of_birth, address, gender, country, currency
+    name, email, date_of_birth, address, gender, country_code, currency
   };
   return (dispatch) => {
     const response = dispatch({

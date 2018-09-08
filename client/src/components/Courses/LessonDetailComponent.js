@@ -26,7 +26,7 @@ export class LessonDetailComponent extends Component {
           <div>
             <FormField
               fieldId="lessonPeriodId"
-              fieldLabel={this.context.t('lesson_period')}
+              fieldLabel={this.context.t('lesson_period', {lessonPeriod: 45})}
               isMandatoryField
               formControlName="period"
               typeField="custom_input"

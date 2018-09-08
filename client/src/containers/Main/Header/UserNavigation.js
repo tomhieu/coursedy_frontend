@@ -35,7 +35,7 @@ class UserNavigation extends Component {
     const userProfileUrl = SecurityUtils.isAdmin(currentUser) ? '/admin/dashboard/account' : SecurityUtils.isTeacher(currentUser)
       ? '/dashboard/profile' : '/student/dashboard/profile';
     const courseListUrl = SecurityUtils.isAdmin(currentUser) ? '/admin/dashboard/courses' : SecurityUtils.isTeacher(currentUser)
-      ? '/dashboard/courses/list' : '/student/dashboard/courses/enrolled';
+      ? '/dashboard/courses/list' : '/student/dashboard/courses/enrolling';
     const dropdownOptions = [
       {
         id: 1, link: userProfileUrl, text: this.context.t('user_navigation_basic_info'), icon: <UserProfileIcon width={14} height={14} fillColor="#5E6A6E" />
