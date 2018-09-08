@@ -18,19 +18,21 @@ const PublicCourseDetail = (state = {
   submit_enroll_fail: false,
   submit_enroll_errors: [],
 
-  // show_comment_status_modal: false,
-  submit_comment_success: false,
-  submit_comment_fail: false,
-  submit_comment_errors: [],
-  // use for active scroll menu
-  sectionPositions: {
-    'course-detail-intro': 0,
-    'course-detail-lessons': 0,
-    'course-detail-tutor': 0,
-    'course-detail-comments': 0,
-    'course-detail-related': 0,
-  }
-}, action) => {
+    // show_comment_status_modal: false,
+    submit_comment_success: false,
+    submit_comment_fail: false,
+    submit_comment_errors: [],
+    // use for active scroll menu
+    sectionPositions: {
+      'course-detail-intro': 0,
+      'course-detail-lessons': 0,
+      'course-detail-tutor': 0,
+      'course-detail-comments': 0,
+      'course-detail-related': 0,
+    },
+    cart: [],
+    cartTotal: 0
+  }, action) => {
   switch (action.type) {
     case courseTypes.FETCH_PUBLIC_COURSE + asyncActs.PENDING:
       return { ...state, course: {} };
@@ -70,7 +72,27 @@ const PublicCourseDetail = (state = {
     case courseTypes.PUBLIC_COURSE_DETAIL_SUBMIT_ENROLL + asyncActs.FULFILLED:
       return { ...state, submit_enroll_success: true };
     case courseTypes.PUBLIC_COURSE_DETAIL_SUBMIT_ENROLL + asyncActs.REJECTED:
-      return { ...state, submit_enroll_fail: true, submit_enroll_errors: action.payload.errors };
+      return {...state, submit_enroll_fail: true, submit_enroll_errors: action.payload.errors}
+
+    //Handle add course to cart
+    case courseTypes.PUBLIC_COURSE_DETAIL_ADD_COURSE_TO_CART:
+      return {
+        ...state,
+        cart: [
+          ...state.cart,
+          action.payload
+        ],
+        cartTotal: state.cartTotal + parseInt(action.payload.tuition_fee)
+      }
+    case courseTypes.PUBLIC_COURSE_DETAIL_REMOVE_COURSE_FROM_CART:
+      return {
+        ...state,
+        cart: state.cart.filter((item) => {
+          return item.id != action.payload.id
+        }),
+        cartTotal: state.cartTotal - parseInt(action.payload.tuition_fee)
+      }
+
 
     case courseTypes.PUBLIC_COURSE_SHOW_ENROLL_STATUS_MODAL:
       return { ...state, show_enroll_status_modal: true };

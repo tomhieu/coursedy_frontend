@@ -2,12 +2,14 @@ import React, { Component } from 'react';
 import CourseDetailHeader from './CourseDetail/CourseDetailHeader';
 import CourseDetailMain from './CourseDetail/CourseDetailMain';
 import './CourseDetail.scss';
-import { PUBLIC_COURSE_MAX_NUMBER_COMMENTS_PER_LOAD } from '../../constants/Courses';
-import CourseDetailAction from './CourseDetail/CourseDetailAction';
-import EnrollCoursePopup from './EnrollPopup/EnrollCoursePopup';
-import EnrollCourseSuccessPopup from './EnrollPopup/EnrollCourseSuccessPopup';
-import { globalHistory } from '../../utils/globalHistory';
-
+import {PUBLIC_COURSE_MAX_NUMBER_COMMENTS_PER_LOAD} from '../../constants/Courses';
+import CourseDetailAction from "./CourseDetail/CourseDetailAction";
+import EnrollCoursePopup from "./EnrollPopup/EnrollCoursePopup";
+import EnrollCourseSuccessPopup from "./EnrollPopup/EnrollCourseSuccessPopup";
+import {globalHistory} from "../../utils/globalHistory";
+import {
+  COUSES_ENROLL_ERROR_NOT_ENOUGH_BALANCE
+} from "../../constants/WebConstants.js"
 /**
   * @Course group template 2
   * @Use for CoursePage
@@ -44,15 +46,21 @@ class CourseDetail extends Component {
     }
   }
 
-  enrollToCourse(courseId, user) {
+  enrollToCourse(course, user) {
+    let courseId = course.id
+    //Add To Cart
+    this.props.addCourseToCart(course)
     const res = this.props.enrollCourse(courseId);
     res.then(() => {
       this.props.fetchEnrolledCourseList(user);
       this.closeEnrollPopup();
       this.setState({ showEnrollSuccessPopup: true });
     }, (error) => {
-      globalHistory.push('payment');
-    });
+      let { errors } = error
+      if (errors.indexOf(COUSES_ENROLL_ERROR_NOT_ENOUGH_BALANCE) >= 0) {
+        globalHistory.push('/payment');
+      }
+    })
   }
 
   openEnrollPopup() {
@@ -103,7 +111,7 @@ class CourseDetail extends Component {
                 <EnrollCoursePopup
                   show={this.state.showEnrollPopup}
                   course={course}
-                  acceptCallback={this.enrollToCourse.bind(this, course.id, user)}
+                  acceptCallback={this.enrollToCourse.bind(this, course, user)}
                   cancelCallback={this.closeEnrollPopup.bind(this)}
                 />
                 <EnrollCourseSuccessPopup

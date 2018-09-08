@@ -72,11 +72,17 @@ class FormField extends Component {
         break;
       }
       case "radio": {
-        fieldComponent = <Field name={formControlName} placeholder={placeholder}
-                                type="checkbox" disabled={this.props.disabled}
-                                label={this.props.fieldLabel}
-                                component={renderRadioField} onChange={this.props.onChange}
-                                customClassName={customClassName}/>;
+        fieldComponent = (
+          <Field
+            name={formControlName}
+            placeholder={placeholder}
+            type="radio" disabled={this.props.disabled}
+            label={this.props.fieldLabel}
+            component={renderRadioField}
+            onChange={this.props.onChange}
+            customClassName={customClassName}
+          />
+        );
         break;
       }
       case 'checkbox': {

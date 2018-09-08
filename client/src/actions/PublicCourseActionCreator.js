@@ -64,6 +64,13 @@ export const submitEnrollCourse = (courseId) => {
   };
 };
 
+export const addCourseToCart = (course) => {
+  return {
+    type: types.PUBLIC_COURSE_DETAIL_ADD_COURSE_TO_CART,
+    payload: course
+  }
+}
+
 export const clearError = () => {
   return (dispatch) => {
     dispatch({

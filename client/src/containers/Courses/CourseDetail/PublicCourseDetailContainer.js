@@ -7,7 +7,11 @@ import * as ReferActions from '../../../actions/ReferenceActions/ReferenceDataAc
 import { openConfirmationPopup } from '../../../actions/MainActionCreator';
 import { TT } from '../../../utils/locale';
 import PageContainer from '../../../utils/PageContainer';
-import * as sessionActions from '../../../actions/SessionActionCreator';
+import * as sessionActions from "../../../actions/SessionActionCreator";
+import {
+  COUSES_ENROLL_ERROR_NOT_ENOUGH_BALANCE
+} from "../../../constants/WebConstants.js"
+import {globalHistory} from 'utils/globalHistory'
 
 class PublicCourseDetailContainer extends Component {
   constructor(props) {
@@ -37,6 +41,16 @@ class PublicCourseDetailContainer extends Component {
     this.props.stretchAuto();
     this.props.shadowHeader();
   }
+
+  // componentWillReceiveProps(nextProps) {
+  //   if (nextProps.submit_enroll_errors.length !== 0) {
+  //     //Redirect to payment page if not enough balance
+  //     if (nextProps.submit_enroll_errors.indexOf(COUSES_ENROLL_ERROR_NOT_ENOUGH_BALANCE)) {
+  //       globalHistory.push('/payment');
+  //       console.log('DEBUG Submit Enroll Fail')
+  //     }
+  //   }
+  // }
 
   loadMoreComments() {
     this.props.getCourseComments(this.props.courseId, this.props.course_comments_page + 1);
@@ -110,7 +124,8 @@ const mapStateToProps = (state) => {
     course_sections,
     course_comments,
     course_comments_page,
-    sectionPositions
+    sectionPositions,
+    submit_enroll_errors
   } = state.PublicCourseDetail;
   const { newStartedCourses } = state.session;
   const isEnrolled = newStartedCourses.findIndex(c => c.id === course.id) >= 0;
@@ -126,9 +141,10 @@ const mapStateToProps = (state) => {
     course_comments,
     course_comments_page,
     sectionPositions,
-    isEnrolled
-  };
-};
+    isEnrolled,
+    submit_enroll_errors
+  }
+}
 
 const mapDispatchToProps = dispatch => ({
   showFooter: () => dispatch({ type: WebConstants.SHOW_FOOTER }),
@@ -140,9 +156,10 @@ const mapDispatchToProps = dispatch => ({
   getCourseCategories: () => dispatch(ReferActions.fetchCourseCategories()),
   getPublicCourse: courseId => dispatch(PublicCourseActions.fetchPublicCourse(courseId)),
   getCourseComments: (courseId, page) => dispatch(PublicCourseActions.fetchCourseComments(courseId, page)),
-  getRelatedCourses: (courseId, page, perPage) => dispatch(PublicCourseActions.fetchRelatedCourses({ courseId, page, perPage })),
-  enrollCourse: courseId => dispatch(PublicCourseActions.submitEnrollCourse(courseId)),
-  changeActiveMenu: payload => dispatch(PublicCourseActions.changeActiveMenu(payload)),
+  getRelatedCourses: (courseId, page, perPage) => dispatch(PublicCourseActions.fetchRelatedCourses({courseId, page, perPage})),
+  enrollCourse: (courseId) => dispatch(PublicCourseActions.submitEnrollCourse(courseId)),
+  addCourseToCart: (course) => dispatch(PublicCourseActions.addCourseToCart(course)),
+  changeActiveMenu: (payload) => dispatch(PublicCourseActions.changeActiveMenu(payload)),
   showWarningPopup: (title, message, callback) => dispatch(openConfirmationPopup(title, message, callback)),
   fetchEnrolledCourseList: user => dispatch(sessionActions.fetchActiveCourses(user))
 });

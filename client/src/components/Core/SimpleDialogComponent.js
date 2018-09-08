@@ -63,7 +63,7 @@ SimpleDialogComponent.contextTypes = {
 SimpleDialogComponent.propTypes = {
   show: React.PropTypes.bool.isRequired,
   title: React.PropTypes.string.isRequired,
-  cancelCallback: React.PropTypes.func.isRequired,
+  // cancelCallback: React.PropTypes.func.isRequired,
   acceptLabel: React.PropTypes.string,
   cancelLabel: React.PropTypes.string,
   acceptCallback: React.PropTypes.func,

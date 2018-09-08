@@ -68,7 +68,6 @@ const AdminPaymentMethodsReducer = (state = {
 
 
     /*=============Reducer for payment integrations=============*/
-    // Reducer for payment integrations
     case asyncActs.FETCH_ADMIN_PAYMENT_INTEGRATIONS + asyncActs.PENDING:
       return { ...state, isLoading: true };
     case asyncActs.FETCH_ADMIN_PAYMENT_INTEGRATIONS + asyncActs.FULFILLED:
