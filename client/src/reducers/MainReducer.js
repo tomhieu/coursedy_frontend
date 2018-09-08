@@ -4,6 +4,8 @@ const MainReducer = (state = {
   showFooter: true,
   stetchAuto: true,
   darkHeader: false,
+  dashboardHeader: false,
+  isCollapseDashboard: false,
   customHeaderClass: '',
   showConfirmationPopup: false,
   confirmationTitle: '',
@@ -12,30 +14,41 @@ const MainReducer = (state = {
 }, action) => {
   switch (action.type) {
     case types.SHOW_FOOTER:
-      return {...state, showFooter: true};
+      return { ...state, showFooter: true };
     case types.ADD_HEADER_CLASS:
-      return {...state, customHeaderClass: action.payload};
+      return { ...state, customHeaderClass: action.payload };
     case types.REMOVE_HEADER_CLASS:
-      return {...state, customHeaderClass: ''};
+      return { ...state, customHeaderClass: '' };
     case types.HIDE_FOOTER:
-      return {...state, showFooter: false};
+      return { ...state, showFooter: false };
     case types.STETCH_AUTO:
-      return {...state, stetchAuto: true};
+      return { ...state, stetchAuto: true };
     case types.STETCH_FULL:
-      return {...state, stetchAuto: false};
+      return { ...state, stetchAuto: false };
     case types.SHOW_DARK_HEADER:
-      return {...state, darkHeader: true};
+      return { ...state, darkHeader: true };
+    case types.SHOW_DARKBOARD_HEADER:
+      return { ...state, dashboardHeader: true, showFooter: false };
+    case types.CLOSE_DARKBOARD_HEADER:
+      return { ...state, dashboardHeader: false, showFooter: true };
     case types.SHOW_WHITE_HEADER:
-      return {...state, darkHeader: false};
+      return { ...state, darkHeader: false };
     case types.OPEN_CONFIRMATION_POPUP:
-      return {...state, showConfirmationPopup: true,
+      return {
+        ...state,
+        showConfirmationPopup: true,
         confirmationTitle: action.payload.title,
         confirmationMessage: action.payload.message,
         confirmCallback: action.payload.callback
       };
     case types.CLOSE_CONFIRMATION_POPUP:
-      return {...state, showConfirmationPopup: false,
-        confirmationTitle: undefined, confirmationMessage: undefined, confirmCallback: undefined};
+      return {
+        ...state,
+        showConfirmationPopup: false,
+        confirmationTitle: undefined,
+        confirmationMessage: undefined,
+        confirmCallback: undefined
+      };
     default:
       return state;
   }

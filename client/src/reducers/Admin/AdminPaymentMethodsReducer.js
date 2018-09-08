@@ -1,5 +1,6 @@
-import * as asyncActs from "../../actions/AsyncActionCreator";
-import {TT} from "utils/locale";
+import { TT } from 'utils/locale';
+import * as asyncActs from '../../actions/AsyncActionCreator';
+
 let enrollErrorMessages;
 const AdminPaymentMethodsReducer = (state = {
   paymentSettings: {
@@ -21,28 +22,28 @@ const AdminPaymentMethodsReducer = (state = {
   errors: []
 }, action) => {
   switch (action.type) {
-    //Reducer for payment settings
+    // Reducer for payment settings
     case asyncActs.FETCH_ADMIN_PAYMENT_SETTINGS + asyncActs.PENDING:
-      return {...state, isLoading: true}
+      return { ...state, isLoading: true };
     case asyncActs.FETCH_ADMIN_PAYMENT_SETTINGS + asyncActs.FULFILLED:
       return {
-        ...state, 
+        ...state,
         paymentSettings: action.payload.reduce((paymentSettings, item) => {
-           paymentSettings[item.payment_method] = item.status
-           return paymentSettings
-         }, {}),
+          paymentSettings[item.payment_method] = item.status;
+          return paymentSettings;
+        }, {}),
         isLoading: false
-      }
+      };
     case asyncActs.FETCH_ADMIN_PAYMENT_SETTINGS + asyncActs.REJECTED:
-      enrollErrorMessages = (action.payload && Array.isArray(action.payload) && action.payload.length > 0) ?
-        errors : [TT.t('fetch_course_fail')];
-      return {...state,  errors: enrollErrorMessages, isLoading: false}
+      enrollErrorMessages = (action.payload && Array.isArray(action.payload) && action.payload.length > 0)
+        ? errors : [TT.t('fetch_course_fail')];
+      return { ...state, errors: enrollErrorMessages, isLoading: false };
     case asyncActs.STORE_ADMIN_PAYMENT_SETTINGS + asyncActs.PENDING:
-      return state
+      return state;
     case asyncActs.STORE_ADMIN_PAYMENT_SETTINGS + asyncActs.FULFILLED:
-      return {...state, paymentSettings: action.payload}
+      return { ...state, paymentSettings: action.payload };
     case asyncActs.STORE_ADMIN_PAYMENT_SETTINGS + asyncActs.REJECTED:
-      return state
+      return state;
 
 
     /*=============Reducer for payment instructions=============*/
@@ -50,7 +51,7 @@ const AdminPaymentMethodsReducer = (state = {
       return {...state, isLoading: true}
     case asyncActs.FETCH_ADMIN_PAYMENT_INSTRUCTIONS + asyncActs.FULFILLED:
       return {
-        ...state, 
+        ...state,
         paymentInstructions: action.payload,
         isLoading: false
       }
@@ -67,78 +68,88 @@ const AdminPaymentMethodsReducer = (state = {
 
 
     /*=============Reducer for payment integrations=============*/
+    // Reducer for payment integrations
     case asyncActs.FETCH_ADMIN_PAYMENT_INTEGRATIONS + asyncActs.PENDING:
-      return {...state, isLoading: true}
+      return { ...state, isLoading: true };
     case asyncActs.FETCH_ADMIN_PAYMENT_INTEGRATIONS + asyncActs.FULFILLED:
       return {
-        ...state, 
-        paymentIntegrations: action.payload,//
+        ...state,
+        paymentIntegrations: action.payload, //
         isLoading: false
-      }
+      };
     case asyncActs.FETCH_ADMIN_PAYMENT_INTEGRATIONS + asyncActs.REJECTED:
-      enrollErrorMessages = (action.payload && Array.isArray(action.payload) && action.payload.length > 0) ?
-        errors : [TT.t('fetch_course_fail')];
-      return {...state,  errors: enrollErrorMessages, isLoading: false}
+      enrollErrorMessages = (action.payload && Array.isArray(action.payload) && action.payload.length > 0)
+        ? errors : [TT.t('fetch_course_fail')];
+      return { ...state, errors: enrollErrorMessages, isLoading: false };
 
-    //Reducer for bank accounts
+    // Reducer for bank accounts
     case asyncActs.FETCH_ADMIN_BANK_ACCOUNTS + asyncActs.PENDING:
-      return {...state, isLoading: true}
+      return { ...state, isLoading: true };
     case asyncActs.FETCH_ADMIN_BANK_ACCOUNTS + asyncActs.FULFILLED:
       return {
-        ...state, 
-        bankAccounts: action.payload,//
+        ...state,
+        bankAccounts: action.payload, //
         isLoading: false
-      }
+      };
     case asyncActs.FETCH_ADMIN_BANK_ACCOUNTS + asyncActs.REJECTED:
-      enrollErrorMessages = (action.payload && Array.isArray(action.payload) && action.payload.length > 0) ?
-        errors : [TT.t('fetch_course_fail')];
-      return {...state,  errors: enrollErrorMessages, isLoading: false}
-    //Reducer for fetch bank account
+      enrollErrorMessages = (action.payload && Array.isArray(action.payload) && action.payload.length > 0)
+        ? errors : [TT.t('fetch_course_fail')];
+      return { ...state, errors: enrollErrorMessages, isLoading: false };
+    // Reducer for fetch bank account
     case asyncActs.FETCH_ADMIN_BANK_ACCOUNT + asyncActs.PENDING:
-      return {...state, isLoading: true}
+      return { ...state, isLoading: true };
     case asyncActs.FETCH_ADMIN_BANK_ACCOUNT + asyncActs.FULFILLED:
       return {
-        ...state, 
+        ...state,
         bankAccount: action.payload
-      }
+      };
     case asyncActs.FETCH_ADMIN_BANK_ACCOUNT + asyncActs.REJECTED:
-      enrollErrorMessages = (action.payload && Array.isArray(action.payload) && action.payload.length > 0) ?
-        errors : [TT.t('fetch_course_fail')];
-      return {...state,  errors: enrollErrorMessages, isLoading: false}
-    //Reducer for store bank account
+      enrollErrorMessages = (action.payload && Array.isArray(action.payload) && action.payload.length > 0)
+        ? errors : [TT.t('fetch_course_fail')];
+      return { ...state, errors: enrollErrorMessages, isLoading: false };
+    // Reducer for store bank account
     case asyncActs.STORE_ADMIN_BANK_ACCOUNT + asyncActs.PENDING:
-      return state
+      return state;
     case asyncActs.STORE_ADMIN_BANK_ACCOUNT + asyncActs.FULFILLED:
-      return {...state, bankAccounts: [
-        ...state.bankAccounts, action.payload
-      ]}
+      return {
+        ...state,
+        bankAccounts: [
+          ...state.bankAccounts, action.payload
+        ]
+      };
     case asyncActs.STORE_ADMIN_BANK_ACCOUNT + asyncActs.REJECTED:
-      return state
-    //Reducer for update bank account
+      return state;
+    // Reducer for update bank account
     case asyncActs.UPDATE_ADMIN_BANK_ACCOUNT + asyncActs.PENDING:
-      return state
+      return state;
     case asyncActs.UPDATE_ADMIN_BANK_ACCOUNT + asyncActs.FULFILLED:
-      return {...state, bankAccounts: state.bankAccounts.map(item => {
-        return item.id == action.payload.id ? action.payload : item
-      })}
+      return {
+        ...state,
+        bankAccounts: state.bankAccounts.map((item) => {
+          return item.id == action.payload.id ? action.payload : item;
+        })
+      };
     case asyncActs.UPDATE_ADMIN_BANK_ACCOUNT + asyncActs.REJECTED:
-      return state
-    //Reducer for delete bank account
+      return state;
+    // Reducer for delete bank account
     case asyncActs.DELETE_ADMIN_BANK_ACCOUNT + asyncActs.PENDING:
-      return state
+      return state;
     case asyncActs.DELETE_ADMIN_BANK_ACCOUNT + asyncActs.FULFILLED:
-      return {...state, bankAccounts: state.bankAccounts.filter(item => {
-        return item.id != action.payload.id
-      })}
+      return {
+        ...state,
+        bankAccounts: state.bankAccounts.filter((item) => {
+          return item.id != action.payload.id;
+        })
+      };
     case asyncActs.DELETE_ADMIN_BANK_ACCOUNT + asyncActs.REJECTED:
-      return state
+      return state;
 
     case asyncActs.CLEAR_ADMIN_BANK_ACCOUNT:
-      return {...state, bankAccount: null}
+      return { ...state, bankAccount: null };
 
     default:
       return state;
-    }
+  }
 };
 
 export default AdminPaymentMethodsReducer;

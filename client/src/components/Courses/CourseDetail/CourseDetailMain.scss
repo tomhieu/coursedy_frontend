@@ -1,16 +1,10 @@
 @import "../../../../styles/global_style.scss";
 
-@media (min-width: $md-lower) {
-  .course-detail-main {
-    width: 100vw;
-    position: relative;
-    padding-top: 30px;
-    .container {
-      display: flex;
-    }
+.course-content-wrapper {
+  width: 100%;
+  position: relative;
+  padding-top: 30px;
+  .container {
+    display: flex;
   }
-}
-
-.course-detail-main {
-  background-color: $white-color;
 }

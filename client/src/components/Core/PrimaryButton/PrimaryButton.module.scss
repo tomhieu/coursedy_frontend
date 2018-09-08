@@ -8,6 +8,7 @@
   font-size: 14px;
   transition: width 2s;
   padding: 0 20px;
+  outline: none;
   &.small {
     height: $height-small-button;
     padding: 0 17px;
@@ -24,15 +25,24 @@
     cursor: not-allowed !important;
   }
 
-
   &.filled {
     &.primary {
       background-color: $color-organe;
+      border: none;
+
+      &:disabled {
+        background-color: $cancel-btn-color;
+      }
 
       &:hover {
         border: 1px solid $color-organe;
         color: $color-organe;
         background-color: transparent;
+        &:disabled {
+          border: none;
+          color: $white-color;
+          background-color: $cancel-btn-color;
+        }
       }
     }
 
@@ -43,6 +53,11 @@
         border: 1px solid $secondary-color;
         color: $secondary-color;
         background-color: transparent;
+        &:disabled {
+          border: none;
+          color: $white-color;
+          background-color: inherit;
+        }
       }
     }
   }
@@ -56,6 +71,10 @@
       &:hover {
         background-color: $color-orange;
         color: $white-color;
+        &:disabled {
+          color: $color-organe;
+          background-color: transparent;
+        }
       }
     }
 
@@ -67,6 +86,10 @@
       &:hover {
         background-color: $secondary-color;
         color: $white-color;
+        &:disabled {
+          color: $secondary-color;
+          background-color: transparent;
+        }
       }
     }
   }

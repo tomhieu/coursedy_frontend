@@ -1,31 +1,24 @@
 import React from 'react';
-import * as CourseFilterActions from '../../../actions/CourseFilterActionCreator'
-import * as asyncActions from '../../../actions/AsyncActionCreator'
-import {
-  CLOSE_COURSE_FILTER_SUGGESTION,
-  FETCH_CATEGORIES,
-  FETCH_LOCATIONS,
-  LOAD_SUGGESTION
-} from '../../../actions/AsyncActionCreator'
-import {connect} from 'react-redux';
-import {reduxForm} from "redux-form";
-import {MAX_FEE, MIN_FEE} from "utils/CommonConstant";
-import {TT} from "utils/locale";
+import { connect } from 'react-redux';
+import { reduxForm } from 'redux-form';
+import { MAX_FEE, MIN_FEE } from 'utils/CommonConstant';
+import { TT } from 'utils/locale';
+import Network from 'utils/network';
+import * as WebConstants from 'constants/WebConstants';
+import * as CourseFilterActions from '../../../actions/CourseFilterActionCreator';
+import * as asyncActions from '../../../actions/AsyncActionCreator';
 import AbstractFilter from '../../../components/Core/AbstractFilterComponent';
-import Network from "utils/network";
-import {FETCH_COURSES} from "../../../constants/Courses";
-import BaseFilter from "../../../components/Courses/BaseFilter";
-import * as WebConstants from "constants/WebConstants";
+import { FETCH_COURSES } from '../../../constants/Courses';
+import BaseFilter from '../../../components/Courses/BaseFilter';
 
 class CourseFilterContainer extends AbstractFilter {
-
   componentWillMount() {
     this.props.fetchCategories();
     this.props.fetchLocations();
     this.props.noShadowHeader();
   }
 
-  componentWillUnmount(){
+  componentWillUnmount() {
     this.props.shadowHeader();
   }
 
@@ -33,18 +26,13 @@ class CourseFilterContainer extends AbstractFilter {
     this.props.changeDisplayMode(mode);
   }
 
-  search(filters, selectedMinFee, selectedMaxFee, order_by, display_mode) {
-    this.props.searchCourse(this.buildQuery(filters, selectedMinFee, selectedMaxFee, order_by, display_mode));
-  }
-
-
   loadSuggestions(event) {
     if (event.target.value === '') {
       this.props.clearSuggestion();
       return;
     }
 
-    const filters = this.props.filters;
+    const { filters } = this.props;
     const query = {
       q: event.target.value,
       categories: filters.selectedCategories.map(category => category.id),
@@ -56,7 +44,9 @@ class CourseFilterContainer extends AbstractFilter {
   }
 
   doSelectFilter(filter, category) {
-    let {selectedMinFee, selectedMaxFee, order_by, display_mode} = this.props.formfieldValues;
+    let {
+      selectedMinFee, selectedMaxFee, order_by, display_mode
+    } = this.props.formfieldValues;
     const currentFilters = JSON.parse(JSON.stringify(this.props.filters));
     let nextFilters = currentFilters;
 
@@ -74,29 +64,48 @@ class CourseFilterContainer extends AbstractFilter {
   }
 
   search(e) {
-    this.props.updateFilter({term: e.key_word});
-    this.props.reset();
-    let {selectedMinFee, selectedMaxFee, order_by, display_mode} = this.props.formfieldValues;
-    this.props.searchCourse(this.buildQuery(this.props.filters, selectedMinFee, selectedMaxFee, order_by, display_mode));
+    let orderBy, keyWord;
+    if (e.key_word) {
+      keyWord = e.key_word.trim();
+      this.props.updateFilter({ term: keyWord });
+    } else {
+      orderBy = e.target.value;
+    }
+
+    const { selectedMinFee, selectedMaxFee, display_mode } = this.props.formfieldValues;
+    this.props.searchCourse(this.buildQuery(
+      this.props.filters,
+      selectedMinFee,
+      selectedMaxFee,
+      orderBy,
+      display_mode,
+      keyWord
+    )).finally(() => {
+      this.props.reset();
+      this.props.closeSuggestion();
+    });
   }
 
-  buildQuery(filters, selectedMinFee, selectedMaxFee, order_by, display_mode) {
+  buildQuery(filters, selectedMinFee, selectedMaxFee, order_by, display_mode, key_word) {
     return {
-      q: filters.term,
+      q: (typeof key_word !== 'undefined' && key_word) ? key_word : filters.term,
       categories: filters.selectedCategories.map(category => category.id),
       locations: filters.selectedLocations.map(loc => loc.id),
       specializes: filters.selectedSpecializes.map(spec => spec.id),
       week_day: filters.selectedWeekDays.map(week => week.id),
       min_fee: selectedMinFee,
       max_fee: selectedMaxFee,
-      order_by, display_mode,
+      order_by,
+      display_mode,
       per_page: this.props.perPage,
       page: this.props.currentPage
     };
   }
 
   doRemoveFilter(filterId, typeFilter) {
-    const {selectedMinFee, selectedMaxFee, order_by, display_mode} = this.props.formfieldValues;
+    const {
+      selectedMinFee, selectedMaxFee, order_by, display_mode
+    } = this.props.formfieldValues;
     const currentFilters = JSON.parse(JSON.stringify(this.props.filters));
     const removedFilters = this.removeFilterCriteria(currentFilters, filterId, typeFilter);
     this.props.updateFilter(removedFilters);
@@ -105,105 +114,120 @@ class CourseFilterContainer extends AbstractFilter {
 
   autoCompleteSearchCourse(id) {
     this.props.closeSuggestion();
-    this.context.router.history.push('/course/' + id);
+    this.context.router.history.push(`/courses/${id}`);
   }
 
   render() {
     return (
-      <BaseFilter {...this.props}
-                    onSubmit={this.search.bind(this)}
-                    search={this.search.bind(this)}
-                    changeDisplayModeHdl={this.changeDisplayMode}
-                    loadSuggestions={this.loadSuggestions.bind(this)}
-                    onSelectFilter={this.doSelectFilter.bind(this)}
-                    onRemoveFilter={this.doRemoveFilter.bind(this)}
-                    onSelectSuggestion={this.autoCompleteSearchCourse.bind(this) }
-                    closeSuggestion={this.props.closeSuggestion}
-                    courseFilterMode={true}
+      <BaseFilter
+        {...this.props}
+        onSubmit={this.search.bind(this)}
+        search={this.search.bind(this)}
+        changeDisplayModeHdl={this.changeDisplayMode}
+        loadSuggestions={this.loadSuggestions.bind(this)}
+        onSelectFilter={this.doSelectFilter.bind(this)}
+        onRemoveFilter={this.doRemoveFilter.bind(this)}
+        onSelectSuggestion={this.autoCompleteSearchCourse.bind(this)}
+        closeSuggestion={this.props.closeSuggestion}
+        courseFilterMode
+        placeholder={this.context.t('search_course')}
       />
-    )
+    );
   }
 }
 
 CourseFilterContainer.contextTypes = {
   t: React.PropTypes.func.isRequired,
   router: React.PropTypes.object
-}
+};
 
 export const getSelectedSpecializesFromCategory = (categories, selectedCategories) => {
   if (!selectedCategories) {
     return [];
   }
-  const selectedCategoryIds = selectedCategories.map(sc => {
-    return sc.id
-  })
-  const selectCategoryList = categories.filter((category) => selectedCategoryIds.indexOf(category.id) >= 0);
-  const selectSpecializes = [];
-  selectCategoryList.map(sc => {
-    selectSpecializes.push({name: sc.name, id: sc.id, options: sc.children})
-  })
-  return selectSpecializes
-}
+  const selectedCategoryIds = selectedCategories.map((sc) => {
+    return sc.id;
+  });
+  const selectCategoryList = categories.filter(category => selectedCategoryIds.indexOf(category.id) >= 0);
+  return selectCategoryList.map((sc) => {
+    return ({ name: sc.name, id: sc.id, options: sc.children });
+  });
+};
 
 const mapStateToProps = (state) => {
-  const {CourseFilter, form = {}, referenceData} = state;
-  const categories = referenceData.courseCategories || []
-  const locations = referenceData.locations || []
+  const { CourseFilter, form = {}, referenceData } = state;
+  const categories = referenceData.courseCategories || [];
+  const locations = referenceData.locations || [];
 
-  const {courses = [], selectedCourses = [], displayMode,
-         totalResult = 0, currentPage, perPage, sugestions, filters, showSuggestion, loadingSuggestion} = CourseFilter;
-  const {courseFilterForm = {}} = form;
+  const {
+    courses = [], selectedCourses = [], displayMode,
+    totalResult = 0, currentPage, perPage, orderBy,
+    sugestions, filters, showSuggestion, loadingSuggestion
+  } = CourseFilter;
+  const { courseFilterForm = {} } = form;
   const filterSuggestions = [];
-  sugestions.map(sug =>
-    filterSuggestions.push({
-      id: sug.id, avatar: sug.cover_image, title: sug.title,
-      sub_title: TT.t('teacher_info_suggestion', {teacher: sug.user.name})
-    }));
+  sugestions.map(sug => filterSuggestions.push({
+    id: sug.id,
+    avatar: sug.cover_image,
+    title: sug.title,
+    sub_title: TT.t('teacher_info_suggestion', { teacher: sug.user.name })
+  }));
 
-  let initializeFields = courseFilterForm.values ? Object.assign({}, courseFilterForm.values) : {}
+  let initializeFields = courseFilterForm.values ? Object.assign({}, courseFilterForm.values) : {};
 
   if (courseFilterForm.values && filters.resetMinFee) {
-    initializeFields = Object.assign({}, courseFilterForm.values, {selectedMinFee: ""})
+    initializeFields = Object.assign({}, courseFilterForm.values, { selectedMinFee: '' });
   } else if (courseFilterForm.values && filters.resetMaxFee) {
-    initializeFields = Object.assign({}, courseFilterForm.values, {selectedMaxFee: ""})
+    initializeFields = Object.assign({}, courseFilterForm.values, { selectedMaxFee: '' });
   }
 
   return {
-    categories, courses, selectedCourses, locations, displayMode,
-    totalResult, currentPage, perPage, filters, showSuggestion, suggestions: filterSuggestions, loadingSuggestion,
+    categories,
+    courses,
+    selectedCourses,
+    locations,
+    displayMode,
+    totalResult,
+    currentPage,
+    perPage,
+    orderBy,
+    filters,
+    showSuggestion,
+    suggestions: filterSuggestions,
+    loadingSuggestion,
     formfieldValues: courseFilterForm.values ? courseFilterForm.values : {},
     listSpecializes: getSelectedSpecializesFromCategory(categories, filters.selectedCategories),
     initialValues: initializeFields
   };
 };
 
-const mapDispatchToProps = (dispatch) => ({
-  searchCourse: (query) => dispatch({
+const mapDispatchToProps = dispatch => ({
+  searchCourse: query => dispatch({
     type: FETCH_COURSES,
     payload: Network().get('courses/search', query),
     meta: 'publicCourseListPlaceholder'
   }),
-  changeDisplayMode: (mode) => dispatch(CourseFilterActions.changeDisplayMode(mode)),
-  clearSuggestion: () => dispatch({type: asyncActions.CLEAR_SUGGESTION}),
-  loadSuggestions: (query) => dispatch({
-    type: LOAD_SUGGESTION,
+  changeDisplayMode: mode => dispatch(CourseFilterActions.changeDisplayMode(mode)),
+  clearSuggestion: () => dispatch({ type: asyncActions.CLEAR_SUGGESTION }),
+  loadSuggestions: query => dispatch({
+    type: asyncActions.LOAD_SUGGESTION,
     payload: Network().get('courses/search', query),
     meta: 'courseSuggestionPlaceholder'
   }),
-  updateFilter: (filters) => dispatch(CourseFilterActions.updateFilter(filters)),
+  updateFilter: filters => dispatch(CourseFilterActions.updateFilter(filters)),
   fetchCategories: () => dispatch({
-    type: FETCH_CATEGORIES,
+    type: asyncActions.FETCH_CATEGORIES,
     payload: Network().get('categories'),
     meta: 'publicCourseListPlaceholder'
   }),
   fetchLocations: () => dispatch({
-    type: FETCH_LOCATIONS,
+    type: asyncActions.FETCH_LOCATIONS,
     payload: Network().get('locations'),
     meta: 'publicCourseListPlaceholder'
   }),
-  noShadowHeader: () => dispatch({ type: WebConstants.ADD_HEADER_CLASS, payload: 'no-shadow'}),
-  shadowHeader: () => dispatch({ type: WebConstants.REMOVE_HEADER_CLASS}),
-  closeSuggestion: () => dispatch({type: CLOSE_COURSE_FILTER_SUGGESTION})
+  noShadowHeader: () => dispatch({ type: WebConstants.ADD_HEADER_CLASS, payload: 'no-shadow' }),
+  shadowHeader: () => dispatch({ type: WebConstants.REMOVE_HEADER_CLASS }),
+  closeSuggestion: () => dispatch({ type: asyncActions.CLOSE_COURSE_FILTER_SUGGESTION })
 });
 
 
@@ -211,7 +235,6 @@ export default connect(
   mapStateToProps, mapDispatchToProps
 )(reduxForm({
   form: 'courseFilterForm',
-  enableReinitialize: true,
   updateUnregisteredFields: true,
   fields: ['key_word', 'selectedMinFee', 'selectedMaxFee', 'sort_by', 'display_mode']
-})(CourseFilterContainer))
+})(CourseFilterContainer));

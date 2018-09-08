@@ -1,20 +1,19 @@
-import * as React from "react";
-import {Component} from "react";
-import {CertificateForm} from "../../../components/Account/Tutor/CertificateForm";
-import {reduxForm} from "redux-form";
-import {connect} from "react-redux";
-import {dispatch} from "redux";
+import * as React from 'react';
+import { Component } from 'react';
+import { reduxForm } from 'redux-form';
+import { connect } from 'react-redux';
+import { dispatch } from 'redux';
 
-import {CERTIFICATE} from '../../../actions/AsyncActionCreator';
-import Network from "utils/network";
+import Network from 'utils/network';
+import { CERTIFICATE } from '../../../actions/AsyncActionCreator';
+import { CertificateForm } from '../../../components/Account/Tutor/CertificateForm';
 
 class CertificateContainer extends Component {
-
   delete(id) {
     this.props.removeUploadedDocument(id);
   }
 
-  upload(file){
+  upload(file) {
     this.props.addNewDocument(file);
   }
 
@@ -27,7 +26,7 @@ class CertificateContainer extends Component {
       <div className="row">
         <div className="col-md-12 col-sm-12">
           <div className="block-title">
-            <span className="text-uppercase bold">{this.context.t("account.tutot.edu.degree.title")}</span>
+            <span className="text-uppercase bold">{this.context.t('account.tutot.edu.degree.title')}</span>
           </div>
           <CertificateForm
             upload={this.upload.bind(this)}
@@ -38,26 +37,26 @@ class CertificateContainer extends Component {
           />
         </div>
       </div>
-    )
+    );
   }
-};
+}
 
 CertificateContainer.contextTypes = {
   t: React.PropTypes.func.isRequired
-}
+};
 
-const mapStateToDispatch = (dispatch) => ({
-  removeUploadedDocument: (documentId) => dispatch({
+const mapStateToDispatch = dispatch => ({
+  removeUploadedDocument: documentId => dispatch({
     type: CERTIFICATE.remove_uploaded_certificate,
     payload: Network().delete(`degrees/${documentId}`),
     meta: 'userCertificatePlaceholder'
   }),
-  addNewDocument: (file) => dispatch({
+  addNewDocument: file => dispatch({
     type: CERTIFICATE.upload_new_document,
-    payload: Network().post('degrees', {degree: {item: file.content, name: file.fileName}}),
+    payload: Network().post('degrees', { degree: { item: file.content, name: file.fileName } }),
     meta: 'userCertificatePlaceholder'
   })
-})
+});
 
 export default connect(state => ({
   certificates: state.Certificate.certificates

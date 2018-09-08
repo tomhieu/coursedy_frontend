@@ -11,7 +11,7 @@
 }
 
 .noMarginBottom {
-  margin-bottom: 0 !important;  
+  margin-bottom: 0 !important;
 }
 
 .text {
@@ -32,6 +32,7 @@
   color: $black-color;
   font-size: 30px;
   margin: 0 0 30px 0;
+  line-height: 33px;
 }
 
 .courseTutorAvatar {
@@ -89,7 +90,7 @@
 }
 
 .textTotalResult {
-  margin: 3px 15px;
+  margin: 3px 15px 3px 0;
 }
 
 .checkAllBtn {
@@ -180,10 +181,6 @@
 .filterTeachContainer {
   position: relative;
   flex: 7;
-}
-
-.courseGridTitleContainer {
-  height: 30px;
 }
 
 .courseItemPrice {

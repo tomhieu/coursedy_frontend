@@ -1,7 +1,7 @@
-import React, { Component} from 'react';
+import React, { Component } from 'react';
 import cssModules from 'react-css-modules';
+import { Modal, Button } from 'react-bootstrap';
 import styles from '../Course.module.scss';
-import {Modal, Button} from 'react-bootstrap';
 
 /**
   * @Course group template 2
@@ -11,6 +11,7 @@ class CourseDetailFollowModal extends Component {
   constructor(props) {
     super(props);
   }
+
   render() {
     return (
       <Modal show={this.props.showCourseFollowModal} onHide={this.props.closeCourseFollowModal}>
@@ -19,19 +20,19 @@ class CourseDetailFollowModal extends Component {
         </Modal.Header>
         <Modal.Body>
           Your email
-          <input type="text"/>
+          <input type="text" />
         </Modal.Body>
         <Modal.Footer>
           <Button onClick={this.props.closeCourseFollowModal}>{this.context.t('close')}</Button>
         </Modal.Footer>
       </Modal>
-    )
+    );
   }
 }
 
 CourseDetailFollowModal.contextTypes = {
   t: React.PropTypes.func.isRequired
-}
+};
 
 CourseDetailFollowModal.propTypes = {
 };

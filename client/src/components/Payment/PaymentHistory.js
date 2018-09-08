@@ -1,14 +1,16 @@
-import React, { Component } from 'react'
-import ObjectUtils from '../../utils/ObjectUtils'
+import React, { Component } from 'react';
 import Pagination from 'react-js-pagination';
+import ObjectUtils from '../../utils/ObjectUtils';
 import {
   PAYMENT_HISTORY_PAGINATION_MAX_ITEM_PER_PAGE,
   PAYMENT_HISTORY_PAGINATION_MAX_NUMBER_DISPLAY_PAGE
-} from '../../constants/WebConstants'
+} from '../../constants/WebConstants';
 
 class PaymentHistory extends Component {
   render() {
-    const { paymentHistory, isFetching, handlePageChange, currentPage, totalResult } = this.props
+    const {
+      paymentHistory, isFetching, handlePageChange, currentPage, totalResult
+    } = this.props;
     return (
       <div className="col-xs-12">
         <div className="panel panel-primary">
@@ -26,13 +28,16 @@ class PaymentHistory extends Component {
                   </tr>
                 </thead>
                 <tbody>
-                {
-                  paymentHistory.map((item) => (
+                  {
+                  paymentHistory.map(item => (
                     <tr key={item.id + item.content}>
                       <td>{item.created_at}</td>
-                      <td>#{item.order_id}</td>
+                      <td>
+#
+                        {item.order_id}
+                      </td>
                       <td>{item.content}</td>
-                      <td><i className="fa fa-print"></i></td>
+                      <td><i className="fa fa-print" /></td>
                       <td>{item.status}</td>
                       <td className="text-right">{ ObjectUtils.currencyFormat(item.value) }</td>
                     </tr>
@@ -42,7 +47,8 @@ class PaymentHistory extends Component {
               </table>
             </div>
 
-            <br/><br/>
+            <br />
+            <br />
             {
               !isFetching && paymentHistory.length > PAYMENT_HISTORY_PAGINATION_MAX_ITEM_PER_PAGE ? (
                 <div className="pagination-course_list">
@@ -59,16 +65,16 @@ class PaymentHistory extends Component {
           </div>
         </div>
       </div>
-    )
+    );
   }
 }
 
 PaymentHistory.contextTypes = {
   t: React.PropTypes.func.isRequired
-}
+};
 
 PaymentHistory.propTypes = {
-}
+};
 
 
-export default PaymentHistory
+export default PaymentHistory;

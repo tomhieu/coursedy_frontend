@@ -1,6 +1,6 @@
 import * as courseTypes from 'constants/Courses';
-import data from '../configs/data.json';
 import * as asyncActs from 'actions/AsyncActionCreator';
+import data from '../configs/data.json';
 
 
 const HomePage = (state = {

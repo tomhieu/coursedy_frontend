@@ -13,28 +13,28 @@ import RoleAuthorization from '../components/RoleAuthorization';
 
 import CommentFormContainer from './Courses/CourseDetail/CommentFormContainer';
 
-import * as AdminContainers from './Admin/'
-import * as AccountContainers from './Account'
-import * as StudentContainers from './Student'
-import * as TutorContainers from './Tutor'
+import * as AdminContainers from './Admin';
+import * as AccountContainers from './Account';
+import * as StudentContainers from './Student';
+import * as TutorContainers from './Tutor';
 
 export {
   LoginFormContainer,
   RegisterFormContainer,
   SearchFormContainer,
   PersonInfoContainer,
-  //Front-end
+  // Front-end
   PublicCourseListContainer,
-  
+
   PublicCourseDetailContainer,
   CourseDetailFollowContainer,
   CourseDetailEnrollContainer,
 
   CourseFilterContainer,
   CommentFormContainer,
-  
+
   AdminContainers,
   AccountContainers,
   StudentContainers,
   TutorContainers
-}
+};

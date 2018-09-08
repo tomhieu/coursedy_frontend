@@ -1,19 +1,14 @@
 import * as React from "react";
-import CheckoutForm from "../../components/Checkout/CheckoutForm";
-import {Elements} from "react-stripe-elements";
-import {DomesticBank} from "../../components/Checkout/DomesticBank";
-import * as Actions from '../../actions/PaymentActionCreator'
+import {Component} from "react";
 import './PaymentContainer.scss';
 import {connect} from "react-redux";
-import {Component} from "react";
 import {
-  FETCH_ADMIN_PAYMENT_SETTINGS,
-  FETCH_ADMIN_PAYMENT_INSTRUCTIONS,
   FETCH_ADMIN_BANK_ACCOUNTS,
+  FETCH_ADMIN_PAYMENT_INSTRUCTIONS,
+  FETCH_ADMIN_PAYMENT_SETTINGS,
 } from "../../actions/AsyncActionCreator"
 import "../../../styles/global_style.scss"
-import { banks } from "../../constants/Banks"
-import FormField from "../../components/Core/FormField"
+import {banks} from "../../constants/Banks"
 
 class PaymentContainer extends Component {
   constructor(props) {
@@ -86,10 +81,10 @@ class PaymentContainer extends Component {
               paymentSettings.manual ?
               <div className="col-md-12 no-pad">
                 <label className="col-md mr-10" for="role-0">
-                  <input 
-                    type="radio" 
-                    name="payment-method" 
-                    value="teacher" 
+                  <input
+                    type="radio"
+                    name="payment-method"
+                    value="teacher"
                     onClick={this.changePaymentMethods.bind(this, 'manual')}
                   />
                   <span className="pl-10">{this.context.t('admin_payment_methods_manual')}</span>
@@ -101,10 +96,10 @@ class PaymentContainer extends Component {
               paymentSettings.transfer ?
               <div className="col-md-12 no-pad">
                 <label className="col-md mr-10" for="role-0">
-                  <input 
-                    type="radio" 
-                    name="payment-method" 
-                    value="teacher" 
+                  <input
+                    type="radio"
+                    name="payment-method"
+                    value="teacher"
                     onClick={this.changePaymentMethods.bind(this, 'transfer')}
                   />
                   <span className="pl-10">{this.context.t('admin_payment_methods_transfer')}</span>
@@ -118,17 +113,17 @@ class PaymentContainer extends Component {
               <p><b>Hướng dẫn thanh toán</b></p>
             </div>
             {
-              this.state.selectMethod == 'manual' ? 
-                <div 
-                  className="col-md-12 no-pad" 
+              this.state.selectMethod == 'manual' ?
+                <div
+                  className="col-md-12 no-pad"
                   dangerouslySetInnerHTML={{ __html: this.context.t('admin_payment_methods_manual_instruct_content') }}
                 />
                 : null
             }
             {
               this.state.selectMethod == 'transfer' ?
-                <div 
-                  className="col-md-12 no-pad" 
+                <div
+                  className="col-md-12 no-pad"
                   dangerouslySetInnerHTML={{ __html: this.context.t('admin_payment_methods_transfer_instruct_content') }}
                 />
                 : null
@@ -151,8 +146,8 @@ class PaymentContainer extends Component {
               <div className="col-md-12 no-pad">
                 {
                   bankAccounts.map((item) => (
-                    <div 
-                      className="bank-logo pull-left" 
+                    <div
+                      className="bank-logo pull-left"
                       key={item.name}
                       onClick={this.changeBank.bind(this, item.id)}
                     >
@@ -201,19 +196,18 @@ class PaymentContainer extends Component {
             </div> : null
         }
 
-       
-        
+
+
 
 
       </div>
-    )
+    );
   }
-
 }
 
 PaymentContainer.contextTypes = {
   t: React.PropTypes.func.isRequired
-}
+};
 
 PaymentContainer.propTypes = {
 

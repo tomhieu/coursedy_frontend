@@ -1,8 +1,8 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import cssModules from 'react-css-modules';
 import styles from './Course.module.scss';
-import CourseListInListMode from './CourseList/CourseListInListMode'
-import CourseListInGridMode from './CourseList/CourseListInGridMode'
+import CourseListInListMode from './CourseList/CourseListInListMode';
+import CourseListInGridMode from './CourseList/CourseListInGridMode';
 import EmptyResultWarning from '../Core/EmptyResultWarning';
 
 
@@ -16,31 +16,31 @@ class CourseList extends Component {
   }
 
   render() {
-    const {courses, isFetching} = this.props;
+    const { courses, isFetching } = this.props;
     if (!isFetching && courses.length === 0) {
       return (
         <div className="d-flex flex-auto justify-content-center">
-          <EmptyResultWarning styles={styles.courseListContainer} searchType="search_course" {...this.props}/>
+          <EmptyResultWarning styles={styles.courseListContainer} searchType="search_course" {...this.props} />
         </div>
-      )
-    } else {
-      return (
-        <div className="d-flex flex-auto">
-          {
-            isFetching ? <div></div> : this.props.displayMode === 'grid'
-                ? <CourseListInGridMode {...this.props} />
-                : <CourseListInListMode {...this.props} />
-          }
-        </div>
-      )
+      );
     }
+
+    return (
+      <div className="d-flex flex-auto">
+        {
+          isFetching ? <div /> : this.props.displayMode === 'grid'
+            ? <CourseListInGridMode {...this.props} />
+            : <CourseListInListMode {...this.props} />
+        }
+      </div>
+    );
   }
 }
 
 
 CourseList.contextTypes = {
   t: React.PropTypes.func.isRequired
-}
+};
 
 CourseList.propTypes = {
   displayMode: React.PropTypes.string.isRequired,

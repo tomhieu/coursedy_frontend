@@ -4,14 +4,17 @@
 }
 
 .teacherItemGrid:hover {
-  box-shadow: 0px 0px 12px -1px rgba(0, 0, 0, 0.29);
+  -webkit-box-shadow: 0 0 12px -1px rgba(0, 0, 0, 0.29);
+  -moz-box-shadow: 0 0 12px -1px rgba(0, 0, 0, 0.29);
+  box-shadow: 0 0 12px -1px rgba(0, 0, 0, 0.29);
 }
 
 .teacherItemGrid {
-  margin: 0 auto 30px;
-  border: 1px solid $border-color;
+  box-shadow: 0 0 1px 1px rgba(20, 23, 28, 0.1), 0 3px 1px 0 rgba(20, 23, 28, 0.1);
+  background: $color-bg-gray-form;
   max-width: 300px;
-  background-color: $white-color;
+  position: relative;
+  height: 100%;
   .imageWrapper {
     display: block;
     .imageCard {

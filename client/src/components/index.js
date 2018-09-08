@@ -1,7 +1,7 @@
-import Header from './Header/Header';
-import Footer from './Footer/Footer';
+import Header from '../containers/Main/Header/Header';
+import Footer from '../containers/Main/Footer/Footer';
 import Layout from './Layout/Layout';
-import * as CoreComponent from "./Core"
+import * as CoreComponent from './Core';
 import LoginForm from './Auth/LoginForm';
 import RegisterForm from './Auth/RegisterForm';
 import SearchForm from './SearchForm/SearchForm';
@@ -17,19 +17,19 @@ import TutorItem from './Tutor/TutorItem/TutorItem';
 import TutorList from './Tutor/TutorList/TutorList';
 import TutorProfileDetails from './Tutor/Profile/TutorProfileDetails';
 
-import * as StudentComponents from './Student'
-import * as AdminComponents from './Admin'
+import * as StudentComponents from './Student';
+import * as AdminComponents from './Admin';
 
 import RoleAuthorization from './RoleAuthorization';
-import LoadingMask from './LoadingMask/LoadingMask'
-import TutorDashboardMenu from './Dashboard/TutorDashboard/TutorDashboardMenu'
-import CourseForm from './Courses/CourseForm/CourseForm'
-import UserInfo from './Account/UserInfo'
-import RequireEmailConfirmationModal from './Account/RequireEmailConfirmationModal'
-import TutorDetail from './Dashboard/Tutors/TutorDetail'
+import LoadingMask from './LoadingMask/LoadingMask';
+import TutorDashboardMenu from './Dashboard/TutorDashboard/TutorDashboardMenu';
+import CourseForm from './Courses/CourseForm/CourseForm';
+import UserInfo from './Account/UserInfo';
+import RequireEmailConfirmationModal from './Account/RequireEmailConfirmationModal';
+import TutorDetail from './Dashboard/Tutors/TutorDetail';
 
-import * as PaymentComponents from './Payment'
-import StatisticCard from './Dashboard/StatisticCard.js'
+import * as PaymentComponents from './Payment';
+import StatisticCard from './Dashboard/StatisticCard.js';
 
 export {
   Header,

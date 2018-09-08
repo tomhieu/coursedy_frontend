@@ -1,10 +1,10 @@
-import {Component} from "react";
-import * as React from "react";
+import { Component } from 'react';
+import * as React from 'react';
 import cssModules from 'react-css-modules';
+import { Link } from 'react-router-dom';
+import * as ReactDOM from 'react-dom';
 import styles from './CoursedyDropDown.module.scss';
-import {Link} from "react-router-dom";
-import * as ReactDOM from "react-dom";
-import {globalHistory} from '../../../utils/globalHistory'
+import { globalHistory } from '../../../utils/globalHistory';
 
 class CoursedyMultiStep extends Component {
   constructor(props) {
@@ -36,7 +36,9 @@ class CoursedyMultiStep extends Component {
   }
 
   render() {
-    const {items, isOpen, closeDropDown, bgColor, width, emptyMessage} = this.props;
+    const {
+      items, isOpen, icon, bgColor, width, emptyMessage
+    } = this.props;
 
     if (!isOpen) {
       return null;
@@ -56,29 +58,33 @@ class CoursedyMultiStep extends Component {
 
     return (
       <div className={styles.dropDownContainer}>
-        <div className={styles.dropDownArrow_w}></div>
-        <div className={styles.dropDownArrow_v}></div>
-        <div ref="dropDownContainer" className={dropDownClasses.join(" ")} style={customStyles} >
+        <div className={styles.dropDownArrow_w} />
+        <div className={styles.dropDownArrow_v} />
+        <div ref="dropDownContainer" className={dropDownClasses.join(' ')} style={customStyles}>
           <ul>
             {
-              items.length > 0 ?
-              items.map((item) => {
-                return item.link ?
-                  <li key={item.id + 'option'} className={styles.option}><a onClick={this.onSelectOption.bind(this, item.link)}>{item.text}</a></li> :
-                  <li key={item.id + 'option'} className={styles.option}><a onClick={this.onSelectOption.bind(this, undefined, item.callback)}>{item.text}</a></li>
-              }) : <span>{emptyMessage}</span>
+              items.length > 0
+                ? items.map((item) => {
+                  return (
+                    <li key={`${item.id}option`} className={styles.option}>
+                      <div className="d-flex flex-horizontal align-items-center">
+                        {item.icon ? item.icon : null}
+                        <a className={item.icon ? styles.linkWithIcon : styles.linkWithoutIcon} onClick={this.onSelectOption.bind(this, item.link, item.callback)}>{item.text}</a>
+                      </div>
+                    </li>);
+                }) : <span>{emptyMessage}</span>
             }
           </ul>
         </div>
       </div>
-    )
+    );
   }
 }
 
 
 CoursedyMultiStep.contextTypes = {
   t: React.PropTypes.func.isRequired
-}
+};
 
 CoursedyMultiStep.propTypes = {
   items: React.PropTypes.array.isRequired,
@@ -86,7 +92,8 @@ CoursedyMultiStep.propTypes = {
   closeDropDown: React.PropTypes.func.isRequired,
   bgColor: React.PropTypes.string,
   width: React.PropTypes.number,
-  emptyMessage: React.PropTypes.string
+  emptyMessage: React.PropTypes.string,
+  icon: React.PropTypes.element
 };
 
 export default cssModules(CoursedyMultiStep, styles);

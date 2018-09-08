@@ -1,22 +1,21 @@
-import React, { Component } from 'react'
-import cssModules from 'react-css-modules'
-import styles from './Introduces.module.scss'
-import SearchCourseIcon from "../Core/Icons/SearchCourseIcon";
-import InteractionLearningIcon from "../Core/Icons/InteractionLearningIcon";
-import CourseStudyingIcon from "../Core/Icons/CourseStudyingIcon";
+import React, { Component } from 'react';
+import cssModules from 'react-css-modules';
+import styles from './Introduces.module.scss';
+import SearchCourseIcon from '../Core/Icons/SearchCourseIcon';
+import InteractionLearningIcon from '../Core/Icons/InteractionLearningIcon';
+import CourseStudyingIcon from '../Core/Icons/CourseStudyingIcon';
 
 
 class Introduces extends Component {
-
   render() {
     return (
       <section className={styles.introduceSection}>
         <div className="container">
-          <div className={styles.headerSearchContainer + " row"}>
+          <div className={`${styles.headerSearchContainer} row`}>
             <div className="col-md-4 col-sm-4">
               <div className="d-flex flex-row">
                 <div className={styles.headerSearchIcon}>
-                  <SearchCourseIcon></SearchCourseIcon>
+                  <SearchCourseIcon />
                 </div>
                 <div className="d-flex flex-column">
                   <div className={styles.headerSearchIntroduce}>{this.context.t('homepage_search_introduce_explore')}</div>
@@ -27,7 +26,7 @@ class Introduces extends Component {
             <div className="col-md-4 col-sm-4">
               <div className="d-flex flex-row">
                 <div className={styles.headerSearchIcon}>
-                  <InteractionLearningIcon></InteractionLearningIcon>
+                  <InteractionLearningIcon />
                 </div>
                 <div className="d-flex flex-column">
                   <div className={styles.headerSearchIntroduce}>{this.context.t('homepage_search_introduce_enroll')}</div>
@@ -38,7 +37,7 @@ class Introduces extends Component {
             <div className="col-md-4 col-sm-4">
               <div className="d-flex flex-row">
                 <div className={styles.headerSearchIcon}>
-                  <CourseStudyingIcon></CourseStudyingIcon>
+                  <CourseStudyingIcon />
                 </div>
                 <div className="d-flex flex-column">
                   <div className={styles.headerSearchIntroduce}>{this.context.t('homepage_search_introduce_distance')}</div>
@@ -49,15 +48,15 @@ class Introduces extends Component {
           </div>
         </div>
       </section>
-    )
+    );
   }
 }
 
 
 Introduces.contextTypes = {
   t: React.PropTypes.func.isRequired
-}
+};
 
-Introduces.propTypes = {}
+Introduces.propTypes = {};
 
-export default cssModules(Introduces, styles)
+export default cssModules(Introduces, styles);

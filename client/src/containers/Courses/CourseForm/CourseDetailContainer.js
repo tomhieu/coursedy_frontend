@@ -1,16 +1,16 @@
-import * as React from "react";
-import {Component} from "react";
-import CourseForm from "../../../components/Courses/CourseForm/CourseForm";
-import * as CourseActions from "../../../actions/CourseFormActionCreator";
-import {DAYS_IN_WEEK} from "../../../actions/CourseFormActionCreator";
-import * as AsyncAction from "../../../actions/AsyncActionCreator";
-import {connect} from "react-redux";
-import {reduxForm} from "redux-form";
-import {validate} from "../../../validations/CourseFormValidation"
-import ObjectUtils from "utils/ObjectUtils";
-import {CREATE_NEW_COURSE} from "../../../actions/AsyncActionCreator";
-import Network from "utils/network";
-import {UPDATE_COURSE} from "../../../actions/AsyncActionCreator";
+import * as React from 'react';
+import { Component } from 'react';
+import { connect } from 'react-redux';
+import { reduxForm } from 'redux-form';
+import ObjectUtils from 'utils/ObjectUtils';
+import Network from 'utils/network';
+import CourseForm from '../../../components/Courses/CourseForm/CourseForm';
+import * as CourseActions from '../../../actions/CourseFormActionCreator';
+import { DAYS_IN_WEEK } from '../../../actions/CourseFormActionCreator';
+import * as AsyncAction from '../../../actions/AsyncActionCreator';
+import { validate } from '../../../validations/CourseFormValidation';
+import { CREATE_NEW_COURSE } from '../../../actions/AsyncActionCreator';
+import { UPDATE_COURSE } from '../../../actions/AsyncActionCreator';
 
 class CourseDetailContainer extends Component {
   constructor(props) {
@@ -20,17 +20,17 @@ class CourseDetailContainer extends Component {
   }
 
   createCourse(course) {
-    const {courseId} = this.props;
+    const { courseId } = this.props;
     const week_day_schedules_attributes = [];
     course.course_days.forEach((day) => {
-      const name_day = day.split("_")[0]
-      const id_day = day.split("_")[1]
+      const name_day = day.split('_')[0];
+      const id_day = day.split('_')[1];
       week_day_schedules_attributes.push({
         day: Number(id_day),
         start_time: this.getStartTime(course, name_day),
         end_time: this.getEndTime(course, name_day)
-      })
-    })
+      });
+    });
 
     const updatedCourse = {
       title: course.title,
@@ -56,36 +56,34 @@ class CourseDetailContainer extends Component {
   }
 
   getStartTime(course, name_day) {
-    let start_time = !course.is_same_period ? Object.getOwnPropertyDescriptor(course, name_day + '_start_time') :
-      Object.getOwnPropertyDescriptor(course, 'start_time_id');
+    const start_time = !course.is_same_period ? Object.getOwnPropertyDescriptor(course, `${name_day}_start_time`)
+      : Object.getOwnPropertyDescriptor(course, 'start_time');
 
     if (start_time === undefined) {
       // in case update course, load course time from week_day_schedules
       const [startDay] = course.week_day_schedules.filter(d => d.day === name_day);
       return startDay !== undefined ? startDay.start_time : null;
-    } else {
-      // in case create new course
-      return start_time.value;
     }
+    // in case create new course
+    return start_time.value;
   }
 
   getEndTime(course, name_day) {
-    const end_time = !course.is_same_period ? Object.getOwnPropertyDescriptor(course, name_day + '_end_time') :
-      Object.getOwnPropertyDescriptor(course, 'end_time_id');
+    const end_time = !course.is_same_period ? Object.getOwnPropertyDescriptor(course, `${name_day}_end_time`)
+      : Object.getOwnPropertyDescriptor(course, 'end_time');
 
     if (end_time === undefined) {
       // in case update course, load course time from week_day_schedules
       return course.week_day_schedules.filter(d => d.day === name_day)[0].end_time;
-    } else {
-      // in case create new course
-      return end_time.value;
     }
+    // in case create new course
+    return end_time.value;
   }
 
   onDropCoverImage(data) {
     this.coverImage = data;
     if (this.props.courseId && this.props.courseId > 0) {
-      this.props.updateCourse(this.props.courseId, {cover_image: this.coverImage});
+      this.props.updateCourse(this.props.courseId, { cover_image: this.coverImage });
     }
   }
 
@@ -115,16 +113,22 @@ class CourseDetailContainer extends Component {
   }
 
   render() {
-    const {editMode, courseData} = this.props;
+    const { editMode, courseData } = this.props;
     return (
-      <CourseForm onSubmit={this.createCourse.bind(this)} onDropCoverImage={this.onDropCoverImage.bind(this)}
-                  onEditTechingDay={this.onEditTechingDay.bind(this)}
-                  onEditCourseCategory={this.onEditCategory.bind(this)}
-                  onEditCourseFee={this.onEditFee.bind(this)}
-                  onActivatedField={this.onActivatedField.bind(this)}
-                  onClosedField={this.onClosedField.bind(this)}
-                  editMode={editMode} courseData={courseData} courseId={this.courseId} {...this.props}/>
-    )
+      <CourseForm
+        onSubmit={this.createCourse.bind(this)}
+        onDropCoverImage={this.onDropCoverImage.bind(this)}
+        onEditTechingDay={this.onEditTechingDay.bind(this)}
+        onEditCourseCategory={this.onEditCategory.bind(this)}
+        onEditCourseFee={this.onEditFee.bind(this)}
+        onActivatedField={this.onActivatedField.bind(this)}
+        onClosedField={this.onClosedField.bind(this)}
+        editMode={editMode}
+        courseData={courseData}
+        courseId={this.courseId}
+        {...this.props}
+      />
+    );
   }
 }
 
@@ -143,51 +147,53 @@ CourseDetailContainer.propTypes = {};
  */
 const updateCourseCategoryAndSpecialize = (categories, course) => {
   if (categories.length > 0 && course.course_specialize != undefined && course.course_specialize != null) {
-    const [selectedCategory = {children: []}] = categories.filter((category) => {
-      return category.children.filter((specialize) => specialize.id === Number(course.course_specialize.id)).length > 0;
+    const [selectedCategory = { children: [] }] = categories.filter((category) => {
+      return category.children.filter(specialize => specialize.id === Number(course.course_specialize.id)).length > 0;
     });
 
     return selectedCategory;
-  } else {
-    return {children: []};
   }
-}
+  return { children: [] };
+};
 
 const getCourseLevels = (specializes, selectedLevelId) => {
-  const [selectedSpecialize = {course_levels: []}] = specializes.filter((spec) => {
+  const [selectedSpecialize = { course_levels: [] }] = specializes.filter((spec) => {
     return Number(selectedLevelId) === spec.id;
   });
 
   return selectedSpecialize.course_levels.map((level) => {
-    return {id: level.id, text: level.name}
+    return { id: level.id, text: level.name };
   });
-}
+};
 
 const getDayId = (dayName) => {
   const matchedDays = DAYS_IN_WEEK.filter(d => d.name === dayName);
   return matchedDays.length > 0 ? matchedDays[0].id : 0;
-}
+};
 
 const initializeCourseDetail = (courseData) => {
-  let course_days = [];
+  const course_days = [];
 
   if (Array.isArray(courseData.course_days)) {
-    courseData.course_days.forEach(d => {
-      course_days.push(d.day + '_' + getDayId(d.day))
+    courseData.course_days.forEach((d) => {
+      course_days.push(`${d.day}_${getDayId(d.day)}`);
     });
   }
-  return Object.assign({}, courseData, {course_days: course_days});
-}
+  return Object.assign({}, courseData, { course_days });
+};
 
 const mapStateToProps = (state) => {
-  const {courseDetails, referenceData, form} = state
-  let courseFormValues = form.courseCreationForm && form.courseCreationForm.values ? form.courseCreationForm.values : null
-  const {editMode, editTeachingDay, editCourseCategory, editCourseFee} = courseDetails
-  const {courseCategories} = referenceData
+  const { courseDetails, referenceData, form } = state;
+  const courseFormValues = form.courseCreationForm && form.courseCreationForm.values ? form.courseCreationForm.values : null;
+  const {
+    editMode, editTeachingDay, editCourseCategory, editCourseFee, activatedField
+  } = courseDetails;
+  const { courseCategories } = referenceData;
 
   let course_specializes = [];
   let course_levels = [];
   let courseData = null;
+  let selectedDays = [];
 
   if (editMode && courseDetails.courseData != null) {
     courseData = courseDetails.courseData;
@@ -195,79 +201,90 @@ const mapStateToProps = (state) => {
     courseData = courseFormValues;
   }
 
-  const selectedDays = courseFormValues != null && courseFormValues.course_days ?
-    DAYS_IN_WEEK.filter((day) => courseFormValues.course_days.indexOf(day.name + "_" + day.id) >= 0) : []
-  const isSamePeriod = courseFormValues != null ? ObjectUtils.isTrue(courseFormValues.is_same_period) : true
-  const isFree = courseFormValues != null ? ObjectUtils.isTrue(courseFormValues.is_free) : false
+  selectedDays = DAYS_IN_WEEK.filter((day) => {
+    if (courseFormValues != null && courseFormValues.course_days) {
+      return courseFormValues.course_days.indexOf(`${day.name}_${day.id}`) >= 0;
+    } if (courseDetails.courseData && courseDetails.courseData.course_days) {
+      return courseDetails.courseData.course_days.findIndex(d => d.day === day.name) >= 0;
+    }
+    return false;
+  });
+
+  const isSamePeriod = courseFormValues != null ? ObjectUtils.isTrue(courseFormValues.is_same_period)
+    : courseData != null ? ObjectUtils.isTrue(courseData.is_same_period) : true;
+
+  const isFree = courseFormValues != null ? ObjectUtils.isTrue(courseFormValues.is_free)
+    : courseData != null ? ObjectUtils.isTrue(courseData.is_free) : false;
 
   if (editMode && courseData != null) {
     const courseCategory = updateCourseCategoryAndSpecialize(courseCategories, courseData);
-    courseData.category = courseCategory
-    courseData.category_id = courseCategory.id
-    courseData.course_specialize_id = courseData.course_specialize.id
+    courseData.category = courseCategory;
+    courseData.category_id = courseCategory.id;
+    courseData.course_specialize_id = courseData.course_specialize.id;
     course_specializes = courseCategory.children;
     course_levels = getCourseLevels(course_specializes, courseData.course_specialize_id);
   } else if (!editMode && courseData != null) {
-    const [courseCategory] = courseCategories.filter((category) => category.id === Number(courseData.category_id));
+    const [courseCategory] = courseCategories.filter(category => category.id === Number(courseData.category_id));
     course_specializes = courseCategory !== undefined ? courseCategory.children : [];
   }
 
   if (courseFormValues != null) {
-    const [selectedCategory] = courseCategories.filter((category) => category.id === Number(courseFormValues.category_id));
+    const [selectedCategory] = courseCategories.filter(category => category.id === Number(courseFormValues.category_id));
     course_specializes = selectedCategory !== undefined ? selectedCategory.children : [];
   }
 
-  const initializedValue = editMode && courseData != null ? initializeCourseDetail(courseData) : {is_same_period: true};
+  const initializedValue = editMode && courseData != null ? initializeCourseDetail(courseData) : { is_same_period: true };
   if (editMode && courseData.is_same_period) {
-    Object.defineProperty(initializedValue, 'start_time_id', {
-      value: courseData.course_days[0].start_time,
-      writable: true
-    });
-    Object.defineProperty(initializedValue, 'end_time_id', {value: courseData.course_days[0].end_time, writable: true});
+    initializedValue.start_time = courseData.course_days[0].start_time;
+    initializedValue.end_time = courseData.course_days[0].end_time;
   } else if (editMode) {
-    courseData.course_days.forEach(d => {
-      Object.defineProperty(initializedValue, d.day + '_start_time', {value: d.start_time, writable: true});
-      Object.defineProperty(initializedValue, d.day + '_end_time', {value: d.end_time, writable: true});
+    courseData.course_days.forEach((d) => {
+      Object.defineProperty(initializedValue, `${d.day}_start_time`, { value: d.start_time, writable: true });
+      Object.defineProperty(initializedValue, `${d.day}_end_time`, { value: d.end_time, writable: true });
     });
   }
+
+  const hasActiveField = CourseForm.fields.filter(field => activatedField.indexOf(field) >= 0).length > 0;
   return {
-    courseData, editMode, isSamePeriod, isFree, selectedDays, editTeachingDay, editCourseCategory, editCourseFee,
+    courseData,
+    editMode,
+    isSamePeriod,
+    isFree,
+    selectedDays,
+    editTeachingDay,
+    editCourseCategory,
+    editCourseFee,
     categories: courseCategories,
     cover_image: !courseData ? null : courseData.cover_image,
     courseSpecializes: course_specializes,
-    course_levels: course_levels,
-    initialValues: initializedValue
-  }
-}
+    course_levels,
+    initialValues: hasActiveField ? initializedValue : {}
+  };
+};
 
-const mapDispatchToProps = (dispatch) => ({
-  createCourse: (course) => dispatch({
+const mapDispatchToProps = dispatch => ({
+  createCourse: course => dispatch({
     type: CREATE_NEW_COURSE,
     payload: Network().post('courses', course),
     meta: 'courseDetailPlaceholder'
   }),
   updateCourse: (courseId, course) => dispatch({
     type: UPDATE_COURSE,
-    payload: Network().update('courses/' + courseId, course),
+    payload: Network().update(`courses/${courseId}`, course),
     meta: 'courseDetailPlaceholder'
   }),
-  doEditTechingDay: () => dispatch({type: AsyncAction.EDIT_TEACHING_DAY}),
-  doEditCourseCategory: () => dispatch({type: AsyncAction.EDIT_COURSE_CATEGORY}),
-  doEditCourseFee: () => dispatch({type: AsyncAction.EDIT_COURSE_FEE}),
-  activatedEditField: (fieldIds) => dispatch(CourseActions.activatedEditField(fieldIds)),
-  closedEditField: (fieldIds) => dispatch(CourseActions.closedEditField(fieldIds)),
+  doEditTechingDay: () => dispatch({ type: AsyncAction.EDIT_TEACHING_DAY }),
+  doEditCourseCategory: () => dispatch({ type: AsyncAction.EDIT_COURSE_CATEGORY }),
+  doEditCourseFee: () => dispatch({ type: AsyncAction.EDIT_COURSE_FEE }),
+  activatedEditField: fieldIds => dispatch(CourseActions.activatedEditField(fieldIds)),
+  closedEditField: fieldIds => dispatch(CourseActions.closedEditField(fieldIds)),
 });
 
 export default connect(
   mapStateToProps, mapDispatchToProps
 )(reduxForm({
   form: 'courseCreationForm',
-  fields: ['title', 'description', 'start_date', 'period',
-    'number_of_students', 'tuition_fee', 'currency', 'is_free', 'course_days', 'is_same_period', 'start_time', 'end_time',
-    'monday_start_time', 'monday_end_time', 'tuesday_start_time', 'tuesday_end_time',
-    'wednesday_start_time', 'wednesday_end_time', 'thursday_start_time', 'thursday_end_time',
-    'friday_start_time', 'friday_end_time', 'saturday_start_time', 'saturday_end_time', 'sunday_start_time', 'sunday_end_time',
-    'cover_image', 'category_id', 'course_specialize'],
+  fields: CourseForm.fields,
   validate,
   enableReinitialize: true
 })(CourseDetailContainer));

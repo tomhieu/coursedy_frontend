@@ -1,34 +1,34 @@
-import * as React from "react";
-import {Component} from "react";
-import {TutorWorkExperienceForm} from "components/Dashboard/Tutors/WorkExperiences/TutorWorkExperienceForm";
-import {reduxForm} from "redux-form";
-import {connect} from "react-redux";
-import * as actions from "actions/DashboarTutorWorkExperienceListActionCreator";
-import {validate} from "../../../../validations/TutorWorkExperienceFormValidation";
+import * as React from 'react';
+import { Component } from 'react';
+import { TutorWorkExperienceForm } from 'components/Dashboard/Tutors/WorkExperiences/TutorWorkExperienceForm';
+import { reduxForm } from 'redux-form';
+import { connect } from 'react-redux';
+import * as actions from 'actions/DashboarTutorWorkExperienceListActionCreator';
+import { validate } from '../../../../validations/TutorWorkExperienceFormValidation';
 
 class NewWorkExperienceFormContainer extends Component {
   hideNewWorkExperienceForm() {
-    this.props.dispatch(actions.hideDashboardTutorNewWorkExperienceForm())
+    this.props.dispatch(actions.hideDashboardTutorNewWorkExperienceForm());
   }
 
-  createWorkExperience(params){
-    this.props.dispatch(actions.createWorkExperience(this.props.tutor.id, params))
+  createWorkExperience(params) {
+    this.props.dispatch(actions.createWorkExperience(this.props.tutor.id, params));
   }
 
   render() {
     return (
-      <div className='bordered-box'>
-        <TutorWorkExperienceForm onSubmit={this.createWorkExperience.bind(this)} {...this.props} cancel={this.hideNewWorkExperienceForm.bind(this)}/>
+      <div className="bordered-box">
+        <TutorWorkExperienceForm onSubmit={this.createWorkExperience.bind(this)} {...this.props} cancel={this.hideNewWorkExperienceForm.bind(this)} />
       </div>
-    )
+    );
   }
 }
 
 NewWorkExperienceFormContainer.contextTypes = {
   t: React.PropTypes.func.isRequired
-}
+};
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   tutor: state.TutorAccountReducer.tutor,
 });
 

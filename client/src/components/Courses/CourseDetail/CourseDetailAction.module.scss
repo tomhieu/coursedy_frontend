@@ -3,17 +3,7 @@
 .courseDetailAction {
   .courseCoverImage {
     img {
-      width: 300px;
-    }
-    @media (min-width: 1024px) and (max-width: 1200px) {
-      img {
-        width: 237px;
-      }
-    }
-    @media (max-width: 1024px) {
-      img {
-        width: 183px;
-      }
+      width: 100%;
     }
   }
 
@@ -28,17 +18,20 @@
   }
   .courseShortIntroduce {
     padding: 10px 30px;
+    .listItem {
+      padding-left: 15px;
+      .itemInclude {
+        display: flex;
+        flex-direction: row;
+        padding: 5px 0;
+        .itemIcon {
+          margin-right: 10px;
+        }
+      }
+    }
     .itemTitle {
       font-weight: 700;
       margin-bottom: 8px;
-    }
-    .itemInclude {
-      display: flex;
-      flex-direction: row;
-      padding: 5px 0;
-      .itemIcon {
-        margin-right: 10px;
-      }
     }
   }
 

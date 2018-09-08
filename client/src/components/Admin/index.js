@@ -10,4 +10,4 @@ export {
   BankAccountList,
   PaymentSettingForm,
   PaymentInstructionsForm,
-}
+};

@@ -1,37 +1,37 @@
-import React, {Component} from "react";
-import {connect} from "react-redux";
-import Certificate from "./Certificate";
-import TutorForm from '../../Dashboard/Tutors/TutorForm'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import Network from 'utils/network';
+import TutorDetail from 'components/Dashboard/Tutors/TutorDetail';
+import TutorEducationListContainer from 'containers/Dashboard/Tutors/Educations/TutorEducationListContainer';
+import TutorWorkExperienceListContainer from 'containers/Dashboard/Tutors/WorkExperiences/TutorWorkExperienceListContainer';
+import Certificate from './Certificate';
+import TutorForm from '../../Dashboard/Tutors/TutorForm';
 
-import {AccountActions, TutorAccountActions} from '../../../actions/index'
-import {RequireEmailConfirmationModal} from '../../../components/index'
-import LoadingMask from "../../../components/LoadingMask/LoadingMask";
-import {FETCH_TUTOR_DATA} from "../../../constants/Session";
-import {CERTIFICATE, FETCH_TEACHER_SKILL_SET} from "../../../actions/AsyncActionCreator";
-import Network from "utils/network";
-import TutorDetail from "components/Dashboard/Tutors/TutorDetail";
-import TutorEducationListContainer from "containers/Dashboard/Tutors/Educations/TutorEducationListContainer";
-import TutorWorkExperienceListContainer from "containers/Dashboard/Tutors/WorkExperiences/TutorWorkExperienceListContainer";
+import { AccountActions, TutorAccountActions } from '../../../actions/index';
+import { RequireEmailConfirmationModal } from '../../../components/index';
+import LoadingMask from '../../../components/LoadingMask/LoadingMask';
+import { FETCH_TUTOR_DATA } from '../../../constants/Session';
+import { CERTIFICATE, FETCH_TEACHER_SKILL_SET } from '../../../actions/AsyncActionCreator';
 import * as dashboardActions from '../../../actions/DashboardMenuActionCreator';
-import {TutorNavigationTab} from "../../../constants/TutorNavigationTab";
+import { TutorNavigationTab } from '../../../constants/TutorNavigationTab';
 
 class TutorAccount extends Component {
-  componentWillMount(){
+  componentWillMount() {
     this.props.fetchTutorData();
     this.props.loadListSkillData();
     this.props.loadDegrees();
     this.props.activateTab(TutorNavigationTab.ACCOUNT_SETTING);
   }
 
-  showEducationEditForm(){
+  showEducationEditForm() {
     this.props.showEducationEditForm();
   }
 
-  hideEducationEditForm(){
+  hideEducationEditForm() {
     this.props.hideEducationEditForm();
   }
 
-  closeEmailConfirmationModal(){
+  closeEmailConfirmationModal() {
     this.props.hideEmailChangedPopup();
   }
 
@@ -40,8 +40,11 @@ class TutorAccount extends Component {
   }
 
   render() {
-    const {tutor} = this.props
-    const {editEducationMode} = this.props
+    const { tutor } = this.props;
+    const { editEducationMode } = this.props;
+    if (!tutor.id) {
+      return null;
+    }
     return (
       <div className="row">
         <div className="col-sm-12 col-md-12">
@@ -50,15 +53,17 @@ class TutorAccount extends Component {
           </div>
         </div>
         <div className="col-md-12 col-xs-12 col-sm-12">
-          <LoadingMask placeholderId="userEducationPlaceholder"
-                       normalPlaceholder={false}
-                       facebookPlaceholder={true}
-                       loaderType="USER_EDUCATION_PLACEHOLDER">
+          <LoadingMask
+            placeholderId="userEducationPlaceholder"
+            normalPlaceholder={false}
+            facebookPlaceholder
+            loaderType="USER_EDUCATION_PLACEHOLDER"
+          >
             <div className="dashboard-content-section">
               {
-                editEducationMode ?
-                  <TutorForm tutor={tutor} cancel={this.hideEducationEditForm.bind(this)}/> :
-                  <TutorDetail tutor={tutor} showEditForm={this.showEducationEditForm.bind(this)}/>
+                editEducationMode
+                  ? <TutorForm tutor={tutor} cancel={this.hideEducationEditForm.bind(this)} />
+                  : <TutorDetail tutor={tutor} showEditForm={this.showEducationEditForm.bind(this)} />
               }
             </div>
           </LoadingMask>
@@ -66,32 +71,34 @@ class TutorAccount extends Component {
 
         <div className="col-md-12 col-xs-12 col-sm-12">
           <div className="dashboard-content-section">
-            <TutorEducationListContainer/>
+            <TutorEducationListContainer />
           </div>
         </div>
 
         <div className="col-md-12 col-xs-12 col-sm-12">
           <div className="dashboard-content-section">
-            <TutorWorkExperienceListContainer/>
+            <TutorWorkExperienceListContainer />
           </div>
         </div>
 
         <div className="col-md-12 col-xs-12 col-sm-12">
-          <LoadingMask placeholderId="userCertificatePlaceholder"
-                       normalPlaceholder={false}
-                       facebookPlaceholder={true}
-                       loaderType="USER_CERTIFICATE_PLACEHOLDER">
+          <LoadingMask
+            placeholderId="userCertificatePlaceholder"
+            normalPlaceholder={false}
+            facebookPlaceholder
+            loaderType="USER_CERTIFICATE_PLACEHOLDER"
+          >
             <div className="dashboard-content-section">
-              <Certificate/>
+              <Certificate />
             </div>
           </LoadingMask>
         </div>
 
         <div className="col-md-12 col-xs-12 col-sm-12">
-          <RequireEmailConfirmationModal close={this.closeEmailConfirmationModal.bind(this)} show={this.props.showEmailConfirmationModal}/>
+          <RequireEmailConfirmationModal close={this.closeEmailConfirmationModal.bind(this)} show={this.props.showEmailConfirmationModal} />
         </div>
       </div>
-    )
+    );
   }
 }
 
@@ -99,7 +106,7 @@ TutorAccount.contextTypes = {
   t: React.PropTypes.func.isRequired
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   editPasswordMode: state.AccountReducer.editPasswordMode,
   user: state.session.currentUser,
   tutor: state.TutorAccountReducer.tutor,
@@ -108,7 +115,7 @@ const mapStateToProps = (state) => ({
   showEmailConfirmationModal: state.AccountReducer.showEmailConfirmationModal
 });
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = dispatch => ({
   fetchTutorData: () => dispatch({
     type: FETCH_TUTOR_DATA,
     payload: Network().get('tutors/current_tutor'),
@@ -128,11 +135,10 @@ const mapDispatchToProps = (dispatch) => ({
   showEducationEditForm: () => dispatch(TutorAccountActions.showEducationEditForm()),
   hideAccountEditForm: () => dispatch(AccountActions.hideAccountEditForm()),
   hideEducationEditForm: () => dispatch(TutorAccountActions.hideEducationEditForm()),
-  showEducationEditForm: () => dispatch(TutorAccountActions.showEducationEditForm()),
   hideEmailChangedPopup: () => dispatch(AccountActions.hideEmailChangedPopup()),
   showEmailChangedPopup: () => dispatch(AccountActions.showEmailChangedPopup()),
-  activateTab: (tabId) => dispatch(dashboardActions.activateTab(tabId))
-})
+  activateTab: tabId => dispatch(dashboardActions.activateTab(tabId))
+});
 
 export default connect(
   mapStateToProps, mapDispatchToProps

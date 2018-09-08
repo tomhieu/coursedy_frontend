@@ -35,6 +35,14 @@
     top: 0;
   }
 
+  .linkWithIcon {
+    margin-left: 10px;
+  }
+
+  .linkWithoutIcon {
+    margin-left: 0;
+  }
+
   @keyframes gb__a {
     0% {
       opacity: 0;
@@ -52,7 +60,7 @@
     border: 1px solid rgba(0,0,0,.2);
     box-shadow: 0 2px 10px rgba(0,0,0,.2);
     color: $color-darker-text;
-    width: 180px;
+    width: 150px;
     text-align: right;
     text-transform: none;
     &.open {

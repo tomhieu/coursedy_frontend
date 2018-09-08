@@ -1,5 +1,5 @@
-import React, {Component} from 'react'
-import PropTypes from 'prop-types'
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Slider from 'react-slick';
 import cssModules from 'react-css-modules';
 import styles from './CoursedySlider.module.scss';
@@ -7,10 +7,10 @@ import styles from './CoursedySlider.module.scss';
 
 class CoursedySlider extends Component {
   render() {
-    let {numOfSlideToShow, items, isLimit = true} = this.props;
+    let { numOfSlideToShow, items, isLimit = true } = this.props;
 
     if (!numOfSlideToShow) {
-      numOfSlideToShow = items.length > 6 ? 6 : items.length;
+      numOfSlideToShow = items.length > 5 ? 5 : items.length;
     }
 
     const settings = {
@@ -18,7 +18,7 @@ class CoursedySlider extends Component {
       infinite: true,
       speed: 300,
       slidesToShow: numOfSlideToShow,
-      slidesToScroll: 6,
+      slidesToScroll: 5,
       className: 'coursedy-slider',
       responsive: [
         {
@@ -60,7 +60,7 @@ class CoursedySlider extends Component {
       <Slider {...settings}>
         {
           items.map((item, index) => {
-            return <div className={sliderContainerClasses.join(' ')} key={index}>{item}</div>
+            return <div className={sliderContainerClasses.join(' ')} key={index}>{item}</div>;
           })
         }
       </Slider>
@@ -72,6 +72,6 @@ CoursedySlider.propTypes = {
   items: PropTypes.array.isRequired,
   numOfSlideToShow: PropTypes.number,
   isLimit: PropTypes.bool
-}
+};
 
 export default cssModules(CoursedySlider, styles);

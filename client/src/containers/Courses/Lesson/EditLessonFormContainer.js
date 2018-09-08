@@ -1,11 +1,11 @@
-import * as React from "react";
-import {Component} from "react";
-import {LessonDetailComponent} from "../../../components/Courses/LessonDetailComponent";
-import {reduxForm} from "redux-form";
-import {connect} from "react-redux";
-import {addDocumentForLesson, deleteDocumentForLesson} from "../../../actions/CourseFormActionCreator";
-import FormDialogComponent from "../../Dialog/FormDialogContainer";
-import {validate} from '../../../validations/LessonFormValidator';
+import * as React from 'react';
+import { Component } from 'react';
+import { reduxForm } from 'redux-form';
+import { connect } from 'react-redux';
+import { LessonDetailComponent } from '../../../components/Courses/LessonDetailComponent';
+import { addDocumentForLesson, deleteDocumentForLesson } from '../../../actions/CourseFormActionCreator';
+import FormDialogComponent from '../../Dialog/FormDialogContainer';
+import { validate } from '../../../validations/LessonFormValidator';
 
 class EditLessonFormContainer extends Component {
   constructor(props) {
@@ -22,16 +22,21 @@ class EditLessonFormContainer extends Component {
   }
 
   render() {
-    const {show, hidePopup} = this.props;
+    const { show, hidePopup } = this.props;
     return (
-      <FormDialogComponent show={show}
-                           formName="lessonDetailForm"
-                           title={this.context.t('lesson_popup_edit_title')}
-                           cancelCallback={hidePopup}>
-        <LessonDetailComponent addDocumentForLesson={this.addDocumentForLesson.bind(this)}
-                               onDeleteDocumentLesson={this.onDeleteDocumentLesson.bind(this)} {...this.props}/>
+      <FormDialogComponent
+        show={show}
+        formName="lessonDetailForm"
+        title={this.context.t('lesson_popup_edit_title')}
+        cancelCallback={hidePopup}
+      >
+        <LessonDetailComponent
+          addDocumentForLesson={this.addDocumentForLesson.bind(this)}
+          onDeleteDocumentLesson={this.onDeleteDocumentLesson.bind(this)}
+          {...this.props}
+        />
       </FormDialogComponent>
-    )
+    );
   }
 }
 

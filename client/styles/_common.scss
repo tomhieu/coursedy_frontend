@@ -6,7 +6,7 @@
 body {
   text-rendering: optimizeLegibility !important;
   -webkit-font-smoothing: antialiased !important;
-  font-family: 'Lato', sans-serif;
+  font-family: 'Poppins', sans-serif;
   color: $black-color;
   font-weight: 400;
   background-color: $color-default-bg;
@@ -127,7 +127,7 @@ h2 {
 p {
   font-size: 14px;
   font-weight: 400;
-  line-height: 1.2rem;
+  line-height: 22px;
 }
 
 a {
@@ -194,13 +194,6 @@ label.error, span.required, div.error, p.error {
   border-bottom: 1px solid $border-color;
   padding-bottom: 5px;
   margin: 10px 0 24px 0;
-}
-
-ul {
-  padding: 0;
-  list-style-type: none;
-  margin-top: 0;
-  margin-bottom: 0px;
 }
 
 [class^='imghvr-'],
@@ -983,9 +976,8 @@ Accordation Styling #About Us Page >>Frequently Asked Questions
 .comment-form .btn-link-dark {
   margin-top: 60px;
   border-radius: 5px;
-  color: #ffffff;
+  color: $white-color;
   background-color: $md-color-pink;
-  color: #ffffff;
   font-size: 14px;
   font-weight: 400;
   padding: 8px 22px;
@@ -2269,6 +2261,16 @@ ul.no-margin,
   padding: 30px !important;
 }
 
+blockquote {
+  border-left: 3px solid $border-color-two;
+  margin-bottom: 5px;
+  margin-top: 5px;
+  padding-left: 16px;
+  margin: 5px 0 10px 0;
+  padding: 10px 10px 10px 15px;
+  background-color: $gray-background;
+}
+
 .lesson-col-no-text {
   background-color: #534051;
   color: #ffffff;
@@ -2487,16 +2489,16 @@ ul.no-margin,
   padding: 15px;
 }
 
-.section-title.collapsed:after{
+.section-title.collapsed:after, .dashboard-parent-tab.collapsed::after {
   content: '\F105';
   color: #b9b9b9;
 }
 
-.section-title:after {
+.section-title:after, .dashboard-parent-tab::after {
   content: '\F107';
   color: $md-color-pink;
   font: normal normal normal 14px/1 FontAwesome;
-  font-size: 20px;
+  font-size: 16px;
   margin-top: 6px;
   cursor: pointer;
 }
@@ -2554,6 +2556,12 @@ ul.no-margin,
   outline: 0;
   -webkit-box-shadow: none;
   box-shadow: none;
+}
+
+.quill-form-control {
+  .ql-container.ql-snow {
+    height: 250px;
+  }
 }
 
 input:not([type]), input[type="email"], input[type="number"], input[type="password"], input[type="tel"],
@@ -2790,6 +2798,13 @@ div[data-reactroot] {
 .course-filter-container {
   height: auto;
   position: relative;
+
+  ul {
+    list-style-type: none;
+    padding-left: 0;
+    margin-top: 5px;
+    margin-bottom: 0;
+  }
 }
 
 @media only screen and (max-width: 992px) {
@@ -2808,74 +2823,42 @@ div[data-reactroot] {
   height: 200px;
 }
 
-.pagination {
-  display: inline-block;
-  padding-left: 0;
-  border-radius: 4px;
-  margin: 9px 0 2px;
-}
-
-.pagination>li {
-  display: inline;
-}
-
 .pagination>li>a, .pagination>li>span {
-  position: relative;
-  float: left;
-  text-decoration: none;
-  margin: 0 3px;
-  border: 0;
-  display: block;
-  height: 24px;
-  width: 24px;
-  line-height: 24px;
+  width: 36px;
+  height: 36px;
+  line-height: 36px;
   text-align: center;
-  color: $md-color-pink;
+  padding: 0;
+  color: $primary-text-color;
+  font-size: 1.25rem;
+  @media (max-width: $sm-lower) {
+    width: 38px;
+    height: 38px;
+    line-height: 38px;
+    font-size: 16px;
+  }
 }
 
-.pagination>li:first-child>a,
-.pagination>li:last-child>a {
-  &.prev-page-icon, &.next-page-icon {
-    padding-top: 3px;
-    width: 20px;
-    &:hover {
-      background-color: transparent;
-      svg use {
-        fill: $md-color-pink;
-      }
-    }
-  }
+.page-item.active .page-link {
+  z-index: 1;
+  cursor: default;
+  pointer-events: none;
+  background-color: $primary-text-color;
+  color: $white-color;
+  border-color: $primary-text-color;
 }
 
 .pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover, .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover {
   z-index: 3;
   cursor: default;
   pointer-events: none;
-  background-color: $md-color-pink;
+  background-color: $primary-text-color;
   color: $white-color;
-  font-weight: 700;
 }
 
-.pagination > li > a:hover, .pagination > li > span:hover, .pagination > li > a:focus, .pagination > li > span:focus {
-  color: $white-color;
-  background-color: $md-color-pink;
-}
-
-.pagination>.disabled>a, .pagination>.disabled>a:focus, .pagination>.disabled>a:hover, .pagination>.disabled>span, .pagination>.disabled>span:focus, .pagination>.disabled>span:hover {
-  color: $md-color-pink;
-  cursor: not-allowed;
-  background-color: $white-background;
-  border-color: $border-color;
-}
-
-.pagination>li:first-child>a, .pagination>li:first-child>span {
-  margin-left: 0;
-  width: auto;
-}
-
-.pagination>li:last-child>a, .pagination>li:last-child>span {
-  margin-right: 0;
-  width: auto;
+.page-link:hover {
+  background-color: $color-light-color;
+  color: $primary-text-color;
 }
 
 .course-filter-form.inline-form {
@@ -2965,7 +2948,7 @@ button {
   min-width: 25px;
   height: 25px;
   min-height: 25px;
-  margin: 0 15px;
+  margin: 0 15px 0 0;
 }
 
 .seperate-filter-line {
@@ -3359,4 +3342,11 @@ a.clear-filter {
 
 .login-register {
   margin-top: 40px;
+}
+
+.date {
+  color: $gray-pale;
+  font-weight: normal;
+  font-size: 12px;
+  text-transform: lowercase;
 }

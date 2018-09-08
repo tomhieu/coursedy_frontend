@@ -1,4 +1,4 @@
-import React, { Component} from 'react';
+import React, { Component } from 'react';
 import cssModules from 'react-css-modules';
 import styles from '../CourseItem/CourseItem.module.scss';
 import { CourseItem } from '../../index';
@@ -11,39 +11,41 @@ class CourseListInListMode extends Component {
   constructor(props) {
     super(props);
   }
+
   render() {
     const {
-      deleteCourse, 
-      selectCourseHdl, 
-      displayMode, 
-      selectedCourses, 
+      deleteCourse,
+      selectCourseHdl,
+      displayMode,
+      selectedCourses,
       isPublic,
       followedCourses
     } = this.props;
     return (
-        <div className={styles.courseListItemWrapper + " row "  + " " + styles.alt}>
+      <div className={`${styles.courseListItemWrapper} row ` + ` ${styles.alt}`}>
         {
           this.props.courses.map((item, index) => (
-            <div className="col-xs-12 col-sm-12 col-md-12" key={'course-' +index}>
-              <CourseItem item={item} 
+            <div className="col-xs-12 col-sm-12 col-md-12" key={`course-${index}`}>
+              <CourseItem
+                item={item}
                 deleteCourse={deleteCourse}
                 selectCourseHdl={selectCourseHdl}
                 displayMode={displayMode}
-                selectedCourses={selectedCourses} 
+                selectedCourses={selectedCourses}
                 isPublic={isPublic}
                 isFollowed={isPublic ? (followedCourses.indexOf(item.id) > 0) : false}
               />
             </div>
           ))
         }
-        </div>
-    )
+      </div>
+    );
   }
 }
 
 CourseListInListMode.contextTypes = {
   t: React.PropTypes.func.isRequired
-}
+};
 
 CourseListInListMode.propTypes = {
   displayMode: React.PropTypes.string.isRequired,

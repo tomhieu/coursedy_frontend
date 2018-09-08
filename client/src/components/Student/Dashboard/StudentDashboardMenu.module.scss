@@ -4,17 +4,12 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  color: $secondary-color;
-  height: 70px;
-  &.active {
+  color: #444;
+  &.active, &:hover {
     background-color: $color-active-dashboard-menu;
     color: $md-color-pink;
-    border-right: 4px solid $md-color-pink;
-  }
-}
-
-@media (max-width: 830px) {
-  .itemName {
-    display: none;
+    svg g use {
+      fill: $md-color-pink;
+    }
   }
 }

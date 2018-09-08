@@ -1,5 +1,5 @@
-import PaymentHistory from './PaymentHistory'
+import PaymentHistory from './PaymentHistory';
 
 export {
   PaymentHistory
-}
+};
