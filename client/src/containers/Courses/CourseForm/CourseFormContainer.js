@@ -91,7 +91,14 @@ class CourseFormContainer extends Component {
                       acceptCallback={this.cancelPopup.bind(this)}
                     >
                       <div className="d-flex flex-vertical">
-                        <span className="bold">{this.context.t('create_course_sucessfully_message', { title: courseTitle })}</span>
+                        <span>{this.context.t('create_course_sucessfully_message', {
+                          title: <strong>{courseTitle}</strong> ,
+                          notReadyStatus: <strong>{this.context.t('not_publish_course_status')}</strong>
+                        })}</span>
+                        <span className="mt-5">{this.context.t('create_course_sucessfully_message_2', {
+                          readyButton: <strong>{this.context.t('course_publish')}</strong>,
+                          readyStatus: <strong>{this.context.t('publish_course_status')}</strong>
+                        })}</span>
                       </div>
                     </SimpleDialogComponent>
                   </div>
