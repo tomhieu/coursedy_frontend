@@ -22,9 +22,7 @@ import { TutorNavigationTab } from '../../../constants/TutorNavigationTab';
 class CourseFormContainer extends Component {
   constructor(props) {
     super(props);
-    if (this.props.match) {
-      this.courseId = this.props.match.params.id;
-    }
+    this.courseId = props.courseId;
   }
 
   componentWillMount() {
@@ -196,7 +194,9 @@ CourseFormContainer.contextTypes = {
   router: React.PropTypes.object
 };
 
-CourseFormContainer.propTypes = {};
+CourseFormContainer.propTypes = {
+  courseId: React.PropTypes.number.isRequired
+};
 
 const mapStateToProps = (state) => {
   const { courseDetails } = state;
