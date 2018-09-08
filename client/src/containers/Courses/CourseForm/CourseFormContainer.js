@@ -48,6 +48,7 @@ class CourseFormContainer extends Component {
 
   publishCourse() {
     this.props.doPublishCourse(this.courseId);
+    this.cancelPublishCourse();
   }
 
   cancelPublishCourse() {

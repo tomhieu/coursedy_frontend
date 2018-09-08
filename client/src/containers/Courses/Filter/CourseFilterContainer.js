@@ -64,27 +64,26 @@ class CourseFilterContainer extends AbstractFilter {
   }
 
   search(e) {
-    let { key_word } = e;
-    key_word = key_word ? key_word.trim() : '';
-    if (key_word) {
-      this.props.updateFilter({ term: key_word });
-
-      const {
-        selectedMinFee, selectedMaxFee,
-        order_by, display_mode,
-      } = this.props.formfieldValues;
-      this.props.searchCourse(this.buildQuery(
-        this.props.filters,
-        selectedMinFee,
-        selectedMaxFee,
-        order_by,
-        display_mode,
-        key_word
-      )).finally(() => {
-        this.props.reset();
-        this.props.closeSuggestion();
-      });
+    let orderBy, keyWord;
+    if (e.key_word) {
+      keyWord = e.key_word.trim();
+      this.props.updateFilter({ term: keyWord });
+    } else {
+      orderBy = e.target.value;
     }
+
+    const { selectedMinFee, selectedMaxFee, display_mode } = this.props.formfieldValues;
+    this.props.searchCourse(this.buildQuery(
+      this.props.filters,
+      selectedMinFee,
+      selectedMaxFee,
+      orderBy,
+      display_mode,
+      keyWord
+    )).finally(() => {
+      this.props.reset();
+      this.props.closeSuggestion();
+    });
   }
 
   buildQuery(filters, selectedMinFee, selectedMaxFee, order_by, display_mode, key_word) {
@@ -162,7 +161,8 @@ const mapStateToProps = (state) => {
   const lang = state.i18nState.lang;
   const {
     courses = [], selectedCourses = [], displayMode,
-    totalResult = 0, currentPage, perPage, sugestions, filters, showSuggestion, loadingSuggestion
+    totalResult = 0, currentPage, perPage, orderBy,
+    sugestions, filters, showSuggestion, loadingSuggestion
   } = CourseFilter;
   const { courseFilterForm = {} } = form;
   const filterSuggestions = [];
@@ -191,6 +191,7 @@ const mapStateToProps = (state) => {
     totalResult,
     currentPage,
     perPage,
+    orderBy,
     filters,
     showSuggestion,
     suggestions: filterSuggestions,

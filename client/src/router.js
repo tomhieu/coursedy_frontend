@@ -73,11 +73,6 @@ export const routes = [
     exact: true
   },
   {
-    path: '/recover-password',
-    component: Pages.RecoverPasswordPage,
-    exact: true
-  },
-  {
     path: '/confirm_account',
     component: Pages.ConfirmationPage,
     exact: true

@@ -113,8 +113,8 @@ const mapStateToProps = state => ({
   displayMode: state.CourseFilter.displayMode,
   selectedCourses: state.CourseFilter.selectedCourses,
   sortBy: state.CourseFilter.sortBy,
+  orderBy: state.CourseFilter.orderBy,
   sortOrder: state.CourseFilter.sortOrder,
-
 
   followedCourses: state.PublicCourseList.followedCourses
 });
@@ -130,6 +130,7 @@ const buildQuery = (props) => {
     start_time: props.startTime,
     end_time: props.endTime,
     page: props.currentPage,
+    order_by: props.orderBy,
     sort_by: props.sortBy,
     sort_order: props.sortOrder,
     per_page: props.perPage

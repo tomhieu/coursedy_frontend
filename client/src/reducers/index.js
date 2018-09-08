@@ -43,7 +43,6 @@ import DashboardTutorEducationList from './Dashboard/Tutors/Educations/Dashboard
 import DashboardTutorWorkExperienceList from './Dashboard/Tutors/Educations/DashboardTutorWorkExperienceList';
 import DashboardMenu from './Dashboard/Menu/DashboardMenuReducer';
 import forgotPassword from './ForgotPasswordReducer';
-import recoverPassword from './Auth/RecoverPasswordReducer';
 import EnrolledStudentList from './Dashboard/Tutors/CourseList/EnrolledStudent/ListEnrolledStudentReducer';
 import LessonEvaluation from './Lesson/LessonEvaluationReducer';
 import ThirdPartyLoginReducer from './ThirdPartyLoginReducer';
@@ -70,7 +69,6 @@ const rootReducer = combineReducers({
   LoginComponent,
   SignUpComponent,
   forgotPassword,
-  recoverPassword,
 
   // Reducers for course
   CourseListReducer,

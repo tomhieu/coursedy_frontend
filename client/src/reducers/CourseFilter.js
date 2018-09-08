@@ -13,6 +13,7 @@ const CourseFilter = (state = {
   displayMode: 'grid',
   selectedCourses: [],
   sortBy: '',
+  orderBy: 'time_desc',
   sortOrder: 'desc',
   sugestions: [],
   filters: {

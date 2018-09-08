@@ -164,8 +164,6 @@ export const SIGN_OUT = 'SIGN_OUT';
 export const REGISTER = 'REGISTER';
 export const FETCH_TEACHERS = 'FETCH_TEACHERS';
 export const RESET_PASSWORD = 'RESET_PASSWORD';
-export const SET_NEW_PASSWORD = 'SET_NEW_PASSWORD';
-export const CHECK_RECOVER_PASSWORD_TOKEN = 'CHECK_RECOVER_PASSWORD_TOKEN';
 
 /**
  * Define actions course detail
