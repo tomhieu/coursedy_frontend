@@ -697,16 +697,15 @@ export default {
       description: 'Chúng tôi hoan nghênh ý kiến đóng góp hoặc câu hỏi của bạn liên quan đến chính sách bảo mật của chúng tôi. Nếu bạn muốn liên lạc với Coursedy về Chính Sách Bảo Mật này, vui lòng liên hệ với chúng tôi bằng cách gửi email cho chúng tôi tại contact@coursedy.com'
     }
   ],
-  course_name: 'Course name',
+  course_name: 'Name',
   tutor_course_category: 'Course category',
-  number_enrolled_student: 'Number of students',
-  maximum_student: 'Maximum number of students',
-  number_lesson: 'Number of lessons',
+  number_enrolled_student: 'No. students',
+  maximum_student: 'Max. no. students',
+  number_lesson: 'No. lessons',
   tutor_course_fee: 'Tuition fee',
   tutor_course_status: 'Status',
   // student course table headers
   started_date: 'Starting date',
-  number_lesson: 'Number of lessons',
   tutor_course_fee: 'Tuition fee',
   number_of_completed_lesson: 'Number of completed lessons',
   minimum_number_of_completed_lesson: 'Minimum number of completed lessons',

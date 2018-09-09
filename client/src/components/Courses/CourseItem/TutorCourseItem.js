@@ -71,7 +71,7 @@ class TutorCourseItem extends Component {
               <div className="row">
                 <div className="col-xl-9 col-sm-12">
                   <div className="d-flex flex-row align-items-center">
-                    <a onClick={this.showEnrolledStudentList.bind(this, course.id)}>
+                    <a onClick={this.showEnrolledStudentList.bind(this, course.id)} className={styles.courseNavIcon}>
                       {
                         showEnrolledStudentList ? <CheckIcon isActive width={18} height={11} /> : <DetailsIcon />
                       }
@@ -118,10 +118,10 @@ class TutorCourseItem extends Component {
                     <div className={styles.leftSeperateLine} />
                     {
                       course.status === CourseStatus.NOT_STARTED
-                        ? <div className={`${styles.courseStatus} ${styles.notStart}`}>{TT.t(course.status)}</div>
+                        ? <div className={`${styles.courseStatus} ${styles.notStart}`}>{TT.changeLocale(this.props.lang).t(course.status)}</div>
                         : course.status === CourseStatus.STARTED
-                          ? <div className={`${styles.courseStatus} ${styles.started}`}>{TT.t(course.status)}</div>
-                          : <div className={`${styles.courseStatus} ${styles.finished}`}>{TT.t(course.status)}</div>
+                          ? <div className={`${styles.courseStatus} ${styles.started}`}>{TT.changeLocale(this.props.lang).t(course.status)}</div>
+                          : <div className={`${styles.courseStatus} ${styles.finished}`}>{TT.changeLocale(this.props.lang).t(course.status)}</div>
                     }
                   </div>
                 </div>
@@ -134,7 +134,7 @@ class TutorCourseItem extends Component {
                       line={false}
                       customClasses="start-course-btn"
                       callback={this.showStartCourseWarning.bind(this, course)}
-                      title={TT.t('start_course')}
+                      title={TT.changeLocale(this.props.lang).t('start_course')}
                     />
                     <a className={styles.courseActionButton} onClick={this.showDeleteWarning.bind(this, course)}>
                       <TrashIcon width={11} height={21} />
