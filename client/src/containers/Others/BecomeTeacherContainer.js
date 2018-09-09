@@ -4,6 +4,7 @@ import './BeComeTeacher.scss';
 import { Link } from 'react-router-dom';
 import PrimaryButton from '../../components/Core/PrimaryButton/PrimaryButton';
 import PageContainer from '../../utils/PageContainer';
+import {connect} from "react-redux";
 
 class BecomeTeacherContainer extends Component {
   render() {
@@ -12,10 +13,10 @@ class BecomeTeacherContainer extends Component {
         meta={{ title: this.context.t('become_teacher_page') }}
       >
         <div className="become-teacher">
-          <BecomeTeacherBanner />
-          <BecomeTeacherIntroduction />
-          <BecomeTeacherReasons />
-          <BecomeTeacherButton />
+          <BecomeTeacherBanner lang={this.props.lang}/>
+          <BecomeTeacherIntroduction lang={this.props.lang}/>
+          <BecomeTeacherReasons lang={this.props.lang}/>
+          <BecomeTeacherButton lang={this.props.lang}/>
         </div>
       </PageContainer>
     );
@@ -26,21 +27,21 @@ BecomeTeacherContainer.contextTypes = {
   t: React.PropTypes.func.isRequired
 };
 
-const BecomeTeacherBanner = () => {
+const BecomeTeacherBanner = (props) => {
   return (
     <div className="become-teacher-banner">
       <div className="container">
         <div className="become-teacher-banner__text">
-          <h1>{TT.t('become-a-teacher')}</h1>
-          <h4>{TT.t('become-a-teacher-short-description')}</h4>
+          <h1>{TT.changeLocale(props.lang).t('become-a-teacher')}</h1>
+          <h4>{TT.changeLocale(props.lang).t('become-a-teacher-short-description')}</h4>
         </div>
       </div>
     </div>
   );
 };
 
-const BecomeTeacherIntroduction = () => {
-  const beComeTeacherIntro = TT.t('become-a-teacher-introduction');
+const BecomeTeacherIntroduction = (props) => {
+  const beComeTeacherIntro = TT.changeLocale(props.lang).t('become-a-teacher-introduction');
   return (
     <div className="become-teacher-introduction">
       <div className="become-teacher-introduction__picture">
@@ -54,8 +55,8 @@ const BecomeTeacherIntroduction = () => {
   );
 };
 
-const BecomeTeacherReasons = () => {
-  const beComeTeacherReasons = TT.t('become-a-teacher-reasons');
+const BecomeTeacherReasons = (props) => {
+  const beComeTeacherReasons = TT.changeLocale(props.lang).t('become-a-teacher-reasons');
   return (
     <div className="become-teacher-reason">
       <h2>{beComeTeacherReasons.title}</h2>
@@ -76,14 +77,23 @@ const BecomeTeacherReasons = () => {
   );
 };
 
-const BecomeTeacherButton = () => {
+const BecomeTeacherButton = (props) => {
   return (
     <div className="d-flex align-items-center justify-content-center">
       <Link to="/register" className="mt-4 mb-50">
-        <PrimaryButton type="button" isPrimary round line={false} title={TT.t('homepage_search_become_teacher')} />
+        <PrimaryButton type="button" isPrimary round line={false} title={TT.changeLocale(props.lang).t('homepage_search_become_teacher')} />
       </Link>
     </div>
   );
 };
 
-export default BecomeTeacherContainer;
+const mapStateToProps = state => ({
+  lang: state.i18nState.lang
+});
+
+const mapDispatchToProps = dispatch => ({
+});
+
+export default connect(
+  mapStateToProps, mapDispatchToProps
+)(BecomeTeacherContainer);

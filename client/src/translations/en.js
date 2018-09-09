@@ -8,8 +8,8 @@ export default {
   lang: 'English',
   home_page: 'Home',
   find_tutors: 'Find tutors',
-  find_teachers: 'Find teachers',
-  find_courses: 'Find courses',
+  find_teachers: 'Our Teachers',
+  find_courses: 'Courses',
   contact: 'Contact us',
   forum: 'Forum',
   login: 'Sign in',
@@ -751,29 +751,29 @@ export default {
   thank_for_evaluation: 'Thank for rating this lesson.',
   update_image: 'Update image',
   'become-a-teacher': 'Become a teacher',
-  'become-a-teacher-short-description': 'Mang kiến thức của bạn để mở ra các cơ hội nghề nghiệp và các tương lai sáng lạng',
+  'become-a-teacher-short-description': 'Bring career opportunities and bright future with your knowledge',
   'become-a-teacher-introduction': {
-    title: 'Chia sẻ kiến thức của bạn đến với tất cả mọi người',
+    title: 'Share your knowledge with everybody',
     picture: 'https://inspitrip.imgix.net/static/assets/images/img-people.jpg',
-    description: 'Bạn sẽ có cơ hội mang những kiến thức, hiểu biết thú vị của bạn đến với mọi người một cách dễ dàng thông qua mạng internet'
+    description: 'An easy way to share your knowledge, interesting experience with everybody. Let Coursedy help you.'
   },
   'become-a-teacher-reasons': {
-    title: 'Tại sao bạn nên trở thành giáo viên',
+    title: 'Become a teacher, why not?',
     reasons: [
       {
-        title: 'Kiếm thêm thu nhập',
+        title: 'Increase earning',
         picture: 'https://inspitrip.imgix.net/static/assets/images/svg-images/make-money.svg',
-        description: 'Bạn có thể kiếm được một mức lương tuyệt vời, với việc thiết lập học phí khoá học và chọn lịch biểu linh hoạt của riêng bạn.'
+        description: 'Getting a good salary by only setting tuition fee and schedule.'
       },
       {
-        title: 'Dễ dàng mở rộng mạng lưới dạy học',
+        title: 'Expand learning network',
         picture: 'https://inspitrip.imgix.net/static/assets/images/svg-images/make-connection.svg',
-        description: 'Với kiến thức sẵn có của bạn, tất cả bạn cần là tự tin và giảng dạy tốt là bạn có thể tiếp xúc với tất cả mọi người trên thế giới.'
+        description: 'With a litle confidence and good teching skill, your knowledge become a way address you.'
       },
       {
-        title: 'Dạy ở bất kì nơi đâu bạn thích',
+        title: 'Teach wherever you like',
         picture: 'https://inspitrip.imgix.net/static/assets/images/svg-images/make-skills.svg',
-        description: 'Bất kì nơi nào bạn thích, dù thời tiết có ra sao, chỉ cần laptop và kết nối mạng internet.'
+        description: 'With a connected laptop, you can teach wherever you like, don\'t worry weather like.'
       }
     ]
   },
@@ -829,6 +829,6 @@ export default {
   terms_page: 'Terms page',
   about_page: 'About page',
   help_page: 'About page',
-  become_teacher_page: 'Become teacher page',
+  become_teacher_page: 'Become Teacher',
   payment_page: 'Payment guidelines page',
 }
