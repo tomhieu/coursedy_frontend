@@ -25,7 +25,7 @@ class SelectionTeachingDayViewMode extends Component {
             fieldName="course_days"
             typeField="multi_select"
             content={editable ? DateUtils.getDayInWeekOfCourse(courseData.week_day_schedules) : ''}
-            options={DAYS_IN_WEEK.map((day) => {
+            options={DAYS_IN_WEEK(this.props.lang).map((day) => {
               return { id: `${day.name}_${day.id}`, text: day.text };
             })}
             styleCustomField="inline-form-control"

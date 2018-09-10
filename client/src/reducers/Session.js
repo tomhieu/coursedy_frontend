@@ -35,7 +35,7 @@ const session = (state = {
     case asyncActs.FETCH_TUTOR_ACTIVE_COURSES + asyncActs.FULFILLED:
     case asyncActs.FETCH_STUDENT_ACTIVE_COURSES + asyncActs.FULFILLED:
       const activeCourses = action.payload;
-      const currentDay = DAYS_IN_WEEK.find(day => new Date().getDay() === day.id);
+      const currentDay = DAYS_IN_WEEK().find(day => new Date().getDay() === day.id);
       const haveActiveCourseToday = activeCourses.filter(course => course.week_day_schedules.find(day => day.day === currentDay.name) !== undefined).length > 0;
       if (SecurityUtils.isTeacher(state.currentUser)) {
         // const notReadyCourses = activeCourses.filter((course) => {

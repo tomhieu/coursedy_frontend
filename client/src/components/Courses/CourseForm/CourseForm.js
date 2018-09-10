@@ -50,7 +50,8 @@ class CourseForm extends Component {
   render() {
     const {
       handleSubmit, editMode, onDropCoverImage, cover_image, submitting, pristine,
-      valid, courseData, categories, courseSpecializes, selectedDays, isSamePeriod, isFree
+      valid, courseData, categories, courseSpecializes, selectedDays, isSamePeriod, isFree,
+      lang
     } = this.props;
     return (
       <div>
