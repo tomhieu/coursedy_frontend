@@ -85,7 +85,7 @@ export default {
   not_a_number: 'Invalid number',
   period: 'Period',
   period_mandatory: 'Period is required',
-  number_of_students: 'Number of student',
+  number_of_students: 'No. students',
   num_student_mandatory: 'Number of student is required',
   tuition_fee: 'Tuition fee',
   tuition_fee_mandatory: 'Tuition fee is required',
