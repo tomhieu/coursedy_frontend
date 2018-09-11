@@ -48,18 +48,14 @@ class CourseFilterContainer extends AbstractFilter {
       selectedMinFee, selectedMaxFee, order_by, display_mode
     } = this.props.formfieldValues;
     const currentFilters = JSON.parse(JSON.stringify(this.props.filters));
-    let nextFilters = currentFilters;
+    const nextFilters = this.addFilterCriteria(currentFilters, filter, category);
+    this.props.updateFilter(nextFilters);
 
     if (category === MIN_FEE) {
       selectedMinFee = filter;
     } else if (category === MAX_FEE) {
       selectedMaxFee = filter;
-    } else {
-      nextFilters = this.addFilterCriteria(currentFilters, filter, category);
     }
-
-    this.props.updateFilter(nextFilters);
-
     this.props.searchCourse(this.buildQuery(nextFilters, selectedMinFee, selectedMaxFee, order_by, display_mode));
   }
 
@@ -103,12 +99,14 @@ class CourseFilterContainer extends AbstractFilter {
   }
 
   doRemoveFilter(filterId, typeFilter) {
-    const {
-      selectedMinFee, selectedMaxFee, order_by, display_mode
-    } = this.props.formfieldValues;
     const currentFilters = JSON.parse(JSON.stringify(this.props.filters));
     const removedFilters = this.removeFilterCriteria(currentFilters, filterId, typeFilter);
     this.props.updateFilter(removedFilters);
+    let {
+      selectedMinFee, selectedMaxFee, order_by, display_mode
+    } = this.props.formfieldValues;
+    selectedMinFee = typeFilter === MIN_FEE ? '' : selectedMinFee;
+    selectedMaxFee = typeFilter === MAX_FEE ? '' : selectedMaxFee;
     this.props.searchCourse(this.buildQuery(removedFilters, selectedMinFee, selectedMaxFee, order_by, display_mode));
   }
 
@@ -174,11 +172,11 @@ const mapStateToProps = (state) => {
   }));
 
   let initializeFields = courseFilterForm.values ? Object.assign({}, courseFilterForm.values) : {};
-
   if (courseFilterForm.values && filters.resetMinFee) {
-    initializeFields = Object.assign({}, courseFilterForm.values, { selectedMinFee: '' });
-  } else if (courseFilterForm.values && filters.resetMaxFee) {
-    initializeFields = Object.assign({}, courseFilterForm.values, { selectedMaxFee: '' });
+    initializeFields = { ...initializeFields, selectedMinFee: '' };
+  }
+  if (courseFilterForm.values && filters.resetMaxFee) {
+    initializeFields = { ...initializeFields, selectedMaxFee: '' };
   }
 
   return {
@@ -195,7 +193,7 @@ const mapStateToProps = (state) => {
     showSuggestion,
     suggestions: filterSuggestions,
     loadingSuggestion,
-    formfieldValues: courseFilterForm.values ? courseFilterForm.values : {},
+    formfieldValues: initializeFields,
     listSpecializes: getSelectedSpecializesFromCategory(categories, filters.selectedCategories),
     initialValues: initializeFields
   };
@@ -235,6 +233,7 @@ export default connect(
   mapStateToProps, mapDispatchToProps
 )(reduxForm({
   form: 'courseFilterForm',
+  enableReinitialize: true,
   updateUnregisteredFields: true,
   fields: ['key_word', 'selectedMinFee', 'selectedMaxFee', 'sort_by', 'display_mode']
 })(CourseFilterContainer));
