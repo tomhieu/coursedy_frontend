@@ -64,6 +64,7 @@ class AdvanceFilterComponent extends Component {
                           placeholder={this.context.t('min_fee_placeholder')}
                           onChange={e => onSelectFilter(e.target.value, 'resetMinFee')}
                           formControlName="selectedMinFee"
+                          type="number"
                           typeField="custom_input"
                         />
                         <span className="ml-10 mr-10 mt-5">{this.context.t('to')}</span>
@@ -74,6 +75,7 @@ class AdvanceFilterComponent extends Component {
                           placeholder={this.context.t('max_fee_placeholder')}
                           onChange={e => onSelectFilter(e.target.value, 'resetMaxFee')}
                           formControlName="selectedMaxFee"
+                          type="number"
                           typeField="custom_input"
                         />
                       </div>

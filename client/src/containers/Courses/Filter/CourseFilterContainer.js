@@ -4,6 +4,7 @@ import { reduxForm } from 'redux-form';
 import { MAX_FEE, MIN_FEE } from 'utils/CommonConstant';
 import { TT } from 'utils/locale';
 import Network from 'utils/network';
+import { validate } from 'validations/CourseFilterValidator';
 import * as WebConstants from 'constants/WebConstants';
 import * as CourseFilterActions from '../../../actions/CourseFilterActionCreator';
 import * as asyncActions from '../../../actions/AsyncActionCreator';
@@ -235,5 +236,6 @@ export default connect(
   form: 'courseFilterForm',
   enableReinitialize: true,
   updateUnregisteredFields: true,
-  fields: ['key_word', 'selectedMinFee', 'selectedMaxFee', 'sort_by', 'display_mode']
+  fields: ['key_word', 'selectedMinFee', 'selectedMaxFee', 'sort_by', 'display_mode'],
+  validate
 })(CourseFilterContainer));
