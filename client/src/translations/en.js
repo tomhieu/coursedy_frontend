@@ -309,8 +309,8 @@ export default {
   /*
       Public course detail
   */
-  course_list: 'List of courses',
-  course_active_list: 'List of courses',
+  course_list: 'Courses',
+  course_active_list: 'Opening courses',
   course_info: 'Course information',
   course_detail: 'Course detail',
   tutor_info: 'Teacher information',
