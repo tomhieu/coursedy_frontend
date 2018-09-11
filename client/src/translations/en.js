@@ -240,7 +240,7 @@ export default {
   account_tutor_new_password_title: 'New password',
   account_tutor_new_password_again_title: 'Enter new password',
   account_tutor_new_password_btn: 'Change password',
-  drag_and_drop: 'Drag & Drop',
+  drag_and_drop: 'Drop files here',
   speciality: 'Speciality',
   save: 'Save',
   sent: 'Gửi',
