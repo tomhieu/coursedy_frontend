@@ -115,9 +115,9 @@ const mapDispatchToProps = dispatch => ({
     }),
     meta: 'tutorCourseListPlaceholder'
   }),
-  startCourse: courseId => dispatch({
+  startCourse: (courseId, startDate) => dispatch({
     type: UPDATE_COURSE,
-    payload: Network().update(`courses/${courseId}`, { id: courseId, status: CourseStatus.STARTED })
+    payload: Network().update(`courses/${courseId}`, { ...startDate, id: courseId, status: CourseStatus.STARTED})
   }),
   openCourseDetails: (courseId) => {
     globalHistory.push(`/dashboard/courses/detail/${courseId}`);

@@ -15,6 +15,10 @@ import {joinToClassRoom} from '../../../actions/ListTutorCourseActionCreator';
 import {UserRole} from '../../../constants/UserRole';
 
 class NotificationSystemContainer extends Component {
+  constructor() {
+    super();
+    this.newStartCourseHasBeenNotified = [];
+  }
   componentWillReceiveProps(nextProps) {
     const { hasActiveCourseToLearn, isJoiningActiveClass, currentUser } = nextProps.session;
     if (hasActiveCourseToLearn && currentUser && !isJoiningActiveClass) {
@@ -70,7 +74,7 @@ class NotificationSystemContainer extends Component {
 
   notifyNewStartedCourse(notificationOpts) {
     notificationOpts.map((notification, index) => {
-      // this.showNotification(notification, 250 + index * 20);
+      this.showNotification(notification, 250 + index * 20);
     });
   }
 
@@ -90,8 +94,9 @@ class NotificationSystemContainer extends Component {
     const classRoomId = session.teachingCourse !== null ? session.teachingCourse.bigbluebutton_room.slug : '';
 
     // show notification about the new started course
-    if (newStartedCourses.length > 0) {
-      const newStartedCourseNotification = newStartedCourses.map(course => ({
+    const newStartedCourseNeedToNotify = newStartedCourses.filter(nc => this.newStartCourseHasBeenNotified.indexOf(nc.id) < 0);
+    if (newStartedCourseNeedToNotify.length > 0) {
+      const newStartedCourseNotification = newStartedCourseNeedToNotify.map(course => ({
         title: this.context.t('new_started_course_notification_title'),
         message: this.context.t('new_started_course_notification_message', {
           courseName: <Link
@@ -103,9 +108,13 @@ class NotificationSystemContainer extends Component {
           firstDayLearning: <strong>{DateUtils.formatDate(course.start_date)}</strong>
         }),
         position: 'tr',
-        autoDismiss: 0
+        autoDismiss: 0,
+        id: course.id
       }));
+
+      this.newStartCourseHasBeenNotified.push(...newStartedCourses.map(c => c.id));
       this.notifyNewStartedCourse(newStartedCourseNotification);
+
     }
     return (
       <div>
