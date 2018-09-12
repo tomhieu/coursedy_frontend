@@ -49,8 +49,6 @@ class TutorCourseItem extends Component {
   showStartCourseWarning(course) {
     this.setState({
       showPopup: true,
-      popupTitle: this.context.t('alert_popup'),
-      popupMessage: this.context.t('start_course_warning_message', { courseName: course.title }),
       acceptCallback: (startDate) => {
         this.props.startCourse(course.id, startDate);
       }
@@ -165,8 +163,6 @@ class TutorCourseItem extends Component {
                                   acceptCallback={this.state.acceptCallback}
                                   onSubmit={this.startTeachingCourse.bind(this)}
                                   cancelCallback={this.closePopup.bind(this)}
-                                  popupMessage={this.state.popupMessage}
-                                  popupTitle={this.state.popupTitle}
                                   {...this.props}>
         </StartCourseFormContainer>
 

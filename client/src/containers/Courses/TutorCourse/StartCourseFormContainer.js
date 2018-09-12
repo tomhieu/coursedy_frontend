@@ -12,28 +12,31 @@ import DateUtils from '../../../utils/DateUtils';
 class StartCourseFormContainer extends Component {
   render() {
     const {
-      show, popupTitle, handleSubmit, acceptCallback, popupMessage, cancelCallback, course
+      show, popupTitle, handleSubmit, acceptCallback, cancelCallback, course
     } = this.props;
     const formName = "startCourseForm" + course.id;
     return (
       <FormDialogContainer
         show={show}
         formName={formName}
-        title={popupTitle}
+        title={this.context.t('start_course_popup_title')}
         acceptCallback={acceptCallback}
         cancelCallback={cancelCallback}
         {...this.props}
       >
         <form onSubmit={handleSubmit(this.props.onSubmit)} className="inline-form" multiple>
+          <div className={styles.question}>{this.context.t('start_course_warning_message', {
+            courseName: <strong>{course.title}</strong>
+          })}</div>
           <FormField
             fieldId="start_date"
-            fieldLabel={this.context.t("start_date")}
+            fieldLabel={this.context.t("start_course_field_title")}
             isMandatoryField
             formControlName="start_date"
             typeField="datepicker"
             {...this.props}
           />
-          <div>{popupMessage}</div>
+          <div className={styles.footerMessage}>{this.context.t('start_course_warning_message_2')}</div>
         </form>
       </FormDialogContainer>
     );
@@ -46,9 +49,7 @@ StartCourseFormContainer.contextTypes = {
 
 StartCourseFormContainer.propTypes = {
   show: React.PropTypes.bool.isRequired,
-  popupTitle: React.PropTypes.string.isRequired,
   acceptCallback: React.PropTypes.func.isRequired,
-  popupMessage: React.PropTypes.string.isRequired,
   cancelCallback: React.PropTypes.func.isRequired
 };
 
