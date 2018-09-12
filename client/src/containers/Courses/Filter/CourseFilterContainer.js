@@ -67,8 +67,8 @@ class CourseFilterContainer extends AbstractFilter {
       this.props.updateFilter({ term: keyWord });
     } else {
       orderBy = e.target.value;
+      this.props.updateFilter({ orderBy });
     }
-
     const { selectedMinFee, selectedMaxFee, display_mode } = this.props.formfieldValues;
     this.props.searchCourse(this.buildQuery(
       this.props.filters,
