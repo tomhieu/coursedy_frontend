@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { MAX_FEE, MIN_FEE } from '../../utils/CommonConstant';
 
 export default class AbstractFilter extends Component {
   /*
@@ -25,8 +26,12 @@ export default class AbstractFilter extends Component {
       const selectedFilters = JSON.parse(JSON.stringify(currentFilters[filterType]));
       selectedFilters.push(filterValue);
       currentFilters[filterType] = selectedFilters;
-    } else {
+    } else if (filterType === 'term') {
       currentFilters.term = filterValue;
+    } else if (filterType === MIN_FEE) {
+      currentFilters[filterType] = false;
+    } else if (filterType === MAX_FEE) {
+      currentFilters[filterType] = false;
     }
     return currentFilters;
   }

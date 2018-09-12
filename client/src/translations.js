@@ -841,6 +841,7 @@ export const translations = {
     help_page: 'Trang câu hỏi có thể bạn có',
     become_teacher_page: 'Trang trở thành giáo viên',
     payment_page: 'Trang hướng dẫn thanh ',
+    fee_must_be_a_number: 'Vui lòng nhập vào số',
   },
   en: {
     ...payment_translation.en,
@@ -1467,5 +1468,6 @@ export const translations = {
     help_page: 'About page',
     become_teacher_page: 'Become teacher page',
     payment_page: 'Payment guidelines page',
+    fee_must_be_a_number: 'Must be a number',
   }
 };
