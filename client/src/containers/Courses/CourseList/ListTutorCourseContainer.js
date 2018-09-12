@@ -95,7 +95,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = dispatch => ({
   fetchListTutorCourse: () => dispatch({
     type: FETCH_TUTOR_COURSES,
-    payload: Network().get('users/courses', { per_page: 100 }),
+    payload: Network().get('users/courses', { per_page: 100, status: CourseStatus.NOT_STARTED }),
     meta: 'tutorCourseListPlaceholder'
   }),
   fetchListTutorActiveCourse: () => dispatch({
