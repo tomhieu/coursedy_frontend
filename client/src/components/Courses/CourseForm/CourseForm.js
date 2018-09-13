@@ -133,11 +133,23 @@ class CourseForm extends Component {
           </div>
 
           <div className="row">
-            <div className="col-md-12 col-sm-12">
+            <div className="col-md-6 col-sm-6">
               <CourseFeeComponent
                 isFree={isFree}
                 editMode={editMode}
                 courseData={courseData}
+                {...this.props}
+              />
+            </div>
+            <div className="col-md-6 col-sm-6">
+              <CourseFormItem
+                editMode={editMode}
+                fieldId="number_of_students"
+                fieldLabel={this.context.t('number_of_students')}
+                isMandatory
+                fieldName="number_of_students"
+                typeField="custom_input"
+                content={editMode ? courseData.number_of_students : ''}
                 {...this.props}
               />
             </div>

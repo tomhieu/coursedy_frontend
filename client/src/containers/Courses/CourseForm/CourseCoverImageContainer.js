@@ -42,7 +42,7 @@ CourseCoverImageContainer.propTypes = {
   onSelectedNewCoverImage: React.PropTypes.func,
   showPopupChangeCoverImage: React.PropTypes.bool.isRequired,
   selectedNewCoverImage: React.PropTypes.bool,
-  courseCoverImage: React.PropTypes.string.isRequired,
+  courseCoverImage: React.PropTypes.string,
   uploadCourseCoverImage: React.PropTypes.func.isRequired,
   uploadImageLabel: React.PropTypes.string
 };
