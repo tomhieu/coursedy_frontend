@@ -12,7 +12,7 @@ class CoursedyUploadImage extends Component {
       fieldId, previewImage, previewImageClasses = 'media-object full-width',
       editImageLabel = this.context.t('update_image'), uploadCourseCoverImage,
       openPopupToSelectImage, closePopupToSelectImage, showPopupChangeImage, isSelectedNewImage,
-      onSelectedNewImage, onDeselectNewImage, scaleWidth, scaleHeight, isUserAvatar = false
+      onSelectedNewImage, onDeselectNewImage, scaleWidth, scaleHeight, isUserAvatar = false, isEditable = true
     } = this.props;
     const containerClasses = [styles.uploadImageContainer];
     const baseLineBtnClasses = [styles.baseLineBtn];
@@ -27,12 +27,15 @@ class CoursedyUploadImage extends Component {
             ? (
               <a className={styles.previewImageContainer}>
                 <img className={previewImageClasses} src={previewImage} alt={editImageLabel} />
-                <span className={styles.editAvatarBtn} onClick={openPopupToSelectImage.bind(this)}>
-                  <span className={baseLineBtnClasses.join(' ')}>
-                    <i className="fa fa-camera" />
-                    <span className="ml-5">{editImageLabel}</span>
-                  </span>
-                </span>
+                {
+                  isEditable ? <span className={styles.editAvatarBtn} onClick={openPopupToSelectImage.bind(this)}>
+                    <span className={baseLineBtnClasses.join(' ')}>
+                      <i className="fa fa-camera" />
+                      <span className="ml-5">{editImageLabel}</span>
+                    </span>
+                  </span> : null
+                }
+
               </a>
             )
             : (
@@ -90,7 +93,8 @@ CoursedyUploadImage.propTypes = {
   scaleHeight: React.PropTypes.number,
   editImageLabel: React.PropTypes.string,
   fieldId: React.PropTypes.string,
-  isUserAvatar: React.PropTypes.bool
+  isUserAvatar: React.PropTypes.bool,
+  isEditable: React.PropTypes.bool
 };
 
 export default cssModules(CoursedyUploadImage, styles);

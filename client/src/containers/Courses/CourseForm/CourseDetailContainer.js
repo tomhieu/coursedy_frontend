@@ -113,7 +113,7 @@ class CourseDetailContainer extends Component {
   }
 
   render() {
-    const { editMode, courseData } = this.props;
+    const { editMode, courseData, canEditable } = this.props;
     return (
       <CourseForm
         onSubmit={this.createCourse.bind(this)}
@@ -126,6 +126,7 @@ class CourseDetailContainer extends Component {
         editMode={editMode}
         courseData={courseData}
         courseId={this.courseId}
+        canEditable={canEditable}
         {...this.props}
       />
     );

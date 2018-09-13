@@ -6,7 +6,7 @@ import CourseFormItem from '../CourseFormItem';
 class CourseFeeViewMode extends Component {
   render() {
     const {
-      editMode, tuitionFee, currency, onEditFormField, concurrency
+      editMode, tuitionFee, currency, canEditable
     } = this.props;
     return (
       <div className="row">
@@ -21,6 +21,7 @@ class CourseFeeViewMode extends Component {
             typeField="currency_input"
             content={editMode && tuitionFee ? ObjectUtils.currencyFormat(tuitionFee, currency) : ''}
             styleCustomField="inline-form-control"
+            canEditable={canEditable}
             {...this.props}
           />
         </div>
@@ -38,7 +39,8 @@ CourseFeeViewMode.propType = {
   tuitionFee: React.PropTypes.number.isRequired,
   currency: React.PropTypes.string.isRequired,
   onEditFormField: React.PropTypes.func.isRequired,
-  concurrency: React.PropTypes.array
+  concurrency: React.PropTypes.array,
+  canEditable: React.PropTypes.bool
 };
 
 export default CourseFeeViewMode;

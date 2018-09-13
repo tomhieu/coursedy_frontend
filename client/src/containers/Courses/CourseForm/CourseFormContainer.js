@@ -18,6 +18,7 @@ import LoadingMask from '../../../components/LoadingMask/LoadingMask';
 import FlatButton from '../../../components/Core/FlatButton/FlatButton';
 import * as dashboardActions from '../../../actions/DashboardMenuActionCreator';
 import { TutorNavigationTab } from '../../../constants/TutorNavigationTab';
+import {CourseStatus} from '../../../constants/CourseStatus';
 
 class CourseFormContainer extends Component {
   constructor(props) {
@@ -64,7 +65,7 @@ class CourseFormContainer extends Component {
 
   render() {
     const {
-      editMode, listSection, courseTitle, createCourseSucess, publishCourse, isFetching, bbbRoomSlug
+      editMode, listSection, courseTitle, createCourseSucess, publishCourse, isFetching, canEditable
     } = this.props;
 
     return (
@@ -128,15 +129,18 @@ class CourseFormContainer extends Component {
                         </FlatButton>
                       </div>
                       <div className="col-md-4 col-sm-4">
-                        <FlatButton
-                          label={this.context.t('course_publish')}
-                          secondary
-                          onClick={this.validateBeforePublishCourse.bind(this)}>
-                          <svg className="material-icon" width="24" height="24" viewBox="0 0 24 24">
-                            <path d="M0 0h24v24H0z" fill="none" />
-                            <path d="M5 4v2h14V4H5zm0 10h4v6h6v-6h4l-7-7-7 7z" />
-                          </svg>
-                        </FlatButton>
+                        {
+                          canEditable ?
+                            <FlatButton
+                              label={this.context.t('course_publish')}
+                              secondary
+                              onClick={this.validateBeforePublishCourse.bind(this)}>
+                              <svg className="material-icon" width="24" height="24" viewBox="0 0 24 24">
+                                <path d="M0 0h24v24H0z" fill="none" />
+                                <path d="M5 4v2h14V4H5zm0 10h4v6h6v-6h4l-7-7-7 7z" />
+                              </svg>
+                            </FlatButton> : null
+                        }
                       </div>
                     </div>
                   </div>
@@ -208,7 +212,8 @@ const mapStateToProps = (state) => {
   const {
     listSection, editMode, activatedField, createCourseSucess, courseData = {}, publishCourse, isFetching
   } = courseDetails;
-  const { cover_image, title, bigbluebutton_room } = courseData;
+  const { cover_image, title, bigbluebutton_room, status } = courseData;
+  const canEditable = status === CourseStatus.NOT_STARTED;
   return {
     listSection,
     editMode,
@@ -218,7 +223,8 @@ const mapStateToProps = (state) => {
     publishCourse,
     courseTitle: title,
     isFetching,
-    bbbRoomSlug: bigbluebutton_room ? bigbluebutton_room.slug : undefined
+    bbbRoomSlug: bigbluebutton_room ? bigbluebutton_room.slug : undefined,
+    canEditable
   };
 };
 

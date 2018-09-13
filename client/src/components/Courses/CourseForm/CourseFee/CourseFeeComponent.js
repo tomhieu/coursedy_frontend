@@ -7,7 +7,7 @@ import CourseFeeEditMode from './CourseFeeEditMode';
 class CourseFeeComponent extends Component {
   render() {
     const {
-      courseData, editCourseFee, onEditCourseFee, editMode
+      courseData, editCourseFee, onEditCourseFee, editMode, canEditable
     } = this.props;
     const concurrency = CURRENCIES.map((type) => {
       return { text: type, id: type };
@@ -27,6 +27,7 @@ class CourseFeeComponent extends Component {
         editMode={editMode}
         concurrency={concurrency}
         onActivatedField={onEditCourseFee}
+        canEditable={canEditable}
       />
     );
   }
@@ -40,7 +41,8 @@ CourseFeeComponent.propTypes = {
   editCourseFee: React.PropTypes.bool,
   courseData: React.PropTypes.object,
   onEditCourseFee: React.PropTypes.func,
-  editMode: React.PropTypes.bool.isRequired
+  editMode: React.PropTypes.bool.isRequired,
+  canEditable: React.PropTypes.bool
 };
 
 export default CourseFeeComponent;
