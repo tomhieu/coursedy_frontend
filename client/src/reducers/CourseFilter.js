@@ -12,7 +12,7 @@ const initialState = {
   displayMode: 'grid',
   selectedCourses: [],
   sortBy: '',
-  orderBy: 'time_desc',
+  orderBy: 'time_asc',
   sortOrder: 'desc',
   sugestions: [],
   filters: {

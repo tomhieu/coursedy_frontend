@@ -44,10 +44,10 @@ class BaseFilter extends Component {
     } = filters;
 
     const orderList = [
-      { id: 'time_desc', text: this.context.t('order_by_time') },
-      { id: 'popularity', text: this.context.t('order_by_view') },
-      { id: 'price_desc', text: this.context.t('order_by_price_desc') },
-      { id: 'price_asc', text: this.context.t('order_by_price_asc') }
+      { id: 'time_asc', text: this.context.t('order_by_time_recent') },
+      { id: 'popularity', text: this.context.t('order_by_view_recent') },
+      { id: 'price_asc', text: this.context.t('order_by_price_asc') },
+      { id: 'price_desc', text: this.context.t('order_by_price_desc') }
     ];
 
     const gridIconButtonClasses = ['material-icon'];
