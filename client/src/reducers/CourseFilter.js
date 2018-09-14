@@ -92,19 +92,24 @@ const CourseFilter = (state = initialState, action) => {
         showSuggestion: false,
         loadingSuggestion: false
       };
-    case asyncActs.UPDATE_FILTER_CRITERIA:
+    case asyncActs.UPDATE_FILTER_CRITERIA: {
       const rawFilters = JSON.parse(JSON.stringify(action.data));
+      const {
+        selectedWeekDays, selectedLocations,
+        selectedCategories, selectedSpecializes
+      } = state.filters;
       const newFilters = Object.assign({}, rawFilters, {
-        selectedWeekDays: rawFilters.selectedWeekDays || [],
-        selectedLocations: rawFilters.selectedLocations || [],
-        selectedCategories: rawFilters.selectedCategories || [],
-        selectedSpecializes: rawFilters.selectedSpecializes || []
+        selectedWeekDays: rawFilters.selectedWeekDays || selectedWeekDays,
+        selectedLocations: rawFilters.selectedLocations || selectedLocations,
+        selectedCategories: rawFilters.selectedCategories || selectedCategories,
+        selectedSpecializes: rawFilters.selectedSpecializes || selectedSpecializes
       });
       return {
         ...state,
         ...{ filters: newFilters },
         orderBy: rawFilters.orderBy || state.orderBy
-      }
+      };
+    }
     case RESET_COURSE_FILTER:
       return Object.assign({}, state, {
         filters: initialState.filters,
