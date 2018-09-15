@@ -4,7 +4,7 @@ import { Component } from 'react';
 class TutorDetail extends Component {
   render() {
     const { tutor } = this.props;
-    const { categories = [], place_of_work, title, description } = tutor;
+    const { categories = [], place_of_work, title, description, facebook, linkedin, google_plus, tweeter } = tutor;
 
     return (
       <div className="row user-detail">
@@ -53,6 +53,50 @@ class TutorDetail extends Component {
                   return c.name;
                 }).join(', ')
               }
+            </div>
+          </div>
+
+          <hr />
+
+          <div className="row">
+            <div className="col-sm-4">
+              <label className="control-label">{this.context.t('account_facebook_title')}</label>
+            </div>
+            <div className="col-sm-8">
+              <span dangerouslySetInnerHTML={{ __html: facebook }} />
+            </div>
+          </div>
+
+          <hr />
+
+          <div className="row">
+            <div className="col-sm-4">
+              <label className="control-label">{this.context.t('account_linkin_title')}</label>
+            </div>
+            <div className="col-sm-8">
+              <span dangerouslySetInnerHTML={{ __html: linkedin }} />
+            </div>
+          </div>
+
+          <hr />
+
+          <div className="row">
+            <div className="col-sm-4">
+              <label className="control-label">{this.context.t('account_google_plus_title')}</label>
+            </div>
+            <div className="col-sm-8">
+              <span dangerouslySetInnerHTML={{ __html: google_plus }} />
+            </div>
+          </div>
+
+          <hr />
+
+          <div className="row">
+            <div className="col-sm-4">
+              <label className="control-label">{this.context.t('account_tweater_title')}</label>
+            </div>
+            <div className="col-sm-8">
+              <span dangerouslySetInnerHTML={{ __html: tweeter }} />
             </div>
           </div>
         </div>

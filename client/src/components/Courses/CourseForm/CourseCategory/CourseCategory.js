@@ -12,12 +12,12 @@ class CourseCategory extends Component {
 
   render() {
     const {
-      editCourseCategory, pristine, submitting, onEditCourseCategory
+      editCourseCategory, pristine, submitting, onEditCourseCategory, canEditable
     } = this.props;
     if (!editCourseCategory) {
       return (
         <div>
-          <CourseCateogryViewMode {...this.props} onActivatedField={onEditCourseCategory} />
+          <CourseCateogryViewMode {...this.props} canEditable={canEditable} onActivatedField={onEditCourseCategory} />
         </div>
       );
     }
@@ -59,6 +59,7 @@ CourseCategory.propType = {
   category: React.PropTypes.object,
   course_specialize: React.PropTypes.object,
   onEditCourseCategory: React.PropTypes.func,
+  canEditable: React.PropTypes.bool
 };
 
 export default CourseCategory;

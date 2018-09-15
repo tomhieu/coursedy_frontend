@@ -1,11 +1,11 @@
 /*
   Translations for Vietnamese
  */
-import { payment_translation } from './payment'
+import { payment_translation } from './payment';
+
 
 export default {
   ...payment_translation.vn,
-  lang: 'Tiếng Việt',
   home_page: 'Trang Chủ',
   find_tutors: 'Tìm Gia Sư',
   find_teachers: 'Tìm Giáo Viên',
@@ -16,8 +16,8 @@ export default {
   signout: 'Đăng xuất',
   dashboard: 'Trang cá nhân',
   with_your_account: 'với tài khoản',
-  login_with_facebook: 'Đăng nhập bằng Facebook',
-  login_with_google: 'Đăng nhập bằng Google',
+  login_with_facebook: 'Đăng nhập bằng facebook',
+  login_with_google: 'Đăng nhập bằng google',
   register: 'Đăng ký',
   register_now: 'Đăng Ký',
   new_account: 'tài khoản mới',
@@ -38,6 +38,10 @@ export default {
   role_required: 'Vui lòng chọn tài khoản người dùng',
   email_required: 'Vui lòng nhập địa chỉ e-mail',
   first_name_required: 'Vui lòng nhập tên',
+  gender_required: 'Vui lòng chọn giới tính',
+  country_required: 'Vui lòng chọn quốc gia',
+  address_required: 'Vui lòng nhập địa chỉ',
+  date_of_birth_required: 'Vui lòng chọn ngày sinh',
   name_required: 'Vui lòng nhập tên',
   current_password_required: 'Vui lòng nhập mật khẩu hiện tại',
   confirm_password: 'Xác nhận mật khẩu',
@@ -71,15 +75,15 @@ export default {
   change_email_success: 'Yêu cầu đổi email đã được gửi',
   update_email_successfully: 'Bạn vừa yêu cầu thay đổi email. Hệ thống đã gửi 1 email đến địa chỉ email mới của bạn. Vui lòng kiểm tra email và xác nhận địa chỉ email mới',
   please_check_your_email: 'Vui lòng kiểm tra email của bạn',
-  check_email_description: 'Một email đã được gởi về địa chỉ {email} kèm hướng dẫn thiết lập mật khẩu. {breakNewLine} Vui lòng kiểm tra email và thực hiện theo hướng dẫn. Lưu ý kiểm tra mục spam nếu không nhận được email.',
-  /*
-   * Course Creation/Edit Page
-   */
+  check_email_description: 'Một email đã được gởi về địa chỉ {email} kèm hướng dẫn thiết lập mật khẩu. {breakNewLine} Vui lòng kiểm tra email và thực hiện theo hướng dẫn. Lưu ý kiểm tra mục spam nếu không nhận được email.', /*
+     * Course Creation/Edit Page
+     */
   course_title: 'Tên khoá học',
   course_title_required: 'Vui lòng nhập tên khoá học',
   section_title_required: 'Vui lòng nhập Tuần học',
   sample_course_title: 'Luyện thi TOEIC cấp tốc',
   start_date: 'Ngày bắt đầu dự kiến',
+  start_date_required: 'Vui lòng nhập ngày bắt đầu',
   invalid_start_date: 'Ngày nhập  phải theo định dạng dd/MM/yyyy',
   start_date_less_now: 'Ngày bắt đầu dự kiến phải lớn hơn hiện tại',
   not_a_number: 'Vui lòng chỉ nhập số',
@@ -89,6 +93,7 @@ export default {
   num_student_mandatory: 'Vui lòng nhập số học sinh',
   tuition_fee: 'Học phí',
   tuition_fee_mandatory: 'Vui lòng nhập học phí',
+  tuition_fee_too_large: 'Học phí quá lớn',
   free: 'Miễn phí',
   course_free: 'Khoá học miễn phí',
   course_not_free: 'Khoá học có phí',
@@ -131,6 +136,9 @@ export default {
   month: 'Tháng',
   create_course_sucessfully: 'Tạo Khoá Học Thành Công',
   create_course_sucessfully_message: 'Khoá Học {title} vừa được tạo thành công. Bây giờ bạn có thể thêm thông tin về các buổi học và đăng khoá học.',
+  create_course_sucessfully_message_2: 'Bạn hãy thêm nội dung cho từng bài học và sau đó nhấn nut "{readyButton}" để chuyển khoá học sang trang thái "{readyStatus}".',
+  not_publish_course_status: 'chưa sẵn sàng',
+  publish_course_status: 'sẵn sàng',
   course_publish: 'Đăng lên',
   join_class: 'Vào lớp',
   popup_warning_publish_course_title: 'Đăng Khoá Học',
@@ -155,10 +163,9 @@ export default {
   warning_delete_lesson_title: 'Xoá bài học',
   warning_delete_lesson_message: 'Bạn có chắc chắn muốn xoá bài học ‘{lessonName}’ không? {seperator} Một khi bài học bị xoá, tất cả tài liệu đính kèm theo bài học cũng sẽ bị xoá.',
   warning_delete_lesson_document_title: 'Xoá tài liệu',
-  warning_delete_lesson_document_message: 'Bạn có chắc chắn muốn xoá tài liệu ‘{documentName}’ không?',
-  /*
-   * Lesson Page
-   */
+  warning_delete_lesson_document_message: 'Bạn có chắc chắn muốn xoá tài liệu ‘{documentName}’ không?', /*
+     * Lesson Page
+     */
   lesson_add_more: 'Thêm bài học',
   lesson_name: 'Tên bài học',
   lesson_desc: 'Tóm tắt nội dung',
@@ -173,10 +180,9 @@ export default {
   lesson_required: 'Vui lòng nhập tên bài học',
   lesson_priode_required: 'Vui lòng nhập thời lượng bài học',
   lesson_desc_required: 'Vui lòng nhập mô tả bài học',
-  save_course: 'Tạo khoá học',
-  /*
-  * Tutor education form
-  */
+  save_course: 'Tạo khoá học', /*
+    * Tutor education form
+    */
   tutor_education_title_required: 'Vui lòng nhập ngành học',
   tutor_education_graduated_from_required: 'Vui lòng trường học',
   tutor_education_start_date_required: 'Vui lòng nhập ngày bắt đầu',
@@ -229,6 +235,10 @@ export default {
   'account.tutot.edu.degree.field_label': 'Upload chứng chỉ/bằng Cấp',
   'account.tutot.edu.degree.no_degrees': 'Không có bằng cấp / giấy chứng nhận',
   account_tutor_skill_title: 'Kỹ Năng',
+  account_facebook_title: 'Tài khoản Facebook',
+  account_linkin_title: 'Tài khoản Linkin',
+  account_google_plus_title: 'Tài khoản Google+',
+  account_tweater_title: 'Tài khoản Tweater',
   account_tutor_certificate_title: 'Chứng chỉ',
   fields_of_teaching: 'Lĩnh vực giảng dạy',
   area_of_teaching: 'Khu vực giảng dạy',
@@ -265,10 +275,9 @@ export default {
   section_title: 'Mô tả',
   section_name: 'Tên',
   course_specialize: 'Môn học',
-  level: 'Cấp độ',
-  /*
-   * Filter Course Page
-   */
+  level: 'Cấp độ', /*
+     * Filter Course Page
+     */
   filter: 'Tìm kiếm',
   filter_more: 'Nâng cao',
   location: 'Khu vực',
@@ -293,8 +302,12 @@ export default {
   total_result_teacher: '{total} giáo viên',
   save_favorite: 'Lưu vào khóa học ưu thích',
   order_list: 'Sắp xếp:',
+  order_by_time_recent: 'Mới nhất',
   order_by_time: 'Mới nhất',
+  order_by_price_desc: 'Học phí tăng dần',
+  order_by_price_asc: 'Học phí giảm dần',
   order_by_view: 'Xem nhiều nhất',
+  order_by_view_recent: 'Xem nhiều nhất',
   order_by_register: 'Đăng ký nhiều nhất',
   display_mode: 'Hiển thị:',
   display_mode_list: 'Danh sách',
@@ -305,10 +318,9 @@ export default {
   max_fee_chip: 'Đến {max_fee}',
   general_search_placeholder: 'Tìm kiếm theo lĩnh vữc, loại khoá học, tên khoá học ... ',
   teacher_info_suggestion: 'Giáo viên: {teacher}',
-  not_found_suggestion: 'Không tìm thấy kết quả',
-  /*
-      Public course detail
-  */
+  not_found_suggestion: 'Không tìm thấy kết quả', /*
+        Public course detail
+    */
   course_list: 'Khóa học đang mở',
   course_active_list: 'Khóa học đang dạy',
   course_info: 'Thông tin khóa học',
@@ -351,20 +363,17 @@ export default {
   lesson_description_expand: 'Mô tả',
   section_lesson_count: '{lessonCount} bài học',
   lesson_period: '{lessonPeriod} phút',
-  section_period: 'Thời lượng {sectionPeriod} phút',
-  /* search teachers page */
+  section_period: 'Thời lượng {sectionPeriod} phút', /* search teachers page */
   search_teachers_keyword: 'Tìm kiếm theo tên',
   search_teachers_field_label: 'Lĩnh Vực:',
-  teacher_list_more: 'Xem thêm',
-  /* danh sach ngay trong tuan */
+  teacher_list_more: 'Xem thêm', /* danh sach ngay trong tuan */
   monday: 'Thứ hai',
   tuesday: 'Thứ ba',
   wednesday: 'Thứ tư',
   thursday: 'Thứ năm',
   friday: 'Thứ sáu',
   saturday: 'Thứ bảy',
-  sunday: 'Chủ nhật',
-  /* payment */
+  sunday: 'Chủ nhật', /* payment */
   total_payment: 'Tổng Cộng',
   payment_methods: 'Phương Thức Thanh Toán',
   bank_name: 'Chủ Tài Khoản',
@@ -372,8 +381,7 @@ export default {
   transaction_office: 'Phòng Giao Dịch',
   select_domestic_bank: 'Lựa chọn ngân hàng',
   make_a_payment: 'Nạp tiền',
-  fetch_payment_history_fail: 'Lấy lịch sử thanh toán thất bại',
-  /* home page */
+  fetch_payment_history_fail: 'Lấy lịch sử thanh toán thất bại', /* home page */
   product_title: 'COURSEDY',
   product_tag: 'Tìm kiếm khoá học yêu thích ngay bây giờ',
   product_description: 'Là trung tâm quy tụ giáo viên nhiệt huyết, yêu nghề, giỏi chuyên môn, già dặn kinh nghiệm từ khắp mọi nơi. Bên cạnh đó hệ thống còn tích hợp các tiện ích đáp ứng nhu cầu dạy trực tuyến của giảng viên.',
@@ -414,17 +422,17 @@ export default {
   new_courses: 'Khoá học mới',
   how_study: 'Học như thế nào?',
   student_top_comments: 'Nhận xét học sinh',
-  top_teacher_month: "<span class='title-highlight'>TOP</span> GIÁO VIÊN <span class='title-highlight'>NỔI TIẾNG</span>",
+  top_teacher_month: '<span class=\'title-highlight\'>TOP</span> GIÁO VIÊN <span class=\'title-highlight\'>NỔI TIẾNG</span>',
   top_teacher_pre: 'Với hơn',
   top_teacher_post: 'Giáo viên giỏi',
   course_num_pre: 'Và',
   course_num_post: 'Khoá học đang được dạy',
   you_are_teacher: 'Bạn là giáo viên?',
-  introduction_interactive_title: "<span class='introduction-text-decoration'> Tương</span> Tác Trực Tiếp Với Giáo Viên",
+  introduction_interactive_title: '<span class=\'introduction-text-decoration\'> Tương</span> Tác Trực Tiếp Với Giáo Viên',
   introduction_interactive_description: 'Listen to our teachers spexeches and see our video testimonials before you take any decisions',
-  introduction_save_cost_title: "<span class='introduction-text-decoration'>Tiết K</span>iệm Chi Phí",
+  introduction_save_cost_title: '<span class=\'introduction-text-decoration\'>Tiết K</span>iệm Chi Phí',
   introduction_save_cost_description: 'We have rated teachers for safety and convenience as we know how important this is for you',
-  introduction_save_time_title: "<span class='introduction-text-decoration'>Tiết K</span>iệm Thời Gian",
+  introduction_save_time_title: '<span class=\'introduction-text-decoration\'>Tiết K</span>iệm Thời Gian',
   user_action_save: 'Lưu',
   user_action_follow: 'Theo dõi',
   introduction_save_time_description: 'No more emails, Calls or messaging friends for recommendations - Get acces to real reviews in seconds',
@@ -437,34 +445,32 @@ export default {
   homepage_search_introduce_enroll_content: 'Học trực tuyến, tương tác trực tiếp với giáo viên',
   homepage_search_introduce_distance: 'Học mọi nơi',
   homepage_search_introduce_distance_content: 'Không cần phải đến lớp, học bất cứ nơi đâu, chỉ với máy tính kết nối ',
-  homepage_search_become_teacher: 'Trở thành giáo viên',
-  // how to lear a course
+  homepage_search_become_teacher: 'Trở thành giáo viên', // how to lear a course
   find_a_course_title: 'Tìm khoá học',
   find_a_course_content: 'Tìm kiếm khoá học yêu thích và tìm hiểu thông tin về giáo viên trên Coursedy',
   select_a_course_title: 'Lựa chọn khoá học',
   select_a_course_content: 'Sau khi tìm thấy khoá học mong muốn, đọc kỹ thông tin chi tiết của khoá học để đảm bảo khoá học đáp ứng yêu cầu của bạn.',
   apply_a_course_title: 'Đăng ký học',
   apply_a_course_content: 'Sau khi bạn đọc và hiểu rõ khoá học. Đăng ký tham gia khoá học với Coursedy.',
-  receive_course_info_title: 'Nhận thông báo khoá học',
+  receive_course_info_title: 'Nhân thông báo khoá học',
   receive_course_info_content: 'Coursedy sẽ gửi thông tin đăng ký của bạn đến giáo viên. Sau khi đăng ký, bạn sẽ nhận được mọi thông tin liên quan đến khoá học.',
   get_course_timeline_title: 'Nhận thông báo lịch học',
   get_course_timeline_content: 'Sau khi khoá học đã đủ học viên tham gia, giáo viên sẽ bắt đầu dạy khoá học. Chúng tôi sẽ gửi thông báo lịch học để bạn sắp xếp thời gian và đọc trước tài liệu.',
   start_learning_course_title: 'Tham gia học',
-  start_learning_course_content: 'Bây giờ bạn sẽ học trên hệ thống Coursedy. Khi đến giờ học, hệ thông sẽ gửi thông báo để bạn vào lớp đúng giờ.',
-  // student comment
+  start_learning_course_content: 'Bây giờ bạn sẽ học trên hệ thống Coursedy. Khi đến giờ học, hệ thông sẽ gửi thông báo để bạn vào lớp đúng giờ.', // student comment
   first_student_comment: 'Công việc tại công ty bận rộn, tôi muốn luyện tiếng anh nhưng không có thời gian học tại trung tâm, được sự giới thiệu của bạn bè. Tôi thử tham gia một khoá học TOIEC tại Coursedy. Tôi thực sự hài lòng với chất lượng khoá học trên Coursedy. Tôi có thể học tài nhà vào buổi tối sau khi đi làm về, có thể tự tin giao tiếp hoặc hỏi những gì minh không hiểu với giáo viên.',
   second_student_comment: 'Minh tham gia một khoá học trên Coursedy. Mình ở quê không có điều kiện để lên thành phố học luyện thi đại học. Nhờ sự giới thiệu của người thân mình đã tìm hiểu và tham gia học ôn thi tiếng anh tại Coursedy. Nhờ sư giúp đỡ thầy cô mình đã đậu được trường đại học mình mong muốn. Minh muốn giới thiệu các bạn hãy tham gia học trên Coursedy.',
   office_staff: 'Nhân viên văn phòng',
-  bk_student: 'Sinh viên Bách Khoa TpHCM năm nhất',
-  // become our teacher section
+  bk_student: 'Sinh viên Bách Khoa TpHCM năm nhất', // become our teacher
+                                                    // section
   your_are_teacher_section_title: 'Bạn Là Giáo Viên?',
   your_are_teacher_section_sub_title: 'Và đang tìm kiếm một nơi để dạy online tốt. Coursedy chính là nơi lý tưởng để bạn thực hiện điều đó.',
   section_sub_title_2: 'Hãy {link_register} làm giáo viên tại Coursedy.',
   register_new_teacher: 'đăng kí',
   first_benefit: 'Tiết kiệm chi phí mở lớp học. Tất cả những gì cần thiết chỉ bao gồm một máy tính có kết nối mạng.',
   second_benefit: 'Thời gian linh động, giáo viên có thể linh động sắp xếp thời gian cho khoá học. Và không tốn thời gian di chuyển.',
-  third_benefit: 'Tiếp cận mạng lưới học sinh rộng lớn từ khắp mọi nơi.',
-  // teacher detail
+  third_benefit: 'Tiếp cận mạng lưới học sinh rộng lớn từ khắp mọi nơi.', // teacher
+                                                                          // detail
   teacher_background: 'Thông Tin Giáo Viên',
   teacher_short_introduce: ' Giới thiệu',
   teacher_education: 'Giáo dục',
@@ -554,8 +560,6 @@ export default {
   signup_term: 'Bằng cách nhấp vào Đăng ký, bạn đồng ý với {term} và {privacy} của chúng tôi. Bạn có thể nhận được thông báo của chúng tôi qua SMS và hủy nhận bất kỳ lúc nào.',
   term: 'Điều khoản',
   privacy: 'Chính sách dữ liệu',
-  recover_password: 'Đặt lại mật khẩu',
-  token_invalid_or_expired: 'Token không hợp lệ hoặc quá hạn sử dụng',
   your_new_password: 'Mật khẩu mới',
   your_new_password_: 'Xác nhận mật khẩu mới',
   new_password: 'Nhập mật khẩu mới',
@@ -570,13 +574,16 @@ export default {
   'whatwedo-label': 'What we do?',
   'whatwedo-description': 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex.',
 
-  coursedy_fqa: 'Có phải bạn đang tìm',
+  coursedy_fqa: 'Câu hỏi bạn có thể có',
   fqa_still_looking_for: 'Nếu bạn vẫn chưa tìm thấy điều bạn muốn',
   contact_the_team: 'Liên hệ chúng tôi',
-  fqa: [
-    { question: 'Tôi có thể huỷ khoá học giữa chừng hay không? Nếu có thì tiền có được hoàn lại phần nào hay không?', answer: 'Simply, select your destination. Then use the filters to find which Local Insider fits what you’re looking for. Send out booking requests to those you like. After a short while you should get responses as to whether your requests have been accepted or not. You won\'t wait longer than 48 hours to receive a confirmation and proceed through to the fun part, payment... (If none of your chosen Local Insiders say yes then we will pick one for you, we promise we\'ll pick a good one based on what you want.)' },
-    { question: 'Thời hạn sử dụng khoá học đã đăng kí là bao lâu?', answer: 'We ask that payments be made upfront. This is because we operate in developing countries so for your Local Insider your experience is much more than just a little bit of extra cash. We want to ensure that as soon as your tour is completed and a review is left our locals partner gets is paid what they have earnt.' },
-  ],
+  fqa: [{
+    question: 'Tôi có thể huỷ khoá học giữa chừng hay không? Nếu có thì tiền có được hoàn lại phần nào hay không?',
+    answer: 'Simply, select your destination. Then use the filters to find which Local Insider fits what you’re looking for. Send out booking requests to those you like. After a short while you should get responses as to whether your requests have been accepted or not. You won\'t wait longer than 48 hours to receive a confirmation and proceed through to the fun part, payment... (If none of your chosen Local Insiders say yes then we will pick one for you, we promise we\'ll pick a good one based on what you want.)'
+  }, {
+    question: 'Thời hạn sử dụng khoá học đã đăng kí là bao lâu?',
+    answer: 'We ask that payments be made upfront. This is because we operate in developing countries so for your Local Insider your experience is much more than just a little bit of extra cash. We want to ensure that as soon as your tour is completed and a review is left our locals partner gets is paid what they have earnt.'
+  }],
   user_navigation_basic_info: 'Tài khoản',
   user_navigation_your_course: 'Khoá học',
   user_navigation_sign_out: 'Đăng xuất',
@@ -585,132 +592,81 @@ export default {
   terms_title: 'Quy Định',
   terms_latest_update: 'Sửa đổi gần nhất ngày 16 tháng 06, 2018',
   terms_description: 'Khi quý khách truy cập vào trang web của chúng tôi có nghĩa là quý khách đồng ý với các điều khoản này. Trang web có quyền thay đổi, chỉnh sửa, thêm hoặc lược bỏ bất kỳ phần nào trong Điều khoản và Quy định chung vào bất cứ lúc nào. Các thay đổi có hiệu lực ngay lập tức khi được đăng lên trang web mà không cần thông báo trước. Và khi quý khách tiếp tục sử dụng trang web, sau khi các thay đổi về Quy định chính sách và Điều khoản được đăng tải lên có nghĩa là quý khách chấp nhận với những thay đổi đó. Quý khách vui lòng kiểm tra thường xuyên để cập nhật những thay đổi của chúng tôi.',
-  terms: [
-    {
-      heading: 'Quy Định Chung',
-      items: [
-        { content: 'Khi giao tiếp với người dùng khác trong hệ thống dịch vụ của Coursedy không được quấy rối, chửi bới, làm phiền hay có bất kỳ hành vi thiếu văn hoá nào đối với người khác. Tuyệt đối nghiêm cấm việc xúc phạm, nhạo báng, chê bai, kỳ thị tôn giáo, giới tính, sắc tộc,... người khác dưới bất kỳ hình thức nào.' },
-        { content: 'Tuyệt đối nghiêm cấm mọi hành vi tuyên truyền chống phá và xuyên tạc chính quyền, thể chế chính trị, và các chính sách của nhà nước... Trường hợp phát hiện không những bị xoá tài khoản mà chúng tôi còn có thể cung cấp thông tin của người sử dụng (NSD) đó cho các cơ quan chức năng để xử lý theo pháp luật.' },
-        { content: 'Tuyệt đối không bàn luận về các vấn đề chính trị, kỳ thị tôn giáo, kỳ thị sắc tộc. Không có những hành vi, thái độ làm tổn hại đến uy tín của các sản phẩm, dịch vụ, khoá học trong hệ thống Coursedy dưới bất kỳ hình thức nào, phương thức nào. Mọi hành vi vi phạm sẽ bị tước bỏ mọi quyền lợi liên quan đối với tài khoản hoặc xử lý trước pháp luật nếu cần thiết.' },
-      ]
-    },
-    {
-      heading: 'Bản Quyền Tài Liệu Giảng Dạy',
-      items: [
-        { content: 'Toàn bộ nội dung đào tạo bao gồm bài giảng slide, video,... đều thuộc quyền sở hữu trí tuệ của Coursedy và giáo viên trực tiếp làm ra.' },
-        { content: 'Thời gian xem tài liệu khoá học là vĩnh viễn.' },
-        { content: 'Học viên không được phép chia sẻ, phát tán dưới bất kỳ hình thức nào mà không có sự đồng ý của Coursedy.' },
-        {
-          content: 'Video, slide bài giảng, quiz được Coursedy cung cấp trực tiếp trên website, không thể download. Coursedy đảm bảo chất lượng đường truyền để học viên cảm thấy thoải mái khi học với đường truyền internet phổ thông. Mọi hành vi cố ý tải về, tấn công hệ thống nếu bị phát hiện sẽ bị xử lý theo các cấp độ sau:',
-          child_content: {
-            items: [
-              { content: 'Cảnh cáo.' },
-              { content: 'Xoá tài khoản học viên, không hoàn lại học phí.' },
-              { content: 'Truy tố trước pháp luật vì hành vi xâm phạm bản quyền, và tấn công mạng.' },
-            ]
-          }
-        },
-      ]
-    },
-    {
-      heading: 'Về Tài Khoản Sử Dụng (TKSD)',
-      items: [
-        { content: 'TKSD có trách nhiệm bảo mật thông tin tài khoản, nếu những thông tin trên bị tiết lộ dưới bất kỳ hình thức nào thì TKSD phải chấp nhận những rủi ro phát sinh.' },
-        { content: 'Khi phát hiện lỗi của Coursedy người sử dụng hãy thông báo cho chúng tôi qua email hoặc gọi tới tổng đài.' },
-        { content: 'Thực hiện quyền và trách nhiệm khác theo quy định của pháp luật Việt Nam.' },
-      ]
-    }
-  ],
+  terms: [{
+    heading: 'Quy Định Chung',
+    items: [{ content: 'Khi giao tiếp với người dùng khác trong hệ thống dịch vụ của Coursedy không được quấy rối, chửi bới, làm phiền hay có bất kỳ hành vi thiếu văn hoá nào đối với người khác. Tuyệt đối nghiêm cấm việc xúc phạm, nhạo báng, chê bai, kỳ thị tôn giáo, giới tính, sắc tộc,... người khác dưới bất kỳ hình thức nào.' }, { content: 'Tuyệt đối nghiêm cấm mọi hành vi tuyên truyền chống phá và xuyên tạc chính quyền, thể chế chính trị, và các chính sách của nhà nước... Trường hợp phát hiện không những bị xoá tài khoản mà chúng tôi còn có thể cung cấp thông tin của người sử dụng (NSD) đó cho các cơ quan chức năng để xử lý theo pháp luật.' }, { content: 'Tuyệt đối không bàn luận về các vấn đề chính trị, kỳ thị tôn giáo, kỳ thị sắc tộc. Không có những hành vi, thái độ làm tổn hại đến uy tín của các sản phẩm, dịch vụ, khoá học trong hệ thống Coursedy dưới bất kỳ hình thức nào, phương thức nào. Mọi hành vi vi phạm sẽ bị tước bỏ mọi quyền lợi liên quan đối với tài khoản hoặc xử lý trước pháp luật nếu cần thiết.' }]
+  }, {
+    heading: 'Bản Quyền Tài Liệu Giảng Dạy',
+    items: [{ content: 'Toàn bộ nội dung đào tạo bao gồm bài giảng slide, video,... đều thuộc quyền sở hữu trí tuệ của Coursedy và giáo viên trực tiếp làm ra.' }, { content: 'Thời gian xem tài liệu khoá học là vĩnh viễn.' }, { content: 'Học viên không được phép chia sẻ, phát tán dưới bất kỳ hình thức nào mà không có sự đồng ý của Coursedy.' }, {
+      content: 'Video, slide bài giảng, quiz được Coursedy cung cấp trực tiếp trên website, không thể download. Coursedy đảm bảo chất lượng đường truyền để học viên cảm thấy thoải mái khi học với đường truyền internet phổ thông. Mọi hành vi cố ý tải về, tấn công hệ thống nếu bị phát hiện sẽ bị xử lý theo các cấp độ sau:',
+      child_content: {
+        items: [{ content: 'Cảnh cáo.' }, { content: 'Xoá tài khoản học viên, không hoàn lại học phí.' }, { content: 'Truy tố trước pháp luật vì hành vi xâm phạm bản quyền, và tấn công mạng.' }]
+      }
+    }]
+  }, {
+    heading: 'Về Tài Khoản Sử Dụng (TKSD)',
+    items: [{ content: 'TKSD có trách nhiệm bảo mật thông tin tài khoản, nếu những thông tin trên bị tiết lộ dưới bất kỳ hình thức nào thì TKSD phải chấp nhận những rủi ro phát sinh.' }, { content: 'Khi phát hiện lỗi của Coursedy người sử dụng hãy thông báo cho chúng tôi qua email hoặc gọi tới tổng đài.' }, { content: 'Thực hiện quyền và trách nhiệm khác theo quy định của pháp luật Việt Nam.' }]
+  }],
   terms_privacy_title: 'Chính Sách Bảo Mật',
   terms_privacy_update: 'Sửa đổi gần nhất ngày 16 tháng 06, 2018',
   terms_privacy_description: 'Chào mừng bạn đến với trang web coursedy. Chúng tôi muốn bạn làm quen với cách chúng tôi thu thập sử dụng, tiết lộ bảo mật thông tin của bạn.\n' + 'Bằng cách đồng ý chính sách bảo mật trong thiết lập tài khoản Coursedy của bạn, hoặc bằng cách sử dụng dịch vụ Coursedy, bạn đồng ý với những thông tin được mô tả trong thông báo này.',
-  privacies: [
-    {
-      heading: 'Thông tin Coursedy thu thập',
-      items: [
-        { content: 'Thông tin người mà dùng cung cấp. Bạn có thể cung cấp cho Coursedy “thông tin cá nhân”(như tên, địa chỉ, email, số điện thoại, số thẻ tín dụng,...)' },
-        { content: 'Thông tin “Cookies”: Khi bạn truy cập các dịch vụ Coursedy, chúng tôi có thể gửi một hoặc nhiều “cookie” - các tập tin văn bản nhỏ chứa một chuỗi ký tự số và chữ - vào máy tính của bạn.' },
-        { content: '“Tự động thu thập" thông tin: Khi bạn truy cập các dịch vụ Coursedy, chúng tôi có thể tự động ghi lại những thông tin đó từ hệ thống của bạn bằng cách sử dụng các tập tin cookie và các loại công nghệ theo dõi. Việc “thu thập” thông tin này có thể bao gồm địa chỉ Internet Protocal(“Địa chỉ IP”), ID người dùng duy nhất, loại thiết bị, nhận dạng thiết bị, các loại trình duyệt, và ngôn ngữ, giới thiệu, loại nền tảng, phiên bản của phần mềm cài đặt, loại hệ thống, nội dung và các trang web mà bạn truy cập các dịch vụ của Coursedy và thông tin tương tự khác. Tuỳ thuộc vào pháp luật của nước bạn cư trú, địa chỉ IP của bạn có thể hợp pháp được gọi là thông tin cá nhân.' },
-        { content: 'Thông tin từ các nguồn khác: Chúng tôi có thể có được thông tin bao gồm thông tin cá nhân từ các bên thứ ba và các nguồn khác với dịch vụ của Coursedy, như các nhà quảng cáo hoặc các mạng truyền thông xã hội mà bạn đã chấp thuận cho chúng tôi(ví dụ thông tin từ tài khoản Facebook của bạn cung cấp bởi các dịch vụ API Facebook). Khi bạn truy cập các dịch vụ Coursedy thông qua các mạng truyền thông xã hội hoặc khi bạn kết nối một dịch vụ Coursedy với các mạng truyền thông xã hội, bạn sẽ uỷ quyền cho Coursedy thu thập, lưu trữ và sử dụng thông tin và nội dung phù hợp với chính sách bảo mật. Nếu chúng tôi kết hợp hoặc liên kết thông tin từ các nguồn khác với thông tin cá nhân mà chúng tôi thu thập thông qua các dịch vụ Coursedy, chúng tôi sẽ xử lý thông tin kết hợp như thông tin cá nhân phù hợp với chính sách bảo mật.' },
-      ]
-    },
-    {
-      heading: 'Phương thức Coursedy sử dụng thông tin',
-      items: [
-        { content: 'Coursedy sử dụng các thông tin mà bạn cung cấp hoặc chúng tôi thu thập từ bạn để hoạt động, duy trì, tăng cường và cung cấp tất cả các tính năng và dịch vụ trên Coursedy; để cải thiện trải nghiệm của bạn với các dịch vụ của coursedy bằng cách cung cấp các nội dung mà chúng tôi hy vọng bạn sẽ thấy có liên quan và thú vị. ' },
-        { content: 'Chúng tôi sẽ sử dụng địa chỉ email của bạn cho việc truyền thông như thông báo về bản cập nhật Coursedy, dịch vụ khách hàng, để giải quyết các vấn đề vi phạm bản quyền hoặc các vấn đề phỉ báng, hoặc liên lạc với bạn đối với bất kỳ nội dung mà bạn đã đăng lên hoặc tải về từ Coursedy.' },
-        { content: 'Coursedy sử dụng những thông tin mà chúng tôi thu thập để hiểu xu hướng sử dụng và sở thích của người sử dụng của chúng tôi, để cải thiện cách các dịch vụ Coursedy làm việc, nhìn và để để tạo ra các tính năng mới.' },
-      ]
-    },
-    {
-      heading: 'Trẻ em',
-      items: [],
-      description: 'Chúng tôi nhận thức những lợi ích riêng tư cho trẻ em và chúng tôi khuyến khích các bậc cha mẹ và người giám hộ nên có một vai trò tích cực trong các hoạt động trực tuyến vì lợi ích của con cái.'
-    },
-    {
-      heading: 'Tiết lộ thông tin',
-      items: [
-        { content: 'Chúng tôi sẽ chia sẻ thông tin trang web cá nhân của bạn với các bên thứ ba chỉ trong những trường hợp được mô tả trong chính sách bảo mật này. Chúng bao gồm chia sẻ thông tin với các nhà cung cấp dịch vụ trang web để cho phép họ thực hiện đầy đủ các yêu cầu của bạn. Chúng tôi không bán thông tin cá nhân của bạn cho bên thứ ba.' },
-        {
-          content: 'Chúng tôi cũng có thể tiết lộ thông tin cá nhận của bạn: ',
-          child_content: {
-            items: [
-              { content: 'Nếu chúng tôi được yêu cầu phải làm như vậy theo pháp luật, quy định hoặc cơ quan khác của chính phủ hoặc phối hợp điều tra với môt cuộc điều tra của một cơ quan chính phủ.' },
-              { content: 'Để thực thi điều khoản sử dụng.' },
-              { content: 'Để bảo vệ sự an toàn của người sử dụng của trang web của chúng tôi và dịch vụ, các khoá học chúng tôi.' },
-            ]
-          }
-        },
-      ]
-    },
-    {
-      heading: 'Lưu trữ dữ liệu',
-      items: [],
-      description: 'Chúng tôi giữ lại các dữ liệu cá nhân để cung cấp các dịch vụ tốt hơn. Chúng tôi sẽ giữ lại và sử dụng thông tin cần thiết trên trang web cá nhân để tuân thủ các nghĩa vụ pháp lý, giải quyết tranh chấp và thực thi các thoả thuận của chúng tôi với người sử dụng hoặc thời gian theo yêu cầu của pháp luật tại các nước áp dụng.'
-    },
-    {
-      heading: 'Cập nhật và chỉnh sửa thông tin của bạn',
-      items: [
-        { content: 'Nếu cần thiết, bạn có thể sử dụng các dịch vụ sửa chữa, sửa đổi, hoặc xoá thông tin của bạn trên Coursedy. Bạn cũng có thể liên hệ với chúng tôi bằng cách gửi email tới contact@coursedy.com.' },
-        { content: 'Chúng tôi có thể gửi tới email bạn về các khoá học hoặc dịch vụ mới sửa đổi mà chúng tôi tin rằng có thể bạn quan tâm. Nếu bạn không muốn nhận được các thông tin này, bạn có thể thực hiện theo các thủ tục huỷ bỏ đăng ký được cung cấp trong email.' }
-      ]
-    },
-    {
-      heading: 'Bảo mật',
-      items: [],
-      description: 'Bảo mật thông tin của bạn là việc rất quan trọng đối với chúng tôi. Coursedy sử dụng các biện pháp tố tụng và công nghệ để bảo vệ thông tin cá nhân của bạn. Những biện pháp này được thiết kế hợp lý để bảo vệ thông tin cá nhân của bạn khỏi mất mát, truy cập trái phép, tiết lộ, thay đổi hoặc phá huỷ. Chúng tôi sử dụng phần mềm, công nghệ mã hoá, mật khẩu bảo vệ, tường lửa hạn chế nội bộ và các biện pháp đảm bảo khác để giúp ngăn chặn truy cập trái phép thông tin cá nhân của bạn. Các thông tin nhạy cảm/tín dụng bạn cung cấp được mã  hoá qua Secure Sockets Layer (SSL). Tuy nhiên, Coursedy không thể đảm bảo rằng rằng các tổ chức bất hợp pháp sẽ không bao giờ có thể vượt qua các biện pháp bảo mật này hoặc sử dụng thông tin cá nhân của bạn cho các mục đích không chính đáng. Vì vậy, bạn nên biết rằng khi các bạn tự nguyện hiển thị hay phân phối thông tin cá nhân, thông tin có thể được thu thập và sử dụng bởi những người khác. Coursedy không chịu trách nhiệm về việc sử dụng trái của các bên thứ ba thông tin mà bạn gửi  hoặc cung cấp công khai.'
-    },
-    {
-      heading: 'Liên kết đến các trang web khác',
-      items: [],
-      description: 'Các trang web, dịch vụ và đặc biệt là các khoá học, có thể cung cấp liên kết đến các trang web của bên thứ ba hoặc các nguồn tài nguyên không liên quan với chúng tôi và qua đó, chúng tôi không thể kiểm soát “bên ngoài website”. Bạn thừa nhận rằng Coursedy chỉ cung cấp những liên kết như là một tiện ích và không chịu trách nhiệm về nội dung của trang web đó.'
-    },
-    {
-      heading: 'Thay đổi chính sách',
-      items: [],
-      description: 'Coursedy bảo lưu quyền thay đổi chính sách bảo mật theo thời gian. Chúng tôi sẽ cập nhật chính sách bảo mật trên trang web này nằm tại https://coursedy.com/privacy và sẽ gửi một thông báo đến địa chỉ email mà bạn cung cấp. Chúng tôi khuyến khích bạn xem lại chính sách bảo mật thường xuyên để cập nhật bất kỳ thay đổi nào. Tất cả các dịch vụ mà bạn sử dụng sẽ được tuân theo chính sách bảo mật hiện tại.'
-    },
-    {
-      heading: 'Liên hệ với Coursedy',
-      items: [],
-      description: 'Chúng tôi hoan nghênh ý kiến đóng góp hoặc câu hỏi của bạn liên quan đến chính sách bảo mật của chúng tôi. Nếu bạn muốn liên lạc với Coursedy về Chính Sách Bảo Mật này, vui lòng liên hệ với chúng tôi bằng cách gửi email cho chúng tôi tại contact@coursedy.com'
-    }
-  ],
+  privacies: [{
+    heading: 'Thông tin Coursedy thu thập',
+    items: [{ content: 'Thông tin người mà dùng cung cấp. Bạn có thể cung cấp cho Coursedy “thông tin cá nhân”(như tên, địa chỉ, email, số điện thoại, số thẻ tín dụng,...)' }, { content: 'Thông tin “Cookies”: Khi bạn truy cập các dịch vụ Coursedy, chúng tôi có thể gửi một hoặc nhiều “cookie” - các tập tin văn bản nhỏ chứa một chuỗi ký tự số và chữ - vào máy tính của bạn.' }, { content: '“Tự động thu thập" thông tin: Khi bạn truy cập các dịch vụ Coursedy, chúng tôi có thể tự động ghi lại những thông tin đó từ hệ thống của bạn bằng cách sử dụng các tập tin cookie và các loại công nghệ theo dõi. Việc “thu thập” thông tin này có thể bao gồm địa chỉ Internet Protocal(“Địa chỉ IP”), ID người dùng duy nhất, loại thiết bị, nhận dạng thiết bị, các loại trình duyệt, và ngôn ngữ, giới thiệu, loại nền tảng, phiên bản của phần mềm cài đặt, loại hệ thống, nội dung và các trang web mà bạn truy cập các dịch vụ của Coursedy và thông tin tương tự khác. Tuỳ thuộc vào pháp luật của nước bạn cư trú, địa chỉ IP của bạn có thể hợp pháp được gọi là thông tin cá nhân.' }, { content: 'Thông tin từ các nguồn khác: Chúng tôi có thể có được thông tin bao gồm thông tin cá nhân từ các bên thứ ba và các nguồn khác với dịch vụ của Coursedy, như các nhà quảng cáo hoặc các mạng truyền thông xã hội mà bạn đã chấp thuận cho chúng tôi(ví dụ thông tin từ tài khoản Facebook của bạn cung cấp bởi các dịch vụ API Facebook). Khi bạn truy cập các dịch vụ Coursedy thông qua các mạng truyền thông xã hội hoặc khi bạn kết nối một dịch vụ Coursedy với các mạng truyền thông xã hội, bạn sẽ uỷ quyền cho Coursedy thu thập, lưu trữ và sử dụng thông tin và nội dung phù hợp với chính sách bảo mật. Nếu chúng tôi kết hợp hoặc liên kết thông tin từ các nguồn khác với thông tin cá nhân mà chúng tôi thu thập thông qua các dịch vụ Coursedy, chúng tôi sẽ xử lý thông tin kết hợp như thông tin cá nhân phù hợp với chính sách bảo mật.' }]
+  }, {
+    heading: 'Phương thức Coursedy sử dụng thông tin',
+    items: [{ content: 'Coursedy sử dụng các thông tin mà bạn cung cấp hoặc chúng tôi thu thập từ bạn để hoạt động, duy trì, tăng cường và cung cấp tất cả các tính năng và dịch vụ trên Coursedy; để cải thiện trải nghiệm của bạn với các dịch vụ của coursedy bằng cách cung cấp các nội dung mà chúng tôi hy vọng bạn sẽ thấy có liên quan và thú vị. ' }, { content: 'Chúng tôi sẽ sử dụng địa chỉ email của bạn cho việc truyền thông như thông báo về bản cập nhật Coursedy, dịch vụ khách hàng, để giải quyết các vấn đề vi phạm bản quyền hoặc các vấn đề phỉ báng, hoặc liên lạc với bạn đối với bất kỳ nội dung mà bạn đã đăng lên hoặc tải về từ Coursedy.' }, { content: 'Coursedy sử dụng những thông tin mà chúng tôi thu thập để hiểu xu hướng sử dụng và sở thích của người sử dụng của chúng tôi, để cải thiện cách các dịch vụ Coursedy làm việc, nhìn và để để tạo ra các tính năng mới.' }]
+  }, {
+    heading: 'Trẻ em',
+    items: [],
+    description: 'Chúng tôi nhận thức những lợi ích riêng tư cho trẻ em và chúng tôi khuyến khích các bậc cha mẹ và người giám hộ nên có một vai trò tích cực trong các hoạt động trực tuyến vì lợi ích của con cái.'
+  }, {
+    heading: 'Tiết lộ thông tin',
+    items: [{ content: 'Chúng tôi sẽ chia sẻ thông tin trang web cá nhân của bạn với các bên thứ ba chỉ trong những trường hợp được mô tả trong chính sách bảo mật này. Chúng bao gồm chia sẻ thông tin với các nhà cung cấp dịch vụ trang web để cho phép họ thực hiện đầy đủ các yêu cầu của bạn. Chúng tôi không bán thông tin cá nhân của bạn cho bên thứ ba.' }, {
+      content: 'Chúng tôi cũng có thể tiết lộ thông tin cá nhận của bạn: ',
+      child_content: {
+        items: [{ content: 'Nếu chúng tôi được yêu cầu phải làm như vậy theo pháp luật, quy định hoặc cơ quan khác của chính phủ hoặc phối hợp điều tra với môt cuộc điều tra của một cơ quan chính phủ.' }, { content: 'Để thực thi điều khoản sử dụng.' }, { content: 'Để bảo vệ sự an toàn của người sử dụng của trang web của chúng tôi và dịch vụ, các khoá học chúng tôi.' }]
+      }
+    }]
+  }, {
+    heading: 'Lưu trữ dữ liệu',
+    items: [],
+    description: 'Chúng tôi giữ lại các dữ liệu cá nhân để cung cấp các dịch vụ tốt hơn. Chúng tôi sẽ giữ lại và sử dụng thông tin cần thiết trên trang web cá nhân để tuân thủ các nghĩa vụ pháp lý, giải quyết tranh chấp và thực thi các thoả thuận của chúng tôi với người sử dụng hoặc thời gian theo yêu cầu của pháp luật tại các nước áp dụng.'
+  }, {
+    heading: 'Cập nhật và chỉnh sửa thông tin của bạn',
+    items: [{ content: 'Nếu cần thiết, bạn có thể sử dụng các dịch vụ sửa chữa, sửa đổi, hoặc xoá thông tin của bạn trên Coursedy. Bạn cũng có thể liên hệ với chúng tôi bằng cách gửi email tới contact@coursedy.com.' }, { content: 'Chúng tôi có thể gửi tới email bạn về các khoá học hoặc dịch vụ mới sửa đổi mà chúng tôi tin rằng có thể bạn quan tâm. Nếu bạn không muốn nhận được các thông tin này, bạn có thể thực hiện theo các thủ tục huỷ bỏ đăng ký được cung cấp trong email.' }]
+  }, {
+    heading: 'Bảo mật',
+    items: [],
+    description: 'Bảo mật thông tin của bạn là việc rất quan trọng đối với chúng tôi. Coursedy sử dụng các biện pháp tố tụng và công nghệ để bảo vệ thông tin cá nhân của bạn. Những biện pháp này được thiết kế hợp lý để bảo vệ thông tin cá nhân của bạn khỏi mất mát, truy cập trái phép, tiết lộ, thay đổi hoặc phá huỷ. Chúng tôi sử dụng phần mềm, công nghệ mã hoá, mật khẩu bảo vệ, tường lửa hạn chế nội bộ và các biện pháp đảm bảo khác để giúp ngăn chặn truy cập trái phép thông tin cá nhân của bạn. Các thông tin nhạy cảm/tín dụng bạn cung cấp được mã  hoá qua Secure Sockets Layer (SSL). Tuy nhiên, Coursedy không thể đảm bảo rằng rằng các tổ chức bất hợp pháp sẽ không bao giờ có thể vượt qua các biện pháp bảo mật này hoặc sử dụng thông tin cá nhân của bạn cho các mục đích không chính đáng. Vì vậy, bạn nên biết rằng khi các bạn tự nguyện hiển thị hay phân phối thông tin cá nhân, thông tin có thể được thu thập và sử dụng bởi những người khác. Coursedy không chịu trách nhiệm về việc sử dụng trái của các bên thứ ba thông tin mà bạn gửi  hoặc cung cấp công khai.'
+  }, {
+    heading: 'Liên kết đến các trang web khác',
+    items: [],
+    description: 'Các trang web, dịch vụ và đặc biệt là các khoá học, có thể cung cấp liên kết đến các trang web của bên thứ ba hoặc các nguồn tài nguyên không liên quan với chúng tôi và qua đó, chúng tôi không thể kiểm soát “bên ngoài website”. Bạn thừa nhận rằng Coursedy chỉ cung cấp những liên kết như là một tiện ích và không chịu trách nhiệm về nội dung của trang web đó.'
+  }, {
+    heading: 'Thay đổi chính sách',
+    items: [],
+    description: 'Coursedy bảo lưu quyền thay đổi chính sách bảo mật theo thời gian. Chúng tôi sẽ cập nhật chính sách bảo mật trên trang web này nằm tại https://coursedy.com/privacy và sẽ gửi một thông báo đến địa chỉ email mà bạn cung cấp. Chúng tôi khuyến khích bạn xem lại chính sách bảo mật thường xuyên để cập nhật bất kỳ thay đổi nào. Tất cả các dịch vụ mà bạn sử dụng sẽ được tuân theo chính sách bảo mật hiện tại.'
+  }, {
+    heading: 'Liên hệ với Coursedy',
+    items: [],
+    description: 'Chúng tôi hoan nghênh ý kiến đóng góp hoặc câu hỏi của bạn liên quan đến chính sách bảo mật của chúng tôi. Nếu bạn muốn liên lạc với Coursedy về Chính Sách Bảo Mật này, vui lòng liên hệ với chúng tôi bằng cách gửi email cho chúng tôi tại contact@coursedy.com'
+  }],
   course_name: 'Tên khoá học',
   tutor_course_category: 'Loại khoá học',
-  number_enrolled_student: 'Học sinh đăng ký',
-  maximum_student: 'SL tối đa',
+  number_enrolled_student: 'Số học sinh đăng ký',
+  maximum_student: 'Số học sinh tối đa',
   number_lesson: 'Tổng bài học',
   tutor_course_fee: 'Học phí',
-  tutor_course_status: 'Trạng thái',
-  // student course table headers
+  tutor_course_status: 'Trạng thái', // student course table headers
   started_date: 'Ngày bắt đầu',
+  number_lesson: 'Số buổi học',
   tutor_course_fee: 'Học phí',
   number_of_completed_lesson: 'Số bài hoàn thành',
   minimum_number_of_completed_lesson: 'Số bài học tối thiểu',
   number_of_lesson: 'Số buổi học',
-  student_course_status: 'Trạng thái',
-  // student enrolled to course table header
+  student_course_status: 'Trạng thái', // student enrolled to course table
+                                       // header
   student_name: 'Tên học sinh',
   enrollment_date: 'Ngày đăng ký',
   student_email: 'Email',
@@ -736,7 +692,10 @@ export default {
   search_more_course_link: 'tạo khoá học ngay hôm nay',
   no_enrolled_student: 'Chưa có học sinh nào đăng ký khoá học',
   find_course_link: 'Tìm kiếm và tham gia khoá học yêu thích ngay bây giờ.',
-  start_course_warning_message: 'Bạn có chắc là muốn bắt đầu dạy khoá học ‘{courseName}’.Một khi hoá học bắt đầu, chúng tôi sẽ thông báo tất cả học sinh đã đăng ký thơi gian học chính thức. Bạn sẽ không thể thay đổi những thông tin khoá học.',
+  start_course_popup_title: 'Bắt đầu dạy khoá học',
+  start_course_field_title: 'Ngày bắt đầu chính thức',
+  start_course_warning_message: 'Bạn có chắc là muốn bắt đầu dạy khoá học {courseName}.',
+  start_course_warning_message_2: 'Một khi khoá học được bắt đầu, bạn sẽ không thể thay đổi một số thông tin khoá học. Chúng tôi sẽ thông báo tất cả học sinh đã đăng ký thơi gian học chính thức.',
   join_active_course_popup_title: 'Vào lớp',
   join_active_course_popup_message: 'Khoá học {courseName} của giáo viên {teacherName} đã đến giờ vào lớp. Mời bạn vào lớp học.',
   join_active_course_popup_message_for_teacher: 'Khoá học {courseName} đã đến giờ dạy. Mời bạn vào lớp dạy.',
@@ -756,31 +715,26 @@ export default {
     description: 'Bạn sẽ có cơ hội mang những kiến thức, hiểu biết thú vị của bạn đến với mọi người một cách dễ dàng thông qua mạng internet'
   },
   'become-a-teacher-reasons': {
-    title: 'Tại sao bạn nên trở thành giáo viên',
-    reasons: [
-      {
-        title: 'Kiếm thêm thu nhập',
-        picture: 'https://inspitrip.imgix.net/static/assets/images/svg-images/make-money.svg',
-        description: 'Bạn có thể kiếm được một mức lương tuyệt vời, với việc thiết lập học phí khoá học và chọn lịch biểu linh hoạt của riêng bạn.'
-      },
-      {
-        title: 'Dễ dàng mở rộng mạng lưới dạy học',
-        picture: 'https://inspitrip.imgix.net/static/assets/images/svg-images/make-connection.svg',
-        description: 'Với kiến thức sẵn có của bạn, tất cả bạn cần là tự tin và giảng dạy tốt là bạn có thể tiếp xúc với tất cả mọi người trên thế giới.'
-      },
-      {
-        title: 'Dạy ở bất kì nơi đâu bạn thích',
-        picture: 'https://inspitrip.imgix.net/static/assets/images/svg-images/make-skills.svg',
-        description: 'Bất kì nơi nào bạn thích, dù thời tiết có ra sao, chỉ cần laptop và kết nối mạng internet.'
-      }
-    ]
+    title: 'Tại sao bạn nên trở thành giáo viên', reasons: [{
+      title: 'Kiếm thêm thu nhập',
+      picture: 'https://inspitrip.imgix.net/static/assets/images/svg-images/make-money.svg',
+      description: 'Bạn có thể kiếm được một mức lương tuyệt vời, với việc thiết lập học phí khoá học và chọn lịch biểu linh hoạt của riêng bạn.'
+    }, {
+      title: 'Dễ dàng mở rộng mạng lưới dạy học',
+      picture: 'https://inspitrip.imgix.net/static/assets/images/svg-images/make-connection.svg',
+      description: 'Với kiến thức sẵn có của bạn, tất cả bạn cần là tự tin và giảng dạy tốt là bạn có thể tiếp xúc với tất cả mọi người trên thế giới.'
+    }, {
+      title: 'Dạy ở bất kì nơi đâu bạn thích',
+      picture: 'https://inspitrip.imgix.net/static/assets/images/svg-images/make-skills.svg',
+      description: 'Bất kì nơi nào bạn thích, dù thời tiết có ra sao, chỉ cần laptop và kết nối mạng internet.'
+    }]
   },
   enroll_course_title: 'Đăng ký khoá học',
   enroll_course_button: 'Đăng ký ngay',
   enroll_course_message: 'Một số lưu ý trước khi bạn tham gia khoá học {courseTitle} như sau:',
   enroll_course_term_1: 'Khoá học sẽ dạy online. Bạn sẽ được cấp quyền truy cập vào khoá học',
-  enroll_course_sub_term_1: 'Bạn sẽ được tham giá học trực tiếp với giáo viên trên hệ thông Coursedy, được cung cấp tất cả tài liệu, bài tập liên quan đến khoá học.',
-  enroll_course_term_2: 'Huỷ khoá học bất kỳ lúc nào',
+  enroll_course_sub_term_1: 'Bạn sẽ được tham giá hoc trực tiếp với giáo viên trên hệ thông Coursedy, được cung cấp tất cả tài liệu, bài tập liên quan đến khoá học.',
+  enroll_course_term_2: 'Huỷ khoá hoc bất kỳ lúc nào',
   enroll_course_sub_term_2: 'Sau khi tham gia nếu cảm thấy khoa học không đáp ứng yêu cầu bạn có thể huỷ bất kỳ lúc nào. Không bị trừ bất cứ khoản phí nào.',
   enroll_course_term_3: 'Học phí khoá học là {courseFee} VND.',
   enroll_course_sub_term_3: 'Tài khoản của bạn phải đủ trước khi đăng ký khoá học. Bạn chỉ bị {chargeFee} khi hoàn thành khoá học',
@@ -791,7 +745,7 @@ export default {
   enroll_course_sub_term_5: 'Coursedy sẽ thông báo khi có sự thay đổi về nội dung các buổi học của khoá học từ giáo viên.',
   enroll_course_success_title: 'Đăng ký thành công',
   enroll_course_success_button: 'Về khoá học',
-  enroll_course_success_message: 'Chào mừng bạn đến với khoá học {courseTitle}.',
+  enroll_course_success_message: 'Chào mứng bạn đến với khoá học {courseTitle}.',
   enroll_course_success_message_2: 'Khoá học sẽ bắt đầu sớm. Bạn hãy chuẩn bị sẵn sàng cho khoá học ngay hôm nay.',
 
   //  SEO meta
@@ -816,7 +770,6 @@ export default {
   register_page: 'Trang đăng ký',
   forgot_password_page: 'Trang quên mật khẩu',
   edit_password_page: 'Trang sửa mật khẩu',
-  recover_password_page: 'Trang khôi phục mật khẩu',
   confirmation_page: 'Trang xác nhận',
   public_course_list_page: 'Trang tìm lớp học',
   lesson_evaluation_page: 'Đánh giá bài học - {title}',
@@ -829,4 +782,5 @@ export default {
   help_page: 'Trang câu hỏi có thể bạn có',
   become_teacher_page: 'Trang trở thành giáo viên',
   payment_page: 'Trang hướng dẫn thanh ',
-}
+  fee_must_be_a_number: 'Vui lòng nhập vào số'
+};

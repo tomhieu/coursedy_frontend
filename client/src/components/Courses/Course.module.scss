@@ -194,3 +194,12 @@
   padding: 5px;
   font-size: 10px;
 }
+
+.courseDescription {
+  display: -webkit-box!important;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  min-height: 42px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

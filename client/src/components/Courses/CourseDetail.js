@@ -109,7 +109,7 @@ class CourseDetail extends Component {
                 <EnrollCourseSuccessPopup
                   show={this.state.showEnrollSuccessPopup}
                   course={course}
-                  cancelCallback={this.closeEnrollSuccessPopup.bind(this)}
+                  acceptCallback={this.closeEnrollSuccessPopup.bind(this)}
                 />
               </div>
             </div>

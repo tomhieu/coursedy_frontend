@@ -1,13 +1,12 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import cssModules from 'react-css-modules';
-import { LinkContainer } from 'react-router-bootstrap';
+import {LinkContainer} from 'react-router-bootstrap';
 import Image from 'react-graceful-image';
 import styles from '../Course.module.scss';
 import RatingItem from '../../Rating/index';
 import ObjectUtils from '../../../utils/ObjectUtils';
-import { CourseStatus } from '../../../constants/CourseStatus';
+import {CourseStatus} from '../../../constants/CourseStatus';
 import CoursedyProgressBar from '../../Core/CoursedyProgressBar/CoursedyProgressBar';
-import PrimaryButton from '../../Core/PrimaryButton/PrimaryButton';
 
 /**
  * @Course group item template 2
@@ -56,7 +55,7 @@ class CourseItemInGridMode extends Component {
         <LinkContainer to={isPublic ? `/courses/${item.id}` : `/dashboard/courses/detail/${item.id}`} className="course-detail-lnk flex-auto">
           <div className="d-flex flex-column justify-content-right course-item-content">
             <RatingItem num_stars={item.rating_count === 0 ? 0 : parseFloat(item.rating_points) / item.rating_count} num_reviews={item.rating_count} />
-            <h3>{item.title}</h3>
+            <h3 className={styles.courseDescription}>{item.title}</h3>
             <div className={styles.courseItemPrice}>
               {
                 item.is_free

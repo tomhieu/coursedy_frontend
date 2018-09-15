@@ -5,7 +5,7 @@ class ReadOnlyField extends Component {
   render() {
     const {
       displayStyle, showLabel = true, fieldLabel,
-      activatedFields, showEditFormField, isRichTextField
+      activatedFields, showEditFormField, isRichTextField, canEditable = true
     } = this.props;
     // display vertical for Rich Text field
     const inlineFieldClasses = isRichTextField ? `${displayStyle} inline-field d-flex flex-vertical`
@@ -22,9 +22,12 @@ class ReadOnlyField extends Component {
                   {' '}
                 </label>
               ) : ''}
-              <span className="inline-edit" onClick={showEditFormField.bind(this, activatedFields)}>
-                <i className="fa fa-pencil" />
-              </span>
+              {
+                canEditable ?
+                  <span className="inline-edit" onClick={showEditFormField.bind(this, activatedFields)}>
+                    <i className="fa fa-pencil" />
+                  </span> : null
+              }
             </div>
             <label className="pre-wrap" dangerouslySetInnerHTML={{ __html: this.props.content }} />
           </div>
@@ -39,9 +42,12 @@ class ReadOnlyField extends Component {
               </label>
             ) : ''}
             <label className="pre-wrap" dangerouslySetInnerHTML={{ __html: this.props.content }} />
-            <span className="inline-edit" onClick={showEditFormField.bind(this, activatedFields)}>
-              <i className="fa fa-pencil" />
-            </span>
+            {
+              canEditable ?
+                <span className="inline-edit" onClick={showEditFormField.bind(this, activatedFields)}>
+                    <i className="fa fa-pencil" />
+                  </span> : null
+            }
           </div>
         )
     );
@@ -60,7 +66,8 @@ ReadOnlyField.propTypes = {
   fieldLabel: React.PropTypes.string,
   activatedFields: React.PropTypes.array,
   showEditFormField: React.PropTypes.func,
-  isRichTextField: React.PropTypes.bool
+  isRichTextField: React.PropTypes.bool,
+  canEditable: React.PropTypes.bool
 };
 
 export default ReadOnlyField;

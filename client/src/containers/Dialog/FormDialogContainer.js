@@ -18,13 +18,6 @@ class FormDialogContainer extends Component {
     this.props.cancelCallback();
   }
 
-  componentWillReceiveProps(nextProps) {
-    // reset form before closing popup
-    if (!nextProps.show) {
-      this.props.reset();
-    }
-  }
-
   render() {
     const {
       show, title, cancelCallback,

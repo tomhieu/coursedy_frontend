@@ -3,8 +3,7 @@ import * as asyncActs from '../actions/AsyncActionCreator';
 import * as courseActionTypes from '../constants/Courses';
 import { PUBLIC_COURSE_LIST_MAX_ITEM_PER_PAGE } from '../constants/WebConstants';
 
-
-const CourseFilter = (state = {
+const initialState = {
   isFetching: true,
   courses: [],
   totalResult: 0,
@@ -13,7 +12,7 @@ const CourseFilter = (state = {
   displayMode: 'grid',
   selectedCourses: [],
   sortBy: '',
-  orderBy: 'time_desc',
+  orderBy: 'time_asc',
   sortOrder: 'desc',
   sugestions: [],
   filters: {
@@ -27,7 +26,9 @@ const CourseFilter = (state = {
   },
   showSuggestion: false,
   loadingSuggestion: false
-}, action) => {
+};
+
+const CourseFilter = (state = initialState, action) => {
   switch (action.type) {
     case courseActionTypes.FETCH_COURSES + asyncActs.PENDING:
       return { ...state, isFetching: true };
@@ -35,8 +36,8 @@ const CourseFilter = (state = {
       return {
         ...state,
         courses: action.payload,
-        totalResult: parseInt(action.headers.xTotal),
-        currentPage: parseInt(action.headers.xPage),
+        totalResult: parseInt(action.headers.xTotal, 10),
+        currentPage: parseInt(action.headers.xPage, 10),
         isFetching: false
       };
     case asyncActs.CHANGE_DISPLAY_MODE:
@@ -57,7 +58,7 @@ const CourseFilter = (state = {
     case asyncActs.REMOVE_COURSE:
       return {
         ...state,
-        selectedCourses: state.selectedCourses.filter((courseId) => { return courseId != action.payload; })
+        selectedCourses: state.selectedCourses.filter((courseId) => { return courseId !== action.payload; })
       };
     case asyncActs.REMOVE_ALL_COURSES:
       return { ...state, selectedCourses: [] };
@@ -91,27 +92,29 @@ const CourseFilter = (state = {
         showSuggestion: false,
         loadingSuggestion: false
       };
-    case asyncActs.UPDATE_FILTER_CRITERIA:
+    case asyncActs.UPDATE_FILTER_CRITERIA: {
       const rawFilters = JSON.parse(JSON.stringify(action.data));
+      const {
+        selectedWeekDays, selectedLocations,
+        selectedCategories, selectedSpecializes
+      } = state.filters;
       const newFilters = Object.assign({}, rawFilters, {
-        selectedWeekDays: rawFilters.selectedWeekDays || [],
-        selectedLocations: rawFilters.selectedLocations || [],
-        selectedCategories: rawFilters.selectedCategories || [],
-        selectedSpecializes: rawFilters.selectedSpecializes || []
+        selectedWeekDays: rawFilters.selectedWeekDays || selectedWeekDays,
+        selectedLocations: rawFilters.selectedLocations || selectedLocations,
+        selectedCategories: rawFilters.selectedCategories || selectedCategories,
+        selectedSpecializes: rawFilters.selectedSpecializes || selectedSpecializes
       });
-
-      return Object.assign({}, state, { filters: Object.assign({}, newFilters) });
+      return {
+        ...state,
+        ...{ filters: newFilters },
+        orderBy: rawFilters.orderBy || state.orderBy
+      };
+    }
     case RESET_COURSE_FILTER:
       return Object.assign({}, state, {
-        filters: {
-          selectedWeekDays: [],
-          selectedLocations: [],
-          selectedCategories: [],
-          selectedSpecializes: [],
-          resetMinFee: false,
-          resetMaxFee: false,
-          term: ''
-        }
+        filters: initialState.filters,
+      }, {
+        orderBy: initialState.orderBy
       });
     default:
       return state;

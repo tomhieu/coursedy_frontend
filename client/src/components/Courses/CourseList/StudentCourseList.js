@@ -22,7 +22,7 @@ class StudentCourseList extends Component {
             </div>
             <div className="col-md-7 col-sm-12">
               <div className="row">
-                <div className="col-xl-2 col-lg-2 col-md-2 col-sm-4">
+                <div className="col-xl-3 col-lg-4 col-md-2 col-sm-4">
                   <div className={styles.tutorCourseHeader}>{this.context.t('started_date')}</div>
                 </div>
                 <div className="col-xl-2 col-lg-2 col-md-2 col-sm-4 max-student-col">
@@ -34,7 +34,7 @@ class StudentCourseList extends Component {
                 <div className="col-xl-2 col-lg-4 col-md-4 col-sm-4 course-status-col">
                   <div className={styles.tutorCourseHeader}>{this.context.t('student_course_status')}</div>
                 </div>
-                <div className="col-xl-2 col-lg-4 col-md-6 col-sm-4" />
+                <div className="col-xl-2 col-lg-2 col-md-6 col-sm-4" />
               </div>
             </div>
           </div>

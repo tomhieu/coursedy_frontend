@@ -5,7 +5,7 @@ import CourseFormItem from '../CourseFormItem';
 class CourseCategoryViewMode extends Component {
   render() {
     const {
-      editMode, courseSpecializes, categories, category, course_specialize
+      editMode, courseSpecializes, categories, category, course_specialize, canEditable
     } = this.props;
     return (
       <div className="row">
@@ -24,6 +24,7 @@ class CourseCategoryViewMode extends Component {
                 return { id: category.id, text: category.name };
               })}
               styleCustomField="inline-form-control"
+              canEditable={canEditable}
               {...this.props}
             />
           </div>
@@ -45,6 +46,7 @@ class CourseCategoryViewMode extends Component {
                       return { id: spec.id, text: spec.name };
                     })}
                     styleCustomField="inline-form-control"
+                    canEditable={canEditable}
                     {...this.props}
                   />
                 </div>
@@ -66,7 +68,8 @@ CourseCategoryViewMode.propType = {
   courseSpecializes: React.PropTypes.array,
   categories: React.PropTypes.array,
   category: React.PropTypes.object,
-  course_specialize: React.PropTypes.object
+  course_specialize: React.PropTypes.object,
+  canEditable: React.PropTypes.bool
 };
 
 export default CourseCategoryViewMode;

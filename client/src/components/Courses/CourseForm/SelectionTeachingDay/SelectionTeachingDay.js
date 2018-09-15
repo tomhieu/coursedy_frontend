@@ -16,7 +16,7 @@ class SelectionTeachingDay extends Component {
 
   render() {
     const {
-      submitting, pristine, onEditTechingDay, activatedFieldIds, editTeachingDay
+      submitting, pristine, onEditTechingDay, canEditable, editTeachingDay
     } = this.props;
     if (!editTeachingDay) {
       return (
@@ -25,6 +25,7 @@ class SelectionTeachingDay extends Component {
             {...this.props}
             onActivatedField={onEditTechingDay}
             onClosedField={onEditTechingDay}
+            canEditable={canEditable}
           />
         </div>
       );

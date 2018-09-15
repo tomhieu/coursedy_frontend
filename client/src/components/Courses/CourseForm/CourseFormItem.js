@@ -7,7 +7,7 @@ class CourseFormItem extends Component {
   render() {
     const {
       editMode = false, showLabel = true, placeholder,
-      fieldLabel, fieldId, isMandatory, fieldName, activatedField = [], isRichTextField = false
+      fieldLabel, fieldId, isMandatory, fieldName, activatedField = [], isRichTextField = false, canEditable
     } = this.props;
     if (editMode) {
       return (
@@ -18,6 +18,7 @@ class CourseFormItem extends Component {
           isMandatoryField={isMandatory}
           formControlName={fieldName}
           isRichTextField={isRichTextField}
+          canEditable={canEditable}
           {...this.props}
         />
       );
@@ -48,7 +49,8 @@ CourseFormItem.propTypes = {
   displayStyle: React.PropTypes.string,
   styleCustomField: React.PropTypes.string,
   activatedField: React.PropTypes.array,
-  isRichTextField: React.PropTypes.bool
+  isRichTextField: React.PropTypes.bool,
+  canEditable: React.PropTypes.bool
 };
 
 export default CourseFormItem;

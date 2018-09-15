@@ -1,9 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { reduxForm } from 'redux-form';
+import { reduxForm, change, untouch } from 'redux-form';
 import { MAX_FEE, MIN_FEE } from 'utils/CommonConstant';
 import { TT } from 'utils/locale';
 import Network from 'utils/network';
+import { validate } from 'validations/CourseFilterValidator';
 import * as WebConstants from 'constants/WebConstants';
 import * as CourseFilterActions from '../../../actions/CourseFilterActionCreator';
 import * as asyncActions from '../../../actions/AsyncActionCreator';
@@ -48,18 +49,14 @@ class CourseFilterContainer extends AbstractFilter {
       selectedMinFee, selectedMaxFee, order_by, display_mode
     } = this.props.formfieldValues;
     const currentFilters = JSON.parse(JSON.stringify(this.props.filters));
-    let nextFilters = currentFilters;
+    const nextFilters = this.addFilterCriteria(currentFilters, filter, category);
+    this.props.updateFilter(nextFilters);
 
     if (category === MIN_FEE) {
       selectedMinFee = filter;
     } else if (category === MAX_FEE) {
       selectedMaxFee = filter;
-    } else {
-      nextFilters = this.addFilterCriteria(currentFilters, filter, category);
     }
-
-    this.props.updateFilter(nextFilters);
-
     this.props.searchCourse(this.buildQuery(nextFilters, selectedMinFee, selectedMaxFee, order_by, display_mode));
   }
 
@@ -70,8 +67,8 @@ class CourseFilterContainer extends AbstractFilter {
       this.props.updateFilter({ term: keyWord });
     } else {
       orderBy = e.target.value;
+      this.props.updateFilter({ orderBy });
     }
-
     const { selectedMinFee, selectedMaxFee, display_mode } = this.props.formfieldValues;
     this.props.searchCourse(this.buildQuery(
       this.props.filters,
@@ -103,12 +100,26 @@ class CourseFilterContainer extends AbstractFilter {
   }
 
   doRemoveFilter(filterId, typeFilter) {
-    const {
-      selectedMinFee, selectedMaxFee, order_by, display_mode
-    } = this.props.formfieldValues;
     const currentFilters = JSON.parse(JSON.stringify(this.props.filters));
     const removedFilters = this.removeFilterCriteria(currentFilters, filterId, typeFilter);
     this.props.updateFilter(removedFilters);
+    let {
+      selectedMinFee, selectedMaxFee, order_by, display_mode
+    } = this.props.formfieldValues;
+
+    if (typeFilter === MIN_FEE) {
+      selectedMinFee = '';
+      this.props.resetFields({
+        selectedMinFee: ''
+      });
+    }
+
+    if (typeFilter === MAX_FEE) {
+      selectedMaxFee = '';
+      this.props.resetFields({
+        selectedMaxFee: ''
+      });
+    }
     this.props.searchCourse(this.buildQuery(removedFilters, selectedMinFee, selectedMaxFee, order_by, display_mode));
   }
 
@@ -174,11 +185,11 @@ const mapStateToProps = (state) => {
   }));
 
   let initializeFields = courseFilterForm.values ? Object.assign({}, courseFilterForm.values) : {};
-
   if (courseFilterForm.values && filters.resetMinFee) {
-    initializeFields = Object.assign({}, courseFilterForm.values, { selectedMinFee: '' });
-  } else if (courseFilterForm.values && filters.resetMaxFee) {
-    initializeFields = Object.assign({}, courseFilterForm.values, { selectedMaxFee: '' });
+    initializeFields = { ...initializeFields, selectedMinFee: '' };
+  }
+  if (courseFilterForm.values && filters.resetMaxFee) {
+    initializeFields = { ...initializeFields, selectedMaxFee: '' };
   }
 
   return {
@@ -196,7 +207,7 @@ const mapStateToProps = (state) => {
     showSuggestion,
     suggestions: filterSuggestions,
     loadingSuggestion,
-    formfieldValues: courseFilterForm.values ? courseFilterForm.values : {},
+    formfieldValues: initializeFields,
     listSpecializes: getSelectedSpecializesFromCategory(categories, filters.selectedCategories),
     initialValues: initializeFields
   };
@@ -228,7 +239,15 @@ const mapDispatchToProps = dispatch => ({
   }),
   noShadowHeader: () => dispatch({ type: WebConstants.ADD_HEADER_CLASS, payload: 'no-shadow' }),
   shadowHeader: () => dispatch({ type: WebConstants.REMOVE_HEADER_CLASS }),
-  closeSuggestion: () => dispatch({ type: asyncActions.CLOSE_COURSE_FILTER_SUGGESTION })
+  closeSuggestion: () => dispatch({ type: asyncActions.CLOSE_COURSE_FILTER_SUGGESTION }),
+  resetFields: (fieldsObj) => {
+    Object.keys(fieldsObj).forEach((fieldKey) => {
+      // reset the field's value
+      dispatch(change('courseFilterForm', fieldKey, fieldsObj[fieldKey]));
+      // reset the field's error
+      dispatch(untouch('courseFilterForm', fieldKey));
+    });
+  }
 });
 
 
@@ -237,5 +256,6 @@ export default connect(
 )(reduxForm({
   form: 'courseFilterForm',
   updateUnregisteredFields: true,
-  fields: ['key_word', 'selectedMinFee', 'selectedMaxFee', 'sort_by', 'display_mode']
+  fields: ['key_word', 'selectedMinFee', 'selectedMaxFee', 'sort_by', 'display_mode'],
+  validate
 })(CourseFilterContainer));

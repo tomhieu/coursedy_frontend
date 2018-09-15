@@ -10,7 +10,7 @@ import FormField from '../../../Core/FormField';
 class SelectionTeachingDayViewMode extends Component {
   render() {
     const {
-      editable, courseData, isSamePeriod, selectedDays
+      editable, courseData, isSamePeriod, selectedDays, canEditable
     } = this.props;
     console.log(`number of selected days: ${selectedDays.length}`);
     return (
@@ -64,6 +64,7 @@ class SelectionTeachingDayViewMode extends Component {
                           typeField="custom_select"
                           options={HOURS_IN_DAY}
                           content={editable ? DateUtils.retrieveStartTimeOfDay(courseData.course_days, day.name) : ''}
+                          canEditable={canEditable}
                           {...this.props}
                         />
                       </div>
@@ -80,6 +81,7 @@ class SelectionTeachingDayViewMode extends Component {
                           typeField="custom_select"
                           options={HOURS_IN_DAY}
                           content={editable ? DateUtils.retrieveEndTimeOfDay(courseData.course_days, day.name) : ''}
+                          canEditable={canEditable}
                           {...this.props}
                         />
                       </div>
@@ -99,6 +101,7 @@ class SelectionTeachingDayViewMode extends Component {
                             typeField="custom_select"
                             options={HOURS_IN_DAY}
                             content={editable ? DateUtils.retrieveStartTimeOfDay(courseData.course_days, null) : ''}
+                            canEditable={canEditable}
                             {...this.props}
                           />
                         </div>
@@ -115,6 +118,7 @@ class SelectionTeachingDayViewMode extends Component {
                             typeField="custom_select"
                             options={HOURS_IN_DAY}
                             content={editable ? DateUtils.retrieveEndTimeOfDay(courseData.course_days, null) : ''}
+                            canEditable={canEditable}
                             {...this.props}
                           />
                         </div>
@@ -137,7 +141,8 @@ SelectionTeachingDayViewMode.propType = {
   editable: React.PropTypes.bool,
   courseData: React.PropTypes.object,
   isSamePeriod: React.PropTypes.bool,
-  selectedDays: React.PropTypes.array
+  selectedDays: React.PropTypes.array,
+  canEditable: React.PropTypes.bool
 };
 
 export default SelectionTeachingDayViewMode;

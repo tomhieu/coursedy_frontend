@@ -140,9 +140,10 @@ const mapDispatchToProps = dispatch => ({
   getCourseCategories: () => dispatch(ReferActions.fetchCourseCategories()),
   getPublicCourse: courseId => dispatch(PublicCourseActions.fetchPublicCourse(courseId)),
   getCourseComments: (courseId, page) => dispatch(PublicCourseActions.fetchCourseComments(courseId, page)),
-  getRelatedCourses: (courseId, page, perPage) => dispatch(PublicCourseActions.fetchRelatedCourses({ courseId, page, perPage })),
-  enrollCourse: courseId => dispatch(PublicCourseActions.submitEnrollCourse(courseId)),
-  changeActiveMenu: payload => dispatch(PublicCourseActions.changeActiveMenu(payload)),
+  getRelatedCourses: (courseId, page, perPage) => dispatch(PublicCourseActions.fetchRelatedCourses({course_id: courseId, page, perPage})),
+  enrollCourse: (courseId) => dispatch(PublicCourseActions.submitEnrollCourse(courseId)),
+  addCourseToCart: (course) => dispatch(PublicCourseActions.addCourseToCart(course)),
+  changeActiveMenu: (payload) => dispatch(PublicCourseActions.changeActiveMenu(payload)),
   showWarningPopup: (title, message, callback) => dispatch(openConfirmationPopup(title, message, callback)),
   fetchEnrolledCourseList: user => dispatch(sessionActions.fetchActiveCourses(user))
 });

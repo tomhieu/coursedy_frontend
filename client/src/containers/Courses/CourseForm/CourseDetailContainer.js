@@ -32,13 +32,15 @@ class CourseDetailContainer extends Component {
       });
     });
 
+    const courseFee = Number(course.tuition_fee.replace(/[^0-9]/g, ''));
+
     const updatedCourse = {
       title: course.title,
       description: course.description,
       start_date: course.start_date,
       period: course.period,
       number_of_students: course.number_of_students,
-      tuition_fee: course.tuition_fee,
+      tuition_fee: courseFee,
       currency: course.currency,
       is_free: course.is_free,
       week_day_schedules_attributes,
@@ -113,7 +115,7 @@ class CourseDetailContainer extends Component {
   }
 
   render() {
-    const { editMode, courseData } = this.props;
+    const { editMode, courseData, canEditable } = this.props;
     return (
       <CourseForm
         onSubmit={this.createCourse.bind(this)}
@@ -126,6 +128,7 @@ class CourseDetailContainer extends Component {
         editMode={editMode}
         courseData={courseData}
         courseId={this.courseId}
+        canEditable={canEditable}
         {...this.props}
       />
     );
