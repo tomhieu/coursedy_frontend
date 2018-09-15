@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import cssModules from 'react-css-modules';
 import { FormGroup, ControlLabel } from 'react-bootstrap';
 import { Field } from 'redux-form';
-import { Link } from 'react-router-dom';
 import PrimaryButton from '../Core/PrimaryButton/PrimaryButton';
 import styles from './LoginForm.module.scss';
 import './LoginRegisterForm.scss';
@@ -57,10 +56,6 @@ class ForgotPasswordForm extends Component {
             line={false}
             round
           />
-        </div>
-
-        <div className="d-flex justify-content-center mt-10">
-          <Link to="/login" className="link-in-form">{this.context.t('back')}</Link>
         </div>
       </form>
     );

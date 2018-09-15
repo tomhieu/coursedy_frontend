@@ -48,7 +48,7 @@ export default {
   phone_number: 'Số điện thoại',
   phone_number_hint: 'Ví dụ: +84 166 782 5115, +01 541 754 3010',
   forgot_password: 'Quên mật khẩu?',
-  forgot_password_description: 'Vui lòng nhập email để tìm kiếm tài khoản, hệ thống sẽ gửi cho bạn một email kèm hướng dẫn.',
+  forgot_password_description: 'Vui lòng nhập địa chỉ email lúc đăng ký để cài đặt mật lại khẩu, hệ thống sẽ gửi cho bạn một email kèm hướng dẫn.',
   registration_email_require: 'Vui lòng nhập email',
   invalid_email: 'Email không hợp lệ',
   password_required: 'Vui lòng nhập mật khẩu',
