@@ -93,6 +93,9 @@ class NotificationSystemContainer extends Component {
     const teachingCourseId = session.teachingCourse !== null ? session.teachingCourse.id : '';
     const classRoomId = session.teachingCourse && session.teachingCourse.bigbluebutton_room ? session.teachingCourse.bigbluebutton_room.slug : '';
 
+    if (session.teachingCourse !== null) {
+      clearTimeout(this.timeout);
+    }
     // show notification about the new started course
     const newStartedCourseNeedToNotify = newStartedCourses.filter(nc => this.newStartCourseHasBeenNotified.indexOf(nc.id) < 0);
     if (newStartedCourseNeedToNotify.length > 0) {

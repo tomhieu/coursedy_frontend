@@ -24,7 +24,7 @@ const Network = (res = {}) => {
 
     if (isBBBApi) {
       parameters = [
-        SERVER_NAME,
+        config.apiEnpoint,
         'bigbluebutton',
         'api'
       ];
