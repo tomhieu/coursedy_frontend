@@ -5,7 +5,7 @@
 // See the actions for post to see it in action located in ../actions/post.js
 import queryString from 'query-string';
 import request from './request';
-import { SERVER_NAME } from './CommonConstant';
+import config from 'config'
 
 /**
  * @function Network
@@ -17,7 +17,7 @@ const Network = (res = {}) => {
   const buildUrl = (path, isBBBApi = false) => {
     const { id, resource } = res;
     let parameters = [
-      SERVER_NAME,
+      config.apiEnpoint,
       'api',
       'v1'
     ];

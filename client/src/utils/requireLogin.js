@@ -48,6 +48,11 @@ export default function requireLogin(Component) {
           /> );
       }
 
+      // if user is teacher, but the teacher details is not loaded yet. Still waiting for loading
+      if (user && SecurityUtils.isTeacher(user) && !tutor.status) {
+        return null;
+      }
+
       if (tutor && status && tutor.status !== status) {
         return (
           <Redirect to={{

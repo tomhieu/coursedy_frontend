@@ -20,8 +20,8 @@
     "test:watch": "npm test -- --watch",
     "build": "webpack",
     "dev": "webpack-dev-server",
+    "start": "NODE_ENV=staging npm run dev",
     "deploy": "NODE_ENV=production `npm bin`/webpack -p",
-    "start": "npm run dev",
     "clean": "rm -rf client/dist client/build",
     "setup": "npm install",
     "lint": "eslint --fix client/src"
@@ -84,6 +84,7 @@
     "babel-preset-stage-0": "^6.24.1",
     "client": "0.0.1",
     "components": "^0.1.0",
+    "config": "^2.0.1",
     "configs": "^1.0.3",
     "css-loader": "^0.28.11",
     "express": "^4.16.3",

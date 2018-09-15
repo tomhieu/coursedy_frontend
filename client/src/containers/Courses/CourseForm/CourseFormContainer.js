@@ -204,7 +204,10 @@ CourseFormContainer.contextTypes = {
 };
 
 CourseFormContainer.propTypes = {
-  courseId: React.PropTypes.number
+  courseId: React.PropTypes.oneOfType([
+    React.PropTypes.number,
+    React.PropTypes.string,
+  ])
 };
 
 const mapStateToProps = (state) => {

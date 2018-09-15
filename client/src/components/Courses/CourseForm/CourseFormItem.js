@@ -44,7 +44,10 @@ CourseFormItem.propTypes = {
   fieldName: React.PropTypes.string.isRequired,
   typeField: React.PropTypes.string,
   disabled: React.PropTypes.bool,
-  content: React.PropTypes.string,
+  content: React.PropTypes.oneOfType([
+    React.PropTypes.string,
+    React.PropTypes.number,
+  ]),
   options: React.PropTypes.array,
   displayStyle: React.PropTypes.string,
   styleCustomField: React.PropTypes.string,
