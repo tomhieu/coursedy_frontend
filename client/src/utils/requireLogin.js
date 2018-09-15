@@ -10,7 +10,8 @@ export default function requireLogin(Component) {
     static propTypes = {
       user: PropTypes.object,
       fetchingUser: PropTypes.bool,
-      route: PropTypes.object
+      route: PropTypes.object,
+      status: PropTypes.string
     };
 
     componentWillMount() {
@@ -30,20 +31,31 @@ export default function requireLogin(Component) {
     }
 
     render() {
-      const { user, fetchingUser, location } = this.props;
+      const { user, fetchingUser, location, fetchingTutor, tutor, route: { status } } = this.props;
       const isAuthenticated = SecurityUtils.isAuthenticated();
+
+      if (fetchingTutor || fetchingUser) {
+        return null;
+      }
+
       if (isAuthenticated && !user) {
-        return fetchingUser ? (
-          <div>LOADING</div>
-        ) : (
-          <Redirect
-            to={{
+        return (
+          <Redirect to={{
               pathname: '/login',
               state: { from: location },
               search: `?next=${location.pathname}`
             }}
-          />
-        );
+          /> );
+      }
+
+      if (tutor && status && tutor.status !== status) {
+        return (
+          <Redirect to={{
+            pathname: '/404',
+            state: { from: location },
+            search: `?next=${location.pathname}`
+          }}
+          /> )
       }
 
       return (
@@ -62,11 +74,20 @@ export default function requireLogin(Component) {
 
   const mapStateToProps = state => ({
     user: state.session.currentUser,
-    fetchingUser: state.session.fetchingUser
+    fetchingUser: state.session.fetchingUser,
+    fetchingTutor: state.TutorAccountReducer.isFetchingTutor,
+    tutor: state.TutorAccountReducer.tutor
   });
 
   const mapStateToDispatch = dispatch => ({
-    fetchUserData: () => dispatch(sessionActions.fetchCurrentUser())
+    fetchUserData: () => {
+      const res = dispatch(sessionActions.fetchCurrentUser());
+      res.then((userData) => {
+        if (SecurityUtils.isTeacher(userData.value)) {
+          dispatch(sessionActions.fetchCurrentTutor());
+        }
+      })
+    }
   });
 
   return connect(

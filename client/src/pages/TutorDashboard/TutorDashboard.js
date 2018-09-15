@@ -1,15 +1,14 @@
 import React from 'react';
 import cssModules from 'react-css-modules';
-import { connect } from 'react-redux';
-import { SecurityUtils } from 'utils/SecurityUtils';
-import { TT } from 'utils/locale';
-import { TutorContainers } from 'containers/index';
-import { RoleAuthorization, TutorDashboardMenu } from 'components/index';
+import {connect} from 'react-redux';
+import {TT} from 'utils/locale';
+import {TutorContainers} from 'containers/index';
+import {RoleAuthorization, TutorDashboardMenu} from 'components/index';
 import * as sessionActions from 'actions/SessionActionCreator';
 import * as dashboardActions from 'actions/DashboardMenuActionCreator';
 import * as WebConstants from 'constants/WebConstants';
-import StudentDashboardMenu from 'components/Student/Dashboard/StudentDashboardMenu';
 import styles from './TutorDashboard.module.scss';
+import {TutorStatus} from '../../constants/TutorStatus';
 
 class TutorDashboard extends RoleAuthorization {
   componentDidMount() {
@@ -21,7 +20,7 @@ class TutorDashboard extends RoleAuthorization {
   }
 
   render() {
-    const { currentUser, isCollapseDashboard } = this.props;
+    const { isCollapseDashboard, tutor } = this.props;
     let dashboardMenuClasses = 'panel-group dashboard-menu';
     let dashboardContentClasses = 'd-flex flex-column flex-auto dashboard-content';
     let dashboardFooterClasses = 'dashboard-footer d-flex justify-content-center';
@@ -33,26 +32,16 @@ class TutorDashboard extends RoleAuthorization {
       dashboardFooterClasses += ' expanded';
     }
 
+    const isApproved = tutor.status === TutorStatus.VERIFIED;
+
     return (
       <div className="dashboard-section">
         <div className="d-flex flex-row flex-auto">
           <div className={leftMenuClasses.join(' ')} id="sidebar">
-            {
-              SecurityUtils.isTeacher(currentUser)
-                ? (
-                  <div className={dashboardMenuClasses} id="accordion">
-                    <TutorContainers.DashboardProfileContainer />
-                    <TutorDashboardMenu {...this.props} />
-                  </div>
-                )
-                : (
-                  <div className={dashboardMenuClasses} id="accordion">
-                    <TutorContainers.DashboardProfileContainer />
-                    <StudentDashboardMenu {...this.props} />
-                  </div>
-                )
-            }
-
+            <div className={dashboardMenuClasses} id="accordion">
+              <TutorContainers.DashboardProfileContainer />
+              <TutorDashboardMenu isApproved={isApproved} {...this.props} />
+            </div>
           </div>
           <div className={dashboardContentClasses}>
             <div className="full-width daskboard-container container">
@@ -74,8 +63,8 @@ const mapStateToProps = state => ({
   currentUser: state.session.currentUser,
   fetchingUser: state.session.fetchingUser,
   activatedTab: state.DashboardMenu.activatedTab,
-  isCollapseDashboard: state.DashboardMenu.isCollapseDashboard
-
+  isCollapseDashboard: state.DashboardMenu.isCollapseDashboard,
+  tutor: state.TutorAccountReducer.tutor
 });
 
 const mapDispatchToProps = dispatch => ({

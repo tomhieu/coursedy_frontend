@@ -7,6 +7,7 @@ import CoursedyDropDown from '../../../components/Core/CoursedyMultiStep/Coursed
 import UserProfileIcon from '../../../components/Core/Icons/UserProfileIcon';
 import CourseListIcon from '../../../components/Core/Icons/CourseListIcon';
 import SignOutIcon from '../../../components/Core/Icons/SignOutIcon';
+import {TutorStatus} from '../../../constants/TutorStatus';
 
 class UserNavigation extends Component {
   constructor(props) {
@@ -32,6 +33,7 @@ class UserNavigation extends Component {
 
   render() {
     const { currentUser } = this.props.session;
+    const isAproved = this.props.tutorStatus === TutorStatus.VERIFIED;
     const userProfileUrl = SecurityUtils.isAdmin(currentUser) ? '/admin/dashboard/account' : SecurityUtils.isTeacher(currentUser)
       ? '/dashboard/profile' : '/student/dashboard/profile';
     const courseListUrl = SecurityUtils.isAdmin(currentUser) ? '/admin/dashboard/courses' : SecurityUtils.isTeacher(currentUser)
@@ -47,6 +49,9 @@ class UserNavigation extends Component {
         id: 3, callback: this.props.signOut.bind(this), text: this.context.t('user_navigation_sign_out'), icon: <SignOutIcon width={16} height={16} fillColor="#5E6A6E" />
       }
     ];
+    if (SecurityUtils.isTeacher(currentUser) && !isAproved) {
+      dropdownOptions.splice(1, 1);
+    }
     return (
       currentUser == null ? null
         : (
@@ -80,6 +85,7 @@ UserNavigation.contextTypes = {
 
 UserNavigation.propTypes = {
   session: PropTypes.object.isRequired,
+  tutorStatus: PropTypes.string.isRequired,
   signOut: PropTypes.func.isRequired
 };
 

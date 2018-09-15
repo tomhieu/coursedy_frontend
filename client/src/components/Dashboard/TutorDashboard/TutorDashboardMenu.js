@@ -20,7 +20,7 @@ class TutorDashboardMenu extends Component {
   }
 
   render() {
-    const { activatedTab, currentUser } = this.props;
+    const { activatedTab, isApproved } = this.props;
 
     const isActiveCourseTab = ['course_add', 'course_list', 'course_active_list', 'course_management'].indexOf(activatedTab) >= 0;
 
@@ -55,44 +55,47 @@ class TutorDashboardMenu extends Component {
                 }
                 <a className={`${styles.itemName} dashboard-item-name`}>{this.context.t('account_setting')}</a>
               </li>
-              <li
-                className={isActiveCourseTab ? activeDashboardItemClasses.join(' ') : dashboardItemClasses.join(' ')}
-                onClick={this.onOpenMultipleTab.bind(this, 'course_management')}
-              >
-                <div className="d-flex flex-column flex-auto">
-                  <div className={multipleDashboardItemClasses} data-toggle="collapse" data-target="#courseChildTab" aria-expanded="true">
-                    {
-                      isActiveCourseTab ? <CourseListIcon fillColor="#1CABA0" /> : <CourseListIcon fillColor="#444444" />
-                    }
-                    <a className={`${styles.itemName} dashboard-item-name`}>{this.context.t('course_management')}</a>
-                  </div>
-                  <ul
-                    id="courseChildTab"
-                    className={isActiveCourseTab ? 'collapse sub-dashboard-item show' : 'sub-dashboard-item collapse'}
-                    aria-labelledby="courseChildTab"
-                    data-parent="#accordion"
+              {
+                isApproved ?
+                  <li
+                    className={isActiveCourseTab ? activeDashboardItemClasses.join(' ') : dashboardItemClasses.join(' ')}
+                    onClick={this.onOpenMultipleTab.bind(this, 'course_management')}
                   >
-                    <li
-                      className={activatedTab === 'course_list' ? `${styles.dashboardItem} ${styles.active}` : styles.dashboardItem}
-                      onClick={this.onClickDashboardLink.bind(this, '/dashboard/courses/list', 'course_list')}
-                    >
-                      <a className={styles.itemName}>{this.context.t('course_list')}</a>
-                    </li>
-                    <li
-                      className={activatedTab === 'course_active_list' ? `${styles.dashboardItem} ${styles.active}` : styles.dashboardItem}
-                      onClick={this.onClickDashboardLink.bind(this, '/dashboard/courses/active', 'course_active_list')}
-                    >
-                      <a className={styles.itemName}>{this.context.t('course_active_list')}</a>
-                    </li>
-                    <li
-                      className={activatedTab === 'course_add' ? `${styles.dashboardItem} ${styles.active}` : styles.dashboardItem}
-                      onClick={this.onClickDashboardLink.bind(this, '/dashboard/courses/new', 'course_add')}
-                    >
-                      <a className={styles.itemName}>{this.context.t('course_add_btn')}</a>
-                    </li>
-                  </ul>
-                </div>
-              </li>
+                    <div className="d-flex flex-column flex-auto">
+                      <div className={multipleDashboardItemClasses} data-toggle="collapse" data-target="#courseChildTab" aria-expanded="true">
+                        {
+                          isActiveCourseTab ? <CourseListIcon fillColor="#1CABA0" /> : <CourseListIcon fillColor="#444444" />
+                        }
+                        <a className={`${styles.itemName} dashboard-item-name`}>{this.context.t('course_management')}</a>
+                      </div>
+                      <ul
+                        id="courseChildTab"
+                        className={isActiveCourseTab ? 'collapse sub-dashboard-item show' : 'sub-dashboard-item collapse'}
+                        aria-labelledby="courseChildTab"
+                        data-parent="#accordion"
+                      >
+                        <li
+                          className={activatedTab === 'course_list' ? `${styles.dashboardItem} ${styles.active}` : styles.dashboardItem}
+                          onClick={this.onClickDashboardLink.bind(this, '/dashboard/courses/list', 'course_list')}
+                        >
+                          <a className={styles.itemName}>{this.context.t('course_list')}</a>
+                        </li>
+                        <li
+                          className={activatedTab === 'course_active_list' ? `${styles.dashboardItem} ${styles.active}` : styles.dashboardItem}
+                          onClick={this.onClickDashboardLink.bind(this, '/dashboard/courses/active', 'course_active_list')}
+                        >
+                          <a className={styles.itemName}>{this.context.t('course_active_list')}</a>
+                        </li>
+                        <li
+                          className={activatedTab === 'course_add' ? `${styles.dashboardItem} ${styles.active}` : styles.dashboardItem}
+                          onClick={this.onClickDashboardLink.bind(this, '/dashboard/courses/new', 'course_add')}
+                        >
+                          <a className={styles.itemName}>{this.context.t('course_add_btn')}</a>
+                        </li>
+                      </ul>
+                    </div>
+                  </li> : null
+              }
             </ul>
           </div>
         </div>
@@ -105,6 +108,12 @@ class TutorDashboardMenu extends Component {
 TutorDashboardMenu.contextTypes = {
   t: React.PropTypes.func.isRequired
 };
+
+TutorDashboardMenu.propTypes = {
+  activatedTab: React.PropTypes.string,
+  isApproved: React.PropTypes.bool
+};
+
 
 
 export default cssModules(TutorDashboardMenu, styles);

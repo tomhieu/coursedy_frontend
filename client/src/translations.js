@@ -261,7 +261,7 @@ export const translations = {
     female: 'Nữ',
     'gender.M': 'Nam',
     'gender.F': 'Nữ',
-    search_course: 'Khoá học',
+    search_course: 'Nhập tên khoá học, giáo viên, loại khoá học...',
     search_teacher: 'Giáo viên',
     view_details_lesson: 'Xem bài học',
     update_password: 'Thay đổi mật khẩu',
@@ -842,6 +842,8 @@ export const translations = {
     become_teacher_page: 'Trang trở thành giáo viên',
     payment_page: 'Trang hướng dẫn thanh ',
     fee_must_be_a_number: 'Vui lòng nhập vào số',
+    account_pending_warning_message: 'Tài khoản của bạn hiện tại đang ở trạng thái {pending_status}. Vui lòng điền đầy đử thông tin tài khoản. Một khi điền đầy đử thông tin yêu cầu, chúng tôi sẽ kiêm tra và xác nhận thông tin trong vòng 24h',
+    pending_account_status: 'chờ xác nhận'
   },
   en: {
     ...payment_translation.en,

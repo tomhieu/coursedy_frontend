@@ -1068,9 +1068,23 @@ body.application {
       text-align: center;
       padding: 0 5px;
       border-top: 1px solid $border-color;
-      display: table;
-      & > div {
-        display: table-cell;
+      display: flex;
+      flex-direction: row;
+      .category {
+        display: flex;
+        flex: 2;
+        flex-direction: row;
+        align-items: center;
+        overflow: hidden;
+        padding: 10px;
+      }
+
+      .number-lesson {
+        display: flex;
+        flex: 1;
+        flex-direction: row;
+        align-items: center;
+        overflow: hidden;
         padding: 10px;
       }
 
@@ -1079,8 +1093,10 @@ body.application {
       }
 
       .block {
+        white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
+        margin-left: 5px;
       }
     }
   }

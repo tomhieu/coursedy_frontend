@@ -26,7 +26,7 @@ class SearchFormContainer extends Component {
       return;
     }
 
-    this.props.loadSuggestions({ q: event.target.value });
+    this.props.loadSuggestions(event.target.value);
   }
 
   onSelectSuggestion(id) {
@@ -97,7 +97,7 @@ const mapDispatchToProps = dispatch => ({
   showDarkHeader: () => dispatch({ type: WebConstants.SHOW_DARK_HEADER }),
   showWhiteHeader: () => dispatch({ type: WebConstants.SHOW_WHITE_HEADER }),
   updateFilter: filters => dispatch(CourseFilterActions.updateFilter(filters)),
-  loadSuggestions: query => dispatch({
+  loadAutoSuggestions: query => dispatch({
     type: LOAD_SUGGESTION,
     payload: Network().get('courses/search', query),
     meta: 'courseSuggestionPlaceholder'
