@@ -722,6 +722,7 @@ body.application {
     border: 1px solid $border-color;
     border-radius: 3px;
     height: $height-field;
+    outline: none;
   }
 
   .header-homepage .select2-container--default .select2-selection--single .select2-selection__arrow {

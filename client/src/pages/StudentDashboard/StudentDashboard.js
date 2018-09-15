@@ -14,6 +14,7 @@ import StudentCoursesEnrolledContainer from '../../containers/Student/Dashboard/
 import StudentCoursesEnrollingContainer from '../../containers/Student/Dashboard/Courses/StudentCoursesEnrollingContainer';
 import StudentCoursesFollowContainer from '../../containers/Student/Dashboard/Courses/StudentCoursesFollowContainer';
 import TutorProfileDetailsContainer from '../../containers/Tutor/Profile/TutorProfileDetailsContainer';
+import {TT} from '../../utils/locale';
 
 class StudentDashboard extends RoleAuthorization {
   componentDidMount() {
@@ -25,18 +26,32 @@ class StudentDashboard extends RoleAuthorization {
   }
 
   render() {
+    const { isCollapseDashboard } = this.props;
+    let dashboardMenuClasses = 'panel-group dashboard-menu';
+    let dashboardContentClasses = 'd-flex flex-column flex-auto dashboard-content';
+    let dashboardFooterClasses = 'dashboard-footer d-flex justify-content-center';
+    const leftMenuClasses = [styles.leftPanel];
+    if (isCollapseDashboard) {
+      dashboardMenuClasses += ' collapsed';
+      leftMenuClasses.push(styles.collapsed);
+      dashboardContentClasses += ' expanded';
+      dashboardFooterClasses += ' expanded';
+    }
     return (
       <div className="dashboard-section">
         <div className="d-flex flex-row flex-auto">
-          <div className={styles.leftPanel} id="sidebar">
-            <div className="panel-group dashboard-menu" id="accordion">
+          <div className={leftMenuClasses.join(' ')} id="sidebar">
+            <div className={dashboardMenuClasses} id="accordion">
               <TutorContainers.DashboardProfileContainer />
               <StudentDashboardMenu {...this.props} />
             </div>
           </div>
-          <div className="d-flex flex-auto dashboard-content">
+          <div className={dashboardContentClasses}>
             <div className="full-width daskboard-container container">
               { this.props.children }
+            </div>
+            <div className={dashboardFooterClasses}>
+              <span className="coursedy-copyright">{TT.t('product_copyright')}</span>
             </div>
           </div>
         </div>
@@ -50,7 +65,8 @@ const styleComponent = cssModules(StudentDashboard, styles);
 const mapStateToProps = state => ({
   currentUser: state.session.currentUser,
   fetchingUser: state.session.fetchingUser,
-  activatedTab: state.DashboardMenu.activatedTab
+  activatedTab: state.DashboardMenu.activatedTab,
+  isCollapseDashboard: state.DashboardMenu.isCollapseDashboard,
 });
 
 const mapDispatchToProps = dispatch => ({
