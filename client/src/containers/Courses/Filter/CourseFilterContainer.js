@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { reduxForm } from 'redux-form';
+import { reduxForm, change, untouch } from 'redux-form';
 import { MAX_FEE, MIN_FEE } from 'utils/CommonConstant';
 import { TT } from 'utils/locale';
 import Network from 'utils/network';
@@ -106,8 +106,20 @@ class CourseFilterContainer extends AbstractFilter {
     let {
       selectedMinFee, selectedMaxFee, order_by, display_mode
     } = this.props.formfieldValues;
-    selectedMinFee = typeFilter === MIN_FEE ? '' : selectedMinFee;
-    selectedMaxFee = typeFilter === MAX_FEE ? '' : selectedMaxFee;
+
+    if (typeFilter === MIN_FEE) {
+      selectedMinFee = '';
+      this.props.resetFields({
+        selectedMinFee: ''
+      });
+    }
+
+    if (typeFilter === MAX_FEE) {
+      selectedMaxFee = '';
+      this.props.resetFields({
+        selectedMaxFee: ''
+      });
+    }
     this.props.searchCourse(this.buildQuery(removedFilters, selectedMinFee, selectedMaxFee, order_by, display_mode));
   }
 
@@ -226,7 +238,15 @@ const mapDispatchToProps = dispatch => ({
   }),
   noShadowHeader: () => dispatch({ type: WebConstants.ADD_HEADER_CLASS, payload: 'no-shadow' }),
   shadowHeader: () => dispatch({ type: WebConstants.REMOVE_HEADER_CLASS }),
-  closeSuggestion: () => dispatch({ type: asyncActions.CLOSE_COURSE_FILTER_SUGGESTION })
+  closeSuggestion: () => dispatch({ type: asyncActions.CLOSE_COURSE_FILTER_SUGGESTION }),
+  resetFields: (fieldsObj) => {
+    Object.keys(fieldsObj).forEach((fieldKey) => {
+      // reset the field's value
+      dispatch(change('courseFilterForm', fieldKey, fieldsObj[fieldKey]));
+      // reset the field's error
+      dispatch(untouch('courseFilterForm', fieldKey));
+    });
+  }
 });
 
 
@@ -234,7 +254,6 @@ export default connect(
   mapStateToProps, mapDispatchToProps
 )(reduxForm({
   form: 'courseFilterForm',
-  enableReinitialize: true,
   updateUnregisteredFields: true,
   fields: ['key_word', 'selectedMinFee', 'selectedMaxFee', 'sort_by', 'display_mode'],
   validate
