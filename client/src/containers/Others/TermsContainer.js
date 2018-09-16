@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import './TermOfUse.scss';
 import './Items.scss';
-import { TT } from 'utils/locale';
 import PageContainer from '../../utils/PageContainer';
 
 class TermsContainer extends Component {
@@ -12,8 +11,8 @@ class TermsContainer extends Component {
       >
         <div className="terms-of-use">
           <div className="container">
-            <TermOfUseTop />
-            <TermOfUseCenter />
+            <TermOfUseTop context={this.context} />
+            <TermOfUseCenter context={this.context} />
           </div>
         </div>
       </PageContainer>
@@ -27,21 +26,21 @@ TermsContainer.contextTypes = {
 
 export default TermsContainer;
 
-const TermOfUseTop = () => {
+const TermOfUseTop = ({ context }) => {
   return (
     <div className="items__heading">
-      <h1 className="items__title">{TT.t('terms_title')}</h1>
+      <h1 className="items__title">{context.t('terms_title')}</h1>
       <div className="divider" />
-      <p><strong>{TT.t('terms_latest_update')}</strong></p>
-      <p>{TT.t('terms_description')}</p>
+      <p><strong>{context.t('terms_latest_update')}</strong></p>
+      <p>{context.t('terms_description')}</p>
     </div>
   );
 };
 
-const TermOfUseCenter = () => {
+const TermOfUseCenter = ({ context }) => {
   return (
     <div className="items__main">
-      {TT.t('terms').map((term, index) => {
+      {context.t('terms').map((term, index) => {
         return <Blocks term={term} key={index} />;
       })}
     </div>

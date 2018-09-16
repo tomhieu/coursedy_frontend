@@ -149,6 +149,7 @@ export default {
   course_comments_add: 'Thêm bình luận',
   course_comments: 'Bình luận',
   course_comment_content: 'Nội dung bình luận',
+  course_comment_content_placeholder: 'Nội dung bình luận',
   comment_content: 'Nội dung bình luận',
   comment_content_required: 'Vui lòng nhập nội dung bình luận',
   course_comments_load_more: 'Tải thêm bình luận',
@@ -254,7 +255,7 @@ export default {
   speciality: 'Chuyên môn',
   save: 'Lưu',
   send: 'Gửi',
-  send_comment: 'Gửi bình luận',
+  send_comment_button: 'Gửi bình luận',
   cancel: 'Huỷ',
   select: 'Chọn',
   male: 'Nam',
@@ -292,7 +293,6 @@ export default {
   start_time_error: 'Thời gian kết thúc phải lớn hơn thời gian bắt đầu',
   last_name_required: 'Vui lòng nhập họ',
   birthdate_required: 'Vui lòng nhập ngay sinh',
-  address_required: 'Vui lòng nhập dia chi',
   mandatory_field_context: 'Vui lòng điền thông tin {field}',
   period_field: 'Thời lượng',
   name_lesson_field: 'Tên Buổi Học',
@@ -351,7 +351,7 @@ export default {
   course_comments_no_comment: 'Hãy là người đầu tiên nhận xét về khóa học này!!!',
 
   header_course_category: 'Khoá học {course_category}',
-  header_teacher_name: 'Khoá học được giảng dạy bởi: {teacherName}',
+  header_teacher_name: 'Giáo viên: {teacherName}',
   header_number_lesson: 'Tổng số bài học: {numberLesson}',
   header_period_lesson: 'Thời lượng bài học: {periodLesson} phút',
   header_last_update: 'Mới cập nhập: {lastUpdate}',
@@ -458,8 +458,8 @@ export default {
   get_course_timeline_content: 'Sau khi khoá học đã đủ học viên tham gia, giáo viên sẽ bắt đầu dạy khoá học. Chúng tôi sẽ gửi thông báo lịch học để bạn sắp xếp thời gian và đọc trước tài liệu.',
   start_learning_course_title: 'Tham gia học',
   start_learning_course_content: 'Bây giờ bạn sẽ học trên hệ thống Coursedy. Khi đến giờ học, hệ thống sẽ gửi thông báo để bạn vào lớp đúng giờ.', // student comment
-  first_student_comment: 'Công việc tại công ty bận rộn, tôi muốn luyện tiếng anh nhưng không có thời gian học tại trung tâm, được sự giới thiệu của bạn bè. Tôi thử tham gia một khoá học TOIEC tại Coursedy. Tôi thực sự hài lòng với chất lượng khoá học trên Coursedy. Tôi có thể học tài nhà vào buổi tối sau khi đi làm về, có thể tự tin giao tiếp hoặc hỏi những gì minh không hiểu với giáo viên.',
-  second_student_comment: 'Minh tham gia một khoá học trên Coursedy. Mình ở quê không có điều kiện để lên thành phố học luyện thi đại học. Nhờ sự giới thiệu của người thân mình đã tìm hiểu và tham gia học ôn thi tiếng anh tại Coursedy. Nhờ sư giúp đỡ thầy cô mình đã đậu được trường đại học mình mong muốn. Minh muốn giới thiệu các bạn hãy tham gia học trên Coursedy.',
+  first_student_comment: 'Công việc tại công ty bận rộn, tôi muốn luyện tiếng anh nhưng không có thời gian học tại trung tâm, được sự giới thiệu của bạn bè. Tôi thử tham gia một khoá học TOIEC tại Coursedy. Tôi thực sự hài lòng với chất lượng khoá học trên Coursedy. Tôi có thể học tại nhà vào buổi tối sau khi đi làm về, có thể tự tin giao tiếp hoặc hỏi những gì mình không hiểu với giáo viên.',
+  second_student_comment: 'Mình ở quê không có điều kiện để lên thành phố học luyện thi đại học. Nhờ sự giới thiệu của người thân mình đã tìm hiểu và tham gia học ôn thi tiếng anh tại Coursedy. Nhờ sự giúp đỡ của thầy cô mình đã đậu được trường đại học mình mong muốn. Mình muốn giới thiệu các bạn hãy tham gia học trên Coursedy.',
   office_staff: 'Nhân viên văn phòng',
   bk_student: 'Sinh viên Bách Khoa TpHCM năm nhất', // become our teacher
                                                     // section
@@ -479,7 +479,7 @@ export default {
   teacher_awards: 'Giải thưởng',
   teacher_interest: 'Sở thích',
   teacher_taught_courses: 'Khoá Học Đã Dạy',
-  view_more: 'Xem thêm',
+  see_more_course: 'Xem thêm',
   teacher_review: 'Đánh Giá Giáo Viên',
   teacher_rating: 'Đánh giá',
   teacher_comments: 'Bình luận',
@@ -498,7 +498,7 @@ export default {
   submit_comment_success: 'Gửi phản hồi thành công',
   submit_comment_fail: 'Gửi phản hồi thất bại',
   comments_no_comment: 'Bạn là người đầu tiên phản hồi về khóa học này!!!',
-  short_experience: 'Chưa nhập giới thiệu kinh nghiệm làm việc',
+  teacher_miss_short_experience: 'Chưa nhập giới thiệu kinh nghiệm làm việc',
   twitter_link: '#',
   linkedIn_link: '#',
   facebook_link: '#',
@@ -625,7 +625,7 @@ export default {
     items: [{ content: 'Chúng tôi sẽ chia sẻ thông tin trang web cá nhân của bạn với các bên thứ ba chỉ trong những trường hợp được mô tả trong chính sách bảo mật này. Chúng bao gồm chia sẻ thông tin với các nhà cung cấp dịch vụ trang web để cho phép họ thực hiện đầy đủ các yêu cầu của bạn. Chúng tôi không bán thông tin cá nhân của bạn cho bên thứ ba.' }, {
       content: 'Chúng tôi cũng có thể tiết lộ thông tin cá nhận của bạn: ',
       child_content: {
-        items: [{ content: 'Nếu chúng tôi được yêu cầu phải làm như vậy theo pháp luật, quy định hoặc cơ quan khác của chính phủ hoặc phối hợp điều tra với môt cuộc điều tra của một cơ quan chính phủ.' }, { content: 'Để thực thi điều khoản sử dụng.' }, { content: 'Để bảo vệ sự an toàn của người sử dụng của trang web của chúng tôi và dịch vụ, các khoá học chúng tôi.' }]
+        items: [{ content: 'Nếu chúng tôi được yêu cầu phải làm như vậy theo pháp luật, quy định hoặc cơ quan khác của chính phủ hoặc phối hợp điều tra với môt cuộc điều tra của một cơ quan chính phủ.' }, { content: 'Để thực thi điều khoản sử dụng.' }, { content: 'Để bảo vệ sự an toàn của người sử dụng trang web của chúng tôi cũng như dịch vụ, các khoá học của chúng tôi.' }]
       }
     }]
   }, {
@@ -712,10 +712,11 @@ export default {
   'become-a-teacher-introduction': {
     title: 'Chia sẻ kiến thức của bạn đến với tất cả mọi người',
     picture: 'https://inspitrip.imgix.net/static/assets/images/img-people.jpg',
-    description: 'Bạn sẽ có cơ hội mang những kiến thức, hiểu biết thú vị của bạn đến với mọi người một cách dễ dàng thông qua mạng internet'
+    description: 'Bạn sẽ có cơ hội mang những kiến thức, hiểu biết thú vị của bạn đến với mọi người một cách dễ dàng thông qua mạng internet.'
   },
   'become-a-teacher-reasons': {
-    title: 'Tại sao bạn nên trở thành giáo viên', reasons: [{
+    title: 'Tại sao bạn nên trở thành giáo viên',
+    reasons: [{
       title: 'Kiếm thêm thu nhập',
       picture: 'https://inspitrip.imgix.net/static/assets/images/svg-images/make-money.svg',
       description: 'Bạn có thể kiếm được một mức lương tuyệt vời, với việc thiết lập học phí khoá học và chọn lịch biểu linh hoạt của riêng bạn.'
@@ -752,7 +753,7 @@ export default {
   meta_tags: {
     default_title: 'Học tập trực tuyến, tương tác trực tiếp - Coursedy.com',
     suffix_title: 'Coursedy',
-    description: 'Nền tảng học tập trực tuyến có tính tương tác trực tiếp giữa người dạy và người học đầu tiên tại Việt Nam với công nghệ video streaming hiện đại.',
+    description: 'Nền tảng học tập trực tuyến có tính tương tác trực tiếp giữa người dạy và người học tại Việt Nam với công nghệ video streaming hiện đại.',
     keywords: 'Học tập trực tuyến, Dạy học online, E-Learning, video conferencing, video conference, online learning, screen share',
     contentType: 'website',
     creator: '@COURSEDY',

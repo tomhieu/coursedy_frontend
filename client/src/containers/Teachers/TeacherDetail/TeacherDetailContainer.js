@@ -127,7 +127,7 @@ class TeacherDetail extends Component {
                       {this.props.teacher.courses && this.props.teacher.courses.data.length
                         ? (
                           <div className={styles.rightSide}>
-                            <TeacherBriefCourses {...this.props} />
+                            <TeacherBriefCourses {...this.props} context={this.context} />
                           </div>
                         ) : null}
                     </div>
@@ -143,7 +143,7 @@ class TeacherDetail extends Component {
 }
 
 const TeacherBriefCourses = (props) => {
-  const { teacher } = props;
+  const { teacher, context } = props;
   if (!teacher.courses || !teacher.courses.data.length) {
     return null;
   }
@@ -157,7 +157,7 @@ const TeacherBriefCourses = (props) => {
     >
       <div className="full-width">
         <div className="teacher-detail__content__courses__header">
-          <h5>{TT.t('teacher_taught_courses')}</h5>
+          <h5>{context.t('teacher_taught_courses')}</h5>
         </div>
         {teacher.courses.data.slice(0, 3).map((course) => {
           return (
@@ -179,7 +179,7 @@ const TeacherBriefCourses = (props) => {
                       />
                     </div>
                     <span className="price">
-                      {course.is_free ? TT.t('free') : ObjectUtils.currencyFormat(course.tuition_fee || 0, course.currency || 'VND')}
+                      {course.is_free ? context.t('free') : ObjectUtils.currencyFormat(course.tuition_fee || 0, course.currency || 'VND')}
                     </span>
                   </div>
                 </div>
@@ -190,7 +190,7 @@ const TeacherBriefCourses = (props) => {
         <div className="d-flex justify-content-center link-tag mt-20">
           <PrimaryAnchor
             href="#more-his-courses"
-            title={TT.t('view_more')}
+            title={context.t('see_more_course')}
           />
         </div>
       </div>

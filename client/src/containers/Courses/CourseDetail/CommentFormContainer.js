@@ -42,7 +42,7 @@ class CommentFormContainer extends Component {
             fieldId="course_comment_content"
             formGroupId="content"
             formLabel={this.context.t('course_comment_content')}
-            placeholder={this.context.t('course_comment_content')}
+            placeholder={this.context.t('course_comment_content_placeholder')}
             isMandatoryField
             formControlName="content"
             typeField="custom_textarea"
@@ -52,7 +52,7 @@ class CommentFormContainer extends Component {
               type="submit"
               line={false}
               customClasses="btn"
-              title={this.context.t('send_comment')}
+              title={this.context.t('send_comment_button')}
               disabled={pristine || submitting}
             />
           </div>

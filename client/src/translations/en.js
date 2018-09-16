@@ -154,20 +154,35 @@ export default {
   course_comments_add: 'Add comment',
   course_comments: 'Comment',
   course_comment_content: 'Content',
+  course_comment_content_placeholder: 'Your comment',
   comment_content: 'Content',
   comment_content_required: 'Content is required',
   course_comments_load_more: 'Load more comment',
   number_of_comment: '{numOfComment} comment',
   no_comment: 'No comment',
   add_more_lesson: 'Add lesson',
-  delete_lesson: 'Delete lesson', /*
+  delete_lesson: 'Delete lesson',
+  header_course_category: '{course_category} course',
+  header_teacher_name: 'Taught by: {teacherName}',
+  header_number_lesson: 'Total lessons: {numberLesson}',
+  header_period_lesson: 'Duration: {periodLesson} minutes',
+  header_last_update: 'Updated: {lastUpdate}',
+  course_include: 'Course included:',
+  account_access_to_course_room: 'Account to study online',
+  course_material: 'All materials, exercises',
+  course_lesson: '{numberLesson} lessons',
+  share_course_with_friend: 'Share the course',
+  lesson_description_expand: 'Description',
+  section_lesson_count: '{lessonCount} lessons',
+  lesson_period: '{lessonPeriod} minutes',
+
+  /*
      * Lesson Page
      */
   lesson_add_more: 'Add lesson',
   lesson_name: 'Lesson name',
   lesson_desc: 'Lesson description',
   lesson_material: 'Material',
-  lesson_period: 'Lesson period (Unit: minute)',
   lesson_period_unit: 'minute',
   lesson_period_short: 'Period',
   lesson_save_btn: 'Save',
@@ -279,12 +294,11 @@ export default {
   time_schedule: 'Time schedule',
   start_time: 'Start',
   end_time: 'End',
-  day_of_week: 'Days',
+  day_of_week: 'Course day',
   end_time_error: 'End must be greater than start',
   start_time_error: 'End must be greater than start',
   last_name_required: 'Last name is required',
-  birthdate_required: 'Birthdate is required',
-  address_required: 'Address is required',
+  birthdate_required: 'Birthday is required',
   mandatory_field_context: '{field} is required',
   period_field: 'Length of period',
   name_lesson_field: 'Lesson name',
@@ -335,9 +349,10 @@ export default {
 
   course_enroll_deposit_more: 'Deposit more',
 
-  course_submit_comment_status: 'Submit comment status',
-  course_submit_comment_success: 'Submit comment successfully',
-  course_submit_comment_fail: 'Submit comment failed',
+  course_submit_comment_status: 'Sending comment status',
+  course_submit_comment_success: 'Sending comment successfully',
+  course_submit_comment_fail: 'Sending comment failed',
+  no_comment_about_course: 'There are no reviews yet for this course',
   course_comments_no_comment: 'You are the first person leaving comment for this course!!!', /* search teachers page */
   search_teachers_keyword: 'Search by name',
   search_teachers_field_label: 'Field:',
@@ -411,7 +426,7 @@ export default {
   receive_course_info_title: 'Receive notice of course',
   receive_course_info_content: 'Coursedy will send your registration information to the teacher. You will receive all information related to the course once you enroll in the course.',
   get_course_timeline_title: 'Receive notice of course schedule',
-  get_course_timeline_content: 'After the course has enough learners, the teacher will start teaching the course. We will send you a scheduling notice so you can schedule time and read ahead of time.',
+  get_course_timeline_content: 'After the course has enough students, the teacher will start teaching the course. We will send you a scheduling notice so you can schedule time and read ahead of time.',
   start_learning_course_title: 'Join the course',
   start_learning_course_content: 'You will learn on the Coursedy system. The system will send a notification to you to attend the course on time.', // student comment
   /* your are a teacher */
@@ -419,17 +434,18 @@ export default {
   your_are_teacher_section_sub_title: 'You are looking for an online learning platform. Coursedy is a good place to do it.',
   first_benefit: 'Save on open class costs. All that is needed is a computer with a network connection.',
   second_benefit: 'Flexible time, teachers can flexibly arrange time for the course. And can teach anywhere.',
-  third_benefit: 'Access to a vast network of learners from all over the world.',
+  third_benefit: 'Access to a vast network of students from all over the world.',
   /* */
   teacher_background: 'Background',
-  teacher_short_introduce: ' Introduction',
+  teacher_short_introduce: ' Short introduce',
   teacher_education: 'Education',
   teacher_degrees: 'Degrees',
-  teacher_experience: 'Experience',
+  teacher_experience: 'Work Experience',
+  teacher_miss_short_experience: 'Miss short experience',
   teacher_awards: 'Awards',
   teacher_interest: 'Interest',
-  teacher_taught_courses: 'Courses of teacher',
-  teacher_review: 'Review',
+  teacher_taught_courses: 'Taught Courses',
+  teacher_review: 'Reviews',
   teacher_rating: 'Rating',
   teacher_comments: 'Comment',
   leave_your_review_teacher: 'Review',
@@ -438,6 +454,10 @@ export default {
   enter_review: 'Content',
   review_cancel_button: 'Cancel',
   content_is_updating: 'Updating',
+  see_more: 'See more',
+  see_less: 'See less',
+  send_comment_button: 'Send',
+  see_more_course: 'See more',
 
   submit_comment_require_login_message: 'You must login for leaving comment',
   submit_comment_status: 'Summit comment result',
@@ -496,7 +516,7 @@ export default {
 
   /* product info */
   'our-story-title': 'Our story',
-  'our-story-description': 'Nowadays, online learning is trend. There are many online learning platforms, however, they still have many disadvantages. For example, no directly interaction between teacher and learner, learn by videos only. With Coursedy, those disadvantages will disapear. We provide a novel platform for online learning, that help teacher and learner interact directly.',
+  'our-story-description': 'Nowadays, online learning is trend. There are many online learning platforms, however, they still have many disadvantages. For example, no directly interaction between teacher and student, learn by videos only. With Coursedy, those disadvantages will disapear. We provide a novel platform for online learning, that help teacher and student interact directly.',
   'product-introduce': 'Our app',
   'product-introduce-description': 'Coursedy is a online learning platform with high interactive. We are the first platform that use video streaming in learning. Also with our platform, you can create virtual class, share document. In Courseday, you can learn everywhere, everytime.',
   'whoweare-label': 'Who we are?',
@@ -541,68 +561,81 @@ export default {
   terms_description: 'You must accept these terms when you access our site. We can right for changing, updating, adding, removing terms everytime. Changes is applied imediately without notifications. If you continue using our site, it means you agress with those changes. Please check our terms usually.',
   terms: [{
     heading: 'General terms',
-    items: [{ content: 'Khi giao tiếp với người dùng khác trong hệ thống dịch vụ của Coursedy không được quấy rối, chửi bới, làm phiền hay có bất kỳ hành vi thiếu văn hoá nào đối với người khác. Tuyệt đối nghiêm cấm việc xúc phạm, nhạo báng, chê bai, kỳ thị tôn giáo, giới tính, sắc tộc,... người khác dưới bất kỳ hình thức nào.' }, { content: 'Tuyệt đối nghiêm cấm mọi hành vi tuyên truyền chống phá và xuyên tạc chính quyền, thể chế chính trị, và các chính sách của nhà nước... Trường hợp phát hiện không những bị xoá tài khoản mà chúng tôi còn có thể cung cấp thông tin của người sử dụng (NSD) đó cho các cơ quan chức năng để xử lý theo pháp luật.' }, { content: 'Tuyệt đối không bàn luận về các vấn đề chính trị, kỳ thị tôn giáo, kỳ thị sắc tộc. Không có những hành vi, thái độ làm tổn hại đến uy tín của các sản phẩm, dịch vụ, khoá học trong hệ thống Coursedy dưới bất kỳ hình thức nào, phương thức nào. Mọi hành vi vi phạm sẽ bị tước bỏ mọi quyền lợi liên quan đối với tài khoản hoặc xử lý trước pháp luật nếu cần thiết.' }]
+    items: [
+      { content: 'Communicating with other users of Coursedy\'s services should not harass, abusive, harass, or harass any other person. It is strictly forbidden to offend, ridicule, denigrate, discriminate against religion, sex, race, etc. in any form.' },
+      { content: 'Strictly forbid all acts of propaganda against and distort government, political institutions, and state policies ... In case of detection not only deleted the account but we can also provide User information (NSD) that the authorities to handle under the law.' },
+      { content: 'Absolutely not discussing political issues, religious discrimination, racial discrimination. There are no behaviors or attitudes that impair the reputation of Coursedy\'s products, services or courses in any form or manner. All violations will be deprived of all interests related to the account or dealt with before the law if necessary.' }]
   }, {
-    heading: 'Bản Quyền Tài Liệu Giảng Dạy',
-    items: [{ content: 'Toàn bộ nội dung đào tạo bao gồm bài giảng slide, video,... đều thuộc quyền sở hữu trí tuệ của Coursedy và giáo viên trực tiếp làm ra.' }, { content: 'Thời gian xem tài liệu khoá học là vĩnh viễn.' }, { content: 'Học viên không được phép chia sẻ, phát tán dưới bất kỳ hình thức nào mà không có sự đồng ý của Coursedy.' }, {
-      content: 'Video, slide bài giảng, quiz được Coursedy cung cấp trực tiếp trên website, không thể download. Coursedy đảm bảo chất lượng đường truyền để học viên cảm thấy thoải mái khi học với đường truyền internet phổ thông. Mọi hành vi cố ý tải về, tấn công hệ thống nếu bị phát hiện sẽ bị xử lý theo các cấp độ sau:',
-      child_content: {
-        items: [{ content: 'Cảnh cáo.' }, { content: 'Xoá tài khoản học viên, không hoàn lại học phí.' }, { content: 'Truy tố trước pháp luật vì hành vi xâm phạm bản quyền, và tấn công mạng.' }]
+    heading: 'Instructional Materials Copyright',
+    items: [
+      { content: 'All teaching content including slide lectures, videos, ... are under the intellectual property of Coursedy or direct teacher made.' },
+      { content: 'The duration of use of course materials is permanent.' },
+      { content: 'Participants are not allowed to share, distribute in any form without Coursedy\'s consent.' },
+      {
+        content: 'VVideo, slide lectures, quiz Coursedy provided directly on the website, can not download. Coursedy ensures the quality of transmission so that students feel comfortable learning with the internet. Any deliberate download, system attacks if detected will be dealt with at the following levels:',
+        child_content:
+          {
+            items: [
+              { content: 'Warning.' },
+              { content: 'Remove student account, no refund of tuition fees.' },
+              { content: 'Prosecutions for copyright infringement, and network attacks.' }
+            ]
+          }
       }
-    }]
+    ]
   }, {
-    heading: 'Về Tài Khoản Sử Dụng (TKSD)',
-    items: [{ content: 'TKSD có trách nhiệm bảo mật thông tin tài khoản, nếu những thông tin trên bị tiết lộ dưới bất kỳ hình thức nào thì TKSD phải chấp nhận những rủi ro phát sinh.' }, { content: 'Khi phát hiện lỗi của Coursedy người sử dụng hãy thông báo cho chúng tôi qua email hoặc gọi tới tổng đài.' }, { content: 'Thực hiện quyền và trách nhiệm khác theo quy định của pháp luật Việt Nam.' }]
+    heading: 'About User Account (TKSD)',
+    items: [{ content: 'TKSD is responsible for keeping account information secure, If the information is disclosed in any way, TKSD must accept the risk arising.' }, { content: 'When detecting Coursedy\'s user error please notify us by email or call the operator.When detecting a Coursedy\'s erroneous, notify us via email or call the operator.' }, { content: 'To exercise other rights and responsibilities in accordance with the law of Vietnam.' }]
   }],
-  terms_privacy_title: 'Chính Sách Bảo Mật',
-  terms_privacy_update: 'Sửa đổi gần nhất ngày 16 tháng 06, 2018',
-  terms_privacy_description: 'Chào mừng bạn đến với trang web coursedy. Chúng tôi muốn bạn làm quen với cách chúng tôi thu thập sử dụng, tiết lộ bảo mật thông tin của bạn.\n' + 'Bằng cách đồng ý chính sách bảo mật trong thiết lập tài khoản Coursedy của bạn, hoặc bằng cách sử dụng dịch vụ Coursedy, bạn đồng ý với những thông tin được mô tả trong thông báo này.',
+  terms_privacy_title: 'Privacy Policy',
+  terms_privacy_update: 'Last updated June 16, 2018',
+  terms_privacy_description: 'Welcome to the coursedy website. We want you to be familiar with how we collect, use and disclose your information.\n' + 'By agreeing to a privacy policy in setting up your Coursedy account, or by using the Coursedy service, you agree to the information described in this notice.',
   privacies: [{
-    heading: 'Thông tin Coursedy thu thập',
-    items: [{ content: 'Thông tin người mà dùng cung cấp. Bạn có thể cung cấp cho Coursedy “thông tin cá nhân”(như tên, địa chỉ, email, số điện thoại, số thẻ tín dụng,...)' }, { content: 'Thông tin “Cookies”: Khi bạn truy cập các dịch vụ Coursedy, chúng tôi có thể gửi một hoặc nhiều “cookie” - các tập tin văn bản nhỏ chứa một chuỗi ký tự số và chữ - vào máy tính của bạn.' }, { content: '“Tự động thu thập" thông tin: Khi bạn truy cập các dịch vụ Coursedy, chúng tôi có thể tự động ghi lại những thông tin đó từ hệ thống của bạn bằng cách sử dụng các tập tin cookie và các loại công nghệ theo dõi. Việc “thu thập” thông tin này có thể bao gồm địa chỉ Internet Protocal(“Địa chỉ IP”), ID người dùng duy nhất, loại thiết bị, nhận dạng thiết bị, các loại trình duyệt, và ngôn ngữ, giới thiệu, loại nền tảng, phiên bản của phần mềm cài đặt, loại hệ thống, nội dung và các trang web mà bạn truy cập các dịch vụ của Coursedy và thông tin tương tự khác. Tuỳ thuộc vào pháp luật của nước bạn cư trú, địa chỉ IP của bạn có thể hợp pháp được gọi là thông tin cá nhân.' }, { content: 'Thông tin từ các nguồn khác: Chúng tôi có thể có được thông tin bao gồm thông tin cá nhân từ các bên thứ ba và các nguồn khác với dịch vụ của Coursedy, như các nhà quảng cáo hoặc các mạng truyền thông xã hội mà bạn đã chấp thuận cho chúng tôi(ví dụ thông tin từ tài khoản Facebook của bạn cung cấp bởi các dịch vụ API Facebook). Khi bạn truy cập các dịch vụ Coursedy thông qua các mạng truyền thông xã hội hoặc khi bạn kết nối một dịch vụ Coursedy với các mạng truyền thông xã hội, bạn sẽ uỷ quyền cho Coursedy thu thập, lưu trữ và sử dụng thông tin và nội dung phù hợp với chính sách bảo mật. Nếu chúng tôi kết hợp hoặc liên kết thông tin từ các nguồn khác với thông tin cá nhân mà chúng tôi thu thập thông qua các dịch vụ Coursedy, chúng tôi sẽ xử lý thông tin kết hợp như thông tin cá nhân phù hợp với chính sách bảo mật.' }]
+    heading: 'Coursedy collects information',
+    items: [{ content: 'Information who uses the offer. You may provide Coursedy with "personal information" (such as name, address, email, telephone number, credit card number, etc.)' }, { content: '"Cookies" information: When you access Coursedy services, we may send one or more "cookies" - small text files containing a string of numbers and letters - to your computer.' }, { content: '"Automatically collect" information: When you access the Coursedy service, we can automatically record that information from your system using cookies and other types of tracking technology. The "gathering" of this information may include Internet Protocol ("IP Address"), unique user ID, device type, device identifier, browser type, and language, gender. the type of platform, the version of the installation software, the type of system, the content and the websites for which you access Coursedy\'s services and other similar information. , your IP address can legitimately be called personal information.' }, { content: 'Information from other sources: We may obtain information that includes personal information from third parties and other sources to Coursedy\'s services, such as advertisers or social media networks. Have approved for us (eg information from your Facebook account provided by the Facebook API service). When you access Coursedy services through social media networks or when you connect a Coursedy service to social media networks, you authorize Coursedy to collect, store and use the information and Content consistent with privacy policy. If we combine or link information from other sources with the personal information we collect through Coursedy\'s services, we will process the associated information such as personal information in accordance with the policy security.' }]
   }, {
-    heading: 'Phương thức Coursedy sử dụng thông tin',
-    items: [{ content: 'Coursedy sử dụng các thông tin mà bạn cung cấp hoặc chúng tôi thu thập từ bạn để hoạt động, duy trì, tăng cường và cung cấp tất cả các tính năng và dịch vụ trên Coursedy; để cải thiện trải nghiệm của bạn với các dịch vụ của coursedy bằng cách cung cấp các nội dung mà chúng tôi hy vọng bạn sẽ thấy có liên quan và thú vị. ' }, { content: 'Chúng tôi sẽ sử dụng địa chỉ email của bạn cho việc truyền thông như thông báo về bản cập nhật Coursedy, dịch vụ khách hàng, để giải quyết các vấn đề vi phạm bản quyền hoặc các vấn đề phỉ báng, hoặc liên lạc với bạn đối với bất kỳ nội dung mà bạn đã đăng lên hoặc tải về từ Coursedy.' }, { content: 'Coursedy sử dụng những thông tin mà chúng tôi thu thập để hiểu xu hướng sử dụng và sở thích của người sử dụng của chúng tôi, để cải thiện cách các dịch vụ Coursedy làm việc, nhìn và để để tạo ra các tính năng mới.' }]
+    heading: 'The Coursedy method uses information',
+    items: [{ content: 'Use the information you provide or we collect from you to operate, maintain, enhance and provide all of the features and services on Coursedy; To improve your experience with the services of coursedy by providing the content that we hope you will find relevant and interesting.' }, { content: 'We will use your email address for communications such as notifications of Coursedy updates, customer service, resolving copyright issues or defamation issues, or contacting you. For any content you have posted or downloaded from Coursedy.' }, { content: 'Coursedy uses the information we collect to understand the usage trends and preferences of our users, to improve the way Coursedy services work, to look and to create new features.' }]
   }, {
-    heading: 'Trẻ em',
+    heading: 'Children',
     items: [],
-    description: 'Chúng tôi nhận thức những lợi ích riêng tư cho trẻ em và chúng tôi khuyến khích các bậc cha mẹ và người giám hộ nên có một vai trò tích cực trong các hoạt động trực tuyến vì lợi ích của con cái.'
+    description: 'We recognize the privacy benefits for children and we encourage parents and guardians to take an active role in online activities for the benefit of their children.'
   }, {
-    heading: 'Tiết lộ thông tin',
-    items: [{ content: 'Chúng tôi sẽ chia sẻ thông tin trang web cá nhân của bạn với các bên thứ ba chỉ trong những trường hợp được mô tả trong chính sách bảo mật này. Chúng bao gồm chia sẻ thông tin với các nhà cung cấp dịch vụ trang web để cho phép họ thực hiện đầy đủ các yêu cầu của bạn. Chúng tôi không bán thông tin cá nhân của bạn cho bên thứ ba.' }, {
-      content: 'Chúng tôi cũng có thể tiết lộ thông tin cá nhận của bạn: ',
+    heading: 'Disclosure',
+    items: [{ content: 'We will share your personal site information with third parties only in the circumstances described in this privacy policy. These include sharing information with web service providers to enable them to fulfill your requirements. We do not sell your personal information to third parties.' }, {
+      content: 'We may also disclose your personal information:',
       child_content: {
-        items: [{ content: 'Nếu chúng tôi được yêu cầu phải làm như vậy theo pháp luật, quy định hoặc cơ quan khác của chính phủ hoặc phối hợp điều tra với môt cuộc điều tra của một cơ quan chính phủ.' }, { content: 'Để thực thi điều khoản sử dụng.' }, { content: 'Để bảo vệ sự an toàn của người sử dụng của trang web của chúng tôi và dịch vụ, các khoá học chúng tôi.' }]
+        items: [{ content: 'If we are required to do so by law, regulation or other government agency or co-ordinated investigation with a survey of a government agency.' }, { content: 'To enforce terms of use.' }, { content: 'To protect the safety of our users of the site as well as our services, our courses.' }]
       }
     }]
   }, {
-    heading: 'Lưu trữ dữ liệu',
+    heading: 'Storage Data',
     items: [],
-    description: 'Chúng tôi giữ lại các dữ liệu cá nhân để cung cấp các dịch vụ tốt hơn. Chúng tôi sẽ giữ lại và sử dụng thông tin cần thiết trên trang web cá nhân để tuân thủ các nghĩa vụ pháp lý, giải quyết tranh chấp và thực thi các thoả thuận của chúng tôi với người sử dụng hoặc thời gian theo yêu cầu của pháp luật tại các nước áp dụng.'
+    description: 'We retain the personal data to provide better services. We will retain and use the necessary information on our personal web site to comply with our legal obligations, resolve disputes and enforce our agreements with users or as required by us. the law in the applicable countries.We retain the personal data to provide better services. We will retain and use the necessary information on our personal website to comply with our legal obligations, resolve disputes and enforce our agreements with users or as required by us. the law in the applicable countries.'
   }, {
-    heading: 'Cập nhật và chỉnh sửa thông tin của bạn',
-    items: [{ content: 'Nếu cần thiết, bạn có thể sử dụng các dịch vụ sửa chữa, sửa đổi, hoặc xoá thông tin của bạn trên Coursedy. Bạn cũng có thể liên hệ với chúng tôi bằng cách gửi email tới contact@coursedy.com.' }, { content: 'Chúng tôi có thể gửi tới email bạn về các khoá học hoặc dịch vụ mới sửa đổi mà chúng tôi tin rằng có thể bạn quan tâm. Nếu bạn không muốn nhận được các thông tin này, bạn có thể thực hiện theo các thủ tục huỷ bỏ đăng ký được cung cấp trong email.' }]
+    heading: 'Edit your information',
+    items: [{ content: 'If necessary, you may use services to repair, modify, or delete your information on Coursedy. You can also contact us by emailing contact@coursedy.com.' }, { content: 'We may send email to you about new courses or services that we believe may be of interest to you. If you do not want to receive this information, you can follow the cancellation procedure provided in the email.' }]
   }, {
-    heading: 'Bảo mật',
+    heading: 'Security',
     items: [],
-    description: 'Bảo mật thông tin của bạn là việc rất quan trọng đối với chúng tôi. Coursedy sử dụng các biện pháp tố tụng và công nghệ để bảo vệ thông tin cá nhân của bạn. Những biện pháp này được thiết kế hợp lý để bảo vệ thông tin cá nhân của bạn khỏi mất mát, truy cập trái phép, tiết lộ, thay đổi hoặc phá huỷ. Chúng tôi sử dụng phần mềm, công nghệ mã hoá, mật khẩu bảo vệ, tường lửa hạn chế nội bộ và các biện pháp đảm bảo khác để giúp ngăn chặn truy cập trái phép thông tin cá nhân của bạn. Các thông tin nhạy cảm/tín dụng bạn cung cấp được mã  hoá qua Secure Sockets Layer (SSL). Tuy nhiên, Coursedy không thể đảm bảo rằng rằng các tổ chức bất hợp pháp sẽ không bao giờ có thể vượt qua các biện pháp bảo mật này hoặc sử dụng thông tin cá nhân của bạn cho các mục đích không chính đáng. Vì vậy, bạn nên biết rằng khi các bạn tự nguyện hiển thị hay phân phối thông tin cá nhân, thông tin có thể được thu thập và sử dụng bởi những người khác. Coursedy không chịu trách nhiệm về việc sử dụng trái của các bên thứ ba thông tin mà bạn gửi  hoặc cung cấp công khai.'
+    description: 'Your privacy is very important to us. Coursedy uses litigation and technology to protect your personal information. These measures are designed to protect your personal information from loss, unauthorized access, disclosure, alteration or destruction. We use software, encryption technology, password protection, limited local firewall and other security measures to help prevent unauthorized access to your personal information. The sensitive information/credit you provide is encrypted through Secure Sockets Layer (SSL). However, Coursedy can not guarantee that unauthorized organizations will ever be able to bypass these security measures or otherwise use your personal information for improper purposes. So, you should know that when you voluntarily display or distribute personal information, information may be collected and used by others. Coursedy is not responsible for the use of third-party information that you submit or make available to the public.'
   }, {
-    heading: 'Liên kết đến các trang web khác',
+    heading: 'Links to other websites',
     items: [],
-    description: 'Các trang web, dịch vụ và đặc biệt là các khoá học, có thể cung cấp liên kết đến các trang web của bên thứ ba hoặc các nguồn tài nguyên không liên quan với chúng tôi và qua đó, chúng tôi không thể kiểm soát “bên ngoài website”. Bạn thừa nhận rằng Coursedy chỉ cung cấp những liên kết như là một tiện ích và không chịu trách nhiệm về nội dung của trang web đó.'
+    description: 'Sites, services, and especially courses, may provide links to third-party sites or resources that are not related to us and through which we are unable to control " outside the website ". You acknowledge that Coursedy only provides such links as a gadget and is not responsible for the content of such web site.'
   }, {
-    heading: 'Thay đổi chính sách',
+    heading: 'Policy changes',
     items: [],
-    description: 'Coursedy bảo lưu quyền thay đổi chính sách bảo mật theo thời gian. Chúng tôi sẽ cập nhật chính sách bảo mật trên trang web này nằm tại https://coursedy.com/privacy và sẽ gửi một thông báo đến địa chỉ email mà bạn cung cấp. Chúng tôi khuyến khích bạn xem lại chính sách bảo mật thường xuyên để cập nhật bất kỳ thay đổi nào. Tất cả các dịch vụ mà bạn sử dụng sẽ được tuân theo chính sách bảo mật hiện tại.'
+    description: 'Coursedy reserves the right to change its privacy policy from time to time. We will update the privacy policy on this site at https://coursedy.com/privacy and will send a notification to the email address you provided. We encourage you to review our privacy policy regularly to update any changes. All services that you use will be subject to the current privacy policy.'
   }, {
-    heading: 'Liên hệ với Coursedy',
+    heading: 'Contact Coursedy',
     items: [],
-    description: 'Chúng tôi hoan nghênh ý kiến đóng góp hoặc câu hỏi của bạn liên quan đến chính sách bảo mật của chúng tôi. Nếu bạn muốn liên lạc với Coursedy về Chính Sách Bảo Mật này, vui lòng liên hệ với chúng tôi bằng cách gửi email cho chúng tôi tại contact@coursedy.com'
+    description: 'We welcome your comments or questions regarding our privacy policy. If you would like to contact Coursedy about this Privacy Policy, please contact us by emailing us at contact@coursedy.com.'
   }],
   meta_tags: {
     default_title: 'Online learning, direct interaction - Coursedy.com',
     suffix_title: 'Coursedy',
-    description: 'Nền tảng học tập trực tuyến có tính tương tác trực tiếp giữa người dạy và người học đầu tiên tại Việt Nam với công nghệ video streaming hiện đại.',
+    description: 'The online learning platform is a direct interaction between teacher and student in Vietnam with modern video streaming technology.',
     keywords: 'Học tập trực tuyến, Dạy học online, E-Learning, video conferencing, video conference, online learning, screen share',
     contentType: 'website',
     creator: '@COURSEDY',
@@ -632,5 +665,160 @@ export default {
   help_page: 'About page',
   become_teacher_page: 'Become teacher page',
   payment_page: 'Payment guidelines page',
-  fee_must_be_a_number: 'Must be a number'
+  fee_must_be_a_number: 'Must be a number',
+
+  /* add more translation */
+  sellect_role: 'Please select a user account',
+  name_required: 'Please enter a name',
+  confirming: 'Confirming account ....',
+  confirmed: 'Your account has been confirmed. You can update your account information here.',
+  dashboard_page: 'personal page',
+  please_check_your_email: 'Please check your email',
+  check_email_description: 'An email has been sent to {email} with a password reset guide. {breakNewLine} Please check your email and follow the instructions... Please check the spam section if you do not receive the email.', /*
+     * Course Creation/Edit Page
+     */
+  course_edit_btn: 'Edit course',
+  join_class: 'Join class',
+  course_periode_type: 'lessons',
+  update_cover_image: 'Change course cover image',
+  add_cover_image: 'Add cover image of the course',
+  warning_delete_section_title: 'Delete section title',
+  warning_delete_section_message: 'Are you sure you want to delete the ‘{sectionName}’? {seperator} Once the section is deleted, all the lessons in the section will also be deleted.',
+  warning_delete_lesson_title: 'Delete',
+  warning_delete_lesson_message: 'Are you sure you want to delete the ‘{lessonName}’? {seperator} Once the lesson is deleted, all attachments attached to the lesson will also be deleted.',
+  warning_delete_lesson_document_title: 'Delete',
+  warning_delete_lesson_document_message: 'Are you sure you want to delete the ‘{documentName}’?', /*
+     * Lesson Page
+     */
+  lesson_priode_required: 'Please enter lesson duration',
+  /*
+   * Tutor Account Page
+   */
+  'account.person.info.country': 'Country',
+  'account.person.info.currency': 'Currency',
+  'account.tutor.edu.description_placeholder': 'Description',
+  tutor_descriotion_required: 'Please enter your description',
+
+  /*
+   * Section Page
+   */
+  course_active_list: 'Active course list',
+  section_period: '{sectionPeriod} minutes', /* search teachers page */
+  product_contact_us: 'Contact us',
+  product_about_us_info: 'Information is updating.',
+  product_helper_center_info: 'Information is updating.',
+  product_become_teacher: 'Information is updating.',
+  product_terms_info: 'Information is updating.',
+  product_privacy_info: 'Information is updating.',
+  first_student_comment: 'Work at my company is busy, I want to practice English but don\'t have time to study at the center, be introduced by my friend. I try to take a TOIEC course at Coursedy. I am really satisfied with the quality of the course on Coursedy. I can study at home in the evening after work, can confidently communicate or ask what I don\'t understand with the teacher.',
+  second_student_comment: 'I am in the countryside and have no conditions to go to the city to study for college. Thanks to the introduction of my relatives, I did some digging into and enroll in courses to rub up English. Thanks to the teacher\'s help, I got the university I wanted. I would recommend you to study at Coursedy.',
+  office_staff: 'Office worker',
+  bk_student: 'First year student of Ho Chi Minh City University of Technology', // become our teacher
+
+  // section
+  section_sub_title_2: '{link_register} become a teacher.',
+  register_new_teacher: 'Register',
+  specializes_is_updating: 'Specialist information is updating',
+  teacher_job_title_is_updating: 'Career information is updating',
+  twitter_link: '#',
+  linkedIn_link: '#',
+  facebook_link: '#',
+  default_country: 'Vietnam',
+  account_setting: 'Account settings',
+  course_management: 'Course management',
+
+  course_status: 'Course status',
+  course_name: 'Course name',
+  tutor_course_category: 'Type of course',
+  number_enrolled_student: 'Number of students enrolled',
+  maximum_student: 'Maximum number of students',
+  number_lesson: 'Total lessons',
+  tutor_course_fee: 'Tuition fee',
+  tutor_course_status: 'Status', // student course table headers
+  started_date: 'Start date',
+  number_of_completed_lesson: 'Number of completed lessons',
+  minimum_number_of_completed_lesson: 'Minimum number of completed lesson',
+  number_of_lesson: 'Number of lessons',
+  student_course_status: 'Status', // student enrolled to course table
+  student_name: 'Student name',
+  enrollment_date: 'Enrollment date',
+  student_email: 'Email',
+  student_gender: 'Gender',
+  start_course: 'Start course',
+  cancel_course: 'Cancel course',
+  not_started: 'Not started',
+  started: 'On going',
+  finished: 'Finished',
+  alert_popup: 'Warning',
+  delete_course_warning_message: 'Are you sure you want to delete ‘{courseName}’?',
+  cancel_course_warning_message: 'Are you sure you want to cancel ‘{courseName}’?',
+  cancel_started_course_warning_message: 'The course is on going and not finished yet, if you cancel now, you may be charged a fee if you have not attended the minimum number of classes.',
+  bill_course_fee_popup_title: 'Course payment',
+  enrolled_course_title: 'Course is {courseName}',
+  enrolled_course_teacher_name: 'Teacher is {teacherName}',
+  bill_course_fee_total: 'Total course fee',
+  no_course_message: 'You have not created any courses yet.',
+  no_active_course_message: 'You have not taught any courses yet.',
+  no_active_course_message_for_student: 'You have not enrolled any courses yet.',
+  no_finished_course_message_for_student: 'You have not completed any courses yet.',
+  no_following_course_message_for_student: 'You have not follow any courses yet.',
+  search_more_course_link: 'Create a course',
+  no_enrolled_student: 'There are no students registered for this course.',
+  find_course_link: 'Search and enroll the desired course right now.',
+  start_course_popup_title: 'Start teaching the course',
+  start_course_field_title: 'Official starting date',
+  start_course_warning_message: 'Are you sure you want to start teaching {courseName}.',
+  start_course_warning_message_2: 'Once the course is started, you will not be able to change course information. We will notify all students who have registered for official study time.',
+  join_active_course_popup_title: 'Join class',
+  join_active_course_popup_message: 'It\'s time to go to your course. Come into the {courseName} by {teacherName}.',
+  join_active_course_popup_message_for_teacher: 'It\'s time to teach {courseName}. Come into the course.',
+  join_active_course_popup_accept_button: 'Join class',
+  new_started_course_notification_message: 'The {courseName} have started. The first day is {firstDayLearning}. You pay attention to arrange your study time.',
+  new_started_course_notification_title: 'The course has just started',
+  lesson_rating_title: 'Leave your review the lesson',
+  lesson_rating_btn: 'Send',
+  rejoin_class_room: 'Rejoin class',
+  thank_for_evaluation: 'Thank you for evaluating the lesson, which will help teachers improve the course further.',
+  update_image: 'Change photo',
+  'become-a-teacher': 'Become a teacher',
+  'become-a-teacher-short-description': 'Bring your knowledge to open up career opportunities and bright future.',
+  'become-a-teacher-introduction': {
+    title: 'Share your knowledge with everyone',
+    picture: 'https://inspitrip.imgix.net/static/assets/images/img-people.jpg',
+    description: 'You will have the opportunity to bring your knowledge and interesting things to everyone easily through the internet.'
+  },
+  'become-a-teacher-reasons': {
+    title: 'Why you should become a teacher',
+    reasons: [{
+      title: 'Earn an additional income',
+      picture: 'https://inspitrip.imgix.net/static/assets/images/svg-images/make-money.svg',
+      description: 'You can earn a great salary, set up a course fee and choose your own flexible schedule.'
+    }, {
+      title: 'Easily open your teaching network',
+      picture: 'https://inspitrip.imgix.net/static/assets/images/svg-images/make-connection.svg',
+      description: 'With your knowledge available, all you need is confidence and good teaching that you can reach out to everyone in the world.'
+    }, {
+      title: 'Teach wherever you like',
+      picture: 'https://inspitrip.imgix.net/static/assets/images/svg-images/make-skills.svg',
+      description: 'Wherever you like, no matter what the weather, just a laptop and an internet connection.'
+    }]
+  },
+  enroll_course_title: 'Course registration',
+  enroll_course_button: 'Enroll',
+  enroll_course_message: 'A few notes before you join the course {courseTitle} as follows:',
+  enroll_course_term_1: 'The course will be taught online. You will be given access to the course.',
+  enroll_course_sub_term_1: 'You will be taught directly with the Coursedy teacher, all materials and exercises related to the course are provided.',
+  enroll_course_term_2: 'Cancel course.',
+  enroll_course_sub_term_2: 'After enrolling the course, if you feel that the course does not meet your requirements, you may cancel at any time. No fees will be charged.',
+  enroll_course_term_3: 'Course fee is {courseFee} VND.',
+  enroll_course_sub_term_3: 'Your account balance must be sufficient before enrolling for the course. You are charged fee {chargeFee} upon completion of the course.',
+  enroll_course_charge_fee: 'Charge fee',
+  enroll_course_term_4: 'The current course commencement date is intended. We will announce the official start date after the teacher has notified.',
+  enroll_course_sub_term_4: 'Once the number of students is enough, the teacher completes all the course materials. Teachers will announce the official course date. We will notify you as soon as we receive the information. Or you can chat with the teacher for further clarification.',
+  enroll_course_term_5: 'Some lessons may be supplemented or revised by the teacher.',
+  enroll_course_sub_term_5: 'Coursedy will notify you when there is a change in the course content of the course from the teacher.',
+  enroll_course_success_title: 'Enroll course success',
+  enroll_course_success_button: 'Go to course',
+  enroll_course_success_message: 'Welcome to the {courseTitle}.',
+  enroll_course_success_message_2: 'The course will begin soon. Be prepared for the course today.',
 };
