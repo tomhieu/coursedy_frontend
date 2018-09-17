@@ -14,17 +14,15 @@ import { TT } from '../utils/locale';
 /**
  * List days of week
  */
-export const DAYS_IN_WEEK = (locale = 'vn') => {
-  return [
-    { id: 1, text: TT.changeLocale(locale).t('monday'), name: 'monday' },
-    { id: 2, text: TT.changeLocale(locale).t('tuesday'), name: 'tuesday' },
-    { id: 3, text: TT.changeLocale(locale).t('wednesday'), name: 'wednesday' },
-    { id: 4, text: TT.changeLocale(locale).t('thursday'), name: 'thursday' },
-    { id: 5, text: TT.changeLocale(locale).t('friday'), name: 'friday' },
-    { id: 6, text: TT.changeLocale(locale).t('saturday'), name: 'saturday' },
-    { id: 0, text: TT.changeLocale(locale).t('sunday'), name: 'sunday' }
-  ];
-}
+export const DAYS_IN_WEEK = [
+  { id: 1, text: TT.t('monday'), name: 'monday' },
+  { id: 2, text: TT.t('tuesday'), name: 'tuesday' },
+  { id: 3, text: TT.t('wednesday'), name: 'wednesday' },
+  { id: 4, text: TT.t('thursday'), name: 'thursday' },
+  { id: 5, text: TT.t('friday'), name: 'friday' },
+  { id: 6, text: TT.t('saturday'), name: 'saturday' },
+  { id: 0, text: TT.t('sunday'), name: 'sunday' }
+];
 
 export const HOURS_IN_DAY = [
   { id: '06:00:00', text: '6:00' },
@@ -84,7 +82,7 @@ export const HOURS_IN_DAY = [
  */
 
 export const createCourse = (title, description, start_date, period, number_of_students, tuition_fee, currency,
-  is_free, week_day_schedules_attributes, is_same_period, category_id, cover_image) => {
+                             is_free, week_day_schedules_attributes, is_same_period, category_id, cover_image) => {
   return (dispatch) => {
     const body = {
       title,
@@ -108,8 +106,8 @@ export const createCourse = (title, description, start_date, period, number_of_s
 };
 
 export const updateCourse = (id, title, description, start_date, period,
-  number_of_students, tuition_fee, currency, is_free, week_day_schedules_attributes, is_same_period,
-  category_id, cover_image) => {
+                             number_of_students, tuition_fee, currency, is_free, week_day_schedules_attributes, is_same_period,
+                             category_id, cover_image) => {
   return (dispatch) => {
     const body = {
       id,
