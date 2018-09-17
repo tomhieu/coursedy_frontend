@@ -11,6 +11,9 @@ import ListEnrolledStudent from '../../../containers/Courses/TutorCourse/ListEnr
 import { CourseStatus } from '../../../constants/CourseStatus';
 import SimpleDialogComponent from '../../Core/SimpleDialogComponent';
 import CheckIcon from '../../Core/Icons/CheckIcon';
+import FormField from '../../Core/FormField';
+import FormDialogContainer from '../../../containers/Dialog/FormDialogContainer';
+import StartCourseFormContainer from '../../../containers/Courses/TutorCourse/StartCourseFormContainer';
 
 class TutorCourseItem extends Component {
   constructor() {
@@ -46,10 +49,8 @@ class TutorCourseItem extends Component {
   showStartCourseWarning(course) {
     this.setState({
       showPopup: true,
-      popupTitle: this.context.t('alert_popup'),
-      popupMessage: this.context.t('start_course_warning_message', { courseName: course.title }),
-      acceptCallback: () => {
-        this.props.startCourse(course.id);
+      acceptCallback: (startDate) => {
+        this.props.startCourse(course.id, startDate);
       }
     });
   }
@@ -58,9 +59,14 @@ class TutorCourseItem extends Component {
     this.setState({ showPopup: false });
   }
 
+  startTeachingCourse(startDate) {
+    this.props.startCourse(this.props.course.id, startDate);
+    this.closePopup();
+  }
+
   render() {
     const {
-      course, startCourse, deleteCourse, openCourseDetails
+      course, startCourse, handleSubmit, openCourseDetails
     } = this.props;
     const showEnrolledStudentList = this.props.activeCourseId === course.id;
     return (
@@ -153,14 +159,14 @@ class TutorCourseItem extends Component {
             showEnrolledStudentList ? <ListEnrolledStudent courseId={course.id} /> : null
           }
         </div>
-        <SimpleDialogComponent
-          show={this.state.showPopup}
-          title={this.state.popupTitle}
-          acceptCallback={this.state.acceptCallback}
-          cancelCallback={this.closePopup.bind(this)}
-        >
-          <div>{this.state.popupMessage}</div>
-        </SimpleDialogComponent>
+        <StartCourseFormContainer show={this.state.showPopup}
+                                  acceptCallback={this.state.acceptCallback}
+                                  onSubmit={this.startTeachingCourse.bind(this)}
+                                  cancelCallback={this.closePopup.bind(this)}
+                                  {...this.props}>
+        </StartCourseFormContainer>
+
+
       </div>
     );
   }

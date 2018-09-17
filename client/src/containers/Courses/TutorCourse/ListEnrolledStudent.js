@@ -25,7 +25,7 @@ class ListEnrolledStudent extends Component {
     }
     return (
       <LoadingMask placeholderId="LIST_ENROLLED_STUDENT_PLACEHOLDER">
-        <div className="row">
+        <div className="row flex-auto">
           <div className="col-md-12">
             <div className={`row flex-auto ${styles.headerLine}`}>
               <div className="col-xl-5 col-sm-12">

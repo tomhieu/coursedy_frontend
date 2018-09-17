@@ -40,24 +40,32 @@ class TeacherFilterContainer extends AbstractFilter {
   }
 
   search(e) {
-    this.props.searchTeachers(this.searchQuery(this.props.filters));
+    let { key_word } = e;
+    key_word = key_word ? key_word.trim() : '';
+    if (key_word) {
+      this.props.updateFilter({ term: key_word });
+      this.props.searchTeachers(this.searchQuery(this.props.filters, key_word)).finally(() => {
+        this.props.reset();
+        this.props.clearSuggestion();
+      });
+    }
   }
 
   doRemoveFilter(filterId, typeFilter) {
     const removedFilters = this.removeFilterCriteria(this.props.filters, filterId, typeFilter);
-    this.props.dispatch(TeacherActions.updateFilterTeacher(removedFilters));
+    this.props.updateFilter(removedFilters);
     this.props.searchTeachers(this.searchQuery(removedFilters));
   }
 
   doSelectFilter(filter, category) {
     const nextFilters = this.addFilterCriteria(this.props.filters, filter, category);
-    this.props.dispatch(TeacherActions.updateFilterTeacher(nextFilters));
+    this.props.updateFilter(nextFilters);
     this.props.searchTeachers(this.searchQuery(nextFilters));
   }
 
-  searchQuery(filters) {
+  searchQuery(filters, key_word) {
     return {
-      q: filters.term,
+      q: (typeof key_word !== 'undefined' && key_word) ? key_word : filters.term,
       categories: filters.selectedCategories.map(category => category.id),
       specializes: filters.selectedSpecializes.map(spec => spec.id)
     };
@@ -70,18 +78,21 @@ class TeacherFilterContainer extends AbstractFilter {
 
   render() {
     return (
-      <BaseFilter
-        {...this.props}
-        onSubmit={this.search.bind(this)}
-        search={this.search.bind(this)}
-        selectAllCoursesHdl={this.selectAllCourses}
-        loadSuggestions={this.loadSuggestionsTeacher.bind(this)}
-        onSelectFilter={this.doSelectFilter.bind(this)}
-        onRemoveFilter={this.doRemoveFilter.bind(this)}
-        onSelectSuggestion={this.onSelectTeacher.bind(this)}
-        closeSuggestion={this.props.closeSuggestion}
-        courseFilterMode={false}
-      />
+      <div className="d-flex flex-auto course-filter-container">
+        <BaseFilter
+          {...this.props}
+          onSubmit={this.search.bind(this)}
+          search={this.search.bind(this)}
+          selectAllCoursesHdl={this.selectAllCourses}
+          loadSuggestions={this.loadSuggestionsTeacher.bind(this)}
+          onSelectFilter={this.doSelectFilter.bind(this)}
+          onRemoveFilter={this.doRemoveFilter.bind(this)}
+          onSelectSuggestion={this.onSelectTeacher.bind(this)}
+          closeSuggestion={this.props.closeSuggestion}
+          courseFilterMode={false}
+          placeholder={this.context.t('search_teacher')}
+        />
+      </div>
     );
   }
 }
@@ -113,7 +124,7 @@ const mapStateToProps = (state) => {
     filters,
     showSuggestion,
     loadingSuggestion,
-    totalResult: headers != null ? headers.xTotal : 0,
+    totalResult: headers !== null ? headers.xTotal : 0,
     formfieldValues: teacherFilterForm.values ? teacherFilterForm.values : {},
     listSpecializes: getSelectedSpecializesFromCategory(categories, filters.selectedCategories),
   };
@@ -121,7 +132,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = dispatch => ({
   searchTeachers: filters => dispatch(TeacherActions.searchTeachers(filters)),
-  clearSuggestion: () => dispatch({ type: asyncActions.CLEAR_SUGGESTION }),
+  clearSuggestion: () => dispatch({ type: asyncActions.CLEAR_SUGGESTION_TEACHERS }),
   loadSuggestions: query => dispatch({
     type: asyncActions.LOAD_SUGGESTION_TEACHERS,
     payload: Network().get('courses/search', query),
@@ -138,7 +149,7 @@ const mapDispatchToProps = dispatch => ({
     payload: Network().get('locations'),
     meta: 'publicTeacherListPlaceholder'
   }),
-  closeSuggestion: () => dispatch({ type: asyncActions.CLEAR_SUGGESTION })
+  closeSuggestion: () => dispatch({ type: asyncActions.CLEAR_SUGGESTION_TEACHERS })
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(reduxForm({

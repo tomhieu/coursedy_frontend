@@ -4,6 +4,7 @@ import { Component } from 'react';
 class TutorDetail extends Component {
   render() {
     const { tutor } = this.props;
+    const { categories = [], place_of_work, title, description, facebook, linkedin, google_plus, tweeter } = tutor;
 
     return (
       <div className="row user-detail">
@@ -18,7 +19,7 @@ class TutorDetail extends Component {
               <label className="control-label">{this.context.t('account.tutot.edu.ocupation')}</label>
             </div>
             <div className="col-sm-8">
-              <span>{tutor.title}</span>
+              <span>{title}</span>
             </div>
           </div>
           <hr />
@@ -27,7 +28,7 @@ class TutorDetail extends Component {
               <label className="control-label">{this.context.t('account.tutot.edu.place_of_work')}</label>
             </div>
             <div className="col-sm-8">
-              <span>{tutor.place_of_work}</span>
+              <span>{place_of_work}</span>
             </div>
           </div>
           <hr />
@@ -37,7 +38,7 @@ class TutorDetail extends Component {
               <label className="control-label">{this.context.t('account.tutor.edu.description')}</label>
             </div>
             <div className="col-sm-8">
-              <span dangerouslySetInnerHTML={{ __html: tutor.description }} />
+              <span dangerouslySetInnerHTML={{ __html: description }} />
             </div>
           </div>
           <hr />
@@ -48,10 +49,54 @@ class TutorDetail extends Component {
             </div>
             <div className="col-sm-8">
               {
-                tutor.categories.map((c) => {
+                categories.map((c) => {
                   return c.name;
                 }).join(', ')
               }
+            </div>
+          </div>
+
+          <hr />
+
+          <div className="row">
+            <div className="col-sm-4">
+              <label className="control-label">{this.context.t('account_facebook_title')}</label>
+            </div>
+            <div className="col-sm-8">
+              <span dangerouslySetInnerHTML={{ __html: facebook }} />
+            </div>
+          </div>
+
+          <hr />
+
+          <div className="row">
+            <div className="col-sm-4">
+              <label className="control-label">{this.context.t('account_linkin_title')}</label>
+            </div>
+            <div className="col-sm-8">
+              <span dangerouslySetInnerHTML={{ __html: linkedin }} />
+            </div>
+          </div>
+
+          <hr />
+
+          <div className="row">
+            <div className="col-sm-4">
+              <label className="control-label">{this.context.t('account_google_plus_title')}</label>
+            </div>
+            <div className="col-sm-8">
+              <span dangerouslySetInnerHTML={{ __html: google_plus }} />
+            </div>
+          </div>
+
+          <hr />
+
+          <div className="row">
+            <div className="col-sm-4">
+              <label className="control-label">{this.context.t('account_tweater_title')}</label>
+            </div>
+            <div className="col-sm-8">
+              <span dangerouslySetInnerHTML={{ __html: tweeter }} />
             </div>
           </div>
         </div>

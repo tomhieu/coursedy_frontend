@@ -1,6 +1,5 @@
 import * as courseTypes from 'constants/Courses';
 import * as asyncActs from 'actions/AsyncActionCreator';
-import data from '../configs/data.json';
 
 
 const HomePage = (state = {
@@ -8,7 +7,7 @@ const HomePage = (state = {
   newCourses: [],
   studentsComment: [],
   topTeachers: [],
-  totalCourses: data.totalCourses,
+  totalCourses: 0,
   totalTeachers: 0
 }, action) => {
   switch (action.type) {

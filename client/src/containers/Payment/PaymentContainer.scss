@@ -12,15 +12,20 @@
       padding-left: 0;
       padding-right: 0;
       margin-right: 15px;
+      text-transform: uppercase;
     }
     .nav-link.active  {
       background-color: transparent;
       border: none;
-      border-bottom: 3px solid $color-orange;
+      border-bottom: 5px solid $color-orange;
     }
     .nav-link:hover {
-      border-bottom: 3px solid $color-orange;
+      border-bottom: 5px solid $color-orange;
     }
+  }
+  
+  .badge-success {
+    background-color: $color-orange;
   }
 
   .payment-container {

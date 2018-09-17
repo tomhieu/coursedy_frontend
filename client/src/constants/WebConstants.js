@@ -76,3 +76,5 @@ export const ADMIN_STUDENT_LIST_MAX_ITEM_PER_PAGE = 10
 
 //
 export const COUSES_ENROLL_ERROR_NOT_ENOUGH_BALANCE = 'not enough balance'
+// request info
+export const SET_REQUEST_INFO = 'SET_REQUEST_INFO';

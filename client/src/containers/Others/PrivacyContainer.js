@@ -3,16 +3,21 @@ import './Privacy.scss';
 import './Items.scss';
 import { TT } from 'utils/locale';
 import { Blocks } from './TermsContainer';
+import PageContainer from '../../utils/PageContainer';
 
 class PrivacyContainer extends Component {
   render() {
     return (
-      <div className="terms-privacy full-width-in-container">
-        <div className="container">
-          <PrivacyTop />
-          <PrivacyCenter />
+      <PageContainer
+        meta={{ title: this.context.t('privacy_page') }}
+      >
+        <div className="terms-privacy">
+          <div className="container">
+            <PrivacyTop />
+            <PrivacyCenter />
+          </div>
         </div>
-      </div>
+      </PageContainer>
     );
   }
 }

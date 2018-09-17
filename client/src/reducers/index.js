@@ -43,12 +43,24 @@ import DashboardTutorEducationList from './Dashboard/Tutors/Educations/Dashboard
 import DashboardTutorWorkExperienceList from './Dashboard/Tutors/Educations/DashboardTutorWorkExperienceList';
 import DashboardMenu from './Dashboard/Menu/DashboardMenuReducer';
 import forgotPassword from './ForgotPasswordReducer';
-import recoverPassword from './Auth/RecoverPasswordReducer';
 import EnrolledStudentList from './Dashboard/Tutors/CourseList/EnrolledStudent/ListEnrolledStudentReducer';
 import LessonEvaluation from './Lesson/LessonEvaluationReducer';
 import ThirdPartyLoginReducer from './ThirdPartyLoginReducer';
+import * as webConstants from '../constants/WebConstants';
+
+export const requestInfo = (state = { protocol: null, host: null }, action) => {
+  switch (action.type) {
+    case webConstants.SET_REQUEST_INFO:
+      return {
+        ...action.data
+      };
+    default:
+      return state;
+  }
+};
 
 const rootReducer = combineReducers({
+  requestInfo,
   DashboardTutorEducationList,
   DashboardTutorWorkExperienceList,
   // Apply all of the reducers here.
@@ -57,7 +69,6 @@ const rootReducer = combineReducers({
   LoginComponent,
   SignUpComponent,
   forgotPassword,
-  recoverPassword,
 
   // Reducers for course
   CourseListReducer,

@@ -12,6 +12,8 @@ import { CourseStatus } from '../../../constants/CourseStatus';
 import TutorCourseList from '../../../components/Courses/CourseList/TutorCourseList';
 import styles from './ListTutorCourseContainer.module.scss';
 import { TutorNavigationTab } from '../../../constants/TutorNavigationTab';
+import {TutorStatus} from '../../../constants/TutorStatus';
+import {Redirect} from 'react-router';
 
 class ListTutorCourseContainer extends Component {
   componentWillMount() {
@@ -48,7 +50,7 @@ class ListTutorCourseContainer extends Component {
 
   render() {
     const {
-      status, courses, isFetching, currentUser
+      status, courses, isFetching
     } = this.props;
     return (
       <div className="d-flex flex-vertical flex-auto">
@@ -95,7 +97,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = dispatch => ({
   fetchListTutorCourse: () => dispatch({
     type: FETCH_TUTOR_COURSES,
-    payload: Network().get('users/courses', { per_page: 100 }),
+    payload: Network().get('users/courses', { per_page: 100, status: CourseStatus.NOT_STARTED }),
     meta: 'tutorCourseListPlaceholder'
   }),
   fetchListTutorActiveCourse: () => dispatch({
@@ -115,9 +117,9 @@ const mapDispatchToProps = dispatch => ({
     }),
     meta: 'tutorCourseListPlaceholder'
   }),
-  startCourse: courseId => dispatch({
+  startCourse: (courseId, startDate) => dispatch({
     type: UPDATE_COURSE,
-    payload: Network().update(`courses/${courseId}`, { id: courseId, status: CourseStatus.STARTED })
+    payload: Network().update(`courses/${courseId}`, { ...startDate, id: courseId, status: CourseStatus.STARTED})
   }),
   openCourseDetails: (courseId) => {
     globalHistory.push(`/dashboard/courses/detail/${courseId}`);

@@ -34,17 +34,21 @@ class BaseFilter extends Component {
       onSelectFilter,
       closeSuggestion,
       courseFilterMode,
-      displayMode
+      displayMode,
+      placeholder,
+      orderBy
     } = this.props;
 
     const {
       selectedWeekDays, selectedCategories, selectedLocations, selectedSpecializes, term
     } = filters;
 
-    const orderList = [{ id: 1, text: this.context.t('order_by_time') }, {
-      id: 2,
-      text: this.context.t('order_by_view')
-    }, { id: 3, text: this.context.t('order_by_register') }];
+    const orderList = [
+      { id: 'time_asc', text: this.context.t('order_by_time_recent') },
+      { id: 'popularity', text: this.context.t('order_by_view_recent') },
+      { id: 'price_asc', text: this.context.t('order_by_price_asc') },
+      { id: 'price_desc', text: this.context.t('order_by_price_desc') }
+    ];
 
     const gridIconButtonClasses = ['material-icon'];
     const listIconButtonClasses = ['material-icon'];
@@ -74,6 +78,8 @@ class BaseFilter extends Component {
                   suggestions={suggestions}
                   closeSuggestion={closeSuggestion}
                   term={term}
+                  search={search}
+                  placeholder={placeholder}
                 />
               </div>
               <div className="seperate-filter-line" />
@@ -131,9 +137,17 @@ class BaseFilter extends Component {
                       }
                   </span>
                 </div>
-                <div className={styles.orderBtn}>
-                  <Select2 onSelect={e => search(e)} data={orderList} />
-                </div>
+                {
+                  courseFilterMode ?
+                    <div className={styles.orderBtn}>
+                      <Select2
+                        onSelect={e => search(e)}
+                        data={orderList}
+                        defaultValue={orderBy}
+                      />
+                    </div> : null
+                }
+
                 {
                   changeDisplayModeHdl !== undefined
                     ? (
@@ -186,7 +200,8 @@ BaseFilter.propTypes = {
   search: React.PropTypes.func,
   closeSuggestion: React.PropTypes.func,
   courseFilterMode: React.PropTypes.bool,
-  displayMode: React.PropTypes.string
+  displayMode: React.PropTypes.string,
+  placeholder: React.PropTypes.string.isRequired
 };
 
 export default cssModules(BaseFilter, styles);

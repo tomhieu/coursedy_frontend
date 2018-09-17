@@ -9,13 +9,14 @@ class CourseCoverImageContainer extends Component {
     const {
       courseCoverImage, uploadCourseCoverImage, openPopupToChangeCoverImage,
       closePopupToChangeCoverImage, showPopupChangeCoverImage, selectedNewCoverImage,
-      onSelectedNewCoverImage, onDeselectNewCoverImage
+      onSelectedNewCoverImage, onDeselectNewCoverImage, uploadImageLabel = this.context.t('update_cover_image'),
+      isEditable = true
     } = this.props;
     return (
       <CoursedyUploadImage
         uploadCourseCoverImage={uploadCourseCoverImage.bind(this)}
         closePopupToSelectImage={closePopupToChangeCoverImage.bind(this)}
-        editImageLabel={this.context.t('update_cover_image')}
+        editImageLabel={uploadImageLabel}
         onDeselectNewImage={onDeselectNewCoverImage.bind(this)}
         onSelectedNewImage={onSelectedNewCoverImage.bind(this)}
         isSelectedNewImage={selectedNewCoverImage}
@@ -25,6 +26,7 @@ class CourseCoverImageContainer extends Component {
         fieldId="cover_image_Id"
         scaleWidth={5}
         scaleHeight={3}
+        isEditable={isEditable}
         {...this.props}
       />
     );
@@ -42,8 +44,10 @@ CourseCoverImageContainer.propTypes = {
   onSelectedNewCoverImage: React.PropTypes.func,
   showPopupChangeCoverImage: React.PropTypes.bool.isRequired,
   selectedNewCoverImage: React.PropTypes.bool,
-  courseCoverImage: React.PropTypes.string.isRequired,
-  uploadCourseCoverImage: React.PropTypes.func.isRequired
+  courseCoverImage: React.PropTypes.string,
+  uploadCourseCoverImage: React.PropTypes.func.isRequired,
+  uploadImageLabel: React.PropTypes.string,
+  isEditable: React.PropTypes.bool
 };
 
 const mapStateToProps = state => ({

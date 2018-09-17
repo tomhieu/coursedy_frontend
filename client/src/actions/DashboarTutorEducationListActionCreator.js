@@ -28,14 +28,14 @@ export const createEducation = (tutorId, params) => {
 };
 
 export const loadEducationList = (tutorId) => {
-  return dispatch => {
+  return (dispatch) => {
     dispatch({
       type: actionTypes.FETCH_EDUCATION_LIST,
       payload: Network().get(`tutors/${tutorId}/tutor_educations`),
       meta: 'userAccountPlaceholder'
-    })
-  }
-}
+    });
+  };
+};
 
 export const deleteEducation = (tutorId, id) => {
   return (dispatch) => {

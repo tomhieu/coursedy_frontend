@@ -7,10 +7,11 @@ import CourseCategory from './CourseCategory/CourseCategory';
 import CourseFeeComponent from './CourseFee/CourseFeeComponent';
 import PrimaryButton from '../../Core/PrimaryButton/PrimaryButton';
 import CourseCoverImageContainer from '../../../containers/Courses/CourseForm/CourseCoverImageContainer';
+import {CourseStatus} from '../../../constants/CourseStatus';
 
 class CourseForm extends Component {
   static fields = ['title', 'description', 'start_date', 'period',
-    'number_of_students', 'tuition_fee', 'currency', 'is_free', 'course_days', 'is_same_period', 'start_time', 'end_time',
+    'number_of_students', 'tuition_fee', 'is_free', 'course_days', 'is_same_period', 'start_time', 'end_time',
     'monday_start_time', 'monday_end_time', 'tuesday_start_time', 'tuesday_end_time',
     'wednesday_start_time', 'wednesday_end_time', 'thursday_start_time', 'thursday_end_time',
     'friday_start_time', 'friday_end_time', 'saturday_start_time', 'saturday_end_time', 'sunday_start_time', 'sunday_end_time',
@@ -50,7 +51,7 @@ class CourseForm extends Component {
   render() {
     const {
       handleSubmit, editMode, onDropCoverImage, cover_image, submitting, pristine,
-      valid, courseData, categories, courseSpecializes, selectedDays, isSamePeriod, isFree
+      valid, courseData, categories, courseSpecializes, selectedDays, isSamePeriod, isFree, canEditable
     } = this.props;
     return (
       <div>
@@ -68,6 +69,7 @@ class CourseForm extends Component {
                     onDeselectNewCoverImage={this.onDeselectNewCoverImage.bind(this)}
                     onSelectedNewCoverImage={this.onSelectNewCoverImage.bind(this)}
                     selectedNewCoverImage={this.state.selectedNewCoverImage}
+                    isEditable={canEditable}
                   />
                 </div>
               ) : null
@@ -86,6 +88,7 @@ class CourseForm extends Component {
                   typeField="custom_input"
                   content={editMode ? courseData.title : ''}
                   styleCustomField="inline-form-control"
+                  canEditable={canEditable}
                   {...this.props}
                 />
               </div>
@@ -97,6 +100,7 @@ class CourseForm extends Component {
             course_specialize={courseData != null ? courseData.course_specialize : null}
             courseSpecializes={courseSpecializes}
             categories={categories}
+            canEditable={canEditable}
             {...this.props}
           />
           {/* Course category and course level */}
@@ -112,6 +116,7 @@ class CourseForm extends Component {
                   fieldName="start_date"
                   typeField="datepicker"
                   content={editMode ? courseData.start_date : ''}
+                  canEditable={canEditable}
                   {...this.props}
                 />
               </div>
@@ -126,6 +131,7 @@ class CourseForm extends Component {
                   fieldName="period"
                   typeField="custom_input"
                   content={editMode ? `${courseData.period} ${this.context.t('course_periode_type')}` : ''}
+                  canEditable={canEditable}
                   {...this.props}
                 />
               </div>
@@ -133,11 +139,24 @@ class CourseForm extends Component {
           </div>
 
           <div className="row">
-            <div className="col-md-12 col-sm-12">
+            <div className="col-md-6 col-sm-6">
               <CourseFeeComponent
                 isFree={isFree}
                 editMode={editMode}
                 courseData={courseData}
+                canEditable={canEditable}
+                {...this.props}
+              />
+            </div>
+            <div className="col-md-6 col-sm-6">
+              <CourseFormItem
+                editMode={editMode}
+                fieldId="number_of_students"
+                fieldLabel={this.context.t('number_of_students')}
+                isMandatory
+                fieldName="number_of_students"
+                typeField="custom_input"
+                content={editMode ? courseData.number_of_students : ''}
                 {...this.props}
               />
             </div>
@@ -149,6 +168,7 @@ class CourseForm extends Component {
                 courseData={courseData}
                 isSamePeriod={isSamePeriod}
                 selectedDays={selectedDays}
+                canEditable={canEditable}
                 {...this.props}
               />
             </div>
@@ -165,6 +185,7 @@ class CourseForm extends Component {
                   showPopupChangeCoverImage={this.state.showPoupChangeCoverImage}
                   onDeselectNewCoverImage={this.onDeselectNewCoverImage.bind(this)}
                   onSelectedNewCoverImage={this.onSelectNewCoverImage.bind(this)}
+                  uploadImageLabel={this.context.t('add_cover_image')}
                   selectedNewCoverImage={this.state.selectedNewCoverImage}
                 />
               </div>
@@ -182,6 +203,7 @@ class CourseForm extends Component {
             content={editMode ? courseData.description : ''}
             disabled={false}
             isRichTextField
+            canEditable={canEditable}
             {...this.props}
           />
           {

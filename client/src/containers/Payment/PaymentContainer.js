@@ -10,6 +10,7 @@ import {
   FETCH_ADMIN_PAYMENT_SETTINGS,
   FETCH_ADMIN_PAYMENT_INSTRUCTIONS,
   FETCH_ADMIN_BANK_ACCOUNTS,
+  FETCH_BANK_TRANSFER_TOKEN
 } from "../../actions/AsyncActionCreator"
 import {
   PUBLIC_COURSE_DETAIL_REMOVE_COURSE_FROM_CART
@@ -44,6 +45,7 @@ class PaymentContainer extends Component {
     this.props.fetchPaymentSettings(this.props)
     this.props.fetchPaymentInstructions(this.props)
     this.props.fetchBankAccounts(this.props)
+    this.props.fetchBankTransferToken(this.props)
   }
 
   // changePaymentMethods(method) {
@@ -94,7 +96,9 @@ class PaymentContainer extends Component {
       paymentInstructions,
       bankAccounts,
       cart,
-      cartTotal
+      cartTotal,
+      currentUser,
+      bankTransferToken
     } = this.props
     return (
       <div className="payment-box">
@@ -103,7 +107,7 @@ class PaymentContainer extends Component {
 
         <div className="container-fluid row">
           {/*Payment method*/}
-          <div className="col-md-8 col-sm-12">
+          <div className="col-md-7 col-sm-12">
             <ul className="nav nav-tabs">
               <li className="nav-item">
                 <a
@@ -132,22 +136,22 @@ class PaymentContainer extends Component {
                       <div className="col-md-12 no-pad payment-step">
                         <p>
                           <i className="fa fa-chevron-circle-right payment-step-icon"></i>
-                          <strong>Bước 1:</strong>
-                          <span> Thông tin mang theo để nạp tiền gồm có</span>
+                          <strong>{this.context.t('public_payment_manual_step_1')}</strong>
+                          <span> {this.context.t('public_payment_manual_step_1_instruction')}</span>
                         </p>
                         <p className="text-center info-row">
-                          <span className="info-box">Email: tinhuynh0992gmail.com</span>
+                          <span className="info-box">{this.context.t('public_payment_manual_step_1_email')} { currentUser ? currentUser.email : '' }</span>
                         </p>
                       </div>
                       <div className="col-md-12 no-pad payment-step">
                         <p className="mb-5">
                           <i className="fa fa-chevron-circle-right payment-step-icon"></i>
-                          <strong>Bước 2:</strong>
-                          <span> Vui lòng nạp tiền tại văn phòng</span>
+                          <strong>{this.context.t('public_payment_manual_step_1')}</strong>
+                          <span> {this.context.t('public_payment_manual_step_2_instruction')}</span>
                         </p>
-                        <p>
-                          Địa chỉ: <i>307 Hồng Bàng, Phường 11, Quận 5, Hồ Chí Minh.</i>
-                        </p>
+                        <p
+                          dangerouslySetInnerHTML={{ __html: this.context.t('public_payment_manual_step_2_address') }}
+                        />
                       </div>
                       <div className="col-sm-12 no-pad-left col-md-7">
                         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.737426598377!2d106.6580743143502!3d10.7547083923363!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752ef11488a397%3A0x49680a6fa438017b!2sCheese+Coffee!5e0!3m2!1sen!2s!4v1534047689794"
@@ -160,10 +164,10 @@ class PaymentContainer extends Component {
                       </div>
                       <div className="col-sm-12 no-pad col-md-5">
                         <ul className="list-unstyled">
-                          <li className="mb-5">
-                            <a href="#">Coursedy</a> trực tuyến <span className="badge badge-success">24/7</span> để hỗ trợ các bạn.
-                            Hãy liên hệ với chúng tôi tại <a href="#" target="_blank">đây</a>.
-                          </li>
+                          <li 
+                            className="mb-5"
+                            dangerouslySetInnerHTML={{ __html: this.context.t('public_payment_manual_contact') }}
+                          />
                         </ul>
                       </div>
                     </div>
@@ -181,10 +185,10 @@ class PaymentContainer extends Component {
                       <div className="col-md-12 no-pad payment-step">
                         <p className="mb-15">
                           <i className="fa fa-chevron-circle-right payment-step-icon"></i>
-                          <strong>Bước 1:</strong>
-                          <span> Bên dưới là danh sách ngân hàng <strong>Coursedy</strong> hỗ trợ.
-                            Vui lòng chọn ngân hàng để nhận thông tin chuyển khoản:
-                          </span>
+                          <strong>{this.context.t('public_payment_transfer_step_1')} </strong>
+                          <span
+                            dangerouslySetInnerHTML={{ __html: this.context.t('public_payment_transfer_step_1_instruction') }}
+                          />
                         </p>
                         <div className="row">
                           <div className="col-sm-12 col-md-3">
@@ -230,12 +234,16 @@ class PaymentContainer extends Component {
                       <div className="col-md-12 no-pad payment-step">
                         <p>
                           <i className="fa fa-chevron-circle-right payment-step-icon"></i>
-                          <strong>Bước 2:</strong>
-                          <span> Thực hiện chuyển khoản cho <strong>Coursedy</strong> với cú pháp:</span>
+                          <strong>{this.context.t('public_payment_transfer_step_2')} </strong>
+                          <span
+                            dangerouslySetInnerHTML={{ __html: this.context.t('public_payment_transfer_step_2_instruction') }}
+                          />
                         </p>
                         <div className="text-center">
                           <p className="text-center info-row">
-                            <span className="info-box">NAP TIEN <span className="badge badge-info" alt="Đăng nhập để lấy mã">???</span> tinhuynh0992@gmail.com</span>
+                            <span className="info-box">
+                              NAP TIEN <span className="badge badge-info" alt="Đăng nhập để lấy mã">{bankTransferToken || '???'}</span> {currentUser ? currentUser.email : ''}
+                            </span>
                           </p>
 
                         </div>
@@ -249,9 +257,10 @@ class PaymentContainer extends Component {
             </div>
           </div>
           {/*Cart detail*/}
+          <div className="col-md-1 col-sm-12"/>
           <div className="col-md-4 col-sm-12">
             <div className="cart-container">
-              <p className="cart-header"><strong>Khóa học đã chọn</strong></p>
+              <p className="cart-header"><strong>{this.context.t('public_payment_cart_title')}</strong></p>
             {
               cart.length !== 0 ?
               <div className="cart-content container">
@@ -284,14 +293,14 @@ class PaymentContainer extends Component {
                 }
                 <div className="course-table-row row">
                   <div className="course-divider"></div>
-                  <div className="col-md-7 pad"><strong>Tổng:</strong></div>
+                  <div className="col-md-7 pad"><strong>{this.context.t('public_payment_cart_total')}</strong></div>
                   <div className="col-md-5 pad text-right"><strong>{ObjectUtils.currencyFormat(cartTotal)}</strong></div>
                 </div>
 
               </div> :
               <div className="text-center">
                 <div className="course-divider"></div>
-                <p>Không có khóa học được chọn</p>
+                <p>{this.context.t('public_payment_cart_empty')}</p>
               </div>
             }
 
@@ -318,7 +327,9 @@ const mapStateToProps = (state) => ({
   paymentInstructions: state.AdminPaymentMethodsReducer.paymentInstructions,
   bankAccounts: state.AdminPaymentMethodsReducer.bankAccounts,
   cart: state.PublicCourseDetail.cart,
-  cartTotal: state.PublicCourseDetail.cartTotal
+  cartTotal: state.PublicCourseDetail.cartTotal,
+  currentUser: state.session.currentUser,
+  bankTransferToken: state.Payment.bankTransferToken
 })
 
 const mapDispatchToProps = (dispatch) => ({
@@ -393,7 +404,18 @@ const mapDispatchToProps = (dispatch) => ({
   removeCourseFromCart: (props) => dispatch({
     type: PUBLIC_COURSE_DETAIL_REMOVE_COURSE_FROM_CART,
     payload: props
-  })
+  }),
+  fetchBankTransferToken: (props) => dispatch({
+    type: FETCH_BANK_TRANSFER_TOKEN,
+    // payload: Network().get('payment-token')
+    payload: new Promise((resolve, reject) => {
+      setTimeout(function(){
+        resolve({
+          token: 'abcdef',
+        })
+      }, 250)
+    })
+  }),
 })
 
 

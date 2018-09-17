@@ -20,7 +20,7 @@ const TeacherShortIntroduce = (props) => {
     <LoadingMask
       placeholderId="userAccountPlaceholder"
       normalPlaceholder={false}
-      facebookPlaceholder={true}
+      facebookPlaceholder
       loaderType={webConstants.USER_ACCOUNT_PLACEHOLDER}
     >
       <div className="profile-list-item">
@@ -134,11 +134,8 @@ const EducationItem = ({ education }) => {
       <h6>{education.title}</h6>
       <span className="block mb-10">
         <span className="yellow-color">{education.graduated_from}</span>
-        {' '}
--
-        {' '}
+        {' · '}
         <span className="font-italic dd-mm-yy">
-          {' '}
           {education.end_date}
         </span>
       </span>
@@ -149,7 +146,7 @@ const EducationItem = ({ education }) => {
 
 const DegreeItem = ({ degree }) => {
   return (
-    <div className="col-12 col-sm-12 col-md-6 col-lg-4 mb-15 mt-15 teacher-degree">
+    <div className="col-12 col-sm-12 col-md-6 col-lg-3 mb-15 mt-15 teacher-degree">
       <a href={degree.url} target="_blank" className="d-flex flex-column">
         <img src={degree.url} className="full-width" />
         <div className="d-flex justify-content-center file-name">{degree.name}</div>
@@ -164,12 +161,10 @@ const WorkExperienceItem = ({ experience }) => {
       <h6>{experience.title}</h6>
       <span className="block mb-10">
         <span className="yellow-color">{experience.company}</span>
-        {' '}
--
-        {' '}
+        {' · '}
         <span className="font-italic dd-mm-yy">
-          {' '}
           {experience.start_date}
+          {' '}
 -
           {experience.end_date}
         </span>

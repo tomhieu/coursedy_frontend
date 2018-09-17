@@ -37,10 +37,16 @@ export const validate = (values) => {
 
   if (!values.is_free && !values.tuition_fee) {
     errors.tuition_fee = TT.t('tuition_fee_mandatory');
-  } else if (values.tuition_fee && isNaN(values.tuition_fee)) {
-    errors.tuition_fee = TT.t('not_a_number');
   } else {
-    errors.tuition_fee = '';
+    let tuitionFee = values.tuition_fee;
+
+    if (!Number.isInteger(tuitionFee)) {
+      tuitionFee = Number(tuitionFee.replace(/[^0-9]/g, ''));
+    }
+
+    if (tuitionFee > 100000000) {
+      errors.tuition_fee = TT.t('tuition_fee_too_large');
+    }
   }
 
   if (!values.currency) {
@@ -49,6 +55,10 @@ export const validate = (values) => {
 
   if (!values.description) {
     errors.description = TT.t('course_description_mandatory');
+  }
+
+  if (!values.number_of_students) {
+    errors.number_of_students = TT.t('num_student_mandatory');
   }
 
   if (!values.category_id) {

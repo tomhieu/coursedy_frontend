@@ -1,24 +1,14 @@
 import React from 'react';
 import cssModules from 'react-css-modules';
-import { Route } from 'react-router-dom';
-import { connect } from 'react-redux';
-import { UserRole } from 'constants/UserRole';
-import PrivateRoute from 'containers/PrivateRoute/PrivateRoute';
-import { SecurityUtils } from 'utils/SecurityUtils';
+import {connect} from 'react-redux';
+import {TT} from 'utils/locale';
+import {TutorContainers} from 'containers/index';
+import {RoleAuthorization, TutorDashboardMenu} from 'components/index';
+import * as sessionActions from 'actions/SessionActionCreator';
+import * as dashboardActions from 'actions/DashboardMenuActionCreator';
+import * as WebConstants from 'constants/WebConstants';
 import styles from './TutorDashboard.module.scss';
-import { RoleAuthorization, TutorDashboardMenu } from '../../components/index';
-import { TutorContainers } from '../../containers';
-import CourseFormContainer from '../../containers/Courses/CourseForm/CourseFormContainer';
-import TutorProfileDetailsContainer from '../../containers/Tutor/Profile/TutorProfileDetailsContainer';
-import ListLessonContainer from '../../containers/Courses/Lesson/ListLessonContainer';
-import ListTutorCourseContainer from '../../containers/Courses/CourseList/ListTutorCourseContainer';
-import TutorAccount from '../../containers/Account/Tutor/TutorAccountContainer';
-import * as sessionActions from '../../actions/SessionActionCreator';
-import * as dashboardActions from '../../actions/DashboardMenuActionCreator';
-import { CourseStatus } from '../../constants/CourseStatus';
-import * as WebConstants from '../../constants/WebConstants';
-import StudentDashboardMenu from '../../components/Student/Dashboard/StudentDashboardMenu';
-import { TT } from '../../utils/locale';
+import {TutorStatus} from '../../constants/TutorStatus';
 
 class TutorDashboard extends RoleAuthorization {
   componentDidMount() {
@@ -30,7 +20,7 @@ class TutorDashboard extends RoleAuthorization {
   }
 
   render() {
-    const { currentUser, isCollapseDashboard } = this.props;
+    const { isCollapseDashboard, tutor } = this.props;
     let dashboardMenuClasses = 'panel-group dashboard-menu';
     let dashboardContentClasses = 'd-flex flex-column flex-auto dashboard-content';
     let dashboardFooterClasses = 'dashboard-footer d-flex justify-content-center';
@@ -42,38 +32,20 @@ class TutorDashboard extends RoleAuthorization {
       dashboardFooterClasses += ' expanded';
     }
 
+    const isApproved = tutor.status === TutorStatus.VERIFIED;
+
     return (
-      <div className="dashboard-section full-width-in-container">
+      <div className="dashboard-section">
         <div className="d-flex flex-row flex-auto">
           <div className={leftMenuClasses.join(' ')} id="sidebar">
-            {
-              SecurityUtils.isTeacher(currentUser)
-                ? (
-                  <div className={dashboardMenuClasses} id="accordion">
-                    <TutorContainers.DashboardProfileContainer />
-                    <TutorDashboardMenu {...this.props} />
-                  </div>
-                )
-                : (
-                  <div className={dashboardMenuClasses} id="accordion">
-                    <TutorContainers.DashboardProfileContainer />
-                    <StudentDashboardMenu {...this.props} />
-                  </div>
-                )
-            }
-
+            <div className={dashboardMenuClasses} id="accordion">
+              <TutorContainers.DashboardProfileContainer />
+              <TutorDashboardMenu isApproved={isApproved} {...this.props} />
+            </div>
           </div>
           <div className={dashboardContentClasses}>
             <div className="full-width daskboard-container container">
-              <switch>
-                <Route exact path="/dashboard/profile" component={TutorProfileDetailsContainer} />
-                <Route exact path="/dashboard/courses/active" render={props => <ListTutorCourseContainer status={CourseStatus.STARTED} {...props} />} />
-                <Route exact path="/dashboard/courses/list" render={props => <ListTutorCourseContainer status={CourseStatus.NOT_STARTED} {...props} />} />
-                <Route exact path="/dashboard/courses/list-lesson" component={ListLessonContainer} />
-                <Route exact path="/dashboard/courses/new" component={CourseFormContainer} />
-                <Route exact path="/dashboard/courses/detail/:id" component={CourseFormContainer} />
-                <PrivateRoute exact path="/dashboard/account" roles={[UserRole.TEACHER]} component={TutorAccount} />
-              </switch>
+              { this.props.children }
             </div>
             <div className={dashboardFooterClasses}>
               <span className="coursedy-copyright">{TT.t('product_copyright')}</span>
@@ -91,8 +63,8 @@ const mapStateToProps = state => ({
   currentUser: state.session.currentUser,
   fetchingUser: state.session.fetchingUser,
   activatedTab: state.DashboardMenu.activatedTab,
-  isCollapseDashboard: state.DashboardMenu.isCollapseDashboard
-
+  isCollapseDashboard: state.DashboardMenu.isCollapseDashboard,
+  tutor: state.TutorAccountReducer.tutor
 });
 
 const mapDispatchToProps = dispatch => ({

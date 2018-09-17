@@ -12,4 +12,7 @@ const PaymentPage = (props) => {
   );
 };
 
+PaymentPage.contextTypes = {
+  t: React.PropTypes.func.isRequired
+};
 export default PaymentPage;

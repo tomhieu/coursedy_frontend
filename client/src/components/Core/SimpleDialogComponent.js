@@ -13,8 +13,15 @@ class SimpleDialogComponent extends Component {
       show, title, acceptCallback, cancelCallback,
       acceptLabel = this.context.t('ok'),
       cancelLabel = this.context.t('cancel'),
-      customClass
+      customClass, isCenteredButton,
     } = this.props;
+
+    const footerClasses = ['modal-footer'];
+
+    if (isCenteredButton) {
+      footerClasses.push('button-center');
+    }
+
     return (
       <Modal visible={show} onClickBackdrop={cancelCallback} className={customClass}>
         <div className="modal-header">
@@ -23,7 +30,7 @@ class SimpleDialogComponent extends Component {
         <div className="modal-body">
           {this.props.children}
         </div>
-        <div className="modal-footer">
+        <div className={footerClasses.join(' ')}>
           {
             acceptCallback && acceptLabel
               ? (
@@ -41,7 +48,7 @@ class SimpleDialogComponent extends Component {
             cancelCallback && cancelLabel
               ? (
                 <PrimaryButton
-                  type="button"
+                  type='button'
                   line
                   callback={cancelCallback}
                   isPrimary={false}

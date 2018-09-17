@@ -1,6 +1,6 @@
 import { TT } from 'utils/locale';
 import * as asyncActs from '../../actions/AsyncActionCreator';
-import { STARTED_COURSE, TERMINATED_COURSE } from '../../constants/WebConstants';
+import {STARTED_COURSE, TERMINATED_COURSE, UNSTARTED_COURSE} from '../../constants/WebConstants';
 
 const StudentCourseListReducer = (state = {
   isFetchingEnrollCourse: true,
@@ -21,7 +21,7 @@ const StudentCourseListReducer = (state = {
     case asyncActs.FETCH_STUDENT_ENROLL_COURSES + asyncActs.FULFILLED:
       const enrollCourses = action.payload.map((course) => { return { ...course, onlyTutor: false }; });
       const enrolledCourses = enrollCourses.filter((course) => { return course.status === TERMINATED_COURSE; });
-      const enrollingCourses = enrollCourses.filter((course) => { return course.status === STARTED_COURSE; });
+      const enrollingCourses = enrollCourses.filter((course) => { return course.status === STARTED_COURSE || course.status === UNSTARTED_COURSE; });
       return {
         ...state,
         enrolledCourses,

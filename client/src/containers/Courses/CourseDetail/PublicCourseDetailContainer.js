@@ -62,7 +62,10 @@ class PublicCourseDetailContainer extends Component {
 
   render() {
     return (
-      <PageContainer error={this.props.course.error}>
+      <PageContainer
+        error={this.props.course.error}
+        meta={{ title: this.context.t('course_detail_page', { title: this.props.course.title || '' }) }}
+      >
         <CourseDetail
           {...this.props}
           loadMoreCommentsHdl={this.loadMoreComments.bind(this)}
@@ -153,7 +156,7 @@ const mapDispatchToProps = dispatch => ({
   getCourseCategories: () => dispatch(ReferActions.fetchCourseCategories()),
   getPublicCourse: courseId => dispatch(PublicCourseActions.fetchPublicCourse(courseId)),
   getCourseComments: (courseId, page) => dispatch(PublicCourseActions.fetchCourseComments(courseId, page)),
-  getRelatedCourses: (courseId, page, perPage) => dispatch(PublicCourseActions.fetchRelatedCourses({courseId, page, perPage})),
+  getRelatedCourses: (courseId, page, perPage) => dispatch(PublicCourseActions.fetchRelatedCourses({course_id: courseId, page, perPage})),
   enrollCourse: (courseId) => dispatch(PublicCourseActions.submitEnrollCourse(courseId)),
   addCourseToCart: (course) => dispatch(PublicCourseActions.addCourseToCart(course)),
   changeActiveMenu: (payload) => dispatch(PublicCourseActions.changeActiveMenu(payload)),

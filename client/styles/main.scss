@@ -613,12 +613,9 @@ body.application {
       }
     }
   }
-
-  .full-width-in-container {
-    margin-left: calc(-50vw + 50%);
-    margin-right: calc(-50vw + 50%);
+  .full-container, main-container {
+    width: 100%;
   }
-
   .img-circle {
     border-radius: 50%;
   }
@@ -725,6 +722,7 @@ body.application {
     border: 1px solid $border-color;
     border-radius: 3px;
     height: $height-field;
+    outline: none;
   }
 
   .header-homepage .select2-container--default .select2-selection--single .select2-selection__arrow {
@@ -996,6 +994,7 @@ body.application {
 
   .course-item {
     position: relative;
+    max-width: 250px;
     height: 100%;
     box-shadow: 0 0 1px 1px rgba(20,23,28,.1), 0 3px 1px 0 rgba(20,23,28,.1);
     &:hover {
@@ -1070,9 +1069,23 @@ body.application {
       text-align: center;
       padding: 0 5px;
       border-top: 1px solid $border-color;
-      display: table;
-      & > div {
-        display: table-cell;
+      display: flex;
+      flex-direction: row;
+      .category {
+        display: flex;
+        flex: 2;
+        flex-direction: row;
+        align-items: center;
+        overflow: hidden;
+        padding: 10px;
+      }
+
+      .number-lesson {
+        display: flex;
+        flex: 1;
+        flex-direction: row;
+        align-items: center;
+        overflow: hidden;
         padding: 10px;
       }
 
@@ -1081,8 +1094,10 @@ body.application {
       }
 
       .block {
+        white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
+        margin-left: 5px;
       }
     }
   }
@@ -1516,6 +1531,7 @@ body.application {
     -ms-transition: all .2s ease-in-out;
     -o-transition: all .2s ease-in-out;
     transition: all .2s ease-in-out;
+    outline: none;
 
     &.button-border-blue {
       background-color: transparent;
@@ -1869,4 +1885,8 @@ body.application {
   font-size: 12px;
   color: $grey-light-text-color;
   font-style: italic;
+}
+
+.student-course-item {
+  cursor: pointer;
 }

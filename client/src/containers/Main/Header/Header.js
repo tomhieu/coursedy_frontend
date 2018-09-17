@@ -59,7 +59,7 @@ class Header extends Component {
 
   render() {
     const { customHeaderClass, darkHeader, dashboardHeader } = this.props.main;
-    const { isCollapseDashboard } = this.props;
+    const { isCollapseDashboard, tutorStatus } = this.props;
     return (
       <nav
         className={`header-nav navbar navbar-expand-lg navbar-light navbar-default ${customHeaderClass} ${darkHeader ? 'dark-header' : 'bg-light'}`}
@@ -113,7 +113,7 @@ class Header extends Component {
                 </LinkContainer>
               </li>
               <li className="nav-item border-left">
-                <LangNavigation {...this.props}></LangNavigation>
+                <LangNavigation {...this.props} />
               </li>
               {
                 this.isAuthenticated() ? (
@@ -128,7 +128,10 @@ class Header extends Component {
               {
                 this.isAuthenticated() ? (
                   <li className="nav-item">
-                    <UserNavigation session={this.props.session} lang={this.props.lang} signOut={this.props.signOut} />
+                    <UserNavigation session={this.props.session}
+                                    tutorStatus={tutorStatus}
+                                    lang={this.props.lang}
+                                    signOut={this.props.signOut} />
                   </li>
                 ) : (
                   <li className="nav-item">
@@ -171,10 +174,11 @@ Header.propTypes = {
 };
 
 const mapStateToProps = (state) => {
-  const { main, session, DashboardMenu } = state;
+  const { main, session, DashboardMenu, TutorAccountReducer } = state;
   const { isCollapseDashboard } = DashboardMenu;
+  const tutorStatus = TutorAccountReducer.tutor.status;
   return {
-    main, session, lang: state.i18nState.lang, isCollapseDashboard
+    main, session, lang: state.i18nState.lang, isCollapseDashboard, tutorStatus
   };
 };
 

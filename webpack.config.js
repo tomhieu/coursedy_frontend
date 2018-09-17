@@ -65,7 +65,11 @@ module.exports = {
   },
   resolve: {
     extensions: ['*', '.js', '.jsx'],
-    modules: [ path.resolve(ROOT_PATH, 'client/src'), 'node_modules' ]
+    modules: [ path.resolve(ROOT_PATH, 'client/src'), 'node_modules' ],
+    alias: {
+      config: process.env.NODE_ENV === 'production' ? path.join(ROOT_PATH, 'client/src/configs/prod.js') :
+              process.env.NODE_ENV === 'staging' ? path.join(ROOT_PATH, 'client/src/configs/dev.js') : path.join(ROOT_PATH, 'client/src/configs/local.js'),
+    },
   },
   output: {
     path: process.env.NODE_ENV === 'production' ? path.resolve(ROOT_PATH, 'client/dist') : path.resolve(ROOT_PATH, 'client/build'),

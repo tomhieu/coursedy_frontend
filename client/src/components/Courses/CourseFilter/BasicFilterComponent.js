@@ -26,11 +26,11 @@ class BasicFilterComponent extends Component {
   updateDimensions() {
     this.hiddenFilters = [];
     let chipListWidth = 0;
-    const containerWidth = this.filterContainer != null ? this.filterContainer.getBoundingClientRect().width : 0;
+    const containerWidth = this.filterContainer !== null ? this.filterContainer.getBoundingClientRect().width : 0;
 
     Object.keys(this.refs).map((key) => {
       const filterDOM = ReactDOM.findDOMNode(this.refs[key]);
-      if (filterDOM != null) {
+      if (filterDOM !== null) {
         chipListWidth += filterDOM.getBoundingClientRect().width;
       }
       if (chipListWidth > containerWidth) {
@@ -75,7 +75,7 @@ class BasicFilterComponent extends Component {
     const {
       selectedWeekDays, selectedCategories, onRemoveFilter, selectedLocations, formfieldValues, selectedSpecializes,
       suggestions, onSelectSuggestion, loadSuggestions,
-      showSuggestion, loadingSuggestion, closeSuggestion, term
+      showSuggestion, loadingSuggestion, closeSuggestion, term, placeholder
     } = this.props;
     const isOverFlow = this.hiddenFilters.length > 0;
     this.filters = [];
@@ -185,7 +185,7 @@ class BasicFilterComponent extends Component {
             this.state.isFocus
               ? (
                 <AutoComplete
-                  placeholder={this.context.t('search_course')}
+                  placeholder={placeholder}
                   fieldName="key_word"
                   fieldId="key_word_filter"
                   dataSource={suggestions}
@@ -204,7 +204,7 @@ class BasicFilterComponent extends Component {
             isOverFlow && !this.state.isFocus ? <a onClick={this.onFocusSuggestion.bind(this)}>{`${this.hiddenFilters.length} filters`}</a> : !this.state.isFocus
               ? (
                 <AutoComplete
-                  placeholder={this.context.t('search_course')}
+                  placeholder={placeholder}
                   fieldName="key_word"
                   fieldId="key_word_filter"
                   dataSource={suggestions}
@@ -241,7 +241,8 @@ BasicFilterComponent.propTypes = {
   showSuggestion: React.PropTypes.bool,
   loadingSuggestion: React.PropTypes.bool,
   closeSuggestion: React.PropTypes.func,
-  term: React.PropTypes.string
+  term: React.PropTypes.string,
+  search: React.PropTypes.func.isRequired
 };
 
 export default cssModules(BasicFilterComponent, styles);

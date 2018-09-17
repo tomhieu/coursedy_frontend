@@ -11,6 +11,8 @@ import {
 } from "./CustomComponents";
 import styles from "./FormField.module.scss";
 
+import normalizeCurrency from './normalizeCurrencyNumber.js';
+
 class FormField extends Component {
   constructor(props) {
     super(props);
@@ -201,6 +203,7 @@ class FormField extends Component {
             component={renderCurrencyField}
             onChange={this.props.onChange}
             customClassName={fieldClasses}
+            normalize={normalizeCurrency}
           />
         );
         break;

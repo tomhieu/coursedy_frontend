@@ -1,14 +1,13 @@
 import React from 'react';
 import './AdminDashboardPage.scss';
-import { Route } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { AdminComponents, RoleAuthorization } from '../../../components/index';
-import { AdminContainers } from '../../../containers';
-import * as sessionActions from '../../../actions/SessionActionCreator';
-import * as WebConstants from '../../../constants/WebConstants.js';
-import { TT } from '../../../utils/locale';
+import { AdminComponents, RoleAuthorization } from 'components/index';
+import { AdminContainers } from 'containers';
+import * as sessionActions from 'actions/SessionActionCreator';
+import * as WebConstants from 'constants/WebConstants.js';
+import { TT } from 'utils/locale';
 
-class AdminDashboardPage extends RoleAuthorization {
+class AdminDashboard extends RoleAuthorization {
   componentDidMount() {
     this.props.showDashboardHeader();
   }
@@ -35,7 +34,7 @@ class AdminDashboardPage extends RoleAuthorization {
       dashboardFooterClasses += ' expanded';
     }
     return (
-      <div className="dashboard-section full-width-in-container">
+      <div className="dashboard-section">
         <div className="d-flex flex-row flex-auto">
           <div className={leftMenuClasses.join(' ')} id="sidebar">
             <div className={dashboardMenuClasses} id="accordion">
@@ -45,38 +44,7 @@ class AdminDashboardPage extends RoleAuthorization {
           </div>
           <div className={dashboardContentClasses}>
             <div className="full-width daskboard-container container">
-              <switch>
-                <Route
-                  exact
-                  path="/admin/dashboard/account"
-                  component={AdminContainers.AccountProfileContainer}
-                />
-                <Route
-                  exact
-                  path="/admin/dashboard/courses"
-                  component={AdminContainers.CourseListContainer}
-                />
-                <Route
-                  exact
-                  path="/admin/dashboard/teachers"
-                  component={AdminContainers.TeacherListContainer}
-                />
-                <Route
-                  exact
-                  path="/admin/dashboard/students"
-                  component={AdminContainers.StudentListContainer}
-                />
-                <Route
-                  exact
-                  path="/admin/dashboard/payment-methods"
-                  component={AdminContainers.PaymentMethodsContainer}
-                />
-                <Route
-                  exact
-                  path="/admin/dashboard/payment-history"
-                  component={AdminContainers.PaymentHistoryContainer}
-                />
-              </switch>
+              { this.props.children }
             </div>
             <div className={dashboardFooterClasses}>
               <span className="coursedy-copyright">{TT.t('product_copyright')}</span>
@@ -101,4 +69,4 @@ const mapDispatchToProps = dispatch => ({
   closeDashboardHeader: () => dispatch({ type: WebConstants.CLOSE_DARKBOARD_HEADER }),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(AdminDashboardPage);
+export default connect(mapStateToProps, mapDispatchToProps)(AdminDashboard);

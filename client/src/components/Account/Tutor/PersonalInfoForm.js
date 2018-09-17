@@ -9,10 +9,6 @@ import { countries } from '../../../constants/Countries';
 export class PersonalInfoForm extends Component {
   render() {
     const { handleSubmit } = this.props;
-    const concurrencies = CURRENCIES.map((type) => {
-      return { text: type, id: type };
-    });
-
     const countryList = countries.map(country => ({
       id: country.code,
       text: country.name
@@ -78,17 +74,7 @@ export class PersonalInfoForm extends Component {
             fieldLabel={this.context.t('account.person.info.country')}
             placeholder={this.context.t('account.person.info.country')}
             options={countryList}
-            formControlName="country"
-            typeField="custom_select"
-          />
-        </div>
-        <div>
-          <FormField
-            fieldId="addressId"
-            fieldLabel={this.context.t('account.person.info.currency')}
-            placeholder={this.context.t('account.person.info.currency')}
-            options={concurrencies}
-            formControlName="currency"
+            formControlName="country_code"
             typeField="custom_select"
           />
         </div>
