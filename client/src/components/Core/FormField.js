@@ -1,13 +1,16 @@
-import React, { Component } from 'react';
-import { ControlLabel, FormGroup } from 'react-bootstrap';
-import { Field } from 'redux-form';
+import React, {Component} from 'react';
+import {ControlLabel, FormGroup} from 'react-bootstrap';
+import {Field} from 'redux-form';
 import cssModules from 'react-css-modules';
-import { cropImageInput } from 'components/Core/CustomComponents';
+import {cropImageInput} from 'components/Core/CustomComponents';
 import {
-  renderCheckBoxField,
-  renderRadioField,
-  renderDatePicker, renderField, renderMultiSelect,
-  renderSelect, renderSingleFileInput, renderTextAreaField, renderRichTextEditor, renderCurrencyField
+  renderCheckBoxField, renderCurrencyField,
+  renderDatePicker,
+  renderField,
+  renderMultiSelect, renderRichTextEditor,
+  renderSelect,
+  renderSingleFileInput,
+  renderTextAreaField,
 } from "./CustomComponents";
 import styles from "./FormField.module.scss";
 

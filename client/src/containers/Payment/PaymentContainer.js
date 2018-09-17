@@ -1,22 +1,16 @@
 import * as React from "react";
-import CheckoutForm from "../../components/Checkout/CheckoutForm";
-import {Elements} from "react-stripe-elements";
-import {DomesticBank} from "../../components/Checkout/DomesticBank";
-import * as Actions from '../../actions/PaymentActionCreator'
+import {Component} from "react";
 import './PaymentContainer.scss';
 import {connect} from "react-redux";
-import {Component} from "react";
 import {
-  FETCH_ADMIN_PAYMENT_SETTINGS,
-  FETCH_ADMIN_PAYMENT_INSTRUCTIONS,
   FETCH_ADMIN_BANK_ACCOUNTS,
-  FETCH_BANK_TRANSFER_TOKEN
+  FETCH_BANK_TRANSFER_TOKEN,
+  FETCH_ADMIN_PAYMENT_INSTRUCTIONS,
+  FETCH_ADMIN_PAYMENT_SETTINGS,
 } from "../../actions/AsyncActionCreator"
-import {
-  PUBLIC_COURSE_DETAIL_REMOVE_COURSE_FROM_CART
-} from "../../constants/Courses"
-import { banks } from "../../constants/Banks"
-import FormField from "../../components/Core/FormField"
+import "../../../styles/global_style.scss"
+import {banks} from "../../constants/Banks"
+import {PUBLIC_COURSE_DETAIL_REMOVE_COURSE_FROM_CART} from "../../constants/Courses"
 import ObjectUtils from "utils/ObjectUtils"
 import {LinkContainer} from 'react-router-bootstrap'
 import TrashIcon from "../../components/Core/Icons/TrashIcon"

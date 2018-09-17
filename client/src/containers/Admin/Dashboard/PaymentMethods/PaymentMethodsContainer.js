@@ -85,8 +85,6 @@ class PaymentMethodsContainer extends Component {
               </div> :
               null
           }
-
-
         </div>
       </div>
 
