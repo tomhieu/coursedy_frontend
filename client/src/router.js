@@ -37,6 +37,7 @@ import StudentDashboardProfile from './pages/StudentDashboard/StudentDashboardPr
 import StudentDashboardCourseEnrolled from './pages/StudentDashboard/StudentDashboardCourseEnrolled';
 import StudentDashboardCourseEnrolling from './pages/StudentDashboard/StudentDashboardCourseEnrolling';
 import StudentDashboardCourseFollow from './pages/StudentDashboard/StudentDashboardCourseFollow';
+import {TutorStatus} from './constants/TutorStatus';
 
 // define routes for config
 export const routes = [
@@ -116,27 +117,32 @@ export const routes = [
   {
     path: '/dashboard/courses/active',
     component: requireLogin(TutorDashboardCourseActive),
-    roles: [UserRole.TEACHER]
+    roles: [UserRole.TEACHER],
+    status: TutorStatus.VERIFIED
   },
   {
     path: '/dashboard/courses/list',
     component: requireLogin(TutorDashboardCourseList),
-    roles: [UserRole.TEACHER]
+    roles: [UserRole.TEACHER],
+    status: TutorStatus.VERIFIED
   },
   {
     path: '/dashboard/courses/list-lesson',
     component: requireLogin(TutorDashboardListLesson),
-    roles: [UserRole.TEACHER]
+    roles: [UserRole.TEACHER],
+    status: TutorStatus.VERIFIED
   },
   {
     path: '/dashboard/courses/new',
     component: requireLogin(TutorDashboardCourseNew),
-    roles: [UserRole.TEACHER]
+    roles: [UserRole.TEACHER],
+    status: TutorStatus.VERIFIED
   },
   {
     path: '/dashboard/courses/detail/:id',
     component: requireLogin(TutorDashboardCourseDetail),
-    roles: [UserRole.TEACHER]
+    roles: [UserRole.TEACHER],
+    status: TutorStatus.VERIFIED
   },
   {
     path: '/dashboard/account',

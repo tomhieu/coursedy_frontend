@@ -1,17 +1,16 @@
 import * as types from 'constants/Session';
-import { globalHistory } from 'utils/globalHistory';
+import {SET_CURRENT_USER} from 'constants/Session';
+import {globalHistory} from 'utils/globalHistory';
 import queryString from 'query-string';
 import * as asyncActions from 'actions/AsyncActionCreator';
-import { LOGIN_FAILED } from 'constants/LoginComponent';
-import { TT } from 'utils/locale';
-import { UserRole } from 'constants/UserRole';
-import { REMOVE_CURRENT_USER, SET_CURRENT_USER } from 'constants/Session';
-import { CourseStatus } from 'constants/CourseStatus';
-import { SecurityUtils } from 'utils/SecurityUtils';
-import * as thirdPartyLoginActions from 'constants/ThirdPartyLoginConstants';
-import { LOGIN } from './AsyncActionCreator';
+import {LOGIN_FAILED} from 'constants/LoginComponent';
+import {TT} from 'utils/locale';
+import {UserRole} from 'constants/UserRole';
+import {CourseStatus} from 'constants/CourseStatus';
+import {SecurityUtils} from 'utils/SecurityUtils';
+import {LOGIN} from './AsyncActionCreator';
 import Network from '../utils/network';
-import { FETCH_TUTOR_DATA } from '../constants/Session';
+import {FETCH_TUTOR_DATA} from '../constants/Session';
 
 
 export const fetchCurrentUser = () => {

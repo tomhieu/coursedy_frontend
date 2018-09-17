@@ -32,7 +32,10 @@ class CourseDetailContainer extends Component {
       });
     });
 
-    const courseFee = Number(course.tuition_fee.replace(/[^0-9]/g, ''));
+    let courseFee = course.tuition_fee;
+    if (!Number.isInteger(courseFee)) {
+      courseFee = Number(course.tuition_fee.replace(/[^0-9]/g, ''));
+    }
 
     const updatedCourse = {
       title: course.title,

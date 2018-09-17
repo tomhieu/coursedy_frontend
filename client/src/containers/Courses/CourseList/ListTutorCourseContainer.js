@@ -12,6 +12,8 @@ import { CourseStatus } from '../../../constants/CourseStatus';
 import TutorCourseList from '../../../components/Courses/CourseList/TutorCourseList';
 import styles from './ListTutorCourseContainer.module.scss';
 import { TutorNavigationTab } from '../../../constants/TutorNavigationTab';
+import {TutorStatus} from '../../../constants/TutorStatus';
+import {Redirect} from 'react-router';
 
 class ListTutorCourseContainer extends Component {
   componentWillMount() {
@@ -48,7 +50,7 @@ class ListTutorCourseContainer extends Component {
 
   render() {
     const {
-      status, courses, isFetching, currentUser
+      status, courses, isFetching
     } = this.props;
     return (
       <div className="d-flex flex-vertical flex-auto">

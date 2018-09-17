@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Slider } from '../../components/Slider/CoursedySlider';
-import data from '../../configs/data.json';
 import CoursedySlider from '../../components/Slider/CoursedySlider';
 import { TT } from '../../utils/locale';
 import CommentIcon from '../../components/Core/Icons/CommentIcon';
@@ -44,10 +43,6 @@ class StudentComments extends Component {
   };
 
   render() {
-    if (!data.studentComments.length) {
-      return null;
-    }
-
     const comments = [
       {
         id: 1,

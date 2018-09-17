@@ -45,7 +45,7 @@ class NotificationSystemContainer extends Component {
   startPoll(currentUser) {
     this.timeout = setTimeout(() => {
       this.checkUpcommingCourse(currentUser);
-    }, 200000);
+    }, 20000);
   }
 
   checkUpcommingCourse(currentUser) {
@@ -91,8 +91,11 @@ class NotificationSystemContainer extends Component {
     const teachingCourseTeacherName = session.teachingCourse !== null ? session.teachingCourse.user.name : '';
     const teachingCourseName = session.teachingCourse !== null ? session.teachingCourse.title : '';
     const teachingCourseId = session.teachingCourse !== null ? session.teachingCourse.id : '';
-    const classRoomId = session.teachingCourse !== null ? session.teachingCourse.bigbluebutton_room.slug : '';
+    const classRoomId = session.teachingCourse && session.teachingCourse.bigbluebutton_room ? session.teachingCourse.bigbluebutton_room.slug : '';
 
+    if (session.teachingCourse !== null) {
+      clearTimeout(this.timeout);
+    }
     // show notification about the new started course
     const newStartedCourseNeedToNotify = newStartedCourses.filter(nc => this.newStartCourseHasBeenNotified.indexOf(nc.id) < 0);
     if (newStartedCourseNeedToNotify.length > 0) {

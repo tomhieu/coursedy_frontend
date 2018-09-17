@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React, {Component} from 'react';
+import {connect} from 'react-redux';
 import Network from 'utils/network';
 import * as CourseActions from '../../../actions/CourseFormActionCreator';
 import * as AsynActions from '../../../actions/AsyncActionCreator';
@@ -17,7 +17,7 @@ import SectionLessonContainer from '../Section/SectionLessonContainer';
 import LoadingMask from '../../../components/LoadingMask/LoadingMask';
 import FlatButton from '../../../components/Core/FlatButton/FlatButton';
 import * as dashboardActions from '../../../actions/DashboardMenuActionCreator';
-import { TutorNavigationTab } from '../../../constants/TutorNavigationTab';
+import {TutorNavigationTab} from '../../../constants/TutorNavigationTab';
 import {CourseStatus} from '../../../constants/CourseStatus';
 
 class CourseFormContainer extends Component {
@@ -204,11 +204,14 @@ CourseFormContainer.contextTypes = {
 };
 
 CourseFormContainer.propTypes = {
-  courseId: React.PropTypes.number.isRequired
+  courseId: React.PropTypes.oneOfType([
+    React.PropTypes.number,
+    React.PropTypes.string,
+  ])
 };
 
 const mapStateToProps = (state) => {
-  const { courseDetails } = state;
+  const { courseDetails, TutorAccountReducer } = state;
   const {
     listSection, editMode, activatedField, createCourseSucess, courseData = {}, publishCourse, isFetching
   } = courseDetails;

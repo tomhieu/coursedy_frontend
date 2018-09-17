@@ -75,7 +75,7 @@ class CourseItemInGridMode extends Component {
               </div>
             ) : (
               <div className="course-item-bottom clearfix">
-                <div>
+                <div className="category">
                   <i className="fa fa-folder-open-o" />
                   <span className="block">
                     {' '}
@@ -83,7 +83,7 @@ class CourseItemInGridMode extends Component {
                     {' '}
                   </span>
                 </div>
-                <div>
+                <div className="number-lesson">
                   <i className="fa fa-pencil-square-o" />
                   <span className="block">
                     {' '}

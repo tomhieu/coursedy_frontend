@@ -61,7 +61,10 @@ ReadOnlyField.contextTypes = {
 
 ReadOnlyField.propTypes = {
   displayStyle: React.PropTypes.string,
-  content: React.PropTypes.string,
+  content: React.PropTypes.oneOfType([
+    React.PropTypes.string,
+    React.PropTypes.number,
+  ]),
   showLabel: React.PropTypes.bool,
   fieldLabel: React.PropTypes.string,
   activatedFields: React.PropTypes.array,

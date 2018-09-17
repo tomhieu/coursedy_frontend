@@ -38,7 +38,12 @@ export const validate = (values) => {
   if (!values.is_free && !values.tuition_fee) {
     errors.tuition_fee = TT.t('tuition_fee_mandatory');
   } else {
-    const tuitionFee = Number(values.tuition_fee.replace(/[^0-9]/g, ''));
+    let tuitionFee = values.tuition_fee;
+
+    if (!Number.isInteger(tuitionFee)) {
+      tuitionFee = Number(tuitionFee.replace(/[^0-9]/g, ''));
+    }
+
     if (tuitionFee > 100000000) {
       errors.tuition_fee = TT.t('tuition_fee_too_large');
     }
