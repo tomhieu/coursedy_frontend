@@ -1,10 +1,18 @@
 import * as React from 'react';
-import { Component } from 'react';
-import { SecurityUtils } from 'utils/SecurityUtils';
-import { globalHistory } from 'utils/globalHistory';
-import SimpleDialogComponent from '../../Core/SimpleDialogComponent';
+import {Component} from 'react';
+import {SecurityUtils} from 'utils/SecurityUtils';
+import {globalHistory} from 'utils/globalHistory';
+import Modal from 'react-bootstrap4-modal';
+import Network from '../../../utils/network';
+import "babel-polyfill"
 
 class UpcommingCourseNotificationPopup extends Component {
+  constructor() {
+    super();
+    this.state = {
+      urlJoiningToBBBClass: null,
+    };
+  }
   openCourseDetails(courseUrl) {
     this.props.closePopupJoinUpcomingClass();
     globalHistory.push(courseUrl);
@@ -18,31 +26,42 @@ class UpcommingCourseNotificationPopup extends Component {
     return <a onClick={this.openCourseDetails.bind(this, courseDetailUrl)} className="link-course-details">{courseName}</a>;
   }
 
+  async componentDidMount() {
+    const classRoomId = this.props.classRoomId;
+    const bbbUrl = await Network().get(`rooms/${classRoomId}/join`, {}, true);
+    this.setState({
+      urlJoiningToBBBClass: bbbUrl.url
+    });
+  }
 
   render() {
     const {
-      currentUser, courseId, courseName, teacherName, isShowPopup,
-      classRoomId, acceptJoinToClassRoom, closePopupJoinUpcomingClass
+      currentUser, courseId, courseName, teacherName, closePopupJoinUpcomingClass
     } = this.props;
+
+    const canShowPopup = this.state.urlJoiningToBBBClass !== null;
     return (
-      <SimpleDialogComponent
-        show={isShowPopup}
-        title={this.context.t('join_active_course_popup_title')}
-        acceptCallback={acceptJoinToClassRoom.bind(this, classRoomId)}
-        cancelCallback={closePopupJoinUpcomingClass.bind(this)}
-      >
-        {
-          SecurityUtils.isStudent(currentUser)
-            ? this.context.t('join_active_course_popup_message', {
-              courseName: this.getCourseDetailsLink(currentUser, courseId, courseName),
-              teacherName: <strong>{teacherName}</strong>
-            })
-            : this.context.t('join_active_course_popup_message_for_teacher', {
-              courseName: this.getCourseDetailsLink(currentUser, courseId, courseName)
-            })
-        }
-      </SimpleDialogComponent>
-    );
+      <Modal visible={canShowPopup} onClickBackdrop={closePopupJoinUpcomingClass.bind(this)} >
+        <div className="modal-header">
+          <h5 className="modal-title">{this.context.t('join_active_course_popup_title')}</h5>
+        </div>
+        <div className="modal-body">
+          {
+            SecurityUtils.isStudent(currentUser)
+              ? this.context.t('join_active_course_popup_message', {
+                courseName: this.getCourseDetailsLink(currentUser, courseId, courseName),
+                teacherName: <strong>{teacherName}</strong>
+              })
+              : this.context.t('join_active_course_popup_message_for_teacher', {
+                courseName: this.getCourseDetailsLink(currentUser, courseId, courseName)
+              })
+          }
+        </div>
+        <div className="modal-footer button-center justify-content-center">
+          <a className="join-to-class-link" href={this.state.urlJoiningToBBBClass} target="_blank">{this.context.t('join_to_class_button_name')}</a>
+        </div>
+      </Modal>
+    )
   }
 }
 
@@ -55,7 +74,6 @@ UpcommingCourseNotificationPopup.propTypes = {
   courseId: React.PropTypes.string,
   courseName: React.PropTypes.string,
   teacherName: React.PropTypes.string,
-  isShowPopup: React.PropTypes.bool,
   classRoomId: React.PropTypes.string,
   acceptJoinToClassRoom: React.PropTypes.func,
   closePopupJoinUpcomingClass: React.PropTypes.func

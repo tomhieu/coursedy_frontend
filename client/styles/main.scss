@@ -1890,3 +1890,22 @@ body.application {
 .student-course-item {
   cursor: pointer;
 }
+
+.join-to-class-link {
+  height: $height-button;
+  min-width: 100px;
+  color: $white-color;
+  font-weight: 600;
+  font-size: 14px;
+  transition: width 2s;
+  padding: 9px 20px;
+  outline: none;
+  background-color: $color-organe;
+  border-radius: 20px;
+  border: none;
+  &:hover {
+    background-color: transparent;
+    border: 1px solid $color-organe;
+    color: $color-organe;
+  }
+}
