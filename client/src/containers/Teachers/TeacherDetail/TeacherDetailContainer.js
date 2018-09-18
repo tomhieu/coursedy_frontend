@@ -226,12 +226,9 @@ const ReviewHeader = (props) => {
           <div className="text-left mb-20">
             <h5>{props.context.t('teacher_comments')}</h5>
             <span>
-              {' '}
-(
-              {props.teacher.reviews.data.length}
-              {' '}
-              {props.context.t('teacher_comments')}
-)
+              (
+                {props.context.t(props.context.t('teacher_total_comments'), { total: props.teacher.reviews.data.length })}
+              )
             </span>
           </div>
         </div>
