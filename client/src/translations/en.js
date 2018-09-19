@@ -518,9 +518,9 @@ export default {
 
   /* product info */
   'our-story-title': 'Our story',
-  'our-story-description': 'Nowadays, online learning is trend. There are many online learning platforms, however, they still have many disadvantages. For example, no directly interaction between teacher and student, learn by videos only. With Coursedy, those disadvantages will disapear. We provide a novel platform for online learning, that help teacher and student interact directly.',
+  'our-story-description': 'Online learning is a trend of the future and there are now many online learning applications but there are many limitations, such as lack of direct interaction between the instructor and the learner, mostly taught through video, Learners are completely passive in learning. And Coursedy was born to solve the limitations of current online learning applications. We provide a direct online learning platform between the instructor and the learner.',
   'product-introduce': 'Our app',
-  'product-introduce-description': 'Coursedy is a online learning platform with high interactive. We are the first platform that use video streaming in learning. Also with our platform, you can create virtual class, share document. In Courseday, you can learn everywhere, everytime.',
+  'product-introduce-description': 'Coursedy is a direct interactive online learning platform between learners and learners in Vietnam that brings state-of-the-art video streaming technology enabling teachers to create classrooms and share materials. Learners can participate in the class anytime, anywhere and can ask and exchange directly with the instructor.',
   'whoweare-label': 'Who we are?',
   'whoweare-description': 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex.',
   'whatwedo-label': 'What we do?',
@@ -562,9 +562,9 @@ export default {
   terms_latest_update: 'Updated on 16th of June, 2018',
   terms_description: 'You must accept these terms when you access our site. We can right for changing, updating, adding, removing terms everytime. Changes is applied imediately without notifications. If you continue using our site, it means you agress with those changes. Please check our terms usually.',
   terms: [{
-    heading: 'General terms',
+    heading: 'General Terms',
     items: [
-      { content: 'Communicating with other users of Coursedy\'s services should not harass, abusive, harass, or harass any other person. It is strictly forbidden to offend, ridicule, denigrate, discriminate against religion, sex, race, etc. in any form.' },
+      { content: 'Communicating with other users of Coursedy\'s services should not harassing, defamatory, abusive, threatening, obscene, harmful, or invasive of another \'s privacy. It is strictly forbidden to offend, ridicule, denigrate, discriminate against religion, sex, race, etc. in any form.' },
       { content: 'Strictly forbid all acts of propaganda against and distort government, political institutions, and state policies ... In case of detection not only deleted the account but we can also provide User information (NSD) that the authorities to handle under the law.' },
       { content: 'Absolutely not discussing political issues, religious discrimination, racial discrimination. There are no behaviors or attitudes that impair the reputation of Coursedy\'s products, services or courses in any form or manner. All violations will be deprived of all interests related to the account or dealt with before the law if necessary.' }]
   }, {
@@ -574,7 +574,7 @@ export default {
       { content: 'The duration of use of course materials is permanent.' },
       { content: 'Participants are not allowed to share, distribute in any form without Coursedy\'s consent.' },
       {
-        content: 'VVideo, slide lectures, quiz Coursedy provided directly on the website, can not download. Coursedy ensures the quality of transmission so that students feel comfortable learning with the internet. Any deliberate download, system attacks if detected will be dealt with at the following levels:',
+        content: 'Video, slide lectures, quiz Coursedy provided directly on the website, can not download. Coursedy ensures the quality of transmission so that students feel comfortable learning with the internet. Any deliberate download, system attacks if detected will be dealt with at the following levels:',
         child_content:
           {
             items: [
@@ -587,14 +587,14 @@ export default {
     ]
   }, {
     heading: 'About User Account (TKSD)',
-    items: [{ content: 'TKSD is responsible for keeping account information secure, If the information is disclosed in any way, TKSD must accept the risk arising.' }, { content: 'When detecting Coursedy\'s user error please notify us by email or call the operator.When detecting a Coursedy\'s erroneous, notify us via email or call the operator.' }, { content: 'To exercise other rights and responsibilities in accordance with the law of Vietnam.' }]
+    items: [{ content: 'TKSD is responsible for keeping account information secure, If the information is disclosed in any way, TKSD must accept the risk arising.' }, { content: 'When detecting Coursedy\'s user error please notify us by email or call the operator. When detecting a Coursedy\'s erroneous, notify us via email or call the operator.' }, { content: 'To exercise other rights and responsibilities in accordance with the law of Vietnam.' }]
   }],
   terms_privacy_title: 'Privacy Policy',
   terms_privacy_update: 'Last updated June 16, 2018',
   terms_privacy_description: 'Welcome to the coursedy website. We want you to be familiar with how we collect, use and disclose your information.\n' + 'By agreeing to a privacy policy in setting up your Coursedy account, or by using the Coursedy service, you agree to the information described in this notice.',
   privacies: [{
     heading: 'Coursedy collects information',
-    items: [{ content: 'Information who uses the offer. You may provide Coursedy with "personal information" (such as name, address, email, telephone number, credit card number, etc.)' }, { content: '"Cookies" information: When you access Coursedy services, we may send one or more "cookies" - small text files containing a string of numbers and letters - to your computer.' }, { content: '"Automatically collect" information: When you access the Coursedy service, we can automatically record that information from your system using cookies and other types of tracking technology. The "gathering" of this information may include Internet Protocol ("IP Address"), unique user ID, device type, device identifier, browser type, and language, gender. the type of platform, the version of the installation software, the type of system, the content and the websites for which you access Coursedy\'s services and other similar information. , your IP address can legitimately be called personal information.' }, { content: 'Information from other sources: We may obtain information that includes personal information from third parties and other sources to Coursedy\'s services, such as advertisers or social media networks. Have approved for us (eg information from your Facebook account provided by the Facebook API service). When you access Coursedy services through social media networks or when you connect a Coursedy service to social media networks, you authorize Coursedy to collect, store and use the information and Content consistent with privacy policy. If we combine or link information from other sources with the personal information we collect through Coursedy\'s services, we will process the associated information such as personal information in accordance with the policy security.' }]
+    items: [{ content: 'Information who uses the offer. You may provide Coursedy with "personal information" (such as name, address, email, telephone number, credit card number, etc.)' }, { content: '"Cookies" information: When you access Coursedy services, we may send one or more "cookies" - small text files containing a string of numbers and letters - to your computer.' }, { content: '"Automatically collect" information: When you access the Coursedy service, we can automatically record that information from your system using cookies and other types of tracking technology. The "gathering" of this information may include Internet Protocol ("IP Address"), unique user ID, device type, device identifier, browser type, and language, gender, the type of platform, the version of the installation software, the type of system, the content and the websites for which you access Coursedy\'s services and other similar information, your IP address can legitimately be called personal information.' }, { content: 'Information from other sources: We may obtain information that includes personal information from third parties and other sources to Coursedy\'s services, such as advertisers or social media networks. Have approved for us (eg information from your Facebook account provided by the Facebook API service). When you access Coursedy services through social media networks or when you connect a Coursedy service to social media networks, you authorize Coursedy to collect, store and use the information and Content consistent with privacy policy. If we combine or link information from other sources with the personal information we collect through Coursedy\'s services, we will process the associated information such as personal information in accordance with the policy security.' }]
   }, {
     heading: 'The Coursedy method uses information',
     items: [{ content: 'Use the information you provide or we collect from you to operate, maintain, enhance and provide all of the features and services on Coursedy; To improve your experience with the services of coursedy by providing the content that we hope you will find relevant and interesting.' }, { content: 'We will use your email address for communications such as notifications of Coursedy updates, customer service, resolving copyright issues or defamation issues, or contacting you. For any content you have posted or downloaded from Coursedy.' }, { content: 'Coursedy uses the information we collect to understand the usage trends and preferences of our users, to improve the way Coursedy services work, to look and to create new features.' }]
@@ -611,9 +611,9 @@ export default {
       }
     }]
   }, {
-    heading: 'Storage Data',
+    heading: 'Storage data',
     items: [],
-    description: 'We retain the personal data to provide better services. We will retain and use the necessary information on our personal web site to comply with our legal obligations, resolve disputes and enforce our agreements with users or as required by us. the law in the applicable countries.We retain the personal data to provide better services. We will retain and use the necessary information on our personal website to comply with our legal obligations, resolve disputes and enforce our agreements with users or as required by us. the law in the applicable countries.'
+    description: 'We retain the personal data to provide better services. We will retain and use the necessary information on our personal web site to comply with our legal obligations, resolve disputes and enforce our agreements with users or the storage time required by law in the applicable countries.'
   }, {
     heading: 'Edit your information',
     items: [{ content: 'If necessary, you may use services to repair, modify, or delete your information on Coursedy. You can also contact us by emailing contact@coursedy.com.' }, { content: 'We may send email to you about new courses or services that we believe may be of interest to you. If you do not want to receive this information, you can follow the cancellation procedure provided in the email.' }]
@@ -624,11 +624,11 @@ export default {
   }, {
     heading: 'Links to other websites',
     items: [],
-    description: 'Sites, services, and especially courses, may provide links to third-party sites or resources that are not related to us and through which we are unable to control " outside the website ". You acknowledge that Coursedy only provides such links as a gadget and is not responsible for the content of such web site.'
+    description: 'Sites, services, and especially courses, may provide links to third party sites or resources not related to us and through which we can not control "outside the website". You acknowledge that Coursedy only provides such links as a gadget and is not responsible for the content of such web site.'
   }, {
     heading: 'Policy changes',
     items: [],
-    description: 'Coursedy reserves the right to change its privacy policy from time to time. We will update the privacy policy on this site at https://coursedy.com/privacy and will send a notification to the email address you provided. We encourage you to review our privacy policy regularly to update any changes. All services that you use will be subject to the current privacy policy.'
+    description: 'Coursedy reserves the right to change its privacy policy from time to time. We will update the privacy policy on this site at https://coursedy.com/privacy and will send a notification to the email address you provided. We encourage you to review our privacy policy regularly to update any changes. All services that you use will be followed to the current privacy policy.'
   }, {
     heading: 'Contact Coursedy',
     items: [],

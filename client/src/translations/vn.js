@@ -570,7 +570,7 @@ export default {
   'our-story-title': 'Câu chuyện',
   'our-story-description': 'Học tập trực tuyến đang là xu hướng của tương lai và hiện tại có rất nhiều ứng dụng học trực tuyến nhưng còn nhiều hạn chế, không có tính tương tác trực tiếp giữa người dạy và người học, đa phần chỉ dạy qua video, người học hoàn toàn thụ động trong việc học. Và Coursedy ra đời để giải quyết những hạn chế của các ứng dụng hoc trực tuyến hiện tại. Chúng tôi cung cấp nền tảng học trực tuyến có tính tương tác trực tiếp giữa người dạy và người học.',
   'product-introduce': 'Giới thiệu sản phẩm',
-  'product-introduce-description': 'Coursedy là nền tảng học trực tuyến có tính tương tác trực tiếp giữa người dạy và người học đầu tiên tại Việt Nam man công nghệ video streaming hiện đại cho phép người dạy có thể tạo lớp học, chia sẻ tài liệu. Người học có thể tham gia vào lớp học mọi lúc mọi nơi, có thể hỏi và trao đổi trực tiếp người dạy.',
+  'product-introduce-description': 'Coursedy là nền tảng học trực tuyến có tính tương tác trực tiếp giữa người dạy và người học tại Việt Nam mang công nghệ video streaming hiện đại cho phép người dạy có thể tạo lớp học, chia sẻ tài liệu. Người học có thể tham gia vào lớp học mọi lúc mọi nơi, có thể hỏi và trao đổi trực tiếp người dạy.',
   'whoweare-label': 'Who we are?',
   'whoweare-description': 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex.',
   'whatwedo-label': 'What we do?',
@@ -633,7 +633,7 @@ export default {
   }, {
     heading: 'Lưu trữ dữ liệu',
     items: [],
-    description: 'Chúng tôi giữ lại các dữ liệu cá nhân để cung cấp các dịch vụ tốt hơn. Chúng tôi sẽ giữ lại và sử dụng thông tin cần thiết trên trang web cá nhân để tuân thủ các nghĩa vụ pháp lý, giải quyết tranh chấp và thực thi các thoả thuận của chúng tôi với người sử dụng hoặc thời gian theo yêu cầu của pháp luật tại các nước áp dụng.'
+    description: 'Chúng tôi giữ lại các dữ liệu cá nhân để cung cấp các dịch vụ tốt hơn. Chúng tôi sẽ giữ lại và sử dụng thông tin cần thiết trên trang web cá nhân để tuân thủ các nghĩa vụ pháp lý, giải quyết tranh chấp và thực thi các thoả thuận của chúng tôi với người sử dụng hoặc thời gian lưu trữ theo yêu cầu của pháp luật tại các nước áp dụng.'
   }, {
     heading: 'Cập nhật và chỉnh sửa thông tin của bạn',
     items: [{ content: 'Nếu cần thiết, bạn có thể sử dụng các dịch vụ sửa chữa, sửa đổi, hoặc xoá thông tin của bạn trên Coursedy. Bạn cũng có thể liên hệ với chúng tôi bằng cách gửi email tới contact@coursedy.com.' }, { content: 'Chúng tôi có thể gửi tới email bạn về các khoá học hoặc dịch vụ mới sửa đổi mà chúng tôi tin rằng có thể bạn quan tâm. Nếu bạn không muốn nhận được các thông tin này, bạn có thể thực hiện theo các thủ tục huỷ bỏ đăng ký được cung cấp trong email.' }]
