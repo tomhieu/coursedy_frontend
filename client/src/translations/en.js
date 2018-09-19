@@ -409,7 +409,7 @@ export default {
   search_empty_result_header: 'Try another keyword.',
   search_empty_result_reset: 'Search again.',
   search_empty_result: '{type} not found.',
-  search_course: 'Course',
+  search_course: 'Enter the course name, teacher, type of course ...',
   search_teacher: 'Teacher',
   homepage_search_introduce_explore: 'Courses',
   homepage_search_introduce_explore_content: 'With the famous teachers.',
@@ -823,4 +823,7 @@ export default {
   enroll_course_success_button: 'Go to course',
   enroll_course_success_message: 'Welcome to the {courseTitle}.',
   enroll_course_success_message_2: 'The course will begin soon. Be prepared for the course today.',
+  account_pending_warning_message: 'Your account is in status as {pending_status}. Please complete the account information. Once the information is complete, we will check and confirm the information within 24 hours.',
+  pending_account_status: 'Pending for confirmation',
+  join_to_class_button_name: 'Join to class',
 };

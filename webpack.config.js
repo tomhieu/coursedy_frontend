@@ -13,7 +13,8 @@ const URL = `http://${HOST}:${PORT}`
 module.exports = {
   devtool: process.env.NODE_ENV === 'production' ? '' : 'source-map',
   entry: [
-    path.resolve(ROOT_PATH, 'client/src/index')
+    path.resolve(ROOT_PATH, 'client/src/index'),
+    'babel-polyfill'
   ],
   module: {
     loaders: [
