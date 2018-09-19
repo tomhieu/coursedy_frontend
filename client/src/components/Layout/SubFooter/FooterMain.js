@@ -13,7 +13,6 @@ class FooterMain extends Component {
               <ul>
                 <li><Link to="/about">{this.context.t('product_about_us')}</Link></li>
                 <li><a href="//blog.coursedy.com" target="_blank">{this.context.t('product_blog')}</a></li>
-                <li><a href="mailto:team@coursedy.com" target="_blank">{this.context.t('product_contact_us')}</a></li>
               </ul>
             </div>
           </div>

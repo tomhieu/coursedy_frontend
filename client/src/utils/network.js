@@ -46,7 +46,8 @@ const Network = (res = {}) => {
       'token-type': 'Bearer',
       'access-token': localStorage.getItem('ezyLearningToken'),
       client: localStorage.getItem('ezyLearningClient'),
-      uid: localStorage.getItem('ezyLearningUid')
+      uid: localStorage.getItem('ezyLearningUid'),
+      'X-Language': localStorage.getItem('coursedyLang') ||  'vn'
     }
   };
 
@@ -61,11 +62,13 @@ const Network = (res = {}) => {
       * @returns {promise}
       */
     post: (path, body, options = {}) => {
+      const headers = Object.assign({}, options.headers, defaultOptions.headers)
       return request(buildUrl(path), Object.assign(
         options,
         defaultOptions,
         {
           method: 'POST',
+          headers: headers,
           body: JSON.stringify(body)
         }
       ));
@@ -80,10 +83,14 @@ const Network = (res = {}) => {
       */
     get: (path, options = {}, isBBBApi = false) => {
       const q = queryString.stringify(options, { arrayFormat: 'bracket' });
+      const headers = Object.assign({}, options.headers, defaultOptions.headers)
       return request(`${buildUrl(path, isBBBApi)}?${q}`, Object.assign(
         options,
         defaultOptions,
-        { method: 'GET' }
+        { 
+          method: 'GET',
+          headers: headers
+        }
       ));
     },
 
@@ -96,10 +103,15 @@ const Network = (res = {}) => {
       * @returns {promise}
       */
     update: (path, body, options = {}) => {
+      const headers = Object.assign({}, options.headers, defaultOptions.headers)
       return request(buildUrl(path), Object.assign(
         options,
         defaultOptions,
-        { method: 'PUT', body: JSON.stringify(body) }
+        { 
+          method: 'PUT',
+          headers: headers,
+          body: JSON.stringify(body) 
+        }
       ));
     },
 
@@ -111,10 +123,14 @@ const Network = (res = {}) => {
       * @returns {promise}
       */
     delete: (path, options = {}) => {
+      const headers = Object.assign({}, options.headers, defaultOptions.headers)
       return request(buildUrl(path), Object.assign(
         options,
         defaultOptions,
-        { method: 'DELETE' }
+        { 
+          method: 'DELETE',
+          headers: headers
+        }
       ));
     },
 

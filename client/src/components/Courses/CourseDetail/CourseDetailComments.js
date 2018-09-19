@@ -53,9 +53,8 @@ class CourseDetailComments extends Component {
                   <span>
                     {' '}
 (
-                    {course_comments.length}
                     {' '}
-                    {this.context.t('course_comments')}
+                    {this.context.t(this.context.t('course_total_comment'), {total: course_comments.length})}
 )
                   </span>
                 </div>

@@ -58,6 +58,7 @@ class BaseFilter extends Component {
     } else {
       listIconButtonClasses.push('primary');
     }
+
     return (
       <form onSubmit={handleSubmit(this.props.onSubmit)} className="course-filter-form inline-form" multiple>
         <div className="d-flex flex-vertical">
@@ -132,9 +133,9 @@ class BaseFilter extends Component {
                 <div className={styles.totalCoursesBox}>
                   <span className={`${styles.textTotalResult} d-flex`}>
                     {
-                        courseFilterMode ? this.context.t('total_result_course', { total: totalResult !== undefined ? totalResult : 0 })
-                          : this.context.t('total_result_teacher', { total: totalResult !== undefined ? totalResult : 0 })
-                      }
+                        courseFilterMode ? this.context.t(this.context.t('total_result_course'), { total: totalResult !== undefined ? totalResult : 0 })
+                          : this.context.t(this.context.t('total_result_teacher'), { total: totalResult !== undefined ? totalResult : 0 })
+                    }
                   </span>
                 </div>
                 {

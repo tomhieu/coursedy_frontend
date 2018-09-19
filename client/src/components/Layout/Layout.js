@@ -20,9 +20,10 @@ const mainBodyStyle = {
 class Layout extends Component {
   render() {
     const { lang } = this.props;
+    const initialLang = localStorage.getItem('coursedyLang') || TT.locale
     momentCustom.locale(lang === 'vn' ? 'vi' : lang);
     return (
-      <I18n translations={translations} initialLang={TT.locale}>
+      <I18n translations={translations} initialLang={initialLang}>
         <ScrollToTop>
           <div className="main-content">
             <CoursedyHelmet />

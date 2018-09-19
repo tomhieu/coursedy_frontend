@@ -24,7 +24,7 @@ import { validate } from '../../validations/SignUpFormValidation';
 class ThirdPartyLoginContainer extends Component {
   handleFacebookResponse(response) {
     if (response.hasOwnProperty('status') && response.status == undefined) {
-      this.props.setErrors(TT.t('third_pary_login_error'));
+      this.props.setErrors(this.context.t('third_pary_login_error'));
     } else {
       this.props.setFacebookResponse(response);
       this.props.checkUserExistance(response.email, response, 'facebook');
@@ -39,14 +39,14 @@ class ThirdPartyLoginContainer extends Component {
       const { accessToken, id } = this.props.facebook;
       this.props.loginFacebook(accessToken, id, role);
     } else {
-      this.props.setErrors(TT.t('third_pary_login_error'));
+      this.props.setErrors(this.context.t('third_pary_login_error'));
     }
     this.props.resetForm();
   }
 
   handleGoogleResponse(response) {
     if (response.hasOwnProperty('error')) {
-      this.props.setErrors(TT.t('third_pary_login_error'));
+      this.props.setErrors(this.context.t('third_pary_login_error'));
     } else {
       this.props.setGoogleResponse(response);
       this.props.checkUserExistance(response.profileObj.email, response, 'google');

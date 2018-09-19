@@ -45,7 +45,7 @@ class ReviewTeacherForm extends Component {
             fieldId="course_comment_content"
             formGroupId="content"
             formLabel={this.context.t('course_comment_content')}
-            placeholder={this.context.t('course_comment_content')}
+            placeholder={this.context.t('course_comment_content_placeholder')}
             isMandatoryField
             formControlName="content"
             typeField="custom_textarea"
@@ -54,7 +54,7 @@ class ReviewTeacherForm extends Component {
             <PrimaryButton
               type="submit"
               customClasses="btn"
-              title={this.context.t('send_comment')}
+              title={this.context.t('send_comment_button')}
               line={false}
               disabled={pristine || submitting}
             />

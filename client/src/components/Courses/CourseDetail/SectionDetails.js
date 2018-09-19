@@ -43,7 +43,7 @@ class SectionDetails extends Component {
                 ? (
                   <div className="d-flex flex-auto justify-content-right align-items-center">
                     <span className="section-title">
-                      {this.context.t('section_lesson_count', { lessonCount: section.lessons.length })}
+                      {this.context.t(this.context.t('section_lesson_count'), { lessonCount: section.lessons.length })}
                     </span>
                   </div>
                 ) : null
