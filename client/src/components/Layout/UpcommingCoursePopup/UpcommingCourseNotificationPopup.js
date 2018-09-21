@@ -36,7 +36,7 @@ class UpcommingCourseNotificationPopup extends Component {
 
   render() {
     const {
-      currentUser, courseId, courseName, teacherName, closePopupJoinUpcomingClass
+      currentUser, courseId, courseName, teacherName, closePopupJoinUpcomingClass, acceptJoinToClassRoom
     } = this.props;
 
     const canShowPopup = this.state.urlJoiningToBBBClass !== null;
@@ -58,7 +58,9 @@ class UpcommingCourseNotificationPopup extends Component {
           }
         </div>
         <div className="modal-footer button-center justify-content-center">
-          <a className="join-to-class-link" href={this.state.urlJoiningToBBBClass} target="_blank">{this.context.t('join_to_class_button_name')}</a>
+          <a className="join-to-class-link" onClick={acceptJoinToClassRoom.bind(this)} href={this.state.urlJoiningToBBBClass} target="_blank">
+            {this.context.t('join_to_class_button_name')}
+          </a>
         </div>
       </Modal>
     )

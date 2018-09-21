@@ -60,8 +60,6 @@ class NotificationSystemContainer extends Component {
     clearTimeout(this.timeout);
     // closed popup
     this.props.closePopupJoinUpcomingClass();
-    // join to class
-    joinToClassRoom(classRoomId);
     // executed after joining an active class
     this.props.afterJoinUpcomingClass();
   }
