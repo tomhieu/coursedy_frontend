@@ -18,7 +18,6 @@ import CoursedyWarning from '../../../components/Core/CoursedyWarning/CoursedyWa
 
 class TutorAccount extends Component {
   componentWillMount() {
-    this.props.fetchTutorData();
     this.props.loadListSkillData();
     this.props.loadDegrees();
     this.props.activateTab(TutorNavigationTab.ACCOUNT_SETTING);
@@ -120,11 +119,6 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  fetchTutorData: () => dispatch({
-    type: FETCH_TUTOR_DATA,
-    payload: Network().get('tutors/current_tutor'),
-    meta: 'userAccountPlaceholder'
-  }),
   loadListSkillData: () => dispatch({
     type: FETCH_TEACHER_SKILL_SET,
     payload: Network().get('categories'),
