@@ -12,9 +12,7 @@ class LoginRegisterPage extends Component {
       >
         <div className="login-register">
           <div className="mb-50">
-            {/*<LoadingMask placeholderId="loginPlaceholder" isFullLoading>*/}
-              <LoginFormContainer {...this.props} />
-            {/*</LoadingMask>*/}
+            <LoginFormContainer {...this.props} />
           </div>
         </div>
       </PageContainer>

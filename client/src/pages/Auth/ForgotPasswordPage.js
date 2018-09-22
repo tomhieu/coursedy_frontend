@@ -11,9 +11,9 @@ class ForgotPasswordPage extends Component {
       >
         <div className="mt-40">
           <div className="mb-50">
-            <LoadingMask placeholderId="forgotPasswordPlaceholder">
+            {/*<LoadingMask placeholderId="forgotPasswordPlaceholder">*/}
               <ForgotPasswordFormContainer {...this.props} />
-            </LoadingMask>
+            {/*</LoadingMask>*/}
           </div>
         </div>
       </PageContainer>
