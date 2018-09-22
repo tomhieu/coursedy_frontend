@@ -34,6 +34,17 @@ class ListTutorCourseContainer extends Component {
     }
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (this.props.lang !== nextProps.lang) {
+      const { status } = nextProps.props;
+      if (status === CourseStatus.STARTED) {
+        this.props.fetchListTutorActiveCourse();
+      } else {
+        this.props.fetchListTutorCourse();
+      }
+    }
+  }
+
   openCourseCreation() {
     globalHistory.push('/dashboard/courses/new');
   }
@@ -89,7 +100,7 @@ const mapStateToProps = (state) => {
   const { courses, isFetching } = TutorCourseList;
   const { activeCourseId } = EnrolledStudentList;
   const { currentUser } = session;
-  const lang = state.i18nState.lang;
+  const { lang } = state.i18nState;
   return {
     courses, isFetching, currentUser, activeCourseId, lang
   };
