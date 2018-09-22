@@ -1,11 +1,11 @@
 import { Component } from 'react';
 import * as React from 'react';
 import DateUtils from 'utils/DateUtils';
-import { TT } from 'utils/locale';
 import { DAYS_IN_WEEK, HOURS_IN_DAY } from '../../../../actions/CourseFormActionCreator';
 import styles from '../../Course.module.scss';
 import CourseFormItem from '../CourseFormItem';
 import FormField from '../../../Core/FormField';
+import CoursedyWarning from '../../../Core/CoursedyWarning/CoursedyWarning';
 
 class SelectionTeachingDayViewMode extends Component {
   render() {
@@ -47,6 +47,10 @@ class SelectionTeachingDayViewMode extends Component {
             ) : null
         }
         <div className="col-md-12 col-sm-12">
+          {
+            selectedDays.length && this.props.lang === 'en' ?
+              <CoursedyWarning message={this.context.t('selected_hour_warning_message')} /> : null
+          }
           <div className={`${styles.timePickerContainer} d-flex flex-horizontal flex-wrap`}>
             {
               !isSamePeriod
@@ -69,7 +73,7 @@ class SelectionTeachingDayViewMode extends Component {
                         />
                       </div>
                       {
-                        editable ? TT.t('to') : null
+                        editable ? this.context.t('to') : null
                       }
                       <div>
                         <CourseFormItem
@@ -106,7 +110,7 @@ class SelectionTeachingDayViewMode extends Component {
                           />
                         </div>
                         {
-                      editable ? TT.t('to') : null
+                      editable ? this.context.t('to') : null
                     }
                         <div>
                           <CourseFormItem
