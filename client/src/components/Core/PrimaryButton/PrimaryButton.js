@@ -8,7 +8,8 @@ class PrimaryButton extends Component {
   render() {
     const {
       type, callback, title, isPrimary = true, round = false,
-      disabled = false, line = true, customClasses, iconButton = false, isSmallButton = false
+      disabled = false, line = true, customClasses, iconButton = false, isSmallButton = false,
+      placeholderId = ""
     } = this.props;
     // build list classes
     const classNames = [styles.button];
@@ -43,7 +44,7 @@ class PrimaryButton extends Component {
       type === 'submit'
         ? (
           <button type="submit" className={classNames.join(' ')} disabled={disabled ? "disabled" : ""}>
-            <LoadingMask placeholderId="loginPlaceholder" normalPlaceholder={false} buttonPlaceholder={true}>
+            <LoadingMask placeholderId={placeholderId} normalPlaceholder={false} buttonPlaceholder={true}>
               <span>
                 { iconButton ? this.props.children : null }
                 {title}

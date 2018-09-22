@@ -9,7 +9,6 @@ import PrimaryButton from '../Core/PrimaryButton/PrimaryButton';
 import styles from './LoginForm.module.scss';
 import './LoginRegisterForm.scss';
 import { renderField } from '../Core/CustomComponents';
-import LoadingMask from '../../containers/LoadingMask/LoadingMask';
 
 class LoginForm extends Component {
   hideLoginError() {
@@ -17,7 +16,7 @@ class LoginForm extends Component {
   }
 
   render() {
-    const { handleSubmit } = this.props;
+    const { handleSubmit, placeholderId, isProcessing } = this.props;
     const { errors } = this.props.LoginComponent;
 
     return (
@@ -78,13 +77,15 @@ class LoginForm extends Component {
         </div>
 
         <div className="d-flex justify-content-center">
-            <PrimaryButton
-              type="submit"
-              customClasses={styles.loginButton}
-              title={this.context.t('login')}
-              line={false}
-              round
-            />
+          <PrimaryButton
+            type="submit"
+            customClasses={styles.loginButton}
+            title={this.context.t('login')}
+            line={false}
+            round
+            disabled={isProcessing}
+            placeholderId={placeholderId}
+          />
         </div>
 
         <div className="d-flex justify-content-center mt-10">
