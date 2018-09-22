@@ -10,7 +10,7 @@ class LoadingMask extends Component {
     const {
       placeholderId, activatingPlaceholders,
       isFullLoading = false, normalPlaceholder = true, facebookPlaceholder = false, sectionPlaceholder = false,
-      loaderType, repeatTime, innerClass = 'loading-mask-container d-flex flex-stretch'
+      loaderType, repeatTime, innerClass = 'loading-mask-container'
     } = this.props;
     const isProcessing = activatingPlaceholders.findIndex(holder => placeholderId === holder) >= 0;
     return (

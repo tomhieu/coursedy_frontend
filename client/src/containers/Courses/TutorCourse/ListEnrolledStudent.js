@@ -6,7 +6,7 @@ import Network from 'utils/network';
 import StudentItem from '../../../components/Student/StudentItem/StudentItem';
 import styles from './ListEnrolledStudent.module.scss';
 import { FETCH_ENROLLED_STUDENT } from '../../../actions/AsyncActionCreator';
-import LoadingMask from '../../../components/LoadingMask/LoadingMask';
+import LoadingMask from '../../LoadingMask/LoadingMask';
 import * as WebConstant from '../../../constants/WebConstants';
 
 class ListEnrolledStudent extends Component {

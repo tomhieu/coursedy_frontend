@@ -11,7 +11,7 @@ import {
 import {
   RequireEmailConfirmationModal
 } from '../../../components/index';
-import LoadingMask from '../../../components/LoadingMask/LoadingMask';
+import LoadingMask from '../../LoadingMask/LoadingMask';
 import * as dashboardActions from '../../../actions/DashboardMenuActionCreator';
 
 class AccountProfileContainer extends Component {

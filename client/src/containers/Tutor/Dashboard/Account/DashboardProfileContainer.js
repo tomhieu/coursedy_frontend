@@ -4,7 +4,7 @@ import * as AccountActionCreator from 'actions/AccountActionCreator';
 import { reduxForm } from 'redux-form';
 import ObjectUtils from '../../../../utils/ObjectUtils';
 import defaultAvatar from '../../../../../images/default_avatar.png';
-import LoadingMask from '../../../../components/LoadingMask/LoadingMask';
+import LoadingMask from '../../../LoadingMask/LoadingMask';
 import CoursedyUploadImage from '../../../../components/Core/CoursedyUploadImage/CoursedyUploadImage';
 
 class DashboardProfileContainer extends Component {

@@ -5,7 +5,7 @@ import styles from './TutorProfileDetails.module.scss';
 import ChangePasswordContainer from '../../../containers/Account/ChangePasswordContainer';
 import PersonInfoContainer from '../../../containers/Account/PersonInfoContainer';
 import UserInfo from '../../Account/UserInfo';
-import LoadingMask from '../../LoadingMask/LoadingMask';
+import LoadingMask from '../../../containers/LoadingMask/LoadingMask';
 
 
 class TutorProfileDetails extends Component {

@@ -10,7 +10,7 @@ import styles from './SectionDetail.module.scss';
 import LessonDetailFormContainer from '../Lesson/LessonDetailFormContainer';
 import SectionDetailContainer from './SectionDetailContainer';
 import EditLessonFormContainer from '../Lesson/EditLessonFormContainer';
-import LoadingMask from '../../../components/LoadingMask/LoadingMask';
+import LoadingMask from '../../LoadingMask/LoadingMask';
 import {
   CREATE_UPDATE_SECTION,
   DELETE_SECTION,

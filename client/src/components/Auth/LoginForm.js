@@ -9,6 +9,7 @@ import PrimaryButton from '../Core/PrimaryButton/PrimaryButton';
 import styles from './LoginForm.module.scss';
 import './LoginRegisterForm.scss';
 import { renderField } from '../Core/CustomComponents';
+import LoadingMask from '../../containers/LoadingMask/LoadingMask';
 
 class LoginForm extends Component {
   hideLoginError() {
@@ -84,6 +85,7 @@ class LoginForm extends Component {
             line={false}
             round
           />
+          <LoadingMask placeholderId="loginPlaceholder" isFullLoading />
         </div>
 
         <div className="d-flex justify-content-center mt-10">

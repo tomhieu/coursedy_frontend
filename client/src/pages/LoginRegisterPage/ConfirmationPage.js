@@ -1,5 +1,5 @@
 import React from 'react';
-import LoadingMask from '../../components/LoadingMask/LoadingMask';
+import LoadingMask from '../../containers/LoadingMask/LoadingMask';
 import ConfirmationContainer from '../../containers/Auth/ConfirmationContainer';
 import PageContainer from '../../utils/PageContainer';
 

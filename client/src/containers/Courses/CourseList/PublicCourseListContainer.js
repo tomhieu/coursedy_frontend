@@ -7,7 +7,7 @@ import * as WebConstants from 'constants/WebConstants';
 import Network from 'utils/network';
 import cssModules from 'react-css-modules';
 import styles from './PublicCourseList.module.scss';
-import LoadingMask from '../../../components/LoadingMask/LoadingMask';
+import LoadingMask from '../../LoadingMask/LoadingMask';
 import * as Actions from '../../../actions/CourseFilterActionCreator';
 import { CourseList } from '../../../components/index';
 import PaginationArrowIcon from '../../../components/Core/Icons/PaginationArrowIcon';

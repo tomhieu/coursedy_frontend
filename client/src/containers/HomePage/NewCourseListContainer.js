@@ -6,7 +6,7 @@ import { bindActionCreators } from 'redux';
 import CourseItemInGridMode from 'components/Courses/CourseItem/CourseItemInGridMode';
 import CoursedySlider, { Slider } from '../../components/Slider/CoursedySlider';
 import CourseGroupFooter from '../../components/Course/CourseGroup/CourseGroupFooter';
-import LoadingMask from '../../components/LoadingMask/LoadingMask';
+import LoadingMask from '../LoadingMask/LoadingMask';
 
 
 class NewCourseList extends Component {

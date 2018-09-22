@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import cssModules from 'react-css-modules';
 import styles from './PrimaryButton.module.scss';
+import LoadingIcon from '../Icons/LoadingIcon'
 
 class PrimaryButton extends Component {
   render() {
@@ -40,11 +41,11 @@ class PrimaryButton extends Component {
     return (
       type === 'submit'
         ? (
-          <button type="submit" className={classNames.join(' ')} disabled={disabled}>
-            {
-          iconButton ? this.props.children : null
-        }
-            {title}
+          <button type="submit" className={classNames.join(' ')} disabled={disabled ? "disabled" : ""}>
+            <span>
+              { iconButton ? this.props.children : null }
+              {title}
+            </span>
           </button>
         )
         : (

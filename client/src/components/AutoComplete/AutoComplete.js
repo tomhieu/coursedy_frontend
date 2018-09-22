@@ -5,7 +5,7 @@ import Field from 'redux-form/es/Field';
 import { SERVER_NAME } from 'utils/CommonConstant';
 import styles from './AutoComplete.module.scss';
 import { renderField } from '../Core/CustomComponents';
-import AsyncLoader from '../LoadingMask/AsyncLoader';
+import AsyncLoader from '../../containers/LoadingMask/AsyncLoader';
 
 class AutoComplete extends Component {
   constructor(props) {

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import EditPasswordFormContainer from 'containers/Auth/EditPasswordFormContainer';
-import LoadingMask from 'components/LoadingMask/LoadingMask';
+import LoadingMask from 'containers/LoadingMask/LoadingMask';
 import PageContainer from '../../utils/PageContainer';
 
 class EditPasswordPage extends Component {

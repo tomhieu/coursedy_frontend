@@ -21,7 +21,6 @@ import * as StudentComponents from './Student';
 import * as AdminComponents from './Admin';
 
 import RoleAuthorization from './RoleAuthorization';
-import LoadingMask from './LoadingMask/LoadingMask';
 import TutorDashboardMenu from './Dashboard/TutorDashboard/TutorDashboardMenu';
 import CourseForm from './Courses/CourseForm/CourseForm';
 import UserInfo from './Account/UserInfo';
@@ -50,7 +49,6 @@ export {
   TutorItem,
   TutorList,
   RoleAuthorization,
-  LoadingMask,
   TutorDashboardMenu,
   TutorDetail,
 

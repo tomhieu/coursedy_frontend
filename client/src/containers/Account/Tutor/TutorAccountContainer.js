@@ -9,7 +9,7 @@ import TutorForm from '../../Dashboard/Tutors/TutorForm';
 
 import { AccountActions, TutorAccountActions } from '../../../actions/index';
 import { RequireEmailConfirmationModal } from '../../../components/index';
-import LoadingMask from '../../../components/LoadingMask/LoadingMask';
+import LoadingMask from '../../LoadingMask/LoadingMask';
 import { FETCH_TUTOR_DATA } from '../../../constants/Session';
 import { CERTIFICATE, FETCH_TEACHER_SKILL_SET } from '../../../actions/AsyncActionCreator';
 import * as dashboardActions from '../../../actions/DashboardMenuActionCreator';

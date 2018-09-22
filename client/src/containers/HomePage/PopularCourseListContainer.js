@@ -6,7 +6,7 @@ import * as HomePageActions from 'actions/HomePageActionCreator';
 import CourseGroupHeading from '../../components/Course/CourseGroup/CourseGroupHeading';
 import CourseGroupFooter from '../../components/Course/CourseGroup/CourseGroupFooter';
 import CoursedySlider, { Slider } from '../../components/Slider/CoursedySlider';
-import LoadingMask from '../../components/LoadingMask/LoadingMask';
+import LoadingMask from '../LoadingMask/LoadingMask';
 import CourseItemInGridMode from '../../components/Courses/CourseItem/CourseItemInGridMode';
 
 

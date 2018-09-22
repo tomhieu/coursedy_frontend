@@ -10,7 +10,7 @@ import {
   fetchTeacherCourses,
   fetchTeacherReviews
 } from 'actions/TeacherActionCreators';
-import LoadingMask from 'components/LoadingMask/LoadingMask';
+import LoadingMask from 'containers/LoadingMask/LoadingMask';
 import * as WebConstants from 'constants/WebConstants';
 import FixedSideBar from 'components/Common/FixedSideBar';
 import { TT } from 'utils/locale';

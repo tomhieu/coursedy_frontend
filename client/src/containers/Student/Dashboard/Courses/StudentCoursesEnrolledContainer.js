@@ -4,7 +4,7 @@ import CourseList from '../../../../components/Courses/CourseList';
 import {
   StudentCourseActions
 } from '../../../../actions/index';
-import LoadingMask from '../../../../components/LoadingMask/LoadingMask';
+import LoadingMask from '../../../LoadingMask/LoadingMask';
 import { FETCH_STUDENT_ENROLL_COURSES } from '../../../../actions/AsyncActionCreator';
 import { StudentNavigationTab } from '../../../../constants/StudentNavigationTab';
 import * as dashboardActions from '../../../../actions/DashboardMenuActionCreator';
