@@ -79,7 +79,7 @@ class FilterOption extends Component {
     return (
       <div className={styles.groupOptionContainer}>
         {
-          groupLabel ? <span className={styles.groupTitle}>{groupLabel}</span> : null
+          groupLabel ? <div className={styles.groupTitle}>{groupLabel}</div> : null
         }
         {
           options.map(group => (
