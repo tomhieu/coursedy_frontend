@@ -51,7 +51,8 @@ CourseCoverImageContainer.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  user: state.session.currentUser
+  user: state.session.currentUser,
+  lang: state.i18nState.lang,
 });
 
 export default connect(

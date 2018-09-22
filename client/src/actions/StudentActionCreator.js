@@ -5,7 +5,7 @@ import { LessonStatus } from '../constants/LessonStatus';
 
 // fetch comments for home page, ...
 export const fetchCourseToEvaluate = (courseId, bbbRoom) => (dispatch) => {
-  Network().get(/courses/ + courseId).then((course) => {
+  Network().get(`courses/${courseId}`).then((course) => {
     // invalid course room, reject immediately
     if (!course.bigbluebutton_room || !course.bigbluebutton_room.slug || course.bigbluebutton_room.slug !== bbbRoom) {
       dispatch(rejectCourseToEvaluate());

@@ -32,6 +32,20 @@ class PublicCourseDetailContainer extends Component {
     }
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (this.props.lang !== nextProps.lang) {
+      this.props.getCourseCategories();
+      const { courseId } = nextProps;
+      if (courseId) {
+        // Fetch course
+        this.props.getPublicCourse(courseId);
+
+        // Fetch related courses
+        this.props.getRelatedCourses(courseId, WebConstants.START_PAGE_INDEX, WebConstants.RELATED_COURSE_PER_PAGE);
+      }
+    }
+  }
+
   componentWillUnmount() {
     this.props.showFooter();
     this.props.stretchAuto();
