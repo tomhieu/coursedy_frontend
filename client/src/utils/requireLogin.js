@@ -9,6 +9,7 @@ export default function requireLogin(Component) {
   class RequireLogin extends React.Component {
     static propTypes = {
       user: PropTypes.object,
+      tutor: PropTypes.object,
       fetchingUser: PropTypes.bool,
       route: PropTypes.object,
       status: PropTypes.string
@@ -91,7 +92,7 @@ export default function requireLogin(Component) {
         if (SecurityUtils.isTeacher(userData.value)) {
           dispatch(sessionActions.fetchCurrentTutor());
         }
-      })
+      });
     }
   });
 
