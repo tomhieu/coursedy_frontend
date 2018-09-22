@@ -48,7 +48,7 @@ class TutorDashboard extends RoleAuthorization {
               { this.props.children }
             </div>
             <div className={dashboardFooterClasses}>
-              <span className="coursedy-copyright">{TT.t('product_copyright')}</span>
+              <span className="coursedy-copyright">{this.context.t('product_copyright')}</span>
             </div>
           </div>
         </div>
@@ -56,6 +56,10 @@ class TutorDashboard extends RoleAuthorization {
     );
   }
 }
+
+TutorDashboard.contextTypes = {
+  t: React.PropTypes.func.isRequired
+};
 
 const styleComponent = cssModules(TutorDashboard, styles);
 

@@ -104,6 +104,7 @@ TeacherFilterContainer.contextTypes = {
 
 const mapStateToProps = (state) => {
   const { form = {}, Teachers } = state;
+  const { lang } = state.i18nState;
   const {
     filters, showSuggestion, loadingSuggestion, headers
   } = Teachers;
@@ -127,6 +128,7 @@ const mapStateToProps = (state) => {
     totalResult: headers !== null ? headers.xTotal : 0,
     formfieldValues: teacherFilterForm.values ? teacherFilterForm.values : {},
     listSpecializes: getSelectedSpecializesFromCategory(categories, filters.selectedCategories),
+    lang
   };
 };
 

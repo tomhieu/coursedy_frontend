@@ -45,7 +45,7 @@ class NotificationSystemContainer extends Component {
   startPoll(currentUser) {
     this.timeout = setTimeout(() => {
       this.checkUpcommingCourse(currentUser);
-    }, 20000);
+    }, 5000);
   }
 
   checkUpcommingCourse(currentUser) {
@@ -60,8 +60,6 @@ class NotificationSystemContainer extends Component {
     clearTimeout(this.timeout);
     // closed popup
     this.props.closePopupJoinUpcomingClass();
-    // join to class
-    joinToClassRoom(classRoomId);
     // executed after joining an active class
     this.props.afterJoinUpcomingClass();
   }
@@ -119,6 +117,9 @@ class NotificationSystemContainer extends Component {
       this.notifyNewStartedCourse(newStartedCourseNotification);
 
     }
+    if (classRoomId === '') {
+      return null;
+    }
     return (
       <div>
         <div className="join-course">
@@ -127,7 +128,6 @@ class NotificationSystemContainer extends Component {
             currentUser={session.currentUser}
             courseName={teachingCourseName}
             courseId={teachingCourseId}
-            isShowPopup={session.teachingCourse !== null}
             classRoomId={classRoomId}
             acceptJoinToClassRoom={this.acceptJoinToClassRoom.bind(this)}
             closePopupJoinUpcomingClass={this.props.closePopupJoinUpcomingClass.bind(this)}

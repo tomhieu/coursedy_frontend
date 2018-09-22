@@ -25,11 +25,12 @@ class FormField extends Component {
     const {
       formControlName, fieldLabel, showLabel = true, placeholder, isMandatoryField = false,
       typeField, type, zoneHeight = 'auto', internalPreview = false, previewUrl, onUpload, rows, options,
-      selectedValues, customClassName, checked, chosenValue, onCheck, toggled, onToggle, onFileRemoved
+      selectedValues, customClassName, checked, chosenValue, onCheck, toggled, onToggle, onFileRemoved,
+      lang = 'vn'
     } = this.props;
 
     const fieldComponent = this.buildFieldRender(formControlName, placeholder, typeField, type,
-      zoneHeight, internalPreview, previewUrl, onUpload, rows, options, selectedValues, customClassName, checked, chosenValue, onCheck, toggled, onToggle, onFileRemoved);
+      zoneHeight, internalPreview, previewUrl, onUpload, rows, options, selectedValues, customClassName, checked, chosenValue, onCheck, toggled, onToggle, onFileRemoved, lang);
     return (
       <FormGroup controlId={this.props.fieldId}>
         {
@@ -49,7 +50,7 @@ class FormField extends Component {
     );
   }
 
-  buildFieldRender(formControlName, placeholder, typeField, type, zoneHeight, internalPreview, previewUrl, onUpload, rows, options, selectedValues, customClassName, checked, chosenValue, onCheck, toggled, onToggle, onFileRemoved) {
+  buildFieldRender(formControlName, placeholder, typeField, type, zoneHeight, internalPreview, previewUrl, onUpload, rows, options, selectedValues, customClassName, checked, chosenValue, onCheck, toggled, onToggle, onFileRemoved, lang) {
     let fieldComponent;
     const fieldClasses = 'form-control';
 
@@ -137,6 +138,7 @@ class FormField extends Component {
             previewUrl={previewUrl}
             onUpload={onUpload}
             component={renderSingleFileInput}
+            lang={lang}
           />
         );
         break;

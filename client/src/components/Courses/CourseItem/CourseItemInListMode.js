@@ -116,7 +116,7 @@ class CourseItemInListMode extends Component {
                 <li>
                   <i className="fa fa-calendar-check-o" />
                   <span className="block">
-                    {this.context.t('course_item_duration', { duration: period || 0 })}
+                    {this.context.t(this.context.t('course_item_duration'), { duration: period || 0 })}
                   </span>
                 </li>
               </ul>

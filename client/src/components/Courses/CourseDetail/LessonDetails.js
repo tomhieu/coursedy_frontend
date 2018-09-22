@@ -24,7 +24,7 @@ class LessonDetails extends Component {
             <span>{this.context.t('lesson_description_expand')}</span>
           </div>
           <div className={styles.lesssonPeriod}>
-            <span>{this.context.t('lesson_period', { lessonPeriod: lesson.period })}</span>
+            <span>{this.context.t(this.context.t('lesson_period'), { lessonPeriod: lesson.period })}</span>
           </div>
         </div>
         <div id={`collapseLesson${lesson.id}`} className="collapse" aria-labelledby="headingOne" data-parent="#accordion">

@@ -87,7 +87,7 @@ class CourseItemInGridMode extends Component {
                   <i className="fa fa-pencil-square-o" />
                   <span className="block">
                     {' '}
-                    {this.context.t('lesson_count', { lessons: item.lesson_count })}
+                    {this.context.t(this.context.t('lesson_count'), { lessons: item.lesson_count })}
                   </span>
                 </div>
               </div>

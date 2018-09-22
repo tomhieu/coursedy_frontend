@@ -286,7 +286,7 @@ class renderFileInput extends Component {
                   <path d="M9 16h6v-6h4l-7-7-7 7h4zm-4 2h14v2H5z" />
                 </svg>
               </a>
-              <a className="ml-10">{TT.t('drag_and_drop')}</a>
+              <a className="ml-10">{TT.changeLocale(this.props.lang).t('drag_and_drop')}</a>
             </div>
           </div>
 

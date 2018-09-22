@@ -172,17 +172,17 @@ const getCourseLevels = (specializes, selectedLevelId) => {
   });
 };
 
-const getDayId = (dayName) => {
-  const matchedDays = DAYS_IN_WEEK.filter(d => d.name === dayName);
+const getDayId = (dayName, lang = 'vn') => {
+  const matchedDays = DAYS_IN_WEEK(lang).filter(d => d.name === dayName);
   return matchedDays.length > 0 ? matchedDays[0].id : 0;
 };
 
-const initializeCourseDetail = (courseData) => {
+const initializeCourseDetail = (courseData, lang = 'vn') => {
   const course_days = [];
 
   if (Array.isArray(courseData.course_days)) {
     courseData.course_days.forEach((d) => {
-      course_days.push(`${d.day}_${getDayId(d.day)}`);
+      course_days.push(`${d.day}_${getDayId(d.day, lang)}`);
     });
   }
   return Object.assign({}, courseData, { course_days });
@@ -200,6 +200,7 @@ const mapStateToProps = (state) => {
   let course_levels = [];
   let courseData = null;
   let selectedDays = [];
+  const lang = state.i18nState.lang
 
   if (editMode && courseDetails.courseData != null) {
     courseData = courseDetails.courseData;
@@ -207,7 +208,7 @@ const mapStateToProps = (state) => {
     courseData = courseFormValues;
   }
 
-  selectedDays = DAYS_IN_WEEK.filter((day) => {
+  selectedDays = DAYS_IN_WEEK(lang).filter((day) => {
     if (courseFormValues != null && courseFormValues.course_days) {
       return courseFormValues.course_days.indexOf(`${day.name}_${day.id}`) >= 0;
     } if (courseDetails.courseData && courseDetails.courseData.course_days) {
@@ -239,7 +240,7 @@ const mapStateToProps = (state) => {
     course_specializes = selectedCategory !== undefined ? selectedCategory.children : [];
   }
 
-  const initializedValue = editMode && courseData != null ? initializeCourseDetail(courseData) : { is_same_period: true };
+  const initializedValue = editMode && courseData != null ? initializeCourseDetail(courseData, lang) : { is_same_period: true };
   if (editMode && courseData.is_same_period) {
     initializedValue.start_time = courseData.course_days[0].start_time;
     initializedValue.end_time = courseData.course_days[0].end_time;
@@ -264,7 +265,8 @@ const mapStateToProps = (state) => {
     cover_image: !courseData ? null : courseData.cover_image,
     courseSpecializes: course_specializes,
     course_levels,
-    initialValues: hasActiveField ? initializedValue : {}
+    initialValues: hasActiveField ? initializedValue : {},
+    lang: lang
   };
 };
 

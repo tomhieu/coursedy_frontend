@@ -2,8 +2,7 @@ import { SecurityUtils } from 'utils/SecurityUtils';
 import * as types from '../constants/Session';
 import * as asyncActs from '../actions/AsyncActionCreator';
 import { DAYS_IN_WEEK } from '../actions/CourseFormActionCreator';
-import {CLEAR_STUDENT_ACTIVE_COURSES} from '../actions/AsyncActionCreator';
-import {CourseStatus} from '../constants/CourseStatus';
+import { CourseStatus } from '../constants/CourseStatus';
 
 
 const session = (state = {
@@ -37,16 +36,17 @@ const session = (state = {
     case asyncActs.FETCH_TUTOR_ACTIVE_COURSES + asyncActs.FULFILLED:
     case asyncActs.FETCH_STUDENT_ACTIVE_COURSES + asyncActs.FULFILLED:
       const activeCourses = action.payload.filter(c => c.status === CourseStatus.STARTED);
-      const currentDay = DAYS_IN_WEEK.find(day => new Date().getDay() === day.id);
+      const currentDay = DAYS_IN_WEEK().find(day => new Date().getDay() === day.id);
       const haveActiveCourseToday = activeCourses.filter(course => course.week_day_schedules.find(day => day.day === currentDay.name) !== undefined).length > 0;
       if (SecurityUtils.isTeacher(state.currentUser)) {
         // const notReadyCourses = activeCourses.filter((course) => {
         //  course.s
         // })
         return { ...state, hasActiveCourseToLearn: haveActiveCourseToday };
-      } if (SecurityUtils.isStudent(state.currentUser)) {
+      } else if (SecurityUtils.isStudent(state.currentUser)) {
         return { ...state, hasActiveCourseToLearn: haveActiveCourseToday, newStartedCourses: activeCourses };
       }
+      return state;
     case asyncActs.FETCH_TUTOR_UPCOMING_COURSES + asyncActs.FULFILLED:
     case asyncActs.FETCH_STUDENT_UPCOMING_COURSES + asyncActs.FULFILLED:
       let upcommingCourse = null;
@@ -54,7 +54,7 @@ const session = (state = {
         upcommingCourse = action.payload[0];
       }
       return { ...state, teachingCourse: upcommingCourse };
-    case CLEAR_STUDENT_ACTIVE_COURSES:
+    case asyncActs.CLEAR_STUDENT_ACTIVE_COURSES:
       return { ...state, newStartedCourses: [] };
     case asyncActs.CLOSE_POPUP_JOIN_UPCOMMING_CLASS:
       return { ...state, teachingCourse: null };

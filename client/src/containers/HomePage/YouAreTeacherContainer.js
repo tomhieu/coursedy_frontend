@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { TT } from 'utils/locale';
 import PrimaryButton from '../../components/Core/PrimaryButton/PrimaryButton';
 import SaveMoneyIcon from '../../components/Core/Icons/SaveMoneyIcon';
 import FlexibilityTimeIcon from '../../components/Core/Icons/FlexibilityTimeIcon';
@@ -43,7 +42,7 @@ export default class YouAreTeacher extends Component {
                 {item.icon}
               </div>
             </Link>
-            <div className="item-group__description">{ TT.t(item.description) }</div>
+            <div className="item-group__description">{ this.context.t(item.description) }</div>
           </div>
         </div>
       );
@@ -68,7 +67,7 @@ export default class YouAreTeacher extends Component {
             <div className="row align-items-center justify-content-center mt-4">
               <div className="col-sm-4 course__footer">
                 <Link to="/become-a-teacher">
-                  <PrimaryButton type="button" isPrimary round line={false} title={TT.t('homepage_search_become_teacher')} />
+                  <PrimaryButton type="button" isPrimary round line={false} title={this.context.t('homepage_search_become_teacher')} />
                 </Link>
               </div>
             </div>

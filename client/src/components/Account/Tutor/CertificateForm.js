@@ -38,6 +38,7 @@ export class CertificateForm extends Component {
               formControlName="degrees"
               internalPreview={false}
               typeField="upload_file"
+              lang={this.props.lang}
             />
           </div>
         </div>

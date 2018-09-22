@@ -83,7 +83,10 @@ LangNavigation.propTypes = {
 };
 
 const mapDispatchToProps = dispatch => ({
-  switchLang: lang => dispatch(setLanguage(lang))
+  switchLang: lang => {
+    dispatch(setLanguage(lang))
+    localStorage.setItem('coursedyLang', lang)
+  }
 });
 
 export default connect(null, mapDispatchToProps)(cssModules(LangNavigation, styles));

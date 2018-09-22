@@ -20,7 +20,7 @@ const TeacherDetail = (state = {
         linkedIn = TT.t('linkedIn_link'),
         facebook = TT.t('facebook_link'),
         country = TT.t('default_country'),
-        short_experience = TT.t('short_experience')
+        short_experience = TT.t('teacher_miss_short_experience')
       } = action.payload;
       return {
         ...state,

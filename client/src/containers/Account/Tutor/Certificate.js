@@ -59,7 +59,8 @@ const mapStateToDispatch = dispatch => ({
 });
 
 export default connect(state => ({
-  certificates: state.Certificate.certificates
+  certificates: state.Certificate.certificates,
+  lang: state.i18nState.lang
 }), mapStateToDispatch)(reduxForm({
   form: 'certificate',
   // fields: ['name', 'email', 'address', 'date_of_birth'],

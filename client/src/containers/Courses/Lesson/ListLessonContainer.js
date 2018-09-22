@@ -57,7 +57,7 @@ class ListLessonContainer extends Component {
             <span>{this.context.t('lesson_name')}</span>
           </div>
           <div className="lesson-per-col lesson-col-text">
-            <span>{this.context.t('lesson_period')}</span>
+            <span>{this.context.t(this.context.t('lesson_period'))}</span>
           </div>
           <div className="lesson-del-col lesson-col-no-text" />
           <div className="lesson-add-col lesson-col-no-text" />

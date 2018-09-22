@@ -89,8 +89,9 @@ const mapStateToProps = (state) => {
   const { courses, isFetching } = TutorCourseList;
   const { activeCourseId } = EnrolledStudentList;
   const { currentUser } = session;
+  const lang = state.i18nState.lang;
   return {
-    courses, isFetching, currentUser, activeCourseId
+    courses, isFetching, currentUser, activeCourseId, lang
   };
 };
 
