@@ -9,10 +9,12 @@ class LoadingMask extends Component {
   render() {
     const {
       placeholderId, activatingPlaceholders,
-      isFullLoading = false, normalPlaceholder = true, facebookPlaceholder = false, sectionPlaceholder = false,
-      loaderType, repeatTime, innerClass = 'loading-mask-container'
+      isFullLoading = false, normalPlaceholder = true,
+      facebookPlaceholder = false, sectionPlaceholder = false,
+      buttonPlaceholder = false, loaderType, repeatTime,
+      innerClass = 'loading-mask-container'
     } = this.props;
-    const isProcessing = activatingPlaceholders.findIndex(holder => placeholderId === holder) >= 0;
+    const isProcessing = activatingPlaceholders.findIndex(holder => placeholderId == holder) >= 0;
     return (
       <div className={innerClass}>
         {
@@ -22,6 +24,7 @@ class LoadingMask extends Component {
               normalPlaceholder={normalPlaceholder}
               facebookPlaceholder={facebookPlaceholder}
               sectionPlaceholder={sectionPlaceholder}
+              buttonPlaceholder={buttonPlaceholder}
               loaderType={loaderType}
               repeatTime={repeatTime}
             />

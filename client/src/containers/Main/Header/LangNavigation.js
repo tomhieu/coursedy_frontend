@@ -66,7 +66,7 @@ class LangNavigation extends Component {
           isOpen={this.state.show}
           bgColor="#F4FAFA"
           closeDropDown={this.onCloseDropDown.bind(this)}
-          width="75px"
+          width={75}
         />
       </div>
     );

@@ -1,15 +1,25 @@
 import { Component } from 'react';
 import * as React from 'react';
 import * as WebContants from '../../constants/WebConstants';
+import LoadingIcon from "../../components/Core/Icons/LoadingIcon"
 
 class AsyncLoader extends Component {
   render() {
     const {
-      isFullLoading, normalPlaceholder, facebookPlaceholder, sectionPlaceholder, loaderType, repeatTime = 1
+      isFullLoading, normalPlaceholder, facebookPlaceholder,
+      sectionPlaceholder, buttonPlaceholder, loaderType, repeatTime = 1
     } = this.props;
     if (normalPlaceholder) {
       return (
         <div className={isFullLoading ? 'full-loading' : 'partial-loading'}>
+          <div id="spinner">
+            <LoadingIcon />
+          </div>
+        </div>
+      );
+    } if (sectionPlaceholder) {
+      return (
+        <div className="section-placeholder">
           <div id="spinner">
             <svg className="circular" viewBox="25 25 50 50">
               <circle className="path" cx="50" cy="50" r="20" fill="none" />
@@ -17,9 +27,9 @@ class AsyncLoader extends Component {
           </div>
         </div>
       );
-    } if (sectionPlaceholder) {
+    } if (buttonPlaceholder) {
       return (
-        <div className="section-placeholder">
+        <div className="button-placeholder">
           <div id="spinner">
             <svg className="circular" viewBox="25 25 50 50">
               <circle className="path" cx="50" cy="50" r="20" fill="none" />

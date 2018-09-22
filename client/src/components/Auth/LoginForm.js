@@ -78,14 +78,15 @@ class LoginForm extends Component {
         </div>
 
         <div className="d-flex justify-content-center">
-          <PrimaryButton
-            type="submit"
-            customClasses={styles.loginButton}
-            title={this.context.t('login')}
-            line={false}
-            round
-          />
-          <LoadingMask placeholderId="loginPlaceholder" isFullLoading />
+          <LoadingMask placeholderId="loginPlaceholder" normalPlaceholder={false} buttonPlaceholder={true}>
+            <PrimaryButton
+              type="submit"
+              customClasses={styles.loginButton}
+              title={this.context.t('login')}
+              line={false}
+              round
+            />
+          </LoadingMask>
         </div>
 
         <div className="d-flex justify-content-center mt-10">
