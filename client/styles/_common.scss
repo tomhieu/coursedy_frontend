@@ -2527,6 +2527,9 @@ blockquote {
 .select-course-fee {
   width: 300px;
   padding: 0 15px;
+  .form-group {
+    margin-bottom: 7px;
+  }
 }
 
 .md-check-box-field {
@@ -2956,6 +2959,7 @@ button {
 }
 
 .advanced-filter-block {
+  position: relative;
   display: flex;
   flex: 2;
 }
