@@ -13,13 +13,17 @@ export const signUpUser = (email, password, password_confirmation, name, phone_n
       role
     };
 
-    Network().post('auth', body).then((response) => {
+    return dispatch({
+      type: types.SIGN_UP,
+      payload: Network().post('auth', body),
+      meta: 'registerPlaceholder'
+    }).then((response) => {
       dispatch({
         type: types.SIGN_UP_SUCCESS,
-        payload: response
+        payload: response,
       });
       dispatch(reset('signUp'));
-    }, ({ errors }) => {
+    }, ({ value, action }) => {
       dispatch({
         type: types.SIGNUP_FAILED,
         payload: errors.full_messages[0]

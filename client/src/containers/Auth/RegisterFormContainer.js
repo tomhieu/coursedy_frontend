@@ -31,6 +31,9 @@ class RegisterFormContainer extends Component {
 
   render() {
     const showErrorClass = this.props.SignUpComponent.errors ? 'error' : 'hidden';
+    const placeholderId = "registerPlaceholder";
+    const { activatingPlaceholders } = this.props
+    const isProcessing = activatingPlaceholders.findIndex(holder => placeholderId == holder) >= 0;
     return (
       <div className="sign-block">
         <h2>
@@ -50,7 +53,13 @@ class RegisterFormContainer extends Component {
             <p className="error">{this.props.SignUpComponent.errors}</p>
           </div>
         </span>
-        <RegisterForm onSubmit={this.submit.bind(this)} resetForm={this.resetForm.bind(this)} {...this.props} />
+        <RegisterForm
+          onSubmit={this.submit.bind(this)}
+          resetForm={this.resetForm.bind(this)}
+          {...this.props}
+          placeholderId={placeholderId}
+          isProcessing={isProcessing}
+        />
       </div>
     );
   }
@@ -67,7 +76,8 @@ RegisterFormContainer.propTypes = {
 
 const mapStateToProps = state => ({
   SignUpComponent: state.SignUpComponent,
-  lang: state.i18nState.lang
+  lang: state.i18nState.lang,
+  activatingPlaceholders: state.LoadingMask.activatingPlaceholders
 });
 
 const StyledComponent = cssModules(RegisterFormContainer, styles);

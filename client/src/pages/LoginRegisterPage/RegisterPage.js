@@ -14,9 +14,7 @@ class RegisterPage extends Component {
       >
         <div className="login-register">
           <div className="mb-50">
-            <LoadingMask placeholderId="registerPlaceholder">
-              <RegisterFormContainer {...this.props} />
-            </LoadingMask>
+            <RegisterFormContainer {...this.props} />
           </div>
         </div>
       </PageContainer>

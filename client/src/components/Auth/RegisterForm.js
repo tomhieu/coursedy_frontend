@@ -16,7 +16,7 @@ import normalizePhone from './normalizePhoneNumber';
 
 class RegisterForm extends Component {
   render() {
-    const { handleSubmit } = this.props;
+    const { handleSubmit, placeholderId, isProcessing } = this.props;
     return (
       <form onSubmit={handleSubmit(this.props.onSubmit)} className="form-signup">
         <FormGroup controlId="formHorizontalEmail">
@@ -135,6 +135,8 @@ class RegisterForm extends Component {
             customClasses={styles.registerButton}
             title={this.context.t('register_now')}
             line={false}
+            placeholderId={placeholderId}
+            disabled={isProcessing}
           />
         </div>
 
