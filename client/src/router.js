@@ -22,7 +22,6 @@ import App from './components/App';
 import requireLogin from './utils/requireLogin';
 import TutorDashboardProfile from './pages/TutorDashboard/TutorDashboardProfile';
 import TutorDashboardCourseActive from './pages/TutorDashboard/TutorDashboardCourseActive';
-import TutorDashboardListLesson from './pages/TutorDashboard/TutorDashboardListLesson';
 import TutorDashboardCourseDetail from './pages/TutorDashboard/TutorDashboardCourseDetail';
 import TutorDashboardAccount from './pages/TutorDashboard/TutorDashboardAccount';
 import TutorDashboardCourseList from './pages/TutorDashboard/TutorDashboardCourseList';
@@ -123,12 +122,6 @@ export const routes = [
   {
     path: '/dashboard/courses/list',
     component: requireLogin(TutorDashboardCourseList),
-    roles: [UserRole.TEACHER],
-    status: TutorStatus.VERIFIED
-  },
-  {
-    path: '/dashboard/courses/list-lesson',
-    component: requireLogin(TutorDashboardListLesson),
     roles: [UserRole.TEACHER],
     status: TutorStatus.VERIFIED
   },
