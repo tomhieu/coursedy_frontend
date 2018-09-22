@@ -36,7 +36,7 @@ class ListTutorCourseContainer extends Component {
 
   componentWillReceiveProps(nextProps) {
     if (this.props.lang !== nextProps.lang) {
-      const { status } = nextProps.props;
+      const { status } = nextProps;
       if (status === CourseStatus.STARTED) {
         this.props.fetchListTutorActiveCourse();
       } else {
