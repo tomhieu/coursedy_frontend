@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import cssModules from 'react-css-modules';
 import styles from './PrimaryButton.module.scss';
-import LoadingIcon from '../Icons/LoadingIcon'
+import LoadingMask from '../../../containers/LoadingMask/LoadingMask';
+
 
 class PrimaryButton extends Component {
   render() {
@@ -42,11 +43,14 @@ class PrimaryButton extends Component {
       type === 'submit'
         ? (
           <button type="submit" className={classNames.join(' ')} disabled={disabled ? "disabled" : ""}>
-            <span>
-              { iconButton ? this.props.children : null }
-              {title}
-            </span>
+            <LoadingMask placeholderId="loginPlaceholder" normalPlaceholder={false} buttonPlaceholder={true}>
+              <span>
+                { iconButton ? this.props.children : null }
+                {title}
+              </span>
+            </LoadingMask>
           </button>
+
         )
         : (
           <button type="button" className={classNames.join(' ')} onClick={callback} disabled={disabled}>

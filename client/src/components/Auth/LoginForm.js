@@ -78,7 +78,6 @@ class LoginForm extends Component {
         </div>
 
         <div className="d-flex justify-content-center">
-          <LoadingMask placeholderId="loginPlaceholder" normalPlaceholder={false} buttonPlaceholder={true}>
             <PrimaryButton
               type="submit"
               customClasses={styles.loginButton}
@@ -86,7 +85,6 @@ class LoginForm extends Component {
               line={false}
               round
             />
-          </LoadingMask>
         </div>
 
         <div className="d-flex justify-content-center mt-10">

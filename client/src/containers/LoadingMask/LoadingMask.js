@@ -30,7 +30,10 @@ class LoadingMask extends Component {
             />
           ) : null
         }
-        {facebookPlaceholder && isProcessing ? null : this.props.children}
+        {
+          (facebookPlaceholder || buttonPlaceholder) && isProcessing
+            ? null : this.props.children
+        }
       </div>
     );
   }
