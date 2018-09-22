@@ -63,6 +63,7 @@ class SelectionTeachingDayViewMode extends Component {
                           editMode={editable}
                           fieldId={`${day.name}_start_time`}
                           fieldLabel={this.context.t('start_time')}
+                          placeholder={this.context.t('select_course_start_hour')}
                           isMandatory
                           fieldName={`${day.name}_start_time`}
                           typeField="custom_select"
@@ -80,6 +81,7 @@ class SelectionTeachingDayViewMode extends Component {
                           editMode={editable}
                           fieldId={`${day.name}_end_time`}
                           fieldLabel={this.context.t('end_time')}
+                          placeholder={this.context.t('select_course_end_hour')}
                           isMandatory
                           fieldName={`${day.name}_end_time`}
                           typeField="custom_select"
@@ -100,6 +102,7 @@ class SelectionTeachingDayViewMode extends Component {
                             editMode={editable}
                             fieldId="start_time"
                             fieldLabel={this.context.t('start_time')}
+                            placeholder={this.context.t('select_course_start_hour')}
                             isMandatory
                             fieldName="start_time"
                             typeField="custom_select"
@@ -117,6 +120,7 @@ class SelectionTeachingDayViewMode extends Component {
                             editMode={editable}
                             fieldId="end_time"
                             fieldLabel={this.context.t('end_time')}
+                            placeholder={this.context.t('select_course_end_hour')}
                             isMandatory
                             fieldName="end_time"
                             typeField="custom_select"

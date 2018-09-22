@@ -827,4 +827,6 @@ export default {
   pending_account_status: 'Pending for confirmation',
   join_to_class_button_name: 'Join to class',
   selected_hour_warning_message: 'The hour will teach the students, that is the time zone of Vietnam.',
+  select_course_start_hour: 'Select hour',
+  select_course_end_hour: 'Select hour',
 };

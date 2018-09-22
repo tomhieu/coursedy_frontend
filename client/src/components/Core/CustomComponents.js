@@ -165,10 +165,18 @@ export const renderDatePicker = ({
 
 export const renderSelect = (selectOptions) => {
   return ({
-    input, label, type, className, disabled = false, meta: { touched, error, warning }
+    input, label, placeholder, type, className, disabled = false, meta: { touched, error, warning }
   }) => (
     <div>
-      <Select2 {...input} className={className} disabled={disabled} data={selectOptions} />
+      <Select2
+        {...input}
+        options={{
+          placeholder,
+        }}
+        className={className}
+        disabled={disabled}
+        data={selectOptions}
+      />
       {touched && ((error && <span className="input-errors">{error}</span>) || (warning
         && <span>{warning}</span>))}
     </div>

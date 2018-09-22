@@ -790,4 +790,6 @@ export default {
   pending_account_status: 'Chờ xác nhận',
   join_to_class_button_name: 'Vào lớp học',
   selected_hour_warning_message: 'Giờ sẽ dạy học viên, giờ này là theo giờ vietnam.',
+  select_course_start_hour: 'Chọn giờ',
+  select_course_end_hour: 'Chọn giờ',
 };
