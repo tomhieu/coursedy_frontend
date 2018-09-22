@@ -135,6 +135,7 @@
 }
 
 .courseListContainer {
+
 /*  position: absolute;
   top: 0;
   height: calc(100% - 60px);
@@ -175,6 +176,12 @@
 .filterCourseContainer {
   position: relative;
   flex: 3;
+}
+
+@media (max-width: 1200px)  {
+  .filterCourseContainer {
+    flex: 2;
+  }
 }
 
 .filterTeachContainer {

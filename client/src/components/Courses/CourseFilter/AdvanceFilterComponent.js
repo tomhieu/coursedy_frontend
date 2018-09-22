@@ -1,10 +1,10 @@
 import { Component } from 'react';
 import * as React from 'react';
 import cssModules from 'react-css-modules';
-import { FilterOption } from '../../FilterOption/FilterOption';
 import FormField from '../../Core/FormField';
 import styles from './CourseFilter.module.scss';
 import { DAYS_IN_WEEK } from '../../../actions/CourseFormActionCreator';
+import FilterOption from '../../FilterOption/FilterOption';
 
 class AdvanceFilterComponent extends Component {
   render() {
@@ -85,17 +85,21 @@ class AdvanceFilterComponent extends Component {
               </div>
             ) : null
         }
-        <div className="flex-col-3">
-          <FilterOption
-            label={this.context.t('level')}
-            onSelectFilter={onSelectFilter}
-            options={listSpecializes}
-            isGroupOption
-            selectedOptions={selectedSpecializes}
-            type="group-select"
-            name="selectedSpecializes"
-          />
-        </div>
+        {
+          listSpecializes.length ?
+            <div className="flex-col-3">
+              <FilterOption
+                label={this.context.t('level')}
+                groupLabel={this.context.t('course_specialize_search_title')}
+                onSelectFilter={onSelectFilter}
+                options={listSpecializes}
+                isGroupOption
+                selectedOptions={selectedSpecializes}
+                type="group-select"
+                name="selectedSpecializes"
+              />
+            </div> : null
+        }
       </div>
     );
   }

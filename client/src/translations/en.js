@@ -826,4 +826,5 @@ export default {
   account_pending_warning_message: 'Your account is in status as {pending_status}. Please complete the account information. Once the information is complete, we will check and confirm the information within 24 hours.',
   pending_account_status: 'Pending for confirmation',
   join_to_class_button_name: 'Join to class',
+  course_specialize_search_title: 'Search by course specialization'
 };
