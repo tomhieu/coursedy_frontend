@@ -5,6 +5,7 @@ import * as ReactDOM from 'react-dom';
 import AutoComplete from '../../AutoComplete/AutoComplete';
 import styles from './CourseFilter.module.scss';
 import Chip from '../../Core/Chip/Chip';
+import ObjectUtils from '../../../utils/ObjectUtils';
 
 class BasicFilterComponent extends Component {
   constructor(props) {
@@ -138,11 +139,11 @@ class BasicFilterComponent extends Component {
             formfieldValues.selectedMinFee
               ? (
                 <Chip
-                  key="filter_max_fee"
-                  ref="filter_max_fee"
+                  key="filter_min_fee"
+                  ref="filter_min_fee"
                   onRequestDelete={() => onRemoveFilter(null, 'resetMinFee')}
                   show={this.hiddenFilters.indexOf('filter_max_fee') < 0}
-                  label={this.context.t('min_fee_chip', { min_fee: formfieldValues.selectedMinFee })}
+                  label={this.context.t('min_fee_chip', { min_fee: ObjectUtils.currencyFormat(formfieldValues.selectedMinFee) })}
                 />
               ) : null
           }
@@ -150,11 +151,11 @@ class BasicFilterComponent extends Component {
             formfieldValues.selectedMaxFee
               ? (
                 <Chip
-                  key="filter_min_fee"
-                  ref="filter_min_fee"
+                  key="filter_max_fee"
+                  ref="filter_max_fee"
                   onRequestDelete={() => onRemoveFilter(null, 'resetMaxFee')}
                   show={this.hiddenFilters.indexOf('filter_min_fee') < 0}
-                  label={this.context.t('max_fee_chip', { max_fee: formfieldValues.selectedMaxFee })}
+                  label={this.context.t('max_fee_chip', { max_fee: ObjectUtils.currencyFormat(formfieldValues.selectedMaxFee) })}
                 />
               ) : null
           }
