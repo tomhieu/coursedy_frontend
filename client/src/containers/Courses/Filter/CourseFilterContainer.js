@@ -179,7 +179,7 @@ const mapStateToProps = (state) => {
   const { CourseFilter, form = {}, referenceData } = state;
   const categories = referenceData.courseCategories || [];
   const locations = referenceData.locations || [];
-  const lang = state.i18nState.lang;
+  const { lang }= state.i18nState;
   const {
     courses = [], selectedCourses = [], displayMode,
     totalResult = 0, currentPage, perPage, orderBy,
@@ -191,7 +191,7 @@ const mapStateToProps = (state) => {
     id: sug.id,
     avatar: sug.cover_image,
     title: sug.title,
-    sub_title: TT.t('teacher_info_suggestion', { teacher: sug.user.name })
+    sub_title: TT.changeLocale(lang).t('teacher_info_suggestion', { teacher: sug.user.name })
   }));
 
   let initializeFields = courseFilterForm.values ? Object.assign({}, courseFilterForm.values) : {};
