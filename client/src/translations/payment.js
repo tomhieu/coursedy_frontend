@@ -27,6 +27,8 @@ export const payment_translation = {
     "public_payment_cart_title": "Khóa học đã chọn",
     "public_payment_cart_total": "Tổng:",
     "public_payment_cart_empty": "Không có khóa học được chọn",
+    "public_payment_cart_confirm_modal_title": "Bạn chắc chứ?",
+    "public_payment_cart_confirm_modal_content": "Khóa học <b>{title}</b> sẽ bị xóa khỏi danh sách đăng ký.",
 
     "admin_payment_methods": "Phương thức thanh toán",
     "admin_payment_methods_manual": "Nạp tiền tại quầy",
@@ -72,6 +74,8 @@ export const payment_translation = {
     "public_payment_cart_title": "Selected courses",
     "public_payment_cart_total": "Total:",
     "public_payment_cart_empty": "List is empty",
+    "public_payment_cart_confirm_modal_title": "Are you sure?",
+    "public_payment_cart_confirm_modal_content": "Remove <b>{title}</b> from your cart.",
 
     "admin_payment_methods": "Payment methods",
     "admin_payment_methods_manual": "At counter",

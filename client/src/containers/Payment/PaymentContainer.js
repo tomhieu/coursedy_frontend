@@ -14,6 +14,7 @@ import {PUBLIC_COURSE_DETAIL_REMOVE_COURSE_FROM_CART} from "../../constants/Cour
 import ObjectUtils from "utils/ObjectUtils"
 import {LinkContainer} from 'react-router-bootstrap'
 import TrashIcon from "../../components/Core/Icons/TrashIcon"
+import SimpleDialogComponent from "../../components/Core/SimpleDialogComponent"
 
 class PaymentContainer extends Component {
   constructor(props) {
@@ -31,7 +32,9 @@ class PaymentContainer extends Component {
           accountNumber: '',
           accountOffice: ''
         }
-      }
+      },
+      selectedCourse: null,
+      showConfirmModal: false
     }
   }
 
@@ -54,10 +57,28 @@ class PaymentContainer extends Component {
     })
   }
 
-  removeCourseFromCart(course) {
-    // console.log('Remove course from cart ')
-    // console.log(course)
-    this.props.removeCourseFromCart(course)
+  openConfirmModal(course) {
+    this.setState({
+      selectedCourse: course,
+      showConfirmModal: true
+    })
+  }
+
+  closeConfimModal() {
+    this.setState({
+      selectedCourse: null,
+      showConfirmModal: false
+    })
+  }
+
+  removeCourseFromCart() {
+    console.log('DEBUG ')
+    // console.log(this.state.selectedCourse)
+    this.props.removeCourseFromCart(this.state.selectedCourse)
+    this.setState({
+      selectedCourse: null,
+      showConfirmModal: false
+    })
   }
 
   changeBank(bankId) {
@@ -268,7 +289,7 @@ class PaymentContainer extends Component {
               <div className="cart-content container">
                 {
                   cart.map((course) => (
-                    <div className="course-table-row row">
+                    <div className="course-table-row row" key={'cart-course-' + course.id}>
                       <div className="course-divider"></div>
                       <div className="col-md-8 no-pad-right">
                         <LinkContainer to={'/courses/' + course.id}>
@@ -286,7 +307,7 @@ class PaymentContainer extends Component {
                         <div className="course-tuition-fee">
                           <span>{ObjectUtils.currencyFormat(course.tuition_fee)}</span>
                         </div>
-                        <a className="remove-course" onClick={this.removeCourseFromCart.bind(this, course)}>
+                        <a className="remove-course" onClick={this.openConfirmModal.bind(this, course)}>
                           <TrashIcon width={14} height={14}></TrashIcon>
                         </a>
                       </div>
@@ -298,7 +319,21 @@ class PaymentContainer extends Component {
                   <div className="col-md-7 pad"><strong>{this.context.t('public_payment_cart_total')}</strong></div>
                   <div className="col-md-5 pad text-right"><strong>{ObjectUtils.currencyFormat(cartTotal)}</strong></div>
                 </div>
-
+                <SimpleDialogComponent 
+                  show={this.state.showConfirmModal} 
+                  title={this.context.t('public_payment_cart_confirm_modal_title')} 
+                  acceptCallback={this.removeCourseFromCart.bind(this)}
+                  cancelCallback={this.closeConfimModal.bind(this)}
+                >
+                  <p
+                    dangerouslySetInnerHTML={{ 
+                      __html: this.context.t(
+                        'public_payment_cart_confirm_modal_content', 
+                        {title: this.state.selectedCourse ? this.state.selectedCourse.title : ''}
+                      ) 
+                    }}
+                  />
+                </SimpleDialogComponent>
               </div> :
               <div className="text-center">
                 <div className="course-divider"></div>
