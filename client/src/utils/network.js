@@ -17,14 +17,14 @@ const Network = (res = {}) => {
   const buildUrl = (path, isBBBApi = false) => {
     const { id, resource } = res;
     let parameters = [
-      config.apiEnpoint,
+      config.apiEndpoint,
       'api',
       'v1'
     ];
 
     if (isBBBApi) {
       parameters = [
-        config.apiEnpoint,
+        config.apiEndpoint,
         'bigbluebutton',
         'api'
       ];
@@ -87,7 +87,7 @@ const Network = (res = {}) => {
       return request(`${buildUrl(path, isBBBApi)}?${q}`, Object.assign(
         options,
         defaultOptions,
-        { 
+        {
           method: 'GET',
           headers: headers
         }
@@ -107,10 +107,10 @@ const Network = (res = {}) => {
       return request(buildUrl(path), Object.assign(
         options,
         defaultOptions,
-        { 
+        {
           method: 'PUT',
           headers: headers,
-          body: JSON.stringify(body) 
+          body: JSON.stringify(body)
         }
       ));
     },
@@ -127,7 +127,7 @@ const Network = (res = {}) => {
       return request(buildUrl(path), Object.assign(
         options,
         defaultOptions,
-        { 
+        {
           method: 'DELETE',
           headers: headers
         }
