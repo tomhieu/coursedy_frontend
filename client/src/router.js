@@ -217,7 +217,8 @@ export const routes = [
   // other router
   {
     path: '/payment',
-    component: Pages.PaymentPage,
+    component: requireLogin(Pages.PaymentPage),
+    roles: [UserRole.STUDENT, UserRole.ADMIN],
     exact: true
   },
   {

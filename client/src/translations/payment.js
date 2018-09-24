@@ -21,6 +21,8 @@ export const payment_translation = {
     "public_payment_transfer_step_1_instruction": "Bên dưới là danh sách ngân hàng <strong>Coursedy</strong> hỗ trợ. Vui lòng chọn ngân hàng để nhận thông tin chuyển khoản:",
     "public_payment_transfer_step_2": "Bước 2:",
     "public_payment_transfer_step_2_instruction": "Thực hiện chuyển khoản cho <strong>Coursedy</strong> với cú pháp:",
+    "public_payment_transfer_step_3": "Bước 3:",
+    "public_payment_transfer_step_3_instruction": "Sau khi nhận được chuyển khoản, Coursedy sẽ gửi email hướng dẫn hoàn thành việc mua khóa học.",
 
     "public_payment_cart_title": "Khóa học đã chọn",
     "public_payment_cart_total": "Tổng:",
@@ -64,6 +66,8 @@ export const payment_translation = {
     "public_payment_transfer_step_1_instruction": "Choose a bank account for transferring money:",
     "public_payment_transfer_step_2": "Step 2:",
     "public_payment_transfer_step_2_instruction": "Make a transfer for <strong>Coursedy</strong> with syntax:",
+    "public_payment_transfer_step_3": "Step 3:",
+    "public_payment_transfer_step_3_instruction": "After Coursedy receive money, you will receive an e-mail instructing how to checkout cart.",
 
     "public_payment_cart_title": "Selected courses",
     "public_payment_cart_total": "Total:",

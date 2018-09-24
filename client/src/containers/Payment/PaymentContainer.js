@@ -140,7 +140,7 @@ class PaymentContainer extends Component {
                       <div className="col-md-12 no-pad payment-step">
                         <p className="mb-5">
                           <i className="fa fa-chevron-circle-right payment-step-icon"></i>
-                          <strong>{this.context.t('public_payment_manual_step_1')}</strong>
+                          <strong>{this.context.t('public_payment_manual_step_2')}</strong>
                           <span> {this.context.t('public_payment_manual_step_2_instruction')}</span>
                         </p>
                         <p
@@ -243,7 +243,15 @@ class PaymentContainer extends Component {
                         </div>
 
                       </div>
-
+                      <div className="col-md-12 no-pad payment-step">
+                        <p>
+                          <i className="fa fa-chevron-circle-right payment-step-icon"></i>
+                          <strong>{this.context.t('public_payment_transfer_step_3')} </strong>
+                          <span
+                            dangerouslySetInnerHTML={{ __html: this.context.t('public_payment_transfer_step_3_instruction') }}
+                          />
+                        </p>
+                      </div>
                     </div>
                   </div>
                 </div> : null
