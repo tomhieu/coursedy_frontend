@@ -708,8 +708,7 @@ body.application {
     height: 26px;
     position: absolute;
     top: 5px;
-    right: 3px;
-    width: 33px;
+    right: 10px;
     border-radius: 5px;
     b {
       border-width: 7px 6px 0 6px;
@@ -767,7 +766,7 @@ body.application {
   }
 
   .select2-container--default .select2-selection--single .select2-selection__rendered {
-    padding: 1px 10px;
+    padding: 1px 28px 1px 10px;
   }
 
   .select2-search__field {

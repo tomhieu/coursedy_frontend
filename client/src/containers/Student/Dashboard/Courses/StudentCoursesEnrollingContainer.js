@@ -13,6 +13,12 @@ class StudentCoursesEnrollingContainer extends Component {
     this.props.activateTab(StudentNavigationTab.ENROLLING_COURSE_LIST);
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (this.props.lang !== nextProps.lang) {
+      this.props.fetchEnrollingCourseList();
+    }
+  }
+
   render() {
     const { courses, isFetching } = this.props;
     return (
@@ -40,11 +46,12 @@ StudentCoursesEnrollingContainer.contextTypes = {
 
 const mapStateToProps = (state) => {
   const { StudentCourseListReducer } = state;
+  const { lang } = state.i18nState;
   const {
     isFetchingEnrollCourse,
     enrollingCourses
   } = StudentCourseListReducer;
-  return { courses: enrollingCourses, isFetching: isFetchingEnrollCourse };
+  return { courses: enrollingCourses, isFetching: isFetchingEnrollCourse, lang };
 };
 
 const mapDispatchToProps = dispatch => ({

@@ -88,7 +88,7 @@ class LessonDetailFormContainer extends Component {
                 formControlName="period"
                 typeField="custom_input"
                 onClosedField={this.onClosedField.bind(this)}
-                content={`${lesson.period} ${TT.t('lesson_period_unit')}`}
+                content={this.context.t(this.context.t('lesson_period_unit'), { period: lesson.period })}
                 displayStyle="default-field"
                 {...this.props}
               />

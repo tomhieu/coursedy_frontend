@@ -30,7 +30,7 @@ const Network = (res = {}) => {
       ];
     }
 
-    if (path.trim() && path.trim() != '/') parameters = parameters.concat([path]);
+    if (path.trim() && path.trim() !== '/') parameters = parameters.concat([path]);
 
     if (resource) parameters = parameters.concat([resource]);
     if (id) parameters = parameters.concat([id]);
@@ -47,7 +47,7 @@ const Network = (res = {}) => {
       'access-token': localStorage.getItem('ezyLearningToken'),
       client: localStorage.getItem('ezyLearningClient'),
       uid: localStorage.getItem('ezyLearningUid'),
-      'X-Language': localStorage.getItem('coursedyLang') ||  'vn'
+      'X-Language': localStorage.getItem('coursedyLang') || 'vi',
     }
   };
 
@@ -68,7 +68,7 @@ const Network = (res = {}) => {
         defaultOptions,
         {
           method: 'POST',
-          headers: headers,
+          headers,
           body: JSON.stringify(body)
         }
       ));
@@ -129,7 +129,7 @@ const Network = (res = {}) => {
         defaultOptions,
         {
           method: 'DELETE',
-          headers: headers
+          headers
         }
       ));
     },
