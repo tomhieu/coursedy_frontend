@@ -15,6 +15,10 @@ import ObjectUtils from "utils/ObjectUtils"
 import {LinkContainer} from 'react-router-bootstrap'
 import TrashIcon from "../../components/Core/Icons/TrashIcon"
 import SimpleDialogComponent from "../../components/Core/SimpleDialogComponent"
+// For next phrase - online payment
+// import PrimaryButton from "../../components/Core/PrimaryButton/PrimaryButton"
+// import CheckoutCartPopup from "../../components/Courses/CheckoutPopup/CheckoutCartPopup"
+// import CheckoutCartSuccessPopup from "../../components/Courses/CheckoutPopup/CheckoutCartSuccessPopup"
 
 class PaymentContainer extends Component {
   constructor(props) {
@@ -34,7 +38,9 @@ class PaymentContainer extends Component {
         }
       },
       selectedCourse: null,
-      showConfirmModal: false
+      showConfirmModal: false,
+      showCheckoutModal: false,
+      showCheckoutSuccessModal: false,
     }
   }
 
@@ -45,12 +51,6 @@ class PaymentContainer extends Component {
     this.props.fetchBankTransferToken(this.props)
   }
 
-  // changePaymentMethods(method) {
-  //   this.setState({
-  //     selectMethod: method,
-  //     step: 2
-  //   })
-  // }
   changeActiveTab(activeTab) {
     this.setState({
       activeTab: activeTab
@@ -78,6 +78,35 @@ class PaymentContainer extends Component {
     this.setState({
       selectedCourse: null,
       showConfirmModal: false
+    })
+  }
+
+  openCheckoutModal() {
+    this.setState({
+      showCheckoutModal: true
+    })
+  }
+
+  closeCheckoutModal() {
+    this.setState({
+      showCheckoutModal: false
+    })
+  }
+
+  checkoutCart() {
+    console.log('DEBUG ')
+    console.log('checkout cart')
+  }
+
+  openCheckoutSuccessModal() {
+    this.setState({
+      showCheckoutSuccessModal: true
+    })
+  }
+
+  closeCheckoutSuccessModal() {
+    this.setState({
+      showCheckoutSuccessModal: false
     })
   }
 
@@ -323,6 +352,27 @@ class PaymentContainer extends Component {
                     <strong className={currentUser.balance < cartTotal ? "color-red" : "color-green" }>{ObjectUtils.currencyFormat(currentUser.balance)}</strong>
                   </div>
                 </div>
+                {/* For next phrase - online payment
+                <div className="course-table-row row">
+                  <PrimaryButton
+                    line={false}
+                    customClasses="full-width"
+                    callback={this.openCheckoutModal.bind(this)}
+                    title={this.context.t('checkout_cart_button')}
+                    disabled={currentUser.balance < cartTotal}
+                  />
+                  <CheckoutCartPopup
+                    show={this.state.showCheckoutModal}
+                    cart={cart}
+                    acceptCallback={this.checkoutCart.bind(this)}
+                    cancelCallback={this.closeCheckoutModal.bind(this)}
+                  />
+                  <CheckoutCartSuccessPopup
+                    show={this.state.showCheckoutSuccessModal}
+                    cart={cart}
+                    acceptCallback={this.closeCheckoutSuccessModal.bind(this)}
+                  />
+                </div>*/}
                 <SimpleDialogComponent 
                   show={this.state.showConfirmModal} 
                   title={this.context.t('public_payment_cart_confirm_modal_title')} 
