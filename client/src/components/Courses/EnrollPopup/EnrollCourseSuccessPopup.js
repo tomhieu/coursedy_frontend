@@ -16,7 +16,7 @@ class EnrollCourseSuccessPopup extends Component {
       >
         <div className={`${styles.enrollSuccessContent} row`}>
           <div className="col-md-12">
-            <span className={styles.enrollSuccessMessage}>{this.context.t('enroll_course_success_message', { courseTitle: <strong>{course.title}</strong> })}</span>
+            <span className={styles.enrollSuccessMessage}>{this.context.t('enroll_course_success_message', { courseTitle: <strong>{course ? course.title : ''}</strong> })}</span>
           </div>
           <div className="col-md-12">
             <span className={styles.enrollSuccessMessage}>{this.context.t('enroll_course_success_message_2')}</span>

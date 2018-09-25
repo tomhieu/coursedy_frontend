@@ -14,11 +14,11 @@ import {PUBLIC_COURSE_DETAIL_REMOVE_COURSE_FROM_CART} from "../../constants/Cour
 import ObjectUtils from "utils/ObjectUtils"
 import {LinkContainer} from 'react-router-bootstrap'
 import TrashIcon from "../../components/Core/Icons/TrashIcon"
+import CourseSelectionIcon from "../../components/Core/Icons/CourseSelectionIcon"
 import SimpleDialogComponent from "../../components/Core/SimpleDialogComponent"
-// For next phrase - online payment
-// import PrimaryButton from "../../components/Core/PrimaryButton/PrimaryButton"
-// import CheckoutCartPopup from "../../components/Courses/CheckoutPopup/CheckoutCartPopup"
-// import CheckoutCartSuccessPopup from "../../components/Courses/CheckoutPopup/CheckoutCartSuccessPopup"
+import EnrollCoursePopup from "../../components/Courses/EnrollPopup/EnrollCoursePopup"
+import EnrollCourseSuccessPopup from "../../components/Courses/EnrollPopup/EnrollCourseSuccessPopup"
+import * as PublicCourseActions from '../../actions/PublicCourseActionCreator';
 
 class PaymentContainer extends Component {
   constructor(props) {
@@ -39,8 +39,8 @@ class PaymentContainer extends Component {
       },
       selectedCourse: null,
       showConfirmModal: false,
-      showCheckoutModal: false,
-      showCheckoutSuccessModal: false,
+      showEnrollModal: false,
+      showEnrollSuccessModal: false,
     }
   }
 
@@ -81,32 +81,43 @@ class PaymentContainer extends Component {
     })
   }
 
-  openCheckoutModal() {
+  openEnrollModal(course) {
     this.setState({
-      showCheckoutModal: true
+      selectedCourse: course,
+      showEnrollModal: true
     })
   }
 
-  closeCheckoutModal() {
+  closeEnrollModal() {
     this.setState({
-      showCheckoutModal: false
+      selectedCourse: null,
+      showEnrollModal: false
     })
   }
 
-  checkoutCart() {
-    console.log('DEBUG ')
-    console.log('checkout cart')
-  }
-
-  openCheckoutSuccessModal() {
-    this.setState({
-      showCheckoutSuccessModal: true
+  enrollToCourse(course) {
+    //Add To Cart
+    const res = this.props.enrollCourse(course.id);
+    res.then(() => {
+      this.closeEnrollModal();
+      this.openEnrollSuccessModal();
+      //Refresh user balance
+    }, (error) => {
+      let { errors } = error
+      console.log(errors)
+      this.closeEnrollModal();
     })
   }
 
-  closeCheckoutSuccessModal() {
+  openEnrollSuccessModal() {
     this.setState({
-      showCheckoutSuccessModal: false
+      showEnrollSuccessModal: true
+    })
+  }
+
+  closeEnrollSuccessModal() {
+    this.setState({
+      showEnrollSuccessModal: false
     })
   }
 
@@ -336,6 +347,13 @@ class PaymentContainer extends Component {
                         <div className="course-tuition-fee">
                           <span>{ObjectUtils.currencyFormat(course.tuition_fee)}</span>
                         </div>
+                        {
+                          course.tuition_fee < currentUser.balance ? 
+                            <a className="remove-course" onClick={this.openEnrollModal.bind(this, course)}>
+                              <CourseSelectionIcon width={14} height={14}></CourseSelectionIcon>
+                            </a> : null
+                        }
+                        
                         <a className="remove-course" onClick={this.openConfirmModal.bind(this, course)}>
                           <TrashIcon width={14} height={14}></TrashIcon>
                         </a>
@@ -352,27 +370,17 @@ class PaymentContainer extends Component {
                     <strong className={currentUser.balance < cartTotal ? "color-red" : "color-green" }>{ObjectUtils.currencyFormat(currentUser.balance)}</strong>
                   </div>
                 </div>
-                {/* For next phrase - online payment
-                <div className="course-table-row row">
-                  <PrimaryButton
-                    line={false}
-                    customClasses="full-width"
-                    callback={this.openCheckoutModal.bind(this)}
-                    title={this.context.t('checkout_cart_button')}
-                    disabled={currentUser.balance < cartTotal}
-                  />
-                  <CheckoutCartPopup
-                    show={this.state.showCheckoutModal}
-                    cart={cart}
-                    acceptCallback={this.checkoutCart.bind(this)}
-                    cancelCallback={this.closeCheckoutModal.bind(this)}
-                  />
-                  <CheckoutCartSuccessPopup
-                    show={this.state.showCheckoutSuccessModal}
-                    cart={cart}
-                    acceptCallback={this.closeCheckoutSuccessModal.bind(this)}
-                  />
-                </div>*/}
+                <EnrollCoursePopup
+                  show={this.state.showEnrollModal}
+                  course={this.state.selectedCourse}
+                  acceptCallback={this.enrollToCourse.bind(this, this.state.selectedCourse)}
+                  cancelCallback={this.closeEnrollModal.bind(this)}
+                />
+                <EnrollCourseSuccessPopup
+                  show={this.state.showEnrollSuccessModal}
+                  course={this.state.selectedCourse}
+                  acceptCallback={this.closeEnrollSuccessModal.bind(this)}
+                />
                 <SimpleDialogComponent 
                   show={this.state.showConfirmModal} 
                   title={this.context.t('public_payment_cart_confirm_modal_title')} 
@@ -507,6 +515,7 @@ const mapDispatchToProps = (dispatch) => ({
       }, 250)
     })
   }),
+  enrollCourse: (courseId) => dispatch(PublicCourseActions.submitEnrollCourse(courseId)),
 })
 
 
