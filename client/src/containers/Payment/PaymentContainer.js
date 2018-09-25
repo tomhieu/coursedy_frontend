@@ -318,6 +318,10 @@ class PaymentContainer extends Component {
                   <div className="course-divider"></div>
                   <div className="col-md-7 pad"><strong>{this.context.t('public_payment_cart_total')}</strong></div>
                   <div className="col-md-5 pad text-right"><strong>{ObjectUtils.currencyFormat(cartTotal)}</strong></div>
+                  <div className="col-md-7 pad"><strong>{this.context.t('public_payment_your_balance')}</strong></div>
+                  <div className="col-md-5 pad text-right">
+                    <strong className={currentUser.balance < cartTotal ? "color-red" : "color-green" }>{ObjectUtils.currencyFormat(currentUser.balance)}</strong>
+                  </div>
                 </div>
                 <SimpleDialogComponent 
                   show={this.state.showConfirmModal} 
@@ -366,7 +370,7 @@ const mapStateToProps = (state) => ({
   cart: state.PublicCourseDetail.cart,
   cartTotal: state.PublicCourseDetail.cartTotal,
   currentUser: state.session.currentUser,
-  bankTransferToken: state.Payment.bankTransferToken
+  bankTransferToken: state.Payment.bankTransferToken,
 })
 
 const mapDispatchToProps = (dispatch) => ({
