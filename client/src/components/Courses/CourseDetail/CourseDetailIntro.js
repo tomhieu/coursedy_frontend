@@ -1,8 +1,7 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import './CourseDetailIntro.scss';
 import DateUtils from '../../../utils/DateUtils';
-import { PUBLIC_COURSE_DETAIL_MENU_INTRO } from '../../../constants/WebConstants.js';
-
+import { HOURS_IN_DAY } from 'actions/CourseFormActionCreator';
 
 class CourseDetailIntro extends Component {
   constructor() {
@@ -36,13 +35,17 @@ class CourseDetailIntro extends Component {
     this.setState({ isViewMore: !this.state.isViewMore });
   }
 
+  getTeachingTime(time) {
+    const [selectedHour] = HOURS_IN_DAY.filter((h) => h.id === time);
+    return selectedHour.text;
+  }
 
   render() {
     const { course, course_sections, activeMenu } = this.props;
-    const active = activeMenu === PUBLIC_COURSE_DETAIL_MENU_INTRO;
+    const teachingDays = course.week_day_schedules ? course.week_day_schedules : [];
     return (
       <div id="course-detail-intro" className="course-detail-section">
-        <div className="section-title text-left mb-20">
+        <div className="section-title coursedy-headline text-left mb-20">
           <h3>{this.context.t('course_intro')}</h3>
         </div>
         <div className="course-intro">
@@ -118,12 +121,10 @@ class CourseDetailIntro extends Component {
             </ul>
           </div>
         </div>
-        <h5
-          className="course-about-heading text-uppercase font700 mb-20"
-        >
-          {this.context.t('course_about')}
-        </h5>
         <div className="course-about-content">
+          <h5 className="coursedy-headline mb-20">
+            {this.context.t('course_about')}
+          </h5>
           <div
             ref={(ref) => { this.courseRefDes = ref; }}
             className={`${this.state.isViewMore ? 'course-des-view-less' : 'course-des-view-more'}`}
@@ -137,6 +138,25 @@ class CourseDetailIntro extends Component {
               {this.context.t('see_more')}
             </div>
           ) : null}
+        </div>
+        <div className="course-day-list">
+          <div className="coursedy-headline">
+            {this.context.t('course_day_in_week')}
+          </div>
+          <div className="mt-7">
+            {
+              teachingDays.map(day => {
+                return (
+                  <div className="d-flex flex-row">
+                    <span className="box-date">{this.context.t(day.day)}</span>
+                    <span className="box-time">{this.getTeachingTime(day.start_time)}</span>
+                    <span className="seperate-line">{this.context.t('course_day_in_week_seperate')}</span>
+                    <span className="box-time">{this.getTeachingTime(day.end_time)}</span>
+                  </div>
+                )
+              })
+            }
+          </div>
         </div>
       </div>
     );

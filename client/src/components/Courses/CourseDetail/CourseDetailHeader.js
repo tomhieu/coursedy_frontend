@@ -4,7 +4,6 @@ import styles from './CourseDetailHeader.module.scss';
 import RatingItem from '../../Rating/index';
 import DateUtils from '../../../utils/DateUtils';
 
-
 class CourseDetailHeader extends Component {
   render() {
     const { categories, course, course_sections } = this.props;

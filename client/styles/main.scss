@@ -597,6 +597,11 @@ body.application {
       color: $white-color;
       padding: 20px 0;
     }
+    .public-course-details {
+      .course-details-container {
+        background-color: $white-color;
+      }
+    }
   }
 
   @media (max-width: 575px) {
@@ -625,6 +630,7 @@ body.application {
     color: $dark-text-color;
     text-align: center;
     margin-bottom: 65px;
+    font-family: $font-headline;
   }
 
   .row-padding {

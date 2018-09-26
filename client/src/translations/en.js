@@ -829,5 +829,7 @@ export default {
   selected_hour_warning_message: 'The hour will teach the students, that is the time zone of Vietnam.',
   select_course_start_hour: 'Select hour',
   select_course_end_hour: 'Select hour',
-  course_specialize_search_title: 'Search by course specialization'
+  course_specialize_search_title: 'Search by course specialization',
+  course_day_in_week: 'Week days schedule',
+  course_day_in_week_seperate: 'to',
 };

@@ -2,11 +2,39 @@
  General styles
  */
 @import "global_style";
-@import url(https://fonts.googleapis.com/css?family=Lato:300,400,700);
+
+@font-face {
+  font-family: 'harmonia-regular';
+  src: url('../fonts/Coursedy-Harmonia-Regular.woff') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'harmonia-semi-bold';
+  src: url('../fonts/Coursedy-Harmonia-SemiBold.woff') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'harmonia-bold';
+  src: url('../fonts/Coursedy-Harmonia-Bold.woff') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'serif';
+  src: url('../fonts/Coursedy-Serif-Regular.woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
 body {
   text-rendering: optimizeLegibility !important;
   -webkit-font-smoothing: antialiased !important;
-  font-family: 'Lato', sans-serif;
+  font-family: 'harmonia-regular', sans-serif;
   color: $black-color;
   font-weight: 400;
   background-color: $color-default-bg;
@@ -1856,6 +1884,10 @@ textarea, .form-control {
   margin-top: 5px !important
 }
 
+.mt-7 {
+  margin-top: 7px !important
+}
+
 .mt-10 {
   margin-top: 10px !important
 }
@@ -3353,4 +3385,10 @@ a.clear-filter {
   font-weight: normal;
   font-size: 12px;
   text-transform: lowercase;
+}
+
+.coursedy-headline {
+  font-family: 'serif';
+  font-size: 24px;
+  line-height: 24px;
 }

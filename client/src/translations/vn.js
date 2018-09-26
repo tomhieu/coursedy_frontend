@@ -792,5 +792,7 @@ export default {
   selected_hour_warning_message: 'Giờ sẽ dạy học viên, giờ này là theo giờ vietnam.',
   select_course_start_hour: 'Chọn giờ',
   select_course_end_hour: 'Chọn giờ',
-  course_specialize_search_title: 'Tìm kiếm theo lĩnh vực'
+  course_specialize_search_title: 'Tìm kiếm theo lĩnh vực',
+  course_day_in_week: 'Lịch học trong tuần',
+  course_day_in_week_seperate: 'đến',
 };

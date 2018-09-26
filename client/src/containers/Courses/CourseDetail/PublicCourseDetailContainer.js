@@ -1,11 +1,10 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React, {Component} from 'react';
+import {connect} from 'react-redux';
 import * as WebConstants from 'constants/WebConstants';
-import { CourseDetail } from '../../../components/index';
+import {CourseDetail} from '../../../components/index';
 import * as PublicCourseActions from '../../../actions/PublicCourseActionCreator';
 import * as ReferActions from '../../../actions/ReferenceActions/ReferenceDataActionCreator';
-import { openConfirmationPopup } from '../../../actions/MainActionCreator';
-import { TT } from '../../../utils/locale';
+import {openConfirmationPopup} from '../../../actions/MainActionCreator';
 import PageContainer from '../../../utils/PageContainer';
 import * as sessionActions from '../../../actions/SessionActionCreator';
 
