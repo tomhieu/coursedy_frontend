@@ -37,6 +37,8 @@ import StudentDashboardCourseEnrolled from './pages/StudentDashboard/StudentDash
 import StudentDashboardCourseEnrolling from './pages/StudentDashboard/StudentDashboardCourseEnrolling';
 import StudentDashboardCourseFollow from './pages/StudentDashboard/StudentDashboardCourseFollow';
 import {TutorStatus} from './constants/TutorStatus';
+import StudentCourseDetailContainer from './containers/Student/Dashboard/Courses/StudentCourseDetailContainer';
+import StudentDashboardCourseDetails from './pages/StudentDashboard/StudentDashboardCourseDetails';
 
 // define routes for config
 export const routes = [
@@ -165,6 +167,12 @@ export const routes = [
   {
     path: '/student/dashboard/courses/follow',
     component: requireLogin(StudentDashboardCourseFollow),
+    roles: [UserRole.STUDENT],
+    exact: true
+  },
+  {
+    path: '/student/dashboard/courses/:id',
+    component: requireLogin(StudentDashboardCourseDetails),
     roles: [UserRole.STUDENT],
     exact: true
   },

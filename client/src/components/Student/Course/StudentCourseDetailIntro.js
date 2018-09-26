@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
-import './CourseDetailIntro.scss';
+import './StudentCourseDetailIntro.scss';
 import DateUtils from '../../../utils/DateUtils';
 import { HOURS_IN_DAY } from 'actions/CourseFormActionCreator';
 
-class CourseDetailIntro extends Component {
+class StudentCourseDetailIntro extends Component {
   constructor() {
     super();
     this.state = {
@@ -113,7 +113,7 @@ class CourseDetailIntro extends Component {
             </div> : null
         }
 
-        <div className="course-about-content">
+        <div className="student-course-about-content">
           <h5 className="coursedy-headline mb-20">
             {this.context.t('course_about')}
           </h5>
@@ -131,7 +131,7 @@ class CourseDetailIntro extends Component {
             </div>
           ) : null}
         </div>
-        <div className="course-day-list">
+        <div className="student-course-day-list">
           <div className="coursedy-headline">
             {this.context.t('course_day_in_week')}
           </div>
@@ -156,12 +156,12 @@ class CourseDetailIntro extends Component {
 }
 
 
-CourseDetailIntro.contextTypes = {
+StudentCourseDetailIntro.contextTypes = {
   t: React.PropTypes.func.isRequired
 };
 
-CourseDetailIntro.propTypes = {
+StudentCourseDetailIntro.propTypes = {
   showCourseSummary: React.PropTypes.bool
 };
 
-export default CourseDetailIntro;
+export default StudentCourseDetailIntro;

@@ -1,12 +1,10 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import * as WebConstants from 'constants/WebConstants';
-import {CourseDetail} from '../../../components/index';
-import * as PublicCourseActions from '../../../actions/PublicCourseActionCreator';
-import * as ReferActions from '../../../actions/ReferenceActions/ReferenceDataActionCreator';
-import {openConfirmationPopup} from '../../../actions/MainActionCreator';
-import PageContainer from '../../../utils/PageContainer';
-import * as sessionActions from '../../../actions/SessionActionCreator';
+import StudentCourseDetail from '../../../../components/Student/Course/StudentCourseDetail';
+import * as ReferActions from '../../../../actions/ReferenceActions/ReferenceDataActionCreator';
+import * as PublicCourseActions from '../../../../actions/PublicCourseActionCreator';
+import * as sessionActions from '../../../../actions/SessionActionCreator';
+import {openConfirmationPopup} from '../../../../actions/MainActionCreator';
 
 class StudentCourseDetailContainer extends Component {
   constructor(props) {
@@ -15,16 +13,10 @@ class StudentCourseDetailContainer extends Component {
 
   componentWillMount() {
     this.props.getCourseCategories();
-    const { courseId, course_comments_page } = this.props;
+    const { courseId } = this.props;
     if (courseId) {
       // Fetch course
       this.props.getPublicCourse(courseId);
-
-      // Fetch comments
-      this.props.getCourseComments(courseId, course_comments_page);
-
-      // Fetch related courses
-      this.props.getRelatedCourses(courseId, WebConstants.START_PAGE_INDEX, WebConstants.RELATED_COURSE_PER_PAGE);
     }
   }
 
@@ -42,38 +34,20 @@ class StudentCourseDetailContainer extends Component {
     }
   }
 
-  componentWillUnmount() {
-  }
-
-  loadMoreComments() {
-    this.props.getCourseComments(this.props.courseId, this.props.course_comments_page + 1);
-  }
-
-  changeActiveMenu(payload) {
-    this.props.changeActiveMenu(payload);
-  }
-
   render() {
     return (
-      <PageContainer
-        error={this.props.course.error}
-        meta={{ title: this.context.t('course_detail_page', { title: this.props.course.title || '' }) }}
-      >
-        <CourseDetail
-          {...this.props}
-          loadMoreCommentsHdl={this.loadMoreComments.bind(this)}
-          changeActiveMenu={this.changeActiveMenu.bind(this)}
-        />
-      </PageContainer>
+      <StudentCourseDetail
+        {...this.props}
+      />
     );
   }
 }
 
-PublicCourseDetailContainer.contextTypes = {
+StudentCourseDetailContainer.contextTypes = {
   t: React.PropTypes.func.isRequired
 };
 
-PublicCourseDetailContainer.propTypes = {
+StudentCourseDetailContainer.propTypes = {
 
 };
 
@@ -140,8 +114,6 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = dispatch => ({
   getCourseCategories: () => dispatch(ReferActions.fetchCourseCategories()),
   getPublicCourse: courseId => dispatch(PublicCourseActions.fetchPublicCourse(courseId)),
-  getCourseComments: (courseId, page) => dispatch(PublicCourseActions.fetchCourseComments(courseId, page)),
-  getRelatedCourses: (courseId, page, perPage) => dispatch(PublicCourseActions.fetchRelatedCourses({course_id: courseId, page, perPage})),
   enrollCourse: (courseId) => dispatch(PublicCourseActions.submitEnrollCourse(courseId)),
   addCourseToCart: (course) => dispatch(PublicCourseActions.addCourseToCart(course)),
   changeActiveMenu: (payload) => dispatch(PublicCourseActions.changeActiveMenu(payload)),

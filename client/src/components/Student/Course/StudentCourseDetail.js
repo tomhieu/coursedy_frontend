@@ -1,10 +1,9 @@
 import React, {Component} from 'react';
-import CourseDetailHeader from './CourseDetail/CourseDetailHeader';
-import CourseDetailMain from './CourseDetail/CourseDetailMain';
-import './CourseDetail.scss';
-import {PUBLIC_COURSE_MAX_NUMBER_COMMENTS_PER_LOAD} from '../../constants/Courses';
-import CourseDetailAction from './CourseDetail/CourseDetailAction';
-import {globalHistory} from '../../utils/globalHistory';
+import './StudentCourseDetail.scss';
+import {globalHistory} from '../../../utils/globalHistory';
+import StudentCourseDetailAction from './StudentCourseDetailAction';
+import StudentCourseContent from './StudentCourseContent';
+import CourseDetailHeader from '../../Courses/CourseDetail/CourseDetailHeader';
 
 /**
   * @Course group template 2
@@ -73,21 +72,21 @@ class StudentCourseDetail extends Component {
         <CourseDetailHeader
           {...this.props}
         />
-        <div className="d-flex flex-auto course-details-container">
+        <div className="d-flex flex-auto">
           <div className="d-flex flex-auto course-details-wrapper container">
-            <div className="course-action-mobile-view">
-              <CourseDetailAction
+            <div className="d-flex flex-auto course-content">
+              <StudentCourseContent
+                {...this.props}
+                activeMenu={activeMenu}
+                currentScrollPosition={currentScrollPosition}
+              />
+            </div>
+            <div className="student-course-action-view">
+              <StudentCourseDetailAction
                 course={course}
                 course_sections={course_sections}
                 openEnrollCoursePopup={this.openEnrollPopup.bind(this)}
                 {...this.props}
-              />
-            </div>
-            <div className="d-flex flex-auto course-content">
-              <CourseDetailMain
-                {...this.props}
-                activeMenu={activeMenu}
-                currentScrollPosition={currentScrollPosition}
               />
             </div>
           </div>
