@@ -17,7 +17,7 @@ class CourseDetailRightSide extends Component {
           <StudentCourseDetailIntro {...this.props} showCourseSummary={false} />
           {
             course_sections.length
-              ? <CourseDetailLessons {...this.props} /> : null
+              ? <CourseDetailLessons {...this.props} forStudentView={true} /> : null
           }
           <CourseDetailTutor {...this.props} />
         </div>

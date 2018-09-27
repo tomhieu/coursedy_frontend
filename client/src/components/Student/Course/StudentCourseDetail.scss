@@ -69,10 +69,11 @@ p {
   }
 }
 
-.course-action-container {
-  position: absolute;
+.student-course-action-view {
   width: 300px;
-  top: -145px;
+  max-height: 500px;
+  margin-left: 30px;
+  margin-top: -130px;
   z-index: 99;
   background-color: $white-color;
   padding: 5px;
@@ -81,6 +82,12 @@ p {
   &.fixed-action-bar {
     position: fixed;
     top: 75px;
+  }
+
+  .listing-box-list {
+    list-style-type: none;
+    margin-left: 0px;
+    margin-right: 20px;
   }
 }
 

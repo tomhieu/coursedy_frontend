@@ -19,26 +19,6 @@ class StudentCourseDetail extends Component {
       showEnrollPopup: false,
       showEnrollSuccessPopup: false
     };
-    this.onScroll = this.handleScroll.bind(this);
-  }
-
-  componentDidMount() {
-    window.addEventListener('scroll', this.onScroll);
-    window.scrollTo(0, 0);
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener('scroll', this.onScroll);
-  }
-
-  handleScroll(event) {
-    const triggerPosition = 200;
-    const top = window.pageYOffset || document.documentElement.scrollTop;
-    if (triggerPosition < top) {
-      this.courseActionBar.classList.add('fixed-action-bar');
-    } else {
-      this.courseActionBar.classList.remove('fixed-action-bar');
-    }
   }
 
   enrollToCourse(courseId, user) {

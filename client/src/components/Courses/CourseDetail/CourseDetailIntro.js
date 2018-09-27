@@ -85,19 +85,6 @@ class CourseDetailIntro extends Component {
                   <li>
                     <div className="row gap-10">
                       <div className="col-xs-8 col-sm-8">
-                        <i className="fa fa-pencil-square-o mr-5"/>
-                        {' '}
-                        {this.context.t('course_lessons')}
-                      </div>
-                      <div className="col-xs-4 col-sm-4 text-right font600">
-                        {' '}
-                        {course_sections.length}
-                      </div>
-                    </div>
-                  </li>
-                  <li>
-                    <div className="row gap-10">
-                      <div className="col-xs-8 col-sm-8">
                         <i className="fa fa-users mr-5"/>
                         {' '}
                         {this.context.t('number_of_students')}

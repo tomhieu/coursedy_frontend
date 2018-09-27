@@ -6,8 +6,9 @@
 }
 
 .course-detail-section {
-  .course-about-content {
+  .student-course-about-content {
     position: relative;
+    min-height: 210px;
   }
 
   .course-des-view-more-btn {
@@ -97,7 +98,6 @@ ul.list-with-icon {
 
 .student-course-day-list {
   margin-top: 35px;
-  padding-left: 15px;
   .course-day-details-header {
     font-family: $font-semi-bold;
     font-size: 20px;

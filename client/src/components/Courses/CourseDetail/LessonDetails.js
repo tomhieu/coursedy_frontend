@@ -3,10 +3,15 @@ import { Component } from 'react';
 import cssModules from 'react-css-modules';
 import styles from './LessonDetails.module.scss';
 import LessonIcon from '../../Core/Icons/LessonIcon';
+import {renderPreviewFile} from '../../Core/CustomComponents';
 
 class LessonDetails extends Component {
   render() {
-    const { lesson, index } = this.props;
+    const { lesson, index, forStudentView } = this.props;
+    const documents = lesson.documents.map((doc) => {
+      doc.fileName = doc.name;
+      return doc;
+    });
     return (
       <div className={styles.lessonSummary} key={`lessons-${lesson.title}${index}`}>
         <div className="d-flex flex-row">
@@ -29,6 +34,14 @@ class LessonDetails extends Component {
         </div>
         <div id={`collapseLesson${lesson.id}`} className="collapse" aria-labelledby="headingOne" data-parent="#accordion">
           <p className={styles.descriptionContent} dangerouslySetInnerHTML={{ __html: lesson.description }} />
+          {
+            forStudentView ?
+              <div className="d-flex flex-vertical">
+                {
+                  documents.map(doc => renderPreviewFile(doc))
+                }
+              </div> : null
+          }
         </div>
       </div>
     );
@@ -37,7 +50,8 @@ class LessonDetails extends Component {
 
 LessonDetails.propTypes = {
   lesson: React.PropTypes.object.isRequired,
-  index: React.PropTypes.number
+  index: React.PropTypes.number,
+  forStudentView: React.PropTypes.bool
 };
 
 LessonDetails.contextTypes = {

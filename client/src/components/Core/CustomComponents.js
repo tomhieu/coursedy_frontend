@@ -211,11 +211,15 @@ export const renderPreviewFile = (file, doDeleteNewUploadFile, saveDocument) => 
       <div className="file-name-wrapper">
         <span className="degree-filename ml-10" title={file.fileName}>{file.fileName}</span>
       </div>
-      <a className="icon-delete ml-10" onClick={() => doDeleteNewUploadFile(file.uid)} title={file.fileName}>
-        <svg viewBox="0 0 24 24" className="material-icon secondary" height="18" width="18">
-          <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z" />
-        </svg>
-      </a>
+      {
+        doDeleteNewUploadFile ?
+          <a className="icon-delete ml-10" onClick={() => doDeleteNewUploadFile(file.uid)} title={file.fileName}>
+            <svg viewBox="0 0 24 24" className="material-icon secondary" height="18" width="18">
+              <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z" />
+            </svg>
+          </a> : null
+      }
+
       {
         saveDocument !== undefined
           ? (
