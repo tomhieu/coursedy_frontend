@@ -76,7 +76,7 @@ class BasicFilterComponent extends Component {
     const {
       selectedWeekDays, selectedCategories, onRemoveFilter, selectedLocations, formfieldValues, selectedSpecializes,
       suggestions, onSelectSuggestion, loadSuggestions,
-      showSuggestion, loadingSuggestion, closeSuggestion, term, placeholder
+      closeSuggestion, term, placeholder
     } = this.props;
     const isOverFlow = this.hiddenFilters.length > 0;
     this.filters = [];
@@ -90,6 +90,7 @@ class BasicFilterComponent extends Component {
       filterListClassNames += 'is-collapsed';
       containerClassNames += 'flex-nowrap full-height';
     }
+
     return (
       <div className={styles.filterInputBox + containerClassNames}>
         <div className="search-icon">
@@ -192,8 +193,8 @@ class BasicFilterComponent extends Component {
                   dataSource={suggestions}
                   handleAddCriteria={onSelectSuggestion}
                   loadSuggestions={loadSuggestions}
-                  show={showSuggestion}
-                  isLoading={loadingSuggestion}
+                  show={false}
+                  isLoading={false}
                   onFocus={this.onFocusSuggestion.bind(this)}
                   onBlur={this.onBlurSuggestion.bind(this)}
                 />
@@ -211,8 +212,8 @@ class BasicFilterComponent extends Component {
                   dataSource={suggestions}
                   handleAddCriteria={onSelectSuggestion}
                   loadSuggestions={loadSuggestions}
-                  show={showSuggestion}
-                  isLoading={loadingSuggestion}
+                  show={false}
+                  isLoading={false}
                   closeSuggestion={closeSuggestion}
                   {...this.props}
                 />
