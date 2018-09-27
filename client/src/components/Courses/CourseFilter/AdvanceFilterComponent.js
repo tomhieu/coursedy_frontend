@@ -1,10 +1,18 @@
-import { Component } from 'react';
-import * as React from 'react';
+import React, { Component } from 'react';
+import { createNumberMask } from 'redux-form-input-masks';
 import cssModules from 'react-css-modules';
 import FormField from '../../Core/FormField';
 import styles from './CourseFilter.module.scss';
 import { DAYS_IN_WEEK } from '../../../actions/CourseFormActionCreator';
 import FilterOption from '../../FilterOption/FilterOption';
+
+const currencyMask = createNumberMask({
+  prefix: '',
+  suffix: ' đ',
+  decimalPlaces: 3,
+  locale: 'vi-VN',
+});
+
 
 class AdvanceFilterComponent extends Component {
   render() {
@@ -64,8 +72,9 @@ class AdvanceFilterComponent extends Component {
                           placeholder={this.context.t('min_fee_placeholder')}
                           onChange={e => onSelectFilter(e.target.value, 'resetMinFee')}
                           formControlName="selectedMinFee"
-                          type="number"
+                          type="text"
                           typeField="custom_input"
+                          {...currencyMask}
                         />
                         <span className="ml-10 mr-10 mt-5">{this.context.t('to')}</span>
                         <FormField
@@ -75,8 +84,9 @@ class AdvanceFilterComponent extends Component {
                           placeholder={this.context.t('max_fee_placeholder')}
                           onChange={e => onSelectFilter(e.target.value, 'resetMaxFee')}
                           formControlName="selectedMaxFee"
-                          type="number"
+                          type="text"
                           typeField="custom_input"
+                          {...currencyMask}
                         />
                       </div>
                     </div>

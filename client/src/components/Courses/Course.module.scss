@@ -209,3 +209,12 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+  .popoverCourseDescription {
+    max-height: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    &::after {
+      content: '...';
+    }
+}

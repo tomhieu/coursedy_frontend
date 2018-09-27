@@ -5,6 +5,7 @@ import styles from './Course.module.scss';
 import AdvanceFilterComponent from './CourseFilter/AdvanceFilterComponent';
 import BasicFilterComponent from './CourseFilter/BasicFilterComponent';
 import FlatButton from '../Core/FlatButton/FlatButton';
+import { AutoComplete } from '../AutoComplete/AutoComplete';
 
 
 class BaseFilter extends Component {
@@ -59,6 +60,10 @@ class BaseFilter extends Component {
       listIconButtonClasses.push('primary');
     }
 
+    const sugguestionProps = {
+      isLoading: loadingSuggestion, show: showSuggestion, dataSource: suggestions, handleAddCriteria: onSelectSuggestion
+    };
+
     return (
       <form onSubmit={handleSubmit(this.props.onSubmit)} className="course-filter-form inline-form" multiple>
         <div className="d-flex flex-vertical">
@@ -82,6 +87,9 @@ class BaseFilter extends Component {
                   search={search}
                   placeholder={placeholder}
                 />
+                <div className="filter-selection d-flex flex-auto">
+                  { AutoComplete.renderSugguestionList({ ...sugguestionProps, context: this.context }) }
+                </div>
               </div>
               <div className="seperate-filter-line" />
               <div className="st-border-left advanced-filter-block">
