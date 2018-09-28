@@ -75,7 +75,17 @@ const PublicCourseDetail = (state = {
       return {...state, submit_enroll_fail: true, submit_enroll_errors: action.payload.errors}
 
     //Handle add course to cart
-    case courseTypes.PUBLIC_COURSE_DETAIL_ADD_COURSE_TO_CART:
+    case courseTypes.PUBLIC_COURSE_DETAIL_FETCH_CART + asyncActs.REJECTED:
+      return { ...state }
+    case courseTypes.PUBLIC_COURSE_DETAIL_FETCH_CART + asyncActs.FULFILLED:
+      return {
+        ...state,
+        cart: [],
+        cartTotal: 0
+      }
+    case courseTypes.PUBLIC_COURSE_DETAIL_ADD_COURSE_TO_CART + asyncActs.REJECTED:
+      return { ...state }
+    case courseTypes.PUBLIC_COURSE_DETAIL_ADD_COURSE_TO_CART + asyncActs.FULFILLED:
       return {
         ...state,
         cart: [
@@ -84,7 +94,9 @@ const PublicCourseDetail = (state = {
         ],
         cartTotal: state.cartTotal + parseInt(action.payload.tuition_fee)
       }
-    case courseTypes.PUBLIC_COURSE_DETAIL_REMOVE_COURSE_FROM_CART:
+    case courseTypes.PUBLIC_COURSE_DETAIL_REMOVE_COURSE_FROM_CART + asyncActs.REJECTED:
+      return { ...state }
+    case courseTypes.PUBLIC_COURSE_DETAIL_REMOVE_COURSE_FROM_CART + asyncActs.FULFILLED:
       return {
         ...state,
         cart: state.cart.filter((item) => {

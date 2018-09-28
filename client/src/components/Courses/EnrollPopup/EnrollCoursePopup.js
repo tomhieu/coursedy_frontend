@@ -76,7 +76,7 @@ EnrollCoursePopup.contextTypes = {
 
 EnrollCoursePopup.propTypes = {
   show: React.PropTypes.bool.isRequired,
-  course: React.PropTypes.object.isRequired,
+  course: React.PropTypes.object,
   cancelCallback: React.PropTypes.func.isRequired,
   acceptLabel: React.PropTypes.string,
   cancelLabel: React.PropTypes.string,

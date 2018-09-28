@@ -49,6 +49,9 @@ class PaymentContainer extends Component {
     this.props.fetchPaymentInstructions(this.props)
     this.props.fetchBankAccounts(this.props)
     this.props.fetchBankTransferToken(this.props)
+    if (this.props.cart.length == 0) {
+      this.props.fetchCart()
+    }
   }
 
   changeActiveTab(activeTab) {
@@ -219,7 +222,7 @@ class PaymentContainer extends Component {
                       </div>
                       <div className="col-sm-12 no-pad col-md-5">
                         <ul className="list-unstyled">
-                          <li 
+                          <li
                             className="mb-5"
                             dangerouslySetInnerHTML={{ __html: this.context.t('public_payment_manual_contact') }}
                           />
@@ -348,12 +351,12 @@ class PaymentContainer extends Component {
                           <span>{ObjectUtils.currencyFormat(course.tuition_fee)}</span>
                         </div>
                         {
-                          course.tuition_fee < currentUser.balance ? 
+                          course.tuition_fee < currentUser.balance ?
                             <a className="remove-course" onClick={this.openEnrollModal.bind(this, course)}>
                               <CourseSelectionIcon width={14} height={14}></CourseSelectionIcon>
                             </a> : null
                         }
-                        
+
                         <a className="remove-course" onClick={this.openConfirmModal.bind(this, course)}>
                           <TrashIcon width={14} height={14}></TrashIcon>
                         </a>
@@ -381,18 +384,18 @@ class PaymentContainer extends Component {
                   course={this.state.selectedCourse}
                   acceptCallback={this.closeEnrollSuccessModal.bind(this)}
                 />
-                <SimpleDialogComponent 
-                  show={this.state.showConfirmModal} 
-                  title={this.context.t('public_payment_cart_confirm_modal_title')} 
+                <SimpleDialogComponent
+                  show={this.state.showConfirmModal}
+                  title={this.context.t('public_payment_cart_confirm_modal_title')}
                   acceptCallback={this.removeCourseFromCart.bind(this)}
                   cancelCallback={this.closeConfimModal.bind(this)}
                 >
                   <p
-                    dangerouslySetInnerHTML={{ 
+                    dangerouslySetInnerHTML={{
                       __html: this.context.t(
-                        'public_payment_cart_confirm_modal_content', 
+                        'public_payment_cart_confirm_modal_content',
                         {title: this.state.selectedCourse ? this.state.selectedCourse.title : ''}
-                      ) 
+                      )
                     }}
                   />
                 </SimpleDialogComponent>
@@ -500,9 +503,17 @@ const mapDispatchToProps = (dispatch) => ({
       }, 250)
     })
   }),
-  removeCourseFromCart: (props) => dispatch({
-    type: PUBLIC_COURSE_DETAIL_REMOVE_COURSE_FROM_CART,
+  fetchCart: (props) => dispatch({
+    type: PUBLIC_COURSE_DETAIL_FETCH_CART + '_FULFILLED',
     payload: props
+    // type: PUBLIC_COURSE_DETAIL_FETCH_CART,
+    // payload: Network().get(`fetch-cart`, {})
+  }),
+  removeCourseFromCart: (props) => dispatch({
+    type: PUBLIC_COURSE_DETAIL_REMOVE_COURSE_FROM_CART + '_FULFILLED',
+    payload: props
+    // type: PUBLIC_COURSE_DETAIL_REMOVE_COURSE_FROM_CART,
+    // payload: Network().post(`courses/${props.id}/remove-from-cart`, {})
   }),
   fetchBankTransferToken: (props) => dispatch({
     type: FETCH_BANK_TRANSFER_TOKEN,
