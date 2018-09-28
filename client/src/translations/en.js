@@ -328,7 +328,7 @@ export default {
   order_by_price_asc: 'Price - Low to High', /*
         Public course detail
     */
-  not_started_course_list: 'List of drafting courses',
+  not_started_course_list: 'Drafting courses',
   course_info: 'Course information',
   course_detail: 'Course detail',
   tutor_info: 'Teacher information',
@@ -704,7 +704,7 @@ export default {
   /*
    * Section Page
    */
-  course_active_list: 'List of active courses',
+  course_active_list: 'Active courses',
   section_period: '{sectionPeriod} minutes', /* search teachers page */
   product_contact_us: 'Contact us',
   product_about_us_info: 'Information is updating.',
