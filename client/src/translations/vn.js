@@ -322,7 +322,7 @@ export default {
   not_found_suggestion: 'Không tìm thấy kết quả', /*
         Public course detail
     */
-  course_list: 'Khóa học đang mở',
+  not_started_course_list: 'Khóa học đang mở',
   course_active_list: 'Khóa học đang dạy',
   course_info: 'Thông tin khóa học',
   course_detail: 'Chi tiết khóa học',

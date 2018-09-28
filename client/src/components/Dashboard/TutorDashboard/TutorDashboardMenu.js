@@ -22,7 +22,7 @@ class TutorDashboardMenu extends Component {
   render() {
     const { activatedTab, isApproved } = this.props;
 
-    const isActiveCourseTab = ['course_add', 'course_list', 'course_active_list', 'course_management'].indexOf(activatedTab) >= 0;
+    const isActiveCourseTab = ['course_add', 'not_started_course_list', 'course_active_list', 'course_management'].indexOf(activatedTab) >= 0;
 
     const dashboardItemClasses = [styles.dashboardItem, 'dashbard-item-container'];
     const activeDashboardItemClasses = [styles.dashboardItem, 'dashbard-item-container', styles.active];
@@ -75,10 +75,10 @@ class TutorDashboardMenu extends Component {
                         data-parent="#accordion"
                       >
                         <li
-                          className={activatedTab === 'course_list' ? `${styles.dashboardItem} ${styles.active}` : styles.dashboardItem}
-                          onClick={this.onClickDashboardLink.bind(this, '/dashboard/courses/list', 'course_list')}
+                          className={activatedTab === 'not_started_course_list' ? `${styles.dashboardItem} ${styles.active}` : styles.dashboardItem}
+                          onClick={this.onClickDashboardLink.bind(this, '/dashboard/courses/list', 'not_started_course_list')}
                         >
-                          <a className={styles.itemName}>{this.context.t('course_list')}</a>
+                          <a className={styles.itemName}>{this.context.t('not_started_course_list')}</a>
                         </li>
                         <li
                           className={activatedTab === 'course_active_list' ? `${styles.dashboardItem} ${styles.active}` : styles.dashboardItem}
