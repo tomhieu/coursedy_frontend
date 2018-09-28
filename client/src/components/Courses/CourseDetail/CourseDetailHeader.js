@@ -47,14 +47,14 @@ class CourseDetailHeader extends Component {
             </div>
             {
               forStudentView ?
-                <div>
+                <div className={styles.courseSummaryInfo}>
                   <div className="d-flex flex-row">
                     <div className={styles.numberLesson}>{this.context.t('header_number_lesson', { numberLesson: course.lesson_count })}</div>
                     {
                       completedLessons.length > 0
-                        ? completedLessons.length === 1 ? <div className={styles.periodLesson}>{this.context.t('header_number_completed_single_lesson')}</div>
-                        : <div className={styles.periodLesson}>{this.context.t('header_number_completed_lessons', { numberLesson: completedLessons.length })}</div>
-                        : <div className={styles.periodLesson}>{this.context.t('header_no_completed_lesson')}</div>
+                        ? completedLessons.length === 1 ? <div className={styles.numberLesson}>{this.context.t('header_number_completed_single_lesson')}</div>
+                        : <div className={styles.numberLesson}>{this.context.t('header_number_completed_lessons', { numberLesson: completedLessons.length })}</div>
+                        : <div className={styles.numberLesson}>{this.context.t('header_no_completed_lesson')}</div>
                     }
                   </div>
                 </div> :

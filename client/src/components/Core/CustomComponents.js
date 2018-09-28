@@ -201,15 +201,19 @@ export const renderMultiSelect = (selectOptions) => {
 };
 
 export const renderPreviewFile = (file, doDeleteNewUploadFile, saveDocument) => {
+  const extension = file.name.split('.')[1];
   let previewClass = 'pdf-image-preview';
-  if (file.extension === 'docx') {
+  console.log('preview extension: ' + extension);
+  if (extension === 'docx' || extension === 'doc') {
     previewClass = 'doc-image-preview';
+  } else if (extension === 'pptx' || extension === 'ppt') {
+    previewClass  ='power-point-icon-preview';
   }
   return (
-    <div className="d-flex flex-horizontal mt-10 mb-10" key={`document_${file.id}`}>
+    <div className="d-flex flex-horizontal mb-10" key={`document_${file.id}`}>
       <div className={previewClass} />
       <div className="file-name-wrapper">
-        <span className="degree-filename ml-10" title={file.fileName}>{file.fileName}</span>
+        <a className="degree-filename ml-10" href={file.url} title={file.fileName}>{file.fileName}</a>
       </div>
       {
         doDeleteNewUploadFile ?
@@ -265,7 +269,7 @@ class renderFileInput extends Component {
 
   render() {
     const {
-      input: { value, ...input }, label, meta: { touched, error }, zoneHeight, internalPreview, ...custom
+      input: { value, ...input }, label, meta: { touched, error }, zoneHeight, internalPreview, contentType = "image/*"
     } = this.props;
     const borderWidth = internalPreview && this.state.previewUrl != null ? '0' : '1px';
     const previewImageStyle = internalPreview ? {
@@ -288,7 +292,7 @@ class renderFileInput extends Component {
             borderColor: 'rgb(102, 102, 102)',
             borderRadius: '5px',
           }}
-          accept="image/*"
+          accept={contentType}
         >
           <div className="d-flex flex-auto justify-content-center align-items-center">
             <div className={this.state.previewUrl ? 'd-none' : 'd-flex flex-horizontal align-self-center padd-10'}>

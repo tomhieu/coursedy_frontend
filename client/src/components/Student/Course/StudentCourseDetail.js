@@ -50,7 +50,7 @@ class StudentCourseDetail extends Component {
     return (
       <div className="d-flex flex-auto flex-vertical public-course-details">
         <CourseDetailHeader
-          {...this.props}
+          {...this.props} forStudentView={true}
         />
         <div className="d-flex flex-auto">
           <div className="d-flex flex-auto course-details-wrapper container">
