@@ -105,7 +105,8 @@ export const submitCourseComment = (comment, courseId, userId) => {
   };
   return {
     type: types.PUBLIC_COURSE_DETAIL_SUBMIT_COMMENT,
-    payload: Network().post(`courses/${courseId}/comments`, params)
+    payload: Network().post(`courses/${courseId}/comments`, params),
+    meta: 'commentPlaceholder'
   };
 };
 
