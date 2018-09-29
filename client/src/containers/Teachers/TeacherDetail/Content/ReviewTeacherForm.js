@@ -36,8 +36,10 @@ class ReviewTeacherForm extends Component {
     if (this.props.user && this.props.teacher.id === this.props.user.id) {
       return null;
     }
-
     const { handleSubmit, pristine, submitting } = this.props;
+    const placeholderId = "reviewTeacherPlaceholder";
+    const { activatingPlaceholders } = this.props
+    const isProcessing = activatingPlaceholders.findIndex(holder => placeholderId == holder) >= 0;
     return (
       <div className="course-detail-comment-form mt-15" id="comment-form-section">
         <form onSubmit={handleSubmit(this.submitComment.bind(this))} className="inline-form ml-0 mr-0">
@@ -57,6 +59,7 @@ class ReviewTeacherForm extends Component {
               title={this.context.t('send_comment_button')}
               line={false}
               disabled={pristine || submitting}
+              placeholderId={placeholderId}
             />
           </div>
         </form>
@@ -73,7 +76,8 @@ ReviewTeacherForm.contextTypes = {
 const mapStateToProps = (state) => {
   return {
     user: state.session.currentUser,
-    teacher: state.TeacherDetail
+    teacher: state.TeacherDetail,
+    activatingPlaceholders: state.LoadingMask.activatingPlaceholders
   };
 };
 
