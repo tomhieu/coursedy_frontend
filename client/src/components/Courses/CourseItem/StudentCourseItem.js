@@ -1,14 +1,14 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import cssModules from 'react-css-modules';
-import { TT } from 'utils/locale';
+import {TT} from 'utils/locale';
 import ObjectUtils from 'utils/ObjectUtils';
 import DateUtils from 'utils/DateUtils';
 import styles from './TutorCourseItem.module.scss';
 import PrimaryButton from '../../Core/PrimaryButton/PrimaryButton';
 import SettingIcon from '../../Core/Icons/SettingIcon';
-import ListEnrolledStudent from '../../../containers/Courses/TutorCourse/ListEnrolledStudent';
-import { CourseStatus } from '../../../constants/CourseStatus';
+import {CourseStatus} from '../../../constants/CourseStatus';
 import SimpleDialogComponent from '../../Core/SimpleDialogComponent';
+import * as CommonConstant from '../../../utils/CommonConstant';
 
 class StudentCourseItem extends Component {
   constructor() {
@@ -31,7 +31,7 @@ class StudentCourseItem extends Component {
     if (course.lesson_count === course.period) {
       return course.tuition_fee;
     } else {
-      return (course.lesson_count / course.period) * course.tuition_fee + 50000;
+      return (course.lesson_count / course.period) * course.tuition_fee + CommonConstant.CANCELATION_FEE;
     }
   }
 
@@ -215,7 +215,7 @@ class StudentCourseItem extends Component {
                   {this.context.t('cancel_course_fee')}
 :
                 </div>
-                <div className="col-md-6">{ObjectUtils.currencyFormat(50000, course.currency)}</div>
+                <div className="col-md-6">{ObjectUtils.currencyFormat(CommonConstant.CANCELATION_FEE, course.currency)}</div>
               </div>
             </div>
             <div className="col-md-12">
