@@ -3353,22 +3353,12 @@ Course Item (List Mode) Style Sheet
 }
 
 .empty-result-message {
-  padding: 20px 0;
-  font-size: 24px;
-}
-
-.list-option {
-  padding: 20px;
-}
-
-.empty-result-option {
-  list-style-type: disc;
-  text-align: left;
-  color: $color-light-black-text;
+  padding: 20px 0 0 0;
+  font-size: 20px;
 }
 
 a.clear-filter {
-  color: $color-blue;
+  color: $color-hightlight;
 }
 
 .teacher-list {

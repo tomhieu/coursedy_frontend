@@ -13,7 +13,7 @@ class EmptyResultWarning extends Component {
     const { styles, searchType } = this.props;
     return (
       <div className={`${styles} row justify-content-center`}>
-        <div className="d-flex flex-auto align-items-center">
+        <div className="d-flex flex-auto">
           <div className="d-flex flex-vertical flex-auto">
             <div
               className="empty-result-message"
@@ -22,19 +22,17 @@ class EmptyResultWarning extends Component {
                 type: <strong>{this.context.t(searchType)}</strong>
               })}
             </div>
-            <div className="list-option">
-              <ul className="empty-result-option">
-                <li>{TT.t('search_empty_result_header')}</li>
-                <li>
-                  <a
-                    className="clear-filter"
-                    tabIndex={1}
-                    onClick={this.resetFilter.bind(this)}
-                  >
-                    {TT.t('search_empty_result_reset')}
-                  </a>
-                </li>
-              </ul>
+            <div
+              className="empty-result-message"
+            >
+              {this.context.t('search_empty_result_header')}{' '}<a
+              className="clear-filter"
+              tabIndex={1}
+              onClick={this.resetFilter.bind(this)}
+            >
+              {this.context.t('search_empty_result_reset')}
+            </a>
+              {'.'}
             </div>
           </div>
         </div>
