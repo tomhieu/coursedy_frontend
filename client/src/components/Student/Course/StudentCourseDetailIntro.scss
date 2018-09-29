@@ -6,8 +6,9 @@
 }
 
 .course-detail-section {
-  .course-about-content {
+  .student-course-about-content {
     position: relative;
+    min-height: 210px;
   }
 
   .course-des-view-more-btn {
@@ -80,18 +81,6 @@ ul.list-with-icon {
   margin-bottom: 25px;
 }
 
-@media (min-width: 768px) {
-  .course-about-content {
-    min-height: 200px;
-    margin-left: 240px;
-    padding-left: 15px;
-  }
-
-  .course-about-heading {
-    margin-left: 240px;
-  }
-}
-
 @media only screen and (max-width: 991px) {
   .course-about-heading,
   .course-about-content {
@@ -107,10 +96,8 @@ ul.list-with-icon {
   }
 }
 
-.course-day-list {
-  margin-left: 240px;
+.student-course-day-list {
   margin-top: 35px;
-  padding-left: 15px;
   .course-day-details-header {
     font-family: $font-semi-bold;
     font-size: 20px;

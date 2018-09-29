@@ -6,6 +6,10 @@ body.application {
   color: $dark-text-color;
   background-color: $white-background;
 
+  a {
+    color: #007791;
+  }
+
   .navbar-light.dark-header .navbar-nav .nav-link {
     color: $white-color;
     &.nav-btn {
@@ -1633,6 +1637,33 @@ body.application {
     height: 12px;
     cursor: pointer;
   }
+
+  a.join-to-class-link {
+    height: $height-button;
+    min-width: 100px;
+    color: $white-color;
+    font-weight: 600;
+    font-size: 14px;
+    transition: width 2s;
+    padding: 9px 20px;
+    outline: none;
+    background-color: $color-organe;
+    border-radius: 20px;
+    border: none;
+    color: $white-color;
+    &:hover {
+      background-color: transparent;
+      border: 1px solid $color-organe;
+      color: $color-organe;
+    }
+  }
+
+  .list-enrolled-student {
+    min-height: 100px;
+    .partial-loading {
+      min-height: 100px;
+    }
+  }
 }
 
 .left-sidebar {
@@ -1896,21 +1927,8 @@ body.application {
   cursor: pointer;
 }
 
-.join-to-class-link {
-  height: $height-button;
-  min-width: 100px;
-  color: $white-color;
-  font-weight: 600;
-  font-size: 14px;
-  transition: width 2s;
-  padding: 9px 20px;
-  outline: none;
-  background-color: $color-organe;
-  border-radius: 20px;
-  border: none;
-  &:hover {
-    background-color: transparent;
-    border: 1px solid $color-organe;
-    color: $color-organe;
-  }
+.billing-course-label {
+  font-family: $font-semi-bold;
+  color: $color-darker-text;
+  padding: 5px 0;
 }

@@ -120,6 +120,7 @@ class FormField extends Component {
             disabled={this.props.disabled}
             previewUrl={previewUrl}
             onUpload={onUpload}
+            contentType={this.props.contentType}
             component={renderSingleFileInput}
             lang={lang}
           />

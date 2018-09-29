@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
-import './CourseDetailIntro.scss';
+import './StudentCourseDetailIntro.scss';
 import DateUtils from '../../../utils/DateUtils';
 import { HOURS_IN_DAY } from 'actions/CourseFormActionCreator';
 
-class CourseDetailIntro extends Component {
+class StudentCourseDetailIntro extends Component {
   constructor() {
     super();
     this.state = {
@@ -85,6 +85,19 @@ class CourseDetailIntro extends Component {
                   <li>
                     <div className="row gap-10">
                       <div className="col-xs-8 col-sm-8">
+                        <i className="fa fa-pencil-square-o mr-5"/>
+                        {' '}
+                        {this.context.t('course_lessons')}
+                      </div>
+                      <div className="col-xs-4 col-sm-4 text-right font600">
+                        {' '}
+                        {course_sections.length}
+                      </div>
+                    </div>
+                  </li>
+                  <li>
+                    <div className="row gap-10">
+                      <div className="col-xs-8 col-sm-8">
                         <i className="fa fa-users mr-5"/>
                         {' '}
                         {this.context.t('number_of_students')}
@@ -100,7 +113,7 @@ class CourseDetailIntro extends Component {
             </div> : null
         }
 
-        <div className="course-about-content">
+        <div className="student-course-about-content">
           <h5 className="coursedy-headline mb-20">
             {this.context.t('course_about')}
           </h5>
@@ -118,7 +131,7 @@ class CourseDetailIntro extends Component {
             </div>
           ) : null}
         </div>
-        <div className="course-day-list">
+        <div className="student-course-day-list">
           <div className="coursedy-headline">
             {this.context.t('course_day_in_week')}
           </div>
@@ -143,12 +156,12 @@ class CourseDetailIntro extends Component {
 }
 
 
-CourseDetailIntro.contextTypes = {
+StudentCourseDetailIntro.contextTypes = {
   t: React.PropTypes.func.isRequired
 };
 
-CourseDetailIntro.propTypes = {
+StudentCourseDetailIntro.propTypes = {
   showCourseSummary: React.PropTypes.bool
 };
 
-export default CourseDetailIntro;
+export default StudentCourseDetailIntro;

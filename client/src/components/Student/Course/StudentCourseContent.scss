@@ -1,0 +1,26 @@
+@import "../../../../styles/global_style.scss";
+.course-summary {
+  width: 100%;
+  padding: $box-gap 0;
+  .section-title:after {
+    content: '';
+  }
+}
+
+.detail-content-wrapper {
+  margin-bottom: 35px;
+}
+
+.course-detail-section:not(:last-child) {
+    margin-bottom: 30px;
+    border-bottom: 1px solid #E5E5E5;
+    padding-bottom: 30px;
+}
+
+.section-title {
+  margin: 0 !important;
+}
+
+.right-content {
+  width: 70%;
+}

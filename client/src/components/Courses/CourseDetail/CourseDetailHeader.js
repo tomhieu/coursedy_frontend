@@ -6,7 +6,11 @@ import DateUtils from '../../../utils/DateUtils';
 
 class CourseDetailHeader extends Component {
   render() {
-    const { categories, course, course_sections } = this.props;
+    const { categories, course, course_sections, forStudentView } = this.props;
+    const completedLessons = [];
+    course_sections.forEach(section => {
+      completedLessons.push(section.lessons.filter(les => les.status === 'finished'));
+    });
     return (
       <div className={styles.courseDetailHeader}>
         <div className="container">
@@ -41,20 +45,34 @@ class CourseDetailHeader extends Component {
                 num_reviews={course.rating_count}
               />
             </div>
-            <div className={styles.courseSummaryInfo}>
-              <div className="d-flex flex-row">
-                {
-                  course_sections.length
-                    ? <div className={styles.numberLesson}>{this.context.t('header_number_lesson', { numberLesson: course_sections.length })}</div>
-                    : null
-                }
-                {
-                  course.totalPeriod > 0
-                    ? <div className={styles.periodLesson}>{this.context.t('header_period_lesson', { periodLesson: course.totalPeriod })}</div>
-                    : null
-                }
-              </div>
-            </div>
+            {
+              forStudentView ?
+                <div className={styles.courseSummaryInfo}>
+                  <div className="d-flex flex-row">
+                    <div className={styles.numberLesson}>{this.context.t('header_number_lesson', { numberLesson: course.lesson_count })}</div>
+                    {
+                      completedLessons.length > 0
+                        ? completedLessons.length === 1 ? <div className={styles.numberLesson}>{this.context.t('header_number_completed_single_lesson')}</div>
+                        : <div className={styles.numberLesson}>{this.context.t('header_number_completed_lessons', { numberLesson: completedLessons.length })}</div>
+                        : <div className={styles.numberLesson}>{this.context.t('header_no_completed_lesson')}</div>
+                    }
+                  </div>
+                </div> :
+                <div className={styles.courseSummaryInfo}>
+                  <div className="d-flex flex-row">
+                    {
+                      course.period > 0
+                        ? <div className={styles.numberLesson}>{this.context.t('header_number_lesson', { numberLesson: course.period})}</div>
+                        : null
+                    }
+                    {
+                      course.lesson_count > 0
+                        ? <div className={styles.periodLesson}>{this.context.t('header_available_lesson', { numberLesson: course.lesson_count })}</div>
+                        : null
+                    }
+                  </div>
+                </div>
+            }
           </div>
         </div>
       </div>
@@ -67,6 +85,7 @@ CourseDetailHeader.contextTypes = {
 };
 
 CourseDetailHeader.propTypes = {
+  forStudentView: React.PropTypes.bool
 };
 
 export default cssModules(CourseDetailHeader, styles);

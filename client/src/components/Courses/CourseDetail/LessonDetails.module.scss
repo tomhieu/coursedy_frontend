@@ -1,8 +1,28 @@
+@import "../../../../styles/global_style.scss";
 .lessonSummary {
   padding: 10px 20px 10px 40px;
   border-bottom: 1px solid rgba(0,0,0,.125);
   .lessonIcon {
     margin-right: 10px;
+  }
+  .lessonStatus {
+    height: 21px;
+    border: none;
+    border-radius: 10px;
+    padding: 2px 10px;
+    color: $white-color;
+    font-family: $font-semi-bold;
+    &.finish {
+      background-color: $finished_status_color;
+    }
+
+    &.started {
+      background-color: $started_status_color;
+    }
+
+    &.not_started {
+      background-color: $not_started_status_color;
+    }
   }
   .lessonTitle {
     flex: 6;
@@ -24,4 +44,28 @@
     display: flex;
     justify-content: flex-end;
   }
+
+  .lessonDetails {
+    padding-top: 12px;
+    margin-top: 6px;
+    border-top: 1px solid rgba(0,0,0,.125);
+    .lessonContent {
+      margin-bottom: 10px;
+      .label {
+        font-family: $font-semi-bold;
+        color: $light-dark-text-color;
+        line-height: 12px;
+      }
+      .lessonDescriptionDetail {
+        margin-top: 0;
+      }
+      .lessonMateial {
+        margin-top: 5px;
+      }
+      .noDocument {
+        font-style: italic;
+      }
+    }
+  }
+
 }
