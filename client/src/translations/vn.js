@@ -367,6 +367,11 @@ export default {
   lesson_description_expand: 'Mô tả',
   section_lesson_count: ['1 bài học', '{lessonCount} bài học', 'lessonCount'],
   lesson_period: ['1 phút', '{lessonPeriod} phút', 'lessonPeriod'],
+  lesson_description: 'Mô tả bài học',
+  lesson_document: 'Tài liệu bài học',
+  lesson_no_document: 'Chưa tài liệu nào được tải lên',
+
+
   section_period: 'Thời lượng {sectionPeriod} phút', /* search teachers page */
   search_teachers_keyword: 'Tìm kiếm theo tên',
   search_teachers_field_label: 'Lĩnh Vực:',

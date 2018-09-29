@@ -273,6 +273,13 @@ figcaption {
   justify-content: center;
 }
 
+.image-file-preview {
+  img {
+    width: 30px;
+    height: auto;
+  }
+}
+
 .pdf-image-preview {
   background: #f8f8f8 url("../images/pdf-icon.png") no-repeat;
   width: 30px;

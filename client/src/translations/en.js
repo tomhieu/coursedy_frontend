@@ -179,6 +179,9 @@ export default {
   lesson_description_expand: 'Description',
   section_lesson_count: ['1 lesson', '{lessonCount} lessons', 'lessonCount'],
   lesson_period: ['1 minute', '{lessonPeriod} minutes', 'lessonPeriod'],
+  lesson_description: 'Lesson description',
+  lesson_document: 'Lesson materials',
+  lesson_no_document: 'No material is uploaded yet',
 
   /*
      * Lesson Page

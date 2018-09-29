@@ -202,16 +202,20 @@ export const renderMultiSelect = (selectOptions) => {
 
 export const renderPreviewFile = (file, doDeleteNewUploadFile, saveDocument) => {
   const extension = file.name.split('.')[1];
-  let previewClass = 'pdf-image-preview';
-  console.log('preview extension: ' + extension);
+  let previewClass;
   if (extension === 'docx' || extension === 'doc') {
     previewClass = 'doc-image-preview';
   } else if (extension === 'pptx' || extension === 'ppt') {
-    previewClass  ='power-point-icon-preview';
+    previewClass = 'power-point-icon-preview';
+  } else if (extension === 'pdf') {
+    previewClass = 'pdf-image-preview';
   }
   return (
     <div className="d-flex flex-horizontal mb-10" key={`document_${file.id}`}>
-      <div className={previewClass} />
+      {
+        previewClass ? <div className={previewClass} /> :
+          <a className="image-file-preview"><img src={file.url} alt={file.name}/></a>
+      }
       <div className="file-name-wrapper">
         <a className="degree-filename ml-10" href={file.url} title={file.fileName}>{file.fileName}</a>
       </div>
