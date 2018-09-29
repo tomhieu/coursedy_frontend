@@ -553,7 +553,7 @@ export default {
     question: 'What is expired date of enrolled courses?',
     answer: 'We ask that payments be made upfront. This is because we operate in developing countries so for your Local Insider your experience is much more than just a little bit of extra cash. We want to ensure that as soon as your tour is completed and a review is left our locals partner gets is paid what they have earnt.'
   }],
-  user_navigation_basic_info: 'Basic information',
+  user_navigation_basic_info: 'Your profile',
   user_navigation_your_course: 'Your courses',
   user_navigation_sign_out: 'Log out',
   no_notification_found: 'No notifications',
