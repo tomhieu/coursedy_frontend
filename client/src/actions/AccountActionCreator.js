@@ -34,7 +34,8 @@ export const savePersonData = (name, email, date_of_birth, address, gender, emai
   return (dispatch) => {
     const response = dispatch({
       type: UPDATE_CURRENT_USER,
-      payload: Network().update('/auth', body)
+      payload: Network().update('/auth', body),
+      meta: "personInfoPlaceholder"
     });
 
     response.then((response) => {

@@ -18,13 +18,21 @@ class PersonInfoContainer extends Component {
 
 
   render() {
+    const placeholderId = "personInfoPlaceholder";
+    const { activatingPlaceholders } = this.props
+    const isProcessing = activatingPlaceholders.findIndex(holder => placeholderId == holder) >= 0;
     return (
       <div className="row">
         <div className="col-md-12 col-sm-12">
           <div className="block-title">
             <span className="text-uppercase bold">{this.context.t('account.person.info.title')}</span>
           </div>
-          <PersonalInfoForm onSubmit={this.savePersonInfo.bind(this)} {...this.props} />
+          <PersonalInfoForm
+            onSubmit={this.savePersonInfo.bind(this)}
+            {...this.props}
+            placeholderId={placeholderId}
+            isProcessing={isProcessing}
+          />
         </div>
       </div>
     );
@@ -36,7 +44,8 @@ PersonInfoContainer.contextTypes = {
 };
 
 export default connect(state => ({
-  initialValues: state.session.currentUser
+  initialValues: state.session.currentUser,
+  activatingPlaceholders: state.LoadingMask.activatingPlaceholders
 }))(reduxForm({
   form: 'personInfo',
   fields: ['name', 'email', 'address', 'date_of_birth', 'country_code', 'gender'],
