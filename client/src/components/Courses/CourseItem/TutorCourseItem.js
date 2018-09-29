@@ -154,11 +154,12 @@ class TutorCourseItem extends Component {
             </div>
           </div>
         </div>
-        <div className="col-md-12">
-          {
-            showEnrolledStudentList ? <ListEnrolledStudent courseId={course.id} /> : null
-          }
-        </div>
+        {
+          showEnrolledStudentList ?
+            <div className="list-enrolled-student col-md-12">
+              <ListEnrolledStudent courseId={course.id} />
+            </div> : null
+        }
         <StartCourseFormContainer show={this.state.showPopup}
                                   acceptCallback={this.state.acceptCallback}
                                   onSubmit={this.startTeachingCourse.bind(this)}
