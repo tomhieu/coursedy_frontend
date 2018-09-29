@@ -2862,12 +2862,6 @@ div[data-reactroot] {
   }
 }
 
-@media only screen and (max-width: 480px) {
-  .course-filter-container {
-    height: 211px;
-  }
-}
-
 .course-thumb {
   height: 200px;
 }
@@ -3015,6 +3009,15 @@ button {
 }
 
 .optimize-filters {
+  .navbar-collapse {
+    &.show {
+      background-color: $white-color;
+      z-index: 1002;
+    }
+  }
+}
+
+.optimize-filters {
   display: none ;
 }
 
@@ -3035,6 +3038,13 @@ button {
     flex: 1;
     a {
       margin: 10px 0;
+    }
+    .filter-toggler {
+      position: relative;
+      .filter-toggler-icon {
+        position: absolute;
+        top: 0;
+      }
     }
   }
 

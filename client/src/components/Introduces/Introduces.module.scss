@@ -11,6 +11,13 @@
   padding: 20px;
   margin: 0 70px;
 }
+
+@media (max-width: 1024px) {
+  .headerSearchContainer {
+    margin: 0;
+  }
+}
+
 .headerSearchIcon {
   margin-right: 10px;
 }

@@ -107,14 +107,14 @@ class BaseFilter extends Component {
               </div>
               <div className="st-border-left advanced-filter-btn">
                 <a
-                  className="navbar-toggler"
+                  className="filter-toggler"
                   data-toggle="collapse"
                   data-target="#advanceFilterCollapse"
                   aria-controls="advanceFilterCollapse"
                   aria-expanded="false"
                   aria-label="Toggle navigation"
                 >
-                  <span className="navbar-toggler-icon normal-text"><i className="fa expand-search-bar" /></span>
+                  <span className="narvav-toggler-icon normal-text">Filters</span>
                 </a>
               </div>
             </div>

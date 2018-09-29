@@ -112,6 +112,19 @@
   margin-right: 15px;
 }
 
+
+@media (max-width: 768px)  {
+  .totalCoursesBox {
+    width: 85px;
+  }
+  .orderBtn {
+    width: 150px;
+  }
+  .displayModeBtn {
+    width: 120px;
+  }
+}
+
 .orderDisplayResult {
   flex-grow: 1;
   flex-wrap: wrap;
@@ -181,6 +194,12 @@
 @media (max-width: 1200px)  {
   .filterCourseContainer {
     flex: 2;
+  }
+}
+
+@media (max-width: 768px)  {
+  .filterCourseContainer {
+    flex: 4;
   }
 }
 
