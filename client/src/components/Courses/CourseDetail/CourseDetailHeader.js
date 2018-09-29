@@ -61,8 +61,8 @@ class CourseDetailHeader extends Component {
                 <div className={styles.courseSummaryInfo}>
                   <div className="d-flex flex-row">
                     {
-                      course.lesson_count > 0
-                        ? <div className={styles.numberLesson}>{this.context.t('header_number_lesson', { numberLesson: course.lesson_count})}</div>
+                      course.period > 0
+                        ? <div className={styles.numberLesson}>{this.context.t('header_number_lesson', { numberLesson: course.period})}</div>
                         : null
                     }
                     {
