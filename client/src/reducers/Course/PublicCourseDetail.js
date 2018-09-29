@@ -7,7 +7,7 @@ const PublicCourseDetail = (state = {
   course_sections: [],
   course_comments: [],
   course_comments_page: 1,
-
+  isFetchingCourseDetails: false,
   isFetching: true,
   relatedCourses: [],
 
@@ -33,11 +33,11 @@ const PublicCourseDetail = (state = {
 }, action) => {
   switch (action.type) {
     case courseTypes.FETCH_PUBLIC_COURSE + asyncActs.PENDING:
-      return { ...state, course: {} };
+      return { ...state, course: {}, isFetchingCourseDetails: true };
     case courseTypes.FETCH_PUBLIC_COURSE + asyncActs.FULFILLED:
-      return { ...state, course: action.payload };
+      return { ...state, course: action.payload, isFetchingCourseDetails: false };
     case courseTypes.FETCH_PUBLIC_COURSE + asyncActs.REJECTED:
-      return { ...state, course: { error: action.payload } };
+      return { ...state, course: { error: action.payload }, isFetchingCourseDetails: false };
     case courseTypes.FETCH_PUBLIC_COURSE_SECTIONS + asyncActs.FULFILLED:
       return { ...state, course_sections: action.payload };
     case courseTypes.FETCH_PUBLIC_COURSE_SECTIONS + asyncActs.REJECTED:

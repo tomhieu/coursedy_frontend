@@ -60,6 +60,10 @@ class PublicCourseDetailContainer extends Component {
   }
 
   render() {
+    const {isFetchingCourseDetails} = this.props;
+    if (isFetchingCourseDetails) {
+      return null;
+    }
     return (
       <PageContainer
         error={this.props.course.error}
@@ -123,7 +127,8 @@ const mapStateToProps = (state) => {
     course_sections,
     course_comments,
     course_comments_page,
-    sectionPositions
+    sectionPositions,
+    isFetchingCourseDetails
   } = state.PublicCourseDetail;
   const { newStartedCourses } = state.session;
   const isEnrolled = newStartedCourses.findIndex(c => c.id === course.id) >= 0;
@@ -139,7 +144,8 @@ const mapStateToProps = (state) => {
     course_comments,
     course_comments_page,
     sectionPositions,
-    isEnrolled
+    isEnrolled,
+    isFetchingCourseDetails
   };
 };
 

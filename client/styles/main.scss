@@ -6,6 +6,10 @@ body.application {
   color: $dark-text-color;
   background-color: $white-background;
 
+  a {
+    color: #007791;
+  }
+
   .navbar-light.dark-header .navbar-nav .nav-link {
     color: $white-color;
     &.nav-btn {
@@ -1913,4 +1917,10 @@ body.application {
     border: 1px solid $color-organe;
     color: $color-organe;
   }
+}
+
+.billing-course-label {
+  font-family: $font-semi-bold;
+  color: $color-darker-text;
+  padding: 5px 0;
 }
