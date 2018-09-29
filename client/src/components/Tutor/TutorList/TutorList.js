@@ -20,7 +20,7 @@ class TutorList extends Component {
           isFetching ? <div />
             : teachers.map((tutor) => {
               return (
-                <div className="col-xs-12 col-sm-6 col-md-4 col-lg-3 mb-15" key={tutor.id}>
+                <div className="col-xs-12 col-sm-6 col-md-4 col-lg-3 mb-15 d-flex justify-content-center" key={tutor.id}>
                   <TutorItem tutor={tutor} />
                 </div>
               );
