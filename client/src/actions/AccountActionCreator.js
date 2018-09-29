@@ -9,7 +9,7 @@ export const updatePassword = (data) => {
     dispatch({
       type: ACCOUNT.complete_updating_password,
       payload: Network().update('auth', data),
-      meta: 'ezylearningFullLoader'
+      meta: 'changePasswordPlaceholder'
     });
   };
 };
