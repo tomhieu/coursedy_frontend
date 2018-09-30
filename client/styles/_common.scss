@@ -2991,7 +2991,7 @@ button {
   min-width: 25px;
   height: 25px;
   min-height: 25px;
-  margin: 0 15px 0 0;
+  margin: 0;
 }
 
 .seperate-filter-line {
@@ -3094,6 +3094,9 @@ button {
 
 .filter-selection {
   white-space: nowrap;
+  .hidden-filter-link {
+    min-width: 145px;
+  }
 }
 
 .chip-container {
