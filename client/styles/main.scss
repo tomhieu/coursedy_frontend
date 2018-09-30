@@ -1011,7 +1011,7 @@ body.application {
   .course-item {
     position: relative;
     max-width: 225px;
-    margin: 0 -15px;
+    width: calc(100% + 15px);
     height: 100%;
     box-shadow: 0 0 1px 1px rgba(20,23,28,.1), 0 3px 1px 0 rgba(20,23,28,.1);
     &:hover {
@@ -1745,6 +1745,12 @@ body.application {
 @media (min-width: 1440px) {
   .container {
     max-width: 1412px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .container {
+    max-width: 96%;
   }
 }
 
