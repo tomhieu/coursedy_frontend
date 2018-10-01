@@ -678,6 +678,7 @@ export default {
   /* add more translation */
   sellect_role: 'Please select a user account',
   name_required: 'Please enter a name',
+  country_code_required: 'Please select your nationality',
   confirming: 'Confirming account ....',
   confirmed: 'Your account has been confirmed. You can update your account information here.',
   dashboard_page: 'personal page',

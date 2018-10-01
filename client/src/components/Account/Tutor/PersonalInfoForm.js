@@ -1,10 +1,9 @@
-import { Component } from 'react';
 import * as React from 'react';
+import {Component} from 'react';
 import FormField from '../../Core/FormField';
-import { TutorAccountConstants } from '../../../constants/index';
+import {TutorAccountConstants} from '../../../constants/index';
 import PrimaryButton from '../../Core/PrimaryButton/PrimaryButton';
-import { CURRENCIES } from '../../../constants/Courses';
-import { countries } from '../../../constants/Countries';
+import {countries} from '../../../constants/Countries';
 
 export class PersonalInfoForm extends Component {
   render() {

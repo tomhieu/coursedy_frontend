@@ -30,7 +30,6 @@ class BasicFilterComponent extends Component {
   }
 
   onWindowResize() {
-    console.log('window resize');
     const hiddenFilters = this.updateDimensions();
     if (hiddenFilters !== this.state.numberHiddenFilter) {
       this.setState({numberHiddenFilter: hiddenFilters});

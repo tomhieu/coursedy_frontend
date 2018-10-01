@@ -6,17 +6,22 @@ import { TT } from 'utils/locale';
 import { ROLES } from 'constants/Roles';
 import SignUpSuccessModal from './SignUpSuccessModal';
 import {
-  renderField, renderRadioFields
+  renderField, renderRadioFields, renderSelect
 } from '../Core/CustomComponents';
 import PrimaryButton from '../Core/PrimaryButton/PrimaryButton';
 import './LoginRegisterForm.scss';
 import { Link } from 'react-router-dom';
 import styles from './RegisterForm.module.scss';
+import {countries} from '../../constants/Countries';
 import normalizePhone from './normalizePhoneNumber';
 
 class RegisterForm extends Component {
   render() {
     const { handleSubmit } = this.props;
+    const countryList = countries.map(country => ({
+      id: country.code,
+      text: country.name
+    }));
     return (
       <form onSubmit={handleSubmit(this.props.onSubmit)} className="form-signup">
         <FormGroup controlId="formHorizontalEmail">
@@ -102,6 +107,22 @@ class RegisterForm extends Component {
             component={renderField}
             type="password"
             placeholder={this.context.t('confirm_password')}
+            className="form-control"
+          />
+        </FormGroup>
+
+        <FormGroup controlId="formHorizontalCountry">
+          <ControlLabel>
+            {' '}
+            {this.context.t('account.person.info.country')}
+            {' '}
+            <font color="red">*</font>
+            {' '}
+          </ControlLabel>
+          <Field
+            name="country_code"
+            component={renderSelect(countryList)}
+            placeholder={this.context.t('account.person.info.country')}
             className="form-control"
           />
         </FormGroup>

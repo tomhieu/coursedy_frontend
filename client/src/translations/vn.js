@@ -43,6 +43,7 @@ export default {
   address_required: 'Vui lòng nhập địa chỉ',
   date_of_birth_required: 'Vui lòng chọn ngày sinh',
   name_required: 'Vui lòng nhập tên',
+  country_code_required: 'Vui lòng chọn quốc tịch',
   current_password_required: 'Vui lòng nhập mật khẩu hiện tại',
   confirm_password: 'Xác nhận mật khẩu',
   phone_number: 'Số điện thoại',
