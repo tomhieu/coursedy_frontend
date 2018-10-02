@@ -1,5 +1,5 @@
 const CONFIG = {
-  apiEnpoint: 'https://api.coursedy.com',
+  apiEndpoint: 'http://localhost:3000',
 }
 
 export default CONFIG

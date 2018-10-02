@@ -5,7 +5,7 @@ export class TutorNavigationTab {
 
   static COURSE_ADD = 'course_add';
 
-  static COURSE_LIST = 'course_list';
+  static COURSE_LIST = 'not_started_course_list';
 
   static ACTIVE_COURSE_LIST = 'course_active_list';
 }

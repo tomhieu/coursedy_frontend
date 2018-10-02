@@ -1,7 +1,6 @@
 import * as React from 'react';
-import { Component } from 'react';
+import {Component} from 'react';
 import FormField from '../Core/FormField';
-import { renderPreviewFile } from '../Core/CustomComponents';
 
 export class LessonDetailComponent extends Component {
   constructor(props) {

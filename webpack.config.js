@@ -51,7 +51,7 @@ module.exports = {
         loader: "style-loader!css-loader"
       },
       {
-        test: /\.woff(2)?(\?v=[0-9].[0-9].[0-9])?$/,
+        test: /\.woff(2)?$/,
         loader: "url-loader?mimetype=application/font-woff"
       },
       {

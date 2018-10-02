@@ -23,6 +23,13 @@ class CourseFilterContainer extends AbstractFilter {
     this.props.shadowHeader();
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (this.props.lang !== nextProps.lang) {
+      this.props.fetchCategories();
+      this.search();
+    }
+  }
+
   changeDisplayMode(mode) {
     this.props.changeDisplayMode(mode);
   }
@@ -60,15 +67,18 @@ class CourseFilterContainer extends AbstractFilter {
     this.props.searchCourse(this.buildQuery(nextFilters, selectedMinFee, selectedMaxFee, order_by, display_mode));
   }
 
-  search(e) {
+  search(e = {}) {
     let orderBy, keyWord;
     if (e.key_word) {
       keyWord = e.key_word.trim();
       this.props.updateFilter({ term: keyWord });
-    } else {
+    }
+
+    if (e.target && e.target.value) {
       orderBy = e.target.value;
       this.props.updateFilter({ orderBy });
     }
+
     const { selectedMinFee, selectedMaxFee, display_mode } = this.props.formfieldValues;
     this.props.searchCourse(this.buildQuery(
       this.props.filters,
@@ -169,7 +179,7 @@ const mapStateToProps = (state) => {
   const { CourseFilter, form = {}, referenceData } = state;
   const categories = referenceData.courseCategories || [];
   const locations = referenceData.locations || [];
-  const lang = state.i18nState.lang;
+  const { lang } = state.i18nState;
   const {
     courses = [], selectedCourses = [], displayMode,
     totalResult = 0, currentPage, perPage, orderBy,
@@ -181,7 +191,7 @@ const mapStateToProps = (state) => {
     id: sug.id,
     avatar: sug.cover_image,
     title: sug.title,
-    sub_title: TT.t('teacher_info_suggestion', { teacher: sug.user.name })
+    sub_title: TT.changeLocale(lang).t('teacher_info_suggestion', { teacher: sug.user.name })
   }));
 
   let initializeFields = courseFilterForm.values ? Object.assign({}, courseFilterForm.values) : {};

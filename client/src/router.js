@@ -22,7 +22,6 @@ import App from './components/App';
 import requireLogin from './utils/requireLogin';
 import TutorDashboardProfile from './pages/TutorDashboard/TutorDashboardProfile';
 import TutorDashboardCourseActive from './pages/TutorDashboard/TutorDashboardCourseActive';
-import TutorDashboardListLesson from './pages/TutorDashboard/TutorDashboardListLesson';
 import TutorDashboardCourseDetail from './pages/TutorDashboard/TutorDashboardCourseDetail';
 import TutorDashboardAccount from './pages/TutorDashboard/TutorDashboardAccount';
 import TutorDashboardCourseList from './pages/TutorDashboard/TutorDashboardCourseList';
@@ -38,6 +37,8 @@ import StudentDashboardCourseEnrolled from './pages/StudentDashboard/StudentDash
 import StudentDashboardCourseEnrolling from './pages/StudentDashboard/StudentDashboardCourseEnrolling';
 import StudentDashboardCourseFollow from './pages/StudentDashboard/StudentDashboardCourseFollow';
 import {TutorStatus} from './constants/TutorStatus';
+import StudentCourseDetailContainer from './containers/Student/Dashboard/Courses/StudentCourseDetailContainer';
+import StudentDashboardCourseDetails from './pages/StudentDashboard/StudentDashboardCourseDetails';
 
 // define routes for config
 export const routes = [
@@ -127,12 +128,6 @@ export const routes = [
     status: TutorStatus.VERIFIED
   },
   {
-    path: '/dashboard/courses/list-lesson',
-    component: requireLogin(TutorDashboardListLesson),
-    roles: [UserRole.TEACHER],
-    status: TutorStatus.VERIFIED
-  },
-  {
     path: '/dashboard/courses/new',
     component: requireLogin(TutorDashboardCourseNew),
     roles: [UserRole.TEACHER],
@@ -172,6 +167,12 @@ export const routes = [
   {
     path: '/student/dashboard/courses/follow',
     component: requireLogin(StudentDashboardCourseFollow),
+    roles: [UserRole.STUDENT],
+    exact: true
+  },
+  {
+    path: '/student/dashboard/courses/:id',
+    component: requireLogin(StudentDashboardCourseDetails),
     roles: [UserRole.STUDENT],
     exact: true
   },

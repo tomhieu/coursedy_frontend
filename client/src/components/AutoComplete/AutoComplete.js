@@ -7,7 +7,7 @@ import styles from './AutoComplete.module.scss';
 import { renderField } from '../Core/CustomComponents';
 import AsyncLoader from '../../containers/LoadingMask/AsyncLoader';
 
-class AutoComplete extends Component {
+export class AutoComplete extends Component {
   constructor(props) {
     super(props);
   }
@@ -26,7 +26,13 @@ class AutoComplete extends Component {
     }
   }
 
-  renderSuggestion(suggestion, handleAddCriteria) {
+  onKeyPress(e) {
+    if (e.key === 'Enter') {
+      this.props.search({ key_word: e.target.value });
+    }
+  }
+
+  static renderSuggestion(suggestion, handleAddCriteria) {
     return (
       <div className={`d-flex flex-horizontal ${styles.suggestionItemWrapper}`} key={`suggestion_${suggestion.id}`}>
         <div>
@@ -42,15 +48,43 @@ class AutoComplete extends Component {
     );
   }
 
-  onKeyPress(e) {
-    if (e.key === 'Enter') {
-      this.props.search({ key_word: e.target.value });
+  static renderSugguestionList({ show, isLoading, dataSource, handleAddCriteria, context }) {
+    if (isLoading) {
+      return (
+        <div className="loading-bar-autocomplete">
+          <AsyncLoader normalPlaceholder />
+        </div>
+      );
     }
+
+    if (!show) return null;
+
+    return (
+      dataSource.length > 0
+        ? (
+          <div className={`${styles.modalSuggestion} flex flex-vertical`}>
+            {
+              dataSource.map(gs => (
+                AutoComplete.renderSuggestion(gs, handleAddCriteria)
+              ))
+            }
+          </div>
+        )
+        : (
+          <div className={`${styles.modalSuggestion} flex flex-vertical`}>
+            <div className={styles.suggestionLine}>
+              <a className="pl-10 d-flex flex-vertical justify-content-center suggestion-line not-found">
+                <span className="sub-header">{context.t('not_found_suggestion')}</span>
+              </a>
+            </div>
+          </div>
+        )
+    );
   }
 
   render() {
     const {
-      show, isLoading, onBlur, onFocus, placeholder, fieldName, dataSource, handleAddCriteria, loadSuggestions
+      onBlur, onFocus, placeholder, fieldName, loadSuggestions
     } = this.props;
     return (
       <div className={`${styles.filterBox} d-flex flex-vertical`} ref={(el) => { this.autoCompleteWrapper = el; }}>
@@ -67,34 +101,7 @@ class AutoComplete extends Component {
             />
           </div>
         </div>
-        {
-          isLoading
-            ? (
-              <div className="loading-bar-autocomplete">
-                <AsyncLoader normalPlaceholder />
-              </div>
-            )
-            : show ? dataSource.length > 0
-              ? (
-                <div className={`${styles.modalSuggestion} flex flex-vertical`}>
-                  {
-                  dataSource.map(gs => (
-                    this.renderSuggestion(gs, handleAddCriteria)
-                  ))
-                }
-                </div>
-              )
-              : (
-                <div className={`${styles.modalSuggestion} flex flex-vertical`}>
-                  <div className={styles.suggestionLine}>
-                    <a className="pl-10 d-flex flex-vertical justify-content-center suggestion-line not-found">
-                      <span className="sub-header">{this.context.t('not_found_suggestion')}</span>
-                    </a>
-                  </div>
-                </div>
-              )
-              : null
-        }
+        { AutoComplete.renderSugguestionList({ ...this.props, context: this.context }) }
       </div>
     );
   }

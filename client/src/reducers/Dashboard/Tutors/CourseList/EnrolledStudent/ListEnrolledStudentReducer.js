@@ -10,6 +10,10 @@ const EnrolledStudentList = (state = {
       return { ...state, isFetching: true };
     case actionTypes.FETCH_ENROLLED_STUDENT + actionTypes.FULFILLED:
       return { ...state, enrolledStudents: action.payload, isFetching: false };
+    case actionTypes.FETCH_ENROLLED_STUDENT + actionTypes.REJECTED:
+      return {
+        ...state, enrolledStudents: [], error: action.payload, isFetching: false
+      };
     case actionTypes.SHOW_ENROLLED_STUDENT_LIST:
       const newActiveCourseId = action.data;
       if (newActiveCourseId === state.activeCourseId) {

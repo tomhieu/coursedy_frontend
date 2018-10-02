@@ -2,11 +2,39 @@
  General styles
  */
 @import "global_style";
-@import url(https://fonts.googleapis.com/css?family=Lato:300,400,700);
+
+@font-face {
+  font-family: 'harmonia-regular';
+  src: url('../fonts/Coursedy-Harmonia-Regular.woff') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'harmonia-semi-bold';
+  src: url('../fonts/Coursedy-Harmonia-SemiBold.woff') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'harmonia-bold';
+  src: url('../fonts/Coursedy-Harmonia-Bold.woff') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'serif';
+  src: url('../fonts/Coursedy-Serif-Regular.woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
 body {
   text-rendering: optimizeLegibility !important;
   -webkit-font-smoothing: antialiased !important;
-  font-family: 'Lato', sans-serif;
+  font-family: 'harmonia-regular', sans-serif;
   color: $black-color;
   font-weight: 400;
   background-color: $color-default-bg;
@@ -115,7 +143,6 @@ h1 {
   font-size: 60px;
   line-height: 33px;
   font-weight: 200;
-  color: #ffffff;
 }
 
 h2 {
@@ -245,6 +272,13 @@ figcaption {
   justify-content: center;
 }
 
+.image-file-preview {
+  img {
+    width: 30px;
+    height: auto;
+  }
+}
+
 .pdf-image-preview {
   background: #f8f8f8 url("../images/pdf-icon.png") no-repeat;
   width: 30px;
@@ -255,6 +289,13 @@ figcaption {
   background: #f8f8f8 url("../images/docx-icon.png") no-repeat;
   width: 30px;
   height: 30px;
+}
+
+.power-point-icon-preview {
+  background: #f8f8f8 url("../images/powerpoint-icon.png") no-repeat;
+  width: 30px;
+  height: 30px;
+  background-size: 30px;
 }
 
 .icon-download {
@@ -1856,6 +1897,10 @@ textarea, .form-control {
   margin-top: 5px !important
 }
 
+.mt-7 {
+  margin-top: 7px !important
+}
+
 .mt-10 {
   margin-top: 10px !important
 }
@@ -2527,6 +2572,9 @@ blockquote {
 .select-course-fee {
   width: 300px;
   padding: 0 15px;
+  .form-group {
+    margin-bottom: 7px;
+  }
 }
 
 .md-check-box-field {
@@ -2813,12 +2861,6 @@ div[data-reactroot] {
   }
 }
 
-@media only screen and (max-width: 480px) {
-  .course-filter-container {
-    height: 211px;
-  }
-}
-
 .course-thumb {
   height: 200px;
 }
@@ -2948,7 +2990,7 @@ button {
   min-width: 25px;
   height: 25px;
   min-height: 25px;
-  margin: 0 15px 0 0;
+  margin: 0;
 }
 
 .seperate-filter-line {
@@ -2956,12 +2998,22 @@ button {
 }
 
 .advanced-filter-block {
+  position: relative;
   display: flex;
   flex: 2;
 }
 
 .advanced-filter-btn {
   display: none;
+}
+
+.optimize-filters {
+  .navbar-collapse {
+    &.show {
+      background-color: $white-color;
+      z-index: 1002;
+    }
+  }
 }
 
 .optimize-filters {
@@ -2985,6 +3037,13 @@ button {
     flex: 1;
     a {
       margin: 10px 0;
+    }
+    .filter-toggler {
+      position: relative;
+      .filter-toggler-icon {
+        position: absolute;
+        top: 0;
+      }
     }
   }
 
@@ -3034,6 +3093,9 @@ button {
 
 .filter-selection {
   white-space: nowrap;
+  .hidden-filter-link {
+    min-width: 145px;
+  }
 }
 
 .chip-container {
@@ -3320,22 +3382,12 @@ Course Item (List Mode) Style Sheet
 }
 
 .empty-result-message {
-  padding: 20px 0;
-  font-size: 24px;
-}
-
-.list-option {
-  padding: 20px;
-}
-
-.empty-result-option {
-  list-style-type: disc;
-  text-align: left;
-  color: $color-light-black-text;
+  padding: 20px 0 0 0;
+  font-size: 20px;
 }
 
 a.clear-filter {
-  color: $color-blue;
+  color: $color-hightlight;
 }
 
 .teacher-list {
@@ -3352,4 +3404,10 @@ a.clear-filter {
   font-weight: normal;
   font-size: 12px;
   text-transform: lowercase;
+}
+
+.coursedy-headline {
+  font-family: 'serif';
+  font-size: 24px;
+  line-height: 24px;
 }

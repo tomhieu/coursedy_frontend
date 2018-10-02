@@ -1,11 +1,10 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React, {Component} from 'react';
+import {connect} from 'react-redux';
 import * as WebConstants from 'constants/WebConstants';
-import { CourseDetail } from '../../../components/index';
+import {CourseDetail} from '../../../components/index';
 import * as PublicCourseActions from '../../../actions/PublicCourseActionCreator';
 import * as ReferActions from '../../../actions/ReferenceActions/ReferenceDataActionCreator';
-import { openConfirmationPopup } from '../../../actions/MainActionCreator';
-import { TT } from '../../../utils/locale';
+import {openConfirmationPopup} from '../../../actions/MainActionCreator';
 import PageContainer from '../../../utils/PageContainer';
 import * as sessionActions from '../../../actions/SessionActionCreator';
 
@@ -32,6 +31,20 @@ class PublicCourseDetailContainer extends Component {
     }
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (this.props.lang !== nextProps.lang) {
+      this.props.getCourseCategories();
+      const { courseId } = nextProps;
+      if (courseId) {
+        // Fetch course
+        this.props.getPublicCourse(courseId);
+
+        // Fetch related courses
+        this.props.getRelatedCourses(courseId, WebConstants.START_PAGE_INDEX, WebConstants.RELATED_COURSE_PER_PAGE);
+      }
+    }
+  }
+
   componentWillUnmount() {
     this.props.showFooter();
     this.props.stretchAuto();
@@ -47,6 +60,10 @@ class PublicCourseDetailContainer extends Component {
   }
 
   render() {
+    const {isFetchingCourseDetails} = this.props;
+    if (isFetchingCourseDetails) {
+      return null;
+    }
     return (
       <PageContainer
         error={this.props.course.error}
@@ -110,7 +127,8 @@ const mapStateToProps = (state) => {
     course_sections,
     course_comments,
     course_comments_page,
-    sectionPositions
+    sectionPositions,
+    isFetchingCourseDetails
   } = state.PublicCourseDetail;
   const { newStartedCourses } = state.session;
   const isEnrolled = newStartedCourses.findIndex(c => c.id === course.id) >= 0;
@@ -126,7 +144,8 @@ const mapStateToProps = (state) => {
     course_comments,
     course_comments_page,
     sectionPositions,
-    isEnrolled
+    isEnrolled,
+    isFetchingCourseDetails
   };
 };
 

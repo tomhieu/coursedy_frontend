@@ -8,6 +8,7 @@ import styles from './ListEnrolledStudent.module.scss';
 import { FETCH_ENROLLED_STUDENT } from '../../../actions/AsyncActionCreator';
 import LoadingMask from '../../LoadingMask/LoadingMask';
 import * as WebConstant from '../../../constants/WebConstants';
+import AsyncLoader from '../../../components/LoadingMask/AsyncLoader';
 
 class ListEnrolledStudent extends Component {
   componentWillMount() {
@@ -16,6 +17,19 @@ class ListEnrolledStudent extends Component {
 
   render() {
     const { enrolledStudents, isFetching } = this.props;
+    if (isFetching) {
+      return (
+        <AsyncLoader
+          isFullLoading={false}
+          normalPlaceholder={true}
+          facebookPlaceholder={false}
+          sectionPlaceholder={false}
+          loaderType={""}
+          repeatTime={0}
+        />
+      )
+    }
+
     if (!isFetching && enrolledStudents.length === 0) {
       return (
         <div className="d-flex flex-auto no-enrolled-student">
@@ -24,47 +38,45 @@ class ListEnrolledStudent extends Component {
       );
     }
     return (
-      <LoadingMask placeholderId="LIST_ENROLLED_STUDENT_PLACEHOLDER">
-        <div className="row flex-auto">
-          <div className="col-md-12">
-            <div className={`row flex-auto ${styles.headerLine}`}>
-              <div className="col-xl-5 col-sm-12">
-                <div className="row">
-                  <div className="col-md-9 col-sm-12">
-                    <div className={`${styles.enrolledStudentHeader} ${styles.studentName}`}>{this.context.t('student_name')}</div>
-                  </div>
-                  <div className="col-md-3 col-sm-12" />
+      <div className="row flex-auto">
+        <div className="col-md-12">
+          <div className={`row flex-auto ${styles.headerLine}`}>
+            <div className="col-xl-5 col-sm-12">
+              <div className="row">
+                <div className="col-md-9 col-sm-12">
+                  <div className={`${styles.enrolledStudentHeader} ${styles.studentName}`}>{this.context.t('student_name')}</div>
                 </div>
-              </div>
-              <div className="col-xl-7 col-sm-12">
-                <div className="row">
-                  <div className="col-md-2 col-sm-4">
-                    <div className={styles.enrolledStudentHeader}>{this.context.t('enrollment_date')}</div>
-                  </div>
-                  <div className="col-md-2 col-sm-4">
-                    <div className={styles.enrolledStudentHeader}>{this.context.t('student_gender')}</div>
-                  </div>
-                  <div className="col-md-6 col-sm-4">
-                    <div className={styles.enrolledStudentHeader}>{this.context.t('student_email')}</div>
-                  </div>
-                  <div className="col-md-2 col-sm-4" />
-                </div>
+                <div className="col-md-3 col-sm-12" />
               </div>
             </div>
-          </div>
-          <div className="col-md-12">
-            <div className="row">
-              {
-                enrolledStudents.map(student => (
-                  <div className="col-md-12">
-                    <StudentItem student={student} />
-                  </div>
-                ))
-              }
+            <div className="col-xl-7 col-sm-12">
+              <div className="row">
+                <div className="col-md-2 col-sm-4">
+                  <div className={styles.enrolledStudentHeader}>{this.context.t('enrollment_date')}</div>
+                </div>
+                <div className="col-md-2 col-sm-4">
+                  <div className={styles.enrolledStudentHeader}>{this.context.t('student_gender')}</div>
+                </div>
+                <div className="col-md-6 col-sm-4">
+                  <div className={styles.enrolledStudentHeader}>{this.context.t('student_email')}</div>
+                </div>
+                <div className="col-md-2 col-sm-4" />
+              </div>
             </div>
           </div>
         </div>
-      </LoadingMask>
+        <div className="col-md-12">
+          <div className="row">
+            {
+              enrolledStudents.map(student => (
+                <div className="col-md-12">
+                  <StudentItem student={student} />
+                </div>
+              ))
+            }
+          </div>
+        </div>
+      </div>
     );
   }
 }

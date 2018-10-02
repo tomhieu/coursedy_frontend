@@ -34,6 +34,17 @@ class ListTutorCourseContainer extends Component {
     }
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (this.props.lang !== nextProps.lang) {
+      const { status } = nextProps;
+      if (status === CourseStatus.STARTED) {
+        this.props.fetchListTutorActiveCourse();
+      } else {
+        this.props.fetchListTutorCourse();
+      }
+    }
+  }
+
   openCourseCreation() {
     globalHistory.push('/dashboard/courses/new');
   }
@@ -56,7 +67,7 @@ class ListTutorCourseContainer extends Component {
       <div className="d-flex flex-vertical flex-auto">
         <div className="d-flex flex-auto">
           <div className="title">
-            {status === CourseStatus.STARTED ? this.context.t('course_active_list') : this.context.t('course_list')}
+            {status === CourseStatus.STARTED ? this.context.t('course_active_list') : this.context.t('not_started_course_list')}
           </div>
         </div>
         <div className="d-flex flex-auto">
@@ -67,8 +78,8 @@ class ListTutorCourseContainer extends Component {
                   <div className={styles.noCourseWarning}>
                     <span>{this.getNoCourseWarningMessage(status)}</span>
                     {
-                    status === CourseStatus.NOT_STARTED ? <a className="active-link ml-5" onClick={this.openCourseCreation.bind(this)}>{this.context.t('search_more_course_link')}</a> : null
-                  }
+                      status === CourseStatus.NOT_STARTED ? <a className="active-link ml-5" onClick={this.openCourseCreation.bind(this)}>{this.context.t('search_more_course_link')}</a> : null
+                    }
                   </div>
                 ) : null
             }
@@ -89,7 +100,7 @@ const mapStateToProps = (state) => {
   const { courses, isFetching } = TutorCourseList;
   const { activeCourseId } = EnrolledStudentList;
   const { currentUser } = session;
-  const lang = state.i18nState.lang;
+  const { lang } = state.i18nState;
   return {
     courses, isFetching, currentUser, activeCourseId, lang
   };

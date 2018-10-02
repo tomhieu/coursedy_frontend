@@ -26,7 +26,7 @@ class SearchFormContainer extends Component {
       return;
     }
 
-    this.props.loadSuggestions(event.target.value);
+    this.props.loadAutoSuggestions(event.target.value);
   }
 
   onSelectSuggestion(id) {

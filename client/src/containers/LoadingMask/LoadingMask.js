@@ -14,7 +14,12 @@ class LoadingMask extends Component {
       buttonPlaceholder = false, loaderType, repeatTime,
       innerClass = 'loading-mask-container'
     } = this.props;
-    const isProcessing = activatingPlaceholders.findIndex(holder => placeholderId == holder) >= 0;
+
+    let isProcessing = activatingPlaceholders.findIndex(holder => placeholderId === holder) >= 0;
+    // const isProcessing = true;
+    if (placeholderId === 'LIST_ENROLLED_STUDENT_PLACEHOLDER') {
+      isProcessing = true;
+    }
     return (
       <div className={innerClass}>
         {

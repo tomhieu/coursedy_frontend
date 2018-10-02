@@ -165,10 +165,18 @@ export const renderDatePicker = ({
 
 export const renderSelect = (selectOptions) => {
   return ({
-    input, label, type, className, disabled = false, meta: { touched, error, warning }
+    input, label, placeholder, type, className, disabled = false, meta: { touched, error, warning }
   }) => (
     <div>
-      <Select2 {...input} className={className} disabled={disabled} data={selectOptions} />
+      <Select2
+        {...input}
+        options={{
+          placeholder,
+        }}
+        className={className}
+        disabled={disabled}
+        data={selectOptions}
+      />
       {touched && ((error && <span className="input-errors">{error}</span>) || (warning
         && <span>{warning}</span>))}
     </div>
@@ -193,21 +201,33 @@ export const renderMultiSelect = (selectOptions) => {
 };
 
 export const renderPreviewFile = (file, doDeleteNewUploadFile, saveDocument) => {
-  let previewClass = 'pdf-image-preview';
-  if (file.extension === 'docx') {
+  const extension = file.name.split('.')[1];
+  let previewClass;
+  if (extension === 'docx' || extension === 'doc') {
     previewClass = 'doc-image-preview';
+  } else if (extension === 'pptx' || extension === 'ppt') {
+    previewClass = 'power-point-icon-preview';
+  } else if (extension === 'pdf') {
+    previewClass = 'pdf-image-preview';
   }
   return (
-    <div className="d-flex flex-horizontal mt-10 mb-10" key={`document_${file.id}`}>
-      <div className={previewClass} />
+    <div className="d-flex flex-horizontal mb-10" key={`document_${file.id}`}>
+      {
+        previewClass ? <div className={previewClass} /> :
+          <a className="image-file-preview"><img src={file.url} alt={file.name}/></a>
+      }
       <div className="file-name-wrapper">
-        <span className="degree-filename ml-10" title={file.fileName}>{file.fileName}</span>
+        <a className="degree-filename ml-10" href={file.url} title={file.fileName}>{file.fileName}</a>
       </div>
-      <a className="icon-delete ml-10" onClick={() => doDeleteNewUploadFile(file.uid)} title={file.fileName}>
-        <svg viewBox="0 0 24 24" className="material-icon secondary" height="18" width="18">
-          <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z" />
-        </svg>
-      </a>
+      {
+        doDeleteNewUploadFile ?
+          <a className="icon-delete ml-10" onClick={() => doDeleteNewUploadFile(file.uid)} title={file.fileName}>
+            <svg viewBox="0 0 24 24" className="material-icon secondary" height="18" width="18">
+              <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z" />
+            </svg>
+          </a> : null
+      }
+
       {
         saveDocument !== undefined
           ? (
@@ -253,7 +273,7 @@ class renderFileInput extends Component {
 
   render() {
     const {
-      input: { value, ...input }, label, meta: { touched, error }, zoneHeight, internalPreview, ...custom
+      input: { value, ...input }, label, meta: { touched, error }, zoneHeight, internalPreview, contentType = "image/*"
     } = this.props;
     const borderWidth = internalPreview && this.state.previewUrl != null ? '0' : '1px';
     const previewImageStyle = internalPreview ? {
@@ -276,7 +296,7 @@ class renderFileInput extends Component {
             borderColor: 'rgb(102, 102, 102)',
             borderRadius: '5px',
           }}
-          accept="image/*"
+          accept={contentType}
         >
           <div className="d-flex flex-auto justify-content-center align-items-center">
             <div className={this.state.previewUrl ? 'd-none' : 'd-flex flex-horizontal align-self-center padd-10'}>

@@ -17,20 +17,20 @@ const Network = (res = {}) => {
   const buildUrl = (path, isBBBApi = false) => {
     const { id, resource } = res;
     let parameters = [
-      config.apiEnpoint,
+      config.apiEndpoint,
       'api',
       'v1'
     ];
 
     if (isBBBApi) {
       parameters = [
-        config.apiEnpoint,
+        config.apiEndpoint,
         'bigbluebutton',
         'api'
       ];
     }
 
-    if (path.trim() && path.trim() != '/') parameters = parameters.concat([path]);
+    if (path.trim() && path.trim() !== '/') parameters = parameters.concat([path]);
 
     if (resource) parameters = parameters.concat([resource]);
     if (id) parameters = parameters.concat([id]);
@@ -47,7 +47,7 @@ const Network = (res = {}) => {
       'access-token': localStorage.getItem('ezyLearningToken'),
       client: localStorage.getItem('ezyLearningClient'),
       uid: localStorage.getItem('ezyLearningUid'),
-      'X-Language': localStorage.getItem('coursedyLang') ||  'vn'
+      'X-Language': localStorage.getItem('coursedyLang') || 'vi',
     }
   };
 
@@ -68,7 +68,7 @@ const Network = (res = {}) => {
         defaultOptions,
         {
           method: 'POST',
-          headers: headers,
+          headers,
           body: JSON.stringify(body)
         }
       ));
@@ -87,7 +87,7 @@ const Network = (res = {}) => {
       return request(`${buildUrl(path, isBBBApi)}?${q}`, Object.assign(
         options,
         defaultOptions,
-        { 
+        {
           method: 'GET',
           headers: headers
         }
@@ -107,10 +107,10 @@ const Network = (res = {}) => {
       return request(buildUrl(path), Object.assign(
         options,
         defaultOptions,
-        { 
+        {
           method: 'PUT',
           headers: headers,
-          body: JSON.stringify(body) 
+          body: JSON.stringify(body)
         }
       ));
     },
@@ -127,9 +127,9 @@ const Network = (res = {}) => {
       return request(buildUrl(path), Object.assign(
         options,
         defaultOptions,
-        { 
+        {
           method: 'DELETE',
-          headers: headers
+          headers
         }
       ));
     },

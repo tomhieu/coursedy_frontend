@@ -112,6 +112,19 @@
   margin-right: 15px;
 }
 
+
+@media (max-width: 768px)  {
+  .totalCoursesBox {
+    width: 85px;
+  }
+  .orderBtn {
+    width: 150px;
+  }
+  .displayModeBtn {
+    width: 120px;
+  }
+}
+
 .orderDisplayResult {
   flex-grow: 1;
   flex-wrap: wrap;
@@ -135,6 +148,7 @@
 }
 
 .courseListContainer {
+
 /*  position: absolute;
   top: 0;
   height: calc(100% - 60px);
@@ -177,6 +191,18 @@
   flex: 3;
 }
 
+@media (max-width: 1200px)  {
+  .filterCourseContainer {
+    flex: 2;
+  }
+}
+
+@media (max-width: 768px)  {
+  .filterCourseContainer {
+    flex: 4;
+  }
+}
+
 .filterTeachContainer {
   position: relative;
   flex: 7;
@@ -201,4 +227,13 @@
   min-height: 42px;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+  .popoverCourseDescription {
+    max-height: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    &::after {
+      content: '...';
+    }
 }

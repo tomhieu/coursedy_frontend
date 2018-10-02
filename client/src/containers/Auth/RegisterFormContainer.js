@@ -86,7 +86,8 @@ export default connect(
   mapStateToProps
 )(reduxForm({
   form: 'signUp',
-  fields: ['email', 'password', 'name', 'phone_number', 'role'],
+  fields: ['email', 'password', 'name', 'phone_number', 'country_code', 'role'],
   validate,
-  asyncValidate
+  asyncValidate,
+  asyncBlurFields: ['email']
 })(StyledComponent));

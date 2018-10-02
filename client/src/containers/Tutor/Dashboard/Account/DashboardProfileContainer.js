@@ -87,7 +87,8 @@ const mapStateToProps = state => ({
   userBalance: state.session.userBalance,
   user: state.session.currentUser,
   editAvatarMode: state.AccountReducer.editAvatarMode,
-  avatarSelected: state.AccountReducer.avatarSelected
+  avatarSelected: state.AccountReducer.avatarSelected,
+  lang: state.i18nState.lang,
 });
 
 const mapStateToDispatch = dispatch => ({

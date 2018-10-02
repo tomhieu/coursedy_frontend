@@ -37,6 +37,12 @@ class CourseFormContainer extends Component {
     this.props.activateTab(TutorNavigationTab.COURSE_ADD);
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (this.props.lang !== nextProps.lang) {
+      this.props.fetchCourseCategories();
+    }
+  }
+
   addNewSection() {
     this.props.addNewSection();
   }
@@ -212,10 +218,15 @@ CourseFormContainer.propTypes = {
 
 const mapStateToProps = (state) => {
   const { courseDetails, TutorAccountReducer } = state;
+  const { lang } = state.i18nState;
+
   const {
     listSection, editMode, activatedField, createCourseSucess, courseData = {}, publishCourse, isFetching
   } = courseDetails;
-  const { cover_image, title, bigbluebutton_room, status } = courseData;
+  const {
+    cover_image, title,
+    bigbluebutton_room, status
+  } = courseData;
   const canEditable = status === CourseStatus.NOT_STARTED;
   return {
     listSection,
@@ -227,7 +238,8 @@ const mapStateToProps = (state) => {
     courseTitle: title,
     isFetching,
     bbbRoomSlug: bigbluebutton_room ? bigbluebutton_room.slug : undefined,
-    canEditable
+    canEditable,
+    lang
   };
 };
 
