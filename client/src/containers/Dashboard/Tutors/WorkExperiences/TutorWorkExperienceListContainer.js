@@ -43,13 +43,14 @@ class TutorWorkExperienceListContainer extends Component {
             showEditWorkExperienceForm={this.showEditWorkExperienceForm.bind(this)}
           />
           {
-            showNewTutorWorkExperienceForm
-              ? (
-                <div>
-                  <hr />
-                  <NewWorkExperienceFormContainer />
-                </div>
-              ) : (<div />)
+            showNewTutorWorkExperienceForm ? 
+              <div>
+                {
+                  workExperiences.length > 0 ? <hr /> : null
+                }
+                <NewWorkExperienceFormContainer />
+              </div>
+              : <div />
           }
           {
             !showNewTutorWorkExperienceForm
