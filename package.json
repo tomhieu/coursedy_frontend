@@ -83,6 +83,7 @@
     "components": "^0.1.0",
     "config": "^2.0.1",
     "configs": "^1.0.3",
+    "cropperjs": "^1.4.1",
     "css-loader": "^0.28.11",
     "express": "^4.16.3",
     "file-loader": "^0.11.2",
