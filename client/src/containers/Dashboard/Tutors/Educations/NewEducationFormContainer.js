@@ -16,9 +16,18 @@ class NewEducationFormContainer extends Component {
   }
 
   render() {
+    const placeholderId = "tutorEducationListPlaceholder";
+    const { activatingPlaceholders } = this.props
+    const isProcessing = activatingPlaceholders.findIndex(holder => placeholderId == holder) >= 0;
     return (
       <div className="bordered-box">
-        <TutorEducationForm onSubmit={this.createEducation.bind(this)} {...this.props} cancel={this.hideNewEducationForm.bind(this)} />
+        <TutorEducationForm 
+          onSubmit={this.createEducation.bind(this)} 
+          {...this.props} 
+          cancel={this.hideNewEducationForm.bind(this)}
+          isProcessing={isProcessing}
+          placeholderId={placeholderId}
+        />
       </div>
     );
   }
@@ -30,6 +39,7 @@ NewEducationFormContainer.contextTypes = {
 
 const mapStateToProps = state => ({
   tutor: state.TutorAccountReducer.tutor,
+  activatingPlaceholders: state.LoadingMask.activatingPlaceholders
 });
 
 export default connect(mapStateToProps)(reduxForm({
