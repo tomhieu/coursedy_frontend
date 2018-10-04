@@ -134,14 +134,17 @@ class TutorCourseItem extends Component {
                 <div className="col-xl-3 col-lg-4 col-md-6 col-sm-4">
                   <div className="d-flex flex-row align-items-center justify-content-right">
                     <div className={styles.leftSeperateLine} />
-                    <PrimaryButton
-                      isSmallButton
-                      round
-                      line={false}
-                      customClasses="start-course-btn"
-                      callback={this.showStartCourseWarning.bind(this, course)}
-                      title={TT.changeLocale(this.props.lang).t('start_course')}
-                    />
+                    {
+                      course.status === CourseStatus.NOT_STARTED ?
+                        <PrimaryButton
+                          isSmallButton
+                          round
+                          line={false}
+                          customClasses="start-course-btn"
+                          callback={this.showStartCourseWarning.bind(this, course)}
+                          title={TT.changeLocale(this.props.lang).t('start_course')}
+                        /> : null
+                    }
                     <a className={styles.courseActionButton} onClick={this.showDeleteWarning.bind(this, course)}>
                       <TrashIcon width={11} height={21} />
                     </a>
@@ -154,11 +157,12 @@ class TutorCourseItem extends Component {
             </div>
           </div>
         </div>
-        <div className="col-md-12">
-          {
-            showEnrolledStudentList ? <ListEnrolledStudent courseId={course.id} /> : null
-          }
-        </div>
+        {
+          showEnrolledStudentList ?
+            <div className="list-enrolled-student col-md-12">
+              <ListEnrolledStudent courseId={course.id} />
+            </div> : null
+        }
         <StartCourseFormContainer show={this.state.showPopup}
                                   acceptCallback={this.state.acceptCallback}
                                   onSubmit={this.startTeachingCourse.bind(this)}

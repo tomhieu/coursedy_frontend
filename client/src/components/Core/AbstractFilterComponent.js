@@ -24,7 +24,12 @@ export default class AbstractFilter extends Component {
     // handle for multiple select filter options
     if (Array.isArray(currentFilters[filterType])) {
       const selectedFilters = JSON.parse(JSON.stringify(currentFilters[filterType]));
-      selectedFilters.push(filterValue);
+      const selectFilterIndex = selectedFilters.findIndex(filter => filter.id === filterValue.id);
+      if (selectFilterIndex < 0) {
+        selectedFilters.push(filterValue);
+      } else {
+        selectedFilters.splice(selectFilterIndex, 1);
+      }
       currentFilters[filterType] = selectedFilters;
     } else if (filterType === 'term') {
       currentFilters.term = filterValue;

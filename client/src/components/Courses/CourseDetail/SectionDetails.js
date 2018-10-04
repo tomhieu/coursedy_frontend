@@ -16,7 +16,7 @@ class SectionDetails extends Component {
   }
 
   render() {
-    const { section } = this.props;
+    const { section, forStudentView } = this.props;
     return (
       <div className="card flex-auto">
         <div
@@ -55,7 +55,7 @@ class SectionDetails extends Component {
             <div className="col-md-12 col-sm-12">
               {
                 section.lessons.map((lesson, index) => (
-                  <LessonDetails lesson={lesson} index={index} key={index} />
+                  <LessonDetails lesson={lesson} index={index} key={index} forStudentView={forStudentView} />
                 ))
               }
             </div>
@@ -67,7 +67,8 @@ class SectionDetails extends Component {
 }
 
 SectionDetails.propTypes = {
-  section: React.PropTypes.object.isRequired
+  section: React.PropTypes.object.isRequired,
+  forStudentView: React.PropTypes.bool
 };
 
 SectionDetails.contextTypes = {

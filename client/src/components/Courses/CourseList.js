@@ -19,14 +19,14 @@ class CourseList extends Component {
     const { courses, isFetching } = this.props;
     if (!isFetching && courses.length === 0) {
       return (
-        <div className="d-flex flex-auto justify-content-center">
-          <EmptyResultWarning styles={styles.courseListContainer} searchType="search_course" {...this.props} />
+        <div className="d-flex flex-auto justify-content-center" id="public-course-content">
+          <EmptyResultWarning styles={styles.courseListContainer} searchType="course_type" {...this.props} />
         </div>
       );
     }
 
     return (
-      <div className="d-flex flex-auto">
+      <div className="d-flex flex-auto" id="public-course-content">
         {
           isFetching ? <div /> : this.props.displayMode === 'grid'
             ? <CourseListInGridMode {...this.props} />

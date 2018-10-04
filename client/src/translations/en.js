@@ -166,7 +166,10 @@ export default {
   header_course_category: '{course_category} course',
   header_teacher_name: 'Taught by: {teacherName}',
   header_number_lesson: 'Total lessons: {numberLesson}',
-  header_period_lesson: 'Duration: {periodLesson} minutes',
+  header_number_completed_lessons: 'Completed: {numberLesson} lessons',
+  header_number_completed_single_lesson: 'Completed: 1 lesson',
+  header_no_completed_lesson: 'No completed lesson',
+  header_available_lesson: 'Available lessons: {numberLesson}',
   header_last_update: 'Updated: {lastUpdate}',
   course_include: 'Course included:',
   account_access_to_course_room: 'Account to study online',
@@ -176,6 +179,9 @@ export default {
   lesson_description_expand: 'Description',
   section_lesson_count: ['1 lesson', '{lessonCount} lessons', 'lessonCount'],
   lesson_period: ['1 minute', '{lessonPeriod} minutes', 'lessonPeriod'],
+  lesson_description: 'Lesson description',
+  lesson_document: 'Lesson materials',
+  lesson_no_document: 'No material is uploaded yet',
 
   /*
      * Lesson Page
@@ -184,13 +190,13 @@ export default {
   lesson_name: 'Lesson name',
   lesson_desc: 'Lesson description',
   lesson_material: 'Material',
-  lesson_period_unit: 'minute',
+  lesson_period_unit: ['1 minute', '{period} minutes', 'period'],
   lesson_period_short: 'Period',
   lesson_save_btn: 'Save',
   lesson_delete_btn: 'Delete',
-  lesson_link_edit: 'Edit',
+  lesson_link_edit: 'Add lecture title',
   lesson_list_next: 'Add',
-  lesson_popup_edit_title: 'Lesson content',
+  lesson_popup_edit_title: 'Lecture description',
   lesson_required: 'Lesson name is required',
   lesson_period_required: 'Lesson period is required',
   lesson_desc_required: 'Lesson description is required',
@@ -328,7 +334,7 @@ export default {
   order_by_price_asc: 'Price - Low to High', /*
         Public course detail
     */
-  course_list: 'List of courses',
+  not_started_course_list: 'Drafting courses',
   course_info: 'Course information',
   course_detail: 'Course detail',
   tutor_info: 'Teacher information',
@@ -405,10 +411,10 @@ export default {
   introduction_save_time_title: '<span class=\'introduction-text-decoration\'>Save T</span>ime',
   user_action_save: 'Lưu',
   user_action_follow: 'Theo dõi',
-  introduction_save_time_description: 'No more emails, Calls or messaging friends for recommendations - Get acces to real reviews in seconds',
-  search_empty_result_header: 'Try another keyword.',
-  search_empty_result_reset: 'Search again.',
-  search_empty_result: '{type} not found.',
+  search_empty_result_header: 'Try another search or',
+  search_empty_result_reset: 'clear all filters',
+  search_empty_result: '{type} were found matching your search right now.',
+  course_type: 'No courses',
   search_course: 'Enter the course name, teacher, type of course ...',
   search_teacher: 'Teacher',
   homepage_search_introduce_explore: 'Courses',
@@ -553,7 +559,7 @@ export default {
     question: 'What is expired date of enrolled courses?',
     answer: 'We ask that payments be made upfront. This is because we operate in developing countries so for your Local Insider your experience is much more than just a little bit of extra cash. We want to ensure that as soon as your tour is completed and a review is left our locals partner gets is paid what they have earnt.'
   }],
-  user_navigation_basic_info: 'Basic information',
+  user_navigation_basic_info: 'Your profile',
   user_navigation_your_course: 'Your courses',
   user_navigation_sign_out: 'Log out',
   no_notification_found: 'No notifications',
@@ -672,6 +678,7 @@ export default {
   /* add more translation */
   sellect_role: 'Please select a user account',
   name_required: 'Please enter a name',
+  country_code_required: 'Please select your nationality',
   confirming: 'Confirming account ....',
   confirmed: 'Your account has been confirmed. You can update your account information here.',
   dashboard_page: 'personal page',
@@ -704,7 +711,7 @@ export default {
   /*
    * Section Page
    */
-  course_active_list: 'Active course list',
+  course_active_list: 'Active courses',
   section_period: '{sectionPeriod} minutes', /* search teachers page */
   product_contact_us: 'Contact us',
   product_about_us_info: 'Information is updating.',
@@ -740,6 +747,7 @@ export default {
   started_date: 'Start date',
   number_of_completed_lesson: 'Number of completed lessons',
   minimum_number_of_completed_lesson: 'Minimum number of completed lesson',
+  cancel_course_fee: 'Fee for canceling course',
   number_of_lesson: 'Number of lessons',
   student_course_status: 'Status', // student enrolled to course table
   student_name: 'Student name',
@@ -752,9 +760,14 @@ export default {
   started: 'On going',
   finished: 'Finished',
   alert_popup: 'Warning',
+  cancel_course_warning_title: 'Cancel joining course',
   delete_course_warning_message: 'Are you sure you want to delete ‘{courseName}’?',
   cancel_course_warning_message: 'Are you sure you want to cancel ‘{courseName}’?',
   cancel_started_course_warning_message: 'The course is on going and not finished yet, if you cancel now, you may be charged a fee if you have not attended the minimum number of classes.',
+  cancel_started_course_feedback: 'If course are not satisfied your requirement. You can write some comment {course_details} or send us your feedbacks {coursedy}, we are always try to best to ensure the course will cover your expectation.',
+  cancel_course_details: 'about such course',
+  enrolled_course_details: 'Course details',
+  enrolled_course_billing_details: 'Course Billing details',
   bill_course_fee_popup_title: 'Course payment',
   enrolled_course_title: 'Course is {courseName}',
   enrolled_course_teacher_name: 'Teacher is {teacherName}',
@@ -826,4 +839,10 @@ export default {
   account_pending_warning_message: 'Your account is in status as {pending_status}. Please complete the account information. Once the information is complete, we will check and confirm the information within 24 hours.',
   pending_account_status: 'Pending for confirmation',
   join_to_class_button_name: 'Join to class',
+  selected_hour_warning_message: 'The hour will teach the students, that is the time zone of Vietnam.',
+  select_course_start_hour: 'Select hour',
+  select_course_end_hour: 'Select hour',
+  course_specialize_search_title: 'Search by course specialization',
+  course_day_in_week: 'Week days schedule',
+  course_day_in_week_seperate: 'to',
 };

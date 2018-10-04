@@ -3,11 +3,13 @@ import Network from '../utils/network';
 import { validateEmail, validateMandatoryField, validatePassword } from './CommonValidator';
 
 export const asyncValidate = (values) => {
-  return Network().get(`validate_email?email=${values.email}`).then((response) => {
-    if (!response.valid) {
-      throw { email: TT.t('email_taken') };
-    }
-  });
+  if (values.email) {
+    return Network().get(`validate_email?email=${values.email}`).then((response) => {
+      if (!response.valid) {
+        throw { email: TT.t('email_taken') };
+      }
+    });
+  }
 };
 
 export const validate = (values) => {
@@ -15,6 +17,7 @@ export const validate = (values) => {
 
   validateMandatoryField('role', values.role, 'role_required', errors);
   validateMandatoryField('name', values.name, 'name_required', errors);
+  validateMandatoryField('country_code', values.country_code, 'country_code_required', errors);
   validateEmail('email', values.email, errors);
   validatePassword(values.password, values.password_confirmation, 'password', errors);
 

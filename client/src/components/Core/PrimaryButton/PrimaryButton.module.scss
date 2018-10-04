@@ -94,3 +94,10 @@
     }
   }
 }
+
+@media (max-width: 768px) {
+  .button {
+    font-size: 13px;
+    min-width: 90px;
+  }
+}

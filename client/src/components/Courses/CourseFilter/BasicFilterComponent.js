@@ -5,14 +5,20 @@ import * as ReactDOM from 'react-dom';
 import AutoComplete from '../../AutoComplete/AutoComplete';
 import styles from './CourseFilter.module.scss';
 import Chip from '../../Core/Chip/Chip';
+import ObjectUtils from '../../../utils/ObjectUtils';
 
 class BasicFilterComponent extends Component {
   constructor(props) {
     super(props);
-    this.state = { isCollapsed: true, isFocus: false };
+    this.state = {
+      isCollapsed: true,
+      isFocus: false,
+      numberHiddenFilter: 0
+    };
     this.filters = [];
     this.hiddenFilters = [];
     this.hasUpdateFilter = false;
+    this.boundWindowResize = this.onWindowResize.bind(this);
   }
 
   onBlurSuggestion() {
@@ -23,24 +29,41 @@ class BasicFilterComponent extends Component {
     this.setState({ isFocus: true, isCollapsed: false });
   }
 
+  onWindowResize() {
+    const hiddenFilters = this.updateDimensions();
+    if (hiddenFilters !== this.state.numberHiddenFilter) {
+      this.setState({numberHiddenFilter: hiddenFilters});
+    }
+  }
+
+
   updateDimensions() {
     this.hiddenFilters = [];
     let chipListWidth = 0;
-    const containerWidth = this.filterContainer !== null ? this.filterContainer.getBoundingClientRect().width : 0;
+    const suggestionBox = this.suggestionContainer ? this.suggestionContainer.getBoundingClientRect().width : 0;
+    const searchIcon = this.searchIcon ? this.searchIcon.clientWidth : 0;
+    const containerWidth = this.filterContainer !== null ? this.filterContainer.getBoundingClientRect().width - suggestionBox - searchIcon : 0;
 
     Object.keys(this.refs).map((key) => {
       const filterDOM = ReactDOM.findDOMNode(this.refs[key]);
       if (filterDOM !== null) {
-        chipListWidth += filterDOM.getBoundingClientRect().width;
+        const chipWidth = filterDOM.getBoundingClientRect().width + 10;
+        chipListWidth += chipWidth;
       }
       if (chipListWidth > containerWidth) {
         this.hiddenFilters.push(key);
       }
     });
+    return this.hiddenFilters.length;
   }
 
+
   componentDidMount() {
-    window.addEventListener('resize', this.updateDimensions.bind(this));
+    window.addEventListener('resize', this.boundWindowResize);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.boundWindowResize);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -75,7 +98,7 @@ class BasicFilterComponent extends Component {
     const {
       selectedWeekDays, selectedCategories, onRemoveFilter, selectedLocations, formfieldValues, selectedSpecializes,
       suggestions, onSelectSuggestion, loadSuggestions,
-      showSuggestion, loadingSuggestion, closeSuggestion, term, placeholder
+      closeSuggestion, term, placeholder
     } = this.props;
     const isOverFlow = this.hiddenFilters.length > 0;
     this.filters = [];
@@ -89,15 +112,16 @@ class BasicFilterComponent extends Component {
       filterListClassNames += 'is-collapsed';
       containerClassNames += 'flex-nowrap full-height';
     }
+
     return (
-      <div className={styles.filterInputBox + containerClassNames}>
-        <div className="search-icon">
+      <div ref={(el) => { this.filterContainer = el; }} className={styles.filterInputBox + containerClassNames}>
+        <div ref={(el) => { this.searchIcon = el; }} className="search-icon">
           <svg className="searchIcon" viewBox="0 0 25 25">
             <path d="M17.8724934,19.3481945 C17.4662,18.9419012 17.4643401,18.2850294 17.8746847,17.8746847 L17.8746847,17.8746847 C18.2821883,17.4671811 18.9468084,17.4711073 19.3481945,17.8724934 L23.7796805,22.3039794 C24.1859739,22.7102728 24.1878338,23.3671445 23.7774892,23.7774892 L23.7774892,23.7774892 C23.3699856,24.1849928 22.7053655,24.1810666 22.3039794,23.7796805 L17.8724934,19.3481945 L17.8724934,19.3481945 Z" />
             <path d="M19.7391304,9.86956522 C19.7391304,4.41875486 15.3203756,0 9.86956522,0 C4.41875486,0 0,4.41875486 0,9.86956522 C0,15.3203756 4.41875486,19.7391304 9.86956522,19.7391304 C15.3203756,19.7391304 19.7391304,15.3203756 19.7391304,9.86956522 Z M2,9.86956522 C2,5.52332436 5.52332436,2 9.86956522,2 C14.2158061,2 17.7391304,5.52332436 17.7391304,9.86956522 C17.7391304,14.2158061 14.2158061,17.7391304 9.86956522,17.7391304 C5.52332436,17.7391304 2,14.2158061 2,9.86956522 Z" />
           </svg>
         </div>
-        <div ref={(el) => { this.filterContainer = el; }} id="chipContainer" className={filterListClassNames}>
+        <div id="chipContainer" className={filterListClassNames}>
           {
             selectedWeekDays
               ? selectedWeekDays.map(f => (
@@ -138,11 +162,11 @@ class BasicFilterComponent extends Component {
             formfieldValues.selectedMinFee
               ? (
                 <Chip
-                  key="filter_max_fee"
-                  ref="filter_max_fee"
+                  key="filter_min_fee"
+                  ref="filter_min_fee"
                   onRequestDelete={() => onRemoveFilter(null, 'resetMinFee')}
                   show={this.hiddenFilters.indexOf('filter_max_fee') < 0}
-                  label={this.context.t('min_fee_chip', { min_fee: formfieldValues.selectedMinFee })}
+                  label={this.context.t('min_fee_chip', { min_fee: ObjectUtils.currencyFormat(formfieldValues.selectedMinFee) })}
                 />
               ) : null
           }
@@ -150,11 +174,11 @@ class BasicFilterComponent extends Component {
             formfieldValues.selectedMaxFee
               ? (
                 <Chip
-                  key="filter_min_fee"
-                  ref="filter_min_fee"
+                  key="filter_max_fee"
+                  ref="filter_max_fee"
                   onRequestDelete={() => onRemoveFilter(null, 'resetMaxFee')}
                   show={this.hiddenFilters.indexOf('filter_min_fee') < 0}
-                  label={this.context.t('max_fee_chip', { max_fee: formfieldValues.selectedMaxFee })}
+                  label={this.context.t('max_fee_chip', { max_fee: ObjectUtils.currencyFormat(formfieldValues.selectedMaxFee) })}
                 />
               ) : null
           }
@@ -191,17 +215,17 @@ class BasicFilterComponent extends Component {
                   dataSource={suggestions}
                   handleAddCriteria={onSelectSuggestion}
                   loadSuggestions={loadSuggestions}
-                  show={showSuggestion}
-                  isLoading={loadingSuggestion}
+                  show={false}
+                  isLoading={false}
                   onFocus={this.onFocusSuggestion.bind(this)}
                   onBlur={this.onBlurSuggestion.bind(this)}
                 />
               ) : null
           }
         </div>
-        <div className="filter-selection d-flex flex-auto">
+        <div ref={(el) => { this.suggestionContainer = el; }} className="filter-selection d-flex flex-auto">
           {
-            isOverFlow && !this.state.isFocus ? <a onClick={this.onFocusSuggestion.bind(this)}>{`${this.hiddenFilters.length} filters`}</a> : !this.state.isFocus
+            isOverFlow && !this.state.isFocus ? <a className="hidden-filter-link" onClick={this.onFocusSuggestion.bind(this)}>{`${this.hiddenFilters.length} filters`}</a> : !this.state.isFocus
               ? (
                 <AutoComplete
                   placeholder={placeholder}
@@ -210,8 +234,8 @@ class BasicFilterComponent extends Component {
                   dataSource={suggestions}
                   handleAddCriteria={onSelectSuggestion}
                   loadSuggestions={loadSuggestions}
-                  show={showSuggestion}
-                  isLoading={loadingSuggestion}
+                  show={false}
+                  isLoading={false}
                   closeSuggestion={closeSuggestion}
                   {...this.props}
                 />

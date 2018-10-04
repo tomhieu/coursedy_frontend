@@ -26,7 +26,7 @@ class CourseDetailComments extends Component {
           <div className="col-md-4 review-header">
             <div className="row">
               <div className="col-md-12">
-                <div className="section-title text-left mb-20">
+                <div className="coursedy-headline text-left mb-20">
                   <h3>{this.context.t('course_rating')}</h3>
                 </div>
               </div>
@@ -49,7 +49,7 @@ class CourseDetailComments extends Component {
               <div className="seperate-comment-line" />
               <div className="d-flex flex-column flex-auto">
                 <div className="section-title text-left mb-20">
-                  <h3>{this.context.t('course_comments')}</h3>
+                  <h3 className="coursedy-headline">{this.context.t('course_comments')}</h3>
                   <span>
                     {' '}
 (

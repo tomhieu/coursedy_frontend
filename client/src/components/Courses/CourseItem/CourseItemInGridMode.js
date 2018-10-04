@@ -7,16 +7,13 @@ import RatingItem from '../../Rating/index';
 import ObjectUtils from '../../../utils/ObjectUtils';
 import {CourseStatus} from '../../../constants/CourseStatus';
 import CoursedyProgressBar from '../../Core/CoursedyProgressBar/CoursedyProgressBar';
+import { Popover, PopoverBody } from 'reactstrap';
 
 /**
  * @Course group item template 2
  * @Use for CoursePage
  */
 class CourseItemInGridMode extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     const {
       item,
@@ -55,7 +52,7 @@ class CourseItemInGridMode extends Component {
         <LinkContainer to={isPublic ? `/courses/${item.id}` : `/dashboard/courses/detail/${item.id}`} className="course-detail-lnk flex-auto">
           <div className="d-flex flex-column justify-content-right course-item-content">
             <RatingItem num_stars={item.rating_count === 0 ? 0 : parseFloat(item.rating_points) / item.rating_count} num_reviews={item.rating_count} />
-            <h3 className={styles.courseDescription}>{item.title}</h3>
+            <h3 className={styles.courseDescription} title={item.title}>{item.title}</h3>
             <div className={styles.courseItemPrice}>
               {
                 item.is_free
@@ -77,7 +74,7 @@ class CourseItemInGridMode extends Component {
               <div className="course-item-bottom clearfix">
                 <div className="category">
                   <i className="fa fa-folder-open-o" />
-                  <span className="block">
+                  <span className="block" title={item.category.name}>
                     {' '}
                     {item.category.name}
                     {' '}
@@ -85,7 +82,7 @@ class CourseItemInGridMode extends Component {
                 </div>
                 <div className="number-lesson">
                   <i className="fa fa-pencil-square-o" />
-                  <span className="block">
+                  <span className="block" title={this.context.t(this.context.t('lesson_count'), { lessons: item.lesson_count })}>
                     {' '}
                     {this.context.t(this.context.t('lesson_count'), { lessons: item.lesson_count })}
                   </span>

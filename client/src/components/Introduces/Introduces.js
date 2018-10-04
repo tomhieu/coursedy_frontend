@@ -12,7 +12,7 @@ class Introduces extends Component {
       <section className={styles.introduceSection}>
         <div className="container">
           <div className={`${styles.headerSearchContainer} row`}>
-            <div className="col-md-4 col-sm-4">
+            <div className="col-md-4 col-sm-12">
               <div className="d-flex flex-row">
                 <div className={styles.headerSearchIcon}>
                   <SearchCourseIcon />
@@ -23,7 +23,7 @@ class Introduces extends Component {
                 </div>
               </div>
             </div>
-            <div className="col-md-4 col-sm-4">
+            <div className="col-md-4 col-sm-12">
               <div className="d-flex flex-row">
                 <div className={styles.headerSearchIcon}>
                   <InteractionLearningIcon />
@@ -34,7 +34,7 @@ class Introduces extends Component {
                 </div>
               </div>
             </div>
-            <div className="col-md-4 col-sm-4">
+            <div className="col-md-4 col-sm-12">
               <div className="d-flex flex-row">
                 <div className={styles.headerSearchIcon}>
                   <CourseStudyingIcon />

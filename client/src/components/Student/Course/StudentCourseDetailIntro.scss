@@ -1,0 +1,131 @@
+@import "../../../../styles/global_style";
+#course-detail-intro {
+  .full-width {
+    width: 100%;
+  }
+}
+
+.course-detail-section {
+  .student-course-about-content {
+    position: relative;
+    min-height: 210px;
+  }
+
+  .course-des-view-more-btn {
+    color: $color-hightlight;
+    font-family: $font-semi-bold;
+    cursor: pointer;
+    bottom: -20px;
+    display: block;
+    padding-top: 30px;
+    position: absolute;
+    width: 100%;
+  }
+
+  .course-des-view-more {
+    height: auto;
+  }
+
+  .course-des-view-less {
+    height: 200px;
+    overflow: hidden;
+  }
+}
+
+.course-intro {
+  .listing-box {
+    width: 225px;
+    float: left;
+    margin-bottom: 20px;
+    background: $gray-background;
+    -webkit-box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.13);
+    -moz-box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.13);
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.13);
+    border: 3px solid $gray-background;
+
+    h5 {
+      line-height: 1;
+      margin: 0;
+      padding: 15px 20px;
+      color: $color-hightlight;
+    }
+
+    ul.listing-box-list {
+      padding: 0;
+      list-style-type: none;
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+
+    ul.listing-box-list li {
+        border-top: 1px solid #EBEBEB;
+        padding: 13px 23px;
+        margin: 0 -3px;
+    }
+  }
+}
+
+.spacing-10 {
+  letter-spacing: 1px;
+}
+
+.font700 {
+  font-weight: 700 !important;
+}
+
+.font600 {
+  font-weight: 600 !important;
+}
+
+ul.list-with-icon {
+  margin-bottom: 25px;
+}
+
+@media only screen and (max-width: 991px) {
+  .course-about-heading,
+  .course-about-content {
+    margin-left: 0;
+  }
+
+  .course-intro {
+   .listing-box {
+      width: 100%;
+      margin-right: 0;
+      margin-bottom: 30px
+    }
+  }
+}
+
+.student-course-day-list {
+  margin-top: 35px;
+  .course-day-details-header {
+    font-family: $font-semi-bold;
+    font-size: 20px;
+  }
+  .box-date {
+    background-color: #f5f5f5;
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
+    padding-left: 8px;
+    padding-right: 8px;
+    width: 87px;
+    margin: 5px 8px 5px 0;
+    border-radius: 2px;
+  }
+
+  .seperate-line {
+    padding: 5px 0;
+    margin: 0 7px;
+  }
+
+  .box-time {
+    background-color: #f5f5f5;
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
+    padding-left: 8px;
+    padding-right: 8px;
+    width: 50px;
+    margin: 5px 0;
+    border-radius: 2px;
+  }
+}

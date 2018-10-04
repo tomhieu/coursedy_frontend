@@ -92,6 +92,7 @@ $color-bg-dark-light: #424e55;
 
 $color-blue-light: #02cbf7;
 $color-blue-dark: #0099E5;
+$color-hightlight: #007791;
 
 $color-gray-light: #c2c0c0;
 
@@ -105,7 +106,14 @@ $color-bg-dashboard-menu: #404F54;
 $color-active-dashboard-menu: #F4F6F9;
 
 $font-awesome: 'FontAwesome';
+$font-semi-bold: 'harmonia-semi-bold';
+$font-bold: 'harmonia-bold';
+$font-headline: 'serif';
 
 $height-button: 40px;
 $height-small-button: 35px;
 $height-field: 32px;
+
+$not_started_status_color: #EC506E;
+$started_status_color: #54D89F;
+$finished_status_color: #95A0B1;

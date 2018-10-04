@@ -61,6 +61,8 @@ class LessonDetailFormContainer extends Component {
       doc.fileName = doc.name;
       return doc;
     });
+    const acceptFileTypes = ["application/pdf", "application/msword", "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+    "application/vnd.ms-powerpoint", "application/vnd.openxmlformats-officedocument.presentationml.presentation"];
     return (
       <form onSubmit={handleSubmit(this.props.onSubmit)} className="inline-form lesson-detail-form" multiple>
         <div key={lesson.id} className="lesson-section-seperator">
@@ -88,7 +90,7 @@ class LessonDetailFormContainer extends Component {
                 formControlName="period"
                 typeField="custom_input"
                 onClosedField={this.onClosedField.bind(this)}
-                content={`${lesson.period} ${TT.t('lesson_period_unit')}`}
+                content={this.context.t(this.context.t('lesson_period_unit'), { period: lesson.period })}
                 displayStyle="default-field"
                 {...this.props}
               />
@@ -122,6 +124,7 @@ class LessonDetailFormContainer extends Component {
                   isMandatoryField
                   zoneHeight="50px"
                   formControlName="documents"
+                  contentType={acceptFileTypes}
                   typeField="upload_file"
                 />
                 <div className="d-flex flex-vertical">

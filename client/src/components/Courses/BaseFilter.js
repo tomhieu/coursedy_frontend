@@ -5,6 +5,7 @@ import styles from './Course.module.scss';
 import AdvanceFilterComponent from './CourseFilter/AdvanceFilterComponent';
 import BasicFilterComponent from './CourseFilter/BasicFilterComponent';
 import FlatButton from '../Core/FlatButton/FlatButton';
+import { AutoComplete } from '../AutoComplete/AutoComplete';
 
 
 class BaseFilter extends Component {
@@ -59,6 +60,10 @@ class BaseFilter extends Component {
       listIconButtonClasses.push('primary');
     }
 
+    const sugguestionProps = {
+      isLoading: loadingSuggestion, show: showSuggestion, dataSource: suggestions, handleAddCriteria: onSelectSuggestion
+    };
+
     return (
       <form onSubmit={handleSubmit(this.props.onSubmit)} className="course-filter-form inline-form" multiple>
         <div className="d-flex flex-vertical">
@@ -82,6 +87,9 @@ class BaseFilter extends Component {
                   search={search}
                   placeholder={placeholder}
                 />
+                <div className="filter-selection d-flex flex-auto">
+                  { AutoComplete.renderSugguestionList({ ...sugguestionProps, context: this.context }) }
+                </div>
               </div>
               <div className="seperate-filter-line" />
               <div className="st-border-left advanced-filter-block">
@@ -99,14 +107,14 @@ class BaseFilter extends Component {
               </div>
               <div className="st-border-left advanced-filter-btn">
                 <a
-                  className="navbar-toggler"
+                  className="filter-toggler"
                   data-toggle="collapse"
                   data-target="#advanceFilterCollapse"
                   aria-controls="advanceFilterCollapse"
                   aria-expanded="false"
                   aria-label="Toggle navigation"
                 >
-                  <span className="navbar-toggler-icon normal-text"><i className="fa expand-search-bar" /></span>
+                  <span className="narvav-toggler-icon normal-text">Filters</span>
                 </a>
               </div>
             </div>
