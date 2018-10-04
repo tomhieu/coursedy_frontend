@@ -4,6 +4,7 @@ import { PUBLIC_COURSE_DETAIL_MENU_COMMENTS } from '../../../constants/WebConsta
 import { CommentFormContainer } from '../../../containers/index';
 import RatingItem from '../../Rating/index';
 import DateUtils from '../../../utils/DateUtils';
+import UserAvatar from '../../Account/UserAvatar';
 
 /**
   * @Course group template 2
@@ -69,13 +70,16 @@ class CourseDetailComments extends Component {
                         {
                         course_comments.map((item, index) => (
                           <li className="clearfix" key={`course-detail-comments-${index}`}>
-                            <div className="image img-circle">
-                              <img
-                                className="rounded-circle full-width"
-                                src={item.user.avatar ? item.user.avatar : 'http://placehold.it/46x46'}
-                                alt={this.context.t('course_comments')}
-                              />
-                            </div>
+                            {
+                              item.user && item.user.avatar ?
+                                <div className="image img-circle">
+                                  <img
+                                    className="rounded-circle full-width"
+                                    src={item.user.avatar}
+                                    alt={this.context.t('course_comments')}
+                                  />
+                                </div> : <UserAvatar username={item.user.name} classNames={'image img-circle user-comment'} />
+                            }
                             <div className="content">
                               <div className="gap-20 mb-0">
                                 <div className="d-flex">
