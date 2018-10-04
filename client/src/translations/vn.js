@@ -157,6 +157,7 @@ export default {
   course_comments_load_more: 'Tải thêm bình luận',
   number_of_comment: '{numOfComment} bình luận',
   no_comment: 'Không bình luận',
+  nothing_comment_yet: 'Không có bình luận',
   add_more_lesson: 'Thêm bài học',
   delete_lesson: 'Xoá bài học',
   update_cover_image: 'Thay đổi ảnh nền khoá học',
@@ -350,7 +351,7 @@ export default {
   course_submit_comment_success: 'Gửi phản hồi thành công',
   course_submit_comment_fail: 'Gửi phản hồi thất bại',
   no_comment_about_course: 'Chưa có nhận xét nào về khoá học này',
-  course_comments_no_comment: 'Hãy là người đầu tiên nhận xét về khóa học này!!!',
+  course_comments_no_comment: 'Hãy là người đầu tiên nhận xét về khóa học này.',
 
   header_course_category: 'Khoá học {course_category}',
   header_teacher_name: 'Giáo viên: {teacherName}',
@@ -810,4 +811,5 @@ export default {
   course_specialize_search_title: 'Tìm kiếm theo lĩnh vực',
   course_day_in_week: 'Lịch học trong tuần',
   course_day_in_week_seperate: 'đến',
+  no_rating: 'Chưa có đánh giá',
 };

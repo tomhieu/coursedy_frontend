@@ -161,6 +161,7 @@ export default {
   course_comments_load_more: 'Load more comment',
   number_of_comment: '{numOfComment} comment',
   no_comment: 'No comment',
+  nothing_comment_yet: 'Nothing comment yet',
   add_more_lesson: 'Add lesson',
   delete_lesson: 'Delete lesson',
   header_course_category: '{course_category} course',
@@ -360,7 +361,7 @@ export default {
   course_submit_comment_success: 'Sending comment successfully',
   course_submit_comment_fail: 'Sending comment failed',
   no_comment_about_course: 'There are no reviews yet for this course',
-  course_comments_no_comment: 'You are the first person leaving comment for this course!!!', /* search teachers page */
+  course_comments_no_comment: 'You are the first person leaving comment for this course.', /* search teachers page */
   search_teachers_keyword: 'Search by name',
   search_teachers_field_label: 'Field:',
   teacher_list_more: 'Read more', /* danh sach ngay trong tuan */
@@ -845,4 +846,5 @@ export default {
   course_specialize_search_title: 'Search by course specialization',
   course_day_in_week: 'Week days schedule',
   course_day_in_week_seperate: 'to',
+  no_rating: 'Nothing rating yet',
 };

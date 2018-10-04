@@ -203,33 +203,43 @@ const ReviewHeader = (props) => {
   if (!teacher.user) {
     return null;
   }
+
   return (
     <div className="teacher-detail-review-header">
       <div className="row">
         <div className="col-xs-12 col-sm-6 col-md-6">
           <div className="review-overall">
             <h5>{props.context.t('teacher_rating')}</h5>
-            <p className="review-overall-point">
-              <span>
-                {teacher.user && teacher.user.rating_count ? parseFloat(teacher.user.rating_points / teacher.user.rating_count).toFixed(1) : 0}
-              </span>
-            </p>
-            <div className="rating-wrapper">
-              <RatingItem
-                num_stars={teacher.user.rating_points / teacher.user.rating_count}
-                num_reviews={teacher.user.rating_count}
-              />
-            </div>
+            {
+              teacher.user.rating_count > 0 ?
+                <div>
+                  <p className="review-overall-point">
+                    <span>
+                      {teacher.user && teacher.user.rating_count ? parseFloat(teacher.user.rating_points / teacher.user.rating_count).toFixed(1) : 0}
+                    </span>
+                  </p>
+                  <div className="rating-wrapper">
+                    <RatingItem
+                      num_stars={teacher.user.rating_points / teacher.user.rating_count}
+                      num_reviews={teacher.user.rating_count}
+                    />
+                  </div>
+                </div> : <span>({props.context.t('no_rating')})</span>
+            }
           </div>
         </div>
         <div className="border-left col-xs-12 col-sm-6 col-md-6">
           <div className="text-left mb-20">
             <h5>{props.context.t('teacher_comments')}</h5>
-            <span>
-              (
-                {props.context.t(props.context.t('teacher_total_comments'), { total: props.teacher.reviews.data.length })}
-              )
-            </span>
+            {
+              props.teacher.reviews.data.length > 0 ?
+                <span>
+                (
+                  {props.context.t(props.context.t('teacher_total_comments'), { total: props.teacher.reviews.data.length })}
+                )
+                </span> : <span>({props.context.t('nothing_comment_yet')})</span>
+            }
+
           </div>
         </div>
       </div>

@@ -26,20 +26,24 @@ class CourseDetailComments extends Component {
           <div className="col-md-4 review-header">
             <div className="row">
               <div className="col-md-12">
-                <div className="coursedy-headline text-left mb-20">
+                <div className="coursedy-headline text-left">
                   <h3>{this.context.t('course_rating')}</h3>
                 </div>
               </div>
+
               <div className="col-xs-12 col-sm-12 col-md-12">
-                <div className="review-overall">
-                  <p className="review-overall-point"><span>{ratingOverall}</span></p>
-                  <div className="rating-wrapper">
-                    <RatingItem
-                      num_stars={ratingOverall}
-                      num_reviews={course.rating_count}
-                    />
-                  </div>
-                </div>
+                {
+                  ratingOverall > 0 ?
+                    <div className="review-overall">
+                      <p className="review-overall-point"><span>{ratingOverall}</span></p>
+                      <div className="rating-wrapper">
+                        <RatingItem
+                          num_stars={ratingOverall}
+                          num_reviews={course.rating_count}
+                        />
+                      </div>
+                    </div> : <span>({this.context.t('no_rating')})</span>
+                }
               </div>
             </div>
           </div>
@@ -48,14 +52,14 @@ class CourseDetailComments extends Component {
             <div className="d-flex flex-row">
               <div className="seperate-comment-line" />
               <div className="d-flex flex-column flex-auto">
-                <div className="section-title text-left mb-20">
+                <div className="text-left mb-20">
                   <h3 className="coursedy-headline">{this.context.t('course_comments')}</h3>
                   <span>
-                    {' '}
-(
-                    {' '}
-                    {this.context.t(this.context.t('course_total_comment'), {total: course_comments.length})}
-)
+                    {' '}(
+                    {course_comments.length > 0 ?
+                      this.context.t(this.context.t('course_total_comment'), {total: course_comments.length}) :
+                      this.context.t('nothing_comment_yet')}
+                    )
                   </span>
                 </div>
                 {
@@ -77,8 +81,7 @@ class CourseDetailComments extends Component {
                                 <div className="d-flex">
                                   <strong className="pr-10">{item.user.name}</strong>
                                   <span className="date">
-                                    {' '}
-·
+                                    {' · '}
                                     {DateUtils.dateTimeFromNow(item.created_at)}
                                   </span>
                                 </div>
