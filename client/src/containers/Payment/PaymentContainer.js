@@ -9,8 +9,11 @@ import {
   FETCH_ADMIN_PAYMENT_SETTINGS,
 } from "../../actions/AsyncActionCreator"
 import "../../../styles/global_style.scss"
-import {banks} from "../../constants/Banks"
-import {PUBLIC_COURSE_DETAIL_REMOVE_COURSE_FROM_CART} from "../../constants/Courses"
+// import {banks} from "../../constants/Banks"
+import {
+  PUBLIC_COURSE_DETAIL_REMOVE_COURSE_FROM_CART,
+  PUBLIC_COURSE_DETAIL_FETCH_CART
+} from "../../constants/Courses"
 import ObjectUtils from "utils/ObjectUtils"
 import {LinkContainer} from 'react-router-bootstrap'
 import TrashIcon from "../../components/Core/Icons/TrashIcon"
@@ -19,6 +22,8 @@ import SimpleDialogComponent from "../../components/Core/SimpleDialogComponent"
 import EnrollCoursePopup from "../../components/Courses/EnrollPopup/EnrollCoursePopup"
 import EnrollCourseSuccessPopup from "../../components/Courses/EnrollPopup/EnrollCourseSuccessPopup"
 import * as PublicCourseActions from '../../actions/PublicCourseActionCreator';
+import request from "../../utils/request"
+import config from 'config'
 
 class PaymentContainer extends Component {
   constructor(props) {
@@ -26,7 +31,6 @@ class PaymentContainer extends Component {
     this.state = {
       activeTab: 'manual',
       selectMethod: '',
-      step: 1,
       selectBank: {
         id: 0,
         name: '',
@@ -46,12 +50,12 @@ class PaymentContainer extends Component {
 
   componentDidMount() {
     this.props.fetchPaymentSettings(this.props)
-    this.props.fetchPaymentInstructions(this.props)
+    // this.props.fetchPaymentInstructions(this.props)
     this.props.fetchBankAccounts(this.props)
     this.props.fetchBankTransferToken(this.props)
-    if (this.props.cart.length == 0) {
-      this.props.fetchCart()
-    }
+    // if (this.props.cart.length == 0) {
+    //   this.props.fetchCart()
+    // }
   }
 
   changeActiveTab(activeTab) {
@@ -125,21 +129,15 @@ class PaymentContainer extends Component {
   }
 
   changeBank(bankId) {
-    console.log('DEBUG changeBank')
-    console.log(bankId)
     let bank = this.props.bankAccounts.filter((item) => {
       return item.id == bankId
     })
     if (bank.length > 0) {
-      let bankProfile = banks.filter((item) => {
-        return item.code == bank[0].name
-      })
+      // let bankProfile = banks.filter((item) => {
+      //   return item.code == bank[0].name
+      // })
       this.setState({
-        selectBank: {
-          ...bank[0],
-          fullName: bankProfile[0].name
-        },
-        step: 3
+        selectBank: bank[0],
       })
     }
   }
@@ -478,30 +476,7 @@ const mapDispatchToProps = (dispatch) => ({
   }),
   fetchBankAccounts: (props) => dispatch({
     type: FETCH_ADMIN_BANK_ACCOUNTS,
-    // payload: Network().get('bank-accounts')
-    payload: new Promise((resolve, reject) => {
-      setTimeout(function(){
-        resolve([
-          {
-            id: 1,
-            name: "ACB",
-            bankAccount: {
-              accountName: "Pham Duy Bao Trung ACB",
-              accountNumber: "9124 6788 6778 900",
-              accountOffice: "Ly Thuong Kiet"
-            }
-          }, {
-            id: 2,
-            name: "VCB",
-            bankAccount: {
-              accountName: "Pham Duy Bao Trung",
-              accountNumber: "9124 6788 6778 900 VCB",
-              accountOffice: "Ly Thuong Kiet"
-            }
-          }
-        ])
-      }, 250)
-    })
+    payload: request(config.assetServer + '/runtime/bankAccounts.json', {})
   }),
   fetchCart: (props) => dispatch({
     type: PUBLIC_COURSE_DETAIL_FETCH_CART + '_FULFILLED',

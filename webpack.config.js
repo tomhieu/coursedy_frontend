@@ -78,7 +78,11 @@ module.exports = {
     filename: 'bundle.js',
   },
   devServer: {
-    contentBase: [path.resolve(ROOT_PATH, 'client/build'), path.resolve(ROOT_PATH, 'client/images')],
+    contentBase: [
+      path.resolve(ROOT_PATH, 'client/build'), 
+      path.resolve(ROOT_PATH, 'client/images'),
+      path.resolve(ROOT_PATH, 'client/config')
+    ],
     historyApiFallback: true,
     hot: true,
     inline: true,
