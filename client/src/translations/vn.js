@@ -266,7 +266,7 @@ export default {
   'gender.M': 'Nam',
   'gender.F': 'Nữ',
   search_course: 'Nhập tên khoá học, giáo viên, loại khoá học...',
-  search_teacher: 'Giáo viên',
+  search_teacher: 'Nhập tên giáo viên, lĩnh vực giảng dạy...',
   view_details_lesson: 'Xem bài học',
   update_password: 'Thay đổi mật khẩu',
   update_password_success: 'Mật khẩu đã được cập nhật thành công.',
