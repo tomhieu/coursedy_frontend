@@ -8,7 +8,7 @@ import styles from './ListEnrolledStudent.module.scss';
 import { FETCH_ENROLLED_STUDENT } from '../../../actions/AsyncActionCreator';
 import LoadingMask from '../../LoadingMask/LoadingMask';
 import * as WebConstant from '../../../constants/WebConstants';
-import AsyncLoader from '../../../components/LoadingMask/AsyncLoader';
+import AsyncLoader from '../../../containers/LoadingMask/AsyncLoader';
 
 class ListEnrolledStudent extends Component {
   componentWillMount() {
