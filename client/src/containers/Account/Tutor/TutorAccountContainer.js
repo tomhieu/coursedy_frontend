@@ -15,6 +15,7 @@ import { CERTIFICATE, FETCH_TEACHER_SKILL_SET } from '../../../actions/AsyncActi
 import * as dashboardActions from '../../../actions/DashboardMenuActionCreator';
 import { TutorNavigationTab } from '../../../constants/TutorNavigationTab';
 import CoursedyWarning from '../../../components/Core/CoursedyWarning/CoursedyWarning';
+import {TutorStatus} from '../../../constants/TutorStatus';
 
 class TutorAccount extends Component {
   componentWillMount() {
@@ -51,9 +52,12 @@ class TutorAccount extends Component {
           <div className="title">
             {this.context.t('account_setting')}
           </div>
-          <CoursedyWarning message={this.context.t('account_pending_warning_message', {
-            pending_status: <strong>{this.context.t('pending_account_status')}</strong>
-          })}></CoursedyWarning>
+          {
+            tutor.status !== TutorStatus.VERIFIED ?
+              <CoursedyWarning message={this.context.t('account_pending_warning_message', {
+                pending_status: <strong>{this.context.t('pending_account_status')}</strong>
+              })}></CoursedyWarning> : null
+          }
         </div>
         <div className="col-md-12 col-xs-12 col-sm-12">
           <LoadingMask

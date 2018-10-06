@@ -11,7 +11,7 @@
   }
 
   .course-des-view-more-btn {
-    color: $color-hightlight;
+    color: $color-highlight;
     font-family: $font-semi-bold;
     cursor: pointer;
     bottom: -20px;
@@ -46,7 +46,7 @@
       line-height: 1;
       margin: 0;
       padding: 15px 20px;
-      color: $color-hightlight;
+      color: $color-highlight;
     }
 
     ul.listing-box-list {
@@ -92,21 +92,6 @@ ul.list-with-icon {
   }
 }
 
-@media only screen and (max-width: 991px) {
-  .course-about-heading,
-  .course-about-content {
-    margin-left: 0;
-  }
-
-  .course-intro {
-   .listing-box {
-      width: 100%;
-      margin-right: 0;
-      margin-bottom: 30px
-    }
-  }
-}
-
 .course-day-list {
   margin-left: 240px;
   margin-top: 35px;
@@ -119,15 +104,14 @@ ul.list-with-icon {
     background-color: #f5f5f5;
     -webkit-border-radius: 2px;
     border-radius: 2px;
-    padding-left: 8px;
-    padding-right: 8px;
+    padding: 5px 8px 2px 8px;
     width: 87px;
     margin: 5px 8px 5px 0;
     border-radius: 2px;
   }
 
   .seperate-line {
-    padding: 5px 0;
+    padding: 10px 0 5px 0;
     margin: 0 7px;
   }
 
@@ -135,10 +119,25 @@ ul.list-with-icon {
     background-color: #f5f5f5;
     -webkit-border-radius: 2px;
     border-radius: 2px;
-    padding-left: 8px;
-    padding-right: 8px;
+    padding: 5px 8px 2px 8px;
     width: 50px;
     margin: 5px 0;
     border-radius: 2px;
+  }
+}
+
+@media only screen and (max-width: 991px) {
+  .course-about-heading,
+  .course-about-content,
+  .course-day-list {
+    margin-left: 0;
+  }
+
+  .course-intro {
+    .listing-box {
+      width: 100%;
+      margin-right: 0;
+      margin-bottom: 30px
+    }
   }
 }

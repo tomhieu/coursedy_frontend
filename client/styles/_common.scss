@@ -2929,6 +2929,7 @@ switch {
 
 button {
   box-shadow: none;
+  outline: none;
   &:hover {
     box-shadow: none;
   }
@@ -3384,7 +3385,7 @@ Course Item (List Mode) Style Sheet
 }
 
 a.clear-filter {
-  color: $color-hightlight;
+  color: $color-highlight;
 }
 
 .teacher-list {

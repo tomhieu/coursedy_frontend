@@ -19,6 +19,9 @@
 
 .section-title {
   margin: 0 !important;
+  cursor: pointer;
+  font-family: $font-semi-bold;
+  color: $color-highlight;
 }
 
 .right-content {
