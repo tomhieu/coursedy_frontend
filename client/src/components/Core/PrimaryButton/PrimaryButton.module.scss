@@ -31,7 +31,9 @@
       border: none;
 
       &:disabled {
-        background-color: $cancel-btn-color;
+        //background-color: $cancel-btn-color;
+        background-color: $color-organe;
+        opacity: 0.5;
       }
 
       &:hover {
@@ -41,7 +43,9 @@
         &:disabled {
           border: none;
           color: $white-color;
-          background-color: $cancel-btn-color;
+          //background-color: $cancel-btn-color;
+          background-color: $color-organe;
+          opacity: 0.5;
         }
       }
     }

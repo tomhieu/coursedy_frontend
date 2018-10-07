@@ -29,7 +29,7 @@ class AsyncLoader extends Component {
       return (
         <div className="button-placeholder">
           <div id="spinner">
-            <LoadingIcon />
+            <LoadingIcon width={24} height={24}/>
           </div>
         </div>
       );
