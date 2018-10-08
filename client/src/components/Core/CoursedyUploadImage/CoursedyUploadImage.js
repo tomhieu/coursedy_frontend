@@ -12,7 +12,8 @@ class CoursedyUploadImage extends Component {
       fieldId, previewImage, previewImageClasses = 'media-object full-width',
       editImageLabel = this.context.t('update_image'), uploadCourseCoverImage,
       openPopupToSelectImage, closePopupToSelectImage, showPopupChangeImage, isSelectedNewImage,
-      onSelectedNewImage, onDeselectNewImage, scaleWidth, scaleHeight, isUserAvatar = false, isEditable = true
+      onSelectedNewImage, onDeselectNewImage, scaleWidth, scaleHeight, isUserAvatar = false, isEditable = true,
+      isProcessing, placeholderId
     } = this.props;
     const containerClasses = [styles.uploadImageContainer];
     const baseLineBtnClasses = [styles.baseLineBtn];
@@ -68,6 +69,8 @@ class CoursedyUploadImage extends Component {
               scaleWidth={scaleWidth}
               scaleHeight={scaleHeight}
               {...this.props}
+              placeholderId={placeholderId}
+              isProcessing={isProcessing}
             />
           </ModalBody>
         </Modal>
@@ -94,7 +97,9 @@ CoursedyUploadImage.propTypes = {
   editImageLabel: React.PropTypes.string,
   fieldId: React.PropTypes.string,
   isUserAvatar: React.PropTypes.bool,
-  isEditable: React.PropTypes.bool
+  isEditable: React.PropTypes.bool,
+  isProcessing: React.PropTypes.bool,
+  placeholderId: React.PropTypes.string
 };
 
 export default cssModules(CoursedyUploadImage, styles);

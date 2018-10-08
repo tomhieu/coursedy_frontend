@@ -87,7 +87,7 @@ export const updateAvatar = (avatar) => {
   return {
     type: UPDATE_CURRENT_USER,
     payload: Network().update('auth', { avatar }),
-    meta: 'ezylearningFullLoader'
+    meta: 'userAvatarPlaceholder'
   };
 };
 
