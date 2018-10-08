@@ -23,7 +23,7 @@ export const signUpUser = (email, password, password_confirmation, name, phone_n
         payload: response,
       });
       dispatch(reset('signUp'));
-    }, ({ value, action }) => {
+    }, ({ errors }) => {
       dispatch({
         type: types.SIGNUP_FAILED,
         payload: errors.full_messages[0]

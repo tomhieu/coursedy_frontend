@@ -6,7 +6,8 @@ class SignUpSuccessModal extends Component {
     const { show, close } = this.props;
     return (
       <SimpleDialogComponent
-        show={show} title={this.context.t('sign_up_success')}
+        show={show} 
+        title={this.context.t('sign_up_success')}
         cancelCallback={close}
       >
         <p>

@@ -16,8 +16,7 @@ export class UserAvatarForm extends Component {
 
   render() {
     const {
-      handleSubmit, avatarSelected, fieldId, scaleWidth, scaleHeight,
-      placeholderId
+      handleSubmit, avatarSelected, fieldId, scaleWidth, scaleHeight, placeholderId
     } = this.props;
 
     return (

@@ -44,7 +44,7 @@ export const updateTutorEducation = (id, data) => {
         payload: response.value
       });
       dispatch(hideEducationEditForm());
-    })
+    });
   };
 };
 

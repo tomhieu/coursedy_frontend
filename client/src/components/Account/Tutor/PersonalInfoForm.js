@@ -8,7 +8,6 @@ import {countries} from '../../../constants/Countries';
 export class PersonalInfoForm extends Component {
   render() {
     const { handleSubmit, placeholderId, isProcessing } = this.props;
-    // let isProcessing = true
     const countryList = countries.map(country => ({
       id: country.code,
       text: country.name
