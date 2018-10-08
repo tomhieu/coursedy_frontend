@@ -9,11 +9,12 @@ class LoadingIcon extends Component {
     if (isActive) {
       fillColor = '#55ACEE';
     }
+    let strokeWidth = 3;
     return (
 
       <svg width={`${width}px`}  height={`${height}px`} viewBox="0 0 38 38" stroke="#fff" version="1.1">
         <g fill="none" fill-rule="evenodd">
-          <g transform="translate(1 1)" stroke-width="3">
+          <g transform="translate(1 1)" strokeWidth={strokeWidth}>
             <circle stroke-opacity=".5" cx="18" cy="18" r="18" stroke="#767676"/>
             <path d="M36 18c0-9.94-8.06-18-18-18">
               <animateTransform
