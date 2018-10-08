@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import ForgotPasswordFormContainer from 'containers/Auth/ForgotPasswordFormContainer';
-import LoadingMask from 'components/LoadingMask/LoadingMask';
 import PageContainer from '../../utils/PageContainer';
 
 class ForgotPasswordPage extends Component {
@@ -11,9 +10,7 @@ class ForgotPasswordPage extends Component {
       >
         <div className="mt-40">
           <div className="mb-50">
-            <LoadingMask placeholderId="forgotPasswordPlaceholder">
-              <ForgotPasswordFormContainer {...this.props} />
-            </LoadingMask>
+            <ForgotPasswordFormContainer {...this.props} />
           </div>
         </div>
       </PageContainer>

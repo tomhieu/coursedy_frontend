@@ -16,7 +16,7 @@ class LoginForm extends Component {
   }
 
   render() {
-    const { handleSubmit } = this.props;
+    const { handleSubmit, placeholderId, isProcessing } = this.props;
     const { errors } = this.props.LoginComponent;
 
     return (
@@ -83,6 +83,8 @@ class LoginForm extends Component {
             title={this.context.t('login')}
             line={false}
             round
+            disabled={isProcessing}
+            placeholderId={placeholderId}
           />
         </div>
 
@@ -99,7 +101,9 @@ LoginForm.contextTypes = {
 };
 
 LoginForm.propTypes = {
-  onSubmit: React.PropTypes.func.isRequired
+  onSubmit: React.PropTypes.func.isRequired,
+  placeholderId: React.PropTypes.string,
+  isProcessing: React.PropTypes.bool
 };
 
 export default cssModules(LoginForm, styles);

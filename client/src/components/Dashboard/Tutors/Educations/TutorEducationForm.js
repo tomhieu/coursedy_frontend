@@ -7,17 +7,19 @@ import PrimaryButton from '../../../Core/PrimaryButton/PrimaryButton';
 
 export class TutorEducationForm extends Component {
   render() {
-    const { onSubmit, handleSubmit } = this.props;
+    const { onSubmit, handleSubmit, isProcessing, placeholderId } = this.props;
     return (
       <form onSubmit={handleSubmit(onSubmit)}>
         <FormField
           formControlName="title"
           typeField="custom_input"
+          fieldId="eduTitle"
           fieldLabel={this.context.t('account.tutot.edu.form.title')}
         />
         <FormField
           formControlName="graduated_from"
           typeField="custom_input"
+          fieldId="eduGraduateFrom"
           fieldLabel={this.context.t('account.tutot.edu.form.graduated_from')}
         />
         <div className="row">
@@ -25,6 +27,7 @@ export class TutorEducationForm extends Component {
             <FormField
               formControlName="start_date"
               typeField="datepicker"
+              fieldId="eduStartDate"
               fieldLabel={this.context.t('account.tutot.edu.form.start_date')}
             />
           </div>
@@ -32,6 +35,7 @@ export class TutorEducationForm extends Component {
             <FormField
               formControlName="end_date"
               typeField="datepicker"
+              fieldId="eduEndDate"
               fieldLabel={this.context.t('account.tutot.edu.form.end_date')}
             />
           </div>
@@ -40,6 +44,7 @@ export class TutorEducationForm extends Component {
           formControlName="description"
           typeField="rich_text_editor"
           customClassName="quill-form-control"
+          fieldId="eduDescription"
           fieldLabel={this.context.t('account.tutot.edu.form.description')}
         />
         <FormGroup>
@@ -47,8 +52,9 @@ export class TutorEducationForm extends Component {
             isPrimary
             line={false}
             type="submit"
-            isSmallButton
             title={this.context.t('save')}
+            placeholderId={placeholderId}
+            disabled={isProcessing}
           />
           <PrimaryButton
             isPrimary={false}
@@ -56,8 +62,8 @@ export class TutorEducationForm extends Component {
             type="button"
             customClasses="ml-15"
             callback={this.props.cancel}
-            isSmallButton
-            title={this.context.t('cancel')}
+            title={isProcessing ? "" : this.context.t('cancel')}
+            disabled={isProcessing}
           />
         </FormGroup>
       </form>
@@ -72,5 +78,7 @@ TutorEducationForm.contextTypes = {
 
 TutorEducationForm.propTypes = {
   onSubmit: React.PropTypes.func.isRequired,
-  cancel: React.PropTypes.func.isRequired
+  cancel: React.PropTypes.func.isRequired,
+  placeholderId: React.PropTypes.string,
+  isProcessing: React.PropTypes.bool
 };

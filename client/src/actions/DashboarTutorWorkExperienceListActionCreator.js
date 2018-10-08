@@ -22,7 +22,7 @@ export const createWorkExperience = (tutorId, params) => {
     dispatch({
       type: actionTypes.CREATE_WORK_EXPERIENCE,
       payload: response,
-      meta: 'tutorCourseListPlaceholder'
+      meta: 'tutorWorkExperiencePlaceholder'
     });
   };
 };
@@ -67,7 +67,8 @@ export const updateWorkExperience = (tutorId, workEperienceId, params) => {
   return (dispatch) => {
     dispatch({
       type: actionTypes.UPDATE_TUTOR_WORK_EXPERIENCE_ITEM,
-      payload: Network().update(`tutors/${tutorId}/tutor_work_experiences/${workEperienceId}`, params)
+      payload: Network().update(`tutors/${tutorId}/tutor_work_experiences/${workEperienceId}`, params),
+      meta: 'tutorWorkExperiencePlaceholder'
     });
   };
 };

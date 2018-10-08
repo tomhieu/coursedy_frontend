@@ -26,6 +26,9 @@ class ChangePasswordContainer extends Component {
     const {
       handleSubmit, passwordUpdated, updateWithoutPassword, errors
     } = this.props;
+    const placeholderId = "changePasswordPlaceholder";
+    const { activatingPlaceholders } = this.props
+    const isProcessing = activatingPlaceholders.findIndex(holder => placeholderId == holder) >= 0;
     return (
       <div className="row">
         <div className="col-md-12 col-sm-12">
@@ -94,6 +97,8 @@ class ChangePasswordContainer extends Component {
                 line={false}
                 type="submit"
                 title={this.context.t('account_tutor_new_password_btn')}
+                placeholderId={placeholderId}
+                disabled={isProcessing}
               />
             </div>
           </form>
@@ -119,7 +124,8 @@ const mapDispatchToProps = dispatch => ({
 
 const mapStateToProps = state => ({
   passwordUpdated: state.AccountReducer.passwordUpdated,
-  errors: state.AccountReducer.passwordErrors
+  errors: state.AccountReducer.passwordErrors,
+  activatingPlaceholders: state.LoadingMask.activatingPlaceholders
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(reduxForm({

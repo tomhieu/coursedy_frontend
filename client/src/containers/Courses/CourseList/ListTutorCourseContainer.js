@@ -5,7 +5,7 @@ import { FETCH_TUTOR_COURSES } from 'actions/AsyncActionCreator';
 import Network from 'utils/network';
 import { globalHistory } from 'utils/globalHistory';
 import cssModules from 'react-css-modules';
-import LoadingMask from '../../../components/LoadingMask/LoadingMask';
+import LoadingMask from '../../LoadingMask/LoadingMask';
 import { DELETE_COURSE, SHOW_ENROLLED_STUDENT_LIST, UPDATE_COURSE } from '../../../actions/AsyncActionCreator';
 import * as dashboardActions from '../../../actions/DashboardMenuActionCreator';
 import { CourseStatus } from '../../../constants/CourseStatus';

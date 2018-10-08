@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
 import cssModules from 'react-css-modules';
 import styles from './PrimaryButton.module.scss';
+import LoadingMask from '../../../containers/LoadingMask/LoadingMask';
+
 
 class PrimaryButton extends Component {
   render() {
     const {
       type, callback, title, isPrimary = true, round = false,
-      disabled = false, line = true, customClasses, iconButton = false, isSmallButton = false
+      disabled = false, line = true, customClasses, iconButton = false, isSmallButton = false,
+      placeholderId = ""
     } = this.props;
     // build list classes
     const classNames = [styles.button];
@@ -40,12 +43,15 @@ class PrimaryButton extends Component {
     return (
       type === 'submit'
         ? (
-          <button type="submit" className={classNames.join(' ')} disabled={disabled}>
-            {
-          iconButton ? this.props.children : null
-        }
-            {title}
+          <button type="submit" className={classNames.join(' ')} disabled={disabled ? "disabled" : ""}>
+            <LoadingMask placeholderId={placeholderId} normalPlaceholder={false} buttonPlaceholder={true} loadingBgColor="#FFFFFF">
+              <span>
+                { iconButton ? this.props.children : null }
+                {title}
+              </span>
+            </LoadingMask>
           </button>
+
         )
         : (
           <button type="button" className={classNames.join(' ')} onClick={callback} disabled={disabled}>
@@ -69,7 +75,8 @@ PrimaryButton.propTypes = {
   customClasses: React.PropTypes.string,
   iconButton: React.PropTypes.bool,
   disabled: React.PropTypes.bool,
-  isSmallButton: React.PropTypes.bool
+  isSmallButton: React.PropTypes.bool,
+  placeholderId: React.PropTypes.string,
 };
 
 export default cssModules(PrimaryButton, styles);

@@ -4,7 +4,7 @@ import { translations } from 'translations';
 import { TT } from 'utils/locale';
 import ScrollToTop from 'utils/ScrollToTop';
 import moment from 'moment';
-import LoadingMask from '../LoadingMask/LoadingMask';
+import LoadingMask from '../../containers/LoadingMask/LoadingMask';
 import Footer from '../../containers/Main/Footer/Footer';
 import Header from '../../containers/Main/Header/Header';
 import UserConfirmationContainer from '../../containers/Main/UserConfirmationAction/UserConfirmationContainer';

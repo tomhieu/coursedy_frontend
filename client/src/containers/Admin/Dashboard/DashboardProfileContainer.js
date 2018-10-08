@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import * as AccountActionCreator from 'actions/AccountActionCreator';
 import { reduxForm } from 'redux-form';
 import defaultAvatar from '../../../../images/default_avatar.png';
-import LoadingMask from '../../../components/LoadingMask/LoadingMask';
+import LoadingMask from '../../LoadingMask/LoadingMask';
 import CoursedyUploadImage from '../../../components/Core/CoursedyUploadImage/CoursedyUploadImage';
 
 class DashboardProfileContainer extends Component {
@@ -33,38 +33,37 @@ class DashboardProfileContainer extends Component {
     const {
       user, userBalance, editAvatarMode, avatarSelected
     } = this.props;
+    const placeholderId = "userAvatarPlaceholder";
+    const { activatingPlaceholders } = this.props
+    const isProcessing = activatingPlaceholders.findIndex(holder => placeholderId == holder) >= 0;
     return (
       user
         ? (
-          <LoadingMask
-            placeholderId="userDetailsPlaceholder"
-            normalPlaceholder={false}
-            facebookPlaceholder
-            loaderType="USER_DETAILS_PLACEHOLDER"
-          >
-            <div className="dashboard-profile text-center">
-              <div className="row">
-                <div className="col-md-4">
-                  <CoursedyUploadImage
-                    uploadCourseCoverImage={this.uploadAvatar.bind(this)}
-                    closePopupToSelectImage={this.hideEditAvatarForm.bind(this)}
-                    editImageLabel={this.context.t('update_avatar')}
-                    onDeselectNewImage={this.avatarDeselected.bind(this)}
-                    onSelectedNewImage={this.avatarSelected.bind(this)}
-                    isSelectedNewImage={avatarSelected}
-                    openPopupToSelectImage={this.showEditAvatarForm.bind(this)}
-                    showPopupChangeImage={editAvatarMode}
-                    fieldId="adminAvatarId"
-                    isUserAvatar
-                    previewImage={user.avatar ? user.avatar : defaultAvatar}
-                  />
-                </div>
-                <div className="col-md-8">
-                  <h4>{user.name}</h4>
-                </div>
+          <div className="dashboard-profile text-center">
+            <div className="row">
+              <div className="col-md-4">
+                <CoursedyUploadImage
+                  uploadCourseCoverImage={this.uploadAvatar.bind(this)}
+                  closePopupToSelectImage={this.hideEditAvatarForm.bind(this)}
+                  editImageLabel={this.context.t('update_avatar')}
+                  onDeselectNewImage={this.avatarDeselected.bind(this)}
+                  onSelectedNewImage={this.avatarSelected.bind(this)}
+                  isSelectedNewImage={avatarSelected}
+                  openPopupToSelectImage={this.showEditAvatarForm.bind(this)}
+                  showPopupChangeImage={editAvatarMode}
+                  fieldId="adminAvatarId"
+                  isUserAvatar
+                  previewImage={user.avatar ? user.avatar : defaultAvatar}
+                  {...this.props}
+                  placeholderId={placeholderId}
+                  isProcessing={isProcessing}
+                />
+              </div>
+              <div className="col-md-8">
+                <h4>{user.name}</h4>
               </div>
             </div>
-          </LoadingMask>
+          </div>
         ) : null
     );
   }
@@ -74,7 +73,8 @@ const mapStateToProps = state => ({
   userBalance: state.session.userBalance,
   user: state.session.currentUser,
   editAvatarMode: state.AccountReducer.editAvatarMode,
-  avatarSelected: state.AccountReducer.avatarSelected
+  avatarSelected: state.AccountReducer.avatarSelected,
+  activatingPlaceholders: state.LoadingMask.activatingPlaceholders
 });
 
 const mapStateToDispatch = dispatch => ({

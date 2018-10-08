@@ -22,7 +22,7 @@ export const createEducation = (tutorId, params) => {
     dispatch({
       type: actionTypes.CREATE_EDUCATION,
       payload: response,
-      meta: 'tutorCourseListPlaceholder'
+      meta: 'tutorEducationListPlaceholder'
     });
   };
 };
@@ -67,7 +67,8 @@ export const updateEducation = (tutorId, educationId, params) => {
   return (dispatch) => {
     dispatch({
       type: actionTypes.UPDATE_TUTOR_EDUCATION_ITEM,
-      payload: Network().update(`tutors/${tutorId}/tutor_educations/${educationId}`, params)
+      payload: Network().update(`tutors/${tutorId}/tutor_educations/${educationId}`, params),
+      meta: 'tutorEducationListPlaceholder'
     });
   };
 };

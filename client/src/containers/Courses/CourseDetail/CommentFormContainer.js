@@ -35,6 +35,8 @@ class CommentFormContainer extends Component {
 
   render() {
     const { handleSubmit, pristine, submitting } = this.props;
+    const placeholderId = "commentPlaceholder";
+    const { activatingPlaceholders } = this.props
     return (
       <div className="course-detail-comment-form" id="comment-form-section">
         <form onSubmit={handleSubmit(this.submitComment.bind(this))} className="inline-form ml-0 mr-0">
@@ -54,6 +56,7 @@ class CommentFormContainer extends Component {
               customClasses="btn"
               title={this.context.t('send_comment_button')}
               disabled={pristine || submitting}
+              placeholderId={placeholderId}
             />
           </div>
         </form>
@@ -73,6 +76,7 @@ const mapStateToProps = (state) => {
   return {
     user: state.session.currentUser,
     course: state.PublicCourseDetail.course,
+    activatingPlaceholders: state.LoadingMask.activatingPlaceholders,
     // show_require_login_modal: state.PublicCourseDetail.show_require_login_modal,
     // show_comment_status_modal: state.PublicCourseDetail.show_comment_status_modal,
     submit_comment_success: state.PublicCourseDetail.submit_comment_success,

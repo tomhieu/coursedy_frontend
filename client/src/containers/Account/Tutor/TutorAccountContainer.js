@@ -9,7 +9,7 @@ import TutorForm from '../../Dashboard/Tutors/TutorForm';
 
 import { AccountActions, TutorAccountActions } from '../../../actions/index';
 import { RequireEmailConfirmationModal } from '../../../components/index';
-import LoadingMask from '../../../components/LoadingMask/LoadingMask';
+import LoadingMask from '../../LoadingMask/LoadingMask';
 import { FETCH_TUTOR_DATA } from '../../../constants/Session';
 import { CERTIFICATE, FETCH_TEACHER_SKILL_SET } from '../../../actions/AsyncActionCreator';
 import * as dashboardActions from '../../../actions/DashboardMenuActionCreator';
@@ -60,20 +60,13 @@ class TutorAccount extends Component {
           }
         </div>
         <div className="col-md-12 col-xs-12 col-sm-12">
-          <LoadingMask
-            placeholderId="userEducationPlaceholder"
-            normalPlaceholder={false}
-            facebookPlaceholder
-            loaderType="USER_EDUCATION_PLACEHOLDER"
-          >
-            <div className="dashboard-content-section">
-              {
-                editEducationMode
-                  ? <TutorForm tutor={tutor} cancel={this.hideEducationEditForm.bind(this)} />
-                  : <TutorDetail tutor={tutor} showEditForm={this.showEducationEditForm.bind(this)} />
-              }
-            </div>
-          </LoadingMask>
+          <div className="dashboard-content-section">
+            {
+              editEducationMode
+                ? <TutorForm tutor={tutor} cancel={this.hideEducationEditForm.bind(this)} />
+                : <TutorDetail tutor={tutor} showEditForm={this.showEducationEditForm.bind(this)} />
+            }
+          </div>
         </div>
 
         <div className="col-md-12 col-xs-12 col-sm-12">

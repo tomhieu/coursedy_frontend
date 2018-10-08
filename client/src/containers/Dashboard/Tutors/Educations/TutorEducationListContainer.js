@@ -45,13 +45,14 @@ class TutorEducationListContainer extends Component {
             showEditEducationForm={this.showEditEducationForm.bind(this)}
           />
           {
-            showNewTutorEducationForm
-              ? (
-                <div>
-                  <hr />
-                  <NewEducationFormContainer />
-                </div>
-              ) : (<div />)
+            showNewTutorEducationForm ? 
+              <div>
+                {
+                  educations.length > 0 ? <hr /> : null 
+                }
+                <NewEducationFormContainer />
+              </div>
+              : <div />
           }
           {
             !showNewTutorEducationForm

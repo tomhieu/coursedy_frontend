@@ -7,7 +7,7 @@ import PrimaryButton from '../../../Core/PrimaryButton/PrimaryButton';
 
 export class TutorWorkExperienceForm extends Component {
   render() {
-    const { onSubmit, handleSubmit } = this.props;
+    const { onSubmit, handleSubmit, isProcessing, placeholderId } = this.props;
     return (
       <form onSubmit={handleSubmit(onSubmit)}>
         <FormField
@@ -47,8 +47,9 @@ export class TutorWorkExperienceForm extends Component {
             isPrimary
             line={false}
             type="submit"
-            isSmallButton
             title={this.context.t('save')}
+            placeholderId={placeholderId}
+            disabled={isProcessing}
           />
           <PrimaryButton
             isPrimary={false}
@@ -56,8 +57,8 @@ export class TutorWorkExperienceForm extends Component {
             type="button"
             customClasses="ml-15"
             callback={this.props.cancel}
-            isSmallButton
-            title={this.context.t('cancel')}
+            title={isProcessing ? "" : this.context.t('cancel')}
+            disabled={isProcessing}
           />
         </FormGroup>
       </form>
@@ -72,5 +73,7 @@ TutorWorkExperienceForm.contextTypes = {
 
 TutorWorkExperienceForm.propTypes = {
   onSubmit: React.PropTypes.func.isRequired,
-  cancel: React.PropTypes.func.isRequired
+  cancel: React.PropTypes.func.isRequired,
+  placeholderId: React.PropTypes.string,
+  isProcessing: React.PropTypes.bool
 };

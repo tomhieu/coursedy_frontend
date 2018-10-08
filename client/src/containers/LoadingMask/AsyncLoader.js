@@ -1,19 +1,20 @@
 import { Component } from 'react';
 import * as React from 'react';
 import * as WebContants from '../../constants/WebConstants';
+import LoadingIcon from "../../components/Core/Icons/LoadingIcon"
 
 class AsyncLoader extends Component {
   render() {
     const {
-      isFullLoading, normalPlaceholder, facebookPlaceholder, sectionPlaceholder, loaderType, repeatTime = 1
+      isFullLoading, normalPlaceholder, facebookPlaceholder,
+      sectionPlaceholder, buttonPlaceholder, loaderType, repeatTime = 1,
+      loadingBgColor
     } = this.props;
     if (normalPlaceholder) {
       return (
         <div className={isFullLoading ? 'full-loading' : 'partial-loading'}>
           <div id="spinner">
-            <svg className="circular" viewBox="25 25 50 50">
-              <circle className="path" cx="50" cy="50" r="20" fill="none" />
-            </svg>
+            <LoadingIcon loadingBgColor={loadingBgColor} />
           </div>
         </div>
       );
@@ -21,9 +22,15 @@ class AsyncLoader extends Component {
       return (
         <div className="section-placeholder">
           <div id="spinner">
-            <svg className="circular" viewBox="25 25 50 50">
-              <circle className="path" cx="50" cy="50" r="20" fill="none" />
-            </svg>
+            <LoadingIcon loadingBgColor={loadingBgColor} />
+          </div>
+        </div>
+      );
+    } if (buttonPlaceholder) {
+      return (
+        <div className="button-placeholder">
+          <div id="spinner">
+            <LoadingIcon width={24} height={24} loadingBgColor={loadingBgColor}/>
           </div>
         </div>
       );

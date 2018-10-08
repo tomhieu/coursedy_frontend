@@ -72,6 +72,7 @@ export const submitTeacherComment = ({ content, teacherId, userId }) => {
 
   return {
     type: asyncActs.TEACHER_DETAIL_SUBMIT_COMMENT,
-    payload: Network().post(`tutors/${teacherId}/tutor_reviews`, params)
+    payload: Network().post(`tutors/${teacherId}/tutor_reviews`, params),
+    meta: "reviewTeacherPlaceholder"
   };
 };

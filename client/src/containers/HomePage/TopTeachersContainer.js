@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import * as TeacherActions from 'actions/HomePageActionCreator';
 import { bindActionCreators } from 'redux';
 import { Slider } from '../../components/Slider/CoursedySlider';
-import LoadingMask from '../../components/LoadingMask/LoadingMask';
+import LoadingMask from '../LoadingMask/LoadingMask';
 import CoursedySlider from '../../components/Slider/CoursedySlider';
 
 

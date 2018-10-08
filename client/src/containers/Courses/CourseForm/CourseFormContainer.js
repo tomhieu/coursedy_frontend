@@ -14,7 +14,7 @@ import CourseDetailContainer from './CourseDetailContainer';
 import SimpleDialogComponent from '../../../components/Core/SimpleDialogComponent';
 import SectionCreationPopupContainer from '../Section/SectionCreationPopupContainer';
 import SectionLessonContainer from '../Section/SectionLessonContainer';
-import LoadingMask from '../../../components/LoadingMask/LoadingMask';
+import LoadingMask from '../../LoadingMask/LoadingMask';
 import FlatButton from '../../../components/Core/FlatButton/FlatButton';
 import * as dashboardActions from '../../../actions/DashboardMenuActionCreator';
 import {TutorNavigationTab} from '../../../constants/TutorNavigationTab';

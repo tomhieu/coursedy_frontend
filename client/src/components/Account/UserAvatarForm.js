@@ -16,7 +16,7 @@ export class UserAvatarForm extends Component {
 
   render() {
     const {
-      handleSubmit, avatarSelected, fieldId, scaleWidth, scaleHeight
+      handleSubmit, avatarSelected, fieldId, scaleWidth, scaleHeight, placeholderId
     } = this.props;
 
     return (
@@ -43,6 +43,7 @@ export class UserAvatarForm extends Component {
               customClasses="full-width"
               disabled={!avatarSelected}
               title={this.context.t('save')}
+              placeholderId={placeholderId}
             />
           </div>
           <div className="col-sm-12">
@@ -72,5 +73,6 @@ UserAvatarForm.propTypes = {
   avatarSelected: React.PropTypes.bool.isRequired,
   fieldId: React.PropTypes.string.isRequired,
   scaleWidth: React.PropTypes.number,
-  scaleHeight: React.PropTypes.number
+  scaleHeight: React.PropTypes.number,
+  placeholderId: React.PropTypes.string
 };
