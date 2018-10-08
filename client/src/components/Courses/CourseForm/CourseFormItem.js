@@ -4,10 +4,13 @@ import InlineEditFormField from '../../Core/InlineEditFormField';
 import FormField from '../../Core/FormField';
 
 class CourseFormItem extends Component {
+  closeInlineField(fieldId) {
+    this.props.onClosedField(fieldId);
+  }
   render() {
     const {
-      editMode = false, showLabel = true, placeholder,
-      fieldLabel, fieldId, isMandatory, fieldName, activatedField = [], isRichTextField = false, canEditable
+      editMode = false, showLabel = true, fieldLabel, fieldId, isMandatory, fieldName, activatedField = [],
+      isRichTextField = false, canEditable, typeField, options, placeholder
     } = this.props;
     if (editMode) {
       return (
@@ -19,7 +22,17 @@ class CourseFormItem extends Component {
           formControlName={fieldName}
           isRichTextField={isRichTextField}
           canEditable={canEditable}
-          {...this.props}
+          submitting={this.props.submitting}
+          pristine={this.props.pristine}
+          displayStyle={this.props.displayStyle}
+          activatedFieldIds={this.props.activatedFieldIds}
+          typeField={typeField}
+          options={options}
+          fieldId={fieldId}
+          fieldLabel={fieldLabel}
+          content={this.props.content}
+          onActivatedField={this.props.onActivatedField.bind(this)}
+          onClosedField={this.closeInlineField.bind(this)}
         />
       );
     }
@@ -28,7 +41,11 @@ class CourseFormItem extends Component {
       <FormField
         isMandatoryField={isMandatory}
         formControlName={fieldName}
-        {...this.props}
+        fieldId={fieldId}
+        fieldLabel={fieldLabel}
+        placeholder={placeholder || ''}
+        typeField={typeField}
+        options={options}
       />
     );
   }

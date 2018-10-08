@@ -45,7 +45,7 @@ class NotificationSystemContainer extends Component {
   startPoll(currentUser) {
     this.timeout = setTimeout(() => {
       this.checkUpcommingCourse(currentUser);
-    }, 5000);
+    }, 300000);
   }
 
   checkUpcommingCourse(currentUser) {
