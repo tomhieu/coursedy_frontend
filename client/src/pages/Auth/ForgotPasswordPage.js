@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import ForgotPasswordFormContainer from 'containers/Auth/ForgotPasswordFormContainer';
-import LoadingMask from 'containers/LoadingMask/LoadingMask';
 import PageContainer from '../../utils/PageContainer';
 
 class ForgotPasswordPage extends Component {

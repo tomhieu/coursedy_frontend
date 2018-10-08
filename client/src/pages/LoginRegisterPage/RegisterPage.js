@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import cssModules from 'react-css-modules';
 import styles from './LoginRegisterPage.module.scss';
 import { RegisterFormContainer } from '../../containers/index';
-import LoadingMask from '../../containers/LoadingMask/LoadingMask';
 import PageContainer from '../../utils/PageContainer';
 
 

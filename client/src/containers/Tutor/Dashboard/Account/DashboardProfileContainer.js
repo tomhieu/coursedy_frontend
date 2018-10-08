@@ -34,6 +34,9 @@ class DashboardProfileContainer extends Component {
     const {
       user, userBalance, editAvatarMode, avatarSelected
     } = this.props;
+    const placeholderId = "userAvatarPlaceholder";
+    const { activatingPlaceholders } = this.props
+    const isProcessing = activatingPlaceholders.findIndex(holder => placeholderId == holder) >= 0;
     return (
       user ? (
         <LoadingMask
@@ -58,6 +61,8 @@ class DashboardProfileContainer extends Component {
                   fieldId="tutor_avatar"
                   isUserAvatar
                   {...this.props}
+                  placeholderId={placeholderId}
+                  isProcessing={isProcessing}
                 />
               </div>
               <div className="col-md-8">
@@ -89,6 +94,7 @@ const mapStateToProps = state => ({
   editAvatarMode: state.AccountReducer.editAvatarMode,
   avatarSelected: state.AccountReducer.avatarSelected,
   lang: state.i18nState.lang,
+  activatingPlaceholders: state.LoadingMask.activatingPlaceholders
 });
 
 const mapStateToDispatch = dispatch => ({

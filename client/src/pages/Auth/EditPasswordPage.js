@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import EditPasswordFormContainer from 'containers/Auth/EditPasswordFormContainer';
-import LoadingMask from 'containers/LoadingMask/LoadingMask';
 import PageContainer from '../../utils/PageContainer';
 
 class EditPasswordPage extends Component {
@@ -10,9 +9,7 @@ class EditPasswordPage extends Component {
         meta={{ title: this.context.t('edit_password_page') }}
       >
         <div className="mt-50 mb-50">
-          <LoadingMask placeholderId="editPasswordPlaceholder">
-            <EditPasswordFormContainer {...this.props} />
-          </LoadingMask>
+          <EditPasswordFormContainer {...this.props} />
         </div>
       </PageContainer>
     );
