@@ -7,13 +7,14 @@ class AsyncLoader extends Component {
   render() {
     const {
       isFullLoading, normalPlaceholder, facebookPlaceholder,
-      sectionPlaceholder, buttonPlaceholder, loaderType, repeatTime = 1
+      sectionPlaceholder, buttonPlaceholder, loaderType, repeatTime = 1,
+      loadingBgColor
     } = this.props;
     if (normalPlaceholder) {
       return (
         <div className={isFullLoading ? 'full-loading' : 'partial-loading'}>
           <div id="spinner">
-            <LoadingIcon />
+            <LoadingIcon loadingBgColor={loadingBgColor} />
           </div>
         </div>
       );
@@ -21,7 +22,7 @@ class AsyncLoader extends Component {
       return (
         <div className="section-placeholder">
           <div id="spinner">
-            <LoadingIcon />
+            <LoadingIcon loadingBgColor={loadingBgColor} />
           </div>
         </div>
       );
@@ -29,7 +30,7 @@ class AsyncLoader extends Component {
       return (
         <div className="button-placeholder">
           <div id="spinner">
-            <LoadingIcon width={24} height={24}/>
+            <LoadingIcon width={24} height={24} loadingBgColor={loadingBgColor}/>
           </div>
         </div>
       );

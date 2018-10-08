@@ -44,7 +44,7 @@ class PrimaryButton extends Component {
       type === 'submit'
         ? (
           <button type="submit" className={classNames.join(' ')} disabled={disabled ? "disabled" : ""}>
-            <LoadingMask placeholderId={placeholderId} normalPlaceholder={false} buttonPlaceholder={true}>
+            <LoadingMask placeholderId={placeholderId} normalPlaceholder={false} buttonPlaceholder={true} loadingBgColor="#FFFFFF">
               <span>
                 { iconButton ? this.props.children : null }
                 {title}
