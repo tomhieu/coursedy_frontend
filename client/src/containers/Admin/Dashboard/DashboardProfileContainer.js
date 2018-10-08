@@ -57,6 +57,7 @@ class DashboardProfileContainer extends Component {
                     fieldId="adminAvatarId"
                     isUserAvatar
                     previewImage={user.avatar ? user.avatar : defaultAvatar}
+                    {...this.props}
                   />
                 </div>
                 <div className="col-md-8">

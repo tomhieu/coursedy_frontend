@@ -75,7 +75,8 @@ PrimaryButton.propTypes = {
   customClasses: React.PropTypes.string,
   iconButton: React.PropTypes.bool,
   disabled: React.PropTypes.bool,
-  isSmallButton: React.PropTypes.bool
+  isSmallButton: React.PropTypes.bool,
+  placeholderId: React.PropTypes.string,
 };
 
 export default cssModules(PrimaryButton, styles);

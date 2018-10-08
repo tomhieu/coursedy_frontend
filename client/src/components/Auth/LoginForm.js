@@ -101,7 +101,9 @@ LoginForm.contextTypes = {
 };
 
 LoginForm.propTypes = {
-  onSubmit: React.PropTypes.func.isRequired
+  onSubmit: React.PropTypes.func.isRequired,
+  placeholderId: React.PropTypes.string,
+  isProcessing: React.PropTypes.bool
 };
 
 export default cssModules(LoginForm, styles);

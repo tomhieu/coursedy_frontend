@@ -56,20 +56,13 @@ class TutorAccount extends Component {
           })}></CoursedyWarning>
         </div>
         <div className="col-md-12 col-xs-12 col-sm-12">
-          {/*<LoadingMask
-            placeholderId="userEducationPlaceholder"
-            normalPlaceholder={false}
-            facebookPlaceholder
-            loaderType="USER_EDUCATION_PLACEHOLDER"
-          >*/}
-            <div className="dashboard-content-section">
-              {
-                editEducationMode
-                  ? <TutorForm tutor={tutor} cancel={this.hideEducationEditForm.bind(this)} />
-                  : <TutorDetail tutor={tutor} showEditForm={this.showEducationEditForm.bind(this)} />
-              }
-            </div>
-          {/*</LoadingMask>*/}
+          <div className="dashboard-content-section">
+            {
+              editEducationMode
+                ? <TutorForm tutor={tutor} cancel={this.hideEducationEditForm.bind(this)} />
+                : <TutorDetail tutor={tutor} showEditForm={this.showEducationEditForm.bind(this)} />
+            }
+          </div>
         </div>
 
         <div className="col-md-12 col-xs-12 col-sm-12">

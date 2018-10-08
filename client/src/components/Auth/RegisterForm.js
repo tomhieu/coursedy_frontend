@@ -174,6 +174,9 @@ RegisterForm.contextTypes = {
   t: React.PropTypes.func.isRequired
 };
 
-RegisterForm.propTypes = {};
+RegisterForm.propTypes = {
+  placeholderId: React.PropTypes.string,
+  isProcessing: React.PropTypes.bool
+};
 
 export default cssModules(RegisterForm, styles);

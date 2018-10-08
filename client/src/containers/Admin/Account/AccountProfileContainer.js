@@ -11,7 +11,6 @@ import {
 import {
   RequireEmailConfirmationModal
 } from '../../../components/index';
-import LoadingMask from '../../LoadingMask/LoadingMask';
 import * as dashboardActions from '../../../actions/DashboardMenuActionCreator';
 
 class AccountProfileContainer extends Component {
@@ -41,20 +40,13 @@ class AccountProfileContainer extends Component {
     return (
       <div className="row">
         <div className="col-md-12 col-xs-12 col-sm-12 ">
-          <LoadingMask
-            placeholderId="userAccountPlaceholder"
-            normalPlaceholder={false}
-            facebookPlaceholder
-            loaderType="USER_ACCOUNT_PLACEHOLDER"
-          >
-            <div className="dashboard-content-section">
-              {
-                  editProfileMode
-                    ? <PersonInfoContainer cancel={this.hideProfileEditForm.bind(this)} />
-                    : <UserInfo user={user} showEditForm={this.showProfileEditForm.bind(this)} />
-                }
-            </div>
-          </LoadingMask>
+          <div className="dashboard-content-section">
+            {
+              editProfileMode
+                ? <PersonInfoContainer cancel={this.hideProfileEditForm.bind(this)} />
+                : <UserInfo user={user} showEditForm={this.showProfileEditForm.bind(this)} />
+            }
+          </div>
         </div>
 
         <div className="col-md-12 col-xs-12 col-sm-12">

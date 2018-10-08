@@ -5,8 +5,6 @@ import styles from './TutorProfileDetails.module.scss';
 import ChangePasswordContainer from '../../../containers/Account/ChangePasswordContainer';
 import PersonInfoContainer from '../../../containers/Account/PersonInfoContainer';
 import UserInfo from '../../Account/UserInfo';
-import LoadingMask from '../../../containers/LoadingMask/LoadingMask';
-
 
 class TutorProfileDetails extends Component {
   hideProfileEditForm() {
@@ -28,20 +26,13 @@ class TutorProfileDetails extends Component {
           </div>
         </div>
         <div className="d-flex flex-auto">
-          <LoadingMask
-            placeholderId="userAccountPlaceholder"
-            normalPlaceholder={false}
-            facebookPlaceholder
-            loaderType="USER_ACCOUNT_PLACEHOLDER"
-          >
-            <div className="dashboard-content-section">
-              {
-                editProfileMode
-                  ? <PersonInfoContainer cancel={this.hideProfileEditForm.bind(this)} />
-                  : <UserInfo user={user} showEditForm={this.showProfileEditForm.bind(this)} />
-              }
-            </div>
-          </LoadingMask>
+          <div className="dashboard-content-section">
+            {
+              editProfileMode
+                ? <PersonInfoContainer cancel={this.hideProfileEditForm.bind(this)} />
+                : <UserInfo user={user} showEditForm={this.showProfileEditForm.bind(this)} />
+            }
+          </div>
         </div>
         <div className="d-flex flex-auto">
           <div className="dashboard-content-section">

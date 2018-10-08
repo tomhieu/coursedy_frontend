@@ -78,5 +78,7 @@ TutorEducationForm.contextTypes = {
 
 TutorEducationForm.propTypes = {
   onSubmit: React.PropTypes.func.isRequired,
-  cancel: React.PropTypes.func.isRequired
+  cancel: React.PropTypes.func.isRequired,
+  placeholderId: React.PropTypes.string,
+  isProcessing: React.PropTypes.bool
 };
