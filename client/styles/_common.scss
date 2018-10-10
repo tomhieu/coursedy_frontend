@@ -2420,7 +2420,7 @@ blockquote {
 
 .react-datepicker__day--keyboard-selected, .react-datepicker__day--selected {
   color: white !important;
-  background-color: $md-color-pink;
+  background-color: $md-color-pink !important;
 }
 
 .react-datepicker__current-month {

@@ -35,7 +35,7 @@ class CourseItemInGridMode extends Component {
           </div>
         </LinkContainer>
         <div className="course-item-top clearfix">
-          <LinkContainer to={`/teachers/${item.user_id}`} className="course-detail-lnk">
+          <div className="course-detail-lnk">
             <div className="course-item-instructor">
               <div className="image">
                 <Image
@@ -47,7 +47,7 @@ class CourseItemInGridMode extends Component {
               </div>
               <span>{item.user.name}</span>
             </div>
-          </LinkContainer>
+          </div>
         </div>
         <LinkContainer to={isPublic ? `/courses/${item.id}` : `/dashboard/courses/detail/${item.id}`} className="course-detail-lnk flex-auto">
           <div className="d-flex flex-column justify-content-right course-item-content">
