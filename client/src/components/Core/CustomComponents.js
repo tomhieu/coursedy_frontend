@@ -150,7 +150,8 @@ export const renderDatePicker = ({
   return (
     <div>
       <DatePicker
-        {...input}
+        name={input.name}
+        onChange={input.onChange}
         disabled={disabled}
         selected={input.value ? moment(input.value, 'DD/MM/YYYY') : null}
         placeholderText="dd/mm/yyyy"
