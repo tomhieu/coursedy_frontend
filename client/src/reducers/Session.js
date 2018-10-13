@@ -12,6 +12,7 @@ const session = (state = {
   notifications: [],
   hasActiveCourseToLearn: false,
   isJoiningActiveClass: false,
+  stopPolling: false,
   teachingCourse: null,
   newStartedCourses: []
 }, action) => {
@@ -59,7 +60,11 @@ const session = (state = {
     case asyncActs.CLOSE_POPUP_JOIN_UPCOMMING_CLASS:
       return { ...state, teachingCourse: null };
     case asyncActs.STARTED_JOINING_ACTIVE_CLASS:
-      return { ...state, teachingCourse: null, isJoiningActiveClass: true };
+      return { ...state, teachingCourse: null, isJoiningActiveClass: true, stopPolling: true };
+    case asyncActs.STOP_POLLING_UPCOMMING_COURSE:
+      return { ...state, stopPolling: true };
+    case asyncActs.START_POLLING_UPCOMMING_COURSE:
+      return { ...state, stopPolling: false };
     case asyncActs.LEAVED_JOINING_CLASS:
       return { ...state, isJoiningActiveClass: false };
 

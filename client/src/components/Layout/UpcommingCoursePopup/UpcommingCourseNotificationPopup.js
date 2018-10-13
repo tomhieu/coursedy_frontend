@@ -9,9 +9,6 @@ import "babel-polyfill"
 class UpcommingCourseNotificationPopup extends Component {
   constructor() {
     super();
-    this.state = {
-      urlJoiningToBBBClass: null,
-    };
   }
   openCourseDetails(courseUrl) {
     this.props.closePopupJoinUpcomingClass();
@@ -25,7 +22,7 @@ class UpcommingCourseNotificationPopup extends Component {
     }
     return <a onClick={this.openCourseDetails.bind(this, courseDetailUrl)} className="link-course-details">{courseName}</a>;
   }
-
+/**
   async componentDidMount() {
     const classRoomId = this.props.classRoomId;
     const bbbUrl = await Network().get(`rooms/${classRoomId}/join`, {}, true);
@@ -33,13 +30,14 @@ class UpcommingCourseNotificationPopup extends Component {
       urlJoiningToBBBClass: bbbUrl.url
     });
   }
+ */
 
   render() {
     const {
-      currentUser, courseId, courseName, teacherName, closePopupJoinUpcomingClass, acceptJoinToClassRoom
+      currentUser, courseId, courseName, teacherName, closePopupJoinUpcomingClass, acceptJoinToClassRoom, classRoomId
     } = this.props;
 
-    const canShowPopup = this.state.urlJoiningToBBBClass !== null;
+    const canShowPopup = classRoomId !== null;
     return (
       <Modal visible={canShowPopup} onClickBackdrop={closePopupJoinUpcomingClass.bind(this)} >
         <div className="modal-header">
@@ -58,7 +56,7 @@ class UpcommingCourseNotificationPopup extends Component {
           }
         </div>
         <div className="modal-footer button-center justify-content-center">
-          <a className="join-to-class-link" onClick={acceptJoinToClassRoom.bind(this)} href={this.state.urlJoiningToBBBClass} target="_blank">
+          <a className="join-to-class-link" onClick={acceptJoinToClassRoom.bind(this, classRoomId)} target="_blank">
             {this.context.t('join_to_class_button_name')}
           </a>
         </div>

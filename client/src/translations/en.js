@@ -742,6 +742,7 @@ export default {
   tutor_course_category: 'Type of course',
   number_enrolled_student: 'Number of students enrolled',
   maximum_student: 'Maximum number of students',
+  start_date: 'Start date',
   number_lesson: 'Total lessons',
   tutor_course_fee: 'Tuition fee',
   tutor_course_status: 'Status', // student course table headers
@@ -756,6 +757,7 @@ export default {
   student_email: 'Email',
   student_gender: 'Gender',
   start_course: 'Start course',
+  stop_course: 'Stop course',
   cancel_course: 'Cancel course',
   not_started: 'Not started',
   started: 'On going',
@@ -848,4 +850,10 @@ export default {
   course_day_in_week: 'Week days schedule',
   course_day_in_week_seperate: 'to',
   no_rating: 'Nothing rating yet',
+  no_bbb_room_ready: 'Teacher is not joined yet, Please wait a minute',
+  browser_popup_blocker: 'Your browser is blocked "Pop-up and redirect". So please enable it following {support_link} or click to such link to {bbb_join_link}',
+  bbb_join_again: 'try join to class again',
+  guide_link: 'the guide',
+  stop_teaching_course_title: 'Stop teaching course',
+  stop_teaching_course_message: 'Are you sure, you want to stop teaching {course_title}?',
 };

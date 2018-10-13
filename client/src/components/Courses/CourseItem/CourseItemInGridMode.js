@@ -15,14 +15,11 @@ import { Popover, PopoverBody } from 'reactstrap';
  */
 class CourseItemInGridMode extends Component {
   render() {
-    const {
-      item,
-      isPublic, courseStatus
-    } = this.props;
+    const { item, courseStatus } = this.props;
 
     return (
       <div className="course-item d-flex flex-column">
-        <LinkContainer to={isPublic ? `/courses/${item.id}` : `/dashboard/courses/detail/${item.id}`} className="course-detail-lnk">
+        <LinkContainer to={`/courses/${item.id}`} className="course-detail-lnk">
           <div className="course-item-image">
             <Image
               src={item.cover_image}
@@ -49,7 +46,7 @@ class CourseItemInGridMode extends Component {
             </div>
           </div>
         </div>
-        <LinkContainer to={isPublic ? `/courses/${item.id}` : `/dashboard/courses/detail/${item.id}`} className="course-detail-lnk flex-auto">
+        <LinkContainer to={`/courses/${item.id}`} className="course-detail-lnk flex-auto">
           <div className="d-flex flex-column justify-content-right course-item-content">
             <RatingItem num_stars={item.rating_count === 0 ? 0 : parseFloat(item.rating_points) / item.rating_count} num_reviews={item.rating_count} />
             <h3 className={styles.courseDescription} title={item.title}>{item.title}</h3>

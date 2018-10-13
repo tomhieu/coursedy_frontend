@@ -1,20 +1,19 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import './TeacherDetail.scss';
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
 import CourseListInGridMode from 'components/Courses/CourseList/CourseListInGridMode';
 import Pagination from 'react-js-pagination';
 import {
+  fetchTeacherCourses,
   fetchTeacherDetail,
   fetchTeacherEducations,
-  fetchTeacherWorkExperiences,
-  fetchTeacherCourses,
-  fetchTeacherReviews
+  fetchTeacherReviews,
+  fetchTeacherWorkExperiences
 } from 'actions/TeacherActionCreators';
 import LoadingMask from 'containers/LoadingMask/LoadingMask';
 import * as WebConstants from 'constants/WebConstants';
 import FixedSideBar from 'components/Common/FixedSideBar';
-import { TT } from 'utils/locale';
-import { LinkContainer } from 'react-router-bootstrap';
+import {LinkContainer} from 'react-router-bootstrap';
 import PrimaryAnchor from 'components/Core/PrimaryAnchor/PrimaryAnchor';
 import RatingItem from 'components/Rating/index';
 import ObjectUtils from 'utils/ObjectUtils';
@@ -26,7 +25,7 @@ import TeacherBackground from './Content/TeacherBackground';
 import styles from './TeacherDetail.module.scss';
 import PageContainer from '../../../utils/PageContainer';
 import PaginationArrowIcon from '../../../components/Core/Icons/PaginationArrowIcon';
-import { PAGE_RANGE_DISPLAYED } from '../../../constants/Layout';
+import {PAGE_RANGE_DISPLAYED} from '../../../constants/Layout';
 
 
 class TeacherDetail extends Component {

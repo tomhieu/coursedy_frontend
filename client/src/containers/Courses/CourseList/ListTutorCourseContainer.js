@@ -14,6 +14,7 @@ import styles from './ListTutorCourseContainer.module.scss';
 import { TutorNavigationTab } from '../../../constants/TutorNavigationTab';
 import {TutorStatus} from '../../../constants/TutorStatus';
 import {Redirect} from 'react-router';
+import {openConfirmationPopup} from '../../../actions/MainActionCreator';
 
 class ListTutorCourseContainer extends Component {
   componentWillMount() {
@@ -133,6 +134,10 @@ const mapDispatchToProps = dispatch => ({
     type: UPDATE_COURSE,
     payload: Network().update(`courses/${courseId}`, { ...startDate, id: courseId, status: CourseStatus.STARTED})
   }),
+  stopCourse: (courseId, startDate) => dispatch({
+    type: UPDATE_COURSE,
+    payload: Network().update(`courses/${courseId}`, { ...startDate, id: courseId, status: CourseStatus.NOT_STARTED})
+  }),
   openCourseDetails: (courseId) => {
     globalHistory.push(`/dashboard/courses/detail/${courseId}`);
   },
@@ -140,7 +145,8 @@ const mapDispatchToProps = dispatch => ({
   openEnrolledStudentList: courseId => dispatch({
     type: SHOW_ENROLLED_STUDENT_LIST,
     data: courseId
-  })
+  }),
+  openConfirmationPopup: (popupTitle, popupMessage, acceptCallback) => dispatch(openConfirmationPopup(popupTitle, popupMessage, acceptCallback))
 });
 
 export default connect(

@@ -4,7 +4,7 @@ import styles from './Icons.module.scss';
 
 class LoadingIcon extends Component {
   render() {
-    const { width = 45, height = 45, isActive, loadingBgColor } = this.props;
+    const { width = 40, height = 40, isActive, loadingBgColor } = this.props;
     let { fillColor = '#B3BDBC' } = this.props;
     if (isActive) {
       fillColor = '#55ACEE';

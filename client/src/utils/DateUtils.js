@@ -51,6 +51,10 @@ class DateUtils {
     });
     return days ? days.join(', ') : '';
   }
+
+  static compareTwoDate(date1, date2) {
+    return date1 > date2 ? 1 : date1 < date2 ? -1 : 0;
+  }
 }
 
 export default DateUtils;

@@ -7,12 +7,12 @@ import {connect} from 'react-redux';
 import UpcommingCourseNotificationPopup from '../../../components/Layout/UpcommingCoursePopup/UpcommingCourseNotificationPopup';
 import {
   CLOSE_POPUP_JOIN_UPCOMMING_CLASS,
-  LEAVED_JOINING_CLASS,
-  STARTED_JOINING_ACTIVE_CLASS
+  LEAVED_JOINING_CLASS, START_POLLING_UPCOMMING_COURSE,
+  STARTED_JOINING_ACTIVE_CLASS, STOP_POLLING_UPCOMMING_COURSE
 } from '../../../actions/AsyncActionCreator';
 import * as courseActions from '../../../actions/ListTutorCourseActionCreator';
-import {joinToClassRoom} from '../../../actions/ListTutorCourseActionCreator';
 import {UserRole} from '../../../constants/UserRole';
+import Network from '../../../utils/network';
 
 class NotificationSystemContainer extends Component {
   constructor() {
@@ -20,9 +20,10 @@ class NotificationSystemContainer extends Component {
     this.newStartCourseHasBeenNotified = [];
   }
   componentWillReceiveProps(nextProps) {
-    const { hasActiveCourseToLearn, isJoiningActiveClass, currentUser } = nextProps.session;
-    if (hasActiveCourseToLearn && currentUser && !isJoiningActiveClass) {
-      this.startPoll(currentUser);
+    const { hasActiveCourseToLearn, isJoiningActiveClass, currentUser, stopPolling } = nextProps.session;
+    if (hasActiveCourseToLearn && currentUser && !isJoiningActiveClass && !stopPolling) {
+      console.log('start polling....');
+      this.pollingUpcommingCourse(currentUser);
     } else {
       clearTimeout(this.timeout);
     }
@@ -41,11 +42,26 @@ class NotificationSystemContainer extends Component {
     clearTimeout(this.timeout);
   }
 
-
-  startPoll(currentUser) {
+  pollingUpcommingCourse(currentUser) {
     this.timeout = setTimeout(() => {
-      this.checkUpcommingCourse(currentUser);
-    }, 300000);
+      const { stopPolling } = this.props.session;
+      console.log('fetch upcomming class ---- is polling ' + stopPolling + '  ---  ' + this.timeout);
+      if (!stopPolling) {
+        this.checkUpcommingCourse(currentUser);
+      }
+    }, 10000);
+  }
+
+  startPolling() {
+    const { isJoiningActiveClass } = this.props.session;
+    if (!isJoiningActiveClass) {
+      this.props.startPolling();
+    }
+  }
+
+  stopPolling() {
+    this.props.stopPolling();
+    clearTimeout(this.timeout);
   }
 
   checkUpcommingCourse(currentUser) {
@@ -56,12 +72,47 @@ class NotificationSystemContainer extends Component {
     }
   }
 
-  acceptJoinToClassRoom(classRoomId) {
+  afterJoiningUpcomingClass(e) {
+    console.log('already join to class');
     clearTimeout(this.timeout);
+    this.props.afterJoinUpcomingClass();
+  }
+
+  acceptJoinToClassRoom(classRoomId) {
+    // stop pilling immediately
+    this.stopPolling();
     // closed popup
     this.props.closePopupJoinUpcomingClass();
-    // executed after joining an active class
-    this.props.afterJoinUpcomingClass();
+    // joining to bbb room
+    Network().get(`rooms/${classRoomId}/join`, {}, true).then((res) => {
+      const bbbTab = window.open(res.url, '_blank');
+      // join fails because of blocking pop-up
+      if (bbbTab === null) {
+        const lang = this.props.lang === 'vn' ? 'vi' : 'en';
+        const popupBlockerNoti = {
+          title: '',
+          message: this.context.t('browser_popup_blocker', {
+            support_link: <a href={`https://support.google.com/chrome/answer/95472?co=GENIE.Platform%3DDesktop&hl=${lang}`} target='_blank'>{this.context.t('guide_link')}</a>,
+            bbb_join_link: <a onClick={(e) => this.afterJoiningUpcomingClass(e)} href={res.url} target="_blank">{this.context.t('bbb_join_again')}</a>
+          }),
+          position: 'tr',
+          onRemove: this.startPolling.bind(this),
+          autoDismiss: 0
+        }
+        this.props.showInfoNotification(popupBlockerNoti);
+      } else {
+        // executed after joining an active class
+        this.props.afterJoinUpcomingClass();
+      }
+    }, (err) => {
+      const roomNotReadyNotif = {
+        title: '',
+        message: this.context.t('no_bbb_room_ready'),
+        position: 'tr',
+        autoDismiss: 5
+      }
+      this.props.showInfoNotification(roomNotReadyNotif);
+    });
   }
 
   showNotification(notification, timeout) {
@@ -109,7 +160,7 @@ class NotificationSystemContainer extends Component {
           firstDayLearning: <strong>{DateUtils.formatDate(course.start_date)}</strong>
         }),
         position: 'tr',
-        autoDismiss: 0,
+        autoDismiss: 1,
         id: course.id
       }));
 
@@ -118,7 +169,7 @@ class NotificationSystemContainer extends Component {
 
     }
     if (classRoomId === '') {
-      return null;
+      return <Notifications notifications={notifications} />;
     }
     return (
       <div>
@@ -150,9 +201,9 @@ NotificationSystemContainer.contextTypes = {
 };
 
 const mapStateToProps = (state) => {
-  const { main, session, notifications } = state;
+  const { main, session, notifications, i18nState } = state;
 
-  return { main, session, notifications };
+  return { main, session, notifications, lang: i18nState.lang };
 };
 
 const mapDispatchToProps = dispatch => ({
@@ -162,6 +213,8 @@ const mapDispatchToProps = dispatch => ({
   afterJoinUpcomingClass: () => dispatch({ type: STARTED_JOINING_ACTIVE_CLASS }),
   afterLeavedActiveClass: () => dispatch({ type: LEAVED_JOINING_CLASS }),
   showInfoNotification: (notification) => dispatch(success(notification)),
+  stopPolling: (notification) => dispatch({ type: STOP_POLLING_UPCOMMING_COURSE }),
+  startPolling: (notification) => dispatch({ type: START_POLLING_UPCOMMING_COURSE }),
 });
 export default connect(
   mapStateToProps, mapDispatchToProps

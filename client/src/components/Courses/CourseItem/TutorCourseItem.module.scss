@@ -30,7 +30,7 @@
 }
 
 .courseNumberData {
-  font-size: 22px;
+  font-size: 18px;
   &.fee {
     font-size: 18px;
   }
@@ -39,7 +39,7 @@
 .courseStatus {
   display: flex;
   justify-content: center;
-  padding: 2px 5px;
+  padding: 2px 7px 0px 7px;
   border-radius: 10px;
   font-weight: 700;
   color: $white-color;

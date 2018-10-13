@@ -668,6 +668,7 @@ export default {
   tutor_course_category: 'Loại khoá học',
   number_enrolled_student: 'Số học sinh đăng ký',
   maximum_student: 'Số học sinh tối đa',
+  start_date: 'Ngày bắt đầu',
   number_lesson: 'Tổng bài học',
   tutor_course_fee: 'Học phí',
   tutor_course_status: 'Trạng thái', // student course table headers
@@ -685,6 +686,7 @@ export default {
   student_email: 'Email',
   student_gender: 'Giới tính',
   start_course: 'Bắt đầu dạy',
+  stop_course: 'Dừng dạy khoá học',
   cancel_course: 'Huỷ khoá ',
   not_started: 'Chưa bắt đầu',
   started: 'Đang dạy',
@@ -813,4 +815,11 @@ export default {
   course_day_in_week: 'Lịch học trong tuần',
   course_day_in_week_seperate: 'đến',
   no_rating: 'Chưa có đánh giá',
+
+  no_bbb_room_ready: 'Giáo viện vẫn chưa vào lớp, xin vui lòng chờ trong giây lát',
+  browser_popup_blocker: 'Trinh duyệt của bạn đang chặn không cho phép chuyển hướng, Vui lòng bật cho phép chuyển hướng {support_link} hoặc nhấn vào link sau để {bbb_join_link}',
+  bbb_join_again: 'thử vào lại lớp',
+  guide_link: 'hướng dẫn',
+  stop_teaching_course_title: 'Dừng khoá học',
+  stop_teaching_course_message: 'Bạn có chắc chắn là muốn dừng khoá học {course_title} không?',
 };
