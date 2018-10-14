@@ -46,7 +46,7 @@ class SelectionTeachingDayViewMode extends Component {
         }
         <div className="col-md-12 col-sm-12">
           {
-            selectedDays.length ?
+            selectedDays.length && !editable ?
               <div className={styles.timeWarning}>
                 <span className={styles.note}>{this.context.t('select_hour_note')}: </span>
                 <span className={styles.message}>{this.context.t('selected_hour_warning_message')}</span>

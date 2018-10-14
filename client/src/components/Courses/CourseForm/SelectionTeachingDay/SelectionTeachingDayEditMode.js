@@ -41,6 +41,13 @@ class SelectionTeachingDayEditMode extends Component {
           />
         </div>
         <div className="col-md-12 col-sm-12">
+          {
+            selectedDays.length ?
+              <div className={styles.timeWarning}>
+                <span className={styles.note}>{this.context.t('select_hour_note')}: </span>
+                <span className={styles.message}>{this.context.t('selected_hour_warning_message')}</span>
+              </div> : null
+          }
           <div className={`${styles.timePickerContainer} d-flex flex-horizontal flex-wrap`}>
             {
                             !isSamePeriod

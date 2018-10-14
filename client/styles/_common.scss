@@ -281,21 +281,21 @@ figcaption {
 
 .pdf-image-preview {
   background: #f8f8f8 url("../images/pdf-icon.png") no-repeat;
-  width: 30px;
-  height: 30px;
+  width: $file-preview-icon-size;
+  height: $file-preview-icon-size;
 }
 
 .doc-image-preview {
   background: #f8f8f8 url("../images/docx-icon.png") no-repeat;
-  width: 30px;
-  height: 30px;
+  width: $file-preview-icon-size;
+  height: $file-preview-icon-size;
 }
 
 .power-point-icon-preview {
   background: #f8f8f8 url("../images/powerpoint-icon.png") no-repeat;
-  width: 30px;
-  height: 30px;
-  background-size: 30px;
+  width: $file-preview-icon-size;
+  height: $file-preview-icon-size;
+  background-size: $file-preview-icon-size;
 }
 
 .icon-download {
@@ -304,8 +304,29 @@ figcaption {
   height: 24px;
 }
 .icon-upload {
-  width: 30px;
-  height: 30px;
+  width: 40px;
+  height: 40px;
+  .upload-image {
+    fill: #3d8b3d;
+  }
+}
+
+.dropzone-container {
+  border: 2px dashed #235074;
+  width: 100%;
+  border-radius: 10px;
+  cursor: pointer;
+  &:hover {
+    border: 2px dashed $md-color-pink;
+    .icon-upload .upload-image {
+      fill: $md-color-pink;
+    }
+  }
+}
+
+.upload-message {
+  font-family: $font-semi-bold;
+  color: $color-darker-text;
 }
 
 .close-tag-icon {
@@ -1794,11 +1815,13 @@ textarea, .form-control {
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
-  padding-top: 5px;
+  padding-top: 2px;
+  font-size: 11px;
 }
 
 .icon-delete {
-  padding-top: 5px;
+  padding-top: 2px;
+  padding-left: 2px;
 }
 
 /**

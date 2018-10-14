@@ -122,7 +122,7 @@ class LessonDetailFormContainer extends Component {
                   fieldLabel={this.context.t('lesson_material')}
                   onUpload={this.addDocumentForLesson.bind(this)}
                   isMandatoryField
-                  zoneHeight="50px"
+                  zoneHeight="72px"
                   formControlName="documents"
                   contentType={acceptFileTypes}
                   typeField="upload_file"

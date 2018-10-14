@@ -10,6 +10,7 @@ import { Field } from 'redux-form';
 import ReactQuill, { Quill } from 'react-quill';
 import ObjectUtils from '../../utils/ObjectUtils';
 import { TT } from '../../utils/locale';
+import UploadIcon from './Icons/UploadIcon';
 
 export const renderField = ({
   input, label, placeholder, type = 'text', disabled = false, customClassName, meta: { touched, error, warning }
@@ -218,12 +219,12 @@ export const renderPreviewFile = (file, doDeleteNewUploadFile, saveDocument) => 
           <a className="image-file-preview"><img src={file.url} alt={file.name}/></a>
       }
       <div className="file-name-wrapper">
-        <a className="degree-filename ml-10" href={file.url} title={file.fileName}>{file.fileName}</a>
+        <a className="degree-filename ml-5" href={file.url} title={file.fileName}>{file.fileName}</a>
       </div>
       {
         doDeleteNewUploadFile ?
-          <a className="icon-delete ml-10" onClick={() => doDeleteNewUploadFile(file.uid)} title={file.fileName}>
-            <svg viewBox="0 0 24 24" className="material-icon secondary" height="18" width="18">
+          <a className="icon-delete" onClick={() => doDeleteNewUploadFile(file.uid)} title={file.fileName}>
+            <svg viewBox="0 0 24 24" className="material-icon secondary" height="15" width="15">
               <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z" />
             </svg>
           </a> : null
@@ -276,11 +277,10 @@ class renderFileInput extends Component {
     const {
       input: { value, ...input }, label, meta: { touched, error }, zoneHeight, internalPreview, contentType = "image/*"
     } = this.props;
-    const borderWidth = internalPreview && this.state.previewUrl != null ? '0' : '1px';
+    const borderWidth = internalPreview && this.state.previewUrl != null ? '0' : '2px';
     const previewImageStyle = internalPreview ? {
-      border: 'solid 1px rgb(102, 102, 102)',
+      border: '2px dashed #235074',
       width: '100%',
-      borderStyle: 'dashed'
     } : {};
     return (
       <div className="d-flex">
@@ -288,26 +288,19 @@ class renderFileInput extends Component {
           name={`_${input.name}`}
           onDrop={this.onChange.bind(this)}
           multiple={false}
-          className="d-flex flex-vertical"
+          className="d-flex flex-vertical dropzone-container"
           style={{
-            width: '100%',
             height: zoneHeight,
-            borderWidth,
-            borderStyle: 'dashed',
-            borderColor: 'rgb(102, 102, 102)',
-            borderRadius: '5px',
+            borderWidth
           }}
           accept={contentType}
         >
           <div className="d-flex flex-auto justify-content-center align-items-center">
             <div className={this.state.previewUrl ? 'd-none' : 'd-flex flex-horizontal align-self-center padd-10'}>
               <a className="icon-upload">
-                <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" className="material-icon">
-                  <path d="M0 0h24v24H0z" fill="none" />
-                  <path d="M9 16h6v-6h4l-7-7-7 7h4zm-4 2h14v2H5z" />
-                </svg>
+                <UploadIcon></UploadIcon>
               </a>
-              <a className="ml-10">{TT.changeLocale(this.props.lang).t('drag_and_drop')}</a>
+              <a className="ml-10 mt-10 upload-message">{TT.changeLocale(this.props.lang).t('drag_and_drop')}</a>
             </div>
           </div>
 
