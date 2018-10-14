@@ -50,11 +50,46 @@ class TeacherCourseManagement extends Component {
                     <p>
                       <br />
                       <span className="text-title">
+                        <strong>{translation('teacher_course_building_topic_title_one')}</strong>
+                      </span>
+                    </p>
+                    <p>
+                      { translation('teacher_course_building_topic_description_one') }{' '}<a href="/login" target="_blank">{translation('at_here')}</a>
+                      {'.'}
+                    </p>
+                    <p>
+                      <br />
+                      <span className="text-title">
+                        <strong>{translation('teacher_course_building_topic_title_two')}</strong>
+                      </span>
+                    </p>
+                    <p>
+                      { translation('teacher_course_building_topic_description_two') }{' '}<a href="/dashboard/profile" target="_blank">{translation('at_here')}</a>
+                      {'.'}
+                    </p>
+                    <p>
+                      <br />
+                      <span className="text-title">
+                        <strong>{ translation('teacher_course_management_topic_title_three')}</strong>
+                      </span>
+                    </p>
+                    <p>
+                      <br />
+                      <span className="text-title">
                         <strong>{translation('teacher_course_management_pending_courses_title')}</strong>
                       </span>
                     </p>
                     <p>
                       { translation('teacher_course_management_pending_courses_description') }
+                    </p>
+                    <p>
+                      <br />
+                      <span className="text-title">
+                        <strong>{translation('teacher_course_management_active_courses_title')}</strong>
+                      </span>
+                    </p>
+                    <p>
+                      { translation('teacher_course_management_active_courses_description') }
                     </p>
                   </div>
                 </div>

@@ -33,8 +33,8 @@ class TeacherCourseBuilding extends Component {
                       </h3>
                       <ul>
                         <li>
-                          <Link to={translation('teacher_course_building_related_topic_one_link')}>
-                            { translation('teacher_course_building_related_topic_one_title')}
+                          <Link to={translation('teacher_course_building_related_topic_two_link')}>
+                            { translation('teacher_course_building_related_topic_two_title')}
                           </Link>
                         </li>
                       </ul>
@@ -55,6 +55,7 @@ class TeacherCourseBuilding extends Component {
                     </p>
                     <p>
                       { translation('teacher_course_building_topic_description_one') }{' '}<a href="/login" target="_blank">{translation('at_here')}</a>
+                      {'.'}
                     </p>
                     <p>
                       <br />
@@ -64,6 +65,7 @@ class TeacherCourseBuilding extends Component {
                     </p>
                     <p>
                       { translation('teacher_course_building_topic_description_two') }{' '}<a href="/dashboard/profile" target="_blank">{translation('at_here')}</a>
+                      {'.'}
                     </p>
                     <p>
                       <br />
