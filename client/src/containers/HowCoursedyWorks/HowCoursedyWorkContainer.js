@@ -81,7 +81,7 @@ class HowCoursedyWorkContainer extends Component {
                           <Link to="/how-coursedy-works/teacher-account-management">
                             <Card body>
                               <div className={styles.cardWrap}>
-                                <div className={styles.icon}><img src="//p6.zdassets.com/hc/theme_assets/1073405/200310388/i_payments.png" alt="" /></div>
+                                <div className={styles.icon}><img src="/icons/user-account.svg" alt="" /></div>
                                 <p className={styles.reg}>{translation('coursedy_works_for_teacher_card_account')}</p>
                                 <p className={styles.small}>{translation('coursedy_works_for_teacher_card_account_description')}</p>
                               </div>
@@ -92,7 +92,7 @@ class HowCoursedyWorkContainer extends Component {
                           <Link to="/how-coursedy-works/teacher-course-building">
                             <Card body>
                               <div className={styles.cardWrap}>
-                                <div className={styles.icon}><img src="//p6.zdassets.com/hc/theme_assets/1073405/200310388/i_payments.png" alt="" /></div>
+                                <div className={styles.icon}><img src="/icons/course-creation.svg" alt="" /></div>
                                 <p className={styles.reg}>{translation('coursedy_works_for_teacher_card_course_building')}</p>
                                 <p className={styles.small}>{translation('coursedy_works_for_teacher_card_course_building_description')}</p>
                               </div>
@@ -103,7 +103,7 @@ class HowCoursedyWorkContainer extends Component {
                           <Link to="/how-coursedy-works/teacher-course-management">
                             <Card body>
                               <div className={styles.cardWrap}>
-                                <div className={styles.icon}><img src="//p6.zdassets.com/hc/theme_assets/1073405/200310388/i_payments.png" alt="" /></div>
+                                <div className={styles.icon}><img src="/icons/course-management.svg" alt="" /></div>
                                 <p className={styles.reg}>{translation('coursedy_works_for_teacher_card_course_management')}</p>
                                 <p className={styles.small}>{translation('coursedy_works_for_teacher_card_course_management_description')}</p>
                               </div>
@@ -114,7 +114,7 @@ class HowCoursedyWorkContainer extends Component {
                           <Link to="/how-coursedy-works/payment-management">
                             <Card body>
                               <div className={styles.cardWrap}>
-                                <div className={styles.icon}><img src="//p6.zdassets.com/hc/theme_assets/1073405/200310388/i_payments.png" alt="" /></div>
+                                <div className={styles.icon}><img src="/icons/receive-money.svg" alt="" /></div>
                                 <p className={styles.reg}>{translation('coursedy_works_for_teacher_card_payment')}</p>
                                 <p className={styles.small}>{translation('coursedy_works_for_teacher_card_payment_description')}</p>
                               </div>
