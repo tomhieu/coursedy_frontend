@@ -39,6 +39,8 @@ import StudentDashboardCourseFollow from './pages/StudentDashboard/StudentDashbo
 import {TutorStatus} from './constants/TutorStatus';
 import StudentCourseDetailContainer from './containers/Student/Dashboard/Courses/StudentCourseDetailContainer';
 import StudentDashboardCourseDetails from './pages/StudentDashboard/StudentDashboardCourseDetails';
+import HowCoursedyWorkContainer from './containers/HowCoursedyWorks/HowCoursedyWorkContainer';
+import HowCoursedyWorkDetailContainer from './containers/HowCoursedyWorks/HowCoursedyWorkDetailContainer';
 
 // define routes for config
 export const routes = [
@@ -244,6 +246,16 @@ export const routes = [
   {
     path: '/privacy',
     component: PrivacyContainer,
+    exact: true
+  },
+  {
+    path: '/how-coursedy-works/',
+    component: HowCoursedyWorkContainer,
+    exact: true
+  },
+  {
+    path: '/how-coursedy-works/:slug',
+    component: HowCoursedyWorkDetailContainer,
     exact: true
   },
   {

@@ -2,4 +2,4 @@ const CONFIG = {
   apiEndpoint: 'https://api.coursedy.com',
 }
 
-export default CONFIG
+export default CONFIG;

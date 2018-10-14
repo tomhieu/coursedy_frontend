@@ -2,10 +2,11 @@
   Translations for Vietnamese
  */
 import { payment_translation } from './payment';
-
+import howCoursedyWork from './howCoursedyWork';
 
 export default {
   ...payment_translation.vn,
+  ...howCoursedyWork.vn,
   home_page: 'Trang Chủ',
   find_tutors: 'Tìm Gia Sư',
   find_teachers: 'Tìm Giáo Viên',
@@ -83,7 +84,6 @@ export default {
   course_title_required: 'Vui lòng nhập tên khoá học',
   section_title_required: 'Vui lòng nhập Tuần học',
   sample_course_title: 'Luyện thi TOEIC cấp tốc',
-  start_date: 'Ngày bắt đầu dự kiến',
   start_date_required: 'Vui lòng nhập ngày bắt đầu',
   invalid_start_date: 'Ngày nhập  phải theo định dạng dd/MM/yyyy',
   start_date_less_now: 'Ngày bắt đầu dự kiến phải lớn hơn hiện tại',
@@ -407,6 +407,7 @@ export default {
   product_twitter_link: '//twitter.com/coursedyhq',
   product_payment_partners: 'Hình thức thanh toán',
   product_resources: 'Thông tin hữu ích',
+  how_coursedy_works: 'Cách Coursedy làm việc',
   product_help_center: 'Giải đáp thắc mắc',
   product_become_a_teacher: 'Đăng kí làm giáo viên',
   product_privacy: 'Chính sách bảo mật',
@@ -473,7 +474,6 @@ export default {
   second_student_comment: 'Mình ở quê không có điều kiện để lên thành phố học luyện thi đại học. Nhờ sự giới thiệu của người thân mình đã tìm hiểu và tham gia học ôn thi tiếng anh tại Coursedy. Nhờ sự giúp đỡ của thầy cô mình đã đậu được trường đại học mình mong muốn. Mình muốn giới thiệu các bạn hãy tham gia học trên Coursedy.',
   office_staff: 'Nhân viên văn phòng',
   bk_student: 'Sinh viên Bách Khoa TpHCM năm nhất', // become our teacher
-                                                    // section
   your_are_teacher_section_title: 'Bạn là giáo viên?',
   your_are_teacher_section_sub_title: 'Và đang tìm kiếm một nơi để dạy online tốt. Coursedy chính là nơi lý tưởng để bạn thực hiện điều đó.',
   section_sub_title_2: 'Hãy {link_register} làm giáo viên tại Coursedy.',
@@ -481,7 +481,6 @@ export default {
   first_benefit: 'Tiết kiệm chi phí mở lớp học. Tất cả những gì cần thiết chỉ bao gồm một máy tính có kết nối mạng.',
   second_benefit: 'Thời gian linh động, giáo viên có thể linh động sắp xếp thời gian cho khoá học. Và có thể dạy bất cứ nơi đâu.',
   third_benefit: 'Tiếp cận mạng lưới học viên rộng lớn từ khắp mọi nơi.', // teacher
-                                                                          // detail
   teacher_background: 'Thông Tin Giáo Viên',
   teacher_short_introduce: ' Giới thiệu',
   teacher_education: 'Giáo dục',
@@ -518,7 +517,7 @@ export default {
   my_account: 'Tài khoản',
   my_profile: 'Thông tin người dùng',
   account_setting: 'Thiết lập tài khoản',
-  course_management: 'Quản lý khoá học',
+  course_management: 'Khoá học',
   my_balance: 'Số dư tài khoản',
 
   my_courses: 'Khóa học',
@@ -669,8 +668,6 @@ export default {
   number_enrolled_student: 'Số học sinh đăng ký',
   maximum_student: 'Số học sinh tối đa',
   start_date: 'Ngày bắt đầu',
-  number_lesson: 'Tổng bài học',
-  tutor_course_fee: 'Học phí',
   tutor_course_status: 'Trạng thái', // student course table headers
   started_date: 'Ngày bắt đầu',
   number_lesson: 'Số bài học',
@@ -680,7 +677,6 @@ export default {
   cancel_course_fee: 'Phí huỷ khoá học',
   number_of_lesson: 'Số bài học',
   student_course_status: 'Trạng thái', // student enrolled to course table
-                                       // header
   student_name: 'Tên học sinh',
   enrollment_date: 'Ngày đăng ký',
   student_email: 'Email',
@@ -815,11 +811,12 @@ export default {
   course_day_in_week: 'Lịch học trong tuần',
   course_day_in_week_seperate: 'đến',
   no_rating: 'Chưa có đánh giá',
-
   no_bbb_room_ready: 'Giáo viện vẫn chưa vào lớp, xin vui lòng chờ trong giây lát',
   browser_popup_blocker: 'Trinh duyệt của bạn đang chặn không cho phép chuyển hướng, Vui lòng bật cho phép chuyển hướng {support_link} hoặc nhấn vào link sau để {bbb_join_link}',
   bbb_join_again: 'thử vào lại lớp',
   guide_link: 'hướng dẫn',
   stop_teaching_course_title: 'Dừng khoá học',
   stop_teaching_course_message: 'Bạn có chắc chắn là muốn dừng khoá học {course_title} không?',
+  at_here: 'tại đây',
+  create_course: 'Tạo khoá học',
 };

@@ -2,10 +2,11 @@
   Translations for English
  */
 import { payment_translation } from './payment';
-
+import howCoursedyWork from './howCoursedyWork';
 
 export default {
   ...payment_translation.en,
+  ...howCoursedyWork.en,
   lang: 'English',
   home_page: 'Home',
   find_tutors: 'Tutors',
@@ -89,7 +90,6 @@ export default {
   course_title_required: 'Course title is required',
   section_title_required: 'Section title is required',
   sample_course_title: 'Sample course title',
-  start_date: 'Start date',
   start_date_required: 'Please select start date',
   invalid_start_date: 'Invalid start date (Must follow format dd/MM/yyyy)',
   start_date_less_now: 'Start date must be after now',
@@ -335,7 +335,7 @@ export default {
   order_by_price_asc: 'Price - Low to High', /*
         Public course detail
     */
-  not_started_course_list: 'Drafting courses',
+  not_started_course_list: 'Pending courses',
   course_info: 'Course information',
   course_detail: 'Course detail',
   tutor_info: 'Teacher information',
@@ -543,6 +543,7 @@ export default {
   product_twitter_link: '//twitter.com/coursedyhq',
   product_payment_partners: 'Payment Partners',
   product_resources: 'Resource',
+  how_coursedy_works: 'How Coursedy Works',
   product_help_center: 'Help Center',
   product_become_a_teacher: 'Become a teacher',
   product_privacy: 'Privacy',
@@ -735,7 +736,7 @@ export default {
   facebook_link: '#',
   default_country: 'Vietnam',
   account_setting: 'Account settings',
-  course_management: 'Course management',
+  course_management: 'Courses',
 
   course_status: 'Course status',
   course_name: 'Course name',
@@ -856,4 +857,6 @@ export default {
   guide_link: 'the guide',
   stop_teaching_course_title: 'Stop teaching course',
   stop_teaching_course_message: 'Are you sure, you want to stop teaching {course_title}?',
+  at_here: 'at here',
+  create_course: 'Create',
 };
