@@ -52,7 +52,7 @@ export class AutoComplete extends Component {
     if (isLoading) {
       return (
         <div className="loading-bar-autocomplete">
-          <AsyncLoader normalPlaceholder />
+          <AsyncLoader normalPlaceholder loadingBgColor="#1CABA0" width={30} height={30}/>
         </div>
       );
     }

@@ -24,6 +24,9 @@ class ListEnrolledStudent extends Component {
           normalPlaceholder={true}
           facebookPlaceholder={false}
           sectionPlaceholder={false}
+          loadingBgColor="#1CABA0"
+          height={30}
+          width={30}
           loaderType={""}
           repeatTime={0}
         />

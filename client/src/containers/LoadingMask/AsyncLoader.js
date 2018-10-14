@@ -8,13 +8,13 @@ class AsyncLoader extends Component {
     const {
       isFullLoading, normalPlaceholder, facebookPlaceholder,
       sectionPlaceholder, buttonPlaceholder, loaderType, repeatTime = 1,
-      loadingBgColor
+      loadingBgColor, width, height
     } = this.props;
     if (normalPlaceholder) {
       return (
         <div className={isFullLoading ? 'full-loading' : 'partial-loading'}>
           <div id="spinner">
-            <LoadingIcon loadingBgColor={loadingBgColor} />
+            <LoadingIcon width={width} height={height} loadingBgColor={loadingBgColor} />
           </div>
         </div>
       );
@@ -22,7 +22,7 @@ class AsyncLoader extends Component {
       return (
         <div className="section-placeholder">
           <div id="spinner">
-            <LoadingIcon loadingBgColor={loadingBgColor} />
+            <LoadingIcon width={width} height={height} loadingBgColor={loadingBgColor} />
           </div>
         </div>
       );
@@ -350,7 +350,10 @@ AsyncLoader.propTypes = {
   facebookPlaceholder: React.PropTypes.bool,
   sectionPlaceholder: React.PropTypes.bool,
   loaderType: React.PropTypes.string,
-  repeatTime: React.PropTypes.number
+  repeatTime: React.PropTypes.number,
+  loadingBgColor: React.PropTypes.string,
+  width: React.PropTypes.number,
+  height: React.PropTypes.number
 };
 
 export default AsyncLoader;
