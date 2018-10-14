@@ -109,7 +109,8 @@ class NotificationSystemContainer extends Component {
         title: '',
         message: this.context.t('no_bbb_room_ready'),
         position: 'tr',
-        autoDismiss: 5
+        autoDismiss: 5,
+        onRemove: this.startPolling.bind(this),
       }
       this.props.showInfoNotification(roomNotReadyNotif);
     });
