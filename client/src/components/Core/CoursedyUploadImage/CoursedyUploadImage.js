@@ -5,6 +5,7 @@ import * as React from 'react';
 import { TT } from 'utils/locale';
 import { UserAvatarForm } from '../../Account/UserAvatarForm';
 import styles from './CoursedyUploadImage.module.scss';
+import UploadIcon from '../Icons/UploadIcon';
 
 class CoursedyUploadImage extends Component {
   render() {
@@ -44,12 +45,9 @@ class CoursedyUploadImage extends Component {
                 <div className="d-flex flex-auto justify-content-center align-items-center">
                   <div className="d-flex flex-horizontal align-self-center padd-10" onClick={openPopupToSelectImage.bind(this)}>
                     <a className="icon-upload">
-                      <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M0 0h24v24H0z" fill="none" />
-                        <path d="M9 16h6v-6h4l-7-7-7 7h4zm-4 2h14v2H5z" />
-                      </svg>
+                      <UploadIcon></UploadIcon>
                     </a>
-                    <a className="ml-10">{editImageLabel || TT.changeLocale(this.props.lang).t('drag_and_drop')}</a>
+                    <a className="ml-10 mt-10">{editImageLabel || TT.changeLocale(this.props.lang).t('drag_and_drop')}</a>
                   </div>
                 </div>
               </div>

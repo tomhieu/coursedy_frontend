@@ -10,7 +10,7 @@ class CourseFormItem extends Component {
   render() {
     const {
       editMode = false, showLabel = true, fieldLabel, fieldId, isMandatory, fieldName, activatedField = [],
-      isRichTextField = false, canEditable, typeField, options, placeholder
+      isRichTextField = false, canEditable, typeField, options, placeholder, customClassName
     } = this.props;
     if (editMode) {
       return (
@@ -41,6 +41,7 @@ class CourseFormItem extends Component {
       <FormField
         isMandatoryField={isMandatory}
         formControlName={fieldName}
+        customClassName={customClassName}
         fieldId={fieldId}
         fieldLabel={fieldLabel}
         placeholder={placeholder || ''}
