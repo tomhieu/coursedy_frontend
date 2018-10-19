@@ -81,12 +81,41 @@ class TeacherCourseBuilding extends Component {
                         alt={translation('teacher_course_building_topic_description_three_image_alt_one')}
                       />
                     </p>
-                    <p>{ translation('teacher_course_building_topic_description_three_title_two') }</p>
+                    <p>
+                      <br />
+                      { translation('teacher_course_building_topic_description_three_title_two') }
+                    </p>
                     <p>
                       <img
                         className="img-responsive"
                         src={translation('teacher_course_building_topic_description_three_image_link_two')}
                         alt={translation('teacher_course_building_topic_description_three_image_alt_two')}
+                      />
+                    </p>
+
+                    <p>
+                      <br />
+                      <span className="text-title">
+                        <strong>{ translation('teacher_course_building_topic_title_four')}</strong>
+                      </span>
+                    </p>
+                    <p>{ translation('teacher_course_building_topic_description_four_title_one') }</p>
+                    <p>
+                      <img
+                        className="img-responsive"
+                        src={translation('teacher_course_building_topic_description_four_image_link_one')}
+                        alt={translation('teacher_course_building_topic_description_four_image_alt_one')}
+                      />
+                    </p>
+                    <p>
+                      <br />
+                      { translation('teacher_course_building_topic_description_four_title_two') }
+                    </p>
+                    <p>
+                      <img
+                        className="img-responsive"
+                        src={translation('teacher_course_building_topic_description_four_image_link_two')}
+                        alt={translation('teacher_course_building_topic_description_four_image_alt_two')}
                       />
                     </p>
                   </div>

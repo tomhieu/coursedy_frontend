@@ -21,7 +21,7 @@ export default {
     teacher_course_management_topic_title_three: 'Step 3 - Manage courses',
     teacher_course_management_topic_description_three_title_one: 'Manage your pending courses, manage your active courses',
     teacher_course_management_pending_courses_title: 'Manage your pending courses',
-    teacher_course_management_pending_courses_description: 'View the list of your pending courses and can go to course management to edit or add content to the course.',
+    teacher_course_management_pending_courses_description: 'View the list of your pending courses and can go to the dashboard course detail to edit or add content to the course.',
     teacher_course_management_active_courses_title: 'Manage your active courses',
     teacher_course_management_active_courses_description: 'View the list of your active courses and the list of students enrolled in the course.',
     teacher_course_management_updated_date: '2018-10-14',
