@@ -77,18 +77,7 @@ class HowCoursedyWorkContainer extends Component {
                         </Col>
                       </Row>
                       <Row>
-                        <Col sm="4" className="mb-15">
-                          <Link to="/how-coursedy-works/teacher-account-management">
-                            <Card body>
-                              <div className={styles.cardWrap}>
-                                <div className={styles.icon}><img src="/icons/user-account.svg" alt="" /></div>
-                                <p className={styles.reg}>{translation('coursedy_works_for_teacher_card_account')}</p>
-                                <p className={styles.small}>{translation('coursedy_works_for_teacher_card_account_description')}</p>
-                              </div>
-                            </Card>
-                          </Link>
-                        </Col>
-                        <Col sm="4" className="mb-15">
+                        <Col sm="3" className="mb-15">
                           <Link to="/how-coursedy-works/teacher-course-building">
                             <Card body>
                               <div className={styles.cardWrap}>
@@ -99,24 +88,13 @@ class HowCoursedyWorkContainer extends Component {
                             </Card>
                           </Link>
                         </Col>
-                        <Col sm="4" className="mb-15">
+                        <Col sm="3" className="mb-15">
                           <Link to="/how-coursedy-works/teacher-course-management">
                             <Card body>
                               <div className={styles.cardWrap}>
                                 <div className={styles.icon}><img src="/icons/course-management.svg" alt="" /></div>
                                 <p className={styles.reg}>{translation('coursedy_works_for_teacher_card_course_management')}</p>
                                 <p className={styles.small}>{translation('coursedy_works_for_teacher_card_course_management_description')}</p>
-                              </div>
-                            </Card>
-                          </Link>
-                        </Col>
-                        <Col sm="4" className="mb-15">
-                          <Link to="/how-coursedy-works/payment-management">
-                            <Card body>
-                              <div className={styles.cardWrap}>
-                                <div className={styles.icon}><img src="/icons/receive-money.svg" alt="" /></div>
-                                <p className={styles.reg}>{translation('coursedy_works_for_teacher_card_payment')}</p>
-                                <p className={styles.small}>{translation('coursedy_works_for_teacher_card_payment_description')}</p>
                               </div>
                             </Card>
                           </Link>
