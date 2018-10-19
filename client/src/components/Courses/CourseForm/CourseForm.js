@@ -217,7 +217,7 @@ class CourseForm extends Component {
                     customClasses="mr-10"
                     disabled={(pristine || submitting) && courseData}
                     isSmallButton
-                    title={this.context.t('save_course')}
+                    title={this.context.t('create_course')}
                   />
                 </div>
               </div>
