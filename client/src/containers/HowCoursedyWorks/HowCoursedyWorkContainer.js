@@ -77,7 +77,7 @@ class HowCoursedyWorkContainer extends Component {
                         </Col>
                       </Row>
                       <Row>
-                        <Col sm="3" className="mb-15">
+                        <Col sm="6" md="6" lg="3" className="mb-15">
                           <Link to="/how-coursedy-works/teacher-course-building">
                             <Card body>
                               <div className={styles.cardWrap}>
@@ -88,7 +88,7 @@ class HowCoursedyWorkContainer extends Component {
                             </Card>
                           </Link>
                         </Col>
-                        <Col sm="3" className="mb-15">
+                        <Col sm="6" md="6" lg="3" className="mb-15">
                           <Link to="/how-coursedy-works/teacher-course-management">
                             <Card body>
                               <div className={styles.cardWrap}>
