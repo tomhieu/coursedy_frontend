@@ -407,7 +407,7 @@ export default {
   product_twitter_link: '//twitter.com/coursedyhq',
   product_payment_partners: 'Hình thức thanh toán',
   product_resources: 'Thông tin hữu ích',
-  how_coursedy_works: 'Cách Coursedy làm việc',
+  how_coursedy_works: 'Cách Coursedy hoạt động',
   product_help_center: 'Giải đáp thắc mắc',
   product_become_a_teacher: 'Đăng kí làm giáo viên',
   product_privacy: 'Chính sách bảo mật',
