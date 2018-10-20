@@ -73,7 +73,7 @@ class CourseFormContainer extends Component {
     const {
       editMode, listSection, courseTitle, createCourseSucess, publishCourse, isFetching, canEditable
     } = this.props;
-
+    console.log('publishCourse', publishCourse)
     return (
       <div className="row course-details-container">
         <div className="col-sm-12 col-md-12">
@@ -185,16 +185,16 @@ class CourseFormContainer extends Component {
                 acceptCallback={this.publishCourse.bind(this)}
               >
                 <div className="d-flex flex-vertical">
-                  <span>{this.context.t('popup_warning_publish_course_message_1', { course_title: courseTitle })}</span>
+                  <span>{this.context.t('popup_warning_publish_course_message_1', { course_title: <strong>{courseTitle}</strong> })}</span>
                 </div>
-                {
-                  listSection.length === 0 ? (
-                    <div className="d-flex flex-vertical">
-                      <span>{this.context.t('popup_warning_publish_course_message_2')}</span>
-                      <span>{this.context.t('popup_warning_publish_course_message_3', { course_title: courseTitle })}</span>
-                    </div>
-                  ) : null
-                }
+                <div className="d-flex flex-vertical">
+                  <span>{this.context.t('popup_warning_publish_course_message_2')}</span>
+                  {
+                    listSection.length === 0 ? (
+                      <span>{this.context.t('popup_warning_publish_course_message_3', { course_title: <strong>{courseTitle}</strong> })}</span>
+                    ) : null
+                  }
+                </div>
               </SimpleDialogComponent>
             </div>
           ) : null
