@@ -126,7 +126,6 @@ export const renderTextAreaField = ({
         <textarea
           {...input}
           placeholder={placeholder || ''}
-          type={type}
           disabled={disabled}
           className="form-control error"
           rows={6}
@@ -303,7 +302,6 @@ class renderFileInput extends Component {
               <a className="ml-10 mt-10 upload-message">{TT.changeLocale(this.props.lang).t('drag_and_drop')}</a>
             </div>
           </div>
-
           <img
             className={internalPreview && this.state.previewUrl != null ? '' : 'd-none'}
             src={this.state.previewUrl}

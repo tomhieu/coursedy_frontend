@@ -5,7 +5,7 @@ export const TT = {
   changeLocale: (locale = 'vn') => {
     const newTT = TT
     TT.locale = locale
-    return newTT
+    return newTT;
   },
   t: (keys) => {
     const values = keys.split('.');

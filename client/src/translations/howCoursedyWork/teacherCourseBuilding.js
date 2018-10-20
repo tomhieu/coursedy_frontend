@@ -13,7 +13,7 @@ export default {
     teacher_course_building_topic_description_one: 'Đăng nhập tài khoản giáo viên của bạn',
     teacher_course_building_topic_title_two: 'Bước 2 - Vào quản lý khoá học',
     teacher_course_building_topic_description_two: 'Vào quản lý khoá học',
-    teacher_course_building_topic_title_three: 'Bước 3 - "Tạo khoá học"',
+    teacher_course_building_topic_title_three: 'Bước 3 - Tạo khoá học',
     teacher_course_building_topic_description_three_title_one: 'Chọn "Courses" --> Chọn "Add Course".',
     teacher_course_building_topic_description_three_image_link_one: '/courses/add_course.png',
     teacher_course_building_topic_description_three_title_two: 'Nhập thông tin khoá học --> Nhấn "Create".',

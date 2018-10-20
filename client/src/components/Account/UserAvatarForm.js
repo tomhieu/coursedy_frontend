@@ -16,7 +16,7 @@ export class UserAvatarForm extends Component {
 
   render() {
     const {
-      handleSubmit, avatarSelected, fieldId, scaleWidth, scaleHeight, placeholderId
+      handleSubmit, avatarSelected, fieldId, scaleWidth, scaleHeight, placeholderId, lang
     } = this.props;
 
     return (
@@ -34,6 +34,7 @@ export class UserAvatarForm extends Component {
           onFileRemoved={this.props.deselectAvatar}
           scaleWidth={scaleWidth}
           scaleHeight={scaleHeight}
+          lang={lang}
         />
 
         <div className="row">

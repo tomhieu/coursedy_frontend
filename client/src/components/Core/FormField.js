@@ -141,6 +141,8 @@ class FormField extends Component {
             onFileRemoved={onFileRemoved}
             scaleWidth={this.props.scaleWidth}
             scaleHeight={this.props.scaleHeight}
+            lang={lang}
+            {...restProps}
           />
         );
         break;

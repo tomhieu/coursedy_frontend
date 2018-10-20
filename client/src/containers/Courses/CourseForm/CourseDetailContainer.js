@@ -266,7 +266,7 @@ const mapStateToProps = (state) => {
     courseSpecializes: course_specializes,
     course_levels,
     initialValues: hasActiveField ? initializedValue : {},
-    lang: lang
+    lang,
   };
 };
 

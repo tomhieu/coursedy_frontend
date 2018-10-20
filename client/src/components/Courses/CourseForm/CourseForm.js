@@ -51,7 +51,8 @@ class CourseForm extends Component {
   render() {
     const {
       handleSubmit, editMode, onDropCoverImage, cover_image, submitting, pristine,
-      valid, courseData, categories, courseSpecializes, selectedDays, isSamePeriod, isFree, canEditable
+      valid, courseData, categories, courseSpecializes, selectedDays, isSamePeriod,
+      isFree, canEditable, lang
     } = this.props;
     return (
       <div>
@@ -61,7 +62,7 @@ class CourseForm extends Component {
               editMode ? (
                 <div className={styles.avatarImage}>
                   <CourseCoverImageContainer
-                    courseCoverImage={cover_image != null ? cover_image : null}
+                    courseCoverImage={cover_image || null}
                     uploadCourseCoverImage={this.onUploadCoverImage.bind(this)}
                     openPopupToChangeCoverImage={this.showPopupToChangeCoverImage.bind(this)}
                     closePopupToChangeCoverImage={this.hidePopupToChangeCoverImage.bind(this)}
@@ -70,6 +71,7 @@ class CourseForm extends Component {
                     onSelectedNewCoverImage={this.onSelectNewCoverImage.bind(this)}
                     selectedNewCoverImage={this.state.selectedNewCoverImage}
                     isEditable={canEditable}
+                    lang={lang}
                   />
                 </div>
               ) : null

@@ -47,7 +47,7 @@ class CoursedyUploadImage extends Component {
                     <a className="icon-upload">
                       <UploadIcon></UploadIcon>
                     </a>
-                    <a className="ml-10 mt-10">{editImageLabel || TT.changeLocale(this.props.lang).t('drag_and_drop')}</a>
+                    <a className="ml-10 mt-10">{editImageLabel || this.context.t('drag_and_drop')}</a>
                   </div>
                 </div>
               </div>

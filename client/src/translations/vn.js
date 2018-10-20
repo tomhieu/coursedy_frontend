@@ -254,7 +254,7 @@ export default {
   account_tutor_new_password_title: 'Mật khẩu mới',
   account_tutor_new_password_again_title: 'Nhập lại mật khẩu mới',
   account_tutor_new_password_btn: 'Đổi Mật Khẩu',
-  drag_and_drop: 'Kéo thả tập tin vào đây',
+  drag_and_drop: 'Kéo thả tập tin vào đây.',
   speciality: 'Chuyên môn',
   save: 'Lưu',
   send: 'Gửi',
