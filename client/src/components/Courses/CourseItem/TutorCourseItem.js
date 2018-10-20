@@ -4,7 +4,6 @@ import {TT} from 'utils/locale';
 import ObjectUtils from 'utils/ObjectUtils';
 import styles from './TutorCourseItem.module.scss';
 import PrimaryButton from '../../Core/PrimaryButton/PrimaryButton';
-import TrashIcon from '../../Core/Icons/TrashIcon';
 import SettingIcon from '../../Core/Icons/SettingIcon';
 import DetailsIcon from '../../Core/Icons/DetailsIcon';
 import ListEnrolledStudent from '../../../containers/Courses/TutorCourse/ListEnrolledStudent';
@@ -45,17 +44,6 @@ class TutorCourseItem extends Component {
 
   openCourseDetails(courseId) {
     this.props.openCourseDetails(courseId);
-  }
-
-  showDeleteWarning(course) {
-    this.setState({
-      showPopup: true,
-      popupTitle: this.context.t('alert_popup'),
-      popupMessage: this.context.t('delete_course_warning_message', { courseName: course.title }),
-      acceptCallback: () => {
-        this.props.deleteCourse(course.id);
-      }
-    });
   }
 
   showStartCourseWarning(course) {
@@ -174,12 +162,6 @@ class TutorCourseItem extends Component {
                           callback={this.openConfirmationBeforeStopTeaching.bind(this, course)}
                           title={TT.changeLocale(this.props.lang).t('stop_course')}
                         /> : null
-                    }
-                    {
-                      course.status === CourseStatus.NOT_STARTED ?
-                        <a className={styles.courseActionButton} onClick={this.showDeleteWarning.bind(this, course)}>
-                          <TrashIcon width={11} height={21} />
-                        </a> : null
                     }
                     <a className={styles.courseActionButton} onClick={this.openCourseDetails.bind(this, course.id)}>
                       <SettingIcon width={14} height={14} />
