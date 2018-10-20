@@ -278,7 +278,7 @@ export default {
    */
   section_title: 'Mô tả',
   section_name: 'Tên',
-  course_specialize: 'Môn học',
+  course_specialize: 'Thể loại',
   level: 'Cấp độ', /*
      * Filter Course Page
      */
@@ -292,6 +292,7 @@ export default {
   start_time: 'Bắt đầu',
   end_time: 'Kết thúc',
   day_of_week: 'Ngày học',
+  public_course_day_of_week: 'Ngày học',
   end_time_error: 'Thời gian kết thúc phải lớn hơn thời gian bắt đầu',
   start_time_error: 'Thời gian kết thúc phải lớn hơn thời gian bắt đầu',
   last_name_required: 'Vui lòng nhập họ',
@@ -807,7 +808,7 @@ export default {
   selected_hour_warning_message: 'Giờ sẽ dạy học viên, giờ này là theo giờ vietnam.',
   select_course_start_hour: 'Chọn giờ',
   select_course_end_hour: 'Chọn giờ',
-  course_specialize_search_title: 'Tìm kiếm theo lĩnh vực',
+  course_specialize_search_title: 'Tìm kiếm theo thể loại',
   course_day_in_week: 'Lịch học trong tuần',
   course_day_in_week_seperate: 'đến',
   no_rating: 'Chưa có đánh giá',

@@ -13,10 +13,11 @@ import { TT } from '../../utils/locale';
 import UploadIcon from './Icons/UploadIcon';
 
 export const renderField = ({
-  input, label, placeholder, type = 'text', disabled = false, customClassName, meta: { touched, error, warning }
-}) => (
-  <div className="full-width-input-wrapper">
-    {
+  input, label, placeholder, type = 'text', disabled = false, customClassName, meta: { touched, error, warning }, ...rest
+}) => {
+  return (
+    <div className="full-width-input-wrapper">
+      {
         touched && error ? (
           <input
             {...input}
@@ -34,9 +35,10 @@ export const renderField = ({
             className={customClassName}
           />
         )}
-    {touched && ((error && <span className="input-errors">{error}</span>) || (warning && <span>{warning}</span>))}
-  </div>
-);
+      {touched && ((error && <span className="input-errors">{error}</span>) || (warning && <span>{warning}</span>))}
+    </div>
+  );
+}
 
 export const renderCurrencyField = ({
   input, label, placeholder, type = 'text', disabled = false, customClassName, meta: { touched, error, warning }

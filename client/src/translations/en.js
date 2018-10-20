@@ -289,20 +289,21 @@ export default {
    */
   section_title: 'Description',
   section_name: 'Name',
-  course_specialize: 'Course',
+  course_specialize: 'Specialization',
   level: 'Level', /*
      * Filter Course Page
      */
   filter: 'Filter',
   filter_more: 'Advanced filter',
   location: 'Location',
-  course_category_title: 'Course title',
+  course_category_title: 'Category',
   tuition_fee_filter: 'Tuition fee',
   to: 'To',
   time_schedule: 'Time schedule',
   start_time: 'Start',
   end_time: 'End',
   day_of_week: 'Course day',
+  public_course_day_of_week: 'Study day',
   end_time_error: 'End must be greater than start',
   start_time_error: 'End must be greater than start',
   last_name_required: 'Last name is required',

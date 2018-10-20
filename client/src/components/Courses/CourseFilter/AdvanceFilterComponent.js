@@ -27,7 +27,7 @@ class AdvanceFilterComponent extends Component {
             ? (
               <div className="flex-col-3">
                 <FilterOption
-                  label={this.context.t('day_of_week')}
+                  label={this.context.t('public_course_day_of_week')}
                   options={DAYS_IN_WEEK(this.props.lang).map((e) => {
                     return { id: e.id, name: e.text };
                   })}
@@ -45,7 +45,7 @@ class AdvanceFilterComponent extends Component {
             ? (
               <div className="flex-col-3">
                 <FilterOption
-                  label={this.context.t('course_category_title')}
+                  label={this.context.t('course_category')}
                   options={categories.map((x) => {
                     return { name: x.name, id: x.id };
                   })}
@@ -99,7 +99,7 @@ class AdvanceFilterComponent extends Component {
           listSpecializes.length ?
             <div className="flex-col-3">
               <FilterOption
-                label={this.context.t('level')}
+                label={this.context.t('course_specialize')}
                 groupLabel={this.context.t('course_specialize_search_title')}
                 onSelectFilter={onSelectFilter}
                 options={listSpecializes}

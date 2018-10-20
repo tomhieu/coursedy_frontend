@@ -294,5 +294,6 @@ export default connect(
   form: 'courseCreationForm',
   fields: CourseForm.fields,
   validate,
-  enableReinitialize: true
+  enableReinitialize: true,
+  destroyOnUnmount: false
 })(CourseDetailContainer));
