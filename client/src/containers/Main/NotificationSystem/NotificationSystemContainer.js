@@ -167,7 +167,6 @@ class NotificationSystemContainer extends Component {
 
       this.newStartCourseHasBeenNotified.push(...newStartedCourses.map(c => c.id));
       this.notifyNewStartedCourse(newStartedCourseNotification);
-
     }
     if (classRoomId === '') {
       return <Notifications notifications={notifications} />;

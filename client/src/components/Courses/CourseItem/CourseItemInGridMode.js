@@ -1,13 +1,11 @@
 import React, {Component} from 'react';
 import cssModules from 'react-css-modules';
 import {LinkContainer} from 'react-router-bootstrap';
-import Image from 'react-graceful-image';
 import styles from '../Course.module.scss';
 import RatingItem from '../../Rating/index';
 import ObjectUtils from '../../../utils/ObjectUtils';
 import {CourseStatus} from '../../../constants/CourseStatus';
 import CoursedyProgressBar from '../../Core/CoursedyProgressBar/CoursedyProgressBar';
-import { Popover, PopoverBody } from 'reactstrap';
 
 /**
  * @Course group item template 2
@@ -21,13 +19,12 @@ class CourseItemInGridMode extends Component {
       <div className="course-item d-flex flex-column">
         <LinkContainer to={`/courses/${item.id}`} className="course-detail-lnk">
           <div className="course-item-image">
-            <Image
-              src={item.cover_image}
+            <img
+              src={!item.cover_image ? 'http://placehold.it/200x150' : item.cover_image}
               width={200}
               height={150}
               alt="comming soon"
               className="full-width-img"
-              noLazyLoad
             />
           </div>
         </LinkContainer>
@@ -35,11 +32,10 @@ class CourseItemInGridMode extends Component {
           <div className="course-detail-lnk">
             <div className="course-item-instructor">
               <div className="image">
-                <Image
-                  src={item.user.avatar}
-                  alt="no image"
+                <img
+                  src={!item.user.avatar ? 'http://placehold.it/40x40' : item.user.avatar}
+                  alt="comming soon"
                   className="full-width-img img-circle"
-                  noLazyLoad
                 />
               </div>
               <span>{item.user.name}</span>

@@ -73,7 +73,6 @@ class CourseFormContainer extends Component {
     const {
       editMode, listSection, courseTitle, createCourseSucess, publishCourse, isFetching, canEditable
     } = this.props;
-    console.log('publishCourse', publishCourse)
     return (
       <div className="row course-details-container">
         <div className="col-sm-12 col-md-12">
