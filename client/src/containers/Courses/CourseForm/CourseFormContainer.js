@@ -64,9 +64,13 @@ class CourseFormContainer extends Component {
     this.props.saveOrUpdateSection(this.courseId, title, name);
   }
 
-  cancelPopup() {
+  acceptPopup() {
     this.props.cancelCoursePopup();
     this.context.router.history.push('/dashboard/courses/list/');
+  }
+
+  cancelPopup() {
+    this.props.cancelCoursePopup();
   }
 
   render() {
@@ -94,11 +98,11 @@ class CourseFormContainer extends Component {
                       title={this.context.t('create_course_sucessfully')}
                       show={createCourseSucess}
                       cancelCallback={this.cancelPopup.bind(this)}
-                      acceptCallback={this.cancelPopup.bind(this)}
+                      acceptCallback={this.acceptPopup.bind(this)}
                     >
                       <div className="d-flex flex-vertical">
                         <span>{this.context.t('create_course_sucessfully_message', {
-                          title: <strong>{courseTitle}</strong> ,
+                          title: <strong>{courseTitle}</strong>,
                           notReadyStatus: <strong>{this.context.t('not_publish_course_status')}</strong>
                         })}</span>
                         <span className="mt-5">{this.context.t('create_course_sucessfully_message_2', {
