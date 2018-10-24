@@ -15,7 +15,7 @@ class TeacherCourseBuilding extends Component {
     const { t: translation } = this.context;
     return (
       <div className="article-wrapper">
-        <div className="container sub-header">
+        <div className="container sub-header pt-20">
           <h1>
             {translation('teacher_course_building_title')}
           </h1>

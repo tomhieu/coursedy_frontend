@@ -201,9 +201,13 @@ NotificationSystemContainer.contextTypes = {
 };
 
 const mapStateToProps = (state) => {
-  const { main, session, notifications, i18nState } = state;
+  const {
+    main, session, notifications, i18nState
+  } = state;
 
-  return { main, session, notifications, lang: i18nState.lang };
+  return {
+    main, session, notifications, lang: i18nState.lang
+  };
 };
 
 const mapDispatchToProps = dispatch => ({
