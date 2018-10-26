@@ -72,7 +72,7 @@ export default {
   phone_number_required: 'Phone number is required',
   invalid_phone_number: 'Invalid phone number',
   sign_up_success: 'Sign up successfully',
-  congrat_sign_up_success_1: 'Congratulation! You became a member of Coursedy',
+  congrat_sign_up_success_1: 'Congratulation! You became a member of Coursedy.',
   congrat_sign_up_success_2: 'We sent verification email to your email address.',
   congrat_sign_up_success_3: 'Please check inbox to active your account.',
   ok: 'OK',
