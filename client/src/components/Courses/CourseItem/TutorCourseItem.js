@@ -107,7 +107,7 @@ class TutorCourseItem extends Component {
                   <div className="d-flex flex-row align-items-center">
                     <div className={styles.leftSeperateLine} />
                     {
-                      course.status === CourseStatus.STARTED ?
+                      course.status === CourseStatus.STARTED || course.status === CourseStatus.FINISHED ?
                         <div className={styles.courseNumberData}>{course.student_count}/{course.number_of_students}</div> :
                         <div className={styles.courseNumberData}>{course.student_count}</div>
                     }
@@ -117,7 +117,7 @@ class TutorCourseItem extends Component {
                   <div className="d-flex flex-row align-items-center">
                     <div className={styles.leftSeperateLine} />
                     {
-                      course.status === CourseStatus.STARTED ?
+                      course.status === CourseStatus.STARTED || course.status === CourseStatus.FINISHED ?
                         <div className={styles.courseNumberData}>{DateUtils.formatDate(course.start_date)}</div> :
                         <div className={styles.courseNumberData}>{course.number_of_students}</div>
                     }
@@ -184,8 +184,6 @@ class TutorCourseItem extends Component {
                                   cancelCallback={this.closePopup.bind(this)}
                                   {...this.props}>
         </StartCourseFormContainer>
-
-
       </div>
     );
   }

@@ -22,7 +22,7 @@ class TutorDashboardMenu extends Component {
   render() {
     const { activatedTab, isApproved } = this.props;
 
-    const isActiveCourseTab = ['course_add', 'not_started_course_list', 'course_active_list', 'course_management'].indexOf(activatedTab) >= 0;
+    const isActiveCourseTab = ['course_add', 'not_started_course_list', 'course_active_list', 'course_finished_list', 'course_management'].indexOf(activatedTab) >= 0;
 
     const dashboardItemClasses = [styles.dashboardItem, 'dashbard-item-container'];
     const activeDashboardItemClasses = [styles.dashboardItem, 'dashbard-item-container', styles.active];
@@ -85,6 +85,12 @@ class TutorDashboardMenu extends Component {
                           onClick={this.onClickDashboardLink.bind(this, '/dashboard/courses/active', 'course_active_list')}
                         >
                           <a className={styles.itemName}>{this.context.t('course_active_list')}</a>
+                        </li>
+                        <li
+                          className={activatedTab === 'course_finished_list' ? `${styles.dashboardItem} ${styles.active}` : styles.dashboardItem}
+                          onClick={this.onClickDashboardLink.bind(this, '/dashboard/courses/finished', 'course_finished_list')}
+                        >
+                          <a className={styles.itemName}>{this.context.t('course_finished_list')}</a>
                         </li>
                         <li
                           className={activatedTab === 'course_add' ? `${styles.dashboardItem} ${styles.active}` : styles.dashboardItem}

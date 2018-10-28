@@ -715,6 +715,7 @@ export default {
    * Section Page
    */
   course_active_list: 'Active courses',
+  course_finished_list: 'Finished courses',
   section_period: '{sectionPeriod} minutes', /* search teachers page */
   product_contact_us: 'Contact us',
   product_about_us_info: 'Information is updating.',
@@ -748,6 +749,7 @@ export default {
   number_lesson: 'Total lessons',
   tutor_course_fee: 'Tuition fee',
   tutor_course_status: 'Status', // student course table headers
+  tutor_course_verification_status: 'Verification course', // student course table headers
   started_date: 'Start date',
   number_of_completed_lesson: 'Number of completed lessons',
   minimum_number_of_completed_lesson: 'Minimum number of completed lesson',
@@ -778,6 +780,7 @@ export default {
   enrolled_course_teacher_name: 'Teacher is {teacherName}',
   bill_course_fee_total: 'Total course fee',
   no_course_message: 'You have not created any courses yet.',
+  no_finished_course_message: 'You have not finished any courses yet.',
   no_active_course_message: 'You have not taught any courses yet.',
   no_active_course_message_for_student: 'You have not enrolled any courses yet.',
   no_finished_course_message_for_student: 'You have not completed any courses yet.',

@@ -327,6 +327,7 @@ export default {
     */
   not_started_course_list: 'Khóa học đang mở',
   course_active_list: 'Khóa học đang dạy',
+  course_finished_list: 'Khoá học hoàn thành',
   course_info: 'Thông tin khóa học',
   course_detail: 'Chi tiết khóa học',
   tutor_info: 'Thông tin giáo viên',
@@ -670,6 +671,7 @@ export default {
   maximum_student: 'Số học sinh tối đa',
   start_date: 'Ngày bắt đầu',
   tutor_course_status: 'Trạng thái', // student course table headers
+  tutor_course_verification_status: 'Xác minh khoá học', // student course table headers
   started_date: 'Ngày bắt đầu',
   number_lesson: 'Số bài học',
   tutor_course_fee: 'Học phí',
@@ -703,6 +705,7 @@ export default {
   bill_course_fee_total: 'Tổng tiên cần thanh toán',
   no_course_message: 'Hiện tại bạn chưa tạo khoá học nào.',
   no_active_course_message: 'Hiện tại bạn chưa dạy khoá học nào.',
+  no_finished_course_message: 'Hiện tại bạn chưa có khoá học hoàn thành.',
   no_active_course_message_for_student: 'Hiện tại bạn chưa tham gia khoá học nào.',
   no_finished_course_message_for_student: 'Hiện tại bạn chưa hoàn thành khoá học nào.',
   no_following_course_message_for_student: 'Hiện tại bạn chưa theo dõi khoá học nào.',

@@ -41,6 +41,7 @@ import StudentCourseDetailContainer from './containers/Student/Dashboard/Courses
 import StudentDashboardCourseDetails from './pages/StudentDashboard/StudentDashboardCourseDetails';
 import HowCoursedyWorkContainer from './containers/HowCoursedyWorks/HowCoursedyWorkContainer';
 import HowCoursedyWorkDetailContainer from './containers/HowCoursedyWorks/HowCoursedyWorkDetailContainer';
+import TutorDashboardCourseFinished from './pages/TutorDashboard/TutorDashboardCourseFinished';
 
 // define routes for config
 export const routes = [
@@ -116,6 +117,12 @@ export const routes = [
     path: '/dashboard/profile',
     component: requireLogin(TutorDashboardProfile),
     roles: [UserRole.TEACHER]
+  },
+  {
+    path: '/dashboard/courses/finished',
+    component: requireLogin(TutorDashboardCourseFinished),
+    roles: [UserRole.TEACHER],
+    status: TutorStatus.VERIFIED
   },
   {
     path: '/dashboard/courses/active',
