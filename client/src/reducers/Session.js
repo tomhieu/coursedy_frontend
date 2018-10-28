@@ -54,11 +54,11 @@ const session = (state = {
       if (Array.isArray(action.payload) && action.payload.length > 0) {
         upcommingCourse = action.payload[0];
       }
-      return { ...state, teachingCourse: upcommingCourse };
+      return { ...state, teachingCourse: upcommingCourse, stopPolling: true };
     case asyncActs.CLEAR_STUDENT_ACTIVE_COURSES:
       return { ...state, newStartedCourses: [] };
     case asyncActs.CLOSE_POPUP_JOIN_UPCOMMING_CLASS:
-      return { ...state, teachingCourse: null };
+      return { ...state, teachingCourse: null, stopPolling: false };
     case asyncActs.STARTED_JOINING_ACTIVE_CLASS:
       return { ...state, teachingCourse: null, isJoiningActiveClass: true, stopPolling: true };
     case asyncActs.STOP_POLLING_UPCOMMING_COURSE:
