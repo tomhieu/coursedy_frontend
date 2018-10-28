@@ -749,7 +749,7 @@ export default {
   number_lesson: 'Total lessons',
   tutor_course_fee: 'Tuition fee',
   tutor_course_status: 'Status', // student course table headers
-  tutor_course_verification_status: 'Verification course', // student course table headers
+  tutor_course_verification_status: 'Verification', // student course table headers
   started_date: 'Start date',
   number_of_completed_lesson: 'Number of completed lessons',
   minimum_number_of_completed_lesson: 'Minimum number of completed lesson',
@@ -766,6 +766,9 @@ export default {
   not_started: 'Not started',
   started: 'On going',
   finished: 'Finished',
+  pending: 'Pending',
+  approved: 'Approved',
+  rejected: 'Rejected',
   alert_popup: 'Warning',
   cancel_course_warning_title: 'Cancel joining course',
   delete_course_warning_message: 'Are you sure you want to delete ‘{courseName}’?',

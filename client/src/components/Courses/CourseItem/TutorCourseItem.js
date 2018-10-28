@@ -134,10 +134,10 @@ class TutorCourseItem extends Component {
                     <div className={styles.leftSeperateLine} />
                     {
                       course.status === CourseStatus.NOT_STARTED
-                        ? <div className={`${styles.courseStatus} ${styles.notStart}`}>{TT.changeLocale(this.props.lang).t(course.status)}</div>
+                        ? <div className={`${styles.courseStatus} ${styles.notStart}`}>{TT.changeLocale(this.props.lang).t(course.verification_status || course.status)}</div>
                         : course.status === CourseStatus.STARTED
-                          ? <div className={`${styles.courseStatus} ${styles.started}`}>{TT.changeLocale(this.props.lang).t(course.status)}</div>
-                          : <div className={`${styles.courseStatus} ${styles.finished}`}>{TT.changeLocale(this.props.lang).t(course.status)}</div>
+                          ? <div className={`${styles.courseStatus} ${styles.started}`}>{TT.changeLocale(this.props.lang).t(course.verification_status || course.status)}</div>
+                          : <div className={`${styles.courseStatus} ${styles.finished}`}>{TT.changeLocale(this.props.lang).t(course.verification_status || course.status)}</div>
                     }
                   </div>
                 </div>

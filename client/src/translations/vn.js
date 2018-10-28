@@ -671,7 +671,7 @@ export default {
   maximum_student: 'Số học sinh tối đa',
   start_date: 'Ngày bắt đầu',
   tutor_course_status: 'Trạng thái', // student course table headers
-  tutor_course_verification_status: 'Xác minh khoá học', // student course table headers
+  tutor_course_verification_status: 'Phê duyệt',
   started_date: 'Ngày bắt đầu',
   number_lesson: 'Số bài học',
   tutor_course_fee: 'Học phí',
@@ -690,6 +690,9 @@ export default {
   not_started: 'Chưa bắt đầu',
   started: 'Đang dạy',
   finished: 'Kết thúc',
+  pending: 'Chờ phê duyệt',
+  approved: 'Đã phê duyệt',
+  rejected: 'Bị từ chối',
   alert_popup: 'Chú ý',
   cancel_course_warning_title: 'Huỷ tham gia khoá học',
   delete_course_warning_message: 'Bạn có chắc là muốn xoá khoá học ‘{courseName}’ không?',
