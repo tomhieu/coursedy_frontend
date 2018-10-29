@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import cssModules from 'react-css-modules';
-import {TT} from 'utils/locale';
 import ObjectUtils from 'utils/ObjectUtils';
 import DateUtils from 'utils/DateUtils';
 import styles from './TutorCourseItem.module.scss';
@@ -125,10 +124,10 @@ class StudentCourseItem extends Component {
                     <div className={styles.leftSeperateLine} />
                     {
                       course.status === CourseStatus.NOT_STARTED
-                        ? <div className={`${styles.courseStatus} ${styles.notStart}`}>{TT.t(course.status)}</div>
+                        ? <div className={`${styles.courseStatus} ${styles.notStart}`}>{this.context.t(course.status)}</div>
                         : course.status === CourseStatus.STARTED
-                          ? <div className={`${styles.courseStatus} ${styles.started}`}>{TT.t(course.status)}</div>
-                          : <div className={`${styles.courseStatus} ${styles.finished}`}>{TT.t(course.status)}</div>
+                          ? <div className={`${styles.courseStatus} ${styles.started}`}>{this.context.t(course.status)}</div>
+                          : <div className={`${styles.courseStatus} ${styles.finished}`}>{this.context.t(course.status)}</div>
                     }
                   </div>
                 </div>
@@ -144,7 +143,7 @@ class StudentCourseItem extends Component {
                             line={false}
                             customClasses="start-course-btn"
                             callback={this.showStartCourseWarning.bind(this, course)}
-                            title={TT.t('cancel_course')}
+                            title={this.context.t('cancel_course')}
                           />
                         ) : null
                     }
@@ -182,7 +181,7 @@ class StudentCourseItem extends Component {
             <div className="col-md-12">
               <div className="row">
                 <div className="col-md-12">
-                  <div className="billing-course-label">{this.context.t('enrolled_course_details')}:</div>
+                  <div className="billing-course-label">{this.context.t('enrolled_course_details')}</div>
                 </div>
                 <div className="col-md-12">{this.context.t('enrolled_course_title', { courseName: <strong>{course.title}</strong> })}</div>
                 <div className="col-md-12">{this.context.t('enrolled_course_teacher_name', { teacherName: <strong>{course.user.name}</strong> })}</div>
@@ -192,7 +191,7 @@ class StudentCourseItem extends Component {
               <div className="seperate-bill-line" />
             </div>
             <div className="col-md-12">
-              <div className="billing-course-label">{this.context.t('enrolled_course_billing_details')}:</div>
+              <div className="billing-course-label">{this.context.t('enrolled_course_billing_details')}</div>
             </div>
             <div className="col-md-12">
               <div className="row">
