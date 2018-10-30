@@ -165,8 +165,8 @@ class StudentCourseItem extends Component {
           <div className="d-flex flex-vertical">
             <div>{this.state.popupMessage}</div>
             {
-              this.state.additionMessages.map(message => (
-                <div className="mt-5">{message}</div>
+              this.state.additionMessages.map((message, key) => (
+                <div key={`cancel-course-${key}`} className="mt-5">{message}</div>
               ))
             }
           </div>
@@ -181,7 +181,7 @@ class StudentCourseItem extends Component {
             <div className="col-md-12">
               <div className="row">
                 <div className="col-md-12">
-                  <div className="billing-course-label">{this.context.t('enrolled_course_details')}</div>
+                  <div className="billing-course-label">{this.context.t('enrolled_course_details')}:</div>
                 </div>
                 <div className="col-md-12">{this.context.t('enrolled_course_title', { courseName: <strong>{course.title}</strong> })}</div>
                 <div className="col-md-12">{this.context.t('enrolled_course_teacher_name', { teacherName: <strong>{course.user.name}</strong> })}</div>
@@ -191,7 +191,10 @@ class StudentCourseItem extends Component {
               <div className="seperate-bill-line" />
             </div>
             <div className="col-md-12">
-              <div className="billing-course-label">{this.context.t('enrolled_course_billing_details')}</div>
+              <div className="billing-course-label">{this.context.t('enrolled_course_billing_details')}:</div>
+            </div>
+            <div className="col-md-12">
+              { this.context.t('about_course_policy_info', { link: <a href="/course-policy" target="_blank">{this.context.t('course_policy')}</a> })}
             </div>
             <div className="col-md-12">
               <div className="row">

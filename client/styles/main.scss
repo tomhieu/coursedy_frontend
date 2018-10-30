@@ -1594,7 +1594,7 @@ body.application {
   .start-course-btn {
     min-width: 70px;
     font-size: 11px;
-    line-height: 11px;
+    line-height: 13px;
   }
 
   .pb-10px {
@@ -1949,6 +1949,6 @@ body.application {
 
 .billing-course-label {
   font-family: $font-semi-bold;
-  color: $color-darker-text;
   padding: 5px 0;
+  font-size: 16px;
 }

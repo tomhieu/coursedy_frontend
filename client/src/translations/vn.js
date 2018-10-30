@@ -706,6 +706,8 @@ export default {
   enrolled_course_title: 'Khoá học {courseName}',
   enrolled_course_teacher_name: 'Giáo viên {teacherName}',
   bill_course_fee_total: 'Tổng tiên cần thanh toán',
+  about_course_policy_info: 'Thông tin {link}.',
+  course_policy: 'chính sách khoá học',
   no_course_message: 'Hiện tại bạn chưa tạo khoá học nào.',
   no_active_course_message: 'Hiện tại bạn chưa dạy khoá học nào.',
   no_finished_course_message: 'Hiện tại bạn chưa có khoá học hoàn thành.',
