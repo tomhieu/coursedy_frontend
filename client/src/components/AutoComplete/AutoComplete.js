@@ -49,36 +49,26 @@ export class AutoComplete extends Component {
   }
 
   static renderSugguestionList({ show, isLoading, dataSource, handleAddCriteria, context }) {
-    if (isLoading) {
-      return (
-        <div className="loading-bar-autocomplete">
-          <AsyncLoader normalPlaceholder loadingBgColor="#1CABA0" width={30} height={30}/>
-        </div>
-      );
-    }
-
     if (!show) return null;
 
     return (
-      dataSource.length > 0
-        ? (
-          <div className={`${styles.modalSuggestion} flex flex-vertical`}>
-            {
-              dataSource.map(gs => (
-                AutoComplete.renderSuggestion(gs, handleAddCriteria)
-              ))
-            }
-          </div>
-        )
-        : (
-          <div className={`${styles.modalSuggestion} flex flex-vertical`}>
+      <div id="suggestion-items" className={`${styles.modalSuggestion} flex flex-vertical ${isLoading && 'loading-bar-autocomplete'}`}>
+        {
+          isLoading ? (
+            <AsyncLoader normalPlaceholder loadingBgColor="#1CABA0" width={30} height={30}/>
+          ) : null
+        }
+        {
+          dataSource.length > 0 ? dataSource.map(gs => (
+            AutoComplete.renderSuggestion(gs, handleAddCriteria)
+          )) : (
             <div className={styles.suggestionLine}>
               <a className="pl-10 d-flex flex-vertical justify-content-center suggestion-line not-found">
                 <span className="sub-header">{context.t('not_found_suggestion')}</span>
               </a>
-            </div>
-          </div>
-        )
+            </div>)
+        }
+      </div>
     );
   }
 
@@ -87,7 +77,10 @@ export class AutoComplete extends Component {
       onBlur, onFocus, placeholder, fieldName, loadSuggestions
     } = this.props;
     return (
-      <div className={`${styles.filterBox} d-flex flex-vertical`} ref={(el) => { this.autoCompleteWrapper = el; }}>
+      <div className={`${styles.filterBox} d-flex flex-vertical`} ref={(el) => {
+        this.autoCompleteWrapper = el;
+        AutoComplete.autoCompleteWrapper = el;
+      }}>
         <div className="d-flex flex-horizontal">
           <div className="input-without-border">
             <Field
@@ -107,7 +100,6 @@ export class AutoComplete extends Component {
   }
 }
 
-
 AutoComplete.contextTypes = {
   t: React.PropTypes.func.isRequired
 };
@@ -124,7 +116,7 @@ AutoComplete.propTypes = {
   onBlur: React.PropTypes.func,
   onFocus: React.PropTypes.func,
   closeSuggestion: React.PropTypes.func,
-  search: React.PropTypes.func.isRequired
+  search: React.PropTypes.func
 };
 
 export default cssModules(AutoComplete, styles);

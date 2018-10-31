@@ -92,6 +92,18 @@ class BasicFilterComponent extends Component {
     if (this.hasUpdateFilter) {
       this.updateDimensions();
     }
+
+    this.updateSuggestionBoxStyle();
+  }
+
+  updateSuggestionBoxStyle() {
+    if (typeof document !== 'undefined') {
+      const searchBoxElement = document.getElementById('search-box');
+      const suggestionCourse = document.getElementById('suggestion-items');
+      if(searchBoxElement && suggestionCourse) {
+        suggestionCourse.style.top = `${searchBoxElement.clientHeight}px`;
+      }
+    }
   }
 
   render() {
@@ -114,7 +126,7 @@ class BasicFilterComponent extends Component {
     }
 
     return (
-      <div ref={(el) => { this.filterContainer = el; }} className={styles.filterInputBox + containerClassNames}>
+      <div id="search-box" ref={(el) => { this.filterContainer = el; }} className={styles.filterInputBox + containerClassNames}>
         <div ref={(el) => { this.searchIcon = el; }} className="search-icon">
           <svg className="searchIcon" viewBox="0 0 25 25">
             <path d="M17.8724934,19.3481945 C17.4662,18.9419012 17.4643401,18.2850294 17.8746847,17.8746847 L17.8746847,17.8746847 C18.2821883,17.4671811 18.9468084,17.4711073 19.3481945,17.8724934 L23.7796805,22.3039794 C24.1859739,22.7102728 24.1878338,23.3671445 23.7774892,23.7774892 L23.7774892,23.7774892 C23.3699856,24.1849928 22.7053655,24.1810666 22.3039794,23.7796805 L17.8724934,19.3481945 L17.8724934,19.3481945 Z" />

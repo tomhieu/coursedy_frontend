@@ -88,7 +88,10 @@ class BaseFilter extends Component {
                   placeholder={placeholder}
                 />
                 <div className="filter-selection d-flex flex-auto">
-                  { AutoComplete.renderSugguestionList({ ...sugguestionProps, context: this.context }) }
+                  { AutoComplete.renderSugguestionList({
+                    ...sugguestionProps,
+                    context: this.context
+                  }) }
                 </div>
               </div>
               <div className="seperate-filter-line" />
