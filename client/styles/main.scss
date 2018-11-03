@@ -719,6 +719,7 @@ body.application {
   .select2-dropdown {
     border: 1px solid #f2f2f2;
     box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .26), 0 2px 10px 0 rgba(0, 0, 0, .16);
+    z-index: 9999;
   }
 
   .select2-container--default .select2-selection--single .select2-selection__arrow {
@@ -867,7 +868,8 @@ body.application {
         font-size: 14px;
         font-weight: 400;
         display: inline-block;
-        margin-left: 20px;
+        margin-left: 15px;
+        padding-top: 3px;
         width: 100%;
       }
     }
@@ -1671,6 +1673,31 @@ body.application {
     .partial-loading {
       min-height: 100px;
     }
+  }
+
+  .custom-control {
+    &.custom-radio {
+      padding: 5px 0 0 15px;
+      &.radio-item {
+        margin-right: 20px;
+      }
+      .custom-control-indicator {
+        border-radius: 50%;
+        width: 18px;
+        height: 18px;
+      }
+      .custom-control-input:checked~.custom-control-indicator {
+        background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3E%3Ccircle r='3' fill='%23fff'/%3E%3C/svg%3E");
+        background-size: 75% 75%;
+      }
+    }
+  }
+
+  .selected-lesson {
+    border-top: 1px solid $border-color;
+    border-bottom: 1px solid $border-color;
+    padding: 10px 0;
+    margin: 10px 0;
   }
 }
 

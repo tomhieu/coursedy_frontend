@@ -65,7 +65,6 @@ class ChangePasswordContainer extends Component {
                       formControlName="current_password"
                       type="password"
                       typeField="custom_input"
-                      {...this.props}
                     />
                   </div>
                 )

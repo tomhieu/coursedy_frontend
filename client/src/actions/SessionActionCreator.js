@@ -90,7 +90,7 @@ export const autoLogin = (token, clientId, uid) => {
     localStorage.setItem('ezyLearningToken', token);
     localStorage.setItem('ezyLearningClient', clientId);
     localStorage.setItem('ezyLearningUid', uid);
-    return dispatch(fetchCurrentUser());
+    return dispatch(setCurrentUser(null));
   };
 };
 
@@ -98,7 +98,7 @@ export const autoLogin = (token, clientId, uid) => {
 export const setCurrentUser = (nextUrl) => {
   return (dispatch) => {
     dispatch(fetchCurrentUser()).then(({ value, action }) => {
-      if (typeof nextUrl !== 'undefined' && nextUrl !== 'undefined') {
+      if (nextUrl) {
         return globalHistory.push(nextUrl);
       }
 

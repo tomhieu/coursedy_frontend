@@ -92,7 +92,6 @@ class FormField extends Component {
             placeholder={placeholder}
             disabled={this.props.disabled}
             component={renderSelect(options)}
-            onChange={this.props.onChange}
             className={fieldClasses}
           />
         );

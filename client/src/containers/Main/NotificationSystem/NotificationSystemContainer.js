@@ -13,6 +13,8 @@ import {
 import * as courseActions from '../../../actions/ListTutorCourseActionCreator';
 import {UserRole} from '../../../constants/UserRole';
 import Network from '../../../utils/network';
+import FormDialogContainer from '../../Dialog/FormDialogContainer';
+import LearningNotificationPopupContainer from '../BBB/LearningNotificationPopupContainer';
 
 class NotificationSystemContainer extends Component {
   constructor() {
@@ -75,13 +77,16 @@ class NotificationSystemContainer extends Component {
     this.props.afterJoinUpcomingClass();
   }
 
-  acceptJoinToClassRoom(classRoomId) {
+  acceptJoinToClassRoom(formValue) {
     // stop pilling immediately
     this.stopPolling();
     // closed popup
     this.props.closePopupJoinUpcomingClass();
     // joining to bbb room
-    Network().get(`rooms/${classRoomId}/join`, {}, true).then((res) => {
+    const {teachingCourse} = this.props.session;
+    const classRoomId = teachingCourse && teachingCourse.bigbluebutton_room ? teachingCourse.bigbluebutton_room.slug : '';
+    const lessonId = formValue.selectedLesson;
+    Network().get(`rooms/${classRoomId}/join?lesson_id=${lessonId}`, {}, true).then((res) => {
       const bbbTab = window.open(res.url, '_blank');
       // join fails because of blocking pop-up
       if (bbbTab === null) {
@@ -130,14 +135,11 @@ class NotificationSystemContainer extends Component {
   }
 
   render() {
-    const { main, session, notifications } = this.props;
+    const { main, session, notifications, handleSubmit } = this.props;
 
     // get new started courses
     const { newStartedCourses } = session;
 
-    const teachingCourseTeacherName = session.teachingCourse !== null ? session.teachingCourse.user.name : '';
-    const teachingCourseName = session.teachingCourse !== null ? session.teachingCourse.title : '';
-    const teachingCourseId = session.teachingCourse !== null ? session.teachingCourse.id : '';
     const classRoomId = session.teachingCourse && session.teachingCourse.bigbluebutton_room ? session.teachingCourse.bigbluebutton_room.slug : '';
     // show notification about the new started course
     const newStartedCourseNeedToNotify = newStartedCourses.filter(nc => this.newStartCourseHasBeenNotified.indexOf(nc.id) < 0);
@@ -145,10 +147,7 @@ class NotificationSystemContainer extends Component {
       const newStartedCourseNotification = newStartedCourseNeedToNotify.map(course => ({
         title: this.context.t('new_started_course_notification_title'),
         message: this.context.t('new_started_course_notification_message', {
-          courseName: <Link
-            to={this.getCourseDetailsUrl(course.id)}
-            className="link-course-details"
-          >
+          courseName: <Link to={this.getCourseDetailsUrl(course.id)} className="link-course-details">
             {course.title}
           </Link>,
           firstDayLearning: <strong>{DateUtils.formatDate(course.start_date)}</strong>
@@ -167,15 +166,12 @@ class NotificationSystemContainer extends Component {
     return (
       <div>
         <div className="join-course">
-          <UpcommingCourseNotificationPopup
-            teacherName={teachingCourseTeacherName}
-            currentUser={session.currentUser}
-            courseName={teachingCourseName}
-            courseId={teachingCourseId}
-            classRoomId={classRoomId}
-            acceptJoinToClassRoom={this.acceptJoinToClassRoom.bind(this)}
-            closePopupJoinUpcomingClass={this.props.closePopupJoinUpcomingClass.bind(this)}
-          />
+          <LearningNotificationPopupContainer course={session.teachingCourse}
+                                              currentUser={session.currentUser}
+                                              onSubmit={this.acceptJoinToClassRoom.bind(this)}
+                                              closePopupJoinUpcomingClass={this.props.closePopupJoinUpcomingClass.bind(this)}
+                                              acceptJoinToClassRoom={this.acceptJoinToClassRoom.bind(this)}>
+          </LearningNotificationPopupContainer>
         </div>
         <Notifications notifications={notifications} />
       </div>

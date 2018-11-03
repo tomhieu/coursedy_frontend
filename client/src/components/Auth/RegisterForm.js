@@ -36,10 +36,10 @@ class RegisterForm extends Component {
           <Field
             name="role"
             component={renderRadioFields}
-            options={ROLES.reduce((acc, curr) => {
-              acc[curr] = TT.changeLocale(this.props.lang).t(curr);
-              return acc;
-            }, {})}
+            options={ROLES.map((acc, i) => ({
+              id: i,
+              name: TT.changeLocale(this.props.lang).t(acc)
+            }))}
           />
         </FormGroup>
 

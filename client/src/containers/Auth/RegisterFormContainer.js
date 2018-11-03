@@ -9,7 +9,7 @@ import { RegisterForm } from '../../components';
 
 class RegisterFormContainer extends Component {
   submit({
-    email, password, password_confirmation, name, phone_number, role
+    email, password, password_confirmation, name, phone_number, country_code, role
   }) {
     this.props.dispatch(Action.signUpUser(
       email,
@@ -17,6 +17,7 @@ class RegisterFormContainer extends Component {
       password_confirmation,
       name,
       phone_number,
+      country_code,
       role
     ));
   }

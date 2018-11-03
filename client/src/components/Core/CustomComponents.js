@@ -73,30 +73,34 @@ export const renderCurrencyField = ({
   </div>
 );
 
-export const renderRadioFields = ({ options, input, meta: { touched, error, warning } }) => {
+export const renderRadioFields = ({ options, input, handleChange, customClasses = "radio-item", containerClasses = "d-flex flex-horizontal",
+                                    meta: { touched, error, warning } }) => {
   if (input && options) {
-    const renderRadioButtons = (key, index) => {
+    const renderRadioButtons = (option, index) => {
       return (
-        <label className="col-md mr-10" key={`${index}`} htmlFor={`${input.name}-${index}`}>
-          <Field
+        <label className={"custom-control custom-radio " + customClasses} key={`${index}`} htmlFor={`${input.name}-${index}`}>
+          <input {...input}
             id={`${input.name}-${index}`}
-            component="input"
-            name={input.name}
             type="radio"
-            value={key}
+            onChange={handleChange ? handleChange.bind(this, option) : null}
+            value={option.id}
+            className="custom-control-input"
           />
-          <span className="pl-10">{options[key]}</span>
+          <span className="custom-control-indicator"></span>
+          <span className="custom-control-description pl-10">{option.name}</span>
         </label>
       );
     };
     return (
       <div className="d-flex flex-vertical">
-        <div className="row">
-          {options && Object.keys(options).map(renderRadioButtons)}
+        <div className={containerClasses}>
+          {options && options.map((opt, index) => renderRadioButtons(opt, index))}
         </div>
         {touched && ((error && <div className="input-errors">{error}</div>) || (warning && <div>{warning}</div>))}
       </div>
     );
+  } else {
+    console.error('radio input field MUST NOT be empty the option list');
   }
 };
 
@@ -168,7 +172,7 @@ export const renderDatePicker = ({
 
 export const renderSelect = (selectOptions) => {
   return ({
-    input, label, placeholder, type, className, disabled = false, meta: { touched, error, warning }
+    input, label, onChange, placeholder, type, className, disabled = false, meta: { touched, error, warning }
   }) => (
     <div>
       <Select2
@@ -179,6 +183,7 @@ export const renderSelect = (selectOptions) => {
         className={className}
         disabled={disabled}
         data={selectOptions}
+        onChange={input.onChange ? input.onChange.bind(this) : null}
       />
       {touched && ((error && <span className="input-errors">{error}</span>) || (warning
         && <span>{warning}</span>))}

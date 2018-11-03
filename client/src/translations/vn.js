@@ -63,8 +63,8 @@ export default {
   confirming: 'Đang xác nhận tài khoản ....',
   confirmed: 'Tài khoản của bạn đã được xác nhận. Bạn có thể cập nhật thông tin tài khoản ở đây',
   dashboard_page: 'trang cá nhân',
-  congrat_sign_up_success_1: 'Chúc mừng bạn đã đăng ký thành công thành viên tại Coursedy.',
-  congrat_sign_up_success_2: 'Chúng tôi đã gửi email xác nhận đến địa chỉ email của bạn.',
+  congrat_sign_up_success_1: 'Bạn đã đăng ký thành công tài khoản tại Coursedy.',
+  congrat_sign_up_success_2: 'Chúng tôi vừa gửi email xác nhận đến địa chỉ email của bạn.',
   congrat_sign_up_success_3: 'Vui lòng kiểm tra hộp thư đến để kích hoạt tài khoản.',
   ok: 'Đồng ý',
   close: 'Đóng',
@@ -809,7 +809,7 @@ export default {
   become_teacher_page: 'Trang trở thành giáo viên',
   payment_page: 'Trang hướng dẫn thanh ',
   fee_must_be_a_number: 'Vui lòng nhập vào số',
-  account_pending_warning_message: 'Tài khoản của bạn hiện tại đang ở trạng thái {pending_status}. Vui lòng điền đầy đủ thông tin tài khoản. Một khi điền đầy đử thông tin yêu cầu, chúng tôi sẽ kiêm tra và xác nhận thông tin trong vòng 24h.',
+  account_pending_warning_message: 'Tài khoản của bạn hiện tại đang ở trạng thái {pending_status}. Vui lòng điền đầy đủ thông tin cá nhân lịch sử làm việc, cũng như những thành tích cá nhân. Coursedy sẽ kiểm tra và xác nhận thông tin trong vòng 24h làm việc.',
   pending_account_status: 'Chờ xác nhận',
   join_to_class_button_name: 'Vào lớp học',
   select_hour_note: 'Chú ý',
@@ -828,4 +828,6 @@ export default {
   stop_teaching_course_message: 'Bạn có chắc chắn là muốn dừng khoá học {course_title} không?',
   at_here: 'tại đây',
   create_course: 'Tạo khoá học',
+  bbb_selected_lesson: 'Bài học được lựa chọn: {lessonName}',
+  bbb_change_lesson_title: 'Lựa chon bài học để dạy'
 };

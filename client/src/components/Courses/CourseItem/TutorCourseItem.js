@@ -153,7 +153,7 @@ class TutorCourseItem extends Component {
                           customClasses="start-course-btn"
                           callback={this.showStartCourseWarning.bind(this, course)}
                           title={TT.changeLocale(this.props.lang).t('start_course')}
-                        /> : course.status === CourseStatus.STARTED && !alreadyStarted ?
+                        /> : course.status === CourseStatus.STARTED ?
                         <PrimaryButton
                           isSmallButton
                           round

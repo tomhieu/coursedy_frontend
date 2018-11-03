@@ -73,7 +73,7 @@ export default {
   invalid_phone_number: 'Invalid phone number',
   sign_up_success: 'Sign up successfully',
   congrat_sign_up_success_1: 'Congratulation! You became a member of Coursedy.',
-  congrat_sign_up_success_2: 'We sent verification email to your email address.',
+  congrat_sign_up_success_2: 'We sent a verification email to your email address.',
   congrat_sign_up_success_3: 'Please check inbox to active your account.',
   ok: 'OK',
   close: 'Close',
@@ -268,7 +268,7 @@ export default {
   account_tutor_new_password_title: 'New password',
   account_tutor_new_password_again_title: 'Enter new password',
   account_tutor_new_password_btn: 'Change password',
-  drag_and_drop: 'Drag & Drop a file here.',
+  drag_and_drop: 'Drag and drop your documents here',
   speciality: 'Speciality',
   save: 'Save',
   sent: 'Gửi',
@@ -849,7 +849,7 @@ export default {
   enroll_course_success_button: 'Go to course',
   enroll_course_success_message: 'Welcome to the {courseTitle}.',
   enroll_course_success_message_2: 'The course will begin soon. Be prepared for the course today.',
-  account_pending_warning_message: 'Your account is in status as {pending_status}. Please complete the account information. Once the information is complete, we will check and confirm the information within 24 hours.',
+  account_pending_warning_message: 'Your account is in {pending_status} status. Please complete the account information, working history as well as your achievements. We will check and confirm the information within 24 working hours.',
   pending_account_status: 'Pending for confirmation',
   join_to_class_button_name: 'Join to class',
   select_hour_note: 'Note',
@@ -868,4 +868,6 @@ export default {
   stop_teaching_course_message: 'Are you sure, you want to stop teaching {course_title}?',
   at_here: 'at here',
   create_course: 'Create',
+  bbb_selected_lesson: 'Selected lesson: {lessonName}',
+  bbb_change_lesson_title: 'Selected lesson to teach'
 };
