@@ -6,7 +6,10 @@ import Network from 'utils/network';
 import { globalHistory } from 'utils/globalHistory';
 import cssModules from 'react-css-modules';
 import LoadingMask from '../../LoadingMask/LoadingMask';
-import { DELETE_COURSE, SHOW_ENROLLED_STUDENT_LIST, UPDATE_COURSE } from '../../../actions/AsyncActionCreator';
+import {
+  DELETE_COURSE, FINISH_LESSON, SHOW_ENROLLED_STUDENT_LIST,
+  UPDATE_COURSE
+} from '../../../actions/AsyncActionCreator';
 import * as dashboardActions from '../../../actions/DashboardMenuActionCreator';
 import { CourseStatus } from '../../../constants/CourseStatus';
 import TutorCourseList from '../../../components/Courses/CourseList/TutorCourseList';
@@ -15,6 +18,8 @@ import { TutorNavigationTab } from '../../../constants/TutorNavigationTab';
 import {TutorStatus} from '../../../constants/TutorStatus';
 import {Redirect} from 'react-router';
 import {openConfirmationPopup} from '../../../actions/MainActionCreator';
+import {joinToBBBRoom} from '../../../actions/Bigbluebutton/BigbluebuttonActionCreator';
+import {LessonStatus} from '../../../constants/LessonStatus';
 
 class ListTutorCourseContainer extends Component {
   componentWillMount() {
@@ -107,10 +112,10 @@ const mapStateToProps = (state) => {
   const { TutorCourseList, session, EnrolledStudentList } = state;
   const { courses, isFetching } = TutorCourseList;
   const { activeCourseId } = EnrolledStudentList;
-  const { currentUser } = session;
+  const { currentUser, teachingCourse } = session;
   const { lang } = state.i18nState;
   return {
-    courses, isFetching, currentUser, activeCourseId, lang
+    courses, isFetching, currentUser, activeCourseId, lang, teachingCourse
   };
 };
 
@@ -158,7 +163,18 @@ const mapDispatchToProps = dispatch => ({
     type: SHOW_ENROLLED_STUDENT_LIST,
     data: courseId
   }),
-  openConfirmationPopup: (popupTitle, popupMessage, acceptCallback) => dispatch(openConfirmationPopup(popupTitle, popupMessage, acceptCallback))
+  openConfirmationPopup: (popupTitle, popupMessage, acceptCallback) => dispatch(openConfirmationPopup(popupTitle, popupMessage, acceptCallback)),
+  joinToBBBRoom: (classRoomId, lessonId, afterJoinCallback) => dispatch(joinToBBBRoom(classRoomId, lessonId, afterJoinCallback)),
+  terminateLesson: lessonId => {
+    const res = dispatch({
+      type: FINISH_LESSON,
+      payload: Network().update(`lessons/${lessonId}`, {id: lessonId, status: LessonStatus.FINISH})
+    });
+
+    res.then(() => {
+      this.fetchListTutorActiveCourse();
+    })
+  }
 });
 
 export default connect(

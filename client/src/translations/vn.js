@@ -829,5 +829,9 @@ export default {
   at_here: 'tại đây',
   create_course: 'Tạo khoá học',
   bbb_selected_lesson: 'Bài học được lựa chọn: {lessonName}',
-  bbb_change_lesson_title: 'Lựa chon bài học để dạy'
+  bbb_change_lesson_title: 'Lựa chon bài học để dạy',
+  lesson_room_is_expired_title: 'Kết thúc khoá học',
+  lesson_room_is_expired_msg: 'Bài học {lessonName} của khoá học này đã hết thời gian học. Xin vui lòng kết thúc bài học này để bắt đầu dạy bài học khác.',
+  teach_lesson: 'dạy',
+  study_lesson: 'học',
 };
