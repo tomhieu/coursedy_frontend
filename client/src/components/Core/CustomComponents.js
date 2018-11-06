@@ -400,14 +400,11 @@ const Clipboard = Quill.import('modules/clipboard');
 const Delta = Quill.import('delta');
 
 class PlainClipboard extends Clipboard {
-  onPaste (e) {
+  onPaste(e) {
     e.preventDefault()
     const range = this.quill.getSelection();
     const text = e.clipboardData.getData('text/plain');
-    const delta = new Delta()
-    .retain(range.index)
-    .delete(range.length)
-    .insert(text);
+    const delta = new Delta().retain(range.index).delete(range.length).insert(text);
     const index = text.length + range.index;
     const length = 0;
     this.quill.updateContents(delta, 'silent');
@@ -416,7 +413,23 @@ class PlainClipboard extends Clipboard {
   }
 }
 
+class PasteHandler {
+  constructor(quill, options) {
+    // save the quill reference
+    this.quill = quill;
+    // bind handlers to this instance
+    this.handlePaste = this.handlePaste.bind(this);
+    this.quill.root.addEventListener('paste', this.handlePaste, false);
+  }
+
+  handlePaste(evt) {
+    const { delta } = this.quill.editor;
+    this.quill.updateContents(delta.ops[delta.ops.length - 1], 'user');
+  }
+}
+
 Quill.register('modules/clipboard', PlainClipboard, true);
+Quill.register('modules/pasteHandler', PasteHandler, true);
 
 export const renderRichTextEditor = ({
   input, label, placeholder, type, disabled = false, className, meta: { touched, error, warning }
@@ -429,6 +442,7 @@ export const renderRichTextEditor = ({
       [{ list: 'ordered' }, { list: 'bullet' },
         { indent: '-1' }, { indent: '+1' }],
     ],
+    pasteHandler: true,
     clipboard: {
       // toggle to add extra line breaks when pasting HTML:
       matchVisual: false
