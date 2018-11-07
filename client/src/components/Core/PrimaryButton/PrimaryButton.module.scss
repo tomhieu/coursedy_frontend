@@ -9,6 +9,9 @@
   transition: width 2s;
   padding: 0 20px;
   outline: none;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   &.small {
     height: $height-small-button;
     padding: 0 17px;

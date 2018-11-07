@@ -72,7 +72,7 @@ class ListTutorCourseContainer extends Component {
 
   reJoinToBBBroom(classRoomId, lessonId, afterJoining) {
     const lang = this.props.lang === 'vn' ? 'vi' : 'en';
-    this.props.joinToBBBRoom(classRoomId, lessonId, this.context, lang, afterJoining, this.props.this.fetchListTutorActiveCourse.bind(this));
+    this.props.joinToBBBRoom(classRoomId, lessonId, this.context, lang, afterJoining, this.props.fetchListTutorActiveCourse.bind(this));
   }
 
   render() {

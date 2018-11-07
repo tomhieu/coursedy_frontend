@@ -834,4 +834,5 @@ export default {
   lesson_room_is_expired_msg: 'Bài học {lessonName} của khoá học này đã hết thời gian học. Xin vui lòng kết thúc bài học này để bắt đầu dạy bài học khác.',
   teach_lesson: 'dạy',
   study_lesson: 'học',
+  rejoin_classroom: 'Vào lại lớp'
 };

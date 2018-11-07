@@ -4,7 +4,7 @@ import styles from './Icons.module.scss';
 
 class RefreshIcon extends Component {
   render() {
-    const { width = 16, height = 22, fillColor = '#888888' } = this.props;
+    const { width = 16, height = 22, fillColor = '#B3BDBC' } = this.props;
     return (
 
       <svg width={width + "px"} height={height + "px"} viewBox="0 0 16 22" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
@@ -14,11 +14,11 @@ class RefreshIcon extends Component {
         <g id="06---UI-Kit" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
           <g id="icons---system" transform="translate(-670.000000, -149.000000)">
             <g id="Atoms-/-Icon/System/Sync" transform="translate(666.000000, 148.000000)">
-              <mask id="mask-2" fill="white">
+              <mask id="mask-refresh-icon" fill="white">
                 <use xlinkHref="#path-refresh-icon"></use>
               </mask>
-              <use id="Mask" fillOpacity="0.7" fill="#000000" fillRule="evenodd" xlinkHref="#path-refresh-icon"></use>
-              <g id="Atoms-/-Brand-/-Color/Gray_medium" mask="url(#mask-2)" fill="#B3BDBC" fillRule="evenodd">
+              <use id="Mask" fill={fillColor} fillRule="evenodd" xlinkHref="#path-refresh-icon"></use>
+              <g id="Atoms-/-Brand-/-Color/Gray_medium" mask="url(#mask-refresh-icon)" fill={fillColor} fillRule="evenodd">
                 <rect id="Rectangle-Copy-2" x="0" y="0" width="24" height="24"></rect>
               </g>
             </g>

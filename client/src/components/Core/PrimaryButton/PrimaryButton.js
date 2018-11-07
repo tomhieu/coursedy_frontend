@@ -55,10 +55,12 @@ class PrimaryButton extends Component {
         )
         : (
           <button type="button" className={classNames.join(' ')} onClick={callback} disabled={disabled}>
-            {
-            iconButton ? this.props.children : null
-          }
-            {title}
+            <div className="d-flex flex-row justify-content-center align-items-center">
+              {
+                iconButton ? this.props.children : null
+              }
+              <span>{title}</span>
+            </div>
           </button>
         )
     );
