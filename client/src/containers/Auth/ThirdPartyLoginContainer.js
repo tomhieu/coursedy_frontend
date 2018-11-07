@@ -1,25 +1,23 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { reduxForm } from 'redux-form';
-import { Field } from 'redux-form';
-import { FormGroup, ControlLabel } from 'react-bootstrap';
+import React, {Component} from 'react';
+import {connect} from 'react-redux';
+import {Field, reduxForm} from 'redux-form';
+import {FormGroup} from 'react-bootstrap';
 import FacebookLogin from 'react-facebook-login';
 import GoogleLogin from 'react-google-login';
 import Modal from 'react-bootstrap4-modal';
-import { loginFacebook, loginGoogle } from '../../actions/SessionActionCreator';
+import {loginFacebook, loginGoogle} from '../../actions/SessionActionCreator';
 import {
+  checkUserExistance,
   reset3RdLoginForm,
   set3RdLoginErrors,
   setFacebookResponse,
-  setGoogleResponse,
-  checkUserExistance
+  setGoogleResponse
 } from '../../actions/ThirdPartyLoginActionCreator';
-import ThirdPartyLoginReducer from '../../reducers/ThirdPartyLoginReducer';
-import { TT } from '../../utils/locale';
+import {TT} from '../../utils/locale';
 import PrimaryButton from '../../components/Core/PrimaryButton/PrimaryButton';
-import { renderRadioFields } from '../../components/Core/CustomComponents';
-import { ROLES } from '../../constants/Roles';
-import { validate } from '../../validations/SignUpFormValidation';
+import {renderRadioFields} from '../../components/Core/CustomComponents';
+import {ROLES} from '../../constants/Roles';
+import {validate} from '../../validations/SignUpFormValidation';
 
 class ThirdPartyLoginContainer extends Component {
   handleFacebookResponse(response) {
@@ -99,10 +97,10 @@ class ThirdPartyLoginContainer extends Component {
                 <Field
                   name="role"
                   component={renderRadioFields}
-                  options={ROLES.reduce((acc, curr) => {
-                    acc[curr] = TT.t(curr);
-                    return acc;
-                  }, {})}
+                  options={ROLES.map((acc, i) => ({
+                    id: i,
+                    name: TT.t(acc)
+                  }))}
                 />
               </FormGroup>
             </div>

@@ -2567,7 +2567,7 @@ blockquote {
   color: $md-color-pink;
   font: normal normal normal 14px/1 FontAwesome;
   font-size: 16px;
-  margin-top: 6px;
+  margin-top: -1px;
   cursor: pointer;
 }
 
@@ -2775,7 +2775,7 @@ input[type="url"], input[type="text"], textarea, .form-control {
     margin: 8px 0;
   }
   .sub-header {
-    font-size: 16px;
+    font-size: 14px;
     color: $color-light-black-text;
   }
 }
@@ -3116,7 +3116,6 @@ button {
 }
 
 .filter-selection {
-  white-space: nowrap;
   .hidden-filter-link {
     min-width: 145px;
   }

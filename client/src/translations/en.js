@@ -2,10 +2,11 @@
   Translations for English
  */
 import { payment_translation } from './payment';
-
+import howCoursedyWork from './howCoursedyWork';
 
 export default {
   ...payment_translation.en,
+  ...howCoursedyWork.en,
   lang: 'English',
   home_page: 'Home',
   find_tutors: 'Tutors',
@@ -71,8 +72,8 @@ export default {
   phone_number_required: 'Phone number is required',
   invalid_phone_number: 'Invalid phone number',
   sign_up_success: 'Sign up successfully',
-  congrat_sign_up_success_1: 'Congratulation! You became a member of Coursedy',
-  congrat_sign_up_success_2: 'We sent verification email to your email address.',
+  congrat_sign_up_success_1: 'Congratulation! You became a member of Coursedy.',
+  congrat_sign_up_success_2: 'We sent a verification email to your email address.',
   congrat_sign_up_success_3: 'Please check inbox to active your account.',
   ok: 'OK',
   close: 'Close',
@@ -89,7 +90,6 @@ export default {
   course_title_required: 'Course title is required',
   section_title_required: 'Section title is required',
   sample_course_title: 'Sample course title',
-  start_date: 'Start date',
   start_date_required: 'Please select start date',
   invalid_start_date: 'Invalid start date (Must follow format dd/MM/yyyy)',
   start_date_less_now: 'Start date must be after now',
@@ -147,9 +147,9 @@ export default {
   publish_course_status: 'ready',
   course_publish: 'Publish',
   popup_warning_publish_course_title: 'Publish course',
-  popup_warning_publish_course_message_1: 'Enroll {course_title}.',
-  popup_warning_publish_course_message_2: 'Once you publish a course, everyone will see content of your courses',
-  popup_warning_publish_course_message_3: 'Course {course_title} haven\'t had schedule yet. Please add schedule for this course.',
+  popup_warning_publish_course_message_1: 'You want to publish {course_title}.',
+  popup_warning_publish_course_message_2: 'Once you publish the course, everyone will see the content of your courses.',
+  popup_warning_publish_course_message_3: 'Course {course_title} haven\'t had schedule yet. Please add the schedule for this course.',
   course_period_type: 'Period',
   course_comments_add: 'Add comment',
   course_comments: 'Comment',
@@ -268,7 +268,7 @@ export default {
   account_tutor_new_password_title: 'New password',
   account_tutor_new_password_again_title: 'Enter new password',
   account_tutor_new_password_btn: 'Change password',
-  drag_and_drop: 'Drag & Drop',
+  drag_and_drop: 'Drag and drop your documents here',
   speciality: 'Speciality',
   save: 'Save',
   sent: 'Gửi',
@@ -289,20 +289,21 @@ export default {
    */
   section_title: 'Description',
   section_name: 'Name',
-  course_specialize: 'Course',
+  course_specialize: 'Specialization',
   level: 'Level', /*
      * Filter Course Page
      */
   filter: 'Filter',
   filter_more: 'Advanced filter',
   location: 'Location',
-  course_category_title: 'Course title',
+  course_category_title: 'Category',
   tuition_fee_filter: 'Tuition fee',
   to: 'To',
   time_schedule: 'Time schedule',
   start_time: 'Start',
   end_time: 'End',
   day_of_week: 'Course day',
+  public_course_day_of_week: 'Study day',
   end_time_error: 'End must be greater than start',
   start_time_error: 'End must be greater than start',
   last_name_required: 'Last name is required',
@@ -335,7 +336,7 @@ export default {
   order_by_price_asc: 'Price - Low to High', /*
         Public course detail
     */
-  not_started_course_list: 'Drafting courses',
+  not_started_course_list: 'Pending courses',
   course_info: 'Course information',
   course_detail: 'Course detail',
   tutor_info: 'Teacher information',
@@ -534,7 +535,7 @@ export default {
   'whatwedo-description': 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex.',
 
   product_customer_support: 'Customer support',
-  product_contact_email: 'team@coursedy.com',
+  product_contact_email: 'support@coursedy.com',
   product_discover_coursedy: 'Discover Coursedy',
   product_about_us: 'About us',
   product_blog: 'Blog',
@@ -543,6 +544,7 @@ export default {
   product_twitter_link: '//twitter.com/coursedyhq',
   product_payment_partners: 'Payment Partners',
   product_resources: 'Resource',
+  how_coursedy_works: 'How Coursedy Works',
   product_help_center: 'Help Center',
   product_become_a_teacher: 'Become a teacher',
   product_privacy: 'Privacy',
@@ -713,6 +715,7 @@ export default {
    * Section Page
    */
   course_active_list: 'Active courses',
+  course_finished_list: 'Finished courses',
   section_period: '{sectionPeriod} minutes', /* search teachers page */
   product_contact_us: 'Contact us',
   product_about_us_info: 'Information is updating.',
@@ -735,7 +738,7 @@ export default {
   facebook_link: '#',
   default_country: 'Vietnam',
   account_setting: 'Account settings',
-  course_management: 'Course management',
+  course_management: 'Courses',
 
   course_status: 'Course status',
   course_name: 'Course name',
@@ -746,6 +749,7 @@ export default {
   number_lesson: 'Total lessons',
   tutor_course_fee: 'Tuition fee',
   tutor_course_status: 'Status', // student course table headers
+  tutor_course_verification_status: 'Verification', // student course table headers
   started_date: 'Start date',
   number_of_completed_lesson: 'Number of completed lessons',
   minimum_number_of_completed_lesson: 'Minimum number of completed lesson',
@@ -762,20 +766,26 @@ export default {
   not_started: 'Not started',
   started: 'On going',
   finished: 'Finished',
+  pending: 'Pending',
+  approved: 'Approved',
+  rejected: 'Rejected',
   alert_popup: 'Warning',
-  cancel_course_warning_title: 'Cancel joining course',
+  cancel_course_warning_title: 'Cancel enrolled course',
   delete_course_warning_message: 'Are you sure you want to delete ‘{courseName}’?',
   cancel_course_warning_message: 'Are you sure you want to cancel ‘{courseName}’?',
   cancel_started_course_warning_message: 'The course is on going and not finished yet, if you cancel now, you may be charged a fee if you have not attended the minimum number of classes.',
   cancel_started_course_feedback: 'If course are not satisfied your requirement. You can write some comment {course_details} or send us your feedbacks {coursedy}, we are always try to best to ensure the course will cover your expectation.',
   cancel_course_details: 'about such course',
-  enrolled_course_details: 'Course details',
-  enrolled_course_billing_details: 'Course Billing details',
+  enrolled_course_details: 'Course information',
+  enrolled_course_billing_details: 'Billing course',
   bill_course_fee_popup_title: 'Course payment',
   enrolled_course_title: 'Course is {courseName}',
   enrolled_course_teacher_name: 'Teacher is {teacherName}',
   bill_course_fee_total: 'Total course fee',
+  about_course_policy_info: 'About {link} information.',
+  course_policy: 'course policy',
   no_course_message: 'You have not created any courses yet.',
+  no_finished_course_message: 'You have not finished any courses yet.',
   no_active_course_message: 'You have not taught any courses yet.',
   no_active_course_message_for_student: 'You have not enrolled any courses yet.',
   no_finished_course_message_for_student: 'You have not completed any courses yet.',
@@ -839,7 +849,7 @@ export default {
   enroll_course_success_button: 'Go to course',
   enroll_course_success_message: 'Welcome to the {courseTitle}.',
   enroll_course_success_message_2: 'The course will begin soon. Be prepared for the course today.',
-  account_pending_warning_message: 'Your account is in status as {pending_status}. Please complete the account information. Once the information is complete, we will check and confirm the information within 24 hours.',
+  account_pending_warning_message: 'Your account is in {pending_status} status. Please complete the account information, working history as well as your achievements. We will check and confirm the information within 24 working hours.',
   pending_account_status: 'Pending for confirmation',
   join_to_class_button_name: 'Join to class',
   select_hour_note: 'Note',
@@ -856,4 +866,8 @@ export default {
   guide_link: 'the guide',
   stop_teaching_course_title: 'Stop teaching course',
   stop_teaching_course_message: 'Are you sure, you want to stop teaching {course_title}?',
+  at_here: 'at here',
+  create_course: 'Create',
+  bbb_selected_lesson: 'Selected lesson: {lessonName}',
+  bbb_change_lesson_title: 'Selected lesson to teach'
 };

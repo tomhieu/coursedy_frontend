@@ -21,6 +21,7 @@ class FooterMain extends Component {
             <div className="footer__links__list">
               <h4 className="footer__label">{this.context.t('product_resources')}</h4>
               <ul>
+                <li><Link to="/how-coursedy-works">{this.context.t('how_coursedy_works')}</Link></li>
                 <li><Link to="/help">{this.context.t('product_help_center')}</Link></li>
                 <li><Link to="/become-a-teacher">{this.context.t('product_become_a_teacher')}</Link></li>
               </ul>

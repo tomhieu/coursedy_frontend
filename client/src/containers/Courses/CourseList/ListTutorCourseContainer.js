@@ -21,8 +21,10 @@ class ListTutorCourseContainer extends Component {
     const { status } = this.props;
     if (status === CourseStatus.STARTED) {
       this.props.activateTab(TutorNavigationTab.ACTIVE_COURSE_LIST);
-    } else {
+    } else if (status === CourseStatus.NOT_STARTED) {
       this.props.activateTab(TutorNavigationTab.COURSE_LIST);
+    } else {
+      this.props.activateTab(TutorNavigationTab.FINISHED_COURSE_LIST);
     }
   }
 
@@ -30,8 +32,10 @@ class ListTutorCourseContainer extends Component {
     const { status } = this.props;
     if (status === CourseStatus.STARTED) {
       this.props.fetchListTutorActiveCourse();
-    } else {
+    } else if (status === CourseStatus.NOT_STARTED){
       this.props.fetchListTutorCourse();
+    } else {
+      this.props.fetchListTutorFinishedCourse();
     }
   }
 
@@ -40,8 +44,10 @@ class ListTutorCourseContainer extends Component {
       const { status } = nextProps;
       if (status === CourseStatus.STARTED) {
         this.props.fetchListTutorActiveCourse();
-      } else {
+      } else if(status === CourseStatus.NOT_STARTED) {
         this.props.fetchListTutorCourse();
+      } else {
+        this.props.fetchListTutorFinishedCourse();
       }
     }
   }
@@ -56,9 +62,8 @@ class ListTutorCourseContainer extends Component {
     } if (courseStatus === CourseStatus.NOT_STARTED) {
       return this.context.t('no_course_message');
     }
-    return '';
+    return this.context.t('no_finished_course_message');
   }
-
 
   render() {
     const {
@@ -68,7 +73,9 @@ class ListTutorCourseContainer extends Component {
       <div className="d-flex flex-vertical flex-auto">
         <div className="d-flex flex-auto">
           <div className="title">
-            {status === CourseStatus.STARTED ? this.context.t('course_active_list') : this.context.t('not_started_course_list')}
+            { status === CourseStatus.STARTED && this.context.t('course_active_list')}
+            { status === CourseStatus.NOT_STARTED && this.context.t('not_started_course_list')}
+            { status === CourseStatus.FINISHED && this.context.t('course_finished_list')}
           </div>
         </div>
         <div className="d-flex flex-auto">
@@ -116,6 +123,11 @@ const mapDispatchToProps = dispatch => ({
   fetchListTutorActiveCourse: () => dispatch({
     type: FETCH_TUTOR_COURSES,
     payload: Network().get('users/courses', { per_page: 100, status: CourseStatus.STARTED }),
+    meta: 'tutorCourseListPlaceholder'
+  }),
+  fetchListTutorFinishedCourse: () => dispatch({
+    type: FETCH_TUTOR_COURSES,
+    payload: Network().get('users/courses', { per_page: 100, status: CourseStatus.FINISHED }),
     meta: 'tutorCourseListPlaceholder'
   }),
   fetchListTeachingCourse: () => dispatch({

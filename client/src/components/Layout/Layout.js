@@ -32,9 +32,6 @@ class Layout extends Component {
               {this.props.children}
             </main>
             <Footer />
-            <div className="general-placeholder">
-              <LoadingMask placeholderId="ezylearningFullLoader" isFullLoading />
-            </div>
             <UserConfirmationContainer />
             <div className="notification-system-container">
               <NotificationSystemContainer />

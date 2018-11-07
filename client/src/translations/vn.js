@@ -2,10 +2,11 @@
   Translations for Vietnamese
  */
 import { payment_translation } from './payment';
-
+import howCoursedyWork from './howCoursedyWork';
 
 export default {
   ...payment_translation.vn,
+  ...howCoursedyWork.vn,
   home_page: 'Trang Chủ',
   find_tutors: 'Tìm Gia Sư',
   find_teachers: 'Tìm Giáo Viên',
@@ -62,9 +63,9 @@ export default {
   confirming: 'Đang xác nhận tài khoản ....',
   confirmed: 'Tài khoản của bạn đã được xác nhận. Bạn có thể cập nhật thông tin tài khoản ở đây',
   dashboard_page: 'trang cá nhân',
-  congrat_sign_up_success_1: 'Chúc mừng bạn đã đăng ký thành viên của Coursedy thành công.',
-  congrat_sign_up_success_2: 'Chúng tôi đã gửi email xác nhận đến địa chỉ email của bạn.',
-  congrat_sign_up_success_3: 'Vui lòng kiểm tra hộp thư đến để kích hoạt tài khoản',
+  congrat_sign_up_success_1: 'Bạn đã đăng ký thành công tài khoản tại Coursedy.',
+  congrat_sign_up_success_2: 'Chúng tôi vừa gửi email xác nhận đến địa chỉ email của bạn.',
+  congrat_sign_up_success_3: 'Vui lòng kiểm tra hộp thư đến để kích hoạt tài khoản.',
   ok: 'Đồng ý',
   close: 'Đóng',
   confirm_delete: 'Xoá',
@@ -83,7 +84,6 @@ export default {
   course_title_required: 'Vui lòng nhập tên khoá học',
   section_title_required: 'Vui lòng nhập Tuần học',
   sample_course_title: 'Luyện thi TOEIC cấp tốc',
-  start_date: 'Ngày bắt đầu dự kiến',
   start_date_required: 'Vui lòng nhập ngày bắt đầu',
   invalid_start_date: 'Ngày nhập  phải theo định dạng dd/MM/yyyy',
   start_date_less_now: 'Ngày bắt đầu dự kiến phải lớn hơn hiện tại',
@@ -135,17 +135,17 @@ export default {
   day: 'Ngày',
   week: 'Tuần',
   month: 'Tháng',
-  create_course_sucessfully: 'Tạo Khoá Học Thành Công',
-  create_course_sucessfully_message: 'Khoá Học {title} vừa được tạo thành công. Bây giờ bạn có thể thêm thông tin về các bài học và đăng khoá học.',
-  create_course_sucessfully_message_2: 'Bạn hãy thêm nội dung cho từng bài học và sau đó nhấn nut "{readyButton}" để chuyển khoá học sang trang thái "{readyStatus}".',
+  create_course_sucessfully: 'Tạo khoá học thành công',
+  create_course_sucessfully_message: 'Khoá học {title} vừa được tạo thành công. Bây giờ bạn có thể thêm thông tin về các bài học và đăng khoá học.',
+  create_course_sucessfully_message_2: 'Bạn hãy thêm nội dung cho từng bài học và sau đó nhấn nút "{readyButton}" để chuyển khoá học sang trạng thái "{readyStatus}".',
   not_publish_course_status: 'chưa sẵn sàng',
   publish_course_status: 'sẵn sàng',
   course_publish: 'Đăng lên',
   join_class: 'Vào lớp',
   popup_warning_publish_course_title: 'Đăng Khoá Học',
   popup_warning_publish_course_message_1: 'Bạn muốn đăng khoá học {course_title}.',
-  popup_warning_publish_course_message_2: 'Một khí khoá học đăng lên, tất cả mọi người đều có thể xem thông tin và nội dung khoá học',
-  popup_warning_publish_course_message_3: 'Khoá học {course_title} chưa có bài học nào. Để giúp người học có thể năm được nội dung chi tiết khoá học, bạn nên thêm nội dung các bài học trước khi đăng khoá học lên. ',
+  popup_warning_publish_course_message_2: 'Một khi khoá học đăng lên, tất cả mọi người đều có thể xem thông tin và nội dung khoá học.',
+  popup_warning_publish_course_message_3: 'Khoá học {course_title} chưa có bài học nào. Để giúp người học có thể nắm được nội dung chi tiết khoá học, bạn nên thêm nội dung các bài học trước khi đăng khoá học lên. ',
   course_periode_type: 'bài học',
   course_comments_add: 'Thêm bình luận',
   course_comments: 'Bình luận',
@@ -254,7 +254,7 @@ export default {
   account_tutor_new_password_title: 'Mật khẩu mới',
   account_tutor_new_password_again_title: 'Nhập lại mật khẩu mới',
   account_tutor_new_password_btn: 'Đổi Mật Khẩu',
-  drag_and_drop: 'Kéo thả tập tin vào đây',
+  drag_and_drop: 'Kéo thả tập tin vào đây.',
   speciality: 'Chuyên môn',
   save: 'Lưu',
   send: 'Gửi',
@@ -278,7 +278,7 @@ export default {
    */
   section_title: 'Mô tả',
   section_name: 'Tên',
-  course_specialize: 'Môn học',
+  course_specialize: 'Thể loại',
   level: 'Cấp độ', /*
      * Filter Course Page
      */
@@ -292,6 +292,7 @@ export default {
   start_time: 'Bắt đầu',
   end_time: 'Kết thúc',
   day_of_week: 'Ngày học',
+  public_course_day_of_week: 'Ngày học',
   end_time_error: 'Thời gian kết thúc phải lớn hơn thời gian bắt đầu',
   start_time_error: 'Thời gian kết thúc phải lớn hơn thời gian bắt đầu',
   last_name_required: 'Vui lòng nhập họ',
@@ -326,6 +327,7 @@ export default {
     */
   not_started_course_list: 'Khóa học đang mở',
   course_active_list: 'Khóa học đang dạy',
+  course_finished_list: 'Khoá học hoàn thành',
   course_info: 'Thông tin khóa học',
   course_detail: 'Chi tiết khóa học',
   tutor_info: 'Thông tin giáo viên',
@@ -397,7 +399,7 @@ export default {
   product_tag: 'Tìm khoá học mong muốn ngay bây giờ',
   product_description: 'Là trung tâm quy tụ giáo viên nhiệt huyết, yêu nghề, giỏi chuyên môn, già dặn kinh nghiệm từ khắp mọi nơi. Bên cạnh đó hệ thống còn tích hợp các tiện ích đáp ứng nhu cầu dạy trực tuyến của giảng viên.',
   product_customer_support: 'Hỗ trợ khách hàng',
-  product_contact_email: 'team@coursedy.com',
+  product_contact_email: 'support@coursedy.com',
   product_discover_coursedy: 'Về chúng tôi',
   product_about_us: 'Về chúng tôi',
   product_blog: 'Blog',
@@ -407,6 +409,7 @@ export default {
   product_twitter_link: '//twitter.com/coursedyhq',
   product_payment_partners: 'Hình thức thanh toán',
   product_resources: 'Thông tin hữu ích',
+  how_coursedy_works: 'Cách Coursedy hoạt động',
   product_help_center: 'Giải đáp thắc mắc',
   product_become_a_teacher: 'Đăng kí làm giáo viên',
   product_privacy: 'Chính sách bảo mật',
@@ -473,7 +476,6 @@ export default {
   second_student_comment: 'Mình ở quê không có điều kiện để lên thành phố học luyện thi đại học. Nhờ sự giới thiệu của người thân mình đã tìm hiểu và tham gia học ôn thi tiếng anh tại Coursedy. Nhờ sự giúp đỡ của thầy cô mình đã đậu được trường đại học mình mong muốn. Mình muốn giới thiệu các bạn hãy tham gia học trên Coursedy.',
   office_staff: 'Nhân viên văn phòng',
   bk_student: 'Sinh viên Bách Khoa TpHCM năm nhất', // become our teacher
-                                                    // section
   your_are_teacher_section_title: 'Bạn là giáo viên?',
   your_are_teacher_section_sub_title: 'Và đang tìm kiếm một nơi để dạy online tốt. Coursedy chính là nơi lý tưởng để bạn thực hiện điều đó.',
   section_sub_title_2: 'Hãy {link_register} làm giáo viên tại Coursedy.',
@@ -481,7 +483,6 @@ export default {
   first_benefit: 'Tiết kiệm chi phí mở lớp học. Tất cả những gì cần thiết chỉ bao gồm một máy tính có kết nối mạng.',
   second_benefit: 'Thời gian linh động, giáo viên có thể linh động sắp xếp thời gian cho khoá học. Và có thể dạy bất cứ nơi đâu.',
   third_benefit: 'Tiếp cận mạng lưới học viên rộng lớn từ khắp mọi nơi.', // teacher
-                                                                          // detail
   teacher_background: 'Thông Tin Giáo Viên',
   teacher_short_introduce: ' Giới thiệu',
   teacher_education: 'Giáo dục',
@@ -518,7 +519,7 @@ export default {
   my_account: 'Tài khoản',
   my_profile: 'Thông tin người dùng',
   account_setting: 'Thiết lập tài khoản',
-  course_management: 'Quản lý khoá học',
+  course_management: 'Khoá học',
   my_balance: 'Số dư tài khoản',
 
   my_courses: 'Khóa học',
@@ -669,9 +670,8 @@ export default {
   number_enrolled_student: 'Số học sinh đăng ký',
   maximum_student: 'Số học sinh tối đa',
   start_date: 'Ngày bắt đầu',
-  number_lesson: 'Tổng bài học',
-  tutor_course_fee: 'Học phí',
   tutor_course_status: 'Trạng thái', // student course table headers
+  tutor_course_verification_status: 'Phê duyệt',
   started_date: 'Ngày bắt đầu',
   number_lesson: 'Số bài học',
   tutor_course_fee: 'Học phí',
@@ -680,7 +680,6 @@ export default {
   cancel_course_fee: 'Phí huỷ khoá học',
   number_of_lesson: 'Số bài học',
   student_course_status: 'Trạng thái', // student enrolled to course table
-                                       // header
   student_name: 'Tên học sinh',
   enrollment_date: 'Ngày đăng ký',
   student_email: 'Email',
@@ -691,6 +690,9 @@ export default {
   not_started: 'Chưa bắt đầu',
   started: 'Đang dạy',
   finished: 'Kết thúc',
+  pending: 'Chờ phê duyệt',
+  approved: 'Đã phê duyệt',
+  rejected: 'Bị từ chối',
   alert_popup: 'Chú ý',
   cancel_course_warning_title: 'Huỷ tham gia khoá học',
   delete_course_warning_message: 'Bạn có chắc là muốn xoá khoá học ‘{courseName}’ không?',
@@ -704,8 +706,11 @@ export default {
   enrolled_course_title: 'Khoá học {courseName}',
   enrolled_course_teacher_name: 'Giáo viên {teacherName}',
   bill_course_fee_total: 'Tổng tiên cần thanh toán',
+  about_course_policy_info: 'Thông tin {link}.',
+  course_policy: 'chính sách khoá học',
   no_course_message: 'Hiện tại bạn chưa tạo khoá học nào.',
   no_active_course_message: 'Hiện tại bạn chưa dạy khoá học nào.',
+  no_finished_course_message: 'Hiện tại bạn chưa có khoá học hoàn thành.',
   no_active_course_message_for_student: 'Hiện tại bạn chưa tham gia khoá học nào.',
   no_finished_course_message_for_student: 'Hiện tại bạn chưa hoàn thành khoá học nào.',
   no_following_course_message_for_student: 'Hiện tại bạn chưa theo dõi khoá học nào.',
@@ -804,22 +809,25 @@ export default {
   become_teacher_page: 'Trang trở thành giáo viên',
   payment_page: 'Trang hướng dẫn thanh ',
   fee_must_be_a_number: 'Vui lòng nhập vào số',
-  account_pending_warning_message: 'Tài khoản của bạn hiện tại đang ở trạng thái {pending_status}. Vui lòng điền đầy đủ thông tin tài khoản. Một khi điền đầy đử thông tin yêu cầu, chúng tôi sẽ kiêm tra và xác nhận thông tin trong vòng 24h.',
+  account_pending_warning_message: 'Tài khoản của bạn hiện tại đang ở trạng thái {pending_status}. Vui lòng điền đầy đủ thông tin cá nhân lịch sử làm việc, cũng như những thành tích cá nhân. Coursedy sẽ kiểm tra và xác nhận thông tin trong vòng 24h làm việc.',
   pending_account_status: 'Chờ xác nhận',
   join_to_class_button_name: 'Vào lớp học',
   select_hour_note: 'Chú ý',
   selected_hour_warning_message: 'Giờ sẽ dạy học viên, giờ này là theo giờ vietnam.',
   select_course_start_hour: 'Chọn giờ',
   select_course_end_hour: 'Chọn giờ',
-  course_specialize_search_title: 'Tìm kiếm theo lĩnh vực',
+  course_specialize_search_title: 'Tìm kiếm theo thể loại',
   course_day_in_week: 'Lịch học trong tuần',
   course_day_in_week_seperate: 'đến',
   no_rating: 'Chưa có đánh giá',
-
   no_bbb_room_ready: 'Giáo viện vẫn chưa vào lớp, xin vui lòng chờ trong giây lát',
   browser_popup_blocker: 'Trinh duyệt của bạn đang chặn không cho phép chuyển hướng, Vui lòng bật cho phép chuyển hướng {support_link} hoặc nhấn vào link sau để {bbb_join_link}',
   bbb_join_again: 'thử vào lại lớp',
   guide_link: 'hướng dẫn',
   stop_teaching_course_title: 'Dừng khoá học',
   stop_teaching_course_message: 'Bạn có chắc chắn là muốn dừng khoá học {course_title} không?',
+  at_here: 'tại đây',
+  create_course: 'Tạo khoá học',
+  bbb_selected_lesson: 'Bài học được lựa chọn: {lessonName}',
+  bbb_change_lesson_title: 'Lựa chon bài học để dạy'
 };

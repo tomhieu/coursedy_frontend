@@ -92,7 +92,6 @@ class FormField extends Component {
             placeholder={placeholder}
             disabled={this.props.disabled}
             component={renderSelect(options)}
-            onChange={this.props.onChange}
             className={fieldClasses}
           />
         );
@@ -141,6 +140,8 @@ class FormField extends Component {
             onFileRemoved={onFileRemoved}
             scaleWidth={this.props.scaleWidth}
             scaleHeight={this.props.scaleHeight}
+            lang={lang}
+            {...restProps}
           />
         );
         break;

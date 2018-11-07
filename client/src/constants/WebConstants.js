@@ -75,3 +75,5 @@ export const ADMIN_STUDENT_LIST_MAX_ITEM_PER_PAGE = 10;
 
 // request info
 export const SET_REQUEST_INFO = 'SET_REQUEST_INFO';
+
+export const HOW_COURSE_WORK_TAB = 'HCW_TAB';

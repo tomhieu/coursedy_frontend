@@ -24,7 +24,7 @@ class ConfirmationContainer extends Component {
                 <p>
                   {this.context.t('confirmed')}
                   {' '}
-                  <a href="#" onClick={this.redirectUser.bind(this)}>
+                  <a onClick={this.redirectUser.bind(this)}>
                     {' '}
                     {this.context.t('dashboard_page')}
                     {' '}

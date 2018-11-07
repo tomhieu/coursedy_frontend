@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import cssModules from 'react-css-modules';
-import {TT} from 'utils/locale';
 import ObjectUtils from 'utils/ObjectUtils';
 import DateUtils from 'utils/DateUtils';
 import styles from './TutorCourseItem.module.scss';
@@ -125,10 +124,10 @@ class StudentCourseItem extends Component {
                     <div className={styles.leftSeperateLine} />
                     {
                       course.status === CourseStatus.NOT_STARTED
-                        ? <div className={`${styles.courseStatus} ${styles.notStart}`}>{TT.t(course.status)}</div>
+                        ? <div className={`${styles.courseStatus} ${styles.notStart}`}>{this.context.t(course.status)}</div>
                         : course.status === CourseStatus.STARTED
-                          ? <div className={`${styles.courseStatus} ${styles.started}`}>{TT.t(course.status)}</div>
-                          : <div className={`${styles.courseStatus} ${styles.finished}`}>{TT.t(course.status)}</div>
+                          ? <div className={`${styles.courseStatus} ${styles.started}`}>{this.context.t(course.status)}</div>
+                          : <div className={`${styles.courseStatus} ${styles.finished}`}>{this.context.t(course.status)}</div>
                     }
                   </div>
                 </div>
@@ -144,7 +143,7 @@ class StudentCourseItem extends Component {
                             line={false}
                             customClasses="start-course-btn"
                             callback={this.showStartCourseWarning.bind(this, course)}
-                            title={TT.t('cancel_course')}
+                            title={this.context.t('cancel_course')}
                           />
                         ) : null
                     }
@@ -166,8 +165,8 @@ class StudentCourseItem extends Component {
           <div className="d-flex flex-vertical">
             <div>{this.state.popupMessage}</div>
             {
-              this.state.additionMessages.map(message => (
-                <div className="mt-5">{message}</div>
+              this.state.additionMessages.map((message, key) => (
+                <div key={`cancel-course-${key}`} className="mt-5">{message}</div>
               ))
             }
           </div>
@@ -193,6 +192,9 @@ class StudentCourseItem extends Component {
             </div>
             <div className="col-md-12">
               <div className="billing-course-label">{this.context.t('enrolled_course_billing_details')}:</div>
+            </div>
+            <div className="col-md-12">
+              { this.context.t('about_course_policy_info', { link: <a href="/course-policy" target="_blank">{this.context.t('course_policy')}</a> })}
             </div>
             <div className="col-md-12">
               <div className="row">

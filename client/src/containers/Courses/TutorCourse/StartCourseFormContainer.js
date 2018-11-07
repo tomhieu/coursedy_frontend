@@ -48,9 +48,9 @@ StartCourseFormContainer.contextTypes = {
 };
 
 StartCourseFormContainer.propTypes = {
-  show: React.PropTypes.bool.isRequired,
-  acceptCallback: React.PropTypes.func.isRequired,
-  cancelCallback: React.PropTypes.func.isRequired
+  show: React.PropTypes.bool,
+  acceptCallback: React.PropTypes.func,
+  cancelCallback: React.PropTypes.func
 };
 
 const mapStateToProps = (state, props) => {

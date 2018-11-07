@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React, {Component} from 'react';
+import {connect} from 'react-redux';
 import Network from 'utils/network';
 import TutorDetail from 'components/Dashboard/Tutors/TutorDetail';
 import TutorEducationListContainer from 'containers/Dashboard/Tutors/Educations/TutorEducationListContainer';
@@ -7,13 +7,12 @@ import TutorWorkExperienceListContainer from 'containers/Dashboard/Tutors/WorkEx
 import Certificate from './Certificate';
 import TutorForm from '../../Dashboard/Tutors/TutorForm';
 
-import { AccountActions, TutorAccountActions } from '../../../actions/index';
-import { RequireEmailConfirmationModal } from '../../../components/index';
+import {AccountActions, TutorAccountActions} from '../../../actions/index';
+import {RequireEmailConfirmationModal} from '../../../components/index';
 import LoadingMask from '../../LoadingMask/LoadingMask';
-import { FETCH_TUTOR_DATA } from '../../../constants/Session';
-import { CERTIFICATE, FETCH_TEACHER_SKILL_SET } from '../../../actions/AsyncActionCreator';
+import {CERTIFICATE, FETCH_TEACHER_SKILL_SET} from '../../../actions/AsyncActionCreator';
 import * as dashboardActions from '../../../actions/DashboardMenuActionCreator';
-import { TutorNavigationTab } from '../../../constants/TutorNavigationTab';
+import {TutorNavigationTab} from '../../../constants/TutorNavigationTab';
 import CoursedyWarning from '../../../components/Core/CoursedyWarning/CoursedyWarning';
 import {TutorStatus} from '../../../constants/TutorStatus';
 

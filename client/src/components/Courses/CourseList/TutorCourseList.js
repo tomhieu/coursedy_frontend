@@ -28,17 +28,16 @@ class TutorCourseList extends Component {
                 </div>
                 <div className="col-xl-2 col-lg-2 col-md-2 col-sm-4 max-student-col">
                   {
-                    status === CourseStatus.NOT_STARTED ?
-                      <div className={styles.tutorCourseHeader}>{this.context.t('maximum_student')}</div> :
-                      <div className={styles.tutorCourseHeader}>{this.context.t('start_date')}</div>
+                    [CourseStatus.STARTED, CourseStatus.FINISHED].indexOf(status) >= 0 ?
+                      <div className={styles.tutorCourseHeader}>{this.context.t('start_date')}</div> :
+                      <div className={styles.tutorCourseHeader}>{this.context.t('maximum_student')}</div>
                   }
-
                 </div>
                 <div className="col-xl-2 col-sm-4 num-lesson-col">
                   <div className={styles.tutorCourseHeader}>{this.context.t('number_lesson')}</div>
                 </div>
                 <div className="col-xl-2 col-lg-4 col-md-4 col-sm-4 course-status-col">
-                  <div className={styles.tutorCourseHeader}>{this.context.t('tutor_course_status')}</div>
+                  <div className={styles.tutorCourseHeader}>{this.context.t('tutor_course_verification_status')}</div>
                 </div>
                 <div className="col-xl-2 col-lg-4 col-md-6 col-sm-4" />
               </div>

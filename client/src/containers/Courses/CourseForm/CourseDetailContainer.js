@@ -266,7 +266,7 @@ const mapStateToProps = (state) => {
     courseSpecializes: course_specializes,
     course_levels,
     initialValues: hasActiveField ? initializedValue : {},
-    lang: lang
+    lang,
   };
 };
 
@@ -294,5 +294,6 @@ export default connect(
   form: 'courseCreationForm',
   fields: CourseForm.fields,
   validate,
-  enableReinitialize: true
+  enableReinitialize: true,
+  destroyOnUnmount: false
 })(CourseDetailContainer));

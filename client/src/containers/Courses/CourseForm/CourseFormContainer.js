@@ -64,16 +64,19 @@ class CourseFormContainer extends Component {
     this.props.saveOrUpdateSection(this.courseId, title, name);
   }
 
-  cancelPopup() {
+  acceptPopup() {
     this.props.cancelCoursePopup();
     this.context.router.history.push('/dashboard/courses/list/');
+  }
+
+  cancelPopup() {
+    this.props.cancelCoursePopup();
   }
 
   render() {
     const {
       editMode, listSection, courseTitle, createCourseSucess, publishCourse, isFetching, canEditable
     } = this.props;
-
     return (
       <div className="row course-details-container">
         <div className="col-sm-12 col-md-12">
@@ -95,11 +98,11 @@ class CourseFormContainer extends Component {
                       title={this.context.t('create_course_sucessfully')}
                       show={createCourseSucess}
                       cancelCallback={this.cancelPopup.bind(this)}
-                      acceptCallback={this.cancelPopup.bind(this)}
+                      acceptCallback={this.acceptPopup.bind(this)}
                     >
                       <div className="d-flex flex-vertical">
                         <span>{this.context.t('create_course_sucessfully_message', {
-                          title: <strong>{courseTitle}</strong> ,
+                          title: <strong>{courseTitle}</strong>,
                           notReadyStatus: <strong>{this.context.t('not_publish_course_status')}</strong>
                         })}</span>
                         <span className="mt-5">{this.context.t('create_course_sucessfully_message_2', {
@@ -185,16 +188,16 @@ class CourseFormContainer extends Component {
                 acceptCallback={this.publishCourse.bind(this)}
               >
                 <div className="d-flex flex-vertical">
-                  <span>{this.context.t('popup_warning_publish_course_message_1', { course_title: courseTitle })}</span>
+                  <span>{this.context.t('popup_warning_publish_course_message_1', { course_title: <strong>{courseTitle}</strong> })}</span>
                 </div>
-                {
-                  listSection.length === 0 ? (
-                    <div className="d-flex flex-vertical">
-                      <span>{this.context.t('popup_warning_publish_course_message_2')}</span>
-                      <span>{this.context.t('popup_warning_publish_course_message_3', { course_title: courseTitle })}</span>
-                    </div>
-                  ) : null
-                }
+                <div className="d-flex flex-vertical">
+                  <span>{this.context.t('popup_warning_publish_course_message_2')}</span>
+                  {
+                    listSection.length === 0 ? (
+                      <span>{this.context.t('popup_warning_publish_course_message_3', { course_title: <strong>{courseTitle}</strong> })}</span>
+                    ) : null
+                  }
+                </div>
               </SimpleDialogComponent>
             </div>
           ) : null

@@ -8,4 +8,6 @@ export class TutorNavigationTab {
   static COURSE_LIST = 'not_started_course_list';
 
   static ACTIVE_COURSE_LIST = 'course_active_list';
+
+  static FINISHED_COURSE_LIST = 'course_finished_list';
 }

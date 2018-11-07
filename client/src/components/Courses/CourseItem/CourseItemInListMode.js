@@ -77,7 +77,7 @@ class CourseItemInListMode extends Component {
                   <div className="col-xss-12 col-xs-12 col-lg-2 col-md-3">
                     <div className={styles.ratingWrapper}>
                       <RatingItem num_stars={item.rating_count === 0 ? 0 : parseFloat(item.rating_points) / item.rating_count} num_reviews={item.rating_count} />
-                      <div>{noComments > 0 ? TT.t('number_of_comment', { numOfComment: noComments }) : TT.t('no_comment')}</div>
+                      <div>{noComments > 0 ? this.context.t('number_of_comment', { numOfComment: noComments }) : this.context.t('no_rating')}</div>
                     </div>
                   </div>
 

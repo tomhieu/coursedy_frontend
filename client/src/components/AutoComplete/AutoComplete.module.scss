@@ -17,6 +17,11 @@
   border-top: 1px solid $color-border;
   background-color: $white-background;
   padding: 10px;
+  @media (max-width: $md-lower) {
+    .suggestionCoverImage {
+      display: none;
+    }
+  }
 }
 
 .suggestionItemWrapper:hover {
@@ -30,6 +35,9 @@
   width: 100%;
   color: #000;
   cursor: pointer;
+  @media (max-width: $md-lower) {
+    padding: 5px;
+  }
 }
 
 .suggestionGroup {
@@ -47,5 +55,5 @@
 .itemAvatar {
   text-align: center;
   width: 65px;
-  height: 62px;
+  height: 65px;
 }

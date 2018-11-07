@@ -13,10 +13,11 @@ import { TT } from '../../utils/locale';
 import UploadIcon from './Icons/UploadIcon';
 
 export const renderField = ({
-  input, label, placeholder, type = 'text', disabled = false, customClassName, meta: { touched, error, warning }
-}) => (
-  <div className="full-width-input-wrapper">
-    {
+  input, label, placeholder, type = 'text', disabled = false, customClassName, meta: { touched, error, warning }, ...rest
+}) => {
+  return (
+    <div className="full-width-input-wrapper">
+      {
         touched && error ? (
           <input
             {...input}
@@ -34,9 +35,10 @@ export const renderField = ({
             className={customClassName}
           />
         )}
-    {touched && ((error && <span className="input-errors">{error}</span>) || (warning && <span>{warning}</span>))}
-  </div>
-);
+      {touched && ((error && <span className="input-errors">{error}</span>) || (warning && <span>{warning}</span>))}
+    </div>
+  );
+}
 
 export const renderCurrencyField = ({
   input, label, placeholder, type = 'text', disabled = false, customClassName, meta: { touched, error, warning }
@@ -71,30 +73,34 @@ export const renderCurrencyField = ({
   </div>
 );
 
-export const renderRadioFields = ({ options, input, meta: { touched, error, warning } }) => {
+export const renderRadioFields = ({ options, input, handleChange, customClasses = "radio-item", containerClasses = "d-flex flex-horizontal",
+                                    meta: { touched, error, warning } }) => {
   if (input && options) {
-    const renderRadioButtons = (key, index) => {
+    const renderRadioButtons = (option, index) => {
       return (
-        <label className="col-md mr-10" key={`${index}`} htmlFor={`${input.name}-${index}`}>
-          <Field
+        <label className={"custom-control custom-radio " + customClasses} key={`${index}`} htmlFor={`${input.name}-${index}`}>
+          <input {...input}
             id={`${input.name}-${index}`}
-            component="input"
-            name={input.name}
             type="radio"
-            value={key}
+            onChange={handleChange ? handleChange.bind(this, option) : null}
+            value={option.id}
+            className="custom-control-input"
           />
-          <span className="pl-10">{options[key]}</span>
+          <span className="custom-control-indicator"></span>
+          <span className="custom-control-description pl-10">{option.name}</span>
         </label>
       );
     };
     return (
       <div className="d-flex flex-vertical">
-        <div className="row">
-          {options && Object.keys(options).map(renderRadioButtons)}
+        <div className={containerClasses}>
+          {options && options.map((opt, index) => renderRadioButtons(opt, index))}
         </div>
         {touched && ((error && <div className="input-errors">{error}</div>) || (warning && <div>{warning}</div>))}
       </div>
     );
+  } else {
+    console.error('radio input field MUST NOT be empty the option list');
   }
 };
 
@@ -126,7 +132,6 @@ export const renderTextAreaField = ({
         <textarea
           {...input}
           placeholder={placeholder || ''}
-          type={type}
           disabled={disabled}
           className="form-control error"
           rows={6}
@@ -167,7 +172,7 @@ export const renderDatePicker = ({
 
 export const renderSelect = (selectOptions) => {
   return ({
-    input, label, placeholder, type, className, disabled = false, meta: { touched, error, warning }
+    input, label, onChange, placeholder, type, className, disabled = false, meta: { touched, error, warning }
   }) => (
     <div>
       <Select2
@@ -178,6 +183,7 @@ export const renderSelect = (selectOptions) => {
         className={className}
         disabled={disabled}
         data={selectOptions}
+        onChange={input.onChange ? input.onChange.bind(this) : null}
       />
       {touched && ((error && <span className="input-errors">{error}</span>) || (warning
         && <span>{warning}</span>))}
@@ -303,7 +309,6 @@ class renderFileInput extends Component {
               <a className="ml-10 mt-10 upload-message">{TT.changeLocale(this.props.lang).t('drag_and_drop')}</a>
             </div>
           </div>
-
           <img
             className={internalPreview && this.state.previewUrl != null ? '' : 'd-none'}
             src={this.state.previewUrl}
@@ -395,14 +400,11 @@ const Clipboard = Quill.import('modules/clipboard');
 const Delta = Quill.import('delta');
 
 class PlainClipboard extends Clipboard {
-  onPaste (e) {
+  onPaste(e) {
     e.preventDefault()
     const range = this.quill.getSelection();
     const text = e.clipboardData.getData('text/plain');
-    const delta = new Delta()
-    .retain(range.index)
-    .delete(range.length)
-    .insert(text);
+    const delta = new Delta().retain(range.index).delete(range.length).insert(text);
     const index = text.length + range.index;
     const length = 0;
     this.quill.updateContents(delta, 'silent');
@@ -411,7 +413,23 @@ class PlainClipboard extends Clipboard {
   }
 }
 
+class PasteHandler {
+  constructor(quill, options) {
+    // save the quill reference
+    this.quill = quill;
+    // bind handlers to this instance
+    this.handlePaste = this.handlePaste.bind(this);
+    this.quill.root.addEventListener('paste', this.handlePaste, false);
+  }
+
+  handlePaste(evt) {
+    const { delta } = this.quill.editor;
+    this.quill.updateContents(delta.ops[delta.ops.length - 1], 'user');
+  }
+}
+
 Quill.register('modules/clipboard', PlainClipboard, true);
+Quill.register('modules/pasteHandler', PasteHandler, true);
 
 export const renderRichTextEditor = ({
   input, label, placeholder, type, disabled = false, className, meta: { touched, error, warning }
@@ -424,6 +442,7 @@ export const renderRichTextEditor = ({
       [{ list: 'ordered' }, { list: 'bullet' },
         { indent: '-1' }, { indent: '+1' }],
     ],
+    pasteHandler: true,
     clipboard: {
       // toggle to add extra line breaks when pasting HTML:
       matchVisual: false
