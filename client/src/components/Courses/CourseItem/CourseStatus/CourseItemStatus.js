@@ -39,7 +39,7 @@ class CourseItemStatus extends Component {
 
   rejoinToClassroom(teachingCourse, learningLesson) {
     const classRoomId = teachingCourse && teachingCourse.bigbluebutton_room ? teachingCourse.bigbluebutton_room.slug : '';
-    this.props.joinToBBBRoom(classRoomId, learningLesson.id, null);
+    this.props.reJoinToBBBRoom(classRoomId, learningLesson.id, null);
   }
 
   closeTerminateLesson() {

@@ -70,6 +70,11 @@ class ListTutorCourseContainer extends Component {
     return this.context.t('no_finished_course_message');
   }
 
+  reJoinToBBBroom(classRoomId, lessonId, afterJoining) {
+    const lang = this.props.lang === 'vn' ? 'vi' : 'en';
+    this.props.joinToBBBRoom(classRoomId, lessonId, this.context, lang, afterJoining, this.props.this.fetchListTutorActiveCourse.bind(this));
+  }
+
   render() {
     const {
       status, courses, isFetching
@@ -86,7 +91,7 @@ class ListTutorCourseContainer extends Component {
         <div className="d-flex flex-auto">
           <LoadingMask placeholderId="tutorCourseListPlaceholder">
             {
-              courses.length > 0 ? <TutorCourseList courseList={courses} {...this.props} /> : !isFetching
+              courses.length > 0 ? <TutorCourseList courseList={courses} reJoinToBBBRoom={this.reJoinToBBBroom.bind(this)} {...this.props} /> : !isFetching
                 ? (
                   <div className={styles.noCourseWarning}>
                     <span>{this.getNoCourseWarningMessage(status)}</span>
@@ -164,7 +169,7 @@ const mapDispatchToProps = dispatch => ({
     data: courseId
   }),
   openConfirmationPopup: (popupTitle, popupMessage, acceptCallback) => dispatch(openConfirmationPopup(popupTitle, popupMessage, acceptCallback)),
-  joinToBBBRoom: (classRoomId, lessonId, afterJoinCallback) => dispatch(joinToBBBRoom(classRoomId, lessonId, afterJoinCallback)),
+  joinToBBBRoom: (classRoomId, lessonId, context, lang, onRemoveNotification, afterJoinCallback) => dispatch(joinToBBBRoom(classRoomId, lessonId, context, lang, onRemoveNotification, afterJoinCallback)),
   terminateLesson: lessonId => {
     const res = dispatch({
       type: FINISH_LESSON,

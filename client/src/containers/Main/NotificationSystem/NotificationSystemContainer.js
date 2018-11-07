@@ -87,8 +87,9 @@ class NotificationSystemContainer extends Component {
     const {teachingCourse} = this.props.session;
     const classRoomId = teachingCourse && teachingCourse.bigbluebutton_room ? teachingCourse.bigbluebutton_room.slug : '';
     const lessonId = formValue.selectedLesson;
+    const lang = this.props.lang === 'vn' ? 'vi' : 'en';
 
-    joinToBBBRoom(classRoomId, lessonId, this.startPolling.bind(this));
+    this.props.joiningToBBBroom(classRoomId, lessonId, this.context, lang, this.startPolling.bind(this), this.afterJoiningUpcomingClass.bind(this));
   }
 
   showNotification(notification, timeout) {
@@ -181,6 +182,7 @@ const mapDispatchToProps = dispatch => ({
   showInfoNotification: (notification) => dispatch(success(notification)),
   stopPolling: (notification) => dispatch({ type: STOP_POLLING_UPCOMMING_COURSE }),
   startPolling: (notification) => dispatch({ type: START_POLLING_UPCOMMING_COURSE }),
+  joiningToBBBroom: (classRoomId, lessonId, context, lang, onRemoveNotification, afterJoining) => dispatch(joinToBBBRoom(classRoomId, lessonId, context, lang, onRemoveNotification, afterJoining)),
 });
 export default connect(
   mapStateToProps, mapDispatchToProps
