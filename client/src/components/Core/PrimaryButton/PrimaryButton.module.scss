@@ -42,6 +42,9 @@
         border: 1px solid $color-organe;
         color: $color-organe;
         background-color: transparent;
+        g {
+          fill: $color-organe;
+        }
         &:disabled {
           border: none;
           color: $white-color;
