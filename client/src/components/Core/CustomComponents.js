@@ -401,7 +401,7 @@ const Delta = Quill.import('delta');
 
 class PlainClipboard extends Clipboard {
   onPaste(e) {
-    e.preventDefault()
+    e.preventDefault();
     const range = this.quill.getSelection();
     const text = e.clipboardData.getData('text/plain');
     const delta = new Delta().retain(range.index).delete(range.length).insert(text);

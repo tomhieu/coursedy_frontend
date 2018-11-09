@@ -11,14 +11,16 @@ import ThirdPartyLoginContainer from './ThirdPartyLoginContainer';
 
 class LoginFormContainer extends Component {
   loginUser({ email, password }) {
-    const nextUrl = getQueryParam('next', this.props.location.search) + this.props.location.hash;
+    const next = getQueryParam('next', this.props.location.search);
+    const hash = this.props.location.hash;
+    const nextUrl = next && hash ? next + hash : undefined;
     this.props.login(email, password, nextUrl);
   }
 
   render() {
     const placeholderId = "loginPlaceholder";
     const { activatingPlaceholders } = this.props
-    const isProcessing = activatingPlaceholders.findIndex(holder => placeholderId == holder) >= 0;
+    const isProcessing = activatingPlaceholders.findIndex(holder => placeholderId === holder) >= 0;
     return (
       <div className="sign-block">
         <h2>
