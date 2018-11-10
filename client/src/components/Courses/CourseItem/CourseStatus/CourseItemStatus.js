@@ -39,7 +39,7 @@ class CourseItemStatus extends Component {
 
   openRoomExpirationWarning() {
     this.setState({
-      showTerminateLessonPopup: false
+      showTerminateLessonPopup: true
     });
   }
 
@@ -128,9 +128,11 @@ class CourseItemStatus extends Component {
           </PrimaryButton>
           <SimpleDialogComponent show={this.state.showTerminateLessonPopup}
                                  title={this.context.t('lesson_room_is_expired_title')}
-                                 acceptCallback={this.terminateLesson.bind(this)}
+                                 acceptCallback={this.terminateLesson.bind(this, learningLesson.id)}
                                  cancelCallback={this.closeTerminateLesson.bind(this)}>
-            <span>{this.context.t('lesson_room_is_expired_msg')}</span>
+            <span>{this.context.t('lesson_room_is_expired_msg', {
+              lessonName: <strong>{course.title}</strong>
+            })}</span>
           </SimpleDialogComponent>
         </div>
       )
@@ -171,7 +173,7 @@ CourseItemStatus.propTypes = {
   // the public course will have some additional feature like following
   course: React.PropTypes.object.isRequired,
   teachingCourse: React.PropTypes.object,
-  isStudent: React.PropTypes.object,
+  isStudent: React.PropTypes.bool,
   terminateLesson: React.PropTypes.func,
   joinToBBBRoom: React.PropTypes.func
 };
