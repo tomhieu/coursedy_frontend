@@ -3,5 +3,5 @@ export class LessonStatus {
 
   static STARTED = 'started';
 
-  static FINISH = 'finish';
+  static FINISH = 'finished';
 }

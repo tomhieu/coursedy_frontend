@@ -869,5 +869,10 @@ export default {
   at_here: 'at here',
   create_course: 'Create',
   bbb_selected_lesson: 'Selected lesson: {lessonName}',
-  bbb_change_lesson_title: 'Selected lesson to teach'
+  bbb_change_lesson_title: 'Selected lesson to teach',
+  lesson_room_is_expired_title: 'Terminate Lesson',
+  lesson_room_is_expired_msg: 'Lesson {lessonName} of this course has been exceed the duration. So please terminate this lesson to start teaching other lessons.',
+  teach_lesson: 'teach',
+  study_lesson: 'study',
+  rejoin_classroom: 'Rejoin to class'
 };

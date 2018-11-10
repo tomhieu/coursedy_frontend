@@ -7,6 +7,7 @@ import styles from './LearningNotificationPopupContainer.module.scss'
 import FormDialogContainer from '../../Dialog/FormDialogContainer';
 import UpcommingCourseNotificationPopup from '../../../components/Layout/UpcommingCoursePopup/UpcommingCourseNotificationPopup';
 import {LessonStatus} from '../../../constants/LessonStatus';
+import DateUtils from '../../../utils/DateUtils';
 
 class LearningNotificationPopupContainer extends Component {
   render() {
@@ -14,8 +15,14 @@ class LearningNotificationPopupContainer extends Component {
     if (course == null) {
       return null;
     }
+    const upcommingLesson = course.lessons.find(l => l.status === LessonStatus.NOT_STARTED);
+    const hasStartedLessonInDay = course.lessons.find(les => les.status === LessonStatus.STARTED
+                  && DateUtils.compareTwoDateWithoutTime(new Date(), new Date(les.update_at)) === 0);
+    if (!upcommingLesson || hasStartedLessonInDay) {
+      return null;
+    }
+
     const classRoomId = course && course.bigbluebutton_room ? course.bigbluebutton_room.slug : '';
-    const upcommingLesson = course.lessons.find(l => l.status !== LessonStatus.FINISH && l.status !== LessonStatus.STARTED);
     return (
       <FormDialogContainer show={classRoomId !== null}
                            formName="joinToClassForm"
@@ -58,7 +65,7 @@ const mapStateToProps = (state, props) => {
   if (!course) {
     return { initialValues };
   }
-  const upcommingLesson = course.lessons.find(l => l.status !== LessonStatus.FINISH && l.status !== LessonStatus.STARTED);
+  const upcommingLesson = course.lessons.find(l => l.status !== LessonStatus.FINISH);
   initialValues.selectedLesson = upcommingLesson.id;
   const selectedLessonId = joinToClassForm && joinToClassForm.values.selectedLesson ?  joinToClassForm.values.selectedLesson : upcommingLesson.id;
   return { initialValues, selectedLessonId };

@@ -11,6 +11,7 @@ import {CourseStatus} from '../../../constants/CourseStatus';
 import CheckIcon from '../../Core/Icons/CheckIcon';
 import StartCourseFormContainer from '../../../containers/Courses/TutorCourse/StartCourseFormContainer';
 import DateUtils from '../../../utils/DateUtils';
+import CourseItemStatus from './CourseStatus/CourseItemStatus';
 
 class TutorCourseItem extends Component {
   constructor() {
@@ -28,47 +29,12 @@ class TutorCourseItem extends Component {
     this.props.openEnrolledStudentList(courseId);
   }
 
-  stopTeachingCourse(course) {
-    const res = this.props.stopCourse(course.id);
-    res.then((r2) => {
-      this.props.fetchListTutorActiveCourse();
-    });
-  }
-
-  openConfirmationBeforeStopTeaching(course) {
-    this.props.openConfirmationPopup(this.context.t('stop_teaching_course_title'),
-      this.context.t('stop_teaching_course_message', {
-        course_title: <strong>{course.title}</strong>
-      }), this.stopTeachingCourse.bind(this, course));
-  }
-
   openCourseDetails(courseId) {
     this.props.openCourseDetails(courseId);
   }
 
-  showStartCourseWarning(course) {
-    this.setState({
-      showPopup: true,
-      acceptCallback: (startDate) => {
-        this.props.startCourse(course.id, startDate);
-      }
-    });
-  }
-
-  closePopup() {
-    this.setState({ showPopup: false });
-  }
-
-  startTeachingCourse(startDate) {
-    this.closePopup();
-    const response = this.props.startCourse(this.props.course.id, startDate);
-    response.then(res => {
-      this.props.fetchListTutorCourse();
-    });
-  }
-
   render() {
-    const { course} = this.props;
+    const { course, teachingCourse} = this.props;
     const alreadyStarted = DateUtils.compareTwoDate(new Date(course.start_date), new Date()) === -1;
     const showEnrolledStudentList = this.props.activeCourseId === course.id;
     return (
@@ -132,37 +98,15 @@ class TutorCourseItem extends Component {
                 <div className="col-xl-3 col-lg-4 col-md-4 col-sm-4 course-status-col">
                   <div className="d-flex flex-row align-items-center">
                     <div className={styles.leftSeperateLine} />
-                    {
-                      course.status === CourseStatus.NOT_STARTED
-                        ? <div className={`${styles.courseStatus} ${styles.notStart}`}>{TT.changeLocale(this.props.lang).t(course.verification_status || course.status)}</div>
-                        : course.status === CourseStatus.STARTED
-                          ? <div className={`${styles.courseStatus} ${styles.started}`}>{TT.changeLocale(this.props.lang).t(course.verification_status || course.status)}</div>
-                          : <div className={`${styles.courseStatus} ${styles.finished}`}>{TT.changeLocale(this.props.lang).t(course.verification_status || course.status)}</div>
-                    }
+                    <div className={`${styles.courseStatus} ${styles.notStart}`}>
+                      <span>{this.context.t(course.verification_status || course.status)}</span>
+                    </div>
                   </div>
                 </div>
                 <div className="col-xl-3 col-lg-4 col-md-6 col-sm-4">
                   <div className="d-flex flex-row align-items-center justify-content-right">
                     <div className={styles.leftSeperateLine} />
-                    {
-                      course.status === CourseStatus.NOT_STARTED ?
-                        <PrimaryButton
-                          isSmallButton
-                          round
-                          line={false}
-                          customClasses="start-course-btn"
-                          callback={this.showStartCourseWarning.bind(this, course)}
-                          title={TT.changeLocale(this.props.lang).t('start_course')}
-                        /> : course.status === CourseStatus.STARTED ?
-                        <PrimaryButton
-                          isSmallButton
-                          round
-                          line={false}
-                          customClasses="start-course-btn"
-                          callback={this.openConfirmationBeforeStopTeaching.bind(this, course)}
-                          title={TT.changeLocale(this.props.lang).t('stop_course')}
-                        /> : null
-                    }
+                    <CourseItemStatus course={course} teachingCourse={teachingCourse} isStudent={false} {...this.props} />
                     <a className={styles.courseActionButton} onClick={this.openCourseDetails.bind(this, course.id)}>
                       <SettingIcon width={14} height={14} />
                     </a>
@@ -178,12 +122,6 @@ class TutorCourseItem extends Component {
               <ListEnrolledStudent courseId={course.id} />
             </div> : null
         }
-        <StartCourseFormContainer show={this.state.showPopup}
-                                  acceptCallback={this.state.acceptCallback}
-                                  onSubmit={this.startTeachingCourse.bind(this)}
-                                  cancelCallback={this.closePopup.bind(this)}
-                                  {...this.props}>
-        </StartCourseFormContainer>
       </div>
     );
   }
@@ -196,6 +134,7 @@ TutorCourseItem.contextTypes = {
 TutorCourseItem.propTypes = {
   // the public course will have some additional feature like following
   course: React.PropTypes.object.isRequired,
+  teachingCourse: React.PropTypes.object,
   startCourse: React.PropTypes.func,
   stopCourse: React.PropTypes.func,
   deleteCourse: React.PropTypes.func,

@@ -1,9 +1,8 @@
 import cssModules from 'react-css-modules';
-import { Modal, ModalBody } from 'reactstrap';
-import { Component } from 'react';
+import Modal from 'react-bootstrap4-modal';
 import * as React from 'react';
-import { TT } from 'utils/locale';
-import { UserAvatarForm } from '../../Account/UserAvatarForm';
+import {Component} from 'react';
+import {UserAvatarForm} from '../../Account/UserAvatarForm';
 import styles from './CoursedyUploadImage.module.scss';
 import UploadIcon from '../Icons/UploadIcon';
 
@@ -55,8 +54,8 @@ class CoursedyUploadImage extends Component {
         }
 
 
-        <Modal isOpen={showPopupChangeImage} onClosed={closePopupToSelectImage.bind(this)}>
-          <ModalBody>
+        <Modal visible={showPopupChangeImage} onClickBackdrop={closePopupToSelectImage.bind(this)}>
+          <div className="modal-body">
             <UserAvatarForm
               onSubmit={uploadCourseCoverImage.bind(this)}
               cancel={closePopupToSelectImage.bind(this)}
@@ -70,7 +69,7 @@ class CoursedyUploadImage extends Component {
               placeholderId={placeholderId}
               isProcessing={isProcessing}
             />
-          </ModalBody>
+          </div>
         </Modal>
       </div>
     );

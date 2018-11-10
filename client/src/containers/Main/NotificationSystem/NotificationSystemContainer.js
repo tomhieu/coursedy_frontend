@@ -15,6 +15,7 @@ import {UserRole} from '../../../constants/UserRole';
 import Network from '../../../utils/network';
 import FormDialogContainer from '../../Dialog/FormDialogContainer';
 import LearningNotificationPopupContainer from '../BBB/LearningNotificationPopupContainer';
+import {joinToBBBRoom} from '../../../actions/Bigbluebutton/BigbluebuttonActionCreator';
 
 class NotificationSystemContainer extends Component {
   constructor() {
@@ -86,36 +87,9 @@ class NotificationSystemContainer extends Component {
     const {teachingCourse} = this.props.session;
     const classRoomId = teachingCourse && teachingCourse.bigbluebutton_room ? teachingCourse.bigbluebutton_room.slug : '';
     const lessonId = formValue.selectedLesson;
-    Network().get(`rooms/${classRoomId}/join?lesson_id=${lessonId}`, {}, true).then((res) => {
-      const bbbTab = window.open(res.url, '_blank');
-      // join fails because of blocking pop-up
-      if (bbbTab === null) {
-        const lang = this.props.lang === 'vn' ? 'vi' : 'en';
-        const popupBlockerNoti = {
-          title: '',
-          message: this.context.t('browser_popup_blocker', {
-            support_link: <a href={`https://support.google.com/chrome/answer/95472?co=GENIE.Platform%3DDesktop&hl=${lang}`} target='_blank'>{this.context.t('guide_link')}</a>,
-            bbb_join_link: <a onClick={(e) => this.afterJoiningUpcomingClass(e)} href={res.url} target="_blank">{this.context.t('bbb_join_again')}</a>
-          }),
-          position: 'tr',
-          onRemove: this.startPolling.bind(this),
-          autoDismiss: 0
-        }
-        this.props.showInfoNotification(popupBlockerNoti);
-      } else {
-        // executed after joining an active class
-        this.props.afterJoinUpcomingClass();
-      }
-    }, (err) => {
-      const roomNotReadyNotif = {
-        title: '',
-        message: this.context.t('no_bbb_room_ready'),
-        position: 'tr',
-        autoDismiss: 5,
-        onRemove: this.startPolling.bind(this),
-      }
-      this.props.showInfoNotification(roomNotReadyNotif);
-    });
+    const lang = this.props.lang === 'vn' ? 'vi' : 'en';
+
+    this.props.joiningToBBBroom(classRoomId, lessonId, this.context, lang, this.startPolling.bind(this), this.afterJoiningUpcomingClass.bind(this));
   }
 
   showNotification(notification, timeout) {
@@ -208,6 +182,7 @@ const mapDispatchToProps = dispatch => ({
   showInfoNotification: (notification) => dispatch(success(notification)),
   stopPolling: (notification) => dispatch({ type: STOP_POLLING_UPCOMMING_COURSE }),
   startPolling: (notification) => dispatch({ type: START_POLLING_UPCOMMING_COURSE }),
+  joiningToBBBroom: (classRoomId, lessonId, context, lang, onRemoveNotification, afterJoining) => dispatch(joinToBBBRoom(classRoomId, lessonId, context, lang, onRemoveNotification, afterJoining)),
 });
 export default connect(
   mapStateToProps, mapDispatchToProps

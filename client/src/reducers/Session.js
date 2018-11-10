@@ -58,9 +58,9 @@ const session = (state = {
     case asyncActs.CLEAR_STUDENT_ACTIVE_COURSES:
       return { ...state, newStartedCourses: [] };
     case asyncActs.CLOSE_POPUP_JOIN_UPCOMMING_CLASS:
-      return { ...state, teachingCourse: null, stopPolling: false };
+      return { ...state, stopPolling: false };
     case asyncActs.STARTED_JOINING_ACTIVE_CLASS:
-      return { ...state, teachingCourse: null, isJoiningActiveClass: true, stopPolling: true };
+      return { ...state, isJoiningActiveClass: true, stopPolling: true };
     case asyncActs.STOP_POLLING_UPCOMMING_COURSE:
       return { ...state, stopPolling: true };
     case asyncActs.START_POLLING_UPCOMMING_COURSE:
