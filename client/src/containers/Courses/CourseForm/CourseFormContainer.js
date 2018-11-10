@@ -61,7 +61,7 @@ class CourseFormContainer extends Component {
   }
 
   saveSection({ title }) {
-    this.props.saveOrUpdateSection(this.courseId, title, name);
+    this.props.saveOrUpdateSection(this.courseId, title);
   }
 
   acceptPopup() {

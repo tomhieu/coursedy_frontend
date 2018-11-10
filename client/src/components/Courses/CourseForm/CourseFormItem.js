@@ -12,6 +12,7 @@ class CourseFormItem extends Component {
       editMode = false, showLabel = true, fieldLabel, fieldId, isMandatory, fieldName, activatedField = [],
       isRichTextField = false, canEditable, typeField, options, placeholder, customClassName
     } = this.props;
+
     if (editMode) {
       return (
         <InlineEditFormField
