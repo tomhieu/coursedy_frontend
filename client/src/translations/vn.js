@@ -685,7 +685,7 @@ export default {
   student_email: 'Email',
   student_gender: 'Giới tính',
   start_course: 'Bắt đầu dạy',
-  stop_course: 'Dừng dạy khoá học',
+  stop_course: 'Dừng dạy',
   cancel_course: 'Huỷ khoá ',
   not_started: 'Chưa bắt đầu',
   started: 'Đang dạy',
@@ -834,5 +834,5 @@ export default {
   lesson_room_is_expired_msg: 'Bài học {lessonName} của khoá học này đã hết thời gian học. Xin vui lòng kết thúc bài học này để bắt đầu dạy bài học khác.',
   teach_lesson: 'dạy',
   study_lesson: 'học',
-  rejoin_classroom: 'Vào lại lớp'
+  rejoin_classroom: 'Vào lại'
 };

@@ -11,20 +11,15 @@ import DateUtils from '../../../utils/DateUtils';
 
 class LearningNotificationPopupContainer extends Component {
   render() {
-    const {currentUser, course, handleSubmit, acceptJoinToClassRoom, closePopupJoinUpcomingClass, selectedLessonId} = this.props;
+    const {currentUser, course, handleSubmit, acceptJoinToClassRoom, closePopupJoinUpcomingClass, selectedLessonId, showUpcommingClassPopup} = this.props;
     if (course == null) {
       return null;
     }
     const upcommingLesson = course.lessons.find(l => l.status === LessonStatus.NOT_STARTED);
-    const hasStartedLessonInDay = course.lessons.find(les => les.status === LessonStatus.STARTED
-                  && DateUtils.compareTwoDateWithoutTime(new Date(), new Date(les.update_at)) === 0);
-    if (!upcommingLesson || hasStartedLessonInDay) {
-      return null;
-    }
 
     const classRoomId = course && course.bigbluebutton_room ? course.bigbluebutton_room.slug : '';
     return (
-      <FormDialogContainer show={classRoomId !== null}
+      <FormDialogContainer show={showUpcommingClassPopup}
                            formName="joinToClassForm"
                            title={this.context.t('join_active_course_popup_title')}
                            acceptCallback={acceptJoinToClassRoom.bind(this)}
@@ -55,11 +50,12 @@ LearningNotificationPopupContainer.propTypes = {
   currentUser: React.PropTypes.object.isRequired,
   course: React.PropTypes.object.isRequired,
   acceptJoinToClassRoom: React.PropTypes.func,
-  closePopupJoinUpcomingClass: React.PropTypes.func
+  closePopupJoinUpcomingClass: React.PropTypes.func,
+  showUpcommingClassPopup: React.PropTypes.bool
 };
 
 const mapStateToProps = (state, props) => {
-  const { course } = props;
+  const { course, session } = props;
   const { joinToClassForm } = state.form;
   const initialValues = {selectedLesson: 0};
   if (!course) {

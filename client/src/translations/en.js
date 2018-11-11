@@ -761,7 +761,7 @@ export default {
   student_email: 'Email',
   student_gender: 'Gender',
   start_course: 'Start course',
-  stop_course: 'Stop course',
+  stop_course: 'Stop teaching',
   cancel_course: 'Cancel course',
   not_started: 'Not started',
   started: 'On going',
@@ -874,5 +874,5 @@ export default {
   lesson_room_is_expired_msg: 'Lesson {lessonName} of this course has been exceed the duration. So please terminate this lesson to start teaching other lessons.',
   teach_lesson: 'teach',
   study_lesson: 'study',
-  rejoin_classroom: 'Rejoin to class'
+  rejoin_classroom: 'Rejoin'
 };
