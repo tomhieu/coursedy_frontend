@@ -410,7 +410,6 @@ class PlainClipboard extends Clipboard {
     this.quill.updateContents(delta, 'user');
     this.quill.setSelection(index, length, 'user');
     this.quill.scrollIntoView();
-    console.log('onPaste', delta, index, length);
   }
 }
 

@@ -19,8 +19,22 @@ class ConfirmationPopup extends Component {
           </p>
         </ModalBody>
         <ModalFooter>
-          <PrimaryButton type="button" customClasses="button accept-button" callback={this.props.confirm} title={this.context.t('confirm_delete')} />
-          <PrimaryButton type="button" customClasses="button cancel-button" callback={this.props.closePopup} title={this.context.t('close')} />
+          <PrimaryButton
+            type="button"
+            line={false}
+            isPrimary
+            customClasses="button accept-button"
+            callback={this.props.confirm}
+            title={this.context.t('confirm_delete')}
+          />
+          <PrimaryButton
+            type="button"
+            line
+            isPrimary={false}
+            customClasses="button cancel-button"
+            callback={this.props.closePopup}
+            title={this.context.t('close')}
+          />
         </ModalFooter>
       </Modal>
     );

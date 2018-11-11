@@ -35,10 +35,14 @@ class SearchFormContainer extends Component {
   }
 
   onSearchMoreCourse(searchForm) {
+    if (searchForm.key_word) {
+      this.props.updateFilter({ term: searchForm.key_word });
+    }
+
     this.props.closeSuggestion();
-    this.props.updateFilter({ term: searchForm.key_word });
+    const query = searchForm.key_word ? `?q=${searchForm.key_word}` : '';
     setTimeout(() => {
-      this.context.router.history.push(`/courses?q=${searchForm.key_word}`);
+      this.context.router.history.push(`/courses${query}`);
     }, 200);
   }
 
