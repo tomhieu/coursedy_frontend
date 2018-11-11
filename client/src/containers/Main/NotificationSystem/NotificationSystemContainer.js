@@ -25,8 +25,8 @@ class NotificationSystemContainer extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    const { hasActiveCourseToLearn, isJoiningActiveClass, currentUser, stopPolling } = nextProps.session;
-    if (hasActiveCourseToLearn && currentUser && !isJoiningActiveClass && !stopPolling) {
+    const { hasActiveCourseToLearn, currentUser, stopPolling } = nextProps.session;
+    if (hasActiveCourseToLearn && currentUser && !stopPolling) {
       this.pollingUpcommingCourse(stopPolling, currentUser, 10000);
     }
   }
@@ -142,6 +142,7 @@ class NotificationSystemContainer extends Component {
         <div className="join-course">
           <LearningNotificationPopupContainer course={session.teachingCourse}
                                               currentUser={session.currentUser}
+                                              showUpcommingClassPopup={session.showUpcommingClassPopup}
                                               onSubmit={this.acceptJoinToClassRoom.bind(this)}
                                               closePopupJoinUpcomingClass={this.props.closePopupJoinUpcomingClass.bind(this)}
                                               acceptJoinToClassRoom={this.acceptJoinToClassRoom.bind(this)}>
