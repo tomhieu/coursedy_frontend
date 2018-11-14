@@ -7,10 +7,17 @@ import "babel-polyfill"
 import {renderRadioFields} from '../../Core/CustomComponents';
 import Field from 'redux-form/es/Field';
 import FormField from '../../Core/FormField';
+import DateUtils from '../../../utils/DateUtils';
+import PrimaryButton from '../../Core/PrimaryButton/PrimaryButton';
+import RefreshIcon from '../../Core/Icons/RefreshIcon';
+import SimpleDialogComponent from '../../Core/SimpleDialogComponent';
 
 class UpcommingCourseNotificationPopup extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      showTerminateLessonPopup: false
+    };
   }
   openCourseDetails(courseUrl) {
     this.props.closePopupJoinUpcomingClass();
@@ -25,8 +32,25 @@ class UpcommingCourseNotificationPopup extends Component {
     return <a onClick={this.openCourseDetails.bind(this, courseDetailUrl)} className="link-course-details">{courseName}</a>;
   }
 
+  openRoomExpirationWarning() {
+    this.setState({
+      showTerminateLessonPopup: true
+    });
+  }
+
+  closeTerminateLesson() {
+    this.setState({
+      showTerminateLessonPopup: false
+    });
+  }
+
+  terminateLesson(lessonId) {
+    this.props.terminateLesson(lessonId);
+    this.closeTerminateLesson();
+  }
+
   render() {
-    const { currentUser, teachingCourse, selectedLessonId } = this.props;
+    const { currentUser, teachingCourse, selectedLessonId, isExpiredLesson } = this.props;
     const teacherName = teachingCourse !== null ? teachingCourse.user.name : '';
     const courseName = teachingCourse !== null ? teachingCourse.title : '';
     const courseId = teachingCourse !== null ? teachingCourse.id : '';
@@ -50,6 +74,17 @@ class UpcommingCourseNotificationPopup extends Component {
             <div>{this.context.t('bbb_selected_lesson', {lessonName: <strong>{selectedLesson.title}</strong>})}</div>
           </div> : null
         }
+        {
+          isExpiredLesson ?
+            <div className="d-flex flex-row align-items-center lesson-warning">
+              <div className="terminate-lesson">{this.context.t('lesson_expiration_message')}</div>
+              <PrimaryButton isSmallButton={true} round line={false}
+                             iconButton={true}
+                             customClasses="start-course-btn"
+                             callback={this.openRoomExpirationWarning.bind(this)}
+                             title={this.context.t('lesson_room_is_expired_title')} />
+            </div>: null
+        }
         <FormField
           fieldId="selectedLesson"
           fieldLabel={this.context.t('bbb_change_lesson_title')}
@@ -60,6 +95,15 @@ class UpcommingCourseNotificationPopup extends Component {
           formControlName="selectedLesson"
           typeField="custom_select"
         />
+        {
+          selectedLesson ?
+            <SimpleDialogComponent show={this.state.showTerminateLessonPopup}
+                                   title={this.context.t('lesson_room_is_expired_title')}
+                                   acceptCallback={this.terminateLesson.bind(this, selectedLesson.id)}
+                                   cancelCallback={this.closeTerminateLesson.bind(this)}>
+              <span>{this.context.t('termination_lesson_confirmation')}</span>
+            </SimpleDialogComponent> : null
+        }
       </div>
     )
   }
@@ -72,11 +116,13 @@ UpcommingCourseNotificationPopup.contextTypes = {
 UpcommingCourseNotificationPopup.propTypes = {
   currentUser: React.PropTypes.object,
   teachingCourse: React.PropTypes.object,
-  selectedLessonId: React.PropTypes.number,
+  selectedLessonId: React.PropTypes.string,
   lesson: React.PropTypes.object,
   teacherName: React.PropTypes.string,
   acceptJoinToClassRoom: React.PropTypes.func,
-  closePopupJoinUpcomingClass: React.PropTypes.func
+  closePopupJoinUpcomingClass: React.PropTypes.func,
+  isExpiredLesson: React.PropTypes.bool,
+  terminateLesson: React.PropTypes.func
 };
 
 export default UpcommingCourseNotificationPopup;

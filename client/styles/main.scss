@@ -1979,3 +1979,13 @@ body.application {
   padding: 5px 0;
   font-size: 16px;
 }
+
+.terminate-lesson {
+  margin-right: 10px;
+  color: $not_started_status_color;
+  font-size: 12px;
+}
+
+.lesson-warning {
+  padding: 5px 0 12px 0;
+}

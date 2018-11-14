@@ -870,9 +870,11 @@ export default {
   create_course: 'Create',
   bbb_selected_lesson: 'Selected lesson: {lessonName}',
   bbb_change_lesson_title: 'Selected lesson to teach',
-  lesson_room_is_expired_title: 'Terminate Lesson',
+  lesson_room_is_expired_title: 'Terminate',
   lesson_room_is_expired_msg: 'Lesson {lessonName} of this course has been exceed the duration. So please terminate this lesson to start teaching other lessons.',
   teach_lesson: 'teach',
   study_lesson: 'study',
-  rejoin_classroom: 'Rejoin'
+  rejoin_classroom: 'Rejoin',
+  lesson_expiration_message: 'Warning: This lesson is expired. So, please terminate this lesson before starting another one.',
+  termination_lesson_confirmation: 'Are you sure you want to terminate this lesson?'
 };

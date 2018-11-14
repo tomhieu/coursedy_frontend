@@ -8,14 +8,26 @@ import FormDialogContainer from '../../Dialog/FormDialogContainer';
 import UpcommingCourseNotificationPopup from '../../../components/Layout/UpcommingCoursePopup/UpcommingCourseNotificationPopup';
 import {LessonStatus} from '../../../constants/LessonStatus';
 import DateUtils from '../../../utils/DateUtils';
+import {FINISH_LESSON} from '../../../actions/AsyncActionCreator';
+import Network from '../../../utils/network';
 
 class LearningNotificationPopupContainer extends Component {
+  isRoomExpired(teachingCourse, selectedLessonId) {
+    const selectedLesson = teachingCourse.lessons.find(les => les.id === Number(selectedLessonId));
+    if (!selectedLesson || selectedLesson.status !== LessonStatus.STARTED) {
+      return false;
+    }
+    return DateUtils.compareTwoDateWithoutTime(new Date(), new Date(selectedLesson.updated_at)) !== 0;
+  }
+
   render() {
-    const {currentUser, course, handleSubmit, acceptJoinToClassRoom, closePopupJoinUpcomingClass, selectedLessonId, showUpcommingClassPopup} = this.props;
+    const {currentUser, course, handleSubmit, acceptJoinToClassRoom, closePopupJoinUpcomingClass,
+      selectedLessonId, showUpcommingClassPopup, terminateLesson} = this.props;
     if (course == null) {
       return null;
     }
     const upcommingLesson = course.lessons.find(l => l.status === LessonStatus.NOT_STARTED);
+    const isExpiredLesson = this.isRoomExpired(course, selectedLessonId);
 
     const classRoomId = course && course.bigbluebutton_room ? course.bigbluebutton_room.slug : '';
     return (
@@ -24,6 +36,7 @@ class LearningNotificationPopupContainer extends Component {
                            title={this.context.t('join_active_course_popup_title')}
                            acceptCallback={acceptJoinToClassRoom.bind(this)}
                            acceptLabel={this.context.t('join_to_class_button_name')}
+                           canSubmit={!isExpiredLesson}
                            cancelCallback={closePopupJoinUpcomingClass.bind(this)}>
         <form onSubmit={handleSubmit(this.props.onSubmit)} className="inline-form" multiple>
           <UpcommingCourseNotificationPopup
@@ -33,7 +46,9 @@ class LearningNotificationPopupContainer extends Component {
             teacherName={course.user.name}
             currentUser={currentUser}
             classRoomId={classRoomId}
+            isExpiredLesson={isExpiredLesson}
             acceptJoinToClassRoom={acceptJoinToClassRoom.bind(this)}
+            terminateLesson={terminateLesson}
             closePopupJoinUpcomingClass={closePopupJoinUpcomingClass.bind(this)}
           />
         </form>
@@ -67,7 +82,20 @@ const mapStateToProps = (state, props) => {
   return { initialValues, selectedLessonId };
 };
 
-export default connect(mapStateToProps)(reduxForm({
+const mapDispatchToProps = (dispatch, props) => ({
+  terminateLesson: lessonId => {
+    const res = dispatch({
+      type: FINISH_LESSON,
+      payload: Network().update(`lessons/${lessonId}`, {id: lessonId, status: LessonStatus.FINISH})
+    });
+
+    res.then(() => {
+      props.closePopupJoinUpcomingClass();
+    })
+  }
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(reduxForm({
   form: 'joinToClassForm',
   fields: ['selectedLesson'],
 })(cssModules(LearningNotificationPopupContainer, styles)));
