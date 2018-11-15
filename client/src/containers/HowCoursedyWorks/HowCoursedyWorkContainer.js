@@ -31,8 +31,6 @@ class HowCoursedyWorkContainer extends Component {
   }
 
   render() {
-    const coursedyWorkForTeacher = this.context.t('coursedy_works_for_teacher');
-    const coursedyWorkForStudent = this.context.t('coursedy_works_for_student');
     const { t: translation } = this.context;
 
     return (
@@ -78,7 +76,7 @@ class HowCoursedyWorkContainer extends Component {
                       </Row>
                       <Row>
                         <Col sm="6" md="6" lg="3" className="mb-15">
-                          <Link to="/how-coursedy-works/teacher-course-building">
+                          <Link to={translation('how_coursedy_works_teacher_create_course_link')}>
                             <Card body>
                               <div className={styles.cardWrap}>
                                 <div className={styles.icon}><img src="/icons/course-creation.svg" alt="" /></div>
@@ -89,12 +87,23 @@ class HowCoursedyWorkContainer extends Component {
                           </Link>
                         </Col>
                         <Col sm="6" md="6" lg="3" className="mb-15">
-                          <Link to="/how-coursedy-works/teacher-course-management">
+                          <Link to={translation('how_coursedy_works_teacher_manage_course_link')}>
                             <Card body>
                               <div className={styles.cardWrap}>
                                 <div className={styles.icon}><img src="/icons/course-management.svg" alt="" /></div>
                                 <p className={styles.reg}>{translation('coursedy_works_for_teacher_card_course_management')}</p>
                                 <p className={styles.small}>{translation('coursedy_works_for_teacher_card_course_management_description')}</p>
+                              </div>
+                            </Card>
+                          </Link>
+                        </Col>
+                        <Col sm="6" md="6" lg="3" className="mb-15">
+                          <Link to={translation('how_coursedy_works_teacher_use_bbb_link')}>
+                            <Card body>
+                              <div className={styles.cardWrap}>
+                                <div className={styles.icon}><img src="/icons/video-stream.svg" alt="" /></div>
+                                <p className={styles.reg}>{translation('coursedy_works_for_teacher_card_course_how_to_live_stream')}</p>
+                                <p className={styles.small}>{translation('coursedy_works_for_teacher_card_course_how_to_live_stream_description')}</p>
                               </div>
                             </Card>
                           </Link>

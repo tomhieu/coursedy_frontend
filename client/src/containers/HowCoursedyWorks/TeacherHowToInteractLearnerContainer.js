@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import DateUtils from '../../../utils/DateUtils';
+import DateUtils from '../../utils/DateUtils';
 
-class TeacherCourseManagement extends Component {
+class TeacherHowToInteractLearnersContainer extends Component {
   static contextTypes = {
     t: React.PropTypes.func.isRequired
   };
@@ -13,7 +13,7 @@ class TeacherCourseManagement extends Component {
       <div className="article-wrapper">
         <div className="container sub-header pt-20">
           <h1>
-            {translation('teacher_course_management_title')}
+            {translation('teacher_how_to_interact_with_learner_title')}
           </h1>
         </div>
         <div className="container-divider" />
@@ -34,8 +34,8 @@ class TeacherCourseManagement extends Component {
                           </Link>
                         </li>
                         <li>
-                          <Link to={translation('how_coursedy_works_teacher_use_bbb_link')}>
-                            { translation('how_coursedy_works_teacher_use_bbb_title') }
+                          <Link to={translation('how_coursedy_works_teacher_manage_course_link')}>
+                            { translation('how_coursedy_works_teacher_manage_course_title')}
                           </Link>
                         </li>
                       </ul>
@@ -49,54 +49,62 @@ class TeacherCourseManagement extends Component {
                 <div className="article-content">
                   <div className="article-body">
                     <p>
+                      {translation('teacher_how_to_interact_with_learner_description')}
+                    </p>
+                    <p>
                       <br />
                       <span className="text-title">
-                        <strong>{translation('teacher_course_building_topic_title_one')}</strong>
+                        <strong>{translation('teacher_how_to_interact_with_learner_topic_title_one')}</strong>
                       </span>
                     </p>
                     <p>
-                      { translation('teacher_course_building_topic_description_one') }{' '}<a href="/login" target="_blank">{translation('at_here')}</a>
+                      { translation('teacher_how_to_interact_with_learner_topic_description_one') }{' '}<a href="/login" target="_blank">{translation('at_here')}</a>
                       {'.'}
                     </p>
                     <p>
                       <br />
                       <span className="text-title">
-                        <strong>{translation('teacher_course_building_topic_title_two')}</strong>
+                        <strong>{translation('teacher_how_to_interact_with_learner_topic_title_two')}</strong>
                       </span>
                     </p>
                     <p>
-                      { translation('teacher_course_building_topic_description_two') }{' '}<a href="/dashboard/profile" target="_blank">{translation('at_here')}</a>
-                      {'.'}
+                      { translation('teacher_how_to_interact_with_learner_topic_description_two') }{' '}{'.'}
+                    </p>
+                    <p>
+                      <img
+                        className="img-responsive"
+                        src={translation('teacher_how_to_interact_with_learner_topic_description_two_image_link_one')}
+                        alt=""
+                      />
+                    </p>
+                    <p>
+                      <img
+                        className="img-responsive"
+                        src={translation('teacher_how_to_interact_with_learner_topic_description_two_image_link_two')}
+                        alt=""
+                      />
                     </p>
                     <p>
                       <br />
                       <span className="text-title">
-                        <strong>{ translation('teacher_course_management_topic_title_three')}</strong>
+                        <strong>{ translation('teacher_how_to_interact_with_learner_topic_title_three')}</strong>
                       </span>
                     </p>
                     <p>
-                      <br />
-                      <span className="text-title">
-                        <strong>{translation('teacher_course_management_pending_courses_title')}</strong>
-                      </span>
+                      { translation('teacher_how_to_interact_with_learner_topic_description_three') }
                     </p>
                     <p>
-                      { translation('teacher_course_management_pending_courses_description') }
-                    </p>
-                    <p>
-                      <br />
-                      <span className="text-title">
-                        <strong>{translation('teacher_course_management_active_courses_title')}</strong>
-                      </span>
-                    </p>
-                    <p>
-                      { translation('teacher_course_management_active_courses_description') }
+                      <img
+                        className="img-responsive"
+                        src={translation('teacher_how_to_interact_with_learner_topic_description_three_image_link_one')}
+                        alt=""
+                      />
                     </p>
                   </div>
                 </div>
                 <footer className="article-footer">
                   <div className="article-updated">
-                    { DateUtils.dateTimeFromNow(translation('teacher_course_management_updated_date')) }
+                    { DateUtils.dateTimeFromNow(translation('teacher_how_to_interact_with_learner_updated_date')) }
                   </div>
                 </footer>
               </div>
@@ -108,4 +116,4 @@ class TeacherCourseManagement extends Component {
   }
 }
 
-export default TeacherCourseManagement;
+export default TeacherHowToInteractLearnersContainer;

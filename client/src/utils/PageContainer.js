@@ -22,7 +22,7 @@ class PageContainer extends Component {
 
   static contextTypes = {
     t: PropTypes.func.isRequired
-  }
+  };
 
   render() {
     const {
