@@ -38,11 +38,6 @@ class FooterMain extends Component {
                     <i className="fa fa-facebook" />
                   </Link>
                 </li>
-                <li>
-                  <Link to={this.context.t('product_twitter_link')} target="_blank">
-                    <i className="fa fa-twitter" />
-                  </Link>
-                </li>
               </ul>
             </div>
           </div>

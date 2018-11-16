@@ -405,7 +405,7 @@ export default {
   product_blog: 'Blog',
   product_contact_us: 'Liên lạc chúng tôi',
   product_follow_on: 'Kênh theo dõi',
-  product_fb_link: '//facebook.com/coursedydotcom',
+  product_fb_link: '//www.facebook.com/Coursedy-180847969290072/',
   product_twitter_link: '//twitter.com/coursedyhq',
   product_payment_partners: 'Hình thức thanh toán',
   payment_guide: 'Hướng dẫn thanh toán',

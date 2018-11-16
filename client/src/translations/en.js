@@ -540,7 +540,7 @@ export default {
   product_about_us: 'About us',
   product_blog: 'Blog',
   product_follow_on: 'Follow us on',
-  product_fb_link: '//facebook.com/coursedydotcom',
+  product_fb_link: '//www.facebook.com/Coursedy-180847969290072/',
   product_twitter_link: '//twitter.com/coursedyhq',
   product_payment_partners: 'Payment Partners',
   payment_guide: 'Payment',
