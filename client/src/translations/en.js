@@ -543,6 +543,7 @@ export default {
   product_fb_link: '//facebook.com/coursedydotcom',
   product_twitter_link: '//twitter.com/coursedyhq',
   product_payment_partners: 'Payment Partners',
+  payment_guide: 'Payment',
   product_resources: 'Resource',
   how_coursedy_works: 'How Coursedy Works',
   product_help_center: 'Help Center',

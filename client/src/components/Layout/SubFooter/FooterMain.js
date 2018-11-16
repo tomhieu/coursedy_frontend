@@ -24,6 +24,7 @@ class FooterMain extends Component {
                 <li><Link to="/how-coursedy-works">{this.context.t('how_coursedy_works')}</Link></li>
                 <li><Link to="/help">{this.context.t('product_help_center')}</Link></li>
                 <li><Link to="/become-a-teacher">{this.context.t('product_become_a_teacher')}</Link></li>
+                <li><Link to="/payment">{this.context.t('payment_guide')}</Link></li>
               </ul>
             </div>
           </div>
@@ -42,17 +43,6 @@ class FooterMain extends Component {
                     <i className="fa fa-twitter" />
                   </Link>
                 </li>
-              </ul>
-            </div>
-
-            <div className="footer__payment">
-              <h4 className="footer__label">{this.context.t('product_payment_partners')}</h4>
-              <ul>
-                <li><img src="/icon-visa-1.svg" alt="" /></li>
-                <li><img src="/icon-mastercard.svg" alt="" /></li>
-                <li><img src="/icon-paypal-1.svg" alt="" /></li>
-                <li><img src="/american-express.jpg" alt="" style={{ width: '50px' }} /></li>
-                <li><img src="/icon-jcb.svg" alt="" /></li>
               </ul>
             </div>
           </div>

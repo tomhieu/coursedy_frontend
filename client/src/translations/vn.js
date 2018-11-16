@@ -408,6 +408,7 @@ export default {
   product_fb_link: '//facebook.com/coursedydotcom',
   product_twitter_link: '//twitter.com/coursedyhq',
   product_payment_partners: 'Hình thức thanh toán',
+  payment_guide: 'Hướng dẫn thanh toán',
   product_resources: 'Thông tin hữu ích',
   how_coursedy_works: 'Cách Coursedy hoạt động',
   product_help_center: 'Giải đáp thắc mắc',
