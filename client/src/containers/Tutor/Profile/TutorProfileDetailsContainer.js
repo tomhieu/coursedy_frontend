@@ -29,7 +29,7 @@ TutorProfileDetailsContainer.contextTypes = {
 const mapStateToProps = state => ({
   user: state.session.currentUser,
   editProfileMode: state.AccountReducer.editProfileMode,
-  tutor: state.TutorProfile.tutor
+  tutor: state.TutorAccountReducer.tutor
 });
 
 const mapDispatchToProps = dispatch => ({
