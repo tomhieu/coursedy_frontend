@@ -13,7 +13,6 @@ import {
   setFacebookResponse,
   setGoogleResponse
 } from '../../actions/ThirdPartyLoginActionCreator';
-import {TT} from '../../utils/locale';
 import PrimaryButton from '../../components/Core/PrimaryButton/PrimaryButton';
 import {renderRadioFields} from '../../components/Core/CustomComponents';
 import {ROLES} from '../../constants/Roles';
@@ -90,7 +89,7 @@ class ThirdPartyLoginContainer extends Component {
         <Modal visible={showRoleSelectingModal} onClickBackdrop={this.props.resetForm.bind(this)}>
           <form onSubmit={handleSubmit(this.handleLogin.bind(this))} className="form-signup">
             <div className="modal-header">
-              <h5 className="modal-title">{TT.t('sellect_role')}</h5>
+              <h5 className="modal-title">{this.context.t('sellect_role')}</h5>
             </div>
             <div className="modal-body">
               <FormGroup controlId="formHorizontalEmail">
@@ -99,7 +98,7 @@ class ThirdPartyLoginContainer extends Component {
                   component={renderRadioFields}
                   options={ROLES.map((acc, i) => ({
                     id: ROLES[i],
-                    name: TT.t(acc)
+                    name: this.context.t(acc)
                   }))}
                 />
               </FormGroup>
@@ -110,7 +109,7 @@ class ThirdPartyLoginContainer extends Component {
                 line={false}
                 isPrimary
                 isSmallButton
-                title={TT.t('login')}
+                title={this.context.t('login')}
               />
               <PrimaryButton
                 type="button"
@@ -118,7 +117,7 @@ class ThirdPartyLoginContainer extends Component {
                 callback={this.props.resetForm.bind(this)}
                 isPrimary={false}
                 isSmallButton
-                title={TT.t('close')}
+                title={this.context.t('close')}
               />
             </div>
           </form>

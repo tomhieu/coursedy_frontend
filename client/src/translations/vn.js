@@ -180,11 +180,15 @@ export default {
   lesson_delete_btn: 'Xoá bài học',
   lesson_link_edit: 'Thêm bài giảng',
   lesson_list_next: 'Thêm bài học',
-  lesson_popup_edit_title: 'Mô tả bài giảng',
+  lesson_popup_edit_title: 'Thêm bài học',
+  lesson_popup_add_title: 'Thêm bài giảng',
   lesson_required: 'Vui lòng nhập tên bài học',
   lesson_priode_required: 'Vui lòng nhập thời lượng bài học',
   lesson_desc_required: 'Vui lòng nhập mô tả bài học',
-  save_course: 'Tạo khoá học', /*
+  save_course: 'Tạo khoá học',
+  update_lesson_button: 'Thêm',
+  add_lesson_button: 'Thêm',
+  /*
     * Tutor education form
     */
   tutor_education_title_required: 'Vui lòng nhập ngành học',

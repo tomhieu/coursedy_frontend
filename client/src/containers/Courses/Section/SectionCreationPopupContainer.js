@@ -13,7 +13,8 @@ class SectionCreationPopupContainer extends Component {
     return (
       <FormDialogComponent
         show={showSectionPopup}
-        title={this.context.t('lesson_popup_edit_title')}
+        title={this.context.t('lesson_popup_add_title')}
+        acceptLabel={this.context.t('add_lesson_button')}
         formName="sectionCreationForm"
         cancelCallback={() => this.props.dispatch(CourseActions.closePopupSection())}
         {...this.props}

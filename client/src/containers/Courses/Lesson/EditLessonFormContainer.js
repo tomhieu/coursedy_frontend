@@ -26,6 +26,7 @@ class EditLessonFormContainer extends Component {
     return (
       <FormDialogComponent
         show={show}
+        acceptLabel={this.context.t('update_lesson_button')}
         formName="lessonDetailForm"
         title={this.context.t('lesson_popup_edit_title')}
         cancelCallback={hidePopup}

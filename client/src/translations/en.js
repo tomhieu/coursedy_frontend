@@ -197,11 +197,15 @@ export default {
   lesson_delete_btn: 'Delete',
   lesson_link_edit: 'Add lecture title',
   lesson_list_next: 'Add',
-  lesson_popup_edit_title: 'Lecture description',
+  lesson_popup_edit_title: 'Add lesson',
+  lesson_popup_add_title: 'Add lecture',
   lesson_required: 'Lesson name is required',
   lesson_period_required: 'Lesson period is required',
   lesson_desc_required: 'Lesson description is required',
-  save_course: 'Save', /*
+  save_course: 'Save',
+  update_lesson_button: 'Add',
+  add_lesson_button: 'Add',
+  /*
     * Tutor education form
     */
   tutor_education_title_required: 'Major is required',
