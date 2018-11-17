@@ -3,10 +3,6 @@ import { Link } from 'react-router-dom';
 import DateUtils from '../../../utils/DateUtils';
 
 class TeacherCourseBuilding extends Component {
-  static propTypes = {
-    data: React.PropTypes.object,
-  }
-
   static contextTypes = {
     t: React.PropTypes.func.isRequired
   };
@@ -29,12 +25,17 @@ class TeacherCourseBuilding extends Component {
                   <div className="sidebar-section">
                     <section className="related-article">
                       <h3>
-                        {translation('teacher_course_building_related_topic_title')}
+                        {translation('related_articles')}
                       </h3>
                       <ul>
                         <li>
-                          <Link to={translation('teacher_course_building_related_topic_two_link')}>
-                            { translation('teacher_course_building_related_topic_two_title')}
+                          <Link to={translation('how_coursedy_works_teacher_manage_course_link')}>
+                            { translation('how_coursedy_works_teacher_manage_course_title')}
+                          </Link>
+                        </li>
+                        <li>
+                          <Link to={translation('how_coursedy_works_teacher_use_bbb_link')}>
+                            { translation('how_coursedy_works_teacher_use_bbb_title') }
                           </Link>
                         </li>
                       </ul>

@@ -1,6 +1,3 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-
 export default {
   vn: {
     teacher_course_management_title: 'Quản Lý Khoá Học',

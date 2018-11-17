@@ -10,7 +10,8 @@ import FormField from '../../../Core/FormField';
 class SelectionTeachingDayEditMode extends Component {
   render() {
     const {
-      editable, courseData, isSamePeriod, selectedDays
+      editable, courseData, isSamePeriod, selectedDays,
+      lang
     } = this.props;
     return (
       <div className="row">
@@ -24,7 +25,7 @@ class SelectionTeachingDayEditMode extends Component {
             formControlName="course_days"
             typeField="multi_select"
             content={editable ? DateUtils.getDayInWeekOfCourse(courseData.week_day_schedules) : ''}
-            options={DAYS_IN_WEEK(this.props.lang).map((day) => {
+            options={DAYS_IN_WEEK(lang).map((day) => {
               return { id: `${day.name}_${day.id}`, text: day.text };
             })}
             styleCustomField="inline-form-control"
@@ -69,7 +70,7 @@ class SelectionTeachingDayEditMode extends Component {
                                       />
                                     </div>
                                     {
-                                                editable ? TT.t('to') : null
+                                                editable ? this.context.t('to') : null
                                             }
                                     <div>
                                       <FormField
@@ -104,7 +105,7 @@ class SelectionTeachingDayEditMode extends Component {
                                         />
                                       </div>
                                       {
-                                            editable ? TT.t('to') : null
+                                            editable ? this.context.t('to') : null
                                         }
                                       <div>
                                         <FormField
