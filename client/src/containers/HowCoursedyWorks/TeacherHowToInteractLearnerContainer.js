@@ -68,7 +68,7 @@ class TeacherHowToInteractLearnersContainer extends Component {
                       </span>
                     </p>
                     <p>
-                      { translation('teacher_how_to_interact_with_learner_topic_description_two') }{' '}{'.'}
+                      { translation('teacher_how_to_interact_with_learner_topic_description_two') }
                     </p>
                     <p>
                       <img
@@ -76,6 +76,10 @@ class TeacherHowToInteractLearnersContainer extends Component {
                         src={translation('teacher_how_to_interact_with_learner_topic_description_two_image_link_one')}
                         alt=""
                       />
+                    </p>
+                    <p>
+                      <br />
+                      { translation('teacher_how_to_interact_with_learner_topic_description_two_image_link_two_description') }
                     </p>
                     <p>
                       <img
@@ -91,7 +95,10 @@ class TeacherHowToInteractLearnersContainer extends Component {
                       </span>
                     </p>
                     <p>
-                      { translation('teacher_how_to_interact_with_learner_topic_description_three') }
+                      { translation('teacher_how_to_interact_with_learner_topic_description_three_one') }
+                    </p>
+                    <p>
+                      { translation('teacher_how_to_interact_with_learner_topic_description_three_two') }
                     </p>
                     <p>
                       <img
@@ -99,6 +106,32 @@ class TeacherHowToInteractLearnersContainer extends Component {
                         src={translation('teacher_how_to_interact_with_learner_topic_description_three_image_link_one')}
                         alt=""
                       />
+                    </p>
+                    <p>
+                      <br />
+                      { translation('teacher_how_to_interact_with_learner_topic_description_three_three') }
+                    </p>
+                    <p>
+                      <img
+                        className="img-responsive"
+                        src={translation('teacher_how_to_interact_with_learner_topic_description_three_image_link_two')}
+                        alt=""
+                      />
+                    </p>
+                    <p>
+                      <br />
+                      { translation('teacher_how_to_interact_with_learner_topic_description_three_four') }
+                    </p>
+                    <p>
+                      <img
+                        className="img-responsive"
+                        src={translation('teacher_how_to_interact_with_learner_topic_description_three_image_link_three')}
+                        alt=""
+                      />
+                    </p>
+                    <p>
+                      <br />
+                      { translation('teacher_how_to_interact_with_learner_topic_description_three_five') }
                     </p>
                   </div>
                 </div>
