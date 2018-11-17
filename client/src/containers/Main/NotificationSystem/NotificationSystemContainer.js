@@ -7,24 +7,27 @@ import {connect} from 'react-redux';
 import UpcommingCourseNotificationPopup from '../../../components/Layout/UpcommingCoursePopup/UpcommingCourseNotificationPopup';
 import {
   CLOSE_POPUP_JOIN_UPCOMMING_CLASS,
-  LEAVED_JOINING_CLASS,
-  STARTED_JOINING_ACTIVE_CLASS
+  LEAVED_JOINING_CLASS, START_POLLING_UPCOMMING_COURSE,
+  STARTED_JOINING_ACTIVE_CLASS, STOP_POLLING_UPCOMMING_COURSE
 } from '../../../actions/AsyncActionCreator';
 import * as courseActions from '../../../actions/ListTutorCourseActionCreator';
-import {joinToClassRoom} from '../../../actions/ListTutorCourseActionCreator';
 import {UserRole} from '../../../constants/UserRole';
+import Network from '../../../utils/network';
+import FormDialogContainer from '../../Dialog/FormDialogContainer';
+import LearningNotificationPopupContainer from '../BBB/LearningNotificationPopupContainer';
+import {joinToBBBRoom} from '../../../actions/Bigbluebutton/BigbluebuttonActionCreator';
 
 class NotificationSystemContainer extends Component {
   constructor() {
     super();
     this.newStartCourseHasBeenNotified = [];
+    this.isFetchingUpCommingCourse = false;
   }
+
   componentWillReceiveProps(nextProps) {
-    const { hasActiveCourseToLearn, isJoiningActiveClass, currentUser } = nextProps.session;
-    if (hasActiveCourseToLearn && currentUser && !isJoiningActiveClass) {
-      this.startPoll(currentUser);
-    } else {
-      clearTimeout(this.timeout);
+    const { hasActiveCourseToLearn, currentUser, stopPolling } = nextProps.session;
+    if (hasActiveCourseToLearn && currentUser && !stopPolling) {
+      this.pollingUpcommingCourse(stopPolling, currentUser, 10000);
     }
   }
 
@@ -33,35 +36,60 @@ class NotificationSystemContainer extends Component {
     if (!session.hasActiveCourseToLearn) {
       return;
     }
-
-    this.checkUpcommingCourse(session.currentUser);
+    this.pollingUpcommingCourse(session.stopPolling, session.currentUser);
   }
 
-  componentWillUnmount() {
-    clearTimeout(this.timeout);
+  pollingUpcommingCourse(stopPolling, currentUser, timeOut = 0) {
+    if (!this.isFetchingUpCommingCourse) {
+      this.isFetchingUpCommingCourse = true;
+      if (!stopPolling) {
+        console.log('start polling...')
+        setTimeout(() => {
+          console.log('fetch upcomming class ---- is polling ' + stopPolling);
+          this.checkUpcommingCourse(currentUser).finally(() => {
+            this.isFetchingUpCommingCourse = false;
+          });
+        }, timeOut);
+      }
+    }
   }
 
+  startPolling() {
+    const { isJoiningActiveClass } = this.props.session;
+    if (!isJoiningActiveClass) {
+      this.props.startPolling();
+    }
+  }
 
-  startPoll(currentUser) {
-    this.timeout = setTimeout(() => {
-      this.checkUpcommingCourse(currentUser);
-    }, 5000);
+  stopPolling() {
+    this.props.stopPolling();
   }
 
   checkUpcommingCourse(currentUser) {
     if (currentUser.roles.indexOf(UserRole.TEACHER) >= 0) {
-      this.props.fetchUpCommingTeacherCourse();
+      return this.props.fetchUpCommingTeacherCourse();
     } else if (currentUser.roles.indexOf(UserRole.STUDENT) >= 0) {
-      this.props.fetchUpCommingStudentCourse();
+      return this.props.fetchUpCommingStudentCourse();
     }
   }
 
-  acceptJoinToClassRoom(classRoomId) {
-    clearTimeout(this.timeout);
+  afterJoiningUpcomingClass(e) {
+    console.log('already join to class');
+    this.props.afterJoinUpcomingClass();
+  }
+
+  acceptJoinToClassRoom(formValue) {
+    // stop pilling immediately
+    this.stopPolling();
     // closed popup
     this.props.closePopupJoinUpcomingClass();
-    // executed after joining an active class
-    this.props.afterJoinUpcomingClass();
+    // joining to bbb room
+    const {teachingCourse} = this.props.session;
+    const classRoomId = teachingCourse && teachingCourse.bigbluebutton_room ? teachingCourse.bigbluebutton_room.slug : '';
+    const lessonId = formValue.selectedLesson;
+    const lang = this.props.lang === 'vn' ? 'vi' : 'en';
+
+    this.props.joiningToBBBroom(classRoomId, lessonId, this.context, lang, this.startPolling.bind(this), this.afterJoiningUpcomingClass.bind(this));
   }
 
   showNotification(notification, timeout) {
@@ -81,57 +109,44 @@ class NotificationSystemContainer extends Component {
   }
 
   render() {
-    const { main, session, notifications } = this.props;
+    const { main, session, notifications, handleSubmit } = this.props;
 
     // get new started courses
     const { newStartedCourses } = session;
 
-    const teachingCourseTeacherName = session.teachingCourse !== null ? session.teachingCourse.user.name : '';
-    const teachingCourseName = session.teachingCourse !== null ? session.teachingCourse.title : '';
-    const teachingCourseId = session.teachingCourse !== null ? session.teachingCourse.id : '';
     const classRoomId = session.teachingCourse && session.teachingCourse.bigbluebutton_room ? session.teachingCourse.bigbluebutton_room.slug : '';
-
-    if (session.teachingCourse !== null) {
-      clearTimeout(this.timeout);
-    }
     // show notification about the new started course
     const newStartedCourseNeedToNotify = newStartedCourses.filter(nc => this.newStartCourseHasBeenNotified.indexOf(nc.id) < 0);
     if (newStartedCourseNeedToNotify.length > 0) {
       const newStartedCourseNotification = newStartedCourseNeedToNotify.map(course => ({
         title: this.context.t('new_started_course_notification_title'),
         message: this.context.t('new_started_course_notification_message', {
-          courseName: <Link
-            to={this.getCourseDetailsUrl(course.id)}
-            className="link-course-details"
-          >
+          courseName: <Link to={this.getCourseDetailsUrl(course.id)} className="link-course-details">
             {course.title}
           </Link>,
           firstDayLearning: <strong>{DateUtils.formatDate(course.start_date)}</strong>
         }),
         position: 'tr',
-        autoDismiss: 0,
+        autoDismiss: 1,
         id: course.id
       }));
 
       this.newStartCourseHasBeenNotified.push(...newStartedCourses.map(c => c.id));
       this.notifyNewStartedCourse(newStartedCourseNotification);
-
     }
     if (classRoomId === '') {
-      return null;
+      return <Notifications notifications={notifications} />;
     }
     return (
       <div>
         <div className="join-course">
-          <UpcommingCourseNotificationPopup
-            teacherName={teachingCourseTeacherName}
-            currentUser={session.currentUser}
-            courseName={teachingCourseName}
-            courseId={teachingCourseId}
-            classRoomId={classRoomId}
-            acceptJoinToClassRoom={this.acceptJoinToClassRoom.bind(this)}
-            closePopupJoinUpcomingClass={this.props.closePopupJoinUpcomingClass.bind(this)}
-          />
+          <LearningNotificationPopupContainer course={session.teachingCourse}
+                                              currentUser={session.currentUser}
+                                              showUpcommingClassPopup={session.showUpcommingClassPopup}
+                                              onSubmit={this.acceptJoinToClassRoom.bind(this)}
+                                              closePopupJoinUpcomingClass={this.props.closePopupJoinUpcomingClass.bind(this)}
+                                              acceptJoinToClassRoom={this.acceptJoinToClassRoom.bind(this)}>
+          </LearningNotificationPopupContainer>
         </div>
         <Notifications notifications={notifications} />
       </div>
@@ -150,9 +165,13 @@ NotificationSystemContainer.contextTypes = {
 };
 
 const mapStateToProps = (state) => {
-  const { main, session, notifications } = state;
+  const {
+    main, session, notifications, i18nState
+  } = state;
 
-  return { main, session, notifications };
+  return {
+    main, session, notifications, lang: i18nState.lang
+  };
 };
 
 const mapDispatchToProps = dispatch => ({
@@ -162,6 +181,9 @@ const mapDispatchToProps = dispatch => ({
   afterJoinUpcomingClass: () => dispatch({ type: STARTED_JOINING_ACTIVE_CLASS }),
   afterLeavedActiveClass: () => dispatch({ type: LEAVED_JOINING_CLASS }),
   showInfoNotification: (notification) => dispatch(success(notification)),
+  stopPolling: (notification) => dispatch({ type: STOP_POLLING_UPCOMMING_COURSE }),
+  startPolling: (notification) => dispatch({ type: START_POLLING_UPCOMMING_COURSE }),
+  joiningToBBBroom: (classRoomId, lessonId, context, lang, onRemoveNotification, afterJoining) => dispatch(joinToBBBRoom(classRoomId, lessonId, context, lang, onRemoveNotification, afterJoining)),
 });
 export default connect(
   mapStateToProps, mapDispatchToProps

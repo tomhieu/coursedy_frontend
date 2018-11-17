@@ -2,7 +2,7 @@ import { reset } from 'redux-form';
 import * as types from '../constants/SignUpComponent';
 import Network from '../utils/network';
 
-export const signUpUser = (email, password, password_confirmation, name, phone_number, role) => {
+export const signUpUser = (email, password, password_confirmation, name, phone_number, country_code, role) => {
   return (dispatch) => {
     const body = {
       email,
@@ -10,13 +10,18 @@ export const signUpUser = (email, password, password_confirmation, name, phone_n
       password_confirmation,
       name,
       phone_number,
+      country_code,
       role
     };
 
-    Network().post('auth', body).then((response) => {
+    return dispatch({
+      type: types.SIGN_UP,
+      payload: Network().post('auth', body),
+      meta: 'registerPlaceholder'
+    }).then((response) => {
       dispatch({
         type: types.SIGN_UP_SUCCESS,
-        payload: response
+        payload: response,
       });
       dispatch(reset('signUp'));
     }, ({ errors }) => {

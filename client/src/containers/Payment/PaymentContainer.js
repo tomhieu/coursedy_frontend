@@ -133,9 +133,6 @@ class PaymentContainer extends Component {
       return item.id == bankId
     })
     if (bank.length > 0) {
-      // let bankProfile = banks.filter((item) => {
-      //   return item.code == bank[0].name
-      // })
       this.setState({
         selectBank: bank[0],
       })
@@ -163,7 +160,7 @@ class PaymentContainer extends Component {
 
         <div className="container-fluid row">
           {/*Payment method*/}
-          <div className="col-md-7 col-sm-12">
+          <div className="col-md-7 col-sm-12 payment-instruction-container">
             <ul className="nav nav-tabs">
               <li className="nav-item">
                 <a
@@ -251,7 +248,11 @@ class PaymentContainer extends Component {
                           {
                             bankAccounts.map((item) => (
                               <div
-                                className="bank-logo text-center"
+                                className={
+                                  selectBank.id != item.id
+                                    ? "bank-logo text-center"
+                                    : "bank-logo text-center active-bank"
+                                }
                                 key={item.name}
                                 onClick={this.changeBank.bind(this, item.id)}
                               >

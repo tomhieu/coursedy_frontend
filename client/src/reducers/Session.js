@@ -12,6 +12,8 @@ const session = (state = {
   notifications: [],
   hasActiveCourseToLearn: false,
   isJoiningActiveClass: false,
+  showUpcommingClassPopup: false,
+  stopPolling: false,
   teachingCourse: null,
   newStartedCourses: []
 }, action) => {
@@ -50,16 +52,22 @@ const session = (state = {
     case asyncActs.FETCH_TUTOR_UPCOMING_COURSES + asyncActs.FULFILLED:
     case asyncActs.FETCH_STUDENT_UPCOMING_COURSES + asyncActs.FULFILLED:
       let upcommingCourse = null;
+      let showUpcommingClassPopup = false;
       if (Array.isArray(action.payload) && action.payload.length > 0) {
         upcommingCourse = action.payload[0];
+        showUpcommingClassPopup = true;
       }
-      return { ...state, teachingCourse: upcommingCourse };
+      return { ...state, teachingCourse: upcommingCourse, stopPolling: showUpcommingClassPopup, showUpcommingClassPopup };
     case asyncActs.CLEAR_STUDENT_ACTIVE_COURSES:
       return { ...state, newStartedCourses: [] };
     case asyncActs.CLOSE_POPUP_JOIN_UPCOMMING_CLASS:
-      return { ...state, teachingCourse: null };
+      return { ...state, stopPolling: false, showUpcommingClassPopup: false };
     case asyncActs.STARTED_JOINING_ACTIVE_CLASS:
-      return { ...state, teachingCourse: null, isJoiningActiveClass: true };
+      return { ...state, isJoiningActiveClass: true, stopPolling: false};
+    case asyncActs.STOP_POLLING_UPCOMMING_COURSE:
+      return { ...state, stopPolling: true };
+    case asyncActs.START_POLLING_UPCOMMING_COURSE:
+      return { ...state, stopPolling: false };
     case asyncActs.LEAVED_JOINING_CLASS:
       return { ...state, isJoiningActiveClass: false };
 

@@ -39,6 +39,9 @@ import StudentDashboardCourseFollow from './pages/StudentDashboard/StudentDashbo
 import {TutorStatus} from './constants/TutorStatus';
 import StudentCourseDetailContainer from './containers/Student/Dashboard/Courses/StudentCourseDetailContainer';
 import StudentDashboardCourseDetails from './pages/StudentDashboard/StudentDashboardCourseDetails';
+import HowCoursedyWorkContainer from './containers/HowCoursedyWorks/HowCoursedyWorkContainer';
+import HowCoursedyWorkDetailContainer from './containers/HowCoursedyWorks/HowCoursedyWorkDetailContainer';
+import TutorDashboardCourseFinished from './pages/TutorDashboard/TutorDashboardCourseFinished';
 
 // define routes for config
 export const routes = [
@@ -114,6 +117,12 @@ export const routes = [
     path: '/dashboard/profile',
     component: requireLogin(TutorDashboardProfile),
     roles: [UserRole.TEACHER]
+  },
+  {
+    path: '/dashboard/courses/finished',
+    component: requireLogin(TutorDashboardCourseFinished),
+    roles: [UserRole.TEACHER],
+    status: TutorStatus.VERIFIED
   },
   {
     path: '/dashboard/courses/active',
@@ -219,7 +228,7 @@ export const routes = [
   {
     path: '/payment',
     component: requireLogin(Pages.PaymentPage),
-    roles: [UserRole.STUDENT, UserRole.ADMIN],
+    roles: [UserRole.STUDENT, UserRole.TEACHER, UserRole.ADMIN],
     exact: true
   },
   {
@@ -245,6 +254,16 @@ export const routes = [
   {
     path: '/privacy',
     component: PrivacyContainer,
+    exact: true
+  },
+  {
+    path: '/how-coursedy-works/',
+    component: HowCoursedyWorkContainer,
+    exact: true
+  },
+  {
+    path: '/how-coursedy-works/:slug',
+    component: HowCoursedyWorkDetailContainer,
     exact: true
   },
   {

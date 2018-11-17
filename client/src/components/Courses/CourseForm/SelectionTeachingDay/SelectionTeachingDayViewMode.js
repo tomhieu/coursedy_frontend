@@ -1,18 +1,16 @@
-import { Component } from 'react';
 import * as React from 'react';
+import {Component} from 'react';
 import DateUtils from 'utils/DateUtils';
-import { DAYS_IN_WEEK, HOURS_IN_DAY } from '../../../../actions/CourseFormActionCreator';
+import {DAYS_IN_WEEK, HOURS_IN_DAY} from '../../../../actions/CourseFormActionCreator';
 import styles from '../../Course.module.scss';
 import CourseFormItem from '../CourseFormItem';
 import FormField from '../../../Core/FormField';
-import CoursedyWarning from '../../../Core/CoursedyWarning/CoursedyWarning';
 
 class SelectionTeachingDayViewMode extends Component {
   render() {
     const {
       editable, courseData, isSamePeriod, selectedDays, canEditable
     } = this.props;
-    console.log(`number of selected days: ${selectedDays.length}`);
     return (
       <div className="row">
         <div className="col-sm col-md">
@@ -48,8 +46,11 @@ class SelectionTeachingDayViewMode extends Component {
         }
         <div className="col-md-12 col-sm-12">
           {
-            selectedDays.length && this.props.lang === 'en' ?
-              <CoursedyWarning message={this.context.t('selected_hour_warning_message')} /> : null
+            selectedDays.length && !editable ?
+              <div className={styles.timeWarning}>
+                <span className={styles.note}>{this.context.t('select_hour_note')}: </span>
+                <span className={styles.message}>{this.context.t('selected_hour_warning_message')}</span>
+              </div> : null
           }
           <div className={`${styles.timePickerContainer} d-flex flex-horizontal flex-wrap`}>
             {

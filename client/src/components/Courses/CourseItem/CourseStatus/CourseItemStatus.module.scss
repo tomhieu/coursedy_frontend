@@ -1,0 +1,20 @@
+@import '/../../../../../styles/global_style.scss';
+
+.courseStatus {
+  display: flex;
+  justify-content: center;
+  padding: 2px 7px 0px 7px;
+  border-radius: 10px;
+  font-weight: 700;
+  color: $white-color;
+  font-size: 11px;
+  &.notStart {
+    background-color: #EC506E;
+  }
+  &.started {
+    background-color: #54D89F;
+  }
+  &.finished {
+    background-color: #95A0B1;
+  }
+}

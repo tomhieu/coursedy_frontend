@@ -17,10 +17,19 @@ class EditWorkExperienceFormContainer extends Component {
   }
 
   render() {
+    const placeholderId = "tutorWorkExperiencePlaceholder";
+    const { activatingPlaceholders } = this.props
+    const isProcessing = activatingPlaceholders.findIndex(holder => placeholderId == holder) >= 0;
     return (
       <div className="row">
         <div className="col-md-12 col-sm-12">
-          <TutorWorkExperienceForm onSubmit={this.updateWorkExperience.bind(this)} cancel={this.hideEditWorkExperienceForm.bind(this)} {...this.props} />
+          <TutorWorkExperienceForm 
+            onSubmit={this.updateWorkExperience.bind(this)} 
+            cancel={this.hideEditWorkExperienceForm.bind(this)} 
+            {...this.props}
+            isProcessing={isProcessing}
+            placeholderId={placeholderId}
+          />
         </div>
       </div>
     );
@@ -32,7 +41,8 @@ EditWorkExperienceFormContainer.contextTypes = {
 };
 
 const mapStateToProps = state => ({
-  initialValues: state.DashboardTutorWorkExperienceList.currentWorkExperience
+  initialValues: state.DashboardTutorWorkExperienceList.currentWorkExperience,
+  activatingPlaceholders: state.LoadingMask.activatingPlaceholders
 });
 
 export default connect(mapStateToProps)(reduxForm({

@@ -59,7 +59,7 @@ class Header extends Component {
 
   render() {
     const { customHeaderClass, darkHeader, dashboardHeader } = this.props.main;
-    const { isCollapseDashboard, tutorStatus } = this.props;
+    const { isCollapseDashboard, tutorStatus, session } = this.props;
     return (
       <nav
         className={`header-nav navbar navbar-expand-lg navbar-light navbar-default ${customHeaderClass} ${darkHeader ? 'dark-header' : 'bg-light'}`}
@@ -116,7 +116,7 @@ class Header extends Component {
                 <LangNavigation {...this.props} />
               </li>
               {
-                this.isAuthenticated() ? (
+                this.isAuthenticated() && session.notifications.length > 0 ? (
                   <li className="nav-item">
                     <Notification
                       main={this.props.main}
@@ -128,7 +128,7 @@ class Header extends Component {
               {
                 this.isAuthenticated() ? (
                   <li className="nav-item">
-                    <UserNavigation session={this.props.session}
+                    <UserNavigation session={session}
                                     tutorStatus={tutorStatus}
                                     lang={this.props.lang}
                                     signOut={this.props.signOut} />

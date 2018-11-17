@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 import cssModules from 'react-css-modules';
 import styles from './TutorCourseList.module.scss';
 import TutorCourseItem from '../CourseItem/TutorCourseItem';
+import {CourseStatus} from '../../../constants/CourseStatus';
 
 class TutorCourseList extends Component {
   render() {
-    const { courseList } = this.props;
+    const { courseList, status } = this.props;
     return (
       <div className="row">
         <div className="col-md-12">
@@ -26,13 +27,17 @@ class TutorCourseList extends Component {
                   <div className={styles.tutorCourseHeader}>{this.context.t('number_enrolled_student')}</div>
                 </div>
                 <div className="col-xl-2 col-lg-2 col-md-2 col-sm-4 max-student-col">
-                  <div className={styles.tutorCourseHeader}>{this.context.t('maximum_student')}</div>
+                  {
+                    [CourseStatus.STARTED, CourseStatus.FINISHED].indexOf(status) >= 0 ?
+                      <div className={styles.tutorCourseHeader}>{this.context.t('start_date')}</div> :
+                      <div className={styles.tutorCourseHeader}>{this.context.t('maximum_student')}</div>
+                  }
                 </div>
                 <div className="col-xl-2 col-sm-4 num-lesson-col">
                   <div className={styles.tutorCourseHeader}>{this.context.t('number_lesson')}</div>
                 </div>
                 <div className="col-xl-2 col-lg-4 col-md-4 col-sm-4 course-status-col">
-                  <div className={styles.tutorCourseHeader}>{this.context.t('tutor_course_status')}</div>
+                  <div className={styles.tutorCourseHeader}>{this.context.t('tutor_course_verification_status')}</div>
                 </div>
                 <div className="col-xl-2 col-lg-4 col-md-6 col-sm-4" />
               </div>

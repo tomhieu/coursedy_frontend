@@ -5,40 +5,58 @@
   margin: auto;
   padding: 35px 25px;
 
+  .payment-instruction-container {
+    min-height: 100px;
+    background-color: $white-color;
+    border: 1px solid $border-color;
+    box-shadow: 1px 1px 1px $border-color;
+  }
+
   .nav-tabs {
+    border-bottom: 2px solid $border-color;
     .nav-link {
       background-color: transparent;
       border: none;
-      padding-left: 0;
-      padding-right: 0;
       margin-right: 15px;
       text-transform: uppercase;
       font-weight: 600;
+      /*padding: 1rem 0.75rem 0.5rem 0.75rem;*/
+      padding: 10px 20px;
+      height: 40px;
+      min-width: 100px;
+      font-weight: 600;
+      font-size: 14px;
+      outline: none;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
     .nav-link.active  {
+      color: $color-orange;
       background-color: transparent;
       border: none;
       border-bottom: 5px solid $color-orange;
     }
     .nav-link:hover {
+      color: $color-orange;
       border-bottom: 5px solid $color-orange;
     }
   }
-  
+
   .badge-success {
     background-color: $color-orange;
   }
 
   .payment-container {
+    .card-body {
+      padding-bottom: 0;
+      margin: 15px 0 15px 0;
+    }
     .divider-payment {
       border-bottom: 3px dashed $color-orange;
       width: 80%;
       height: 6px;
       margin: 20px auto 20px;
-
-      .card-body {
-        padding-bottom: 0;
-      }
     }
     .bank-logo {
       text-align: center;
@@ -54,7 +72,13 @@
       &:hover {
         border: 1px solid $md-color-pink;
       }
+
+      &.active-bank {
+        border: 1px solid $md-color-pink;
+      }
     }
+
+
 
     .bank-account-table {
       border: 1px solid $border-color;
@@ -84,6 +108,13 @@
         font-weight: bold;
         padding: 15px;
         border: 1px dashed $color-orange;
+        min-width: 100px;
+        font-weight: 600;
+        font-size: 14px;
+        outline: none;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
     }
   }
@@ -104,12 +135,12 @@
 
 
     .cart-header {
-      padding: 1rem 0.75rem 0 0.75rem;
+      padding: 10px 15px 0 15px;
     }
     .course-divider {
       border: 1px solid $border-color;
       width: calc(100% - 1.5rem);
-      margin: 1rem auto;
+      margin: 0.5rem auto;
     }
     .cart-content {
       .course-table-row {

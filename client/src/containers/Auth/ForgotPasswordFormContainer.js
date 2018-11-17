@@ -21,7 +21,9 @@ class ForgotPasswordFormContainer extends Component {
 
   render() {
     const { emailSent, sentEmailSuccessfully } = this.props.forgotPassword;
-
+    const placeholderId = "forgotPasswordPlaceholder";
+    const { activatingPlaceholders } = this.props
+    const isProcessing = activatingPlaceholders.findIndex(holder => placeholderId == holder) >= 0;
     return (
       <div className="sign-block">
         <div className="">
@@ -32,6 +34,8 @@ class ForgotPasswordFormContainer extends Component {
           onSubmit={this.submit.bind(this)}
           clearError={this.props.clearForgotPasswordError.bind(this)}
           {...this.props}
+          placeholderId={placeholderId}
+          isProcessing={isProcessing}
         />
       </div>
     );
@@ -43,7 +47,8 @@ ForgotPasswordFormContainer.contextTypes = {
 };
 
 const mapStateToProps = state => ({
-  forgotPassword: state.forgotPassword
+  forgotPassword: state.forgotPassword,
+  activatingPlaceholders: state.LoadingMask.activatingPlaceholders
 });
 
 const mapDispatchToProps = dispatch => ({

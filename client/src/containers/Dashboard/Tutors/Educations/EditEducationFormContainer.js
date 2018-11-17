@@ -18,11 +18,19 @@ class EditEducationFormContainer extends Component {
 
   render() {
     const { education } = this.props;
-
+    const placeholderId = "tutorEducationListPlaceholder";
+    const { activatingPlaceholders } = this.props
+    const isProcessing = activatingPlaceholders.findIndex(holder => placeholderId == holder) >= 0;
     return (
       <div className="row">
         <div className="col-md-12 col-sm-12">
-          <TutorEducationForm onSubmit={this.updateEducation.bind(this)} cancel={this.hideEditEducationForm.bind(this)} {...this.props} />
+          <TutorEducationForm 
+            onSubmit={this.updateEducation.bind(this)} 
+            cancel={this.hideEditEducationForm.bind(this)} 
+            {...this.props}
+            isProcessing={isProcessing}
+            placeholderId={placeholderId}
+          />
         </div>
       </div>
     );
@@ -34,7 +42,8 @@ EditEducationFormContainer.contextTypes = {
 };
 
 const mapStateToProps = state => ({
-  initialValues: state.DashboardTutorEducationList.currentEducation
+  initialValues: state.DashboardTutorEducationList.currentEducation,
+  activatingPlaceholders: state.LoadingMask.activatingPlaceholders
 });
 
 export default connect(mapStateToProps)(reduxForm({

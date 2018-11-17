@@ -12,7 +12,6 @@ class PageContainer extends Component {
     children: PropTypes.object.isRequired,
     meta: PropTypes.object,
     req: PropTypes.object,
-    status: PropTypes.number,
     location: PropTypes.object,
     staticContext: PropTypes.object
   };
@@ -23,14 +22,13 @@ class PageContainer extends Component {
 
   static contextTypes = {
     t: PropTypes.func.isRequired
-  }
+  };
 
   render() {
     const {
       req, location, error = {}, meta = {}, children
     } = this.props;
     const { status } = error || {};
-
     return (
       <div>
         <CoursedyHelmet

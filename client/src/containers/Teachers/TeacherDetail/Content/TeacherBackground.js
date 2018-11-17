@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import LoadingMask from 'components/LoadingMask/LoadingMask';
+import LoadingMask from 'containers/LoadingMask/LoadingMask';
 import * as webConstants from 'constants/WebConstants';
 
 class TeacherBackground extends Component {

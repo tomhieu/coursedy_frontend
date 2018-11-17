@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { searchTeachers } from 'actions/TeacherActionCreators';
 import Pagination from 'react-js-pagination';
-import LoadingMask from 'components/LoadingMask/LoadingMask';
+import LoadingMask from 'containers/LoadingMask/LoadingMask';
 import TutorList from '../../../components/Tutor/TutorList/TutorList';
 import * as WebConstants from '../../../constants/WebConstants';
 import PaginationArrowIcon from '../../../components/Core/Icons/PaginationArrowIcon';

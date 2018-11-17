@@ -1,20 +1,19 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import './TeacherDetail.scss';
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
 import CourseListInGridMode from 'components/Courses/CourseList/CourseListInGridMode';
 import Pagination from 'react-js-pagination';
 import {
+  fetchTeacherCourses,
   fetchTeacherDetail,
   fetchTeacherEducations,
-  fetchTeacherWorkExperiences,
-  fetchTeacherCourses,
-  fetchTeacherReviews
+  fetchTeacherReviews,
+  fetchTeacherWorkExperiences
 } from 'actions/TeacherActionCreators';
-import LoadingMask from 'components/LoadingMask/LoadingMask';
+import LoadingMask from 'containers/LoadingMask/LoadingMask';
 import * as WebConstants from 'constants/WebConstants';
 import FixedSideBar from 'components/Common/FixedSideBar';
-import { TT } from 'utils/locale';
-import { LinkContainer } from 'react-router-bootstrap';
+import {LinkContainer} from 'react-router-bootstrap';
 import PrimaryAnchor from 'components/Core/PrimaryAnchor/PrimaryAnchor';
 import RatingItem from 'components/Rating/index';
 import ObjectUtils from 'utils/ObjectUtils';
@@ -26,7 +25,7 @@ import TeacherBackground from './Content/TeacherBackground';
 import styles from './TeacherDetail.module.scss';
 import PageContainer from '../../../utils/PageContainer';
 import PaginationArrowIcon from '../../../components/Core/Icons/PaginationArrowIcon';
-import { PAGE_RANGE_DISPLAYED } from '../../../constants/Layout';
+import {PAGE_RANGE_DISPLAYED} from '../../../constants/Layout';
 
 
 class TeacherDetail extends Component {
@@ -203,33 +202,43 @@ const ReviewHeader = (props) => {
   if (!teacher.user) {
     return null;
   }
+
   return (
     <div className="teacher-detail-review-header">
       <div className="row">
         <div className="col-xs-12 col-sm-6 col-md-6">
           <div className="review-overall">
             <h5>{props.context.t('teacher_rating')}</h5>
-            <p className="review-overall-point">
-              <span>
-                {teacher.user && teacher.user.rating_count ? parseFloat(teacher.user.rating_points / teacher.user.rating_count).toFixed(1) : 0}
-              </span>
-            </p>
-            <div className="rating-wrapper">
-              <RatingItem
-                num_stars={teacher.user.rating_points / teacher.user.rating_count}
-                num_reviews={teacher.user.rating_count}
-              />
-            </div>
+            {
+              teacher.user.rating_count > 0 ?
+                <div>
+                  <p className="review-overall-point">
+                    <span>
+                      {teacher.user && teacher.user.rating_count ? parseFloat(teacher.user.rating_points / teacher.user.rating_count).toFixed(1) : 0}
+                    </span>
+                  </p>
+                  <div className="rating-wrapper">
+                    <RatingItem
+                      num_stars={teacher.user.rating_points / teacher.user.rating_count}
+                      num_reviews={teacher.user.rating_count}
+                    />
+                  </div>
+                </div> : <span>({props.context.t('no_rating')})</span>
+            }
           </div>
         </div>
         <div className="border-left col-xs-12 col-sm-6 col-md-6">
           <div className="text-left mb-20">
             <h5>{props.context.t('teacher_comments')}</h5>
-            <span>
-              (
-                {props.context.t(props.context.t('teacher_total_comments'), { total: props.teacher.reviews.data.length })}
-              )
-            </span>
+            {
+              props.teacher.reviews.data.length > 0 ?
+                <span>
+                (
+                  {props.context.t(props.context.t('teacher_total_comments'), { total: props.teacher.reviews.data.length })}
+                )
+                </span> : <span>({props.context.t('nothing_comment_yet')})</span>
+            }
+
           </div>
         </div>
       </div>

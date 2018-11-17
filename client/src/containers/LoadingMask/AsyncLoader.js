@@ -1,19 +1,20 @@
 import { Component } from 'react';
 import * as React from 'react';
 import * as WebContants from '../../constants/WebConstants';
+import LoadingIcon from "../../components/Core/Icons/LoadingIcon"
 
 class AsyncLoader extends Component {
   render() {
     const {
-      isFullLoading, normalPlaceholder, facebookPlaceholder, sectionPlaceholder, loaderType, repeatTime = 1
+      isFullLoading, normalPlaceholder, facebookPlaceholder,
+      sectionPlaceholder, buttonPlaceholder, loaderType, repeatTime = 1,
+      loadingBgColor, width, height
     } = this.props;
     if (normalPlaceholder) {
       return (
         <div className={isFullLoading ? 'full-loading' : 'partial-loading'}>
           <div id="spinner">
-            <svg className="circular" viewBox="25 25 50 50">
-              <circle className="path" cx="50" cy="50" r="20" fill="none" />
-            </svg>
+            <LoadingIcon width={width} height={height} loadingBgColor={loadingBgColor} />
           </div>
         </div>
       );
@@ -21,9 +22,15 @@ class AsyncLoader extends Component {
       return (
         <div className="section-placeholder">
           <div id="spinner">
-            <svg className="circular" viewBox="25 25 50 50">
-              <circle className="path" cx="50" cy="50" r="20" fill="none" />
-            </svg>
+            <LoadingIcon width={width} height={height} loadingBgColor={loadingBgColor} />
+          </div>
+        </div>
+      );
+    } if (buttonPlaceholder) {
+      return (
+        <div className="button-placeholder">
+          <div id="spinner">
+            <LoadingIcon width={24} height={24} loadingBgColor={loadingBgColor}/>
           </div>
         </div>
       );
@@ -343,7 +350,10 @@ AsyncLoader.propTypes = {
   facebookPlaceholder: React.PropTypes.bool,
   sectionPlaceholder: React.PropTypes.bool,
   loaderType: React.PropTypes.string,
-  repeatTime: React.PropTypes.number
+  repeatTime: React.PropTypes.number,
+  loadingBgColor: React.PropTypes.string,
+  width: React.PropTypes.number,
+  height: React.PropTypes.number
 };
 
 export default AsyncLoader;

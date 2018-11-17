@@ -1,5 +1,4 @@
 import React from 'react';
-import LoadingMask from '../../components/LoadingMask/LoadingMask';
 import ConfirmationContainer from '../../containers/Auth/ConfirmationContainer';
 import PageContainer from '../../utils/PageContainer';
 
@@ -12,9 +11,7 @@ class ConfirmationPage extends React.Component {
         <div className="container">
           <div className="row">
             <div className="col-sm-12 mt-20" style={{ height: '60vh' }}>
-              <LoadingMask placeholderId="loginPlaceholder" isFullLoading>
-                <ConfirmationContainer {...this.props} />
-              </LoadingMask>
+              <ConfirmationContainer {...this.props} />
             </div>
           </div>
         </div>

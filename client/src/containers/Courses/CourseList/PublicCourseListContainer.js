@@ -7,11 +7,12 @@ import * as WebConstants from 'constants/WebConstants';
 import Network from 'utils/network';
 import cssModules from 'react-css-modules';
 import styles from './PublicCourseList.module.scss';
-import LoadingMask from '../../../components/LoadingMask/LoadingMask';
+import LoadingMask from '../../LoadingMask/LoadingMask';
 import * as Actions from '../../../actions/CourseFilterActionCreator';
 import { CourseList } from '../../../components/index';
 import PaginationArrowIcon from '../../../components/Core/Icons/PaginationArrowIcon';
 import { PAGE_RANGE_DISPLAYED } from '../../../constants/Layout';
+import { getQueryParam } from '../../../utils/network';
 
 class PublicCourseListContainer extends Component {
   componentDidMount() {
@@ -97,7 +98,7 @@ PublicCourseListContainer.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  keyWord: state.CourseFilter.keyWord,
+  keyWord: state.CourseFilter.filters.term,
   startTime: state.CourseFilter.startTime,
   endTime: state.CourseFilter.endTime,
   selectedFees: state.CourseFilter.selectedFees,
@@ -119,9 +120,9 @@ const mapStateToProps = state => ({
   followedCourses: state.PublicCourseList.followedCourses
 });
 
-const buildQuery = (props) => {
+const buildQuery = (props, term) => {
   return {
-    q: props.keyWord,
+    q: term || props.keyWord,
     categories: props.selectedCategoryIds,
     locations: props.selectedLocationIds,
     levels: props.selectedSpecializes,
@@ -138,11 +139,15 @@ const buildQuery = (props) => {
 };
 
 const mapDispatchToProps = dispatch => ({
-  search: props => dispatch({
-    type: FETCH_COURSES,
-    payload: Network().get('courses/search', buildQuery(props)),
-    meta: 'publicCourseListPlaceholder'
-  }),
+  search: (props) => {
+    const term = getQueryParam('q', props.location.search);
+    dispatch(Actions.updateFilter({ term }));
+    dispatch({
+      type: FETCH_COURSES,
+      payload: Network().get('courses/search', buildQuery(props, term)),
+      meta: 'publicCourseListPlaceholder'
+    });
+  },
   resetFilter: () => dispatch({ type: RESET_COURSE_FILTER }),
   selectCourse: courseId => dispatch(Actions.selectCourse(courseId)),
   removeCourse: courseId => dispatch(Actions.removeCourse(courseId)),

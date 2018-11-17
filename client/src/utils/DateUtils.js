@@ -51,6 +51,16 @@ class DateUtils {
     });
     return days ? days.join(', ') : '';
   }
+
+  static compareTwoDate(date1, date2) {
+    return date1 > date2 ? 1 : date1 < date2 ? -1 : 0;
+  }
+
+  static compareTwoDateWithoutTime(date1, date2) {
+    const date1WithoutTime = date1.setHours(0, 0, 0, 0);
+    const date2WithoutTime = date2.setHours(0, 0, 0, 0);
+    return DateUtils.compareTwoDate(date1WithoutTime, date2WithoutTime);
+  }
 }
 
 export default DateUtils;

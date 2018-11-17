@@ -47,7 +47,7 @@ class CourseDetailIntro extends Component {
       <div id="course-detail-intro" className="course-detail-section">
         {
           showCourseSummary ?
-            <div className="section-title coursedy-headline text-left mb-20">
+            <div className="coursedy-headline text-left mb-20">
               <h3>{this.context.t('course_intro')}</h3>
             </div> : null
         }

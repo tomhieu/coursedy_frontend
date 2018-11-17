@@ -22,6 +22,7 @@
     "dev": "webpack-dev-server",
     "start": "NODE_ENV=staging npm run dev",
     "deploy": "NODE_ENV=production `npm bin`/webpack -p",
+    "start:prod": "NODE_ENV=production node server.js",
     "clean": "rm -rf client/dist client/build",
     "setup": "npm install",
     "lint": "eslint --fix client/src"
@@ -95,6 +96,7 @@
     "jquery": "^3.3.1",
     "jquery-deparam": "^0.5.3",
     "jquery.cookie": "^1.4.1",
+    "js-cookie": "^2.2.0",
     "lodash": "^4.17.4",
     "moment": "^2.22.1",
     "node-sass": "^4.8.3",

@@ -25,7 +25,8 @@ class FormDialogContainer extends Component {
       acceptLabel = this.context.t('ok'),
       customCancelButtonStyling = 'button cancel-button',
       customAcceptButtonStyling = 'button accept-button',
-      isProcessing = false
+      isProcessing = false,
+      canSubmit = true,
     } = this.props;
 
     return (
@@ -44,7 +45,7 @@ class FormDialogContainer extends Component {
             callback={this.onSubmitPopup.bind(this)}
             customClasses={customAcceptButtonStyling}
             isSmallButton
-            disabled={isProcessing}
+            disabled={isProcessing || !canSubmit}
             title={acceptLabel}
           />
           <PrimaryButton
@@ -75,7 +76,8 @@ FormDialogContainer.propTypes = {
   cancelLabel: React.PropTypes.string,
   customCancelButtonStyling: React.PropTypes.string,
   customAcceptButtonStyling: React.PropTypes.string,
-  isProcessing: React.PropTypes.bool
+  isProcessing: React.PropTypes.bool,
+  canSubmit: React.PropTypes.bool
 };
 
 export default connect()(FormDialogContainer);

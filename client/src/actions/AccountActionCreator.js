@@ -9,7 +9,7 @@ export const updatePassword = (data) => {
     dispatch({
       type: ACCOUNT.complete_updating_password,
       payload: Network().update('auth', data),
-      meta: 'ezylearningFullLoader'
+      meta: 'changePasswordPlaceholder'
     });
   };
 };
@@ -34,7 +34,8 @@ export const savePersonData = (name, email, date_of_birth, address, gender, emai
   return (dispatch) => {
     const response = dispatch({
       type: UPDATE_CURRENT_USER,
-      payload: Network().update('/auth', body)
+      payload: Network().update('/auth', body),
+      meta: "personInfoPlaceholder"
     });
 
     response.then((response) => {
@@ -86,7 +87,7 @@ export const updateAvatar = (avatar) => {
   return {
     type: UPDATE_CURRENT_USER,
     payload: Network().update('auth', { avatar }),
-    meta: 'ezylearningFullLoader'
+    meta: 'userAvatarPlaceholder'
   };
 };
 

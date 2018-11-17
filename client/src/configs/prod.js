@@ -3,4 +3,4 @@ const CONFIG = {
   assetServer: 'http://localhost:8088'
 }
 
-export default CONFIG
+export default CONFIG;

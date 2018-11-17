@@ -2,15 +2,21 @@ import * as React from 'react';
 import {Component} from 'react';
 import {SecurityUtils} from 'utils/SecurityUtils';
 import {globalHistory} from 'utils/globalHistory';
-import Modal from 'react-bootstrap4-modal';
-import Network from '../../../utils/network';
+import { FormGroup, ControlLabel } from 'react-bootstrap';
 import "babel-polyfill"
+import {renderRadioFields} from '../../Core/CustomComponents';
+import Field from 'redux-form/es/Field';
+import FormField from '../../Core/FormField';
+import DateUtils from '../../../utils/DateUtils';
+import PrimaryButton from '../../Core/PrimaryButton/PrimaryButton';
+import RefreshIcon from '../../Core/Icons/RefreshIcon';
+import SimpleDialogComponent from '../../Core/SimpleDialogComponent';
 
 class UpcommingCourseNotificationPopup extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
-      urlJoiningToBBBClass: null,
+      showTerminateLessonPopup: false
     };
   }
   openCourseDetails(courseUrl) {
@@ -26,43 +32,79 @@ class UpcommingCourseNotificationPopup extends Component {
     return <a onClick={this.openCourseDetails.bind(this, courseDetailUrl)} className="link-course-details">{courseName}</a>;
   }
 
-  async componentDidMount() {
-    const classRoomId = this.props.classRoomId;
-    const bbbUrl = await Network().get(`rooms/${classRoomId}/join`, {}, true);
+  openRoomExpirationWarning() {
     this.setState({
-      urlJoiningToBBBClass: bbbUrl.url
+      showTerminateLessonPopup: true
     });
   }
 
-  render() {
-    const {
-      currentUser, courseId, courseName, teacherName, closePopupJoinUpcomingClass, acceptJoinToClassRoom
-    } = this.props;
+  closeTerminateLesson() {
+    this.setState({
+      showTerminateLessonPopup: false
+    });
+  }
 
-    const canShowPopup = this.state.urlJoiningToBBBClass !== null;
+  terminateLesson(lessonId) {
+    this.props.terminateLesson(lessonId);
+    this.closeTerminateLesson();
+  }
+
+  render() {
+    const { currentUser, teachingCourse, selectedLessonId, isExpiredLesson } = this.props;
+    const teacherName = teachingCourse !== null ? teachingCourse.user.name : '';
+    const courseName = teachingCourse !== null ? teachingCourse.title : '';
+    const courseId = teachingCourse !== null ? teachingCourse.id : '';
+    const lessons = teachingCourse !== null ? teachingCourse.lessons : [];
+    const selectedLesson = lessons.find(le => le.id === Number(selectedLessonId));
+
     return (
-      <Modal visible={canShowPopup} onClickBackdrop={closePopupJoinUpcomingClass.bind(this)} >
-        <div className="modal-header">
-          <h5 className="modal-title">{this.context.t('join_active_course_popup_title')}</h5>
-        </div>
-        <div className="modal-body">
-          {
-            SecurityUtils.isStudent(currentUser)
-              ? this.context.t('join_active_course_popup_message', {
-                courseName: this.getCourseDetailsLink(currentUser, courseId, courseName),
-                teacherName: <strong>{teacherName}</strong>
-              })
-              : this.context.t('join_active_course_popup_message_for_teacher', {
-                courseName: this.getCourseDetailsLink(currentUser, courseId, courseName)
-              })
-          }
-        </div>
-        <div className="modal-footer button-center justify-content-center">
-          <a className="join-to-class-link" onClick={acceptJoinToClassRoom.bind(this)} href={this.state.urlJoiningToBBBClass} target="_blank">
-            {this.context.t('join_to_class_button_name')}
-          </a>
-        </div>
-      </Modal>
+      <div>
+        {
+          SecurityUtils.isStudent(currentUser)
+            ? this.context.t('join_active_course_popup_message', {
+              courseName: this.getCourseDetailsLink(currentUser, courseId, courseName),
+              teacherName: <strong>{teacherName}</strong>
+            })
+            : this.context.t('join_active_course_popup_message_for_teacher', {
+              courseName: this.getCourseDetailsLink(currentUser, courseId, courseName)
+            })
+        }
+        {
+          selectedLesson ? <div className="selected-lesson">
+            <div>{this.context.t('bbb_selected_lesson', {lessonName: <strong>{selectedLesson.title}</strong>})}</div>
+          </div> : null
+        }
+        {
+          isExpiredLesson ?
+            <div className="d-flex flex-row align-items-center lesson-warning">
+              <div className="terminate-lesson">{this.context.t('lesson_expiration_message')}</div>
+              <PrimaryButton isSmallButton={true} round line={false}
+                             iconButton={true}
+                             customClasses="start-course-btn"
+                             callback={this.openRoomExpirationWarning.bind(this)}
+                             title={this.context.t('lesson_room_is_expired_title')} />
+            </div>: null
+        }
+        <FormField
+          fieldId="selectedLesson"
+          fieldLabel={this.context.t('bbb_change_lesson_title')}
+          placeholder={this.context.t('bbb_change_lesson_title')}
+          options={lessons.map((lesson) => {
+            return { id: lesson.id, text: lesson.title };
+          })}
+          formControlName="selectedLesson"
+          typeField="custom_select"
+        />
+        {
+          selectedLesson ?
+            <SimpleDialogComponent show={this.state.showTerminateLessonPopup}
+                                   title={this.context.t('lesson_room_is_expired_title')}
+                                   acceptCallback={this.terminateLesson.bind(this, selectedLesson.id)}
+                                   cancelCallback={this.closeTerminateLesson.bind(this)}>
+              <span>{this.context.t('termination_lesson_confirmation')}</span>
+            </SimpleDialogComponent> : null
+        }
+      </div>
     )
   }
 }
@@ -73,12 +115,14 @@ UpcommingCourseNotificationPopup.contextTypes = {
 
 UpcommingCourseNotificationPopup.propTypes = {
   currentUser: React.PropTypes.object,
-  courseId: React.PropTypes.string,
-  courseName: React.PropTypes.string,
+  teachingCourse: React.PropTypes.object,
+  selectedLessonId: React.PropTypes.string,
+  lesson: React.PropTypes.object,
   teacherName: React.PropTypes.string,
-  classRoomId: React.PropTypes.string,
   acceptJoinToClassRoom: React.PropTypes.func,
-  closePopupJoinUpcomingClass: React.PropTypes.func
+  closePopupJoinUpcomingClass: React.PropTypes.func,
+  isExpiredLesson: React.PropTypes.bool,
+  terminateLesson: React.PropTypes.func
 };
 
 export default UpcommingCourseNotificationPopup;

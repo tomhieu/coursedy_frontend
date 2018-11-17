@@ -54,14 +54,14 @@ export default function requireLogin(Component) {
         return null;
       }
 
-      if (tutor && status && tutor.status !== status) {
+      if (tutor && status && tutor.status && tutor.status !== status) {
         return (
           <Redirect to={{
             pathname: '/404',
             state: { from: location },
             search: `?next=${location.pathname}`
           }}
-          /> )
+          />);
       }
 
       return (

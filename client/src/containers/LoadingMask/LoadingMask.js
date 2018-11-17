@@ -9,8 +9,10 @@ class LoadingMask extends Component {
   render() {
     const {
       placeholderId, activatingPlaceholders,
-      isFullLoading = false, normalPlaceholder = true, facebookPlaceholder = false, sectionPlaceholder = false,
-      loaderType, repeatTime, innerClass = 'loading-mask-container d-flex flex-stretch'
+      isFullLoading = false, normalPlaceholder = true,
+      facebookPlaceholder = false, sectionPlaceholder = false,
+      buttonPlaceholder = false, loaderType, repeatTime,
+      innerClass = 'loading-mask-container', loadingBgColor = '#1CABA0'
     } = this.props;
 
     let isProcessing = activatingPlaceholders.findIndex(holder => placeholderId === holder) >= 0;
@@ -27,12 +29,17 @@ class LoadingMask extends Component {
               normalPlaceholder={normalPlaceholder}
               facebookPlaceholder={facebookPlaceholder}
               sectionPlaceholder={sectionPlaceholder}
+              buttonPlaceholder={buttonPlaceholder}
               loaderType={loaderType}
               repeatTime={repeatTime}
+              loadingBgColor={loadingBgColor}
             />
           ) : null
         }
-        {facebookPlaceholder && isProcessing ? null : this.props.children}
+        {
+          (facebookPlaceholder || buttonPlaceholder) && isProcessing
+            ? null : this.props.children
+        }
       </div>
     );
   }
@@ -48,6 +55,7 @@ LoadingMask.propTypes = {
   loaderType: React.PropTypes.string,
   repeatTime: React.PropTypes.number,
   innerClass: React.PropTypes.string,
+  loadingBgColor: React.PropTypes.string
 };
 
 const mapStateToProps = state => ({

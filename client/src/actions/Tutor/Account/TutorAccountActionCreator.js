@@ -34,10 +34,14 @@ export const removeUploadedDocument = (documentId) => {
 
 export const updateTutorEducation = (id, data) => {
   return (dispatch) => {
-    Network().update(`tutors/${id}`, data).then((response) => {
+    return dispatch({
+      type: TutorAccountTypes.UPDATE_TUTOR,
+      payload: Network().update(`tutors/${id}`, data),
+      meta: 'userEducationPlaceholder'
+    }).then((response) => {
       dispatch({
         type: TutorAccountTypes.UPDATE_TUTOR_EDU,
-        payload: response
+        payload: response.value
       });
       dispatch(hideEducationEditForm());
     });

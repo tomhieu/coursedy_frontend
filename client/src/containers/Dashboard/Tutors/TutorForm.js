@@ -24,6 +24,9 @@ class TutorForm extends Component {
     const {
       handleSubmit, listLevel, degrees, skills, certificates, uploadFiles, skillSet, certificateSet
     } = this.props;
+    const placeholderId = "userEducationPlaceholder";
+    const { activatingPlaceholders } = this.props
+    const isProcessing = activatingPlaceholders.findIndex(holder => placeholderId == holder) >= 0;
     return (
       <div className="row">
         <div className="col-md-12 col-sm-12">
@@ -112,8 +115,9 @@ class TutorForm extends Component {
                 isPrimary
                 line={false}
                 type="submit"
-                isSmallButton
                 title={this.context.t('save')}
+                placeholderId={placeholderId}
+                disabled={isProcessing}
               />
               <PrimaryButton
                 isPrimary={false}
@@ -121,8 +125,8 @@ class TutorForm extends Component {
                 type="button"
                 customClasses="ml-15"
                 callback={this.props.cancel}
-                isSmallButton
-                title={this.context.t('cancel')}
+                title={isProcessing ? "" : this.context.t('cancel')}
+                disabled={isProcessing}
               />
             </div>
           </form>
@@ -151,7 +155,8 @@ const mapStateToProps = (state) => {
     uploadFiles,
     skillSet,
     tutor,
-    initialValues: { ...tutor, categories: skills }
+    initialValues: { ...tutor, categories: skills },
+    activatingPlaceholders: state.LoadingMask.activatingPlaceholders
   };
 };
 

@@ -10,7 +10,7 @@ class CourseFeeViewMode extends Component {
     } = this.props;
     return (
       <div className="row">
-        <div className="col-sm-12 col-md-6 col-lg-6">
+        <div className="col-sm-12">
           <CourseFormItem
             editMode={editMode}
             fieldId="tuition_fee"

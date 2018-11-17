@@ -29,31 +29,25 @@ class CourseCategoryViewMode extends Component {
             />
           </div>
         </div>
-        {
-          courseSpecializes.length > 0
-            ? (
-              <div className="col-sm-12 col-md-6 col-lg-6">
-                <div>
-                  <CourseFormItem
-                    editMode={editMode}
-                    fieldId="course_specialize"
-                    fieldLabel={this.context.t('course_specialize')}
-                    isMandatory
-                    fieldName="course_specialize_id"
-                    typeField="custom_select"
-                    content={editMode && course_specialize ? course_specialize.name : ''}
-                    options={courseSpecializes.map((spec) => {
-                      return { id: spec.id, text: spec.name };
-                    })}
-                    styleCustomField="inline-form-control"
-                    canEditable={canEditable}
-                    {...this.props}
-                  />
-                </div>
-              </div>
-            )
-            : null
-        }
+        <div className="col-sm-12 col-md-6 col-lg-6">
+          <div>
+            <CourseFormItem
+              editMode={editMode}
+              fieldId="course_specialize"
+              fieldLabel={this.context.t('course_specialize')}
+              isMandatory
+              fieldName="course_specialize_id"
+              typeField="custom_select"
+              content={editMode && course_specialize ? course_specialize.name : ''}
+              options={courseSpecializes.map((spec) => {
+                return { id: spec.id, text: spec.name };
+              })}
+              styleCustomField="inline-form-control"
+              canEditable={canEditable}
+              {...this.props}
+            />
+          </div>
+        </div>
       </div>
     );
   }

@@ -7,7 +7,7 @@ import {countries} from '../../../constants/Countries';
 
 export class PersonalInfoForm extends Component {
   render() {
-    const { handleSubmit } = this.props;
+    const { handleSubmit, placeholderId, isProcessing } = this.props;
     const countryList = countries.map(country => ({
       id: country.code,
       text: country.name
@@ -83,6 +83,8 @@ export class PersonalInfoForm extends Component {
             line={false}
             type="submit"
             title={this.context.t('save')}
+            placeholderId={placeholderId}
+            disabled={isProcessing}
           />
           <PrimaryButton
             isPrimary={false}
@@ -90,7 +92,8 @@ export class PersonalInfoForm extends Component {
             type="button"
             customClasses="ml-15"
             callback={this.props.cancel}
-            title={this.context.t('cancel')}
+            title={isProcessing ? "" : this.context.t('cancel')}
+            disabled={isProcessing}
           />
         </div>
       </form>
@@ -104,5 +107,7 @@ PersonalInfoForm.contextTypes = {
 
 PersonalInfoForm.propTypes = {
   onSubmit: React.PropTypes.func.isRequired,
-  cancel: React.PropTypes.func.isRequired
+  cancel: React.PropTypes.func.isRequired,
+  placeholderId: React.PropTypes.string,
+  isProcessing: React.PropTypes.bool,
 };

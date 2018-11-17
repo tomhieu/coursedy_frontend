@@ -1,0 +1,30 @@
+export default {
+  vn: {
+    teacher_how_to_interact_with_learner_title: 'Giảng bài tương tác trực tiếp với học viên',
+    teacher_how_to_interact_with_learner_description: 'Sắp tới giờ dạy học Coursedy sẽ gửi thông báo nhắc nhở tới giáo viên vì thế giáo viên chú ý vào hệ thống Coursedy đúng giờ để nhận hướng dẫn vào lớp. Giáo viên lưu ý các bước dưới đây chỉ đúng khi giáo viên vào hệ thống Coursedy vào đúng thời điểm dạy.',
+    teacher_how_to_interact_with_learner_topic_title_one: 'Bước 1 - Đăng nhập tài khoản giáo viên',
+    teacher_how_to_interact_with_learner_topic_description_one: 'Đăng nhập tài khoản giáo viên của bạn',
+    teacher_how_to_interact_with_learner_topic_title_two: 'Bước 2 - Chờ nhận cửa sổ hướng dẫn chọn bài giảng và vào lớp học',
+    teacher_how_to_interact_with_learner_topic_description_two: 'Theo hướng dẫn chọn bài giảng sẽ dạy và vào lớp học',
+    teacher_how_to_interact_with_learner_topic_description_two_image_link_one: '/bbb/join_class.png',
+    teacher_how_to_interact_with_learner_topic_description_two_image_link_two: '/bbb/join_to_class_guide.png',
+    teacher_how_to_interact_with_learner_topic_title_three: 'Bước 3 - Dạy học tương tác trực tiếp với học viên',
+    teacher_how_to_interact_with_learner_topic_description_three: 'Giáo viên có thể chia sẻ âm thanh, video, màn hình máy tính, tài liệu giảng, sử dụng bảng trắng, có thể sử dụng chat trò chuyện với học sinh.',
+    teacher_how_to_interact_with_learner_topic_description_three_image_link_one: '/bbb/bbb-first-screen.png',
+    teacher_how_to_interact_with_learner_updated_date: '2018-11-15',
+  },
+  en: {
+    teacher_how_to_interact_with_learner_title: 'Lecture directly interact with learners',
+    teacher_how_to_interact_with_learner_description: 'Coursedy will now send a reminder to the teacher, so the teacher takes note of the Coursedy system on time to receive instruction in the classroom. The teacher notes that the steps below are correct only when the teacher enters the Coursedy system at the right time.',
+    teacher_how_to_interact_with_learner_topic_title_one: 'Step 1 - Login to the teacher account',
+    teacher_how_to_interact_with_learner_topic_description_one: 'Login to your teacher account',
+    teacher_how_to_interact_with_learner_topic_title_two: 'Step 2 - Wait for the lesson guide window and guide to join the classroom',
+    teacher_how_to_interact_with_learner_topic_description_two: 'Follow the instructions to choose the lecture will teach and join the classroom',
+    teacher_how_to_interact_with_learner_topic_description_two_image_link_one: '/bbb/join_class.png',
+    teacher_how_to_interact_with_learner_topic_description_two_image_link_two: '/bbb/join_to_class_guide.png',
+    teacher_how_to_interact_with_learner_topic_title_three: 'Step 3 - Direct interactive teaching with learners',
+    teacher_how_to_interact_with_learner_topic_description_three: 'Teachers can share audio, video, computer screens, slides, whiteboard, chatting with students.',
+    teacher_how_to_interact_with_learner_topic_description_three_image_link_one: '/bbb/bbb-first-screen.png',
+    teacher_how_to_interact_with_learner_updated_date: '2018-11-15',
+  }
+};

@@ -38,7 +38,14 @@
     }
   }
   .selectNewImage {
-    border: 1px dashed $border-color;
-    border-radius: 6px;
+    border: 2px dashed #235074;
+    border-radius: 10px;
+    cursor: pointer;
+    &:hover {
+      border: 2px dashed $md-color-pink;
+      .icon-upload .upload-image {
+        fill: $md-color-pink;
+      }
+    }
   }
 }

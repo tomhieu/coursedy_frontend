@@ -6,9 +6,9 @@ import Network from 'utils/network';
 import StudentItem from '../../../components/Student/StudentItem/StudentItem';
 import styles from './ListEnrolledStudent.module.scss';
 import { FETCH_ENROLLED_STUDENT } from '../../../actions/AsyncActionCreator';
-import LoadingMask from '../../../components/LoadingMask/LoadingMask';
+import LoadingMask from '../../LoadingMask/LoadingMask';
 import * as WebConstant from '../../../constants/WebConstants';
-import AsyncLoader from '../../../components/LoadingMask/AsyncLoader';
+import AsyncLoader from '../../../containers/LoadingMask/AsyncLoader';
 
 class ListEnrolledStudent extends Component {
   componentWillMount() {
@@ -24,6 +24,9 @@ class ListEnrolledStudent extends Component {
           normalPlaceholder={true}
           facebookPlaceholder={false}
           sectionPlaceholder={false}
+          loadingBgColor="#1CABA0"
+          height={30}
+          width={30}
           loaderType={""}
           repeatTime={0}
         />

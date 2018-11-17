@@ -35,8 +35,15 @@ class SearchFormContainer extends Component {
   }
 
   onSearchMoreCourse(searchForm) {
-    this.props.updateFilter({ term: searchForm.key_word });
-    this.context.router.history.push(`/courses?q=${searchForm.key_word}`);
+    if (searchForm.key_word) {
+      this.props.updateFilter({ term: searchForm.key_word });
+    }
+
+    this.props.closeSuggestion();
+    const query = searchForm.key_word ? `?q=${searchForm.key_word}` : '';
+    setTimeout(() => {
+      this.context.router.history.push(`/courses${query}`);
+    }, 200);
   }
 
   render() {
@@ -78,6 +85,7 @@ SearchFormContainer.propTypes = {};
 
 const mapStateToProps = (state) => {
   const { CourseFilter } = state;
+  const { lang } = state.i18nState;
   const {
     sugestions, showSuggestion, loadingSuggestion, filters
   } = CourseFilter;
@@ -87,7 +95,7 @@ const mapStateToProps = (state) => {
       id: sug.id,
       avatar: sug.cover_image,
       title: sug.title,
-      sub_title: TT.t('teacher_info_suggestion', { teacher: sug.user.name })
+      sub_title: TT.changeLocale(lang).t('teacher_info_suggestion', { teacher: sug.user.name })
     })),
     loadingSuggestion
   };

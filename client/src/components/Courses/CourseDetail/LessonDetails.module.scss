@@ -33,6 +33,8 @@
     display: flex;
     justify-content: flex-end;
     cursor: pointer;
+    color: $color-highlight;
+    font-family: $font-semi-bold;
   }
   .descriptionContent {
     border-top: 1px solid rgba(0,0,0,.125);

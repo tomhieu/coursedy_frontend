@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './ReviewContent.scss';
 import DateUtils from 'utils/DateUtils';
+import UserAvatar from '../Account/UserAvatar';
 
 class ReviewContent extends Component {
   render() {
@@ -11,12 +12,15 @@ class ReviewContent extends Component {
 
     return (
       <div className="review-info">
-        <div className="image">
-          <img
-            className="img-circle"
-            src={review.user.avatar}
-          />
-        </div>
+        {
+          review.user.avatar ?
+            <div className="image">
+              <img
+                className="img-circle"
+                src={review.user.avatar}
+              />
+            </div> : <UserAvatar username={review.user.name} classNames="image img-circle user-comment" />
+        }
         <div className="content">
           <ReviewHeader review={review} />
           <div className="review-text">{review.content}</div>

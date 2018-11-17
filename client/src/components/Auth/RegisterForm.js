@@ -17,7 +17,7 @@ import normalizePhone from './normalizePhoneNumber';
 
 class RegisterForm extends Component {
   render() {
-    const { handleSubmit } = this.props;
+    const { handleSubmit, placeholderId, isProcessing } = this.props;
     const countryList = countries.map(country => ({
       id: country.code,
       text: country.name
@@ -36,10 +36,10 @@ class RegisterForm extends Component {
           <Field
             name="role"
             component={renderRadioFields}
-            options={ROLES.reduce((acc, curr) => {
-              acc[curr] = TT.changeLocale(this.props.lang).t(curr);
-              return acc;
-            }, {})}
+            options={ROLES.map((acc, i) => ({
+              id: i,
+              name: TT.changeLocale(this.props.lang).t(acc)
+            }))}
           />
         </FormGroup>
 
@@ -156,6 +156,8 @@ class RegisterForm extends Component {
             customClasses={styles.registerButton}
             title={this.context.t('register_now')}
             line={false}
+            placeholderId={placeholderId}
+            disabled={isProcessing}
           />
         </div>
 
@@ -172,6 +174,9 @@ RegisterForm.contextTypes = {
   t: React.PropTypes.func.isRequired
 };
 
-RegisterForm.propTypes = {};
+RegisterForm.propTypes = {
+  placeholderId: React.PropTypes.string,
+  isProcessing: React.PropTypes.bool
+};
 
 export default cssModules(RegisterForm, styles);

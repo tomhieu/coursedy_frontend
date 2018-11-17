@@ -10,7 +10,7 @@ import './AuthForm.scss';
 
 class ForgotPasswordForm extends Component {
   render() {
-    const { handleSubmit } = this.props;
+    const { handleSubmit, placeholderId, isProcessing } = this.props;
     const { errors } = this.props.forgotPassword;
     return (
       <form onSubmit={handleSubmit(this.props.onSubmit)} className="form-forgot-pass">
@@ -24,9 +24,7 @@ class ForgotPasswordForm extends Component {
                   e.preventDefault();
                   this.props.clearError();
                 }}
-              >
-×
-              </a>
+              >×</a>
               <p className="error">{errors && errors[0]}</p>
             </div>
           </span>
@@ -55,6 +53,8 @@ class ForgotPasswordForm extends Component {
             title={this.context.t('send')}
             line={false}
             round
+            disabled={isProcessing}
+            placeholderId={placeholderId}
           />
         </div>
       </form>
@@ -67,7 +67,9 @@ ForgotPasswordForm.contextTypes = {
 };
 
 ForgotPasswordForm.propTypes = {
-  onSubmit: React.PropTypes.func.isRequired
+  onSubmit: React.PropTypes.func.isRequired,
+  placeholderId: React.PropTypes.string,
+  isProcessing: React.PropTypes.bool
 };
 
 export default cssModules(ForgotPasswordForm, styles);

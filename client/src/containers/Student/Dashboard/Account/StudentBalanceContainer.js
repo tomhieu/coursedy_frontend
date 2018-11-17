@@ -5,7 +5,7 @@ import { PaymentComponents } from '../../../../components/index';
 import {
   PaymentActions
 } from '../../../../actions/index';
-import LoadingMask from '../../../../components/LoadingMask/LoadingMask';
+import LoadingMask from '../../../LoadingMask/LoadingMask';
 import { FETCH_PAYMENT_HISTORY } from '../../../../actions/AsyncActionCreator';
 
 class StudentBalanceContainer extends Component {

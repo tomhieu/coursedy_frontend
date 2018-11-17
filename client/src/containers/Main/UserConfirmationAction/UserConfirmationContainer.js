@@ -12,13 +12,17 @@ class UserConfirmationContainer extends Component {
 
   render() {
     const {
-      showConfirmationPopup, confirmationTitle, confirmCallback, confirmationMessage
+      showConfirmationPopup,
+      confirmationTitle,
+      confirmCallback,
+      confirmationMessage,
+      lang
     } = this.props;
     return (
       <div className="confirmation-popup">
         <SimpleDialogComponent
           show={showConfirmationPopup}
-          cancelLabel={TT.t('close')}
+          cancelLabel={TT.changeLocale(lang).t('close')}
           title={confirmationTitle}
           cancelCallback={this.props.closeConfirmationPopup.bind(this)}
           acceptCallback={confirmCallback ? this.executeConfirmCallback.bind(this, confirmCallback) : undefined}
@@ -30,14 +34,17 @@ class UserConfirmationContainer extends Component {
   }
 }
 
-
 const mapStateToProps = (state) => {
   const { main } = state;
   const {
     showConfirmationPopup, confirmationTitle, confirmCallback, confirmationMessage
   } = main;
   return {
-    showConfirmationPopup, confirmationTitle, confirmCallback, confirmationMessage
+    showConfirmationPopup,
+    confirmationTitle,
+    confirmCallback,
+    confirmationMessage,
+    lang: state.i18nState.lang
   };
 };
 

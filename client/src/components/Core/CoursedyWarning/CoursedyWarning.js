@@ -16,7 +16,7 @@ class CoursedyWarning extends Component {
     const {message} = this.props;
     return (
       <div className={styles.warningContainer}>
-        <WarningIcon fillColor="#FDC100"></WarningIcon>
+        <WarningIcon width={14} height={12} fillColor="#FDC100"></WarningIcon>
         <span className={styles.message}>{message}</span>
       </div>
     );

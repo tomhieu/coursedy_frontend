@@ -85,7 +85,7 @@ UserNavigation.contextTypes = {
 
 UserNavigation.propTypes = {
   session: PropTypes.object.isRequired,
-  tutorStatus: PropTypes.string.isRequired,
+  tutorStatus: PropTypes.string,
   signOut: PropTypes.func.isRequired
 };
 
