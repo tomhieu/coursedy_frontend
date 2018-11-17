@@ -98,7 +98,7 @@ class ThirdPartyLoginContainer extends Component {
                   name="role"
                   component={renderRadioFields}
                   options={ROLES.map((acc, i) => ({
-                    id: i,
+                    id: ROLES[i],
                     name: TT.t(acc)
                   }))}
                 />

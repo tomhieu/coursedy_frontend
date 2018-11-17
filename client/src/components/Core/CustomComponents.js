@@ -82,7 +82,6 @@ export const renderRadioFields = ({ options, input, handleChange, customClasses 
           <input {...input}
             id={`${input.name}-${index}`}
             type="radio"
-            onChange={handleChange ? handleChange.bind(this, option) : null}
             value={option.id}
             className="custom-control-input"
           />

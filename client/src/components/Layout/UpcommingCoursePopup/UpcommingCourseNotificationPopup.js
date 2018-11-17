@@ -2,14 +2,9 @@ import * as React from 'react';
 import {Component} from 'react';
 import {SecurityUtils} from 'utils/SecurityUtils';
 import {globalHistory} from 'utils/globalHistory';
-import { FormGroup, ControlLabel } from 'react-bootstrap';
 import "babel-polyfill"
-import {renderRadioFields} from '../../Core/CustomComponents';
-import Field from 'redux-form/es/Field';
 import FormField from '../../Core/FormField';
-import DateUtils from '../../../utils/DateUtils';
 import PrimaryButton from '../../Core/PrimaryButton/PrimaryButton';
-import RefreshIcon from '../../Core/Icons/RefreshIcon';
 import SimpleDialogComponent from '../../Core/SimpleDialogComponent';
 
 class UpcommingCourseNotificationPopup extends Component {
