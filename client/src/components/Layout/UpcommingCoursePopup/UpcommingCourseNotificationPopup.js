@@ -65,12 +65,12 @@ class UpcommingCourseNotificationPopup extends Component {
             })
         }
         {
-          selectedLesson ? <div className="selected-lesson">
+          SecurityUtils.isTeacher(currentUser) && selectedLesson ? <div className="selected-lesson">
             <div>{this.context.t('bbb_selected_lesson', {lessonName: <strong>{selectedLesson.title}</strong>})}</div>
           </div> : null
         }
         {
-          isExpiredLesson ?
+          SecurityUtils.isTeacher(currentUser) && isExpiredLesson ?
             <div className="d-flex flex-row align-items-center lesson-warning">
               <div className="terminate-lesson">{this.context.t('lesson_expiration_message')}</div>
               <PrimaryButton isSmallButton={true} round line={false}
@@ -80,18 +80,21 @@ class UpcommingCourseNotificationPopup extends Component {
                              title={this.context.t('lesson_room_is_expired_title')} />
             </div>: null
         }
-        <FormField
-          fieldId="selectedLesson"
-          fieldLabel={this.context.t('bbb_change_lesson_title')}
-          placeholder={this.context.t('bbb_change_lesson_title')}
-          options={lessons.map((lesson) => {
-            return { id: lesson.id, text: lesson.title };
-          })}
-          formControlName="selectedLesson"
-          typeField="custom_select"
-        />
         {
-          selectedLesson ?
+          SecurityUtils.isTeacher(currentUser) ?
+            <FormField
+              fieldId="selectedLesson"
+              fieldLabel={this.context.t('bbb_change_lesson_title')}
+              placeholder={this.context.t('bbb_change_lesson_title')}
+              options={lessons.map((lesson) => {
+                return { id: lesson.id, text: lesson.title };
+              })}
+              formControlName="selectedLesson"
+              typeField="custom_select"
+            /> : null
+        }
+        {
+          SecurityUtils.isTeacher(currentUser) && selectedLesson ?
             <SimpleDialogComponent show={this.state.showTerminateLessonPopup}
                                    title={this.context.t('lesson_room_is_expired_title')}
                                    acceptCallback={this.terminateLesson.bind(this, selectedLesson.id)}

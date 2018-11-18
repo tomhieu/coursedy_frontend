@@ -865,7 +865,7 @@ export default {
   course_day_in_week: 'Week days schedule',
   course_day_in_week_seperate: 'to',
   no_rating: 'Nothing rating yet',
-  no_bbb_room_ready: 'Teacher is not joined yet, Please wait a minute',
+  no_bbb_room_ready: 'Teacher is not joined yet, Please wait a minute.',
   browser_popup_blocker: 'Your browser is blocked "Pop-up and redirect". So please enable it following {support_link} or click to such link to {bbb_join_link}',
   bbb_join_again: 'try join to class again',
   guide_link: 'the guide',

@@ -825,7 +825,7 @@ export default {
   course_day_in_week: 'Lịch học trong tuần',
   course_day_in_week_seperate: 'đến',
   no_rating: 'Chưa có đánh giá',
-  no_bbb_room_ready: 'Giáo viện vẫn chưa vào lớp, xin vui lòng chờ trong giây lát',
+  no_bbb_room_ready: 'Giáo viện vẫn chưa vào lớp, xin vui lòng chờ trong giây lát.',
   browser_popup_blocker: 'Trinh duyệt của bạn đang chặn không cho phép chuyển hướng, Vui lòng bật cho phép chuyển hướng {support_link} hoặc nhấn vào link sau để {bbb_join_link}',
   bbb_join_again: 'thử vào lại lớp',
   guide_link: 'hướng dẫn',
@@ -834,12 +834,12 @@ export default {
   at_here: 'tại đây',
   create_course: 'Tạo khoá học',
   bbb_selected_lesson: 'Bài học được lựa chọn: {lessonName}',
-  bbb_change_lesson_title: 'Lựa chon bài học để dạy',
+  bbb_change_lesson_title: 'Lựa chọn bài học để dạy',
   lesson_room_is_expired_title: 'Kết thúc',
   lesson_room_is_expired_msg: 'Bài học {lessonName} của khoá học này đã hết thời gian học. Xin vui lòng kết thúc bài học này để bắt đầu dạy bài học khác.',
   teach_lesson: 'dạy',
   study_lesson: 'học',
   rejoin_classroom: 'Vào lại',
-  lesson_expiration_message: 'Chú ý: Bài học này đã hết giờ hoc. Vui lòng kết thúc bài học này trước khi bắt đầu bài học khác.',
+  lesson_expiration_message: 'Chú ý: Bài học này đã hết giờ học. Vui lòng kết thúc bài học này trước khi bắt đầu bài học khác.',
   termination_lesson_confirmation: 'Bạn có chắc chắn là muốn kết thúc bài học này không?'
 };
