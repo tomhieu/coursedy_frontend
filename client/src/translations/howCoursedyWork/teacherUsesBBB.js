@@ -12,7 +12,7 @@ export default {
     teacher_how_to_interact_with_learner_topic_title_three: 'Bước 3 - Dạy học tương tác trực tiếp với học viên',
     teacher_how_to_interact_with_learner_topic_description_three_one: 'Giáo viên có thể chia sẻ âm thanh, video, màn hình máy tính, tài liệu giảng, sử dụng bảng trắng, có thể sử dụng chat trò chuyện với học sinh.',
     teacher_how_to_interact_with_learner_topic_description_three_two: 'Và rất là dễ dàng dùng các tính năng tuyệt vời ở trên, giáo viên đơn giản chỉ việc nhấp vào một nút và theo các bước hướng dẫn kèm sau đó.',
-    teacher_how_to_interact_with_learner_topic_description_three_three: 'Lưu ý trong trường hợp muốn dùng bảng trắng giáo viên nhấp chuyển sang slide kế tiêp tại "(NEXT SLIDE)".',
+    teacher_how_to_interact_with_learner_topic_description_three_three: 'Lưu ý trong trường hợp muốn dùng bảng trắng giáo viên nhấp chuyển sang slide kế tiếp tại "(NEXT SLIDE)".',
     teacher_how_to_interact_with_learner_topic_description_three_four: 'Lưu ý trong trường hợp muốn chia sẻ màn hình giáo viên phải theo hướng dẫn cài thêm tiện ích nếu nhận được thông báo.',
     teacher_how_to_interact_with_learner_topic_description_three_five: 'Cuối cùng, bạn có thể liên hệ với chúng tôi nếu cần hỗ trợ qua support@coursedy.com hoặc khung trò chuyện ở góc dưới cùng bên phải.',
     teacher_how_to_interact_with_learner_topic_description_three_image_link_one: '/bbb/bbb-first-screen.png',

@@ -6,6 +6,7 @@ import PersonInfoContainer from '../../../containers/Account/PersonInfoContainer
 import UserInfo from '../../Account/UserInfo';
 import CoursedyWarning from '../../Core/CoursedyWarning/CoursedyWarning';
 import {TutorStatus} from '../../../constants/TutorStatus';
+import { UserRole } from 'constants/UserRole';
 
 class TutorProfileDetails extends Component {
   hideProfileEditForm() {
@@ -26,7 +27,7 @@ class TutorProfileDetails extends Component {
             {this.context.t('my_profile')}
           </div>
           {
-            tutor.status !== TutorStatus.VERIFIED ?
+            user.roles.indexOf(UserRole.TEACHER) && tutor.status !== TutorStatus.VERIFIED ?
               <CoursedyWarning message={this.context.t('account_pending_warning_message', {
                 pending_status: <strong>{this.context.t('pending_account_status')}</strong>
               })}></CoursedyWarning> : null
