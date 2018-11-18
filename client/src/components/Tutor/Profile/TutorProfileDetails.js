@@ -27,7 +27,7 @@ class TutorProfileDetails extends Component {
             {this.context.t('my_profile')}
           </div>
           {
-            user.roles.indexOf(UserRole.TEACHER) && tutor.status !== TutorStatus.VERIFIED ?
+            user.roles.indexOf(UserRole.TEACHER) >= 0 && tutor.status !== TutorStatus.VERIFIED ?
               <CoursedyWarning message={this.context.t('account_pending_warning_message', {
                 pending_status: <strong>{this.context.t('pending_account_status')}</strong>
               })}></CoursedyWarning> : null
