@@ -127,7 +127,7 @@ class NotificationSystemContainer extends Component {
           firstDayLearning: <strong>{DateUtils.formatDate(course.start_date)}</strong>
         }),
         position: 'tr',
-        autoDismiss: 1,
+        autoDismiss: 7,
         id: course.id
       }));
 
