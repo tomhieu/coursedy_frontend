@@ -100,7 +100,7 @@ class StudentCourseItem extends Component {
             </div>
             <div className="col-md-7 col-sm-12">
               <div className="row align-items-center">
-                <div className="col-xl-3 col-lg-4 col-md-2 col-sm-4" onClick={this.openCourseDetails.bind(this, course.id)}>
+                <div className="col-xl-2 col-lg-4 col-md-2 col-sm-4" onClick={this.openCourseDetails.bind(this, course.id)}>
                   <div className="d-flex flex-row align-items-center">
                     <div className={styles.leftSeperateLine} />
                     <div className={styles.courseNumberData}>{DateUtils.formatDate(course.start_date)}</div>
@@ -131,7 +131,7 @@ class StudentCourseItem extends Component {
                     }
                   </div>
                 </div>
-                <div className="col-xl-2 col-lg-2 col-md-6 col-sm-4">
+                <div className="col-xl-3 col-lg-2 col-md-6 col-sm-4">
                   <div className="d-flex flex-row align-items-center justify-content-right">
                     <div className={styles.leftSeperateLine} />
                     {
