@@ -1,11 +1,11 @@
 [
   {
     "id": 1,
-    "name": "CTG",
-    "fullName": "Ngân hàng thương mại cổ phần Ngoại thương Việt Nam", 
+    "name": "ACB",
+    "fullName": "Ngân hàng Thương mại Cổ phần Á Châu",
     "bankAccount": {
-      "accountName": "Pham Duy Bao Trung ACB",
-      "accountNumber": "9124 6788 6778 900",
+      "accountName": "NGUYỄN MINH TÂN",
+      "accountNumber": "256973329",
       "accountOffice": "Ly Thuong Kiet"
     }
   }, {
