@@ -1,12 +1,31 @@
-.container {
-  height: 100vh;
-  width: 100%
+@import "../../../styles/global_style";
 
+.container {
+  min-height: 60vh;
+  width: 100%
 };
 
-.header {
-  font-size: 36px;
-  font: 'Open Sans';
-  color: #000000;
+.page404Wrap {
   text-align: center;
+  padding-top: 100px;
+  padding-bottom: 100px;
+}
+
+.backToHomePage {
+  max-width: 200px;
+}
+
+.page404Description {
+  @media (min-width: 992px) {
+    padding: 0 28%;
+  }
+  color: $dark-text-color;
+  margin-bottom: 10px;
+}
+
+.page404Header {
+  font-size: 36px;
+  line-height: 46px;
+  font-weight: bold;
+  color: $color-black-three;
 }

@@ -841,5 +841,9 @@ export default {
   study_lesson: 'học',
   rejoin_classroom: 'Vào lại',
   lesson_expiration_message: 'Chú ý: Bài học này đã hết giờ học. Vui lòng kết thúc bài học này trước khi bắt đầu bài học khác.',
-  termination_lesson_confirmation: 'Bạn có chắc chắn là muốn kết thúc bài học này không?'
+  termination_lesson_confirmation: 'Bạn có chắc chắn là muốn kết thúc bài học này không?',
+
+  page_404_title: 'Không thấy trang cần tìm!',
+  page_404_description: 'Trang bạn cần tìm không có trong hệ thống. Vui lòng kiểm tra lại đường dẫn hoặc trở về trang chủ để bắt đầu lại.',
+  back_to_homepage: 'Quay về trang chủ',
 };

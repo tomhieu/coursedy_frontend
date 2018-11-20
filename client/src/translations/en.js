@@ -881,5 +881,9 @@ export default {
   study_lesson: 'study',
   rejoin_classroom: 'Rejoin',
   lesson_expiration_message: 'Warning: This lesson is expired. So, please terminate this lesson before starting another one.',
-  termination_lesson_confirmation: 'Are you sure you want to terminate this lesson?'
+  termination_lesson_confirmation: 'Are you sure you want to terminate this lesson?',
+
+  page_404_title: 'The page cannot be found!',
+  page_404_description: 'We cannot find the page you are looking for. Please check that the Web site address is spelled correctly. Or go to our home page, and use the menus to navigate to a specific section.',
+  back_to_homepage: 'Back to Homepage',
 };
