@@ -94,6 +94,7 @@ class SectionLessonContainer extends Component {
                         key={`___lesson__${lesson.id}`}
                         lesson={lesson}
                         onSubmit={this.saveLesson.bind(this)}
+                        form={`LessonDetailForm${lesson.id}`}
                         sectionUniqueKey={`__lesson_${lesson.id}`}
                         onActivatedField={this.onActivatedField.bind(this)}
                         {...this.props}

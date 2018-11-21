@@ -194,8 +194,8 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps, mapDispatchToProps
 )(reduxForm({
-  form: 'lessonEditForm',
   fields: ['title', 'period', 'description'],
   validate,
-  enableReinitialize: true
+  enableReinitialize: true,
+  destroyOnUnmount: false
 })(LessonDetailFormContainer));

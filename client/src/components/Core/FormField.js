@@ -65,7 +65,6 @@ class FormField extends Component {
             component={renderField}
             onChange={this.props.onChange}
             customClassName={fieldClasses}
-            {...restProps}
           />
         );
         break;
