@@ -6,7 +6,6 @@ import { SearchFormContainer } from '../../containers/index';
 import PopularCourseList from '../../containers/HomePage/PopularCourseListContainer';
 import NewCourseList from '../../containers/HomePage/NewCourseListContainer';
 import HowToLearn from '../../containers/HomePage/HowToLearnContainer';
-import StudentComments from '../../containers/HomePage/StudentCommentsContainer';
 import TopTeachers from '../../containers/HomePage/TopTeachersContainer';
 import YouAreTeacher from '../../containers/HomePage/YouAreTeacherContainer';
 import 'containers/HomePage/Hompage.scss';
@@ -19,7 +18,6 @@ const LandingPage = props => (
     <PopularCourseList />
     <NewCourseList />
     <HowToLearn />
-    <StudentComments />
     <TopTeachers />
     <YouAreTeacher />
   </div>

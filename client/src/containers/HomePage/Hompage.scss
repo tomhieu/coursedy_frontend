@@ -17,9 +17,13 @@
     background-color: $white-color;
   }
 
-  &__how-to-learn, &__popular, &__teacher-guide {
+  &__how-to-learn, &__popular {
     background-color: $body-color;
 
+  }
+
+  &__teacher-guide {
+    background-color: $white-color;
   }
 
   &__popular {
