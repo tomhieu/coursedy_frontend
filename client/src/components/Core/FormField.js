@@ -22,11 +22,10 @@ class FormField extends Component {
       typeField, type, zoneHeight = 'auto', internalPreview = false, previewUrl, onUpload, rows, options,
       selectedValues, customClassName, checked, chosenValue, onCheck, toggled, onToggle, onFileRemoved,
       lang = 'vn',
-      ...restProps
     } = this.props;
 
     const fieldComponent = this.buildFieldRender(formControlName, placeholder, typeField, type,
-      zoneHeight, internalPreview, previewUrl, onUpload, rows, options, selectedValues, customClassName, checked, chosenValue, onCheck, toggled, onToggle, onFileRemoved, lang, restProps);
+      zoneHeight, internalPreview, previewUrl, onUpload, rows, options, selectedValues, customClassName, checked, chosenValue, onCheck, toggled, onToggle, onFileRemoved, lang);
     return (
       <FormGroup controlId={this.props.fieldId}>
         {
@@ -46,7 +45,7 @@ class FormField extends Component {
     );
   }
 
-  buildFieldRender(formControlName, placeholder, typeField, type, zoneHeight, internalPreview, previewUrl, onUpload, rows, options, selectedValues, customClassName, checked, chosenValue, onCheck, toggled, onToggle, onFileRemoved, lang, restProps) {
+  buildFieldRender(formControlName, placeholder, typeField, type, zoneHeight, internalPreview, previewUrl, onUpload, rows, options, selectedValues, customClassName, checked, chosenValue, onCheck, toggled, onToggle, onFileRemoved, lang) {
     let fieldComponent;
     const fieldClasses = 'form-control';
 
@@ -65,7 +64,6 @@ class FormField extends Component {
             component={renderField}
             onChange={this.props.onChange}
             customClassName={fieldClasses}
-            {...restProps}
           />
         );
         break;
@@ -141,7 +139,6 @@ class FormField extends Component {
             scaleWidth={this.props.scaleWidth}
             scaleHeight={this.props.scaleHeight}
             lang={lang}
-            {...restProps}
           />
         );
         break;
