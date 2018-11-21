@@ -8,14 +8,5 @@
       "accountNumber": "256973329",
       "accountOffice": "Ly Thuong Kiet"
     }
-  }, {
-    "id": 2,
-    "name": "VCB",
-    "fullName": "Ngân hàng Thương mại Cổ phần Công thương Việt Nam",
-    "bankAccount": {
-      "accountName": "Pham Duy Bao Trung",
-      "accountNumber": "9124 6788 6778 900 VCB",
-      "accountOffice": "Ly Thuong Kiet"
-    }
   }
 ]
