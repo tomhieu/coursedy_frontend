@@ -17,6 +17,8 @@ export const validate = (values) => {
 
   if (values.start_date && start_date == null) {
     errors.start_date = TT.t('invalid_start_date');
+  } else if (values.start_date && start_date.diff(now) < 0) {
+    errors.start_date = TT.t('start_date_less_now')
   }
 
   if (!values.number_of_students) {

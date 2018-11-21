@@ -58,5 +58,6 @@ export default connect(
 )(reduxForm({
   fields: ['title'],
   validate,
-  enableReinitialize: true
+  enableReinitialize: true,
+  destroyOnUnmount: false
 })(SectionDetailContainer));
