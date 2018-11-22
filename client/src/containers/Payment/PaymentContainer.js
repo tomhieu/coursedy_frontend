@@ -207,7 +207,7 @@ class PaymentContainer extends Component {
                         />
                       </div>
                       <div className="col-sm-12 no-pad-left col-md-7">
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.737426598377!2d106.6580743143502!3d10.7547083923363!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752ef11488a397%3A0x49680a6fa438017b!2sCheese+Coffee!5e0!3m2!1sen!2s!4v1534047689794"
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15676.608394619212!2d106.7052924!3d10.7996605!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x7707608b48ac3c25!2sDreamplex+195!5e0!3m2!1sen!2s!4v1542856328832"
                           width="100%"
                           height="300"
                           frameBorder="0"
