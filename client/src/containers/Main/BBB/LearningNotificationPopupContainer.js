@@ -10,6 +10,7 @@ import {LessonStatus} from '../../../constants/LessonStatus';
 import DateUtils from '../../../utils/DateUtils';
 import {FINISH_LESSON} from '../../../actions/AsyncActionCreator';
 import Network from '../../../utils/network';
+import { SecurityUtils } from '../../../utils/SecurityUtils';
 
 class LearningNotificationPopupContainer extends Component {
   isRoomExpired(teachingCourse, selectedLessonId) {
@@ -28,7 +29,9 @@ class LearningNotificationPopupContainer extends Component {
     }
     const upcommingLesson = course.lessons.find(l => l.status === LessonStatus.NOT_STARTED);
     const isExpiredLesson = this.isRoomExpired(course, selectedLessonId);
-
+    if (isExpiredLesson && SecurityUtils.isStudent(currentUser)) {
+      return null;
+    }
     const classRoomId = course && course.bigbluebutton_room ? course.bigbluebutton_room.slug : '';
     return (
       <FormDialogContainer show={showUpcommingClassPopup}
