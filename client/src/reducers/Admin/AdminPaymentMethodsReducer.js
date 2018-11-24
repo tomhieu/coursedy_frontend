@@ -5,8 +5,13 @@ let enrollErrorMessages;
 const AdminPaymentMethodsReducer = (state = {
   paymentSettings: {
     manual: false,
+    tranfer: false,
     paypal: false,
     visa: false
+  },
+  paymentInstructions: {
+    manual_instruct: '',
+    transfer_instruct: ''
   },
   paymentIntegrations: {
     stripe_api_key: '',
@@ -41,7 +46,28 @@ const AdminPaymentMethodsReducer = (state = {
       return state;
 
 
-    // Reducer for payment integrations
+    /*=============Reducer for payment instructions=============*/
+    case asyncActs.FETCH_ADMIN_PAYMENT_INSTRUCTIONS + asyncActs.PENDING:
+      return {...state, isLoading: true}
+    case asyncActs.FETCH_ADMIN_PAYMENT_INSTRUCTIONS + asyncActs.FULFILLED:
+      return {
+        ...state,
+        paymentInstructions: action.payload,
+        isLoading: false
+      }
+    case asyncActs.FETCH_ADMIN_PAYMENT_INSTRUCTIONS + asyncActs.REJECTED:
+      enrollErrorMessages = (action.payload && Array.isArray(action.payload) && action.payload.length > 0) ?
+        errors : [TT.t('fetch_course_fail')];
+      return {...state,  errors: enrollErrorMessages, isLoading: false}
+    case asyncActs.STORE_ADMIN_PAYMENT_INSTRUCTIONS + asyncActs.PENDING:
+      return state
+    case asyncActs.STORE_ADMIN_PAYMENT_INSTRUCTIONS + asyncActs.FULFILLED:
+      return {...state, paymentInstructions: action.payload}
+    case asyncActs.STORE_ADMIN_PAYMENT_INSTRUCTIONS + asyncActs.REJECTED:
+      return state
+
+
+    /*=============Reducer for payment integrations=============*/
     case asyncActs.FETCH_ADMIN_PAYMENT_INTEGRATIONS + asyncActs.PENDING:
       return { ...state, isLoading: true };
     case asyncActs.FETCH_ADMIN_PAYMENT_INTEGRATIONS + asyncActs.FULFILLED:

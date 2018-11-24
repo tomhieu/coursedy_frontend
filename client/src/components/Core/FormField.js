@@ -1,13 +1,18 @@
-import React, { Component } from 'react';
-import { ControlLabel, FormGroup } from 'react-bootstrap';
-import { Field } from 'redux-form';
+import React, {Component} from 'react';
+import {ControlLabel, FormGroup} from 'react-bootstrap';
+import {Field} from 'redux-form';
 import cssModules from 'react-css-modules';
-import { cropImageInput } from 'components/Core/CustomComponents';
+import {cropImageInput} from 'components/Core/CustomComponents';
 import {
-  renderCheckBoxField, renderDatePicker, renderField, renderMultiSelect,
-  renderSelect, renderSingleFileInput, renderTextAreaField, renderRichTextEditor, renderCurrencyField
-} from './CustomComponents';
-import styles from './FormField.module.scss';
+  renderCheckBoxField, renderCurrencyField,
+  renderDatePicker,
+  renderField,
+  renderMultiSelect, renderRichTextEditor,
+  renderSelect,
+  renderSingleFileInput,
+  renderTextAreaField,
+} from "./CustomComponents";
+import styles from "./FormField.module.scss";
 
 import normalizeCurrency from './normalizeCurrencyNumber.js';
 
@@ -64,6 +69,20 @@ class FormField extends Component {
             component={renderField}
             onChange={this.props.onChange}
             customClassName={fieldClasses}
+          />
+        );
+        break;
+      }
+      case "radio": {
+        fieldComponent = (
+          <Field
+            name={formControlName}
+            placeholder={placeholder}
+            type="radio" disabled={this.props.disabled}
+            label={this.props.fieldLabel}
+            component={renderRadioField}
+            onChange={this.props.onChange}
+            customClassName={customClassName}
           />
         );
         break;

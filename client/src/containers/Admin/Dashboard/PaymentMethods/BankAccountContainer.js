@@ -84,6 +84,7 @@ export default connect(
   form: 'bankAccount',
   fields: [
     'name',
+    'code',
     'bankAccount.accountName',
     'bankAccount.accountNumber',
     'bankAccount.accountOffice'

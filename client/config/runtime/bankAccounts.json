@@ -1,0 +1,12 @@
+[
+  {
+    "id": 1,
+    "name": "ACB",
+    "fullName": "Ngân hàng Thương mại Cổ phần Á Châu",
+    "bankAccount": {
+      "accountName": "NGUYỄN MINH TÂN",
+      "accountNumber": "256973329",
+      "accountOffice": "PGD Đa Kao, 45 Võ Thị Sáu, P. Đa Kao, Quận 1, Hồ Chí Minh"
+    }
+  }
+]

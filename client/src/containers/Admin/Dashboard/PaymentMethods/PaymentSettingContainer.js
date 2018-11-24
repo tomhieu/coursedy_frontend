@@ -58,6 +58,7 @@ export default connect(
   form: 'paymentSetting',
   fields: [
     'manual',
+    'transfer',
     'paypal',
     'visa'
   ],

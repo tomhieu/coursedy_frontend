@@ -64,6 +64,17 @@ export const submitEnrollCourse = (courseId) => {
   };
 };
 
+export const addCourseToCart = (course) => {
+  return {
+    type: types.PUBLIC_COURSE_DETAIL_ADD_COURSE_TO_CART + '_FULFILLED',
+    payload: course
+  }
+  // return {
+  //   type: types.PUBLIC_COURSE_DETAIL_ADD_COURSE_TO_CART,
+  //   payload: Network().post(`courses/${course.id}/add-to-cart`, {})
+  // }
+}
+
 export const clearError = () => {
   return (dispatch) => {
     dispatch({

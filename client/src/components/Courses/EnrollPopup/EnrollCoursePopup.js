@@ -21,7 +21,7 @@ class EnrollCoursePopup extends Component {
       >
         <div className="row padding-15">
           <div className="col-md-12">
-            <h5 className="mb-16">{this.context.t('enroll_course_message', { courseTitle: <strong>{course.title}</strong> })}</h5>
+            <h5 className="mb-16">{this.context.t('enroll_course_message', { courseTitle: <strong>{course ? course.title : ''}</strong> })}</h5>
           </div>
           <div className="col-md-12">
             <CourseTermLine
@@ -37,7 +37,7 @@ class EnrollCoursePopup extends Component {
           </div>
           <div className="col-md-12">
             <CourseTermLine
-              term={this.context.t('enroll_course_term_3', { courseFee: course.tuition_fee })}
+              term={this.context.t('enroll_course_term_3', { courseFee: course ? course.tuition_fee : 0 })}
               subTerm={this.context.t('enroll_course_sub_term_3', {
                 chargeFee: <span className="highlight-term">{this.context.t('enroll_course_charge_fee')}</span>
               })}
@@ -76,7 +76,7 @@ EnrollCoursePopup.contextTypes = {
 
 EnrollCoursePopup.propTypes = {
   show: React.PropTypes.bool.isRequired,
-  course: React.PropTypes.object.isRequired,
+  course: React.PropTypes.object,
   cancelCallback: React.PropTypes.func.isRequired,
   acceptLabel: React.PropTypes.string,
   cancelLabel: React.PropTypes.string,

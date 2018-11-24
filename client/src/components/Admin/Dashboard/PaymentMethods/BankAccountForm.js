@@ -1,8 +1,8 @@
-import { Component } from 'react';
-import * as React from 'react';
-import FormField from '../../../Core/FormField';
-import PrimaryButton from '../../../Core/PrimaryButton/PrimaryButton';
-
+import {Component} from "react";
+import * as React from "react";
+import FormField from "../../../Core/FormField"
+import PrimaryButton from "../../../Core/PrimaryButton/PrimaryButton"
+import { banks } from "../../../../constants/Banks"
 export default class BankAccountForm extends Component {
   resetForm() {
     this.props.clearBankAccount();
@@ -16,14 +16,10 @@ export default class BankAccountForm extends Component {
       <form onSubmit={handleSubmit(this.props.onSubmit)}>
         <div className="bank-account">
           <div className="bank-name">
-            <FormField
-              fieldId="bankName"
-              fieldLabel={this.context.t('admin_payment_methods_bank_name')}
-              placeholder={this.context.t('admin_payment_methods_bank_name')}
-              isMandatoryField
-              formControlName="name"
-              typeField="custom_input"
-            />
+            <FormField fieldId="bankName" fieldLabel={this.context.t('admin_payment_methods_bank_name')}
+                isMandatoryField={true}
+                formControlName="name" typeField="custom_select"
+                option={banks.map(item => {return {id: item.code, text: item.name}})} />
           </div>
           <div className="bank-account-name">
             <FormField

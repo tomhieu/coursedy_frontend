@@ -12,6 +12,7 @@ import FormField from '../../../../components/Core/FormField';
 import {
   FETCH_ADMIN_STUDENTS,
   FETCH_ADMIN_PAYMENT_SETTINGS,
+  FETCH_ADMIN_PAYMENT_INSTRUCTIONS,
   FETCH_ADMIN_PAYMENT_INTEGRATIONS,
   FETCH_ADMIN_BANK_ACCOUNTS,
   FETCH_ADMIN_BANK_ACCOUNT,
@@ -19,9 +20,10 @@ import {
 } from '../../../../actions/AsyncActionCreator';
 import {
   BankAccountList,
-} from '../../../../components/Admin';
-import BankAccountContainer from './BankAccountContainer';
-import PaymentSettingContainer from './PaymentSettingContainer';
+} from "../../../../components/Admin"
+import BankAccountContainer from "./BankAccountContainer"
+import PaymentSettingContainer from "./PaymentSettingContainer"
+import PaymentInstructionsContainer from "./PaymentInstructionsContainer"
 
 class PaymentMethodsContainer extends Component {
   componentDidMount() {
@@ -55,31 +57,34 @@ class PaymentMethodsContainer extends Component {
             />
           </div>
 
+          {/*Payment instructions*/}
+          <div className="col-md-12">
+            <PaymentInstructionsContainer
+              onSubmit={this.savePaymentSetting.bind(this)}
+              {...this.props}
+            />
+          </div>
+
+          {/*Bank account list*/}
           {
-            // Bank account list
-            paymentSettings.manual
-              ? (
-                <div className="col-md-12">
-                  <BankAccountList
-                    bankAccounts={bankAccounts}
-                    {...this.props}
-                  />
-                </div>
-              )
-              : null
-          }
-          {
-            // Bank account form
-            paymentSettings.manual
-              ? (
-                <div className="col-md-12">
-                  <BankAccountContainer {...this.props} />
-                </div>
-              )
-              : null
+            paymentSettings.transfer ?
+              <div className="col-md-12">
+                <BankAccountList
+                  bankAccounts={bankAccounts}
+                  {...this.props}
+                ></BankAccountList>
+              </div> :
+              null
           }
 
-
+          {/*Bank account form*/}
+          {
+            paymentSettings.transfer ?
+              <div className="col-md-12">
+                <BankAccountContainer {...this.props} />
+              </div> :
+              null
+          }
         </div>
       </div>
 
@@ -95,6 +100,7 @@ PaymentMethodsContainer.contextTypes = {
 const mapStateToProps = state => ({
   paymentSettings: state.AdminPaymentMethodsReducer.paymentSettings,
   paymentIntegrations: state.AdminPaymentMethodsReducer.paymentIntegrations,
+  paymentInstructions: state.AdminPaymentMethodsReducer.paymentInstructions,
   bankAccounts: state.AdminPaymentMethodsReducer.bankAccounts,
   isLoading: state.AdminPaymentMethodsReducer.isLoading,
 });
@@ -108,6 +114,9 @@ const mapDispatchToProps = dispatch => ({
         resolve([
           {
             payment_method: 'manual',
+            status: false
+          }, {
+            payment_method: 'transfer',
             status: false
           }, {
             payment_method: 'paypal',
@@ -131,7 +140,19 @@ const mapDispatchToProps = dispatch => ({
       }, 250);
     })
   }),
-  fetchBankAccounts: props => dispatch({
+  fetchPaymentInstructions: (props) => dispatch({
+    type: FETCH_ADMIN_PAYMENT_INSTRUCTIONS,
+    // payload: Network().get('payment-instructions'),
+    payload: new Promise((resolve, reject) => {
+      setTimeout(function(){
+        resolve({
+          'manual_instruct': '',
+          'transfer_instruct': '',
+        })
+      }, 250)
+    })
+  }),
+  fetchBankAccounts: (props) => dispatch({
     type: FETCH_ADMIN_BANK_ACCOUNTS,
     // payload: Network().get('bank-accounts')
     payload: new Promise((resolve, reject) => {
@@ -139,7 +160,8 @@ const mapDispatchToProps = dispatch => ({
         resolve([
           {
             id: 1,
-            name: 'ACB',
+            name: "Ngân hàng Á châu",
+            code: "ACB",
             bankAccount: {
               accountName: 'Pham Duy Bao Trung',
               accountNumber: '9124 6788 6778 900',
@@ -147,7 +169,8 @@ const mapDispatchToProps = dispatch => ({
             }
           }, {
             id: 2,
-            name: 'Vietcombank',
+            name: "Ngân hàng thương mại cổ phần Ngoại thương Việt Nam",
+            code: "VCB",
             bankAccount: {
               accountName: 'Pham Duy Bao Trung',
               accountNumber: '9124 6788 6778 900',

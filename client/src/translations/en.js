@@ -767,7 +767,7 @@ export default {
   student_gender: 'Gender',
   start_course: 'Start course',
   stop_course: 'Stop teaching',
-  cancel_course: 'Cancel course',
+  cancel_course: 'Cancel',
   not_started: 'Not started',
   started: 'On going',
   finished: 'Finished',
