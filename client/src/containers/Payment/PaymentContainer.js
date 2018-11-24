@@ -79,8 +79,6 @@ class PaymentContainer extends Component {
   }
 
   removeCourseFromCart() {
-    console.log('DEBUG ')
-    // console.log(this.state.selectedCourse)
     this.props.removeCourseFromCart(this.state.selectedCourse)
     this.setState({
       selectedCourse: null,
@@ -497,7 +495,7 @@ const mapDispatchToProps = (dispatch) => ({
     payload: new Promise((resolve, reject) => {
       setTimeout(function(){
         resolve({
-          token: 'abcdef',
+          token: 'Coursedy tài khoản',
         })
       }, 250)
     })
