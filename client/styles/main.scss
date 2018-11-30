@@ -1134,6 +1134,10 @@ body.application {
     color: $rating-item-color;
   }
 
+  .orange-color {
+    color: $color-orange;
+  }
+
   .react-datepicker__day-name, .react-datepicker__day, .react-datepicker__time-name {
     width: 30px;
     height: auto;

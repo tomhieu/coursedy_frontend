@@ -92,7 +92,7 @@ export class PersonalInfoForm extends Component {
             type="button"
             customClasses="ml-15"
             callback={this.props.cancel}
-            title={isProcessing ? "" : this.context.t('cancel')}
+            title={this.context.t('cancel')}
             disabled={isProcessing}
           />
         </div>

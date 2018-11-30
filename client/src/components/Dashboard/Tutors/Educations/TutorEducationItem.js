@@ -16,7 +16,7 @@ class TutorEducationItem extends Component {
         <div className="col-sm-10">
           <div style={{ fontSize: '16px' }}><b>{education.title}</b></div>
           <div>
-            <span className="yellow-color">{education.graduated_from}</span>
+            <span className="orange-color">{education.graduated_from}</span>
             <span>
               {' '}
 -

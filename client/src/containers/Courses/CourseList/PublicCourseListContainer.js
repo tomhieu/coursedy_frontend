@@ -140,7 +140,7 @@ const buildQuery = (props, term) => {
 
 const mapDispatchToProps = dispatch => ({
   search: (props) => {
-    const term = getQueryParam('q', props.location.search);
+    const term = getQueryParam('q', props.location.search) || props.keyWord;
     dispatch(Actions.updateFilter({ term }));
     dispatch({
       type: FETCH_COURSES,

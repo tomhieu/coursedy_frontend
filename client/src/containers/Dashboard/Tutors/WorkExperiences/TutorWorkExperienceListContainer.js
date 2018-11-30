@@ -43,7 +43,7 @@ class TutorWorkExperienceListContainer extends Component {
             showEditWorkExperienceForm={this.showEditWorkExperienceForm.bind(this)}
           />
           {
-            showNewTutorWorkExperienceForm ? 
+            showNewTutorWorkExperienceForm ?
               <div>
                 {
                   workExperiences.length > 0 ? <hr /> : null
@@ -64,7 +64,7 @@ class TutorWorkExperienceListContainer extends Component {
                   isSmallButton
                   title={this.context.t('account.tutot.edu.add_work_experience')}
                 >
-                  <i className="fa fa-plus" />
+                  <i className="fa fa-plus mr-3" />
                 </PrimaryButton>
               ) : null
           }

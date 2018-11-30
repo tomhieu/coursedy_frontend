@@ -45,10 +45,10 @@ class TutorEducationListContainer extends Component {
             showEditEducationForm={this.showEditEducationForm.bind(this)}
           />
           {
-            showNewTutorEducationForm ? 
+            showNewTutorEducationForm ?
               <div>
                 {
-                  educations.length > 0 ? <hr /> : null 
+                  educations.length > 0 ? <hr /> : null
                 }
                 <NewEducationFormContainer />
               </div>
@@ -66,7 +66,7 @@ class TutorEducationListContainer extends Component {
                   isSmallButton
                   title={this.context.t('account.tutot.edu.add_education')}
                 >
-                  <i className="fa fa-plus" />
+                  <i className="fa fa-plus mr-3" />
                 </PrimaryButton>
               ) : null
           }

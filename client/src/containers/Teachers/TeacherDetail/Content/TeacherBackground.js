@@ -133,7 +133,7 @@ const EducationItem = ({ education }) => {
     <li key={education.id}>
       <h6>{education.title}</h6>
       <span className="block mb-10">
-        <span className="yellow-color">{education.graduated_from}</span>
+        <span className="orange-color">{education.graduated_from}</span>
         {' · '}
         <span className="font-italic dd-mm-yy">
           {education.end_date}
@@ -160,7 +160,7 @@ const WorkExperienceItem = ({ experience }) => {
     <li key={experience.id}>
       <h6>{experience.title}</h6>
       <span className="block mb-10">
-        <span className="yellow-color">{experience.company}</span>
+        <span className="orange-color">{experience.company}</span>
         {' · '}
         <span className="font-italic dd-mm-yy">
           {experience.start_date}
