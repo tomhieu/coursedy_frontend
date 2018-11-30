@@ -7,12 +7,20 @@ import PageContainer from '../../../utils/PageContainer';
 
 
 class TeacherListContainer extends Component {
+  searchQuery(filters, key_word) {
+    return {
+      q: (typeof key_word !== 'undefined' && key_word) ? key_word : filters.term,
+      categories: filters.selectedCategories.map(category => category.id),
+      specializes: filters.selectedSpecializes.map(spec => spec.id)
+    };
+  }
+
   render() {
     return (
       <PageContainer>
         <div className="d-flex flex-auto flex-vertical teacher-list-container">
-          <TeacherFilterContainer />
-          <PublicTeacherListContainer />
+          <TeacherFilterContainer searchQuery={this.searchQuery} />
+          <PublicTeacherListContainer searchQuery={this.searchQuery} />
         </div>
       </PageContainer>
     );

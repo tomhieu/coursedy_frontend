@@ -7,11 +7,12 @@ import TutorList from '../../../components/Tutor/TutorList/TutorList';
 import * as WebConstants from '../../../constants/WebConstants';
 import PaginationArrowIcon from '../../../components/Core/Icons/PaginationArrowIcon';
 import { PAGE_RANGE_DISPLAYED } from '../../../constants/Layout';
+import { withRouter } from 'react-router-dom';
 
 
 class PublicTeacherListContainer extends Component {
   componentDidMount() {
-    this.props.fetchTeacherList();
+    this.props.fetchTeacherList(this.props);
     this.props.stretchFull();
   }
 
@@ -20,7 +21,7 @@ class PublicTeacherListContainer extends Component {
   }
 
   handlePageChange(pageNumber) {
-    this.props.searchTeachers({ page: pageNumber, per_page: this.props.headers.perPage });
+    this.props.searchTeachers(this.props, { page: pageNumber, per_page: this.props.headers.perPage });
   }
 
   render() {
@@ -71,24 +72,25 @@ PublicTeacherListContainer.contextTypes = {
 };
 
 const mapStateToProps = (state) => {
-  const { isFetching, data, headers } = state.Teachers;
+  const { isFetching, data, headers, filters } = state.Teachers;
 
   return {
     isFetching,
+    filters,
     teachers: data.filter(tutor => tutor.user !== null),
     headers: {
-      currentPage: headers && parseInt(headers.xPage) || 0,
-      perPage: headers && parseInt(headers.xPerPage) || 0,
-      total: headers && parseInt(headers.xTotal) || 0
+      currentPage: (headers && parseInt(headers.xPage, 10)) || 0,
+      perPage: (headers && parseInt(headers.xPerPage, 10)) || 0,
+      total: (headers && parseInt(headers.xTotal, 10)) || 0
     }
   };
 };
 
 const mapDispatchToProps = dispatch => ({
-  fetchTeacherList: props => dispatch(searchTeachers({})),
-  searchTeachers: query => dispatch(searchTeachers(query)),
+  fetchTeacherList: props => dispatch(searchTeachers(props.searchQuery(props.filters, props.location.search))),
+  searchTeachers: (props, query) => dispatch(searchTeachers({ ...props.searchQuery(props.filters, props.location.search), ...query })),
   stretchFull: () => dispatch({ type: WebConstants.STETCH_FULL }),
   stretchAuto: () => dispatch({ type: WebConstants.STETCH_AUTO }),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(PublicTeacherListContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(PublicTeacherListContainer));

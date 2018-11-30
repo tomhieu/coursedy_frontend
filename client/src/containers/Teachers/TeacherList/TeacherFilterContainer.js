@@ -26,7 +26,7 @@ class TeacherFilterContainer extends AbstractFilter {
 
     this.props.dispatch(
       TeacherActions.loadSuggestionsTeacher(
-        this.searchQuery(Object.assign({}, this.props.filters, { term: event.target.value.trim() }))
+        this.props.searchQuery(Object.assign({}, this.props.filters, { term: event.target.value.trim() }))
       )
     );
   }
@@ -34,7 +34,7 @@ class TeacherFilterContainer extends AbstractFilter {
   onSubmit(data) {
     this.props.dispatch(
       TeacherActions.searchTeachers(
-        this.searchQuery(data.key_word, this.props.filters)
+        this.props.searchQuery(this.props.filters, data.key_word)
       )
     );
   }
@@ -44,7 +44,7 @@ class TeacherFilterContainer extends AbstractFilter {
     key_word = key_word ? key_word.trim() : '';
     if (key_word) {
       this.props.updateFilter({ term: key_word });
-      this.props.searchTeachers(this.searchQuery(this.props.filters, key_word)).finally(() => {
+      this.props.searchTeachers(this.props.searchQuery(this.props.filters, key_word)).finally(() => {
         this.props.reset();
         this.props.clearSuggestion();
       });
@@ -54,21 +54,13 @@ class TeacherFilterContainer extends AbstractFilter {
   doRemoveFilter(filterId, typeFilter) {
     const removedFilters = this.removeFilterCriteria(this.props.filters, filterId, typeFilter);
     this.props.updateFilter(removedFilters);
-    this.props.searchTeachers(this.searchQuery(removedFilters));
+    this.props.searchTeachers(this.props.searchQuery(removedFilters));
   }
 
   doSelectFilter(filter, category) {
     const nextFilters = this.addFilterCriteria(this.props.filters, filter, category);
     this.props.updateFilter(nextFilters);
-    this.props.searchTeachers(this.searchQuery(nextFilters));
-  }
-
-  searchQuery(filters, key_word) {
-    return {
-      q: (typeof key_word !== 'undefined' && key_word) ? key_word : filters.term,
-      categories: filters.selectedCategories.map(category => category.id),
-      specializes: filters.selectedSpecializes.map(spec => spec.id)
-    };
+    this.props.searchTeachers(this.props.searchQuery(nextFilters));
   }
 
   onSelectTeacher(id) {
