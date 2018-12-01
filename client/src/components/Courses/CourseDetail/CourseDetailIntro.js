@@ -37,7 +37,7 @@ class CourseDetailIntro extends Component {
 
   getTeachingTime(time) {
     const [selectedHour] = HOURS_IN_DAY.filter((h) => h.id === time);
-    return selectedHour.text;
+    return selectedHour && selectedHour.text || time.substring(0, time.lastIndexOf(':'));
   }
 
   render() {

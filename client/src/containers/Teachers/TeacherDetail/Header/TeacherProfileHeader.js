@@ -29,7 +29,6 @@ class TeacherProfileHeader extends React.Component {
             </div>
           </div>
           <div className="profile-box">
-            {!teacher.twitter && !teacher.linkedIn && this.context.t('content_is_updating')}
             {teacher.twitter || teacher.linkedIn ? (
               <div className="social">
                 {teacher.twitter ? (

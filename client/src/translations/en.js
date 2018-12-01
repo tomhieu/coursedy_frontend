@@ -340,7 +340,7 @@ export default {
   order_by_price_asc: 'Price - Low to High', /*
         Public course detail
     */
-  not_started_course_list: 'Pending courses',
+  not_started_course_list: 'Opening courses',
   course_info: 'Course information',
   course_detail: 'Course detail',
   tutor_info: 'Teacher information',
@@ -719,7 +719,7 @@ export default {
   /*
    * Section Page
    */
-  course_active_list: 'Active courses',
+  course_active_list: 'Teaching courses',
   course_finished_list: 'Finished courses',
   section_period: '{sectionPeriod} minutes', /* search teachers page */
   product_contact_us: 'Contact us',
