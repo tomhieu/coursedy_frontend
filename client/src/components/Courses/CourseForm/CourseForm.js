@@ -128,7 +128,7 @@ class CourseForm extends Component {
                 <CourseFormItem
                   editMode={editMode}
                   fieldId="period"
-                  fieldLabel={this.context.t('period')}
+                  fieldLabel={this.context.t('number_of_lessons')}
                   isMandatory
                   fieldName="period"
                   typeField="custom_input"

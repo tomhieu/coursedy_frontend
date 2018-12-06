@@ -21,10 +21,15 @@ import * as Pages from './pages';
 import App from './components/App';
 import requireLogin from './utils/requireLogin';
 import TutorDashboardProfile from './pages/TutorDashboard/TutorDashboardProfile';
-import TutorDashboardCourseActive from './pages/TutorDashboard/TutorDashboardCourseActive';
 import TutorDashboardCourseDetail from './pages/TutorDashboard/TutorDashboardCourseDetail';
 import TutorDashboardAccount from './pages/TutorDashboard/TutorDashboardAccount';
-import TutorDashboardCourseList from './pages/TutorDashboard/TutorDashboardCourseList';
+/* instructor course list */
+import TutorDashboardCoursePending from './pages/TutorDashboard/TutorDashboardCoursePending';
+import TutorDashboardCourseApproved from './pages/TutorDashboard/TutorDashboardCourseApproved';
+import TutorDashboardCourseRejected from './pages/TutorDashboard/TutorDashboardCourseRejected';
+import TutorDashboardCourseTeaching from './pages/TutorDashboard/TutorDashboardCourseTeaching';
+import TutorDashboardCourseFinished from './pages/TutorDashboard/TutorDashboardCourseFinished';
+
 import TutorDashboardCourseNew from './pages/TutorDashboard/TutorDashboardCourseNew';
 import AdminDashboardAccount from './pages/Admin/Dashboard/AdminDashboardAccount';
 import AdminDashboardCourseList from './pages/Admin/Dashboard/AdminDashboardCourseList';
@@ -36,12 +41,11 @@ import StudentDashboardProfile from './pages/StudentDashboard/StudentDashboardPr
 import StudentDashboardCourseEnrolled from './pages/StudentDashboard/StudentDashboardCourseEnrolled';
 import StudentDashboardCourseEnrolling from './pages/StudentDashboard/StudentDashboardCourseEnrolling';
 import StudentDashboardCourseFollow from './pages/StudentDashboard/StudentDashboardCourseFollow';
-import {TutorStatus} from './constants/TutorStatus';
+import { TutorStatus } from './constants/TutorStatus';
 import StudentCourseDetailContainer from './containers/Student/Dashboard/Courses/StudentCourseDetailContainer';
 import StudentDashboardCourseDetails from './pages/StudentDashboard/StudentDashboardCourseDetails';
 import HowCoursedyWorkContainer from './containers/HowCoursedyWorks/HowCoursedyWorkContainer';
 import HowCoursedyWorkDetailContainer from './containers/HowCoursedyWorks/HowCoursedyWorkDetailContainer';
-import TutorDashboardCourseFinished from './pages/TutorDashboard/TutorDashboardCourseFinished';
 
 // define routes for config
 export const routes = [
@@ -119,20 +123,32 @@ export const routes = [
     roles: [UserRole.TEACHER]
   },
   {
+    path: '/dashboard/courses/pending',
+    component: requireLogin(TutorDashboardCoursePending),
+    roles: [UserRole.TEACHER],
+    status: TutorStatus.VERIFIED
+  },
+  {
+    path: '/dashboard/courses/approved',
+    component: requireLogin(TutorDashboardCourseApproved),
+    roles: [UserRole.TEACHER],
+    status: TutorStatus.VERIFIED
+  },
+  {
+    path: '/dashboard/courses/rejected',
+    component: requireLogin(TutorDashboardCourseRejected),
+    roles: [UserRole.TEACHER],
+    status: TutorStatus.VERIFIED
+  },
+  {
+    path: '/dashboard/courses/teaching',
+    component: requireLogin(TutorDashboardCourseTeaching),
+    roles: [UserRole.TEACHER],
+    status: TutorStatus.VERIFIED
+  },
+  {
     path: '/dashboard/courses/finished',
     component: requireLogin(TutorDashboardCourseFinished),
-    roles: [UserRole.TEACHER],
-    status: TutorStatus.VERIFIED
-  },
-  {
-    path: '/dashboard/courses/active',
-    component: requireLogin(TutorDashboardCourseActive),
-    roles: [UserRole.TEACHER],
-    status: TutorStatus.VERIFIED
-  },
-  {
-    path: '/dashboard/courses/list',
-    component: requireLogin(TutorDashboardCourseList),
     roles: [UserRole.TEACHER],
     status: TutorStatus.VERIFIED
   },

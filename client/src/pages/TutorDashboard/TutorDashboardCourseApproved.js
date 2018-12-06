@@ -1,16 +1,17 @@
 import React, { Component } from 'react';
 import ListTutorCourseContainer from 'containers/Courses/CourseList/ListTutorCourseContainer';
 import { CourseStatus } from 'constants/CourseStatus';
+
 import TutorDashboard from './TutorDashboard';
 
-class TutorDashboardCourseActive extends Component {
+class TutorDashboardCoursePending extends Component {
   render() {
     return (
       <TutorDashboard>
-        <ListTutorCourseContainer status={CourseStatus.STARTED} />
+        <ListTutorCourseContainer status={CourseStatus.APPROVED} />
       </TutorDashboard>
     );
   }
 }
 
-export default TutorDashboardCourseActive;
+export default TutorDashboardCoursePending;

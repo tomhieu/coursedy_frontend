@@ -22,7 +22,7 @@ class TutorDashboardMenu extends Component {
   render() {
     const { activatedTab, isApproved } = this.props;
 
-    const isActiveCourseTab = ['course_add', 'not_started_course_list', 'course_active_list', 'course_finished_list', 'course_management'].indexOf(activatedTab) >= 0;
+    const isActiveCourseTab = ['course_add', 'pending_course_list', 'approved_course_list', 'rejected_course_list', 'teaching_course_list', 'finished_course_list', 'course_management'].indexOf(activatedTab) >= 0;
 
     const dashboardItemClasses = [styles.dashboardItem, 'dashbard-item-container'];
     const activeDashboardItemClasses = [styles.dashboardItem, 'dashbard-item-container', styles.active];
@@ -75,22 +75,34 @@ class TutorDashboardMenu extends Component {
                         data-parent="#accordion"
                       >
                         <li
-                          className={activatedTab === 'not_started_course_list' ? `${styles.dashboardItem} ${styles.active}` : styles.dashboardItem}
-                          onClick={this.onClickDashboardLink.bind(this, '/dashboard/courses/list', 'not_started_course_list')}
+                          className={activatedTab === 'pending_course_list' ? `${styles.dashboardItem} ${styles.active}` : styles.dashboardItem}
+                          onClick={this.onClickDashboardLink.bind(this, '/dashboard/courses/pending', 'pending_course_list')}
                         >
-                          <a className={styles.itemName}>{this.context.t('not_started_course_list')}</a>
+                          <a className={styles.itemName}>{this.context.t('pending_course_list')}</a>
                         </li>
                         <li
-                          className={activatedTab === 'course_active_list' ? `${styles.dashboardItem} ${styles.active}` : styles.dashboardItem}
-                          onClick={this.onClickDashboardLink.bind(this, '/dashboard/courses/active', 'course_active_list')}
+                          className={activatedTab === 'approved_course_list' ? `${styles.dashboardItem} ${styles.active}` : styles.dashboardItem}
+                          onClick={this.onClickDashboardLink.bind(this, '/dashboard/courses/approved', 'approved_course_list')}
                         >
-                          <a className={styles.itemName}>{this.context.t('course_active_list')}</a>
+                          <a className={styles.itemName}>{this.context.t('approved_course_list')}</a>
                         </li>
                         <li
-                          className={activatedTab === 'course_finished_list' ? `${styles.dashboardItem} ${styles.active}` : styles.dashboardItem}
-                          onClick={this.onClickDashboardLink.bind(this, '/dashboard/courses/finished', 'course_finished_list')}
+                          className={activatedTab === 'rejected_course_list' ? `${styles.dashboardItem} ${styles.active}` : styles.dashboardItem}
+                          onClick={this.onClickDashboardLink.bind(this, '/dashboard/courses/rejected', 'rejected_course_list')}
                         >
-                          <a className={styles.itemName}>{this.context.t('course_finished_list')}</a>
+                          <a className={styles.itemName}>{this.context.t('rejected_course_list')}</a>
+                        </li>
+                        <li
+                          className={activatedTab === 'teaching_course_list' ? `${styles.dashboardItem} ${styles.active}` : styles.dashboardItem}
+                          onClick={this.onClickDashboardLink.bind(this, '/dashboard/courses/teaching', 'teaching_course_list')}
+                        >
+                          <a className={styles.itemName}>{this.context.t('teaching_course_list')}</a>
+                        </li>
+                        <li
+                          className={activatedTab === 'finished_course_list' ? `${styles.dashboardItem} ${styles.active}` : styles.dashboardItem}
+                          onClick={this.onClickDashboardLink.bind(this, '/dashboard/courses/finished', 'finished_course_list')}
+                        >
+                          <a className={styles.itemName}>{this.context.t('finished_course_list')}</a>
                         </li>
                         <li
                           className={activatedTab === 'course_add' ? `${styles.dashboardItem} ${styles.active}` : styles.dashboardItem}

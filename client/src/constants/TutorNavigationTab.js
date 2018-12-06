@@ -5,9 +5,9 @@ export class TutorNavigationTab {
 
   static COURSE_ADD = 'course_add';
 
-  static COURSE_LIST = 'not_started_course_list';
-
-  static ACTIVE_COURSE_LIST = 'course_active_list';
-
-  static FINISHED_COURSE_LIST = 'course_finished_list';
+  static PENDING_COURSE_LIST = 'pending_course_list';
+  static APPROVED_COURSE_LIST = 'approved_course_list';
+  static REJECTED_COURSE_LIST = 'rejected_course_list';
+  static STARTED_COURSE_LIST = 'teaching_course_list';
+  static FINISHED_COURSE_LIST = 'finished_course_list';
 }

@@ -66,7 +66,7 @@ class CourseFormContainer extends Component {
 
   acceptPopup() {
     this.props.cancelCoursePopup();
-    this.context.router.history.push('/dashboard/courses/list/');
+    this.context.router.history.push('/dashboard/courses/pending/');
   }
 
   cancelPopup() {
@@ -134,7 +134,7 @@ class CourseFormContainer extends Component {
                             <path
                               d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5 11h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"
                             />
-                          </svg> {' '}
+                          </svg>
                         </FlatButton>
                       </div>
                       <div className="col-md-4 col-sm-4">

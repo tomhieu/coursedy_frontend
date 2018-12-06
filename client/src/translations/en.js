@@ -341,6 +341,18 @@ export default {
   order_by_price_asc: 'Price - Low to High', /*
         Public course detail
     */
+  pending_course_list: 'Pending courses',
+  approved_course_list: 'Approved courses',
+  rejected_course_list: 'Rejected courses',
+  teaching_course_list: 'Teaching courses',
+  finished_course_list: 'Finished courses',
+
+  pending_course_list_title: 'Pending courses',
+  approved_course_list_title: 'Approved courses',
+  rejected_course_list_title: 'Rejected courses',
+  teaching_course_list_title: 'Teaching courses',
+  finished_course_list_title: 'Finished courses',
+
   not_started_course_list: 'Opening courses',
   course_info: 'Course information',
   course_detail: 'Course detail',
@@ -791,8 +803,11 @@ export default {
   about_course_policy_info: 'About {link} information.',
   course_policy: 'course policy',
   no_course_message: 'You have not created any courses yet.',
+  no_pending_course_message: 'You have not created any courses yet.',
+  no_approved_course_message: 'You have not created any courses yet.',
+  no_rejected_course_message: 'You have not created any courses yet.',
+  no_teaching_course_message: 'You have not taught any courses yet.',
   no_finished_course_message: 'You have not finished any courses yet.',
-  no_active_course_message: 'You have not taught any courses yet.',
   no_active_course_message_for_student: 'You have not enrolled any courses yet.',
   no_finished_course_message_for_student: 'You have not completed any courses yet.',
   no_following_course_message_for_student: 'You have not follow any courses yet.',
