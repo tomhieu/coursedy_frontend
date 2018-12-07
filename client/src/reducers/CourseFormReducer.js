@@ -23,9 +23,14 @@ const courseDetails = (state = {
      * handle actions publish an existing course
      */
     case asyncActions.VALIDATE_BEFORE_PUBLISH_COURSE:
-      return Object.assign({}, state, { publishCourse: true });
+      return Object.assign({}, state, { publishCourse: true, courseData: action.payload || state.courseData });
     case asyncActions.CANCEL_PUBLISH_COURSE:
       return Object.assign({}, state, { publishCourse: false });
+    case asyncActions.PUBLISH_COURSE + FULFILLED: {
+      return {
+        ...state, courseData: { ...state.courseData, ...action.payload }
+      };
+    }
     case asyncActions.TRIGGER_ACTIVATE_FIELD:
       return Object.assign({}, state, {
         activatedField: action.data,

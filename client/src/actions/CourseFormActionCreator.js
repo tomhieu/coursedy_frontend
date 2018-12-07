@@ -174,13 +174,14 @@ export const loadListSection = (courseId) => {
 export const publishCourse = (courseId) => {
   return {
     type: PUBLISH_COURSE,
-    payload: Network().update(`courses/${courseId}`, {id: courseId, is_public: true})
+    payload: Network().update(`courses/${courseId}`, { id: courseId, is_public: true })
   };
 };
 
-export const validateBeforePublishCCourse = () => {
+export const validateBeforePublishCourse = (course) => {
   return {
-    type: VALIDATE_BEFORE_PUBLISH_COURSE
+    type: VALIDATE_BEFORE_PUBLISH_COURSE,
+    payload: course
   };
 };
 

@@ -8,12 +8,10 @@
   cursor: pointer;
   text-decoration: none;
   margin: 5px;
-  padding: 0px;
   outline: none;
   font-size: inherit;
   font-weight: inherit;
   position: relative;
-  height: $height-button;
   line-height: 36px;
   min-width: 65px;
   transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
@@ -22,22 +20,21 @@
   overflow: hidden;
   background-color: rgba(0, 0, 0, 0);
   text-align: center;
-  .primary {
+  .primary, .secondary {
     color: $md-color-pink;
+    border: 1px solid $md-color-pink;
+    padding: 5px;
+    &:hover {
+      color: $md-color-blue-dark;
+      border: 1px solid $md-color-blue-dark;
+    }
   }
-  .secondary {
-    color: $black-color;
-  }
-}
-
-.flatBtn:hover {
-  background-color: rgba(153, 153, 153, 0.2);
 }
 
 .flatLabel {
   position: relative;
-  padding-left: 8px;
-  padding-right: 16px;
+  padding-left: 5px;
+  padding-right: 5px;
   vertical-align: middle;
   letter-spacing: 0px;
   text-transform: uppercase;

@@ -48,7 +48,7 @@ class CourseFormContainer extends Component {
   }
 
   validateBeforePublishCourse() {
-    this.props.validateBeforePublishCCourse();
+    this.props.validateBeforePublishCourse();
   }
 
   publishCourse() {
@@ -66,7 +66,7 @@ class CourseFormContainer extends Component {
 
   acceptPopup() {
     this.props.cancelCoursePopup();
-    this.context.router.history.push('/dashboard/courses/list/');
+    this.context.router.history.push('/dashboard/courses/pending/');
   }
 
   cancelPopup() {
@@ -75,7 +75,7 @@ class CourseFormContainer extends Component {
 
   render() {
     const {
-      editMode, listSection, courseTitle, createCourseSucess, publishCourse, isFetching, canEditable
+      editMode, listSection, courseTitle, createCourseSucess, publishCourse, isFetching, canEditable, isPublicCourse
     } = this.props;
     return (
       <div className="row course-details-container">
@@ -134,12 +134,12 @@ class CourseFormContainer extends Component {
                             <path
                               d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5 11h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"
                             />
-                          </svg> {' '}
+                          </svg>
                         </FlatButton>
                       </div>
                       <div className="col-md-4 col-sm-4">
                         {
-                          canEditable ?
+                          !isPublicCourse && canEditable ?
                             <FlatButton
                               label={this.context.t('course_publish')}
                               secondary
@@ -180,25 +180,13 @@ class CourseFormContainer extends Component {
                   <SectionCreationPopupContainer courseId={this.courseId} onSubmit={this.saveSection.bind(this)} />
                 </div>
               </div>
-              <SimpleDialogComponent
-                title={this.context.t('popup_warning_publish_course_title')}
+              <PublicCourseModal
                 show={publishCourse}
-                acceptBtn={this.context.t('course_publish')}
-                cancelCallback={this.cancelPublishCourse.bind(this)}
-                acceptCallback={this.publishCourse.bind(this)}
-              >
-                <div className="d-flex flex-vertical">
-                  <span>{this.context.t('popup_warning_publish_course_message_1', { course_title: <strong>{courseTitle}</strong> })}</span>
-                </div>
-                <div className="d-flex flex-vertical">
-                  <span>{this.context.t('popup_warning_publish_course_message_2')}</span>
-                  {
-                    listSection.length === 0 ? (
-                      <span>{this.context.t('popup_warning_publish_course_message_3', { course_title: <strong>{courseTitle}</strong> })}</span>
-                    ) : null
-                  }
-                </div>
-              </SimpleDialogComponent>
+                publishCourse={this.publishCourse.bind(this)}
+                cancelPublishCourse={this.cancelPublishCourse.bind(this)}
+                courseTitle={courseTitle}
+                listSection={listSection}
+              />
             </div>
           ) : null
         }
@@ -206,6 +194,37 @@ class CourseFormContainer extends Component {
     );
   }
 }
+
+export class PublicCourseModal extends Component {
+  render() {
+    const { show, courseTitle, cancelPublishCourse, publishCourse, listSection } = this.props;
+    return (
+      <SimpleDialogComponent
+        title={this.context.t('popup_warning_publish_course_title')}
+        show={show}
+        acceptBtn={this.context.t('course_publish')}
+        cancelCallback={cancelPublishCourse.bind(this)}
+        acceptCallback={publishCourse.bind(this)}
+      >
+        <div className="d-flex flex-vertical">
+          <span>{this.context.t('popup_warning_publish_course_message_1', { course_title: <strong>{courseTitle}</strong> })}</span>
+        </div>
+        <div className="d-flex flex-vertical">
+          <span>{this.context.t('popup_warning_publish_course_message_2')}</span>
+          {
+            listSection.length === 0 ? (
+              <span>{this.context.t('popup_warning_publish_course_message_3', { course_title: <strong>{courseTitle}</strong> })}</span>
+            ) : null
+          }
+        </div>
+      </SimpleDialogComponent>
+    );
+  }
+}
+
+PublicCourseModal.contextTypes = {
+  t: React.PropTypes.func.isRequired
+};
 
 CourseFormContainer.contextTypes = {
   t: React.PropTypes.func.isRequired,
@@ -228,7 +247,8 @@ const mapStateToProps = (state) => {
   } = courseDetails;
   const {
     cover_image, title,
-    bigbluebutton_room, status
+    bigbluebutton_room, status,
+    is_public: isPublicCourse,
   } = courseData;
   const canEditable = status === CourseStatus.NOT_STARTED;
   return {
@@ -239,6 +259,7 @@ const mapStateToProps = (state) => {
     cover_image,
     publishCourse,
     courseTitle: title,
+    isPublicCourse,
     isFetching,
     bbbRoomSlug: bigbluebutton_room ? bigbluebutton_room.slug : undefined,
     canEditable,
@@ -265,7 +286,7 @@ const mapDispatchToProps = dispatch => ({
   fetchCourseCategories: () => dispatch(ReferenceActions.fetchCourseCategories()),
   createNewCourse: () => dispatch(CourseActions.createNewCourse()),
   addNewSection: () => dispatch(CourseActions.addNewSection()),
-  validateBeforePublishCCourse: () => dispatch(CourseActions.validateBeforePublishCCourse()),
+  validateBeforePublishCourse: () => dispatch(CourseActions.validateBeforePublishCourse()),
   doPublishCourse: courseId => dispatch(CourseActions.publishCourse(courseId)),
   cancelPublishCourse: () => dispatch({ type: AsynActions.CANCEL_PUBLISH_COURSE }),
   cancelCoursePopup: () => dispatch({ type: AsynActions.CLOSE_COURSE_POPUP }),
