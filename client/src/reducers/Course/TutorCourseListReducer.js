@@ -16,6 +16,17 @@ const TutorCourseList = (state = {
       const error_messages = (action.payload && Array.isArray(action.payload) && action.payload.length > 0)
         ? errors : [TT.t('fetch_course_fail')];
       return { ...state, courses: [], errors: error_messages };
+    case asyncActs.PUBLISH_COURSE + asyncActs.FULFILLED: {
+      const courses = state.courses.map((course) => {
+        if (course.id === action.payload.id) {
+          return { ...course, ...action.payload };
+        }
+        return { ...course };
+      });
+      return {
+        ...state, courses
+      };
+    }
     default:
       return state;
   }

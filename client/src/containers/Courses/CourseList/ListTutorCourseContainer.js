@@ -18,6 +18,9 @@ import { TutorNavigationTab } from '../../../constants/TutorNavigationTab';
 import {openConfirmationPopup} from '../../../actions/MainActionCreator';
 import {joinToBBBRoom} from '../../../actions/Bigbluebutton/BigbluebuttonActionCreator';
 import {LessonStatus} from '../../../constants/LessonStatus';
+import * as CourseActions from '../../../actions/CourseFormActionCreator';
+import * as AsynActions from '../../../actions/AsyncActionCreator';
+import { PublicCourseModal } from '../CourseForm/CourseFormContainer';
 
 class ListTutorCourseContainer extends Component {
   componentWillMount() {
@@ -83,6 +86,17 @@ class ListTutorCourseContainer extends Component {
     this.props.joinToBBBRoom(classRoomId, lessonId, this.context, lang, afterJoining, this.props.fetchListTutorActiveCourse.bind(this));
   }
 
+  /* begin public course func */
+  publishCourse() {
+    this.props.doPublishCourse(this.props.courseData.id);
+    this.cancelPublishCourse();
+  }
+
+  cancelPublishCourse() {
+    this.props.cancelPublishCourse();
+  }
+  /* end public course func */
+
   render() {
     const {
       status, courses, isFetching
@@ -113,6 +127,13 @@ class ListTutorCourseContainer extends Component {
             }
           </LoadingMask>
         </div>
+        <PublicCourseModal
+          show={this.props.publishCourse}
+          publishCourse={this.publishCourse.bind(this)}
+          cancelPublishCourse={this.cancelPublishCourse.bind(this)}
+          courseTitle={this.props.courseData.title}
+          listSection={this.props.listSection}
+        />
       </div>
     );
   }
@@ -124,13 +145,26 @@ ListTutorCourseContainer.contextTypes = {
 };
 
 const mapStateToProps = (state) => {
-  const { TutorCourseList, session, EnrolledStudentList } = state;
-  const { courses, isFetching } = TutorCourseList;
+  const { TutorCourseList: TutorCourseListState, session, EnrolledStudentList } = state;
+  const { courses, isFetching } = TutorCourseListState;
   const { activeCourseId } = EnrolledStudentList;
   const { currentUser, teachingCourse } = session;
   const { lang } = state.i18nState;
+  const {
+    publishCourse,
+    courseData
+  } = state.courseDetails;
+  const listSection = courseData.lessons || [];
   return {
-    courses, isFetching, currentUser, activeCourseId, lang, teachingCourse
+    courses,
+    isFetching,
+    currentUser,
+    activeCourseId,
+    lang,
+    teachingCourse,
+    listSection,
+    publishCourse,
+    courseData
   };
 };
 
@@ -234,7 +268,10 @@ const mapDispatchToProps = dispatch => ({
     res.then(() => {
       this.fetchListTutorActiveCourse();
     });
-  }
+  },
+  validateBeforePublishCourse: (course) => dispatch(CourseActions.validateBeforePublishCourse(course)),
+  doPublishCourse: courseId => dispatch(CourseActions.publishCourse(courseId)),
+  cancelPublishCourse: () => dispatch({ type: AsynActions.CANCEL_PUBLISH_COURSE }),
 });
 
 export default connect(

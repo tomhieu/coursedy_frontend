@@ -9,6 +9,8 @@ import {CourseStatus} from '../../../constants/CourseStatus';
 import CheckIcon from '../../Core/Icons/CheckIcon';
 import DateUtils from '../../../utils/DateUtils';
 import CourseItemStatus from './CourseStatus/CourseItemStatus';
+import PrimaryButton from '../../Core/PrimaryButton/PrimaryButton';
+
 
 class TutorCourseItem extends Component {
   render() {
@@ -163,11 +165,15 @@ class TutorCourseItemApproved extends Component {
     this.props.openCourseDetails(courseId);
   }
 
+  validateBeforePublishCourse() {
+    const { course } = this.props;
+    this.props.validateBeforePublishCourse(course);
+  }
+
   render() {
     const { course, teachingCourse, activeCourseId } = this.props;
     const alreadyStarted = DateUtils.compareTwoDate(new Date(course.start_date), new Date()) === -1;
     const showEnrolledStudentList = activeCourseId === course.id;
-
     return (
       <div className="row">
         <div className="col-md-12">
@@ -223,7 +229,20 @@ class TutorCourseItemApproved extends Component {
                 <div className="col-xl-3 col-lg-4 col-md-6 col-sm-4">
                   <div className="d-flex flex-row align-items-center justify-content-right">
                     <div className={styles.leftSeperateLine} />
-                    <CourseItemStatus course={course} teachingCourse={teachingCourse} isStudent={false} {...this.props} />
+                    {
+                      course.is_public ? (
+                        <CourseItemStatus course={course} teachingCourse={teachingCourse} isStudent={false} {...this.props} />
+                      ) : (
+                        <PrimaryButton
+                          isSmallButton
+                          round
+                          customClasses="start-course-btn"
+                          line={false}
+                          title={this.context.t('course_publish')}
+                          callback={this.validateBeforePublishCourse.bind(this)}
+                        />
+                      )
+                    }
                     <a className={styles.courseActionButton} onClick={this.openCourseDetails.bind(this, course.id)}>
                       <SettingIcon width={14} height={14} />
                     </a>
