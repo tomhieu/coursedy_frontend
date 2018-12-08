@@ -25,6 +25,8 @@ export const validate = (values) => {
     errors.number_of_students = TT.t('num_student_mandatory');
   } else if (isNaN(values.number_of_students)) {
     errors.number_of_students = TT.t('not_a_number');
+  } else if (parseInt(values.number_of_students, 10) <= 0) {
+    errors.number_of_students = TT.t('minimum_number_of_students');
   }
 
   if (!values.period) {
