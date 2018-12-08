@@ -864,4 +864,17 @@ export default {
   page_404_title: 'Không thấy trang cần tìm!',
   page_404_description: 'Trang bạn cần tìm không có trong hệ thống. Vui lòng kiểm tra lại đường dẫn hoặc trở về trang chủ để bắt đầu lại.',
   back_to_homepage: 'Quay về trang chủ',
+
+  //  Course description template
+  template_course_description_1: 'Mô tả khóa học',
+  template_course_description_2: 'Khóa học ABC',
+  template_course_description_3: ' sẽ giúp học sinh có bức tranh toàn cảnh về phương pháp giải quyết các dạng bài khó trong kì thi nói... \n\n',
+  template_course_description_4: 'Các yêu cầu khóa học',
+  template_course_description_5: '\nCần mẫn, chăm chú nghe giảng.',
+  template_course_description_6: 'Chăm chỉ, tự giác luyện tập và làm bài tập để ghi nhớ công thức và rèn phản xạ khi làm bài.',
+  template_course_description_7: 'Kết quả học tập',
+  template_course_description_8: 'Được rèn các kĩ năng, thủ thuật thông minh có thể “đi tắt đón đầu” – bỏ qua các bước không cần thiết để tìm ra đáp án.',
+  template_course_description_9: 'Được rèn luyện với hệ thống bài tập tự luyện đa dạng và trải nghiệm dịch vụ hỗ trợ học tập chu đáo.',
+  template_course_description_10: 'Đối tượng',
+  template_course_description_11: 'Học sinh có tư duy tốt, chăm chỉ,...',
 };

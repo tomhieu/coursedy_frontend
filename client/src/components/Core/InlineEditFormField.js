@@ -72,7 +72,6 @@ class InlineEditFormField extends FormField {
           canEditable={canEditable}
           showEditFormField={this.showEditForm.bind(this)}
         />
-
       );
     }
   }

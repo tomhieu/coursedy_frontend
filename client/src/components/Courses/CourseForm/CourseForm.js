@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import FormField from '../../Core/FormField';
 import styles from '../Course.module.scss';
 import CourseFormItem from './CourseFormItem';
 import SelectionTeachingDay from './SelectionTeachingDay/SelectionTeachingDay';
@@ -7,7 +6,7 @@ import CourseCategory from './CourseCategory/CourseCategory';
 import CourseFeeComponent from './CourseFee/CourseFeeComponent';
 import PrimaryButton from '../../Core/PrimaryButton/PrimaryButton';
 import CourseCoverImageContainer from '../../../containers/Courses/CourseForm/CourseCoverImageContainer';
-import {CourseStatus} from '../../../constants/CourseStatus';
+import { insertTemplateHandler } from '../../Core/CustomComponents';
 
 class CourseForm extends Component {
   static fields = ['title', 'description', 'start_date', 'period',
@@ -206,6 +205,7 @@ class CourseForm extends Component {
             disabled={false}
             isRichTextField
             canEditable={canEditable}
+            insertTemplateHandler={insertTemplateHandler}
             {...this.props}
           />
           {
