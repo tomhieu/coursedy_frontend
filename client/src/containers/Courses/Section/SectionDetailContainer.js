@@ -21,7 +21,7 @@ class SectionDetailContainer extends Component {
           fieldId={`sectionTitleId_${section.id}`}
           showLabel={false}
           fieldLabel={this.context.t('section_title')}
-          placeholder={this.context.t('section_title')}
+          placeholder={this.context.t('section_title_placeholder')}
           content={section.title}
           isMandatoryField
           formControlName="title"

@@ -196,7 +196,7 @@ export default {
   lesson_period_short: 'Duration (minute)',
   lesson_save_btn: 'Save',
   lesson_delete_btn: 'Delete',
-  lesson_link_edit: 'Add lecture title',
+  lesson_link_edit: 'Add lecture name',
   lesson_list_next: 'Add',
   lesson_popup_edit_title: 'Add lesson',
   lesson_popup_add_title: 'Add lecture',
@@ -292,7 +292,8 @@ export default {
   /*
    * Section Page
    */
-  section_title: 'Description',
+  section_title: 'Lecture name',
+  section_title_placeholder: 'Lecture name description',
   section_name: 'Name',
   course_specialize: 'Specialization',
   level: 'Level', /*

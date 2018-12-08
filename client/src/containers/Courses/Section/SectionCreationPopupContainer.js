@@ -29,7 +29,7 @@ class SectionCreationPopupContainer extends Component {
               <FormField
                 fieldId="sectionTitleId"
                 fieldLabel={this.context.t('section_title')}
-                placeholder={this.context.t('section_title')}
+                placeholder={this.context.t('section_title_placeholder')}
                 isMandatoryField
                 formControlName="title"
                 typeField="custom_input"

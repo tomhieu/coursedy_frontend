@@ -281,7 +281,8 @@ export default {
   /*
    * Section Page
    */
-  section_title: 'Mô tả',
+  section_title: 'Tên bài giảng',
+  section_title_placeholder: 'Mô tả tên bài giảng',
   section_name: 'Tên',
   course_specialize: 'Thể loại',
   level: 'Cấp độ', /*
