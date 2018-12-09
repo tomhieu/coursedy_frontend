@@ -20,13 +20,20 @@
   overflow: hidden;
   background-color: rgba(0, 0, 0, 0);
   text-align: center;
-  .primary, .secondary {
+  .primary {
     color: $md-color-pink;
     border: 1px solid $md-color-pink;
     padding: 5px;
     &:hover {
       color: $md-color-blue-dark;
       border: 1px solid $md-color-blue-dark;
+    }
+  }
+
+  .secondary {
+    color: $black-color;
+    &:hover {
+      background-color: rgba(153, 153, 153, 0.2);
     }
   }
 }

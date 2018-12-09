@@ -127,7 +127,6 @@ class CourseFormContainer extends Component {
                       <div className="col-md-4 col-sm-4">
                         <FlatButton
                           label={this.context.t('lesson_link_edit')}
-                          secondary={false}
                           onClick={this.addNewSection.bind(this)}
                         >
                           <svg viewBox="0 0 24 24" className="material-icon primary" height="18" width="18">
@@ -142,7 +141,6 @@ class CourseFormContainer extends Component {
                           !isPublicCourse && canEditable ?
                             <FlatButton
                               label={this.context.t('course_publish')}
-                              secondary
                               onClick={this.validateBeforePublishCourse.bind(this)}>
                               <svg className="material-icon" width="24" height="24" viewBox="0 0 24 24">
                                 <path d="M0 0h24v24H0z" fill="none" />
