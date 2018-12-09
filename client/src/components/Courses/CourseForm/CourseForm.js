@@ -206,6 +206,8 @@ class CourseForm extends Component {
             isRichTextField
             canEditable={canEditable}
             insertTemplateHandler={insertTemplateHandler}
+            placeholder={this.context.t('template_course_description_placeholder')}
+            subLabel={this.context.t('template_course_description_sub_label', { highlight: '<strong>T</strong>' })}
             {...this.props}
           />
           {

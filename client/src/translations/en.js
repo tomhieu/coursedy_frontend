@@ -916,5 +916,7 @@ export default {
   template_course_description_8: 'Forged skills, clever tricks can leap ignore unnecessary steps to find the answer.',
   template_course_description_9: 'Be trained with a variety of self-help exercises and extensive academic support services.',
   template_course_description_10: 'Audiences',
-  template_course_description_11: 'Students have good thinking, hard work, ...'
+  template_course_description_11: 'Students have good thinking, hard work, ...',
+  template_course_description_placeholder: 'eg: Course description: ..., Course requirements: ..., Learning outcomes: ..., Audiences: ...',
+  template_course_description_sub_label: 'Please enter the information in the form to instruct the course to be clear, eye-catching. And to use the tutorial form press the {highlight} button in the editor toolbar.',
 };

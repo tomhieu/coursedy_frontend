@@ -536,7 +536,7 @@ export function insertTemplateHandler() {
       "insert": "\n"
     }
   ], 'user');
-  // length of text is 558
+  // Move cursor to the last position of the content
   quill.setSelection(quill.getLength());
 }
 
@@ -571,53 +571,65 @@ const CustomToolbar = ({ insertTemplate }) => (
   </div>
 );
 
-export const renderRichTextEditor = ({
-  input, label, placeholder, type, disabled = false, className, meta: { touched, error, warning }, insertTemplateHandler
-}) => {
-  const modules = {
-    toolbar: {
-      container: '#toolbar',
-      handlers: {
-        'insertTemplate': insertTemplateHandler,
-      }
-    },
-    clipboard: {
-      // toggle to add extra line breaks when pasting HTML:
-      matchVisual: false
+class RichTextEditor extends Component {
+  componentWillReceiveProps(newProps) {
+    if (newProps.placeholder !== this.props.placeholder && this.quillRef) {
+      this.quillRef.editor.root.dataset.placeholder = newProps.placeholder;
     }
-  };
+  }
 
-  const formats = [
-    'header', 'size',
-    'bold', 'italic', 'underline', 'strike', 'blockquote',
-    'list', 'bullet', 'indent'
-  ];
-
-  return (
-    <div className="full-width-input-wrapper">
-      <CustomToolbar
-        insertTemplate={!!insertTemplateHandler}
-      />
-      {
-        <ReactQuill
-          {...input}
-          modules={modules}
-          formats={formats}
-          placeholder={placeholder || ''}
-          type={type}
-          disabled={disabled}
-          className={`${className}${touched && error ? ' error' : ''}`}
-          onChange={(newValue, delta, source, quill) => {
-            if (source === 'user') {
-              input.onChange(newValue);
-            }
-          }}
-          onBlur={(range, source, quill) => {
-            input.onBlur(quill.getHTML());
-          }}
-        />
+  render() {
+    const {
+      input, label, placeholder, type, disabled = false, className, meta: { touched, error, warning }, insertTemplateHandler
+    } = this.props;
+    const modules = {
+      toolbar: {
+        container: '#toolbar',
+        handlers: {
+          'insertTemplate': insertTemplateHandler,
+        }
+      },
+      clipboard: {
+        // toggle to add extra line breaks when pasting HTML:
+        matchVisual: false
       }
-      {touched && ((error && <span className="input-errors">{error}</span>) || (warning && <span>{warning}</span>))}
-    </div>
-  );
-};
+    };
+
+    const formats = [
+      'header', 'size',
+      'bold', 'italic', 'underline', 'strike', 'blockquote',
+      'list', 'bullet', 'indent'
+    ];
+
+    return (
+      <div className="full-width-input-wrapper">
+        <CustomToolbar
+          insertTemplate={!!insertTemplateHandler}
+        />
+        {
+          <ReactQuill
+            ref={(el) => { this.quillRef = el; }}
+            {...input}
+            modules={modules}
+            formats={formats}
+            placeholder={placeholder || ''}
+            type={type}
+            disabled={disabled}
+            className={`${className}${touched && error ? ' error' : ''}`}
+            onChange={(newValue, delta, source, quill) => {
+              if (source === 'user') {
+                input.onChange(newValue);
+              }
+            }}
+            onBlur={(range, source, quill) => {
+              input.onBlur(quill.getHTML());
+            }}
+          />
+        }
+        {touched && ((error && <span className="input-errors">{error}</span>) || (warning && <span>{warning}</span>))}
+      </div>
+    );
+  }
+}
+
+export const renderRichTextEditor = RichTextEditor;

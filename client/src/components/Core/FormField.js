@@ -26,7 +26,7 @@ class FormField extends Component {
       formControlName, fieldLabel, showLabel = true, placeholder, isMandatoryField = false,
       typeField, type, zoneHeight = 'auto', internalPreview = false, previewUrl, onUpload, rows, options,
       selectedValues, customClassName, checked, chosenValue, onCheck, toggled, onToggle, onFileRemoved,
-      lang = 'vn', insertTemplateHandler = undefined
+      lang = 'vn', insertTemplateHandler = undefined, subLabel
     } = this.props;
 
     const fieldComponent = this.buildFieldRender(formControlName, placeholder, typeField, type,
@@ -42,6 +42,9 @@ class FormField extends Component {
               {isMandatoryField && <span className="red">*</span>}
               {' '}
             </ControlLabel>) : ''
+        }
+        {
+          subLabel ? <div className="sub-label" dangerouslySetInnerHTML={{ __html: subLabel }} /> : null
         }
         <div className={`dark-picker dark-picker-bright ${customClassName}`}>
           {fieldComponent}

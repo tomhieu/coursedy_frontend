@@ -877,4 +877,6 @@ export default {
   template_course_description_9: 'Được rèn luyện với hệ thống bài tập tự luyện đa dạng và trải nghiệm dịch vụ hỗ trợ học tập chu đáo.',
   template_course_description_10: 'Đối tượng',
   template_course_description_11: 'Học sinh có tư duy tốt, chăm chỉ,...',
+  template_course_description_placeholder: 'Ví dụ: Mô tả khoá học: ..., Các yêu cầu khoá học: ..., Kết quả học tập: ..., Đối tượng học: ...',
+  template_course_description_sub_label: 'Vui lòng nhập thông tin theo mẫu hướng dẫn để khoá học được trình bày rõ ràng, bắt mắt. Và để sử dụng mẫu hướng dẫn hãy nhấn vào nút {highlight} ở thanh công cụ của trình soạn thảo.',
 };
