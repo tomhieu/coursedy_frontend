@@ -414,51 +414,222 @@ class PlainClipboard extends Clipboard {
 
 Quill.register('modules/clipboard', PlainClipboard, true);
 
-export const renderRichTextEditor = ({
-  input, label, placeholder, type, disabled = false, className, meta: { touched, error, warning }
-}) => {
-  const modules = {
-    toolbar: [
-      [{ header: '1' }, { header: '2' }],
-      [{ size: [] }],
-      ['bold', 'italic', 'underline', 'strike', 'blockquote'],
-      [{ list: 'ordered' }, { list: 'bullet' },
-        { indent: '-1' }, { indent: '+1' }],
-    ],
-    clipboard: {
-      // toggle to add extra line breaks when pasting HTML:
-      matchVisual: false
+/*
+ * Custom "star" icon for the toolbar using an Octicon
+ * https://octicons.github.io
+ */
+const CustomButton = () => (
+  <i className="fa fa-tumblr" />
+);
+
+/*
+ * Event handler to be attached using Quill toolbar module
+ * http://quilljs.com/docs/modules/toolbar/
+ */
+export function insertTemplateHandler() {
+  const { quill } = this;
+  // get current contents
+  const delta = quill.getContents();
+  // add new contents
+  quill.setContents([
+    ...delta.ops,
+    {
+      "attributes": {
+        "bold": true
+      },
+      "insert": TT.t('template_course_description_1')
+    },
+    {
+      "attributes": {
+        "header": 2
+      },
+      "insert": "\n"
+    },
+    {
+      "insert": "\n"
+    },
+    {
+      "attributes": {
+        "bold": true
+      },
+      "insert": TT.t('template_course_description_2')
+    },
+    {
+      "insert": TT.t('template_course_description_3')
+    },
+    {
+      "attributes": {
+        "bold": true
+      },
+      "insert": TT.t('template_course_description_4')
+    },
+    {
+      "insert": TT.t('template_course_description_5')
+    },
+    {
+      "attributes": {
+        "list": "bullet"
+      },
+      "insert": "\n"
+    },
+    {
+      "insert": TT.t('template_course_description_6')
+    },
+    {
+      "attributes": {
+        "list": "bullet"
+      },
+      "insert": "\n"
+    },
+    {
+      "attributes": {
+        "bold": true
+      },
+      "insert": TT.t('template_course_description_7')
+    },
+    {
+      "attributes": {
+        "header": 3
+      },
+      "insert": "\n"
+    },
+    {
+      "insert": TT.t('template_course_description_8')
+    },
+    {
+      "attributes": {
+        "list": "bullet"
+      },
+      "insert": "\n"
+    },
+    {
+      "insert": TT.t('template_course_description_9')
+    },
+    {
+      "attributes": {
+        "list": "bullet"
+      },
+      "insert": "\n"
+    },
+    {
+      "attributes": {
+        "bold": true
+      },
+      "insert": TT.t('template_course_description_10')
+    },
+    {
+      "attributes": {
+        "header": 3
+      },
+      "insert": "\n"
+    },
+    {
+      "insert": TT.t('template_course_description_11')
+    },
+    {
+      "attributes": {
+        "list": "bullet"
+      },
+      "insert": "\n\n"
+    },
+    {
+      "insert": "\n"
     }
-  };
+  ], 'user');
+  // Move cursor to the last position of the content
+  quill.setSelection(quill.getLength());
+}
 
-  const formats = [
-    'header', 'size',
-    'bold', 'italic', 'underline', 'strike', 'blockquote',
-    'list', 'bullet', 'indent'
-  ];
+/*
+ * Custom toolbar component including insertStar button and dropdowns
+ */
+const CustomToolbar = ({ insertTemplate }) => (
+  <div id="toolbar">
+    <button className="ql-header" value="1" />
+    <button className="ql-header" value="2" />
+    <select className="ql-size" defaultValue="normal">
+      <option value="small" />
+      <option value="normal" />
+      <option value="large" />
+      <option value="huge" />
+    </select>
+    <button className="ql-bold" />
+    <button className="ql-italic" />
+    <button className="ql-underline" />
+    <button className="ql-blockquote" />
+    <button className="ql-list" value="ordered" />
+    <button className="ql-list" value="bullet" />
+    <button className="ql-indent" value="-1" />
+    <button className="ql-indent" value="+1" />
+    {
+      insertTemplate ? (
+        <button className="ql-insertTemplate">
+          <CustomButton />
+        </button>
+      ) : null
+    }
+  </div>
+);
 
-  return (
-    <div className="full-width-input-wrapper">
-      {
-        <ReactQuill
-          {...input}
-          modules={modules}
-          formats={formats}
-          placeholder={placeholder || ''}
-          type={type}
-          disabled={disabled}
-          className={`${className}${touched && error ? ' error' : ''}`}
-          onChange={(newValue, delta, source, quill) => {
-            if (source === 'user') {
-              input.onChange(newValue);
-            }
-          }}
-          onBlur={(range, source, quill) => {
-            input.onBlur(quill.getHTML());
-          }}
-        />
+class RichTextEditor extends Component {
+  componentWillReceiveProps(newProps) {
+    if (newProps.placeholder !== this.props.placeholder && this.quillRef) {
+      this.quillRef.editor.root.dataset.placeholder = newProps.placeholder;
+    }
+  }
+
+  render() {
+    const {
+      input, label, placeholder, type, disabled = false, className, meta: { touched, error, warning }, insertTemplateHandler
+    } = this.props;
+    const modules = {
+      toolbar: {
+        container: '#toolbar',
+        handlers: {
+          'insertTemplate': insertTemplateHandler,
+        }
+      },
+      clipboard: {
+        // toggle to add extra line breaks when pasting HTML:
+        matchVisual: false
       }
-      {touched && ((error && <span className="input-errors">{error}</span>) || (warning && <span>{warning}</span>))}
-    </div>
-  );
-};
+    };
+
+    const formats = [
+      'header', 'size',
+      'bold', 'italic', 'underline', 'strike', 'blockquote',
+      'list', 'bullet', 'indent'
+    ];
+
+    return (
+      <div className="full-width-input-wrapper">
+        <CustomToolbar
+          insertTemplate={!!insertTemplateHandler}
+        />
+        {
+          <ReactQuill
+            ref={(el) => { this.quillRef = el; }}
+            {...input}
+            modules={modules}
+            formats={formats}
+            placeholder={placeholder || ''}
+            type={type}
+            disabled={disabled}
+            className={`${className}${touched && error ? ' error' : ''}`}
+            onChange={(newValue, delta, source, quill) => {
+              if (source === 'user') {
+                input.onChange(newValue);
+              }
+            }}
+            onBlur={(range, source, quill) => {
+              input.onBlur(quill.getHTML());
+            }}
+          />
+        }
+        {touched && ((error && <span className="input-errors">{error}</span>) || (warning && <span>{warning}</span>))}
+      </div>
+    );
+  }
+}
+
+export const renderRichTextEditor = RichTextEditor;

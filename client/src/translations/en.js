@@ -98,6 +98,7 @@ export default {
   number_of_lessons: 'Number of lessons',
   period_mandatory: 'Period is required',
   number_of_students: 'Number of students',
+  minimum_number_of_students: 'Number of students must be 1 or more.',
   num_student_mandatory: 'Number of student is required',
   tuition_fee: 'Course fee',
   tuition_fee_mandatory: 'Tuition fee is required',
@@ -903,4 +904,19 @@ export default {
   page_404_title: 'The page cannot be found!',
   page_404_description: 'We cannot find the page you are looking for. Please check that the Web site address is spelled correctly. Or go to our home page, and use the menus to navigate to a specific section.',
   back_to_homepage: 'Back to Homepage',
+
+  // Course description template
+  template_course_description_1: 'Course description',
+  template_course_description_2: 'ABC Course',
+  template_course_description_3: ' will give students a complete picture of how to solve difficult types in the exam ... \n \n',
+  template_course_description_4: 'Course requirements',
+  template_course_description_5: '\nInside, listen carefully.',
+  template_course_description_6: 'Hard work, self-cultivation and doing homework to remember formulas and reflexes while doing homework.',
+  template_course_description_7: 'Learning outcomes',
+  template_course_description_8: 'Forged skills, clever tricks can leap ignore unnecessary steps to find the answer.',
+  template_course_description_9: 'Be trained with a variety of self-help exercises and extensive academic support services.',
+  template_course_description_10: 'Audiences',
+  template_course_description_11: 'Students have good thinking, hard work, ...',
+  template_course_description_placeholder: 'eg: Course description: ..., Course requirements: ..., Learning outcomes: ..., Audiences: ...',
+  template_course_description_sub_label: 'Please enter the information in the form to instruct the course to be clear, eye-catching. And to use the tutorial form press the {highlight} button in the editor toolbar.',
 };

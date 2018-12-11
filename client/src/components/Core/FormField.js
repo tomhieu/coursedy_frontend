@@ -26,11 +26,11 @@ class FormField extends Component {
       formControlName, fieldLabel, showLabel = true, placeholder, isMandatoryField = false,
       typeField, type, zoneHeight = 'auto', internalPreview = false, previewUrl, onUpload, rows, options,
       selectedValues, customClassName, checked, chosenValue, onCheck, toggled, onToggle, onFileRemoved,
-      lang = 'vn',
+      lang = 'vn', insertTemplateHandler = undefined, subLabel
     } = this.props;
 
     const fieldComponent = this.buildFieldRender(formControlName, placeholder, typeField, type,
-      zoneHeight, internalPreview, previewUrl, onUpload, rows, options, selectedValues, customClassName, checked, chosenValue, onCheck, toggled, onToggle, onFileRemoved, lang);
+      zoneHeight, internalPreview, previewUrl, onUpload, rows, options, selectedValues, customClassName, checked, chosenValue, onCheck, toggled, onToggle, onFileRemoved, lang, insertTemplateHandler);
     return (
       <FormGroup controlId={this.props.fieldId}>
         {
@@ -43,6 +43,9 @@ class FormField extends Component {
               {' '}
             </ControlLabel>) : ''
         }
+        {
+          subLabel ? <div className="sub-label" dangerouslySetInnerHTML={{ __html: subLabel }} /> : null
+        }
         <div className={`dark-picker dark-picker-bright ${customClassName}`}>
           {fieldComponent}
         </div>
@@ -50,7 +53,7 @@ class FormField extends Component {
     );
   }
 
-  buildFieldRender(formControlName, placeholder, typeField, type, zoneHeight, internalPreview, previewUrl, onUpload, rows, options, selectedValues, customClassName, checked, chosenValue, onCheck, toggled, onToggle, onFileRemoved, lang) {
+  buildFieldRender(formControlName, placeholder, typeField, type, zoneHeight, internalPreview, previewUrl, onUpload, rows, options, selectedValues, customClassName, checked, chosenValue, onCheck, toggled, onToggle, onFileRemoved, lang, insertTemplateHandler) {
     let fieldComponent;
     const fieldClasses = 'form-control';
 
@@ -195,6 +198,7 @@ class FormField extends Component {
             disabled={this.props.disabled}
             component={renderRichTextEditor}
             className={customClassName}
+            insertTemplateHandler={insertTemplateHandler}
           />
         );
         break;

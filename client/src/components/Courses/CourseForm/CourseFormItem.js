@@ -10,9 +10,8 @@ class CourseFormItem extends Component {
   render() {
     const {
       editMode = false, showLabel = true, fieldLabel, fieldId, isMandatory, fieldName, activatedField = [],
-      isRichTextField = false, canEditable, typeField, options, placeholder, customClassName
+      isRichTextField = false, canEditable, typeField, options, placeholder, customClassName, insertTemplateHandler, subLabel
     } = this.props;
-
     if (editMode) {
       return (
         <InlineEditFormField
@@ -34,6 +33,8 @@ class CourseFormItem extends Component {
           content={this.props.content}
           onActivatedField={this.props.onActivatedField.bind(this)}
           onClosedField={this.closeInlineField.bind(this)}
+          insertTemplateHandler={insertTemplateHandler}
+          subLabel={subLabel}
         />
       );
     }
@@ -48,6 +49,8 @@ class CourseFormItem extends Component {
         placeholder={placeholder || ''}
         typeField={typeField}
         options={options}
+        insertTemplateHandler={insertTemplateHandler}
+        subLabel={subLabel}
       />
     );
   }
