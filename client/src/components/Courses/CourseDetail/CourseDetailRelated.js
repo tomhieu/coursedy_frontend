@@ -5,15 +5,16 @@ import { PUBLIC_COURSE_DETAIL_MENU_RELATED } from '../../../constants/WebConstan
 
 class CourseDetailRelated extends Component {
   render() {
-    const { relatedCourses, activeMenu } = this.props;
-    const active = activeMenu === PUBLIC_COURSE_DETAIL_MENU_RELATED;
+    const { relatedCourses, courseId } = this.props;
+    const courses = relatedCourses.filter(course => course.id !== parseInt(courseId, 10));
+    if (!courses.length) return null;
     return (
       <div id="course-detail-related" className="course-detail-section">
         <div className="coursedy-headline text-left mb-20">
           <h3>{this.context.t('course_related')}</h3>
         </div>
         <CourseList
-          courses={relatedCourses}
+          courses={courses}
           isPublic
           itemClass="col-xs-12 col-sm-6 col-md-4 mb-15"
           itemPerRowInGridMode={3}

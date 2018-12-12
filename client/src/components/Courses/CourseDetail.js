@@ -60,7 +60,7 @@ class CourseDetail extends Component {
       if (errors.indexOf(COUSES_ENROLL_ERROR_NOT_ENOUGH_BALANCE) >= 0) {
         globalHistory.push('/payment');
       }
-    })
+    });
   }
 
   openEnrollPopup() {

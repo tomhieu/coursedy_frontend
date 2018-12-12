@@ -114,7 +114,7 @@ const getCourseLevel = (categories, course) => {
   const category = getCourseCategory(categories, course);
   if (category) {
     return category.course_levels.filter((level) => {
-      return level.id == course.course_level_id;
+      return level.id === course.course_level_id;
     })[0];
   }
   return null;
