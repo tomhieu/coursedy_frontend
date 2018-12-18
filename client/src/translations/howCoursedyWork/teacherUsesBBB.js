@@ -1,5 +1,5 @@
 export default {
-  vn: {
+  vi: {
     teacher_how_to_interact_with_learner_title: 'Giảng bài tương tác trực tiếp với học viên',
     teacher_how_to_interact_with_learner_description: 'Sắp tới giờ dạy học Coursedy sẽ gửi thông báo nhắc nhở tới giáo viên vì thế giáo viên chú ý vào hệ thống Coursedy đúng giờ để nhận hướng dẫn vào lớp. Giáo viên lưu ý các bước dưới đây chỉ đúng khi giáo viên vào hệ thống Coursedy vào đúng thời điểm dạy.',
     teacher_how_to_interact_with_learner_topic_title_one: 'Bước 1 - Đăng nhập tài khoản giáo viên',

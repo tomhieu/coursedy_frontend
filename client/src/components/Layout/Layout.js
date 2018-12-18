@@ -20,8 +20,9 @@ const mainBodyStyle = {
 class Layout extends Component {
   render() {
     const { lang } = this.props;
-    const initialLang = localStorage.getItem('coursedyLang') || TT.locale
-    momentCustom.locale(lang === 'vn' ? 'vi' : lang);
+    const coursedyLang = localStorage.getItem('coursedyLang');
+    const initialLang = coursedyLang === 'vn' ? 'vi' : coursedyLang || TT.locale
+    momentCustom.locale(lang);
     return (
       <I18n translations={translations} initialLang={initialLang}>
         <ScrollToTop>

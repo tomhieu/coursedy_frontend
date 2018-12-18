@@ -26,7 +26,7 @@ class FormField extends Component {
       formControlName, fieldLabel, showLabel = true, placeholder, isMandatoryField = false,
       typeField, type, zoneHeight = 'auto', internalPreview = false, previewUrl, onUpload, rows, options,
       selectedValues, customClassName, checked, chosenValue, onCheck, toggled, onToggle, onFileRemoved,
-      lang = 'vn', insertTemplateHandler = undefined, subLabel
+      lang = 'vi', insertTemplateHandler, subLabel
     } = this.props;
 
     const fieldComponent = this.buildFieldRender(formControlName, placeholder, typeField, type,

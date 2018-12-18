@@ -3,7 +3,7 @@ import teacherCourseBuilding from './teacherCourseBuilding';
 import teacherUsesBBB from './teacherUsesBBB';
 
 export default {
-  vn: {
+  vi: {
     coursedy_works_student_tab: 'Học Viên',
     coursedy_works_teacher_tab: 'Giáo Viên',
     coursedy_works_for_teacher_select_a_topic: 'Chọn mục muốn tìm hiểu',
@@ -25,9 +25,9 @@ export default {
     how_coursedy_works_teacher_use_bbb_link: '/how-coursedy-works/teacher-how-to-interact-with-learner',
     how_coursedy_works_teacher_create_course_title: 'Tạo khoá học',
     how_coursedy_works_teacher_create_course_link: '/how-coursedy-works/teacher-course-building',
-    ...teacherUsesBBB.vn,
-    ...teacherCourseManagement.vn,
-    ...teacherCourseBuilding.vn,
+    ...teacherUsesBBB.vi,
+    ...teacherCourseManagement.vi,
+    ...teacherCourseBuilding.vi,
   },
   en: {
     coursedy_works_student_tab: 'Student',

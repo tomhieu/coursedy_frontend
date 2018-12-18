@@ -98,7 +98,7 @@ export default {
   number_of_lessons: 'Number of lessons',
   period_mandatory: 'Period is required',
   number_of_students: 'Number of students',
-  minimum_number_of_students: 'Number of students must be 1 or more.',
+  minimum_number_of_students: 'Number of students must be one or more.',
   num_student_mandatory: 'Number of student is required',
   tuition_fee: 'Course fee',
   tuition_fee_mandatory: 'Tuition fee is required',

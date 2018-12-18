@@ -15,7 +15,7 @@ import { TT } from '../utils/locale';
  * List days of week
  */
 
-export const DAYS_IN_WEEK = (locale = 'vn') => {
+export const DAYS_IN_WEEK = (locale = 'vi') => {
   return [
     { id: 1, text: TT.changeLocale(locale).t('monday'), name: 'monday' },
     { id: 2, text: TT.changeLocale(locale).t('tuesday'), name: 'tuesday' },

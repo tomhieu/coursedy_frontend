@@ -172,12 +172,12 @@ const getCourseLevels = (specializes, selectedLevelId) => {
   });
 };
 
-const getDayId = (dayName, lang = 'vn') => {
+const getDayId = (dayName, lang = 'vi') => {
   const matchedDays = DAYS_IN_WEEK(lang).filter(d => d.name === dayName);
   return matchedDays.length > 0 ? matchedDays[0].id : 0;
 };
 
-const initializeCourseDetail = (courseData, lang = 'vn') => {
+const initializeCourseDetail = (courseData, lang = 'vi') => {
   const course_days = [];
 
   if (Array.isArray(courseData.course_days)) {

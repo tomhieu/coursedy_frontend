@@ -1,5 +1,5 @@
 export default {
-  vn: {
+  vi: {
     teacher_course_building_title: 'Làm Thế Nào Để Tạo Một Khoá Học Tại Coursedy?',
     teacher_course_building_related_topic_title: 'Bài viết liên quan',
     teacher_course_building_related_topic_one_title: 'Đăng ký tài khoản giáo viên',

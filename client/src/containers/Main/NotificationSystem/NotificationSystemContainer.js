@@ -87,7 +87,7 @@ class NotificationSystemContainer extends Component {
     const {teachingCourse} = this.props.session;
     const classRoomId = teachingCourse && teachingCourse.bigbluebutton_room ? teachingCourse.bigbluebutton_room.slug : '';
     const lessonId = formValue.selectedLesson;
-    const lang = this.props.lang === 'vn' ? 'vi' : 'en';
+    const { lang } = this.props.lang;
 
     this.props.joiningToBBBroom(classRoomId, lessonId, this.context, lang, this.startPolling.bind(this), this.afterJoiningUpcomingClass.bind(this));
   }

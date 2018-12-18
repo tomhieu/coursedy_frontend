@@ -2,7 +2,7 @@
   All translation for payment
 */
 export const payment_translation = {
-  "vn": {
+  "vi": {
     public_payment_instruct: "Hướng dẫn nạp tiền",
     public_payment_method: "Hình thức thanh toán",
     public_paymnet_method_info: "Thông tin tài khoản",

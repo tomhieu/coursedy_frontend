@@ -2,13 +2,13 @@ import { TT } from 'utils/locale';
 import { momentCustom } from '../components/Layout/Layout';
 
 class DateUtils {
-  static formatDate(dateValue, locale = 'vn') {
+  static formatDate(dateValue, locale = 'vi') {
     if (dateValue === undefined) {
       return '';
     }
     const l10nEN = new Intl.DateTimeFormat('en-US');
     const l10nVN = new Intl.DateTimeFormat('vi-VN');
-    const formatedDate = locale === 'vn'
+    const formatedDate = locale === 'vi'
       ? l10nVN.format(new Date(dateValue))
       : l10nEN.format(new Date(dateValue));
     return formatedDate;

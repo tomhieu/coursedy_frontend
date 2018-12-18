@@ -27,7 +27,7 @@ class LangNavigation extends Component {
   }
 
   findFlagByLang(lang) {
-    if (lang === 'vn') {
+    if (lang === 'vi') {
       return '/flags/vn.png';
     }
     return '/flags/en.png';
@@ -46,7 +46,7 @@ class LangNavigation extends Component {
       },
       {
         id: 2,
-        callback: this.handleSwitchLang.bind(this, 'vn'),
+        callback: this.handleSwitchLang.bind(this, 'vi'),
         text: '  VI',
         prefix: {
           type: 'image',

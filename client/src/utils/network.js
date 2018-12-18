@@ -38,8 +38,8 @@ const Network = (res = {}) => {
   };
 
   // Default option for every request
-  let lang = localStorage.getItem('coursedyLang') || 'vi'
-  lang = lang == 'vn' ? 'vi' : lang
+  let lang = localStorage.getItem('coursedyLang') || 'vi';
+  lang = lang === 'vn' ? 'vi' : lang;
 
   const defaultOptions = {
     mode: 'cors',
@@ -50,7 +50,7 @@ const Network = (res = {}) => {
       'access-token': localStorage.getItem('ezyLearningToken'),
       client: localStorage.getItem('ezyLearningClient'),
       uid: localStorage.getItem('ezyLearningUid'),
-      'X-Language':  lang,
+      'X-Language': lang,
     }
   };
 
@@ -92,7 +92,7 @@ const Network = (res = {}) => {
         defaultOptions,
         {
           method: 'GET',
-          headers: headers
+          headers
         }
       ));
     },
@@ -112,7 +112,7 @@ const Network = (res = {}) => {
         defaultOptions,
         {
           method: 'PUT',
-          headers: headers,
+          headers,
           body: JSON.stringify(body)
         }
       ));

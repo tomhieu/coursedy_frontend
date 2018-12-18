@@ -1,7 +1,7 @@
-import vn from './translations/vn';
+import vi from './translations/vi';
 import en from './translations/en';
 
 export const translations = {
-  vn,
+  vi,
   en
 };

@@ -2,13 +2,14 @@ import { translations } from '../translations';
 
 const getInitCoursedyLang = () => {
   if (typeof localStorage !== 'undefined') {
-    return localStorage.getItem('coursedyLang');
+    const lang = localStorage.getItem('coursedyLang');
+    return lang === 'vn' ? 'vi' : lang;
   }
   return undefined;
 };
 
 export const TT = {
-  locale: 'vn',
+  locale: 'vi',
   changeLocale: (locale = getInitCoursedyLang() || TT.locale) => {
     const newTT = TT;
     TT.locale = locale;

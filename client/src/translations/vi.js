@@ -5,8 +5,8 @@ import { payment_translation } from './payment';
 import howCoursedyWork from './howCoursedyWork';
 
 export default {
-  ...payment_translation.vn,
-  ...howCoursedyWork.vn,
+  ...payment_translation.vi,
+  ...howCoursedyWork.vi,
   home_page: 'Trang Chủ',
   find_tutors: 'Tìm Gia Sư',
   find_teachers: 'Tìm Giáo Viên',

@@ -1,5 +1,5 @@
 export default {
-  vn: {
+  vi: {
     teacher_course_management_title: 'Quản Lý Khoá Học',
     teacher_course_management_related_topic_name: 'Bài viết liên quan',
     teacher_course_building_short_title: 'Tạo khoá học',
