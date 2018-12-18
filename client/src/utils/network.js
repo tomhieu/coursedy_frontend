@@ -38,6 +38,9 @@ const Network = (res = {}) => {
   };
 
   // Default option for every request
+  let lang = localStorage.getItem('coursedyLang') || 'vi'
+  lang = lang == 'vn' ? 'vi' : lang
+
   const defaultOptions = {
     mode: 'cors',
     headers: {
@@ -47,7 +50,7 @@ const Network = (res = {}) => {
       'access-token': localStorage.getItem('ezyLearningToken'),
       client: localStorage.getItem('ezyLearningClient'),
       uid: localStorage.getItem('ezyLearningUid'),
-      'X-Language': localStorage.getItem('coursedyLang') || 'vi',
+      'X-Language':  lang,
     }
   };
 
