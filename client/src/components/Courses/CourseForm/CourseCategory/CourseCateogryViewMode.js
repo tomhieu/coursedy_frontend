@@ -15,7 +15,7 @@ class CourseCategoryViewMode extends Component {
               editMode={editMode}
               fieldId="category_id"
               fieldLabel={this.context.t('course_category')}
-              placeholder={this.context.t('course_category')}
+              placeholder={this.context.t('sample_course_category')}
               isMandatory
               fieldName="category_id"
               typeField="custom_select"
@@ -29,25 +29,30 @@ class CourseCategoryViewMode extends Component {
             />
           </div>
         </div>
-        <div className="col-sm-12 col-md-6 col-lg-6">
-          <div>
-            <CourseFormItem
-              editMode={editMode}
-              fieldId="course_specialize"
-              fieldLabel={this.context.t('course_specialize')}
-              isMandatory
-              fieldName="course_specialize_id"
-              typeField="custom_select"
-              content={editMode && course_specialize ? course_specialize.name : ''}
-              options={courseSpecializes.map((spec) => {
-                return { id: spec.id, text: spec.name };
-              })}
-              styleCustomField="inline-form-control"
-              canEditable={canEditable}
-              {...this.props}
-            />
-          </div>
-        </div>
+        {
+          courseSpecializes.length ? (
+            <div className="col-sm-12 col-md-6 col-lg-6">
+              <div>
+                <CourseFormItem
+                  editMode={editMode}
+                  fieldId="course_specialize"
+                  fieldLabel={this.context.t('course_specialize')}
+                  placeholder={this.context.t('sample_course_specialize')}
+                  isMandatory
+                  fieldName="course_specialize_id"
+                  typeField="custom_select"
+                  content={editMode && course_specialize ? course_specialize.name : ''}
+                  options={courseSpecializes.map((spec) => {
+                    return { id: spec.id, text: spec.name };
+                  })}
+                  styleCustomField="inline-form-control"
+                  canEditable={canEditable}
+                  {...this.props}
+                />
+              </div>
+            </div>
+          ) : null
+        }
       </div>
     );
   }

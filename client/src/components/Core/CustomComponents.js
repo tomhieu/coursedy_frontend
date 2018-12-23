@@ -151,7 +151,7 @@ export const renderTextAreaField = ({
 );
 
 export const renderDatePicker = ({
-  input, label, type, disabled = false, meta: { touched, error, warning }
+  input, label, type, disabled = false, placeholder, meta: { touched, error, warning }
 }) => {
   return (
     <div>
@@ -160,7 +160,7 @@ export const renderDatePicker = ({
         onChange={input.onChange}
         disabled={disabled}
         selected={input.value ? moment(input.value, 'DD/MM/YYYY') : null}
-        placeholderText="dd/mm/yyyy"
+        placeholderText={placeholder || ''}
         className="form-control"
         dateFormat="DD/MM/YYYY"
         calendarClassName="wide-calendar"
@@ -193,7 +193,7 @@ export const renderSelect = (selectOptions) => {
 
 export const renderMultiSelect = (selectOptions) => {
   return ({
-    input, label, type, disabled = false, meta: { touched, error, warning }
+    input, label, type, disabled = false, placeholder, meta: { touched, error, warning }
   }) => (
     <div className="select-picker">
       <Select2
@@ -201,6 +201,9 @@ export const renderMultiSelect = (selectOptions) => {
         multiple
         disabled={disabled}
         data={selectOptions}
+        options={{
+          placeholder
+        }}
       />
       {touched && ((error && <span className="input-errors">{error}</span>) || (warning
         && <span>{warning}</span>))}
