@@ -5,6 +5,7 @@ import {Component} from 'react';
 import {UserAvatarForm} from '../../Account/UserAvatarForm';
 import styles from './CoursedyUploadImage.module.scss';
 import UploadIcon from '../Icons/UploadIcon';
+import Image from '../ImageComponent';
 
 class CoursedyUploadImage extends Component {
   render() {
@@ -13,7 +14,7 @@ class CoursedyUploadImage extends Component {
       editImageLabel = this.context.t('update_image'), uploadCourseCoverImage,
       openPopupToSelectImage, closePopupToSelectImage, showPopupChangeImage, isSelectedNewImage,
       onSelectedNewImage, onDeselectNewImage, scaleWidth, scaleHeight, isUserAvatar = false, isEditable = true,
-      isProcessing, placeholderId
+      isProcessing, placeholderId, defaultAvatar
     } = this.props;
     const containerClasses = [styles.uploadImageContainer];
     const baseLineBtnClasses = [styles.baseLineBtn];
@@ -27,7 +28,12 @@ class CoursedyUploadImage extends Component {
           previewImage
             ? (
               <a className={styles.previewImageContainer}>
-                <img className={previewImageClasses} src={previewImage} alt={editImageLabel} />
+                <Image
+                  className={previewImageClasses}
+                  src={previewImage}
+                  alt={editImageLabel}
+                  fallbackSrc={defaultAvatar}
+                />
                 {
                   isEditable ? <span className={styles.editAvatarBtn} onClick={openPopupToSelectImage.bind(this)}>
                     <span className={baseLineBtnClasses.join(' ')}>

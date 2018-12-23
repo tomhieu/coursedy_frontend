@@ -6,6 +6,8 @@ import RatingItem from '../../Rating/index';
 import ObjectUtils from '../../../utils/ObjectUtils';
 import {CourseStatus} from '../../../constants/CourseStatus';
 import CoursedyProgressBar from '../../Core/CoursedyProgressBar/CoursedyProgressBar';
+import Image from '../../Core/ImageComponent';
+import defaultAvatar from '../../../../images/default_avatar.png';
 
 /**
  * @Course group item template 2
@@ -19,8 +21,9 @@ class CourseItemInGridMode extends Component {
       <div className="course-item d-flex flex-column">
         <LinkContainer to={`/courses/${item.id}`} className="course-detail-lnk">
           <div className="course-item-image">
-            <img
+            <Image
               src={!item.cover_image ? 'http://placehold.it/200x150' : item.cover_image}
+              fallbackSrc="http://placehold.it/200x150"
               width={200}
               height={150}
               alt="comming soon"
@@ -32,8 +35,9 @@ class CourseItemInGridMode extends Component {
           <div className="course-detail-lnk">
             <div className="course-item-instructor">
               <div className="image">
-                <img
-                  src={!item.user.avatar ? 'http://placehold.it/40x40' : item.user.avatar}
+                <Image
+                  src={!item.user.avatar ? defaultAvatar : item.user.avatar}
+                  fallbackSrc={defaultAvatar}
                   alt="comming soon"
                   className="full-width-img img-circle"
                 />

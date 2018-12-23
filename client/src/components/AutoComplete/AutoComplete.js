@@ -6,6 +6,7 @@ import { SERVER_NAME } from 'utils/CommonConstant';
 import styles from './AutoComplete.module.scss';
 import { renderField } from '../Core/CustomComponents';
 import AsyncLoader from '../../containers/LoadingMask/AsyncLoader';
+import Image from '../Core/ImageComponent';
 
 export class AutoComplete extends Component {
   constructor(props) {
@@ -36,7 +37,12 @@ export class AutoComplete extends Component {
     return (
       <div className={`d-flex flex-horizontal ${styles.suggestionItemWrapper}`} key={`suggestion_${suggestion.id}`}>
         <div>
-          <img src={suggestion.avatar ? suggestion.avatar : 'http://placehold.it/65x65'} alt="" className={`${styles.itemAvatar} ${styles.suggestionCoverImage}`} />
+          <Image
+            src={suggestion.avatar ? suggestion.avatar : ''}
+            alt=""
+            className={`${styles.itemAvatar} ${styles.suggestionCoverImage}`}
+            fallbackSrc="http://placehold.it/65x65"
+          />
         </div>
         <div className={styles.suggestionLine}>
           <a className="pl-10 d-flex flex-vertical suggestion-line" onClick={() => handleAddCriteria(suggestion.id, suggestion.title)}>

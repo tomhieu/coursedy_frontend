@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './ReviewContent.scss';
 import DateUtils from 'utils/DateUtils';
 import UserAvatar from '../Account/UserAvatar';
+import Image from '../Core/ImageComponent';
 
 class ReviewContent extends Component {
   render() {
@@ -15,7 +16,7 @@ class ReviewContent extends Component {
         {
           review.user.avatar ?
             <div className="image">
-              <img
+              <Image
                 className="img-circle"
                 src={review.user.avatar}
               />

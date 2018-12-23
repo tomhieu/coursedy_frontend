@@ -11,6 +11,7 @@ import ReactQuill, { Quill } from 'react-quill';
 import ObjectUtils from '../../utils/ObjectUtils';
 import { TT } from '../../utils/locale';
 import UploadIcon from './Icons/UploadIcon';
+import Image from './ImageComponent';
 
 export const renderField = ({
   input, label, placeholder, type = 'text', disabled = false, customClassName, meta: { touched, error, warning }, ...rest
@@ -221,7 +222,7 @@ export const renderPreviewFile = (file, doDeleteNewUploadFile, saveDocument) => 
     <div className="d-flex flex-horizontal mb-10" key={`document_${file.id}`}>
       {
         previewClass ? <div className={previewClass} /> :
-          <a className="image-file-preview"><img src={file.url} alt={file.name}/></a>
+          <a className="image-file-preview"><Image src={file.url} alt={file.name}/></a>
       }
       <div className="file-name-wrapper">
         <a className="degree-filename ml-5" href={file.url} title={file.fileName}>{file.fileName}</a>
@@ -308,7 +309,7 @@ class renderFileInput extends Component {
               <a className="ml-10 mt-10 upload-message">{TT.changeLocale(this.props.lang).t('drag_and_drop')}</a>
             </div>
           </div>
-          <img
+          <Image
             className={internalPreview && this.state.previewUrl != null ? '' : 'd-none'}
             src={this.state.previewUrl}
             height={zoneHeight}

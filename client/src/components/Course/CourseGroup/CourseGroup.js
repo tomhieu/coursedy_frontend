@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import './CourseGroup.scss';
+import Image from '../../Core/ImageComponent';
 
 
 class CourseGroup extends Component {
@@ -22,7 +23,7 @@ class CourseGroup extends Component {
         key={course.id}
       >
         <Link to="#" title={course.title} className="course-group__content">
-          <img
+          <Image
             className="course-group__content__img"
             src={course.cover_image}
             alt={course.title}

@@ -4,6 +4,7 @@ import { globalHistory } from 'utils/globalHistory';
 import styles from './TutorItem.module.scss';
 import RatingItem from '../../Rating/index';
 import defaultAvatar from '../../../../images/default_avatar.png';
+import Image from '../../Core/ImageComponent';
 
 class TutorItem extends Component {
   goToTeacherDetails(teacherId) {
@@ -19,7 +20,11 @@ class TutorItem extends Component {
       <div className={styles.teacherItemGrid} onClick={() => this.goToTeacherDetails(id)}>
 
         <a className={styles.imageWrapper}>
-          <img className={styles.imageCard} src={user.avatar ? user.avatar : defaultAvatar} />
+          <Image
+            src={user.avatar ? user.avatar : defaultAvatar}
+            className={styles.imageCard}
+            fallbackSrc={defaultAvatar}
+          />
         </a>
 
         <div className={`${styles.teacherContact} row`}>

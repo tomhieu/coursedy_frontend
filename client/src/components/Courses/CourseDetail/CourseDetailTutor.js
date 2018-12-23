@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 import './CourseDetailTutor.scss';
 import { Link } from 'react-router-dom';
-import { PUBLIC_COURSE_DETAIL_MENU_TEACHER } from '../../../constants/WebConstants.js';
+import { PUBLIC_COURSE_DETAIL_MENU_TEACHER } from '../../../constants/WebConstants';
 import PrimaryButton from '../../Core/PrimaryButton/PrimaryButton';
 import { globalHistory } from '../../../utils/globalHistory';
+import Image from '../../Core/ImageComponent';
+import defaultAvatar from '../../../../images/default_avatar.png';
+
 
 class CourseDetailTutor extends Component {
   buildTeacherTitle(teacher) {
@@ -27,7 +30,11 @@ class CourseDetailTutor extends Component {
               <div className="col-xs-12 col-sm-3 col-md-2">
                 <div className="image">
                   <Link to={course.user ? `/teachers/${course.user.id}` : '#'}>
-                    <img src={course.user && course.user.avatar ? course.user.avatar : 'http://placehold.it/100x100'} alt="Image" />
+                    <Image
+                      src={course.user && course.user.avatar ? course.user.avatar : defaultAvatar}
+                      alt="Image"
+                      fallbackSrc={defaultAvatar}
+                    />
                   </Link>
                 </div>
                 <div className="clear" />

@@ -3,6 +3,7 @@ import * as React from 'react';
 import DeleteIcon from 'components/Common/DeleteIcon';
 import { TT } from 'utils/locale';
 import FormField from '../../Core/FormField';
+import Image from '../../Core/ImageComponent';
 
 // import {savePersonData} from "actions/TutorAccountActionCreator";
 
@@ -51,8 +52,8 @@ function renderUploadedDegree(degree, props) {
   let previewImage = <div className="pdf-image-preview" />;
   const extension = degree.name ? degree.name.split('.').pop() : '';
   if (['jpg', 'png', 'jpeg', 'gif'].indexOf(extension) >= 0) {
-    previewImage = <img src={degree.url} width="auto" height="30" />;
-  } else if (extension == 'docx' || extension == 'doc') {
+    previewImage = <Image src={degree.url} width="auto" height="30" />;
+  } else if (extension === 'docx' || extension === 'doc') {
     previewImage = <div className="doc-image-preview" />;
   }
 
