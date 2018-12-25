@@ -75,7 +75,12 @@ class TutorCourseItemPending extends Component {
               <div className="row">
                 <div className="col-xl-9 col-sm-12">
                   <div className="d-flex flex-row align-items-center">
-                    <a className={styles.courseAvatarImage}><Image src={course.cover_image} /></a>
+                    <a className={styles.courseAvatarImage}>
+                      <Image
+                        src={course.cover_image}
+                        fallbackSrc="http://placehold.it/200x100"
+                      />
+                    </a>
                     <div className="d-flex flex-column">
                       <div className={styles.courseTitle}>{course.title}</div>
                       <div className={styles.courseSubTitle}>{course.category.name}</div>
@@ -188,7 +193,12 @@ class TutorCourseItemApproved extends Component {
                         showEnrolledStudentList ? <CheckIcon isActive width={18} height={11} /> : <DetailsIcon />
                       }
                     </a>
-                    <a className={styles.courseAvatarImage}><Image src={course.cover_image} /></a>
+                    <a className={styles.courseAvatarImage}>
+                      <Image
+                        src={course.cover_image}
+                        fallbackSrc="http://placehold.it/200x100"
+                      />
+                    </a>
                     <div className="d-flex flex-column">
                       <div className={styles.courseTitle}>{course.title}</div>
                       <div className={styles.courseSubTitle}>{course.category.name}</div>
@@ -307,7 +317,12 @@ class TutorCourseItemTeaching extends Component {
                         showEnrolledStudentList ? <CheckIcon isActive width={18} height={11} /> : <DetailsIcon />
                       }
                     </a>
-                    <a className={styles.courseAvatarImage}><Image src={course.cover_image} /></a>
+                    <a className={styles.courseAvatarImage}>
+                      <Image
+                        src={course.cover_image}
+                        fallbackSrc="http://placehold.it/200x100"
+                      />
+                    </a>
                     <div className="d-flex flex-column">
                       <div className={styles.courseTitle}>{course.title}</div>
                       <div className={styles.courseSubTitle}>{course.category.name}</div>

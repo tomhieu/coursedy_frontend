@@ -14,7 +14,7 @@ class CoursedyUploadImage extends Component {
       editImageLabel = this.context.t('update_image'), uploadCourseCoverImage,
       openPopupToSelectImage, closePopupToSelectImage, showPopupChangeImage, isSelectedNewImage,
       onSelectedNewImage, onDeselectNewImage, scaleWidth, scaleHeight, isUserAvatar = false, isEditable = true,
-      isProcessing, placeholderId, defaultAvatar
+      isProcessing, placeholderId, defaultAvatar = 'http://placehold.it/800x600'
     } = this.props;
     const containerClasses = [styles.uploadImageContainer];
     const baseLineBtnClasses = [styles.baseLineBtn];
