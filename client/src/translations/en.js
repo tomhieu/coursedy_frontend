@@ -528,17 +528,6 @@ export default {
   course_related: 'Related courses',
   unknown: 'N/A',
 
-  admin_courses: 'Courses',
-  admin_courses_list: 'All courses',
-  admin_courses_new: 'New course',
-  admin_teachers: 'Teachers',
-  admin_teachers_list: 'All teachers',
-  admin_teachers_new: 'New teacher',
-  admin_students: 'Students',
-  admin_students_list: 'All students',
-  admin_students_new: 'New student',
-  admin_payment_methods: 'Payment methods',
-
   react_table_previous_text: '<',
   react_table_next_text: '>',
   react_table_loading_text: 'Loading...',

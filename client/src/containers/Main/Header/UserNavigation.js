@@ -35,9 +35,9 @@ class UserNavigation extends Component {
   render() {
     const { currentUser } = this.props.session;
     const isAproved = this.props.tutorStatus === TutorStatus.VERIFIED;
-    const userProfileUrl = SecurityUtils.isAdmin(currentUser) ? '/admin/dashboard/account' : SecurityUtils.isTeacher(currentUser)
+    const userProfileUrl = SecurityUtils.isAdmin(currentUser) || SecurityUtils.isTeacher(currentUser)
       ? '/dashboard/profile' : '/student/dashboard/profile';
-    const courseListUrl = SecurityUtils.isAdmin(currentUser) ? '/admin/dashboard/courses' : SecurityUtils.isTeacher(currentUser)
+    const courseListUrl = SecurityUtils.isAdmin(currentUser) || SecurityUtils.isTeacher(currentUser)
       ? '/dashboard/courses/pending' : '/student/dashboard/courses/enrolling';
     const dropdownOptions = [
       {
