@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import cssModules from 'react-css-modules';
 import styles from './StudentItem.module.scss';
 import defaultAvatar from '../../../../images/default_avatar.png';
+import Image from '../../Core/ImageComponent';
 
 class StudentItem extends Component {
   render() {
@@ -12,7 +13,9 @@ class StudentItem extends Component {
           <div className="row">
             <div className="col-md-9 col-sm-12">
               <div className="d-flex flex-row align-items-center">
-                <a className={styles.studentAvatarImage}><img src={student.avatar ? student.avatar : defaultAvatar} /></a>
+                <a className={styles.studentAvatarImage}>
+                  <Image src={student.avatar ? student.avatar : defaultAvatar} fallbackSrc={defaultAvatar} />
+                </a>
                 <div className={styles.studentName}>{student.name}</div>
               </div>
             </div>

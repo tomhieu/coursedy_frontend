@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import LoadingMask from 'containers/LoadingMask/LoadingMask';
 import * as webConstants from 'constants/WebConstants';
+import Image from '../../../../components/Core/ImageComponent';
 
 class TeacherBackground extends Component {
   render() {
@@ -148,7 +149,11 @@ const DegreeItem = ({ degree }) => {
   return (
     <div className="col-12 col-sm-12 col-md-6 col-lg-3 mb-15 mt-15 teacher-degree">
       <a href={degree.url} target="_blank" className="d-flex flex-column">
-        <img src={degree.url} className="full-width" />
+        <Image
+          src={degree.url}
+          fallbackSrc=""
+          className="full-width"
+        />
         <div className="d-flex justify-content-center file-name">{degree.name}</div>
       </a>
     </div>

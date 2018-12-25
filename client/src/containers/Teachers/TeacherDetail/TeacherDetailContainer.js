@@ -26,6 +26,7 @@ import styles from './TeacherDetail.module.scss';
 import PageContainer from '../../../utils/PageContainer';
 import PaginationArrowIcon from '../../../components/Core/Icons/PaginationArrowIcon';
 import {PAGE_RANGE_DISPLAYED} from '../../../constants/Layout';
+import Image from '../../../components/Core/ImageComponent';
 
 
 class TeacherDetail extends Component {
@@ -167,7 +168,11 @@ const TeacherBriefCourses = (props) => {
               >
                 <div className="pb-5 pt-5 clearfix">
                   <div className="image">
-                    <img className="full-width" src={course.cover_image} />
+                    <Image
+                      className="full-width"
+                      src={course.cover_image}
+                      fallbackSrc=""
+                    />
                   </div>
                   <div className="content">
                     <h6 className="course-title">{course.title}</h6>

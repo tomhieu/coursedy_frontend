@@ -137,6 +137,7 @@ class LessonDetailFormContainer extends Component {
             <div className="col-md-12 col-sm-12">
               <PrimaryButton
                 type="button"
+                isPrimary={false}
                 callback={this.showDeleteWarning.bind(this, lesson.id, lesson.title)}
                 isSmallButton
                 title={this.context.t('lesson_delete_btn')}

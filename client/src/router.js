@@ -31,12 +31,6 @@ import TutorDashboardCourseTeaching from './pages/TutorDashboard/TutorDashboardC
 import TutorDashboardCourseFinished from './pages/TutorDashboard/TutorDashboardCourseFinished';
 
 import TutorDashboardCourseNew from './pages/TutorDashboard/TutorDashboardCourseNew';
-import AdminDashboardAccount from './pages/Admin/Dashboard/AdminDashboardAccount';
-import AdminDashboardCourseList from './pages/Admin/Dashboard/AdminDashboardCourseList';
-import AdminDashboardTeacherList from './pages/Admin/Dashboard/AdminDashboardTeacherList';
-import AdminDashboardStudentList from './pages/Admin/Dashboard/AdminDashboardStudentList';
-import AdminDashboardPaymentMethod from './pages/Admin/Dashboard/AdminDashboardPaymentMethod';
-import AdminDashboardPaymentHistory from './pages/Admin/Dashboard/AdminDashboardPaymentHistory';
 import StudentDashboardProfile from './pages/StudentDashboard/StudentDashboardProfile';
 import StudentDashboardCourseEnrolled from './pages/StudentDashboard/StudentDashboardCourseEnrolled';
 import StudentDashboardCourseEnrolling from './pages/StudentDashboard/StudentDashboardCourseEnrolling';
@@ -199,44 +193,6 @@ export const routes = [
     path: '/student/dashboard/courses/:id',
     component: requireLogin(StudentDashboardCourseDetails),
     roles: [UserRole.STUDENT],
-    exact: true
-  },
-
-  // admin dashboard
-  {
-    path: '/admin/dashboard/account',
-    component: requireLogin(AdminDashboardAccount),
-    roles: [UserRole.ADMIN],
-    exact: true
-  },
-  {
-    path: '/admin/dashboard/courses',
-    component: requireLogin(AdminDashboardCourseList),
-    roles: [UserRole.ADMIN],
-    exact: true
-  },
-  {
-    path: '/admin/dashboard/teachers',
-    component: requireLogin(AdminDashboardTeacherList),
-    roles: [UserRole.ADMIN],
-    exact: true
-  },
-  {
-    path: '/admin/dashboard/students',
-    component: requireLogin(AdminDashboardStudentList),
-    roles: [UserRole.ADMIN],
-    exact: true
-  },
-  {
-    path: '/admin/dashboard/payment-methods',
-    component: requireLogin(AdminDashboardPaymentMethod),
-    roles: [UserRole.ADMIN],
-    exact: true
-  },
-  {
-    path: '/admin/dashboard/payment-history',
-    component: requireLogin(AdminDashboardPaymentHistory),
-    roles: [UserRole.ADMIN],
     exact: true
   },
 

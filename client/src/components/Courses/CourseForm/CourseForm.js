@@ -113,6 +113,7 @@ class CourseForm extends Component {
                   editMode={editMode}
                   fieldId="start_date"
                   fieldLabel={this.context.t('start_date')}
+                  placeholder={this.context.t('sample_start_date')}
                   isMandatory
                   fieldName="start_date"
                   typeField="datepicker"
@@ -128,6 +129,7 @@ class CourseForm extends Component {
                   editMode={editMode}
                   fieldId="period"
                   fieldLabel={this.context.t('number_of_lessons')}
+                  placeholder={this.context.t('sample_number_of_lessons')}
                   isMandatory
                   fieldName="period"
                   typeField="custom_input"
@@ -154,6 +156,7 @@ class CourseForm extends Component {
                 editMode={editMode}
                 fieldId="number_of_students"
                 fieldLabel={this.context.t('number_of_students')}
+                placeholder={this.context.t('sample_number_of_students')}
                 isMandatory
                 fieldName="number_of_students"
                 typeField="custom_input"
@@ -220,7 +223,6 @@ class CourseForm extends Component {
                     type="submit"
                     customClasses="mr-10"
                     disabled={(pristine || submitting) && courseData}
-                    isSmallButton
                     title={this.context.t('create_course')}
                   />
                 </div>

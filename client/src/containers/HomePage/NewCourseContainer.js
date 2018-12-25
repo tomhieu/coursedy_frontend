@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import Image from '../../components/Core/ImageComponent';
 
 
 export default class NewCourse extends Component {
@@ -21,7 +22,7 @@ export default class NewCourse extends Component {
         key={course.id}
       >
         <Link className="course-group__content" to="#" title={course.title}>
-          <img
+          <Image
             className="course-group__content__img"
             src={course.cover_image}
             alt={course.title}

@@ -18,7 +18,6 @@ import TutorList from './Tutor/TutorList/TutorList';
 import TutorProfileDetails from './Tutor/Profile/TutorProfileDetails';
 
 import * as StudentComponents from './Student';
-import * as AdminComponents from './Admin';
 
 import RoleAuthorization from './RoleAuthorization';
 import TutorDashboardMenu from './Dashboard/TutorDashboard/TutorDashboardMenu';
@@ -28,7 +27,7 @@ import RequireEmailConfirmationModal from './Account/RequireEmailConfirmationMod
 import TutorDetail from './Dashboard/Tutors/TutorDetail';
 
 import * as PaymentComponents from './Payment';
-import StatisticCard from './Dashboard/StatisticCard.js';
+import StatisticCard from './Dashboard/StatisticCard';
 
 export {
   Header,
@@ -52,7 +51,6 @@ export {
   TutorDashboardMenu,
   TutorDetail,
 
-  AdminComponents,
   StudentComponents,
   PaymentComponents,
   StatisticCard,

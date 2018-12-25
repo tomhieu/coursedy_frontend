@@ -6,6 +6,7 @@ import { bindActionCreators } from 'redux';
 import { Slider } from '../../components/Slider/CoursedySlider';
 import LoadingMask from '../LoadingMask/LoadingMask';
 import CoursedySlider from '../../components/Slider/CoursedySlider';
+import Image from '../../components/Core/ImageComponent';
 
 
 const Item = ({ item }) => {
@@ -14,7 +15,9 @@ const Item = ({ item }) => {
       <div className="row">
         <div className="col-lg-12 col-xs-12 col-md-12 col-sm-12 user">
           <div className="user__avatar-left">
-            <img src={item.avatar} />
+            <Image
+              src={item.avatar}
+            />
           </div>
           <div className="user__info-right">
             <div className="user__fullname">{item.full_name}</div>

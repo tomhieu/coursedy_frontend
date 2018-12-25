@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { setLanguage } from 'redux-i18n';
 import styles from './Header.module.scss';
 import CoursedyDropDown from '../../../components/Core/CoursedyDropdown/CoursedyDropDown';
+import Image from '../../../components/Core/ImageComponent';
 
 class LangNavigation extends Component {
   constructor(props) {
@@ -58,7 +59,11 @@ class LangNavigation extends Component {
       <div className="d-flex flex-column">
         <div className="d-flex flex-row">
           <div>
-            <img className="flag-country-icon" src={this.findFlagByLang(this.props.lang)} onClick={this.onClickArrow.bind(this)} />
+            <Image
+              className="flag-country-icon"
+              src={this.findFlagByLang(this.props.lang)}
+              onClick={this.onClickArrow.bind(this)}
+            />
           </div>
         </div>
         <CoursedyDropDown

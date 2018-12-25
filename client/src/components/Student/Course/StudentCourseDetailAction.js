@@ -9,6 +9,7 @@ import GooglePlusIcon from '../../Core/Icons/GooglePlusIcon';
 import LinkedinShareButton from 'react-share/es/LinkedinShareButton';
 import LinkinIcon from '../../Core/Icons/LinkinIcon';
 import ObjectUtils from '../../../utils/ObjectUtils';
+import Image from '../../Core/ImageComponent';
 
 
 class CourseDetailAction extends Component {
@@ -58,7 +59,7 @@ class CourseDetailAction extends Component {
       <div className={styles.courseDetailAction}>
         <div className="d-flex flex-column">
           <div className={styles.courseCoverImage}>
-            <img src={course.cover_image ? course.cover_image : 'http://placehold.it/1366x768'} alt="" />
+            <Image src={course.cover_image ? course.cover_image : 'http://placehold.it/1366x768'} alt="" />
           </div>
           {
             course.tuition_fee
@@ -72,7 +73,7 @@ class CourseDetailAction extends Component {
             <li>
               <div className="row gap-10">
                 <div className="col-xs-8 col-sm-8">
-                  <i className="fa fa-clock-o mr-5"/>
+                  <i className="fa fa-clock-o mr-5" />
                   {' '}
                   {this.context.t('period')}
                 </div>

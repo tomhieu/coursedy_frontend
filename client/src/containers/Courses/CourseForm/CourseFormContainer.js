@@ -19,6 +19,7 @@ import FlatButton from '../../../components/Core/FlatButton/FlatButton';
 import * as dashboardActions from '../../../actions/DashboardMenuActionCreator';
 import {TutorNavigationTab} from '../../../constants/TutorNavigationTab';
 import {CourseStatus} from '../../../constants/CourseStatus';
+import PrimaryButton from '../../../components/Core/PrimaryButton/PrimaryButton';
 
 class CourseFormContainer extends Component {
   constructor(props) {
@@ -125,28 +126,32 @@ class CourseFormContainer extends Component {
                   <div className="col-sm-12 col-md-12">
                     <div className="row">
                       <div className="col-md-4 col-sm-4">
-                        <FlatButton
-                          label={this.context.t('lesson_link_edit')}
-                          onClick={this.addNewSection.bind(this)}
+                        <PrimaryButton
+                          type="button"
+                          title={this.context.t('lesson_link_edit')}
+                          callback={this.addNewSection.bind(this)}
+                          customClasses="align-btn"
+                          line={false}
                         >
                           <svg viewBox="0 0 24 24" className="material-icon primary" height="18" width="18">
                             <path
                               d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5 11h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"
                             />
                           </svg>
-                        </FlatButton>
+                        </PrimaryButton>
                       </div>
                       <div className="col-md-4 col-sm-4">
                         {
                           !isPublicCourse && canEditable ?
-                            <FlatButton
-                              label={this.context.t('course_publish')}
-                              onClick={this.validateBeforePublishCourse.bind(this)}>
+                            <PrimaryButton
+                              title={this.context.t('course_publish')}
+                              line={false}
+                              callback={this.validateBeforePublishCourse.bind(this)}>
                               <svg className="material-icon" width="24" height="24" viewBox="0 0 24 24">
                                 <path d="M0 0h24v24H0z" fill="none" />
                                 <path d="M5 4v2h14V4H5zm0 10h4v6h6v-6h4l-7-7-7 7z" />
                               </svg>
-                            </FlatButton> : null
+                            </PrimaryButton> : null
                         }
                       </div>
                     </div>

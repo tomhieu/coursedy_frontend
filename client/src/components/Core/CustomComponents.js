@@ -11,6 +11,7 @@ import ReactQuill, { Quill } from 'react-quill';
 import ObjectUtils from '../../utils/ObjectUtils';
 import { TT } from '../../utils/locale';
 import UploadIcon from './Icons/UploadIcon';
+import Image from './ImageComponent';
 
 export const renderField = ({
   input, label, placeholder, type = 'text', disabled = false, customClassName, meta: { touched, error, warning }, ...rest
@@ -150,7 +151,7 @@ export const renderTextAreaField = ({
 );
 
 export const renderDatePicker = ({
-  input, label, type, disabled = false, meta: { touched, error, warning }
+  input, label, type, disabled = false, placeholder, meta: { touched, error, warning }
 }) => {
   return (
     <div>
@@ -159,7 +160,7 @@ export const renderDatePicker = ({
         onChange={input.onChange}
         disabled={disabled}
         selected={input.value ? moment(input.value, 'DD/MM/YYYY') : null}
-        placeholderText="dd/mm/yyyy"
+        placeholderText={placeholder || ''}
         className="form-control"
         dateFormat="DD/MM/YYYY"
         calendarClassName="wide-calendar"
@@ -192,7 +193,7 @@ export const renderSelect = (selectOptions) => {
 
 export const renderMultiSelect = (selectOptions) => {
   return ({
-    input, label, type, disabled = false, meta: { touched, error, warning }
+    input, label, type, disabled = false, placeholder, meta: { touched, error, warning }
   }) => (
     <div className="select-picker">
       <Select2
@@ -200,6 +201,9 @@ export const renderMultiSelect = (selectOptions) => {
         multiple
         disabled={disabled}
         data={selectOptions}
+        options={{
+          placeholder
+        }}
       />
       {touched && ((error && <span className="input-errors">{error}</span>) || (warning
         && <span>{warning}</span>))}
@@ -221,7 +225,7 @@ export const renderPreviewFile = (file, doDeleteNewUploadFile, saveDocument) => 
     <div className="d-flex flex-horizontal mb-10" key={`document_${file.id}`}>
       {
         previewClass ? <div className={previewClass} /> :
-          <a className="image-file-preview"><img src={file.url} alt={file.name}/></a>
+          <a className="image-file-preview"><Image src={file.url} alt={file.name}/></a>
       }
       <div className="file-name-wrapper">
         <a className="degree-filename ml-5" href={file.url} title={file.fileName}>{file.fileName}</a>
@@ -308,7 +312,7 @@ class renderFileInput extends Component {
               <a className="ml-10 mt-10 upload-message">{TT.changeLocale(this.props.lang).t('drag_and_drop')}</a>
             </div>
           </div>
-          <img
+          <Image
             className={internalPreview && this.state.previewUrl != null ? '' : 'd-none'}
             src={this.state.previewUrl}
             height={zoneHeight}

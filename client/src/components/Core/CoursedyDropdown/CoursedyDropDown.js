@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import * as ReactDOM from 'react-dom';
 import styles from './CoursedyDropDown.module.scss';
 import { globalHistory } from '../../../utils/globalHistory';
+import Image from '../ImageComponent';
 
 class CoursedyDropDown extends Component {
   constructor(props) {
@@ -71,7 +72,7 @@ class CoursedyDropDown extends Component {
                         <a onClick={this.onSelectOption.bind(this, item.link)}>
                           {
                         item.prefix
-                          ? item.prefix.type == 'image' ? <img src={item.prefix.value} /> : item.prefix.value
+                          ? item.prefix.type === 'image' ? <Image src={item.prefix.value} /> : item.prefix.value
                           : ''
                       }
                           {item.text}
@@ -83,7 +84,7 @@ class CoursedyDropDown extends Component {
                         <a onClick={this.onSelectOption.bind(this, undefined, item.callback)}>
                           {
                         item.prefix
-                          ? item.prefix.type == 'image' ? <img src={item.prefix.value} /> : item.prefix.value
+                          ? item.prefix.type === 'image' ? <Image src={item.prefix.value} /> : item.prefix.value
                           : ''
                       }
                           {item.text}

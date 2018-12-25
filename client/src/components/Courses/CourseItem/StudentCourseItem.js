@@ -8,6 +8,7 @@ import SettingIcon from '../../Core/Icons/SettingIcon';
 import {CourseStatus} from '../../../constants/CourseStatus';
 import SimpleDialogComponent from '../../Core/SimpleDialogComponent';
 import * as CommonConstant from '../../../utils/CommonConstant';
+import Image from '../../Core/ImageComponent';
 
 class StudentCourseItem extends Component {
   constructor() {
@@ -81,7 +82,7 @@ class StudentCourseItem extends Component {
               <div className="row">
                 <div className="col-xl-9 col-sm-12">
                   <div className="d-flex flex-row align-items-center">
-                    <a className={styles.courseAvatarImage}><img src={course.cover_image} /></a>
+                    <a className={styles.courseAvatarImage}><Image src={course.cover_image} /></a>
                     <div className="d-flex flex-column">
                       <div className={styles.courseTitle}>{course.title}</div>
                       <div className={styles.courseSubTitle}>{course.category.name}</div>
