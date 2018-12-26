@@ -36,11 +36,11 @@ class CourseItemInListMode extends Component {
     this.setState({ isViewMore: !this.state.isViewMore });
   }
 
-  navigateToCourseDetails(onlyTutor, courseId) {
+  navigateToCourseDetails(onlyTutor, course) {
     if (onlyTutor) {
-      globalHistory.push(`/dashboard/courses/detail/${courseId}`);
+      globalHistory.push(`/dashboard/courses/detail/${course.id}`);
     } else {
-      globalHistory.push(`/courses/${courseId}`);
+      globalHistory.push(`/courses/${course.slug}`);
     }
   }
 
@@ -53,7 +53,7 @@ class CourseItemInListMode extends Component {
     } = item;
     const { id: userId, name, avatar } = user;
     return (
-      <div className={styles.courseListItem} onClick={() => this.navigateToCourseDetails(onlyTutor, id)}>
+      <div className={styles.courseListItem} onClick={() => this.navigateToCourseDetails(onlyTutor, item)}>
         <div className="row gap-25">
           <div className="col-xss-12 col-xs-3 col-lg-3 col-sm-4 col-md-4">
             <LinkContainer to={!onlyTutor ? `/courses/${id}` : `/dashboard/courses/detail/${id}`} className={`${styles.image} img-responsive`}>
