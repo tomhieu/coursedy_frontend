@@ -163,7 +163,7 @@ export default {
   add_more_lesson: 'Thêm bài học',
   delete_lesson: 'Xoá bài học',
   update_cover_image: 'Thay đổi ảnh nền khoá học',
-  add_cover_image: 'Thêm ảnh nền khoá học',
+  add_cover_image: 'Thêm ảnh đại diện khoá học',
   warning_delete_section_title: 'Xoá mục',
   warning_delete_section_message: 'Bạn có chắc chắn muốn xoá mục ‘{sectionName}’ không? {seperator} Một khi mục bị xoá, tất cả bài học trong mục cũng sẽ bị xoá.',
   warning_delete_lesson_title: 'Xoá bài học',
