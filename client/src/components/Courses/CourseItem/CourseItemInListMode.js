@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import cssModules from 'react-css-modules';
 import { LinkContainer } from 'react-router-bootstrap';
-import { TT } from 'utils/locale';
 import RatingItem from 'components/Rating';
 import ObjectUtils from 'utils/ObjectUtils';
 import { globalHistory } from 'utils/globalHistory';
 import styles from './CourseItem.module.scss';
+import Image from '../../Core/ImageComponent';
+import defaultAvatar from '../../../../images/default_avatar.png';
 
 
 /**
@@ -56,7 +57,12 @@ class CourseItemInListMode extends Component {
         <div className="row gap-25">
           <div className="col-xss-12 col-xs-3 col-lg-3 col-sm-4 col-md-4">
             <LinkContainer to={!onlyTutor ? `/courses/${id}` : `/dashboard/courses/detail/${id}`} className={`${styles.image} img-responsive`}>
-              <img className={styles.courseImageList} src={!coverImage ? 'http://placehold.it/200x100' : coverImage} alt="" />
+              <Image
+                className={styles.courseImageList}
+                src={!coverImage ? 'http://placehold.it/200x100' : coverImage}
+                fallbackSrc="http://placehold.it/200x100"
+                alt=""
+              />
             </LinkContainer>
           </div>
           <div className="col-xss-12 col-xs-12 col-lg-9 col-sm-8 col-md-8">
@@ -69,7 +75,12 @@ class CourseItemInListMode extends Component {
                   <div className="col-xss-12 col-xs-12 col-lg-8 col-md-7">
                     <div className={styles.courseInstructor}>
                       <LinkContainer className={styles.image} to={`/tutor/${userId}`}>
-                        <img src={avatar || 'http://placehold.it/75x75'} alt="" className={`${styles.courseTutorAvatar} img-responsive img-circle`} />
+                        <Image
+                          src={avatar || defaultAvatar}
+                          alt=""
+                          className={`${styles.courseTutorAvatar} img-responsive img-circle`}
+                          fallbackSrc={defaultAvatar}
+                        />
                       </LinkContainer>
                       <span>{name}</span>
                     </div>

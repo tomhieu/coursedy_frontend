@@ -15,7 +15,7 @@ class CourseFeeViewMode extends Component {
             editMode={editMode}
             fieldId="tuition_fee"
             fieldLabel={this.context.t('tuition_fee')}
-            placeholder={this.context.t('tuition_fee')}
+            placeholder={this.context.t('sample_tuition_fee')}
             isMandatory
             fieldName="tuition_fee"
             typeField="currency_input"

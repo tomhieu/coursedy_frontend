@@ -9,6 +9,7 @@ import { PublicCourseDetailEnrollContainer } from '../../../containers/index';
 import { TT } from '../../../utils/locale';
 import DateUtils from '../../../utils/DateUtils';
 import ObjectUtils from '../../../utils/ObjectUtils';
+import Image from '../../Core/ImageComponent';
 
 /**
   * @Course group template 2
@@ -24,12 +25,13 @@ class CourseDetailGeneral extends Component {
     return (
       <div className="course-detail-general">
         <div className="col-md-12 text-center">
-          <img
+          <Image
             src={
             course.cover_image
               ? SERVER_NAME + course.cover_image
               : 'http://placehold.it/1200x400'
           }
+            fallbackSrc="http://placehold.it/1200x400"
             alt=""
           />
         </div>
@@ -133,7 +135,12 @@ const CourseTutor = (props) => {
         <tr>
           <td className="text-center" colSpan="4">
             <Link to={`/teachers/${course.user.id}`}>
-              <img src={course.user.avatar ? course.user.avatar : 'http://placehold.it/75x75'} className="img-circle" alt="" />
+              <Image
+                src={course.user.avatar ? course.user.avatar : 'http://placehold.it/75x75'}
+                className="img-circle"
+                fallbackSrc="http://placehold.it/75x75"
+                alt=""
+              />
             </Link>
           </td>
         </tr>

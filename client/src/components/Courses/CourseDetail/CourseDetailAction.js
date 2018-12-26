@@ -15,6 +15,7 @@ import FacebookIcon from '../../Core/Icons/FacebookIcon';
 import GooglePlusIcon from '../../Core/Icons/GooglePlusIcon';
 import LinkinIcon from '../../Core/Icons/LinkinIcon';
 import { SecurityUtils } from '../../../utils/SecurityUtils';
+import Image from '../../Core/ImageComponent';
 
 
 class CourseDetailAction extends Component {
@@ -64,7 +65,11 @@ class CourseDetailAction extends Component {
       <div className={styles.courseDetailAction}>
         <div className="d-flex flex-column">
           <div className={styles.courseCoverImage}>
-            <img src={course.cover_image ? course.cover_image : 'http://placehold.it/1366x768'} alt="" />
+            <Image
+              src={course.cover_image ? course.cover_image : 'http://placehold.it/1366x768'}
+              fallbackSrc="http://placehold.it/1366x768"
+              alt=""
+            />
           </div>
           {
             course.tuition_fee

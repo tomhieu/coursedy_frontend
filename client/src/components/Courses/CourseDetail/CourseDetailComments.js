@@ -5,6 +5,8 @@ import { CommentFormContainer } from '../../../containers/index';
 import RatingItem from '../../Rating/index';
 import DateUtils from '../../../utils/DateUtils';
 import UserAvatar from '../../Account/UserAvatar';
+import defaultAvatar from '../../../../images/default_avatar.png';
+import Image from '../../Core/ImageComponent';
 
 /**
   * @Course group template 2
@@ -73,9 +75,10 @@ class CourseDetailComments extends Component {
                             {
                               item.user && item.user.avatar ?
                                 <div className="image img-circle">
-                                  <img
+                                  <Image
                                     className="rounded-circle full-width"
                                     src={item.user.avatar}
+                                    fallbackSrc={defaultAvatar}
                                     alt={this.context.t('course_comments')}
                                   />
                                 </div> : <UserAvatar username={item.user.name} classNames={'image img-circle user-comment'} />

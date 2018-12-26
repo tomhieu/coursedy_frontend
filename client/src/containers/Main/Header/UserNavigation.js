@@ -8,6 +8,7 @@ import UserProfileIcon from '../../../components/Core/Icons/UserProfileIcon';
 import CourseListIcon from '../../../components/Core/Icons/CourseListIcon';
 import SignOutIcon from '../../../components/Core/Icons/SignOutIcon';
 import {TutorStatus} from '../../../constants/TutorStatus';
+import Image from '../../../components/Core/ImageComponent';
 
 class UserNavigation extends Component {
   constructor(props) {
@@ -34,9 +35,9 @@ class UserNavigation extends Component {
   render() {
     const { currentUser } = this.props.session;
     const isAproved = this.props.tutorStatus === TutorStatus.VERIFIED;
-    const userProfileUrl = SecurityUtils.isAdmin(currentUser) ? '/admin/dashboard/account' : SecurityUtils.isTeacher(currentUser)
+    const userProfileUrl = SecurityUtils.isAdmin(currentUser) || SecurityUtils.isTeacher(currentUser)
       ? '/dashboard/profile' : '/student/dashboard/profile';
-    const courseListUrl = SecurityUtils.isAdmin(currentUser) ? '/admin/dashboard/courses' : SecurityUtils.isTeacher(currentUser)
+    const courseListUrl = SecurityUtils.isAdmin(currentUser) || SecurityUtils.isTeacher(currentUser)
       ? '/dashboard/courses/pending' : '/student/dashboard/courses/enrolling';
     const dropdownOptions = [
       {
@@ -58,10 +59,11 @@ class UserNavigation extends Component {
           <div className="d-flex flex-column">
             <div className="d-flex flex-row" onClick={this.onClickArrow.bind(this)}>
               <div className={styles.userAvatar}>
-                <img
-                  className="media-object full-width"
+                <Image
                   src={currentUser.avatar ? currentUser.avatar : defaultAvatar}
+                  fallbackSrc={defaultAvatar}
                   alt={currentUser.name}
+                  className="full-width-img img-circle"
                 />
               </div>
               <span className={styles.userName}>{this.getFirstName(currentUser.name)}</span>

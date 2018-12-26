@@ -2,6 +2,7 @@ import React from 'react';
 import cssModules from 'react-css-modules';
 import defaultAvatar from '../../../../../images/default_avatar.png';
 import styles from '../TeacherDetail.module.scss';
+import Image from '../../../../components/Core/ImageComponent';
 
 
 class TeacherProfileHeader extends React.Component {
@@ -12,7 +13,10 @@ class TeacherProfileHeader extends React.Component {
     return (
       <div className="teacher-detail-profile-header">
         <div className="profile-picture mb-10">
-          <img src={teacher.user.avatar ? teacher.user.avatar : defaultAvatar} />
+          <Image
+            src={teacher.user.avatar ? teacher.user.avatar : defaultAvatar}
+            fallbackSrc={defaultAvatar}
+          />
         </div>
         <div className="profile-summary">
           <div className="profile-box">

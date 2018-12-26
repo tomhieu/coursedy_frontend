@@ -26,42 +26,48 @@ import styles from './TeacherDetail.module.scss';
 import PageContainer from '../../../utils/PageContainer';
 import PaginationArrowIcon from '../../../components/Core/Icons/PaginationArrowIcon';
 import {PAGE_RANGE_DISPLAYED} from '../../../constants/Layout';
+import Image from '../../../components/Core/ImageComponent';
 
 
 class TeacherDetail extends Component {
   componentDidMount() {
     this.props.hideFooter();
     this.props.fetchTeacherDetail({
-      teacherId: parseInt(this.props.match.params.id),
+      teacherSlug: this.props.match.params.slug,
       meta: 'teacherDetailProfilePlaceholder'
     });
-    this.props.fetchTeacherEducations({
-      teacherId: parseInt(this.props.match.params.id),
-      meta: 'userAccountPlaceholder'
-    });
-    this.props.fetchTeacherWorkExperiences({
-      teacherId: parseInt(this.props.match.params.id),
-      meta: 'userAccountPlaceholder'
-    });
-    this.props.fetchTeacherReviews({
-      teacherId: parseInt(this.props.match.params.id),
-      meta: 'userAccountPlaceholder'
-    });
-    this.props.fetchTeacherCourses({
-      teacherId: parseInt(this.props.match.params.id),
-      meta: 'teacherCoursesPlaceholder'
-    });
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (this.props.teacher.id === undefined && nextProps.teacher.id !== undefined) {
+      this.props.fetchTeacherEducations({
+        teacherId: parseInt(nextProps.teacher.id),
+        meta: 'userAccountPlaceholder'
+      });
+      this.props.fetchTeacherWorkExperiences({
+        teacherId: parseInt(nextProps.teacher.id),
+        meta: 'userAccountPlaceholder'
+      });
+      this.props.fetchTeacherReviews({
+        teacherId: parseInt(nextProps.teacher.id),
+        meta: 'userAccountPlaceholder'
+      });
+      this.props.fetchTeacherCourses({
+        teacherId: parseInt(nextProps.teacher.id),
+        meta: 'teacherCoursesPlaceholder'
+      });
+    }
   }
 
   fetchTeacherCoursesWithPageNumber(page, per_page) {
     this.props.fetchTeacherCourses({
-      teacherId: parseInt(this.props.match.params.id), query: { page, per_page }
+      teacherId: parseInt(this.props.teacher.id), query: { page, per_page }
     });
   }
 
   fetchTeacherReviewsWithPageNumber(page, per_page) {
     this.props.fetchTeacherReviews({
-      teacherId: parseInt(this.props.match.params.id), query: { page, per_page }
+      teacherId: parseInt(this.props.teacher.id), query: { page, per_page }
     });
   }
 
@@ -162,12 +168,16 @@ const TeacherBriefCourses = (props) => {
           return (
             <div key={course.id} className="related-course-item">
               <LinkContainer
-                to={`/courses/${course.id}`}
+                to={`/courses/${course.slug}`}
                 className="link-tag"
               >
                 <div className="pb-5 pt-5 clearfix">
                   <div className="image">
-                    <img className="full-width" src={course.cover_image} />
+                    <Image
+                      className="full-width"
+                      src={course.cover_image}
+                      fallbackSrc=""
+                    />
                   </div>
                   <div className="content">
                     <h6 className="course-title">{course.title}</h6>
@@ -306,7 +316,11 @@ TeacherDetail.contextTypes = {
 };
 
 const mapDispatchToProps = dispatch => ({
-  fetchTeacherDetail: query => dispatch(fetchTeacherDetail(query)),
+  fetchTeacherDetail: query => {
+    console.log("DEBUG fetchTeacherDetail 1");
+    console.log(query);
+    return dispatch(fetchTeacherDetail(query));
+  },
   fetchTeacherEducations: query => dispatch(fetchTeacherEducations(query)),
   fetchTeacherWorkExperiences: query => dispatch(fetchTeacherWorkExperiences(query)),
   fetchTeacherReviews: query => dispatch(fetchTeacherReviews(query)),

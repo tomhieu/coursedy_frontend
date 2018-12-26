@@ -4,6 +4,7 @@ import { Slider } from '../../components/Slider/CoursedySlider';
 import CoursedySlider from '../../components/Slider/CoursedySlider';
 import { TT } from '../../utils/locale';
 import CommentIcon from '../../components/Core/Icons/CommentIcon';
+import Image from '../../components/Core/ImageComponent';
 
 
 const Item = ({ item, context }) => {
@@ -17,7 +18,10 @@ const Item = ({ item, context }) => {
             <CommentIcon fillColor="#FF7F45" />
           </div>
           <div className="user__avatar-left">
-            <img src={item.user.avatar} alt="" />
+            <Image
+              src={item.user.avatar} alt=""
+              fallbackSrc=""
+            />
           </div>
         </div>
         <div className="col-md-8 user">

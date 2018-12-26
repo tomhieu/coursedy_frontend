@@ -3,6 +3,8 @@ import {
   generateRandomColorFromUsername, generateShortName
 } from 'utils/UserUtils';
 import { SERVER_NAME } from 'utils/CommonConstant';
+import Image from '../Core/ImageComponent';
+import defaultAvatar from '../../../images/default_avatar.png';
 
 
 class UserAvatar extends Component {
@@ -11,7 +13,11 @@ class UserAvatar extends Component {
 
     if (url) {
       return (
-        <img src={SERVER_NAME + url} />
+        <Image
+          src={SERVER_NAME + url}
+          fallbackSrc={defaultAvatar}
+          className="full-width-img img-circle"
+        />
       );
     }
 

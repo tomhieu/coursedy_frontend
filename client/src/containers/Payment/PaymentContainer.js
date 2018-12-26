@@ -24,6 +24,7 @@ import EnrollCourseSuccessPopup from "../../components/Courses/EnrollPopup/Enrol
 import * as PublicCourseActions from '../../actions/PublicCourseActionCreator';
 import request from "../../utils/request"
 import config from 'config'
+import Image from '../../components/Core/ImageComponent';
 
 class PaymentContainer extends Component {
   constructor(props) {
@@ -254,7 +255,7 @@ class PaymentContainer extends Component {
                                 key={item.name}
                                 onClick={this.changeBank.bind(this, item.id)}
                               >
-                                <img src={'/banks/'+item.name.toUpperCase()+'.png'} />
+                                <Image src={'/banks/'+item.name.toUpperCase()+'.png'} />
                               </div>
                             ))
                           }
@@ -335,7 +336,7 @@ class PaymentContainer extends Component {
                         <LinkContainer to={'/courses/' + course.id}>
                           <div className="course-link">
                             <p>
-                              <img className="cover-image" src={course.cover_image} alt=""/>
+                              <Image className="cover-image" src={course.cover_image} alt=""/>
                             </p>
                             <div className="course-title">
                               <span >{ course.title }</span>

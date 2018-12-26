@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import cssModules from 'react-css-modules';
 import { LinkContainer } from 'react-router-bootstrap';
 import styles from './CourseGroup.module.scss';
+import Image from '../../Core/ImageComponent';
 
 
 /**
@@ -19,7 +20,10 @@ class CourseGroup2 extends Component {
         <div className="col-xs-12">
           <div className="course-thumb">
             <LinkContainer to={`/courses/${this.props.item.id}`} className={`${styles.fullWidth} img-responsive`}>
-              <img src={this.props.item.thumb} alt="" />
+              <Image
+                src={this.props.item.thumb}
+                alt=""
+              />
             </LinkContainer>
           </div>
         </div>
@@ -63,7 +67,12 @@ Thời gian:
           <div className="col-xs-12 col-sm-12 col-md-4 course-tutor-info">
             <div className={styles.courseTutorAvatar}>
               <LinkContainer to={`/tutor/${this.props.item.tutor.id}`}>
-                <img src={this.props.item.tutor.avatar} alt="" className={`${styles.courseTutorAvatar} img-responsive img-circle`} />
+                <Image
+                  src={this.props.item.tutor.avatar}
+                  fallbackSrc=""
+                  alt=""
+                  className={`${styles.courseTutorAvatar} img-responsive img-circle`}
+                />
               </LinkContainer>
             </div>
             <br />

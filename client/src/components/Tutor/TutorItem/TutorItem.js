@@ -4,22 +4,28 @@ import { globalHistory } from 'utils/globalHistory';
 import styles from './TutorItem.module.scss';
 import RatingItem from '../../Rating/index';
 import defaultAvatar from '../../../../images/default_avatar.png';
+import Image from '../../Core/ImageComponent';
 
 class TutorItem extends Component {
-  goToTeacherDetails(teacherId) {
-    globalHistory.replace(`/teachers/${teacherId}`);
+  goToTeacherDetails(teacherSlug) {
+    globalHistory.replace(`/teachers/${teacherSlug}`);
   }
 
   render() {
+    const { tutor } = this.props;
     const {
       id, user, categories, place_of_work, title
-    } = this.props.tutor;
+    } = tutor;
 
     return (
-      <div className={styles.teacherItemGrid} onClick={() => this.goToTeacherDetails(id)}>
+      <div className={styles.teacherItemGrid} onClick={() => this.goToTeacherDetails(tutor.slug)}>
 
         <a className={styles.imageWrapper}>
-          <img className={styles.imageCard} src={user.avatar ? user.avatar : defaultAvatar} />
+          <Image
+            src={user.avatar ? user.avatar : defaultAvatar}
+            className={styles.imageCard}
+            fallbackSrc={defaultAvatar}
+          />
         </a>
 
         <div className={`${styles.teacherContact} row`}>
