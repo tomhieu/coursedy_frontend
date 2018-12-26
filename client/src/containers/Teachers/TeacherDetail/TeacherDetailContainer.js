@@ -168,7 +168,7 @@ const TeacherBriefCourses = (props) => {
           return (
             <div key={course.id} className="related-course-item">
               <LinkContainer
-                to={`/courses/${course.id}`}
+                to={`/courses/${course.slug}`}
                 className="link-tag"
               >
                 <div className="pb-5 pt-5 clearfix">
