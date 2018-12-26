@@ -93,7 +93,7 @@ export const routes = [
     exact: true
   },
   {
-    path: '/courses/:id',
+    path: '/courses/:slug',
     component: Pages.PublicCourseDetailPage,
     exact: true
   },

@@ -4,18 +4,18 @@ import Network from '../utils/network';
 import { TT } from '../utils/locale';
 import * as PublicCourseConstants from '../constants/PublicCourseConstants';
 
-export const fetchPublicCourse = (courseId) => {
+export const fetchPublicCourse = (courseSlug) => {
   return (dispatch) => {
     dispatch({
       type: types.FETCH_PUBLIC_COURSE,
-      payload: Network().get(`courses/${courseId}`),
+      payload: Network().get(`courses/${courseSlug}`),
       meta: 'ezylearningFullLoader'
     }).then(({ value, action }) => {
-      dispatch(fetchPublicCourseSections(courseId));
+      dispatch(fetchPublicCourseSections(value.id));
       dispatch(fetchPublicCourseTutor(value.user.id));
 
       setTimeout(() => {
-        dispatch(submitViewCourse(courseId, value.token || ''));
+        dispatch(submitViewCourse(value.id, value.token || ''));
       }, PublicCourseConstants.PUBLIC_COURSE_DETAIL_SUBMIT_VIEW_TIMEOUT);
     }, () => {
       const error_messages = [TT.t('fetch_course_fail')];

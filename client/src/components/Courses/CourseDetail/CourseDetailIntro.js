@@ -126,7 +126,7 @@ class CourseDetailIntro extends Component {
             {
               teachingDays.map(day => {
                 return (
-                  <div className="d-flex flex-row">
+                  <div className="d-flex flex-row" key={"teaching-day-" + day.day}>
                     <span className="box-date">{this.context.t(day.day)}</span>
                     <span className="box-time">{this.getTeachingTime(day.start_time)}</span>
                     <span className="seperate-line">{this.context.t('course_day_in_week_seperate')}</span>

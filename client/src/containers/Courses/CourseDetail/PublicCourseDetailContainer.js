@@ -9,8 +9,8 @@ import PageContainer from '../../../utils/PageContainer';
 import * as sessionActions from "../../../actions/SessionActionCreator";
 import {
   COUSES_ENROLL_ERROR_NOT_ENOUGH_BALANCE
-} from "../../../constants/WebConstants.js"
-import {globalHistory} from 'utils/globalHistory'
+} from "../../../constants/WebConstants.js";
+import {globalHistory} from 'utils/globalHistory';
 
 class PublicCourseDetailContainer extends Component {
   constructor(props) {
@@ -22,30 +22,31 @@ class PublicCourseDetailContainer extends Component {
     this.props.stretchFull();
     this.props.noShadowHeader();
     this.props.getCourseCategories();
-    const { courseId, course_comments_page } = this.props;
-    if (courseId) {
+    if (this.props.courseSlug) {
       // Fetch course
-      this.props.getPublicCourse(courseId);
-
-      // Fetch comments
-      this.props.getCourseComments(courseId, course_comments_page);
-
-      // Fetch related courses
-      this.props.getRelatedCourses(courseId, WebConstants.START_PAGE_INDEX, WebConstants.RELATED_COURSE_PER_PAGE);
+      this.props.getPublicCourse(this.props.courseSlug);
     }
   }
 
   componentWillReceiveProps(nextProps) {
     if (this.props.lang !== nextProps.lang) {
       this.props.getCourseCategories();
-      const { courseId } = nextProps;
-      if (courseId) {
+      const { courseSlug } = nextProps;
+      if (courseSlug) {
         // Fetch course
-        this.props.getPublicCourse(courseId);
+        this.props.getPublicCourse(courseSlug);
 
         // Fetch related courses
-        this.props.getRelatedCourses(courseId, WebConstants.START_PAGE_INDEX, WebConstants.RELATED_COURSE_PER_PAGE);
+        this.props.getRelatedCourses(this.props.course.id, WebConstants.START_PAGE_INDEX, WebConstants.RELATED_COURSE_PER_PAGE);
       }
+    }
+
+    if (this.props.course.id === undefined && nextProps.course.id !== undefined) {
+      // Fetch comments
+      this.props.getCourseComments(nextProps.course.id, this.props.course_comments_page);
+
+      // Fetch related courses
+      this.props.getRelatedCourses(nextProps.course.id, WebConstants.START_PAGE_INDEX, WebConstants.RELATED_COURSE_PER_PAGE);
     }
   }
 
@@ -66,7 +67,7 @@ class PublicCourseDetailContainer extends Component {
   // }
 
   loadMoreComments() {
-    this.props.getCourseComments(this.props.courseId, this.props.course_comments_page + 1);
+    this.props.getCourseComments(this.props.course.id, this.props.course_comments_page + 1);
   }
 
   changeActiveMenu(payload) {
@@ -173,7 +174,7 @@ const mapDispatchToProps = dispatch => ({
   noShadowHeader: () => dispatch({ type: WebConstants.ADD_HEADER_CLASS, payload: 'no-shadow' }),
   shadowHeader: () => dispatch({ type: WebConstants.REMOVE_HEADER_CLASS }),
   getCourseCategories: () => dispatch(ReferActions.fetchCourseCategories()),
-  getPublicCourse: courseId => dispatch(PublicCourseActions.fetchPublicCourse(courseId)),
+  getPublicCourse: courseSlug => dispatch(PublicCourseActions.fetchPublicCourse(courseSlug)),
   getCourseComments: (courseId, page) => dispatch(PublicCourseActions.fetchCourseComments(courseId, page)),
   getRelatedCourses: (courseId, page, perPage) => dispatch(PublicCourseActions.fetchRelatedCourses({course_id: courseId, page, perPage})),
   enrollCourse: (courseId) => dispatch(PublicCourseActions.submitEnrollCourse(courseId)),
