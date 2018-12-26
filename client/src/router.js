@@ -100,7 +100,7 @@ export const routes = [
 
   // teacher router
   {
-    path: '/teachers/:id',
+    path: '/teachers/:slug',
     component: TeacherDetailContainer,
     exact: true
   },

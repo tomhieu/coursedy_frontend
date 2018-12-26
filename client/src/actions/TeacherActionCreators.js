@@ -24,10 +24,12 @@ export const updateFilterTeacher = (filters) => {
   };
 };
 
-export const fetchTeacherDetail = ({ teacherId, meta }) => {
+export const fetchTeacherDetail = ({ teacherSlug, meta }) => {
+  console.log("DEBUG fetchTeacherDetail 2");
+  console.log(teacherSlug);
   return {
     type: asyncActs.FETCH_TEACHER_DETAIL,
-    payload: Network().get(`tutors/${teacherId}`),
+    payload: Network().get(`tutors/${teacherSlug}`),
     meta,
   };
 };
